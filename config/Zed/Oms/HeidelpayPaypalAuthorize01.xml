@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<statemachine
+        xmlns="spryker:oms-01"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
+
+    <process name="HeidelpayPaypalAuthorize01" main="true">
+        <subprocesses>
+            <process>Authorization</process>
+            <process>Shipment</process>
+            <process>Capture</process>
+        </subprocesses>
+
+        <states>
+            <state name="new" reserved="true"/>
+        </states>
+
+        <transitions>
+            <transition>
+                <source>new</source>
+                <target>ready for authorization</target>
+                <event>start authorization process</event>
+            </transition>
+
+            <transition>
+                <source>authorization succeeded</source>
+                <target>ready for shipment</target>
+                <event>start shipment process</event>
+            </transition>
+
+            <transition>
+                <source>shipped</source>
+                <target>ready for capture</target>
+                <event>start capture process</event>
+            </transition>
+
+        </transitions>
+
+        <events>
+            <event name="start authorization process" onEnter="true" />
+            <event name="start shipment process" manual="true"/>
+            <event name="start capture process" onEnter="true"/>
+        </events>
+    </process>
+
+    <process name="Authorization" file="HeidelpaySubprocesses/Authorization.xml"/>
+    <process name="Shipment" file="HeidelpaySubprocesses/Shipment.xml"/>
+    <process name="Capture" file="HeidelpaySubprocesses/Capture.xml"/>
+
+</statemachine>

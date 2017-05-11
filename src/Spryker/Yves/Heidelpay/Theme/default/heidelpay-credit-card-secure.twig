@@ -1,0 +1,22 @@
+<div class="payment-method payment-subform heidelpay-form heidelpay-sofort-form payment-form" id="heidelpaySofort">
+    <div class="heidelpay small-12 columns">
+        {{ 'payment.heidelpay.pay_with_credit_card' | trans }}
+        {{ form_errors(form.heidelpayCreditCardSecure) }}
+        <div class="small-12 columns">
+            <ul class="no-bullet">
+            {% for paymentOption in form.heidelpayCreditCardSecure.selected_payment_option %}
+                <li>
+                    <div class="row">
+                        {% include '@Heidelpay/credit-card/' ~ paymentOption.vars.value ~ '.twig' with
+                            {
+                                paymentOption: paymentOption,
+                                paymentMethod: form.vars.value.payment.heidelpayCreditCardSecure
+                            }
+                        %}
+                    </div>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<database
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    name="zed"
+    defaultIdMethod="native"
+    xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+    namespace="Orm\Zed\Heidelpay\Persistence"
+    package="src.Orm.Zed.Heidelpay.Persistence"
+>
+    <table name="spy_payment_heidelpay" phpName="SpyPaymentHeidelpay">
+        <column name="id_payment_heidelpay" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_sales_order" required="true" type="INTEGER"/>
+
+        <column name="id_payment_reference" required="false" type="VARCHAR"/>
+        <column name="id_payment_registration" required="false" type="VARCHAR"/>
+
+        <column name="payment_method" required="true" type="VARCHAR"/>
+
+        <foreign-key name="spy_payment_payone-fk_sales_order" foreignTable="spy_sales_order" phpName="SpySalesOrder">
+            <reference foreign="id_sales_order" local="fk_sales_order"/>
+        </foreign-key>
+
+        <behavior name="timestampable"/>
+        <id-method-parameter value="spy_payment_heidelpay_pk_seq"/>
+    </table>
+
+    <table name="spy_payment_heidelpay_order_item">
+        <column name="fk_payment_heidelpay" type="INTEGER" primaryKey="true"/>
+        <column name="fk_sales_order_item" type="INTEGER" primaryKey="true"/>
+        <behavior name="timestampable">
+            <parameter name="disable_updated_at" value="true"/>
+        </behavior>
+        <foreign-key name="spy_heidelpay_order_item-fk_heidelpay" foreignTable="spy_payment_heidelpay">
+            <reference foreign="id_payment_heidelpay" local="fk_payment_heidelpay"/>
+        </foreign-key>
+        <foreign-key name="spy_payment_heidelpay_order_item-fk_sales_order_item" foreignTable="spy_sales_order_item">
+            <reference foreign="id_sales_order_item" local="fk_sales_order_item"/>
+        </foreign-key>
+    </table>
+
+    <table name="spy_payment_heidelpay_credit_card_registration">
+        <column name="id_credit_card_registration" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_customer_address" required="true" type="INTEGER" />
+        <column name="registration_number" required="true" type="VARCHAR" />
+        <column name="account_brand" required="false" type="VARCHAR" />
+        <column name="account_holder" required="false" type="VARCHAR" />
+        <column name="account_number" required="false" type="VARCHAR" />
+        <column name="account_verification" required="false" type="VARCHAR" />
+        <column name="account_expiry_month" required="false" type="INTEGER" />
+        <column name="account_expiry_year" required="false" type="INTEGER" />
+
+        <behavior name="timestampable">
+            <parameter name="disable_updated_at" value="true"/>
+        </behavior>
+        <foreign-key name="spy_payment_heidelpay_credit_card_registration-fk_customer_address" foreignTable="spy_customer_address">
+            <reference foreign="id_customer_address" local="fk_customer_address"/>
+        </foreign-key>
+        <unique name="spy_heidelpay_registration_number-customer_address">
+            <unique-column name="registration_number"/>
+            <unique-column name="fk_customer_address"/>
+        </unique>
+        <index name="spy_heidelpay_registration-fk_customer_address">
+            <index-column name="fk_customer_address"/>
+        </index>
+        <id-method-parameter value="spy_payment_heidelpay_credit_card_registration_pk_seq"/>
+    </table>
+
+    <table name="spy_payment_heidelpay_transaction_log">
+        <column name="id_payment_heidelpay_transaction_log" type="INTEGER" primaryKey="true" autoIncrement="true"/>
+        <column name="fk_sales_order" required="true" type="INTEGER"/>
+        <column name="id_transaction_unique" required="false" type="VARCHAR"/>
+        <column name="transaction_type" required="false" type="VARCHAR"/>
+        <column name="processing_code" required="false" type="VARCHAR"/>
+        <column name="response_code" required="false" type="VARCHAR"/>
+        <column name="redirect_url" type="VARCHAR"/>
+        <column name="request_payload" required="false" type="LONGVARCHAR"/>
+        <column name="response_payload" required="true" type="LONGVARCHAR"/>
+
+        <foreign-key name="spy_heidelpay_transaction_log-fk_sales_order" foreignTable="spy_sales_order">
+            <reference foreign="id_sales_order" local="fk_sales_order"/>
+        </foreign-key>
+        <behavior name="timestampable"/>
+        <id-method-parameter value="spy_payment_heidelpay_transaction_log_pk_seq"/>
+        <index name="spy_payment_heidelpay_transaction_log-transaction_type">
+            <index-column name="transaction_type"/>
+        </index>
+    </table>
+
+</database>
