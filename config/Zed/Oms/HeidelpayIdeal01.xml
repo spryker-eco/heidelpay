@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<statemachine
+        xmlns="spryker:oms-01"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
+
+    <process name="HeidelpayIdeal01" main="true">
+        <subprocesses>
+            <process>Authorization</process>
+        </subprocesses>
+
+        <states>
+            <state name="new" reserved="true"/>
+        </states>
+
+        <transitions>
+            <transition>
+                <source>new</source>
+                <target>ready for authorization</target>
+                <event>start authorization process</event>
+            </transition>
+        </transitions>
+
+        <events>
+            <event name="start authorization process" onEnter="true" />
+        </events>
+    </process>
+
+    <process name="Authorization" file="HeidelpaySubprocesses/Authorization.xml"/>
+
+</statemachine>
