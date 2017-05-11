@@ -1,0 +1,15 @@
+<div>
+    {{ form_widget(paymentOption) }}
+    {{ form_label(paymentOption) }}
+    <br/>
+    <div class="payment-option" id="payment-option-existing-registration">
+        <small>
+            {% set creditCardInfo = paymentMethod.paymentOptions.lastSuccessfulRegistration.creditCardInfo %}
+            <strong>{{ 'payment.heidelpay.credit_card' | trans }}:</strong><br />
+            <div>{{ 'payment.heidelpay.credit_card.holder' | trans }} - {{ creditCardInfo.accountHolder }}</div>
+            <div>{{ 'payment.heidelpay.credit_card.type' | trans }} - {{ creditCardInfo.accountBrand }}</div>
+            <div>{{ 'payment.heidelpay.credit_card.number' | trans }} - {{ creditCardInfo.accountNumber }}</div>
+            <div>{{ 'payment.heidelpay.credit_card.validity' | trans }} - {{ creditCardInfo.accountExpiryMonth }} / {{ creditCardInfo.accountExpiryYear }}</div>
+        </small>
+    </div>
+</div>

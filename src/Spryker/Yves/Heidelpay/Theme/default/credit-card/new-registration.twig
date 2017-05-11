@@ -1,0 +1,10 @@
+<div>
+    {{ form_widget(paymentOption) }}
+    {{ form_label(paymentOption) }}
+    <br/>
+    <div class="payment-option" id="payment-option-new-registration">
+        <iframe id="paymentIframe" src="{{ paymentMethod.paymentOptions.paymentFrameUrl }}" style="height:250px;"></iframe>
+    </div>
+</div>
+
+<script src="/assets/default/js/spryker-yves-heidelpay-main.js"></script>
