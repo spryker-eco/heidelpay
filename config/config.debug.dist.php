@@ -8,11 +8,11 @@
  * Copy over the following configs to your config
  */
 
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use Spryker\Shared\Kernel\KernelConstants;
 use Spryker\Shared\Oms\OmsConstants;
 use Spryker\Shared\Sales\SalesConstants;
 use Spryker\Zed\Oms\OmsConfig;
+use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 
 // Heidelpay configuration
 

@@ -7,8 +7,8 @@
 
 namespace SprykerEco\Zed\Heidelpay;
 
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use Spryker\Zed\Kernel\AbstractBundleConfig;
+use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 
 class HeidelpayConfig extends AbstractBundleConfig
 {

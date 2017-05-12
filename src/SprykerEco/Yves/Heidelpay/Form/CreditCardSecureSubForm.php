@@ -8,8 +8,8 @@
 namespace SprykerEco\Yves\Heidelpay\Form;
 
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentTransfer;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
+use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;

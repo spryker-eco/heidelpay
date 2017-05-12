@@ -10,11 +10,11 @@ namespace SprykerEco\Yves\Heidelpay\Form\DataProvider;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentTransfer;
 use Generated\Shared\Transfer\PaymentTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
+use Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface;
+use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use SprykerEco\Yves\Heidelpay\Form\CreditCardSecureSubForm;
 use SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface;
-use Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface;
 
 class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterface
 {
