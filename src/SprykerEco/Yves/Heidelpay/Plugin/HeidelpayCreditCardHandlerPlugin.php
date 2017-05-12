@@ -13,7 +13,7 @@ use Spryker\Yves\StepEngine\Dependency\Plugin\Handler\StepHandlerPluginInterface
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @method \Spryker\Yves\Heidelpay\HeidelpayFactory getFactory()
+ * @method \SprykerEco\Yves\Heidelpay\HeidelpayFactory getFactory()
  */
 class HeidelpayCreditCardHandlerPlugin extends AbstractPlugin implements StepHandlerPluginInterface
 {

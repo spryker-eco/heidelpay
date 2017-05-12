@@ -8,25 +8,25 @@
 namespace SprykerEco\Yves\Heidelpay\Handler;
 
 use Generated\Shared\Transfer\HeidelpayErrorRedirectResponseTransfer;
-use Spryker\Client\Heidelpay\HeidelpayClientInterface;
-use Spryker\Yves\Heidelpay\HeidelpayConfig;
+use SprykerEco\Client\Heidelpay\HeidelpayClientInterface;
+use SprykerEco\Yves\Heidelpay\HeidelpayConfig;
 
 class PaymentFailureHandler implements PaymentFailureHandlerInterface
 {
 
     /**
-     * @var \Spryker\Client\Heidelpay\HeidelpayClientInterface
+     * @var \SprykerEco\Client\Heidelpay\HeidelpayClientInterface
      */
     protected $heidelpayClient;
 
     /**
-     * @var \Spryker\Yves\Heidelpay\HeidelpayConfig
+     * @var \SprykerEco\Yves\Heidelpay\HeidelpayConfig
      */
     protected $config;
 
     /**
-     * @param \Spryker\Client\Heidelpay\HeidelpayClientInterface $heidelpayClient
-     * @param \Spryker\Yves\Heidelpay\HeidelpayConfig $config
+     * @param \SprykerEco\Client\Heidelpay\HeidelpayClientInterface $heidelpayClient
+     * @param \SprykerEco\Yves\Heidelpay\HeidelpayConfig $config
      */
     public function __construct(
         HeidelpayClientInterface $heidelpayClient,

@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Yves\Heidelpay\Handler;
 
-use Spryker\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 
 class HeidelpayCreditCardHandler extends HeidelpayHandler

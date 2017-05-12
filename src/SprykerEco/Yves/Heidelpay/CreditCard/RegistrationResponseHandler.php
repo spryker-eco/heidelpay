@@ -10,26 +10,26 @@ namespace SprykerEco\Yves\Heidelpay\CreditCard;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
-use Spryker\Client\Heidelpay\HeidelpayClientInterface;
-use Spryker\Shared\Heidelpay\HeidelpayConstants;
-use Spryker\Yves\Heidelpay\Handler\HeidelpayHandlerInterface;
+use SprykerEco\Client\Heidelpay\HeidelpayClientInterface;
+use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface;
 
 class RegistrationResponseHandler implements RegistrationResponseHandlerInterface
 {
 
     /**
-     * @var \Spryker\Client\Heidelpay\HeidelpayClientInterface
+     * @var \SprykerEco\Client\Heidelpay\HeidelpayClientInterface
      */
     protected $heidelpayClient;
 
     /**
-     * @var \Spryker\Yves\Heidelpay\Handler\HeidelpayHandlerInterface
+     * @var \SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface
      */
     protected $heidelpayPaymentHandler;
 
     /**
-     * @param \Spryker\Client\Heidelpay\HeidelpayClientInterface $heidelpayClient
-     * @param \Spryker\Yves\Heidelpay\Handler\HeidelpayHandlerInterface $heidelpayPaymentHandler
+     * @param \SprykerEco\Client\Heidelpay\HeidelpayClientInterface $heidelpayClient
+     * @param \SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface $heidelpayPaymentHandler
      */
     public function __construct(
         HeidelpayClientInterface $heidelpayClient,

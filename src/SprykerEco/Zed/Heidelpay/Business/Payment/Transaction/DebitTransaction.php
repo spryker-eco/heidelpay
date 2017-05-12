@@ -9,9 +9,9 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
-use Spryker\Shared\Heidelpay\HeidelpayConstants;
-use Spryker\Zed\Heidelpay\Business\Payment\Transaction\Logger\TransactionLoggerInterface;
-use Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface;
+use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Logger\TransactionLoggerInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface;
 
 class DebitTransaction implements DebitTransactionInterface
 {
@@ -19,12 +19,12 @@ class DebitTransaction implements DebitTransactionInterface
     const TRANSACTION_TYPE = HeidelpayConstants::TRANSACTION_TYPE_DEBIT;
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Payment\Transaction\Logger\TransactionLoggerInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Logger\TransactionLoggerInterface
      */
     protected $transactionLogger;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\Transaction\Logger\TransactionLoggerInterface $transactionLogger
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Logger\TransactionLoggerInterface $transactionLogger
      */
     public function __construct(TransactionLoggerInterface $transactionLogger)
     {
@@ -33,7 +33,7 @@ class DebitTransaction implements DebitTransactionInterface
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $debitRequestTransfer
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface $paymentAdapter
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface $paymentAdapter
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */

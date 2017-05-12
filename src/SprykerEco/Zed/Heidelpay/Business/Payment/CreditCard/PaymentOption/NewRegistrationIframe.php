@@ -11,26 +11,26 @@ use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentOptionTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
-use Spryker\Shared\Heidelpay\HeidelpayConstants;
-use Spryker\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface;
-use Spryker\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilderInterface;
+use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilderInterface;
 
 class NewRegistrationIframe implements PaymentOptionInterface
 {
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilderInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilderInterface
      */
     protected $adapterRequestBuilder;
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface
      */
     protected $creditCardPayment;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilderInterface $adapterRequestBuilder
-     * @param \Spryker\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface $creditCardPayment
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilderInterface $adapterRequestBuilder
+     * @param \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface $creditCardPayment
      */
     public function __construct(
         AdapterRequestFromQuoteBuilderInterface $adapterRequestBuilder,

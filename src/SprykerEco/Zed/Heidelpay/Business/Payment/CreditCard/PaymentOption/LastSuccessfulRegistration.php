@@ -11,19 +11,19 @@ use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentOptionTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
-use Spryker\Shared\Heidelpay\HeidelpayConstants;
-use Spryker\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationReaderInterface;
+use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationReaderInterface;
 
 class LastSuccessfulRegistration implements PaymentOptionInterface
 {
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationReaderInterface|\Spryker\Zed\Heidelpay\Business\Payment\CreditCard\RegistrationReaderInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationReaderInterface|\SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\RegistrationReaderInterface
      */
     protected $registrationReader;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationReaderInterface $registrationManager
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationReaderInterface $registrationManager
      */
     public function __construct(RegistrationReaderInterface $registrationManager)
     {

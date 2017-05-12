@@ -7,16 +7,16 @@
 
 namespace SprykerEco\Client\Heidelpay;
 
-use Spryker\Client\Heidelpay\Mapper\ApiResponseToRegistrationResponseTransfer;
-use Spryker\Client\Heidelpay\Sdk\CreditCardRegistrationResponseParser;
-use Spryker\Client\Heidelpay\Sdk\HeidelpayApiAdapter;
-use Spryker\Client\Heidelpay\Zed\HeidelpayStub;
+use SprykerEco\Client\Heidelpay\Mapper\ApiResponseToRegistrationResponseTransfer;
+use SprykerEco\Client\Heidelpay\Sdk\CreditCardRegistrationResponseParser;
+use SprykerEco\Client\Heidelpay\Sdk\HeidelpayApiAdapter;
+use SprykerEco\Client\Heidelpay\Zed\HeidelpayStub;
 use Spryker\Client\Kernel\AbstractFactory;
 use Spryker\Client\Session\SessionClientFactoryTrait;
 use Spryker\Client\ZedRequest\ZedRequestClientFactoryTrait;
 
 /**
- * @method \Spryker\Client\Heidelpay\HeidelpayConfig getConfig()
+ * @method \SprykerEco\Client\Heidelpay\HeidelpayConfig getConfig()
  */
 class HeidelpayFactory extends AbstractFactory
 {
@@ -25,7 +25,7 @@ class HeidelpayFactory extends AbstractFactory
     use ZedRequestClientFactoryTrait;
 
     /**
-     * @return \Spryker\Client\Heidelpay\Sdk\HeidelpayApiAdapter
+     * @return \SprykerEco\Client\Heidelpay\Sdk\HeidelpayApiAdapter
      */
     public function createHeidelpayApiAdapter()
     {
@@ -33,7 +33,7 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Client\Heidelpay\Dependency\Client\HeidelpayToLocaleInterface
+     * @return \SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToLocaleInterface
      */
     public function getLocaleClient()
     {
@@ -41,7 +41,7 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteInterface
+     * @return \SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteInterface
      */
     public function getQuoteClient()
     {
@@ -49,7 +49,7 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Client\Heidelpay\Zed\HeidelpayStubInterface
+     * @return \SprykerEco\Client\Heidelpay\Zed\HeidelpayStubInterface
      */
     public function createZedStub()
     {
@@ -57,7 +57,7 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Client\Heidelpay\Sdk\CreditCardRegistrationResponseParserInterface
+     * @return \SprykerEco\Client\Heidelpay\Sdk\CreditCardRegistrationResponseParserInterface
      */
     public function createExternalResponseValidator()
     {
@@ -68,7 +68,7 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Client\Heidelpay\Mapper\ApiResponseToRegistrationResponseTransferInterface
+     * @return \SprykerEco\Client\Heidelpay\Mapper\ApiResponseToRegistrationResponseTransferInterface
      */
     protected function createApiResponseToRegistrationResponseTransferMapper()
     {

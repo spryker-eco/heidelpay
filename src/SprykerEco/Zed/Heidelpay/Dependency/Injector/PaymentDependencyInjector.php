@@ -7,9 +7,9 @@
 
 namespace SprykerEco\Zed\Heidelpay\Dependency\Injector;
 
-use Spryker\Shared\Heidelpay\HeidelpayConstants;
-use Spryker\Zed\Heidelpay\Communication\Plugin\Checkout\HeidelpayPostSavePlugin;
-use Spryker\Zed\Heidelpay\Communication\Plugin\Checkout\HeidelpaySaveOrderPlugin;
+use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Zed\Heidelpay\Communication\Plugin\Checkout\HeidelpayPostSavePlugin;
+use SprykerEco\Zed\Heidelpay\Communication\Plugin\Checkout\HeidelpaySaveOrderPlugin;
 use Spryker\Zed\Kernel\Container;
 use Spryker\Zed\Kernel\Dependency\Injector\AbstractDependencyInjector;
 use Spryker\Zed\Payment\Dependency\Plugin\Checkout\CheckoutPluginCollection;

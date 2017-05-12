@@ -11,18 +11,18 @@ use Generated\Shared\Transfer\HeidelpayCreditCardInfoTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration;
-use Spryker\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
+use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
 
 class RegistrationReader implements RegistrationReaderInterface
 {
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface
+     * @var \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface
      */
     private $heidelpayQueryContainer;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface $heidelpayQueryContainer
+     * @param \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface $heidelpayQueryContainer
      */
     public function __construct(HeidelpayQueryContainerInterface $heidelpayQueryContainer)
     {

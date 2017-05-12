@@ -14,9 +14,9 @@ use Spryker\Zed\Oms\Business\Util\ReadOnlyArrayObject;
 use Spryker\Zed\Oms\Communication\Plugin\Oms\Command\CommandByOrderInterface;
 
 /**
- * @method \Spryker\Zed\Heidelpay\Business\HeidelpayFacade getFacade()
- * @method \Spryker\Zed\Heidelpay\Communication\HeidelpayCommunicationFactory getFactory()
- * @method \Spryker\Zed\Heidelpay\Persistence\HeidelpayQueryContainer getQueryContainer()
+ * @method \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade getFacade()
+ * @method \SprykerEco\Zed\Heidelpay\Communication\HeidelpayCommunicationFactory getFactory()
+ * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainer getQueryContainer()
  */
 class AuthorizePlugin extends AbstractPlugin implements CommandByOrderInterface
 {

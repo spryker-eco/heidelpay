@@ -12,8 +12,8 @@ use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Spryker\Yves\Kernel\Controller\AbstractController;
 
 /**
- * @method \Spryker\Yves\Heidelpay\HeidelpayFactory getFactory()
- * @method \Spryker\Client\Heidelpay\HeidelpayClientInterface getClient()
+ * @method \SprykerEco\Yves\Heidelpay\HeidelpayFactory getFactory()
+ * @method \SprykerEco\Client\Heidelpay\HeidelpayClientInterface getClient()
  */
 class IdealController extends AbstractController
 {

@@ -7,14 +7,15 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment;
 
+use Generated\Shared\Transfer\AddressTransfer;
 use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay;
-use Spryker\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationWriterInterface;
-use Spryker\Zed\Heidelpay\Business\Payment\Transaction\TransactionLogReaderInterface;
-use Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface;
-use Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface;
-use Spryker\Zed\Heidelpay\HeidelpayConfig;
+use SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationWriterInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\TransactionLogReaderInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface;
+use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class CreditCardSecure extends BaseHeidelpayPaymentMethod implements
     PaymentWithPostSaveOrderInterface,
@@ -22,14 +23,14 @@ class CreditCardSecure extends BaseHeidelpayPaymentMethod implements
 {
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationWriterInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationWriterInterface
      */
     private $registrationWriter;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\Transaction\TransactionLogReaderInterface $transactionLogManager
-     * @param \Spryker\Zed\Heidelpay\HeidelpayConfig $config
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationWriterInterface $registrationWriter
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\TransactionLogReaderInterface $transactionLogManager
+     * @param \SprykerEco\Zed\Heidelpay\HeidelpayConfig $config
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationWriterInterface $registrationWriter
      */
     public function __construct(
         TransactionLogReaderInterface $transactionLogManager,
@@ -53,8 +54,9 @@ class CreditCardSecure extends BaseHeidelpayPaymentMethod implements
             $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder()
         );
 
-        if (($authorizeTransactionLogTransfer !== null) &&
-            $this->isAuthorizeTransactionSentSuccessfully($authorizeTransactionLogTransfer)
+        if (
+            $this->isAuthorizeTransactionSentSuccessfully($authorizeTransactionLogTransfer) &&
+            $this->hasCustomerRegisteredShipmentAddress($quoteTransfer->getShippingAddress())
         ) {
             $this->saveCreditCardRegistration($quoteTransfer);
         }
@@ -76,6 +78,16 @@ class CreditCardSecure extends BaseHeidelpayPaymentMethod implements
     {
         $registrationId = $this->getRegistrationIdFromQuote($quoteTransfer);
         $paymentEntity->setIdPaymentRegistration($registrationId);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\AddressTransfer $shippingAddress
+     *
+     * @return bool
+     */
+    protected function hasCustomerRegisteredShipmentAddress(AddressTransfer $shippingAddress)
+    {
+        return $shippingAddress->getIdCustomerAddress() !== null;
     }
 
     /**

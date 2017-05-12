@@ -20,12 +20,12 @@ class Saver implements SaverInterface
     use DatabaseTransactionHandlerTrait;
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface[]
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface[]
      */
     protected $paymentCollection;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface[] $paymentCollection
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface[] $paymentCollection
      */
     public function __construct(array $paymentCollection)
     {

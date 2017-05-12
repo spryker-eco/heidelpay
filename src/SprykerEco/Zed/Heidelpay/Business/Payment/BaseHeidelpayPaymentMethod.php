@@ -9,25 +9,25 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment;
 
 use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
-use Spryker\Zed\Heidelpay\Business\Payment\Transaction\TransactionLogReaderInterface;
-use Spryker\Zed\Heidelpay\HeidelpayConfig;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\TransactionLogReaderInterface;
+use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class BaseHeidelpayPaymentMethod
 {
 
     /**
-     * @var \Spryker\Zed\Heidelpay\HeidelpayConfig
+     * @var \SprykerEco\Zed\Heidelpay\HeidelpayConfig
      */
     protected $config;
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Payment\Transaction\TransactionLogReaderInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\TransactionLogReaderInterface
      */
     protected $transactionLogManager;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\Transaction\TransactionLogReaderInterface $transactionLogManager
-     * @param \Spryker\Zed\Heidelpay\HeidelpayConfig $config
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\TransactionLogReaderInterface $transactionLogManager
+     * @param \SprykerEco\Zed\Heidelpay\HeidelpayConfig $config
      */
     public function __construct(
         TransactionLogReaderInterface $transactionLogManager,

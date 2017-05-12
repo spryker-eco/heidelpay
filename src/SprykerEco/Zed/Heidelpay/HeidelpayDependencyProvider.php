@@ -7,11 +7,11 @@
 
 namespace SprykerEco\Zed\Heidelpay;
 
-use Spryker\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyBridge;
-use Spryker\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyBridge;
-use Spryker\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesBridge;
-use Spryker\Zed\Heidelpay\Dependency\QueryContainer\HeidelpayToSalesQueryContainerBridge;
-use Spryker\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingBridge;
+use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyBridge;
+use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyBridge;
+use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesBridge;
+use SprykerEco\Zed\Heidelpay\Dependency\QueryContainer\HeidelpayToSalesQueryContainerBridge;
+use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingBridge;
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
 

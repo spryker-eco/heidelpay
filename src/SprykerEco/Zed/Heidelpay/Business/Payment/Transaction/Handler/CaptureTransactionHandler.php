@@ -8,9 +8,9 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
 
 use Generated\Shared\Transfer\OrderTransfer;
-use Spryker\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface;
-use Spryker\Zed\Heidelpay\Business\Payment\Transaction\CaptureTransactionInterface;
-use Spryker\Zed\Heidelpay\Business\Payment\Transaction\Exception\CaptureNotSupportedException;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\CaptureTransactionInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\CaptureNotSupportedException;
 
 class CaptureTransactionHandler implements CaptureTransactionHandlerInterface
 {
@@ -20,24 +20,24 @@ class CaptureTransactionHandler implements CaptureTransactionHandlerInterface
         'that does not support it';
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Payment\Transaction\CaptureTransactionInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\CaptureTransactionInterface
      */
     protected $transaction;
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface[]
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface[]
      */
     protected $paymentMethodAdapterCollection;
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface
      */
     protected $heidelpayRequestBuilder;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\Transaction\CaptureTransactionInterface $transaction
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface[] $paymentMethodAdapterCollection
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\CaptureTransactionInterface $transaction
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface[] $paymentMethodAdapterCollection
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder
      */
     public function __construct(
         CaptureTransactionInterface $transaction,
@@ -76,9 +76,9 @@ class CaptureTransactionHandler implements CaptureTransactionHandlerInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
-     * @throws \Spryker\Zed\Heidelpay\Business\Payment\Transaction\Exception\CaptureNotSupportedException
+     * @throws \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\CaptureNotSupportedException
      *
-     * @return \Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface
      */
     protected function getPaymentMethodAdapter(OrderTransfer $orderTransfer)
     {

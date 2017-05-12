@@ -9,33 +9,33 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment\Request;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
-use Spryker\Shared\Heidelpay\HeidelpayConstants;
-use Spryker\Zed\Heidelpay\Business\Mapper\QuoteToHeidelpayRequestInterface;
-use Spryker\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface;
-use Spryker\Zed\Heidelpay\HeidelpayConfig;
+use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Zed\Heidelpay\Business\Mapper\QuoteToHeidelpayRequestInterface;
+use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface;
+use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class AdapterRequestFromQuoteBuilder extends BaseAdapterRequestBuilder implements AdapterRequestFromQuoteBuilderInterface
 {
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Mapper\QuoteToHeidelpayRequestInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Mapper\QuoteToHeidelpayRequestInterface
      */
     protected $quoteToHeidelpayMapper;
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface
+     * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface
      */
     protected $currencyFacade;
 
     /**
-     * @var \Spryker\Zed\Heidelpay\HeidelpayConfig
+     * @var \SprykerEco\Zed\Heidelpay\HeidelpayConfig
      */
     protected $config;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Business\Mapper\QuoteToHeidelpayRequestInterface $quoteToHeidelpayMapper
-     * @param \Spryker\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface $currencyFacade
-     * @param \Spryker\Zed\Heidelpay\HeidelpayConfig $config
+     * @param \SprykerEco\Zed\Heidelpay\Business\Mapper\QuoteToHeidelpayRequestInterface $quoteToHeidelpayMapper
+     * @param \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface $currencyFacade
+     * @param \SprykerEco\Zed\Heidelpay\HeidelpayConfig $config
      */
     public function __construct(
         QuoteToHeidelpayRequestInterface $quoteToHeidelpayMapper,

@@ -9,14 +9,14 @@ namespace SprykerEco\Zed\Heidelpay\Communication\Plugin\Checkout\Oms\Condition;
 
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
 use Orm\Zed\Sales\Persistence\SpySalesOrderItem;
-use Spryker\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\Oms\Dependency\Plugin\Condition\ConditionInterface;
 
 /**
- * @method \Spryker\Zed\Heidelpay\Business\HeidelpayFacade getFacade()
- * @method \Spryker\Zed\Heidelpay\Persistence\HeidelpayQueryContainer getQueryContainer()
- * @method \Spryker\Zed\Heidelpay\Communication\HeidelpayCommunicationFactory getFactory()
+ * @method \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade getFacade()
+ * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainer getQueryContainer()
+ * @method \SprykerEco\Zed\Heidelpay\Communication\HeidelpayCommunicationFactory getFactory()
  */
 class IsCaptureApprovedPlugin extends AbstractPlugin implements ConditionInterface
 {
