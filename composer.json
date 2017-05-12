@@ -1,5 +1,5 @@
 {
-  "name": "spryker/heidelpay",
+  "name": "spryker-eco/heidelpay",
   "description": "Heidelpay bundle",
   "license": "proprietary",
   "require": {
