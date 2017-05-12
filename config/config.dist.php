@@ -8,7 +8,7 @@
  * Copy over the following configs to your config
  */
 
-use Spryker\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use Spryker\Shared\Kernel\KernelConstants;
 use Spryker\Shared\Oms\OmsConstants;
 use Spryker\Shared\Sales\SalesConstants;
@@ -58,12 +58,12 @@ $config[KernelConstants::DEPENDENCY_INJECTOR_ZED] = [
     ],
 ];
 
-$config[AclConstants::ACL_DEFAULT_RULES][] = [
-    'bundle' => 'heidelpay',
-    'controller' => 'transaction',
-    'action' => '*',
-    'type' => 'allow',
-];
+//$config[AclConstants::ACL_DEFAULT_RULES][] = [
+//    'bundle' => 'heidelpay',
+//    'controller' => 'transaction',
+//    'action' => '*',
+//    'type' => 'allow',
+//];
 
 $config[OmsConstants::PROCESS_LOCATION] = [
     OmsConfig::DEFAULT_PROCESS_LOCATION,
