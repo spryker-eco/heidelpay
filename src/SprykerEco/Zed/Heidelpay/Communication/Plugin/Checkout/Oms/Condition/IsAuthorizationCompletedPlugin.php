@@ -9,9 +9,9 @@ namespace SprykerEco\Zed\Heidelpay\Communication\Plugin\Checkout\Oms\Condition;
 
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
 use Orm\Zed\Sales\Persistence\SpySalesOrderItem;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\Oms\Dependency\Plugin\Condition\ConditionInterface;
+use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 
 /**
  * @method \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade getFacade()

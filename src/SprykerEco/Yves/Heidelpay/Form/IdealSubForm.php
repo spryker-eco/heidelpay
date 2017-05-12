@@ -7,8 +7,8 @@
 
 namespace SprykerEco\Yves\Heidelpay\Form;
 
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
+use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 
 class IdealSubForm extends AbstractHeidelpaySubForm implements SubFormInterface
 {

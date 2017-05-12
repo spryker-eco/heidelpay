@@ -6,6 +6,7 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter;
 
+use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\RequestToHeidelpay;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpay;
@@ -15,7 +16,6 @@ use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\IdealPayment;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\PaypalPayment;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\SofortPayment;
 use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
-use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 
 /**
  * @method \SprykerEco\Zed\Heidelpay\HeidelpayConfig getConfig()

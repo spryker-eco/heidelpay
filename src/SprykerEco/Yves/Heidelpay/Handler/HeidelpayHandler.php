@@ -7,8 +7,8 @@
 
 namespace SprykerEco\Yves\Heidelpay\Handler;
 
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
+use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 
 class HeidelpayHandler implements HeidelpayHandlerInterface
 {
