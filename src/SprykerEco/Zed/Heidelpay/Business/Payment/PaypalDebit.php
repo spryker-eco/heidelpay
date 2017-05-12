@@ -10,7 +10,7 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment;
 use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
-use Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface;
 
 class PaypalDebit extends BaseHeidelpayPaymentMethod implements PaymentWithPostSaveOrderInterface
 {

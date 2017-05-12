@@ -10,7 +10,7 @@ namespace SprykerEco\Client\Heidelpay\Sdk;
 use \Heidelpay\CustomerMessages\CustomerMessage;
 
 /**
- * @method \Spryker\Client\Heidelpay\HeidelpayFactory getFactory()
+ * @method \SprykerEco\Client\Heidelpay\HeidelpayFactory getFactory()
  */
 class HeidelpayApiAdapter implements HeidelpayApiAdapterInterface
 {

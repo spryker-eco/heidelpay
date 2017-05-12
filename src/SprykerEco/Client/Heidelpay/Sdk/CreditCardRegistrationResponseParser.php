@@ -11,8 +11,8 @@ use Generated\Shared\Transfer\HeidelpayRegistrationResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseErrorTransfer;
 use Heidelpay\PhpApi\Exceptions\HashVerificationException;
 use Heidelpay\PhpApi\Response;
-use Spryker\Client\Heidelpay\HeidelpayConfig;
-use Spryker\Client\Heidelpay\Mapper\ApiResponseToRegistrationResponseTransferInterface;
+use SprykerEco\Client\Heidelpay\HeidelpayConfig;
+use SprykerEco\Client\Heidelpay\Mapper\ApiResponseToRegistrationResponseTransferInterface;
 
 class CreditCardRegistrationResponseParser implements CreditCardRegistrationResponseParserInterface
 {
@@ -20,18 +20,18 @@ class CreditCardRegistrationResponseParser implements CreditCardRegistrationResp
     const ERROR_CODE_INVALID_RESPONSE = 'invalid-response';
 
     /**
-     * @var \Spryker\Zed\Heidelpay\HeidelpayConfig
+     * @var \SprykerEco\Zed\Heidelpay\HeidelpayConfig
      */
     protected $config;
 
     /**
-     * @var \Spryker\Client\Heidelpay\Mapper\ApiResponseToRegistrationResponseTransferInterface
+     * @var \SprykerEco\Client\Heidelpay\Mapper\ApiResponseToRegistrationResponseTransferInterface
      */
     protected $apiResponseToRegistrationResponseMapper;
 
     /**
-     * @param \Spryker\Client\Heidelpay\Mapper\ApiResponseToRegistrationResponseTransferInterface $apiResponseToRegistrationResponseMapper
-     * @param \Spryker\Client\Heidelpay\HeidelpayConfig $config
+     * @param \SprykerEco\Client\Heidelpay\Mapper\ApiResponseToRegistrationResponseTransferInterface $apiResponseToRegistrationResponseMapper
+     * @param \SprykerEco\Client\Heidelpay\HeidelpayConfig $config
      */
     public function __construct(
         ApiResponseToRegistrationResponseTransferInterface $apiResponseToRegistrationResponseMapper,

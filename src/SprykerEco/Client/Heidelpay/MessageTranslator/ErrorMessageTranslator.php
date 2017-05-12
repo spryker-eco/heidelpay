@@ -7,10 +7,10 @@
 
 namespace SprykerEco\Client\Heidelpay\MessageTranslator;
 
-use Spryker\Client\Heidelpay\Sdk\HeidelpayApiAdapterInterface;
+use SprykerEco\Client\Heidelpay\Sdk\HeidelpayApiAdapterInterface;
 
 /**
- * @method \Spryker\Client\Heidelpay\HeidelpayFactory getFactory()
+ * @method \SprykerEco\Client\Heidelpay\HeidelpayFactory getFactory()
  */
 class ErrorMessageTranslator implements ErrorMessageTranslatorInterface
 {
@@ -18,12 +18,12 @@ class ErrorMessageTranslator implements ErrorMessageTranslatorInterface
     const HEIDELPAY_PAYMENT_FAILED_DEFAULT_ERROR_MESSAGE = 'page.checkout.heidelpay.payment.failed';
 
     /**
-     * @var \Spryker\Client\Heidelpay\Sdk\HeidelpayApiAdapterInterface
+     * @var \SprykerEco\Client\Heidelpay\Sdk\HeidelpayApiAdapterInterface
      */
     protected $heidelpayApiAdapter;
 
     /**
-     * @param \Spryker\Client\Heidelpay\Sdk\HeidelpayApiAdapterInterface $heidelpayApiAdapter
+     * @param \SprykerEco\Client\Heidelpay\Sdk\HeidelpayApiAdapterInterface $heidelpayApiAdapter
      */
     public function __construct(HeidelpayApiAdapterInterface $heidelpayApiAdapter)
     {

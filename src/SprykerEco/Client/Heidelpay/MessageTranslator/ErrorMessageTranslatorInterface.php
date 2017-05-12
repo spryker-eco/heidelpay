@@ -8,7 +8,7 @@
 namespace SprykerEco\Client\Heidelpay\MessageTranslator;
 
 /**
- * @method \Spryker\Client\Heidelpay\HeidelpayFactory getFactory()
+ * @method \SprykerEco\Client\Heidelpay\HeidelpayFactory getFactory()
  */
 interface ErrorMessageTranslatorInterface
 {

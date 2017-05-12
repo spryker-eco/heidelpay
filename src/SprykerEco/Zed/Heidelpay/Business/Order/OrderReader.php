@@ -7,18 +7,18 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Order;
 
-use Spryker\Zed\Heidelpay\Dependency\QueryContainer\HeidelpayToSalesQueryContainerInterface;
+use SprykerEco\Zed\Heidelpay\Dependency\QueryContainer\HeidelpayToSalesQueryContainerInterface;
 
 class OrderReader implements OrderReaderInterface
 {
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Dependency\QueryContainer\HeidelpayToSalesQueryContainerInterface
+     * @var \SprykerEco\Zed\Heidelpay\Dependency\QueryContainer\HeidelpayToSalesQueryContainerInterface
      */
     protected $salesQueryContainer;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Dependency\QueryContainer\HeidelpayToSalesQueryContainerInterface $salesQueryContainer
+     * @param \SprykerEco\Zed\Heidelpay\Dependency\QueryContainer\HeidelpayToSalesQueryContainerInterface $salesQueryContainer
      */
     public function __construct(HeidelpayToSalesQueryContainerInterface $salesQueryContainer)
     {

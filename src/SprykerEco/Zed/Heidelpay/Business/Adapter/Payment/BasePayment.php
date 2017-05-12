@@ -14,32 +14,32 @@ use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Heidelpay\PhpApi\Exceptions\HashVerificationException;
 use Heidelpay\PhpApi\Request;
 use Heidelpay\PhpApi\Response;
-use Spryker\Zed\Heidelpay\Business\Adapter\Mapper\RequestToHeidelpayInterface;
-use Spryker\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpayInterface;
-use Spryker\Zed\Heidelpay\HeidelpayConfig;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\RequestToHeidelpayInterface;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpayInterface;
+use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class BasePayment
 {
 
     /**
-     * @var \Spryker\Zed\Heidelpay\HeidelpayConfig
+     * @var \SprykerEco\Zed\Heidelpay\HeidelpayConfig
      */
     protected $config;
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpayInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpayInterface
      */
     protected $responseMapper;
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Adapter\Mapper\RequestToHeidelpayInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\RequestToHeidelpayInterface
      */
     protected $requestMapper;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Business\Adapter\Mapper\RequestToHeidelpayInterface $requestMapper
-     * @param \Spryker\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpayInterface $responseMapper
-     * @param \Spryker\Zed\Heidelpay\HeidelpayConfig $config
+     * @param \SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\RequestToHeidelpayInterface $requestMapper
+     * @param \SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpayInterface $responseMapper
+     * @param \SprykerEco\Zed\Heidelpay\HeidelpayConfig $config
      */
     public function __construct(
         RequestToHeidelpayInterface $requestMapper,

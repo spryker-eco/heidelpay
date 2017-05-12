@@ -8,7 +8,7 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Request;
 
 use Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer;
-use Spryker\Zed\Heidelpay\Business\Payment\PaymentReaderInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReaderInterface;
 
 class ExternalPaymentResponseBuilder implements ExternalPaymentResponseBuilderInterface
 {
@@ -16,12 +16,12 @@ class ExternalPaymentResponseBuilder implements ExternalPaymentResponseBuilderIn
     const REQUEST_PARAM_ORDER_ID = 'IDENTIFICATION_TRANSACTIONID';
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Payment\PaymentReaderInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReaderInterface
      */
     protected $paymentReader;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\PaymentReaderInterface $paymentReader
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReaderInterface $paymentReader
      */
     public function __construct(PaymentReaderInterface $paymentReader)
     {

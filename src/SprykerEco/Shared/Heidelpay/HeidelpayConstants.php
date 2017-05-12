@@ -12,6 +12,8 @@ interface HeidelpayConstants
 
     const PROVIDER_NAME = 'heidelpay';
 
+    const VENDOR_ROOT = 'VENDOR_ROOT';
+
     const PAYMENT_METHOD_SOFORT = self::PROVIDER_NAME . 'Sofort';
     const PAYMENT_METHOD_CREDIT_CARD_SECURE = self::PROVIDER_NAME . 'CreditCardSecure';
     const PAYMENT_METHOD_PAYPAL_AUTHORIZE = self::PROVIDER_NAME . 'PaypalAuthorize';

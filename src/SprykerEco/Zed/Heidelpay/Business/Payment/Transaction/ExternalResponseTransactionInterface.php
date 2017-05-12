@@ -8,14 +8,14 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction;
 
 use Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer;
-use Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface;
 
 interface ExternalResponseTransactionInterface
 {
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer $externalResponseTransfer
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface $paymentAdapter
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface $paymentAdapter
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */

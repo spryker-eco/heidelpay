@@ -13,8 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * @method \Spryker\Yves\Heidelpay\HeidelpayFactory getFactory()
- * @method \Spryker\Client\Heidelpay\HeidelpayClientInterface getClient()
+ * @method \SprykerEco\Yves\Heidelpay\HeidelpayFactory getFactory()
+ * @method \SprykerEco\Client\Heidelpay\HeidelpayClientInterface getClient()
  */
 class HeidelpayController extends BaseHeidelpayController
 {

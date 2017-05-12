@@ -11,8 +11,8 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin as BaseAbstractPlugin;
 use Spryker\Zed\Payment\Dependency\Plugin\Checkout\CheckoutPostCheckPluginInterface;
 
 /**
- * @method \Spryker\Zed\Heidelpay\Business\HeidelpayFacade getFacade()
- * @method \Spryker\Zed\Heidelpay\Business\HeidelpayBusinessFactory getFactory()
+ * @method \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade getFacade()
+ * @method \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory getFactory()
  */
 class HeidelpayPostSavePlugin extends BaseAbstractPlugin implements CheckoutPostCheckPluginInterface
 {

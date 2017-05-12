@@ -8,14 +8,14 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
-use Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface;
 
 interface DebitTransactionInterface
 {
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $debitRequestTransfer
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface $paymentAdapter
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface $paymentAdapter
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */

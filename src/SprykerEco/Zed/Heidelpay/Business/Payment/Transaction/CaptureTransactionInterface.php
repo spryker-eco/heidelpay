@@ -8,14 +8,14 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
-use Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface;
 
 interface CaptureTransactionInterface
 {
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $captureRequestTransfer
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface $paymentAdapter
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface $paymentAdapter
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */

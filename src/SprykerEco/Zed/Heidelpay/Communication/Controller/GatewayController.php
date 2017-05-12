@@ -13,7 +13,7 @@ use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractGatewayController;
 
 /**
- * @method \Spryker\Zed\Heidelpay\Business\HeidelpayFacade getFacade()
+ * @method \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade getFacade()
  */
 class GatewayController extends AbstractGatewayController
 {

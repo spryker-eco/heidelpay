@@ -7,8 +7,8 @@
 
 namespace SprykerEco\Client\Heidelpay;
 
-use Spryker\Client\Heidelpay\Dependency\Client\HeidelpayToLocaleBridge;
-use Spryker\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteBridge;
+use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToLocaleBridge;
+use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteBridge;
 use Spryker\Client\Kernel\AbstractDependencyProvider;
 use Spryker\Client\Kernel\Container;
 use Spryker\Client\Session\ServiceProvider\SessionClientServiceProvider;

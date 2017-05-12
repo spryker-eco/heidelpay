@@ -10,25 +10,25 @@ namespace SprykerEco\Zed\Heidelpay\Business\Adapter;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Heidelpay\PhpApi\Response;
-use Spryker\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpayInterface;
-use Spryker\Zed\Heidelpay\Business\Adapter\Mapper\ResponsePayloadToApiResponseInterface;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpayInterface;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponsePayloadToApiResponseInterface;
 
 class TransactionParser implements TransactionParserInterface
 {
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpayInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpayInterface
      */
     protected $responseMapper;
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Adapter\Mapper\ResponsePayloadToApiResponseInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponsePayloadToApiResponseInterface
      */
     protected $payloadToApiResponseMapper;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpayInterface $responseMapper
-     * @param \Spryker\Zed\Heidelpay\Business\Adapter\Mapper\ResponsePayloadToApiResponseInterface $payloadToApiResponseMapper
+     * @param \SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpayInterface $responseMapper
+     * @param \SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponsePayloadToApiResponseInterface $payloadToApiResponseMapper
      */
     public function __construct(
         ResponseFromHeidelpayInterface $responseMapper,

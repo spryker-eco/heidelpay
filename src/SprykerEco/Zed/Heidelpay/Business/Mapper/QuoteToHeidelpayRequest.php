@@ -11,18 +11,18 @@ use Generated\Shared\Transfer\HeidelpayCustomerAddressTransfer;
 use Generated\Shared\Transfer\HeidelpayCustomerPurchaseTransfer;
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
-use Spryker\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface;
+use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface;
 
 class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
 {
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface
+     * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface
      */
     protected $moneyFacade;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface $moneyFacade
+     * @param \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface $moneyFacade
      */
     public function __construct(HeidelpayToMoneyInterface $moneyFacade)
     {

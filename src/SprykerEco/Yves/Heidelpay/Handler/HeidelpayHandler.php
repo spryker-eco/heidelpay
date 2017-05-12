@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Yves\Heidelpay\Handler;
 
-use Spryker\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 
 class HeidelpayHandler implements HeidelpayHandlerInterface
@@ -37,8 +37,7 @@ class HeidelpayHandler implements HeidelpayHandlerInterface
         $paymentSelection = $quoteTransfer->getPayment()->getPaymentSelection();
         $quoteTransfer->getPayment()
             ->setPaymentProvider(static::PAYMENT_PROVIDER)
-            ->setPaymentMethod(static::$paymentMethods[$paymentSelection])
-            ->setSummaryPartialPath(static::CHECKOUT_PARTIAL_SUMMARY_PATH);
+            ->setPaymentMethod(static::$paymentMethods[$paymentSelection]);
 
         return $quoteTransfer;
     }

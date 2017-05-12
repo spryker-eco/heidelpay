@@ -8,9 +8,9 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
 
 use Generated\Shared\Transfer\OrderTransfer;
-use Spryker\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface;
-use Spryker\Zed\Heidelpay\Business\Payment\Transaction\AuthorizeTransactionInterface;
-use Spryker\Zed\Heidelpay\Business\Payment\Transaction\Exception\AuthorizeNotSupportedException;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\AuthorizeTransactionInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\AuthorizeNotSupportedException;
 
 class AuthorizeTransactionHandler implements AuthorizeTransactionHandlerInterface
 {
@@ -19,24 +19,24 @@ class AuthorizeTransactionHandler implements AuthorizeTransactionHandlerInterfac
         'Attempt to call authorize transaction on payment method \'%s\' ' .
         'that does not support it';
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Payment\Transaction\AuthorizeTransactionInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\AuthorizeTransactionInterface
      */
     protected $transaction;
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface[]
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface[]
      */
     protected $paymentMethodAdapterCollection;
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface
      */
     protected $heidelpayRequestBuilder;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\Transaction\AuthorizeTransactionInterface $transaction
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface[] $paymentMethodAdapterCollection
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\AuthorizeTransactionInterface $transaction
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface[] $paymentMethodAdapterCollection
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder
      */
     public function __construct(
         AuthorizeTransactionInterface $transaction,
@@ -75,9 +75,9 @@ class AuthorizeTransactionHandler implements AuthorizeTransactionHandlerInterfac
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
-     * @throws \Spryker\Zed\Heidelpay\Business\Payment\Transaction\Exception\AuthorizeNotSupportedException
+     * @throws \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\AuthorizeNotSupportedException
      *
-     * @return \Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface
      */
     protected function getPaymentMethodAdapter(OrderTransfer $orderTransfer)
     {

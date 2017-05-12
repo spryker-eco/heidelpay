@@ -14,12 +14,12 @@ class PaymentOptionsCalculator implements PaymentOptionsCalculatorInterface
 {
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Payment\CreditCard\PaymentOption\PaymentOptionInterface[]
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\PaymentOption\PaymentOptionInterface[]
      */
     protected $paymentOptions;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\CreditCard\PaymentOption\PaymentOptionInterface[]
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\PaymentOption\PaymentOptionInterface[]
      */
     public function __construct(array $paymentOptions)
     {
