@@ -10,18 +10,18 @@ namespace SprykerEco\Yves\Heidelpay\Hydrator;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
-use Spryker\Client\Heidelpay\HeidelpayClientInterface;
+use SprykerEco\Client\Heidelpay\HeidelpayClientInterface;
 
 class CreditCardPaymentOptionsToQuote implements CreditCardPaymentOptionsToQuoteInterface
 {
 
     /**
-     * @var \Spryker\Client\Heidelpay\HeidelpayClientInterface
+     * @var \SprykerEco\Client\Heidelpay\HeidelpayClientInterface
      */
     private $heidelpayClient;
 
     /**
-     * @param \Spryker\Client\Heidelpay\HeidelpayClientInterface $heidelpayClient
+     * @param \SprykerEco\Client\Heidelpay\HeidelpayClientInterface $heidelpayClient
      */
     public function __construct(HeidelpayClientInterface $heidelpayClient)
     {

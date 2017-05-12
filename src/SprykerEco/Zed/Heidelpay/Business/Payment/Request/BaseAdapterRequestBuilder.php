@@ -15,12 +15,12 @@ class BaseAdapterRequestBuilder
 {
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface
+     * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface
      */
     protected $currencyFacade;
 
     /**
-     * @var \Spryker\Zed\Heidelpay\HeidelpayConfig
+     * @var \SprykerEco\Zed\Heidelpay\HeidelpayConfig
      */
     protected $config;
 

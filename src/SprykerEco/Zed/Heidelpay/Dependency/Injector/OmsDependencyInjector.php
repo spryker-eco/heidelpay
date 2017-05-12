@@ -7,12 +7,12 @@
 
 namespace SprykerEco\Zed\Heidelpay\Dependency\Injector;
 
-use Spryker\Zed\Heidelpay\Communication\Plugin\Checkout\Oms\Command\AuthorizePlugin;
-use Spryker\Zed\Heidelpay\Communication\Plugin\Checkout\Oms\Command\CapturePlugin;
-use Spryker\Zed\Heidelpay\Communication\Plugin\Checkout\Oms\Command\DebitPlugin;
-use Spryker\Zed\Heidelpay\Communication\Plugin\Checkout\Oms\Condition\IsAuthorizationCompletedPlugin;
-use Spryker\Zed\Heidelpay\Communication\Plugin\Checkout\Oms\Condition\IsCaptureApprovedPlugin;
-use Spryker\Zed\Heidelpay\Communication\Plugin\Checkout\Oms\Condition\IsDebitCompletedPlugin;
+use SprykerEco\Zed\Heidelpay\Communication\Plugin\Checkout\Oms\Command\AuthorizePlugin;
+use SprykerEco\Zed\Heidelpay\Communication\Plugin\Checkout\Oms\Command\CapturePlugin;
+use SprykerEco\Zed\Heidelpay\Communication\Plugin\Checkout\Oms\Command\DebitPlugin;
+use SprykerEco\Zed\Heidelpay\Communication\Plugin\Checkout\Oms\Condition\IsAuthorizationCompletedPlugin;
+use SprykerEco\Zed\Heidelpay\Communication\Plugin\Checkout\Oms\Condition\IsCaptureApprovedPlugin;
+use SprykerEco\Zed\Heidelpay\Communication\Plugin\Checkout\Oms\Condition\IsDebitCompletedPlugin;
 use Spryker\Zed\Kernel\Container;
 use Spryker\Zed\Kernel\Dependency\Injector\AbstractDependencyInjector;
 use Spryker\Zed\Oms\Communication\Plugin\Oms\Command\CommandCollectionInterface;

@@ -11,8 +11,8 @@ use Generated\Shared\Transfer\HeidelpayRegistrationResponseTransfer;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @method \Spryker\Yves\Heidelpay\HeidelpayFactory getFactory()
- * @method \Spryker\Client\Heidelpay\HeidelpayClientInterface getClient()
+ * @method \SprykerEco\Yves\Heidelpay\HeidelpayFactory getFactory()
+ * @method \SprykerEco\Client\Heidelpay\HeidelpayClientInterface getClient()
  */
 class CreditCardController extends BaseHeidelpayController
 {

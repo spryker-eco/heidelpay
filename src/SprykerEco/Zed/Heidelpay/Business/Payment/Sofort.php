@@ -9,7 +9,7 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment;
 
 use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
-use Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface;
 
 class Sofort extends BaseHeidelpayPaymentMethod implements PaymentWithPostSaveOrderInterface
 {

@@ -7,18 +7,18 @@
 
 namespace SprykerEco\Zed\Heidelpay\Communication;
 
-use Spryker\Zed\Heidelpay\HeidelpayDependencyProvider;
+use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
 
 /**
- * @method \Spryker\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface getQueryContainer()
- * @method \Spryker\Zed\Heidelpay\HeidelpayConfig getConfig()
+ * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface getQueryContainer()
+ * @method \SprykerEco\Zed\Heidelpay\HeidelpayConfig getConfig()
  */
 class HeidelpayCommunicationFactory extends AbstractCommunicationFactory
 {
 
     /**
-     * @return \Spryker\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesInterface
+     * @return \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesInterface
      */
     public function getSalesFacade()
     {

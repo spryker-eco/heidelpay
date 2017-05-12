@@ -12,12 +12,12 @@ class PostSaveHook implements PostSaveHookInterface
 {
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface[]
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface[]
      */
     protected $paymentMethodsWithPostSaveOrderProcessing;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface[] $paymentMethodsWithPostSaveOrderProcessing
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface[] $paymentMethodsWithPostSaveOrderProcessing
      */
     public function __construct(array $paymentMethodsWithPostSaveOrderProcessing)
     {
@@ -55,7 +55,7 @@ class PostSaveHook implements PostSaveHookInterface
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return \Spryker\Zed\Heidelpay\Business\Payment\BaseHeidelpayPaymentMethod
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\BaseHeidelpayPaymentMethod
      */
     protected function getPaymentMethodFromQuote(QuoteTransfer $quoteTransfer)
     {

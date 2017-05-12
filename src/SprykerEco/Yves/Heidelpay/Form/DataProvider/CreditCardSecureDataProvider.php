@@ -10,10 +10,10 @@ namespace SprykerEco\Yves\Heidelpay\Form\DataProvider;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentTransfer;
 use Generated\Shared\Transfer\PaymentTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
-use Spryker\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
-use Spryker\Yves\Heidelpay\Form\CreditCardSecureSubForm;
-use Spryker\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface;
+use SprykerEco\Yves\Heidelpay\Form\CreditCardSecureSubForm;
+use SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface;
 use Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface;
 
 class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterface
@@ -21,12 +21,12 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
 
     const PAYMENT_OPTION_TRANSLATION_PREFIX = 'heidelpay.payment.credit_card.';
     /**
-     * @var \Spryker\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface
+     * @var \SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface
      */
     protected $paymentOptionsHydrator;
 
     /**
-     * @param \Spryker\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface $paymentOptionsHydrator
+     * @param \SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface $paymentOptionsHydrator
      */
     public function __construct(
         CreditCardPaymentOptionsToQuoteInterface $paymentOptionsHydrator

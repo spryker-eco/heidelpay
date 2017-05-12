@@ -9,18 +9,18 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Logger;
 
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
-use Spryker\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface;
+use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface;
 
 class TransactionLogger implements TransactionLoggerInterface
 {
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface
+     * @var \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface
      */
     private $utilEncoding;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface $utilEncoding
+     * @param \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface $utilEncoding
      */
     public function __construct(HeidelpayToUtilEncodingInterface $utilEncoding)
     {

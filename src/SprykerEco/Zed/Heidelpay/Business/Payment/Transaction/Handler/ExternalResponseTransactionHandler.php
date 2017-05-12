@@ -10,10 +10,10 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
 use Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
-use Spryker\Zed\Heidelpay\Business\Payment\PaymentWriterInterface;
-use Spryker\Zed\Heidelpay\Business\Payment\Request\ExternalPaymentResponseBuilderInterface;
-use Spryker\Zed\Heidelpay\Business\Payment\Transaction\Exception\ExternalResponseNotSupportedException;
-use Spryker\Zed\Heidelpay\Business\Payment\Transaction\ExternalResponseTransactionInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriterInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Request\ExternalPaymentResponseBuilderInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\ExternalResponseNotSupportedException;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ExternalResponseTransactionInterface;
 
 class ExternalResponseTransactionHandler implements ExternalResponseTransactionHandlerInterface
 {
@@ -23,30 +23,30 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
         'that does not support it';
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Payment\Transaction\ExternalResponseTransactionInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ExternalResponseTransactionInterface
      */
     protected $transaction;
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface[]
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface[]
      */
     protected $paymentMethodAdapterCollection;
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Payment\PaymentReaderInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReaderInterface
      */
     protected $paymentWriter;
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Payment\Request\ExternalPaymentResponseBuilderInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Request\ExternalPaymentResponseBuilderInterface
      */
     protected $externalPaymentResponseBuilder;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\Transaction\ExternalResponseTransactionInterface $transaction
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface[] $paymentMethodAdapterCollection
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\Request\ExternalPaymentResponseBuilderInterface $externalPaymentResponseBuilder
-     * @param \Spryker\Zed\Heidelpay\Business\Payment\PaymentWriterInterface $paymentWriter
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ExternalResponseTransactionInterface $transaction
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface[] $paymentMethodAdapterCollection
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\ExternalPaymentResponseBuilderInterface $externalPaymentResponseBuilder
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriterInterface $paymentWriter
      */
     public function __construct(
         ExternalResponseTransactionInterface $transaction,
@@ -116,9 +116,9 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
     /**
      * @param \Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer $externalResponseTransfer
      *
-     * @throws \Spryker\Zed\Heidelpay\Business\Payment\Transaction\Exception\ExternalResponseNotSupportedException
+     * @throws \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\ExternalResponseNotSupportedException
      *
-     * @return \Spryker\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface
      */
     protected function getPaymentMethodAdapter(HeidelpayExternalPaymentResponseTransfer $externalResponseTransfer)
     {

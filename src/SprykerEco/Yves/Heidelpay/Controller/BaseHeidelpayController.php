@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
- * @method \Spryker\Yves\Heidelpay\HeidelpayFactory getFactory()
+ * @method \SprykerEco\Yves\Heidelpay\HeidelpayFactory getFactory()
  */
 class BaseHeidelpayController extends AbstractController
 {
@@ -28,7 +28,7 @@ class BaseHeidelpayController extends AbstractController
     }
 
     /**
-     * @return \Spryker\Yves\Heidelpay\HeidelpayConfig
+     * @return \SprykerEco\Yves\Heidelpay\HeidelpayConfig
      */
     protected function getConfig()
     {

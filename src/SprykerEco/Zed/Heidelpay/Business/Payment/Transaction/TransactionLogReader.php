@@ -9,10 +9,10 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction;
 
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
-use Spryker\Shared\Heidelpay\HeidelpayConstants;
-use Spryker\Zed\Heidelpay\Business\Adapter\TransactionParserInterface;
-use Spryker\Zed\Heidelpay\Business\Order\OrderReaderInterface;
-use Spryker\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
+use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\TransactionParserInterface;
+use SprykerEco\Zed\Heidelpay\Business\Order\OrderReaderInterface;
+use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
 
 class TransactionLogReader implements TransactionLogReaderInterface
 {
@@ -21,24 +21,24 @@ class TransactionLogReader implements TransactionLogReaderInterface
     const TRANSACTION_TYPE_DEBIT = HeidelpayConstants::TRANSACTION_TYPE_DEBIT;
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface
+     * @var \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface
      */
     protected $queryContainer;
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Adapter\TransactionParserInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Adapter\TransactionParserInterface
      */
     protected $transactionAdapter;
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Business\Order\OrderReaderInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Order\OrderReaderInterface
      */
     protected $orderReader;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface $queryContainer
-     * @param \Spryker\Zed\Heidelpay\Business\Adapter\TransactionParserInterface $transactionAdapter
-     * @param \Spryker\Zed\Heidelpay\Business\Order\OrderReaderInterface $orderReader
+     * @param \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface $queryContainer
+     * @param \SprykerEco\Zed\Heidelpay\Business\Adapter\TransactionParserInterface $transactionAdapter
+     * @param \SprykerEco\Zed\Heidelpay\Business\Order\OrderReaderInterface $orderReader
      */
     public function __construct(
         HeidelpayQueryContainerInterface $queryContainer,

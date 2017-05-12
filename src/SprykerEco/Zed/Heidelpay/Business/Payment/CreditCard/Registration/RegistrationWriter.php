@@ -9,18 +9,18 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration;
 
 use Generated\Shared\Transfer\QuoteTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration;
-use Spryker\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
+use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
 
 class RegistrationWriter implements RegistrationWriterInterface
 {
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface
+     * @var \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface
      */
     private $heidelpayQueryContainer;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface $heidelpayQueryContainer
+     * @param \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface $heidelpayQueryContainer
      */
     public function __construct(HeidelpayQueryContainerInterface $heidelpayQueryContainer)
     {

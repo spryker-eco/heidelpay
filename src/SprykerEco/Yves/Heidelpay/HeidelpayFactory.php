@@ -7,32 +7,32 @@
 
 namespace SprykerEco\Yves\Heidelpay;
 
-use Spryker\Yves\Heidelpay\CreditCard\RegistrationResponseHandler;
-use Spryker\Yves\Heidelpay\Form\CreditCardSecureSubForm;
-use Spryker\Yves\Heidelpay\Form\DataProvider\CreditCardSecureDataProvider;
-use Spryker\Yves\Heidelpay\Form\DataProvider\IdealDataProvider;
-use Spryker\Yves\Heidelpay\Form\DataProvider\PaypalAuthorizeDataProvider;
-use Spryker\Yves\Heidelpay\Form\DataProvider\PaypalDebitDataProvider;
-use Spryker\Yves\Heidelpay\Form\DataProvider\SofortDataProvider;
-use Spryker\Yves\Heidelpay\Form\IdealSubForm;
-use Spryker\Yves\Heidelpay\Form\PaypalAuthorizeSubForm;
-use Spryker\Yves\Heidelpay\Form\PaypalDebitSubForm;
-use Spryker\Yves\Heidelpay\Form\SofortSubForm;
-use Spryker\Yves\Heidelpay\Handler\HeidelpayCreditCardHandler;
-use Spryker\Yves\Heidelpay\Handler\HeidelpayHandler;
-use Spryker\Yves\Heidelpay\Handler\PaymentFailureHandler;
-use Spryker\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuote;
-use Spryker\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeForm;
+use SprykerEco\Yves\Heidelpay\CreditCard\RegistrationResponseHandler;
+use SprykerEco\Yves\Heidelpay\Form\CreditCardSecureSubForm;
+use SprykerEco\Yves\Heidelpay\Form\DataProvider\CreditCardSecureDataProvider;
+use SprykerEco\Yves\Heidelpay\Form\DataProvider\IdealDataProvider;
+use SprykerEco\Yves\Heidelpay\Form\DataProvider\PaypalAuthorizeDataProvider;
+use SprykerEco\Yves\Heidelpay\Form\DataProvider\PaypalDebitDataProvider;
+use SprykerEco\Yves\Heidelpay\Form\DataProvider\SofortDataProvider;
+use SprykerEco\Yves\Heidelpay\Form\IdealSubForm;
+use SprykerEco\Yves\Heidelpay\Form\PaypalAuthorizeSubForm;
+use SprykerEco\Yves\Heidelpay\Form\PaypalDebitSubForm;
+use SprykerEco\Yves\Heidelpay\Form\SofortSubForm;
+use SprykerEco\Yves\Heidelpay\Handler\HeidelpayCreditCardHandler;
+use SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandler;
+use SprykerEco\Yves\Heidelpay\Handler\PaymentFailureHandler;
+use SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuote;
+use SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeForm;
 use Spryker\Yves\Kernel\AbstractFactory;
 
 /**
- * @method \Spryker\Yves\Heidelpay\HeidelpayConfig getConfig()
+ * @method \SprykerEco\Yves\Heidelpay\HeidelpayConfig getConfig()
  */
 class HeidelpayFactory extends AbstractFactory
 {
 
     /**
-     * @return \Spryker\Yves\Heidelpay\Handler\HeidelpayHandlerInterface
+     * @return \SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface
      */
     public function createHeidelpayHandler()
     {
@@ -42,7 +42,7 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Yves\Heidelpay\Handler\HeidelpayHandlerInterface
+     * @return \SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface
      */
     public function createHeidelpayCreditCardHandler()
     {
@@ -52,7 +52,7 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Yves\Heidelpay\Handler\PaymentFailureHandlerInterface
+     * @return \SprykerEco\Yves\Heidelpay\Handler\PaymentFailureHandlerInterface
      */
     public function createPaymentFailureHandler()
     {
@@ -145,7 +145,7 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface
+     * @return \SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface
      */
     protected function createCreditCardPaymentOptionsToQuoteHydrator()
     {
@@ -155,7 +155,7 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Client\Heidelpay\HeidelpayClientInterface
+     * @return \SprykerEco\Client\Heidelpay\HeidelpayClientInterface
      */
     public function getHeidelpayClient()
     {
@@ -163,7 +163,7 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeFormInterface
+     * @return \SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeFormInterface
      */
     public function createHeidelpayResponseToIdealAuthorizeFormMapper()
     {
@@ -171,7 +171,7 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Yves\Heidelpay\CreditCard\RegistrationResponseHandlerInterface
+     * @return \SprykerEco\Yves\Heidelpay\CreditCard\RegistrationResponseHandlerInterface
      */
     public function createRegistrationResponseHandler()
     {
@@ -182,7 +182,7 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Yves\Heidelpay\HeidelpayConfig
+     * @return \SprykerEco\Yves\Heidelpay\HeidelpayConfig
      */
     public function getYvesConfig()
     {

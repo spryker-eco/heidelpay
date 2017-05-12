@@ -12,7 +12,7 @@ use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Client\Kernel\AbstractClient;
 
 /**
- * @method \Spryker\Client\Heidelpay\HeidelpayFactory getFactory()
+ * @method \SprykerEco\Client\Heidelpay\HeidelpayFactory getFactory()
  */
 class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
 {

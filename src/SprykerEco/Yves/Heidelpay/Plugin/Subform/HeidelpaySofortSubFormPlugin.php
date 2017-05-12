@@ -11,7 +11,7 @@ use Spryker\Yves\Kernel\AbstractPlugin;
 use Spryker\Yves\StepEngine\Dependency\Plugin\Form\SubFormPluginInterface;
 
 /**
- * @method \Spryker\Yves\Heidelpay\HeidelpayFactory getFactory()
+ * @method \SprykerEco\Yves\Heidelpay\HeidelpayFactory getFactory()
  */
 class HeidelpaySofortSubFormPlugin extends AbstractPlugin implements SubFormPluginInterface
 {

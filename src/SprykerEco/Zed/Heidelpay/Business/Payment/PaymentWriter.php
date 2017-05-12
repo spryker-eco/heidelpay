@@ -7,18 +7,18 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment;
 
-use Spryker\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
+use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
 
 class PaymentWriter implements PaymentWriterInterface
 {
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface
+     * @var \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface
      */
     protected $heidelpayQueryContainer;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface $heidelpayQueryContainer
+     * @param \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface $heidelpayQueryContainer
      */
     public function __construct(HeidelpayQueryContainerInterface $heidelpayQueryContainer)
     {

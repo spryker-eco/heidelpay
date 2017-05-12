@@ -15,7 +15,7 @@ use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Heidelpay\PhpApi\Exceptions\PaymentFormUrlException;
 use Heidelpay\PhpApi\ParameterGroups\ConfigParameterGroup;
 use Heidelpay\PhpApi\Response;
-use Spryker\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface;
+use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface;
 
 class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
 {
@@ -37,12 +37,12 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
     const RESPONSE_PARAMETER_GROUP_USER = 'user';
 
     /**
-     * @var \Spryker\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface
+     * @var \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface
      */
     protected $utilEncoding;
 
     /**
-     * @param \Spryker\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface $utilEncoding
+     * @param \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface $utilEncoding
      */
     public function __construct(HeidelpayToUtilEncodingInterface $utilEncoding)
     {
