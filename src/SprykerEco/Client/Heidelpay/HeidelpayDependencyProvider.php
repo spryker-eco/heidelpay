@@ -7,12 +7,12 @@
 
 namespace SprykerEco\Client\Heidelpay;
 
-use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToLocaleBridge;
-use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteBridge;
 use Spryker\Client\Kernel\AbstractDependencyProvider;
 use Spryker\Client\Kernel\Container;
 use Spryker\Client\Session\ServiceProvider\SessionClientServiceProvider;
 use Spryker\Client\ZedRequest\ServiceProvider\ZedRequestClientServiceProvider;
+use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToLocaleBridge;
+use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteBridge;
 
 class HeidelpayDependencyProvider extends AbstractDependencyProvider
 {

@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Yves\Heidelpay;
 
+use Spryker\Yves\Kernel\AbstractFactory;
 use SprykerEco\Yves\Heidelpay\CreditCard\RegistrationResponseHandler;
 use SprykerEco\Yves\Heidelpay\Form\CreditCardSecureSubForm;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\CreditCardSecureDataProvider;
@@ -23,7 +24,6 @@ use SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandler;
 use SprykerEco\Yves\Heidelpay\Handler\PaymentFailureHandler;
 use SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuote;
 use SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeForm;
-use Spryker\Yves\Kernel\AbstractFactory;
 
 /**
  * @method \SprykerEco\Yves\Heidelpay\HeidelpayConfig getConfig()

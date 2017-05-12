@@ -7,9 +7,9 @@
 
 namespace SprykerEco\Zed\Heidelpay\Persistence;
 
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use Spryker\Zed\Kernel\Persistence\AbstractQueryContainer;
 use Spryker\Zed\PropelOrm\Business\Runtime\ActiveQuery\Criteria;
+use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 
 /**
  * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayPersistenceFactory getFactory()

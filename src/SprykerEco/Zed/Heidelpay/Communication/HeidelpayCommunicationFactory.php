@@ -7,8 +7,8 @@
 
 namespace SprykerEco\Zed\Heidelpay\Communication;
 
-use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
+use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
 
 /**
  * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface getQueryContainer()

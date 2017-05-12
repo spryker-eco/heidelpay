@@ -7,10 +7,12 @@
 
 namespace SprykerEco\Yves\Heidelpay\Dependency\Injector;
 
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use Spryker\Shared\Kernel\ContainerInterface;
 use Spryker\Shared\Kernel\Dependency\Injector\DependencyInjectorInterface;
 use Spryker\Yves\Checkout\CheckoutDependencyProvider;
+use Spryker\Yves\StepEngine\Dependency\Plugin\Form\SubFormPluginCollection;
+use Spryker\Yves\StepEngine\Dependency\Plugin\Handler\StepHandlerPluginCollection;
+use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use SprykerEco\Yves\Heidelpay\Plugin\HeidelpayCreditCardHandlerPlugin;
 use SprykerEco\Yves\Heidelpay\Plugin\HeidelpayHandlerPlugin;
 use SprykerEco\Yves\Heidelpay\Plugin\Subform\HeidelpayCreditCardSecureSubFormPlugin;
@@ -18,8 +20,6 @@ use SprykerEco\Yves\Heidelpay\Plugin\Subform\HeidelpayIdealSubFormPlugin;
 use SprykerEco\Yves\Heidelpay\Plugin\Subform\HeidelpayPaypalAuthorizeSubFormPlugin;
 use SprykerEco\Yves\Heidelpay\Plugin\Subform\HeidelpayPaypalDebitSubFormPlugin;
 use SprykerEco\Yves\Heidelpay\Plugin\Subform\HeidelpaySofortSubFormPlugin;
-use Spryker\Yves\StepEngine\Dependency\Plugin\Form\SubFormPluginCollection;
-use Spryker\Yves\StepEngine\Dependency\Plugin\Handler\StepHandlerPluginCollection;
 
 class CheckoutDependencyInjector implements DependencyInjectorInterface
 {
