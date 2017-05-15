@@ -24,7 +24,15 @@ class BaseHeidelpayController extends AbstractController
      */
     protected function getUrldecodedRequestBody(Request $request)
     {
-        return array_map('urldecode', $request->request->all());
+        $allRequestParameters = $request->request->all();
+
+        foreach ($allRequestParameters as $key => $value) {
+            if (is_string($value)) {
+                $allRequestParameters[$key] = urldecode($value);
+            }
+        }
+
+        return $allRequestParameters;
     }
 
     /**
