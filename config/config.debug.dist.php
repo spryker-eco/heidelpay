@@ -67,7 +67,7 @@ $config[AclConstants::ACL_DEFAULT_RULES][] = [
 $config[OmsConstants::PROCESS_LOCATION] = [
     OmsConfig::DEFAULT_PROCESS_LOCATION,
     $config[KernelConstants::SPRYKER_ROOT] . '/DummyPayment/config/Zed/Oms',
-    $config[KernelConstants::SPRYKER_ROOT] . '/Heidelpay/config/Zed/Oms',
+    $config[KernelConstants::SPRYKER_ROOT] . '/heidelpay/config/Zed/Oms',
 ];
 
 $config[OmsConstants::ACTIVE_PROCESSES] = [
