@@ -9,6 +9,7 @@ namespace SprykerEco\Yves\Heidelpay\Controller;
 
 use Generated\Shared\Transfer\HeidelpayRegistrationResponseTransfer;
 use Symfony\Component\HttpFoundation\Request;
+use Spryker\Shared\Log\LoggerTrait;
 
 /**
  * @method \SprykerEco\Yves\Heidelpay\HeidelpayFactory getFactory()
@@ -17,6 +18,8 @@ use Symfony\Component\HttpFoundation\Request;
 class CreditCardController extends BaseHeidelpayController
 {
 
+    use LoggerTrait;
+    
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
@@ -24,6 +27,7 @@ class CreditCardController extends BaseHeidelpayController
      */
     public function registerResponseAction(Request $request)
     {
+        $this->getLogger()->info(json_encode($request->request->all()));
         $requestAsArray = $this->getUrldecodedRequestBody($request);
         $processingResultTransfer = $this->processRegistrationResponse($requestAsArray);
 
