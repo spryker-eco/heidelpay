@@ -10,7 +10,7 @@ namespace SprykerEco\Client\Heidelpay;
 use Spryker\Client\Kernel\AbstractFactory;
 use Spryker\Client\Session\SessionClientFactoryTrait;
 use Spryker\Client\ZedRequest\ZedRequestClientFactoryTrait;
-use SprykerEco\Client\Heidelpay\Mapper\ApiResponseToRegistrationResponseTransfer;
+use SprykerEco\Client\Heidelpay\Mapper\ApiResponseToRegistrationRequestTransfer;
 use SprykerEco\Client\Heidelpay\Sdk\CreditCardRegistrationResponseParser;
 use SprykerEco\Client\Heidelpay\Sdk\HeidelpayApiAdapter;
 use SprykerEco\Client\Heidelpay\Zed\HeidelpayStub;
@@ -72,7 +72,7 @@ class HeidelpayFactory extends AbstractFactory
      */
     protected function createApiResponseToRegistrationResponseTransferMapper()
     {
-        return new ApiResponseToRegistrationResponseTransfer();
+        return new ApiResponseToRegistrationRequestTransfer();
     }
 
 }

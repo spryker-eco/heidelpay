@@ -11,6 +11,7 @@ use Generated\Shared\Transfer\HeidelpayCustomerAddressTransfer;
 use Generated\Shared\Transfer\HeidelpayCustomerPurchaseTransfer;
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
+use SprykerEco\Shared\Heidelpay\QuoteUniqueIdGenerator;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface;
 
 class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
@@ -91,9 +92,7 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
      */
     protected function generateQuoteId(QuoteTransfer $quoteTransfer)
     {
-        $quoteId = $quoteTransfer->getCustomer()->getEmail() . $quoteTransfer->getTotals()->getGrandTotal();
-
-        return uniqid($quoteId);
+        return QuoteUniqueIdGenerator::getHashByCustomerEmailAndTotals($quoteTransfer);
     }
 
     /**

@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Client\Heidelpay;
 
+use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 
 interface HeidelpayClientInterface
@@ -64,13 +65,39 @@ interface HeidelpayClientInterface
 
     /**
      * Specification:
+     *  - Sends credit card registration request to Zed for saving
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer
+     */
+    public function saveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer);
+
+    /**
+     * Specification:
+     *  - tries to find credit card registration by registration id and customer quote to reassure,
+     *  that credit card registration really belongs to current customer
+     *
+     * @api
+     *
+     * @param $idRegistration
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer|null
+     */
+    public function findRegistrationByIdAndQuote($idRegistration, QuoteTransfer $quoteTransfer);
+
+    /**
+     * Specification:
      *  - Parses the external Heidelpay array response, transforming it to the transfer object
      *
      * @api
      *
      * @param array $externalResponse
      *
-     * @return \Generated\Shared\Transfer\HeidelpayRegistrationResponseTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer
      */
     public function parseExternalResponse(array $externalResponse);
 
