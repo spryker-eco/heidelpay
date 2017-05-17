@@ -13,7 +13,7 @@ interface CreditCardRegistrationResponseParserInterface
     /**
      * @param array $responseArray
      *
-     * @return \Generated\Shared\Transfer\HeidelpayRegistrationResponseTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer
      */
     public function parseExternalResponse(array $responseArray);
 

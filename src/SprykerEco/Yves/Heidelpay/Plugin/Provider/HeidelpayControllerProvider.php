@@ -17,6 +17,7 @@ class HeidelpayControllerProvider extends YvesControllerProvider
     const HEIDELPAY_PAYMENT_FAILED = 'heidelpay-payment-failed';
     const HEIDELPAY_IDEAL_AUTHORIZE = 'heidelpay-ideal-authorize';
     const HEIDELPAY_CREDIT_CARD_REGISTER = 'heidelpay-cc-register';
+    const HEIDELPAY_CREDIT_CARD_REGISTER_SUCCESS = 'heidelpay-cc-register-success';
 
     /**
      * @param \Silex\Application $app
@@ -54,7 +55,15 @@ class HeidelpayControllerProvider extends YvesControllerProvider
             static::HEIDELPAY_CREDIT_CARD_REGISTER,
             'Heidelpay',
             'CreditCard',
-            'registerResponse'
+            'registrationRequest'
+        );
+
+        $this->createController(
+            '/heidelpay/cc-register-success',
+            static::HEIDELPAY_CREDIT_CARD_REGISTER_SUCCESS,
+            'Heidelpay',
+            'CreditCard',
+            'registrationSuccess'
         );
     }
 

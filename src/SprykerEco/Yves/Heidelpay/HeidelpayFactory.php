@@ -9,6 +9,7 @@ namespace SprykerEco\Yves\Heidelpay;
 
 use Spryker\Yves\Kernel\AbstractFactory;
 use SprykerEco\Yves\Heidelpay\CreditCard\RegistrationResponseHandler;
+use SprykerEco\Yves\Heidelpay\CreditCard\RegistrationToQuoteHydrator;
 use SprykerEco\Yves\Heidelpay\Form\CreditCardSecureSubForm;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\CreditCardSecureDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\IdealDataProvider;
@@ -145,16 +146,6 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface
-     */
-    protected function createCreditCardPaymentOptionsToQuoteHydrator()
-    {
-        return new CreditCardPaymentOptionsToQuote(
-            $this->getHeidelpayClient()
-        );
-    }
-
-    /**
      * @return \SprykerEco\Client\Heidelpay\HeidelpayClientInterface
      */
     public function getHeidelpayClient()
@@ -171,12 +162,11 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \SprykerEco\Yves\Heidelpay\CreditCard\RegistrationResponseHandlerInterface
+     * @return \SprykerEco\Yves\Heidelpay\CreditCard\RegistrationToQuoteHydratorInterface
      */
-    public function createRegistrationResponseHandler()
+    public function createCreditCardRegistrationToQuoteHydrator()
     {
-        return new RegistrationResponseHandler(
-            $this->getHeidelpayClient(),
+        return new RegistrationToQuoteHydrator(
             $this->createHeidelpayHandler()
         );
     }
@@ -187,6 +177,16 @@ class HeidelpayFactory extends AbstractFactory
     public function getYvesConfig()
     {
         return $this->getConfig();
+    }
+
+    /**
+     * @return \SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface
+     */
+    protected function createCreditCardPaymentOptionsToQuoteHydrator()
+    {
+        return new CreditCardPaymentOptionsToQuote(
+            $this->getHeidelpayClient()
+        );
     }
 
 }

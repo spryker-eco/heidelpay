@@ -11,6 +11,7 @@ use Generated\Shared\Transfer\HeidelpayCreditCardInfoTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration;
+use SprykerEco\Shared\Heidelpay\QuoteUniqueIdGenerator;
 use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
 
 class RegistrationReader implements RegistrationReaderInterface
@@ -19,7 +20,7 @@ class RegistrationReader implements RegistrationReaderInterface
     /**
      * @var \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface
      */
-    private $heidelpayQueryContainer;
+    protected $heidelpayQueryContainer;
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface $heidelpayQueryContainer
@@ -39,12 +40,46 @@ class RegistrationReader implements RegistrationReaderInterface
         $lastSuccessfulRegistration = $this->findLastSuccessfulRegistrationByQuote($quoteTransfer);
 
         if ($lastSuccessfulRegistration === null) {
-            return null;
+            return $this->createEmptyRegistrationTransfer();
         }
 
         $registrationTransfer = $this->getRegistrationTransferFromEntity($lastSuccessfulRegistration);
 
         return $registrationTransfer;
+    }
+
+    /**
+     * @param int $idRegistration
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
+     */
+    public function findCreditCardRegistrationByIdAndQuote($idRegistration, QuoteTransfer $quoteTransfer)
+    {
+        $quoteHash = $this->generateQuoteHash($quoteTransfer);
+        $registrationEntity = $this->heidelpayQueryContainer
+            ->queryRegistrationByIdAndQuoteHash(
+                $idRegistration, $quoteHash
+            )
+            ->findOne();
+
+        if ($registrationEntity === null) {
+            return $this->createEmptyRegistrationTransfer();
+        }
+
+        $registrationTransfer = $this->getRegistrationTransferFromEntity($registrationEntity);
+
+        return $registrationTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return string
+     */
+    protected function generateQuoteHash(QuoteTransfer $quoteTransfer)
+    {
+        return QuoteUniqueIdGenerator::getHashByCustomerEmailAndTotals($quoteTransfer);
     }
 
     /**
@@ -60,11 +95,20 @@ class RegistrationReader implements RegistrationReaderInterface
             ->fromArray($lastSuccessfulRegistration->toArray(), true);
 
         $registrationTransfer
+            ->setIdCreditCardRegistration($lastSuccessfulRegistration->getIdCreditCardRegistration())
             ->setRegistrationNumber($lastSuccessfulRegistration->getRegistrationNumber())
             ->setCreditCardInfo($creditCardInfo)
             ->setIdCustomerAddress($lastSuccessfulRegistration->getFkCustomerAddress());
 
         return $registrationTransfer;
+    }
+
+    /**
+     * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
+     */
+    protected function createEmptyRegistrationTransfer()
+    {
+        return new HeidelpayCreditCardRegistrationTransfer();
     }
 
     /**

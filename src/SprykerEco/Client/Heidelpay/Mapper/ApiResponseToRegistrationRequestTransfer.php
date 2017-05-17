@@ -7,51 +7,55 @@
 namespace SprykerEco\Client\Heidelpay\Mapper;
 
 use Generated\Shared\Transfer\HeidelpayCreditCardInfoTransfer;
-use Generated\Shared\Transfer\HeidelpayRegistrationResponseTransfer;
+use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseErrorTransfer;
 use Heidelpay\PhpApi\Response;
 
-class ApiResponseToRegistrationResponseTransfer implements ApiResponseToRegistrationResponseTransferInterface
+class ApiResponseToRegistrationRequestTransfer implements ApiResponseToRegistrationResponseTransferInterface
 {
 
     /**
      * @param \Heidelpay\PhpApi\Response $apiResponseObject
-     * @param \Generated\Shared\Transfer\HeidelpayRegistrationResponseTransfer $registrationResponseTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
      *
      * @return void
      */
-    public function map(Response $apiResponseObject, HeidelpayRegistrationResponseTransfer $registrationResponseTransfer)
+    public function map(Response $apiResponseObject, HeidelpayRegistrationRequestTransfer $registrationRequestTransfer)
     {
-        $this->mapCreditCardInfo($apiResponseObject, $registrationResponseTransfer);
-        $this->mapError($apiResponseObject, $registrationResponseTransfer);
+        $this->mapCreditCardInfo($apiResponseObject, $registrationRequestTransfer);
+        $this->mapError($apiResponseObject, $registrationRequestTransfer);
 
-        $registrationResponseTransfer->setIdRegistration(
-            $apiResponseObject->getIdentification()->getUniqueId()
-        );
+        $registrationRequestTransfer
+            ->setRegistrationHash(
+                $apiResponseObject->getIdentification()->getUniqueId()
+            )
+            ->setQuoteHash(
+                $apiResponseObject->getIdentification()->getTransactionId()
+            );
     }
 
     /**
-     * @param \Generated\Shared\Transfer\HeidelpayRegistrationResponseTransfer $registrationResponseTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
      * @param \Generated\Shared\Transfer\HeidelpayResponseErrorTransfer $errorTransfer
      *
      * @return void
      */
-    public function hydrateErrorToRegistrationResponse(
-        HeidelpayRegistrationResponseTransfer $registrationResponseTransfer,
+    public function hydrateErrorToRegistrationRequest(
+        HeidelpayRegistrationRequestTransfer $registrationRequestTransfer,
         HeidelpayResponseErrorTransfer $errorTransfer
     ) {
-        $registrationResponseTransfer
+        $registrationRequestTransfer
             ->setIsError(true)
             ->setError($errorTransfer);
     }
 
     /**
      * @param \Heidelpay\PhpApi\Response $apiResponse
-     * @param \Generated\Shared\Transfer\HeidelpayRegistrationResponseTransfer $responseTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $responseTransfer
      *
      * @return void
      */
-    protected function mapError(Response $apiResponse, HeidelpayRegistrationResponseTransfer $responseTransfer)
+    protected function mapError(Response $apiResponse, HeidelpayRegistrationRequestTransfer $responseTransfer)
     {
         if (!$apiResponse->isError()) {
             return;
@@ -62,16 +66,16 @@ class ApiResponseToRegistrationResponseTransfer implements ApiResponseToRegistra
             ->setCode($errorResponse['code'])
             ->setInternalMessage($errorResponse['message']);
 
-        $this->hydrateErrorToRegistrationResponse($responseTransfer, $errorTransfer);
+        $this->hydrateErrorToRegistrationRequest($responseTransfer, $errorTransfer);
     }
 
     /**
      * @param \Heidelpay\PhpApi\Response $apiResponseObject
-     * @param \Generated\Shared\Transfer\HeidelpayRegistrationResponseTransfer $registrationResponseTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
      *
      * @return void
      */
-    protected function mapCreditCardInfo(Response $apiResponseObject, HeidelpayRegistrationResponseTransfer $registrationResponseTransfer)
+    protected function mapCreditCardInfo(Response $apiResponseObject, HeidelpayRegistrationRequestTransfer $registrationRequestTransfer)
     {
         $creditCardInfoTransfer = new HeidelpayCreditCardInfoTransfer();
         $accountInfo = $apiResponseObject->getAccount();
@@ -84,7 +88,7 @@ class ApiResponseToRegistrationResponseTransfer implements ApiResponseToRegistra
             ->setAccountNumber($accountInfo->getNumber())
             ->setAccountVerification($accountInfo->getVerification());
 
-        $registrationResponseTransfer->setCreditCardInfo($creditCardInfoTransfer);
+        $registrationRequestTransfer->setCreditCardInfo($creditCardInfoTransfer);
     }
 
 }

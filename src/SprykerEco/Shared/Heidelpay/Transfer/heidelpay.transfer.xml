@@ -17,6 +17,7 @@
     </transfer>
 
     <transfer name="HeidelpayCreditCardRegistration">
+        <property name="idCreditCardRegistration" type="int" />
         <property name="creditCardInfo" type="HeidelpayCreditCardInfo" />
         <property name="registrationNumber" type="string" />
         <property name="idCustomerAddress" type="int" />
@@ -132,11 +133,23 @@
         <property name="config" type="HeidelpayResponseConfig"/>
     </transfer>
 
-    <transfer name="HeidelpayRegistrationResponse">
+    <transfer name="HeidelpayRegistrationRequest">
         <property name="isError" type="bool"/>
         <property name="error" type="HeidelpayResponseError"/>
-        <property name="idRegistration" type="string"/>
+        <property name="quoteHash" type="string"/>
+        <property name="registrationHash" type="string"/>
         <property name="creditCardInfo" type="HeidelpayCreditCardInfo"/>
+    </transfer>
+
+    <transfer name="HeidelpayRegistrationSaveResponse">
+        <property name="isError" type="bool"/>
+        <property name="error" type="HeidelpayResponseError"/>
+        <property name="idRegistration" type="int"/>
+    </transfer>
+
+    <transfer name="HeidelpayRegistrationByIdAndQuoteRequest">
+        <property name="idRegistration" type="int"/>
+        <property name="quote" type="Quote"/>
     </transfer>
 
     <transfer name="HeidelpayPaymentProcessingResponse">

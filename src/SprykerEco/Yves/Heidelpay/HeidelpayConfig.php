@@ -45,4 +45,12 @@ class HeidelpayConfig extends AbstractBundleConfig
         return $this->get(HeidelpayConstants::CONFIG_YVES_CHECKOUT_SUCCESS_URL);
     }
 
+    /**
+     * @return string
+     */
+    public function getYvesRegistrationSuccessUrl()
+    {
+        return $this->get(HeidelpayConstants::CONFIG_YVES_CHECKOUT_REGISTRATION_SUCCESS_URL);
+    }
+
 }

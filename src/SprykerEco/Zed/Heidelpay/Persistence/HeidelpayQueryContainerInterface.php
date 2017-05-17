@@ -56,7 +56,7 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistrationQuery
      */
-    public function queryCreditCardRegistrationByIdRegistration($registrationNumber);
+    public function queryCreditCardRegistrationByRegistrationNumber($registrationNumber);
 
     /**
      * @api
@@ -66,5 +66,15 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistrationQuery
      */
     public function queryLatestRegistrationByIdShippingAddress($idAddress);
+
+    /**
+     * @api
+     *
+     * @param int $idRegistration
+     * @param string $quoteHash
+     *
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistrationQuery
+     */
+    public function queryRegistrationByIdAndQuoteHash($idRegistration, $quoteHash);
 
 }

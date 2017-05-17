@@ -40,8 +40,9 @@
 
     <table name="spy_payment_heidelpay_credit_card_registration">
         <column name="id_credit_card_registration" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
-        <column name="fk_customer_address" required="true" type="INTEGER" />
+        <column name="fk_customer_address" required="false" type="INTEGER" />
         <column name="registration_number" required="true" type="VARCHAR" />
+        <column name="quote_hash" required="true" type="VARCHAR" />
         <column name="account_brand" required="false" type="VARCHAR" />
         <column name="account_holder" required="false" type="VARCHAR" />
         <column name="account_number" required="false" type="VARCHAR" />
@@ -61,6 +62,9 @@
         </unique>
         <index name="spy_heidelpay_registration-fk_customer_address">
             <index-column name="fk_customer_address"/>
+        </index>
+        <index name="spy_heidelpay_registration-quote_hash">
+            <index-column name="quote_hash"/>
         </index>
         <id-method-parameter value="spy_payment_heidelpay_credit_card_registration_pk_seq"/>
     </table>

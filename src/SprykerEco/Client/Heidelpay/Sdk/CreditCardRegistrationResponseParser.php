@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Client\Heidelpay\Sdk;
 
-use Generated\Shared\Transfer\HeidelpayRegistrationResponseTransfer;
+use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseErrorTransfer;
 use Heidelpay\PhpApi\Exceptions\HashVerificationException;
 use Heidelpay\PhpApi\Response;
@@ -44,20 +44,20 @@ class CreditCardRegistrationResponseParser implements CreditCardRegistrationResp
     /**
      * @param array $responseArray
      *
-     * @return \Generated\Shared\Transfer\HeidelpayRegistrationResponseTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer
      */
     public function parseExternalResponse(array $responseArray)
     {
-        $registrationResponseTransfer = new HeidelpayRegistrationResponseTransfer();
+        $registrationRequestTransfer = new HeidelpayRegistrationRequestTransfer();
 
         try {
             $apiResponseObject = $this->getValidatedApiResponseObject($responseArray);
-            $this->hydrateResponseToTransfer($apiResponseObject, $registrationResponseTransfer);
+            $this->hydrateResponseToTransfer($apiResponseObject, $registrationRequestTransfer);
         } catch (HashVerificationException $exception) {
-            $this->hydrateValidationErrorToResponse($registrationResponseTransfer);
+            $this->hydrateValidationErrorToRequest($registrationRequestTransfer);
         }
 
-        return $registrationResponseTransfer;
+        return $registrationRequestTransfer;
     }
 
     /**
@@ -78,17 +78,17 @@ class CreditCardRegistrationResponseParser implements CreditCardRegistrationResp
     }
 
     /**
-     * @param \Generated\Shared\Transfer\HeidelpayRegistrationResponseTransfer $registrationResponseTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
      *
      * @return void
      */
-    protected function hydrateValidationErrorToResponse(HeidelpayRegistrationResponseTransfer $registrationResponseTransfer)
+    protected function hydrateValidationErrorToRequest(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer)
     {
         $errorTransfer = new HeidelpayResponseErrorTransfer();
         $errorTransfer->setCode(static::ERROR_CODE_INVALID_RESPONSE);
 
         $this->apiResponseToRegistrationResponseMapper
-            ->hydrateErrorToRegistrationResponse($registrationResponseTransfer, $errorTransfer);
+            ->hydrateErrorToRegistrationRequest($registrationRequestTransfer, $errorTransfer);
     }
 
     /**
@@ -101,18 +101,18 @@ class CreditCardRegistrationResponseParser implements CreditCardRegistrationResp
 
     /**
      * @param \Heidelpay\PhpApi\Response $apiResponseObject
-     * @param \Generated\Shared\Transfer\HeidelpayRegistrationResponseTransfer $registrationResponseTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
      *
      * @return void
      */
     protected function hydrateResponseToTransfer(
         Response $apiResponseObject,
-        HeidelpayRegistrationResponseTransfer $registrationResponseTransfer
+        HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
     ) {
         $this->apiResponseToRegistrationResponseMapper
             ->map(
                 $apiResponseObject,
-                $registrationResponseTransfer
+                $registrationRequestTransfer
             );
     }
 

@@ -19,4 +19,12 @@ interface RegistrationReaderInterface
      */
     public function getLastSuccessfulRegistrationForQuote(QuoteTransfer $quoteTransfer);
 
+    /**
+     * @param int $idRegistration
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
+     */
+    public function findCreditCardRegistrationByIdAndQuote($idRegistration, QuoteTransfer $quoteTransfer);
+
 }

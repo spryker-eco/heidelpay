@@ -88,7 +88,7 @@ class HeidelpayQueryContainer extends AbstractQueryContainer implements Heidelpa
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistrationQuery
      */
-    public function queryCreditCardRegistrationByIdRegistration($registrationNumber)
+    public function queryCreditCardRegistrationByRegistrationNumber($registrationNumber)
     {
         return $this->getFactory()
             ->createHeidelpayCreditCardRegistrationQuery()
@@ -108,6 +108,22 @@ class HeidelpayQueryContainer extends AbstractQueryContainer implements Heidelpa
             ->createHeidelpayCreditCardRegistrationQuery()
             ->filterByFkCustomerAddress($idAddress)
             ->orderByIdCreditCardRegistration(Criteria::DESC);
+    }
+
+    /**
+     * @api
+     *
+     * @param int $idRegistration
+     * @param string $quoteHash
+     *
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistrationQuery
+     */
+    public function queryRegistrationByIdAndQuoteHash($idRegistration, $quoteHash)
+    {
+        return $this->getFactory()
+            ->createHeidelpayCreditCardRegistrationQuery()
+            ->filterByIdCreditCardRegistration($idRegistration)
+            ->filterByQuoteHash($quoteHash);
     }
 
 }

@@ -8,6 +8,8 @@
 namespace SprykerEco\Client\Heidelpay;
 
 use Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Client\Kernel\AbstractClient;
 
@@ -72,7 +74,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
      *
      * @param array $externalResponse
      *
-     * @return \Generated\Shared\Transfer\HeidelpayRegistrationResponseTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer
      */
     public function parseExternalResponse(array $externalResponse)
     {
@@ -97,6 +99,41 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
         return $this->getFactory()
             ->createZedStub()
             ->processExternalPaymentResponse($externalResponseTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer
+     */
+    public function saveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer)
+    {
+        return $this->getFactory()
+            ->createZedStub()
+            ->saveCreditCardRegistration($registrationRequestTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param $idRegistration
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer|null
+     */
+    public function findRegistrationByIdAndQuote($idRegistration, QuoteTransfer $quoteTransfer)
+    {
+        $findRegistrationRequestTransfer = $this->buildFindRegistrationRequestTransfer($idRegistration, $quoteTransfer);
+
+        return $this->getFactory()
+            ->createZedStub()
+            ->findCreditCardRegistrationByIdAndQuote($findRegistrationRequestTransfer);
     }
 
     /**
@@ -134,6 +171,19 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     {
         return (new HeidelpayExternalPaymentRequestTransfer())
             ->setBody($externalResponse);
+    }
+
+    /**
+     * @param $idRegistration
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer
+     */
+    protected function buildFindRegistrationRequestTransfer($idRegistration, QuoteTransfer $quoteTransfer)
+    {
+        return (new HeidelpayRegistrationByIdAndQuoteRequestTransfer())
+            ->setIdRegistration($idRegistration)
+            ->setQuote($quoteTransfer);
     }
 
 }
