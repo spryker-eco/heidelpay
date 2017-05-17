@@ -19,6 +19,7 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\PaymentOption\LastSucce
 use SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\PaymentOption\NewRegistrationIframe;
 use SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\PaymentOptionsCalculator;
 use SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationReader;
+use SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationSaver;
 use SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationWriter;
 use SprykerEco\Zed\Heidelpay\Business\Payment\CreditCardSecure;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Ideal;
@@ -177,6 +178,26 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     {
         return new PaymentOptionsCalculator(
             $this->createCreditCardPaymentOptionsArray()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationReaderInterface
+     */
+    public function createCreditCardRegistrationReader()
+    {
+        return new RegistrationReader(
+            $this->getQueryContainer()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationSaverInterface
+     */
+    public function createCreditCardRegistrationSaver()
+    {
+        return new RegistrationSaver(
+            $this->getQueryContainer()
         );
     }
 
@@ -413,16 +434,6 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
             $this->createTransactionLogReader(),
             $this->getConfig(),
             $this->createCreditCardRegistrationWriter()
-        );
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationReaderInterface
-     */
-    protected function createCreditCardRegistrationReader()
-    {
-        return new RegistrationReader(
-            $this->getQueryContainer()
         );
     }
 

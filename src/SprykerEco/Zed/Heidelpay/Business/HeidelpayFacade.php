@@ -9,6 +9,8 @@ namespace SprykerEco\Zed\Heidelpay\Business;
 
 use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayAuthorizeTransactionLogRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
@@ -163,6 +165,42 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
         return $this->getFactory()
             ->createPaymentOptionsCalculator()
             ->getCreditCardPaymentOptions($quoteTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer
+     */
+    public function saveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer)
+    {
+        return $this->getFactory()
+            ->createCreditCardRegistrationSaver()
+            ->saveCreditCardRegistration($registrationRequestTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer|null
+     */
+    public function findCreditCardRegistrationByIdAndQuote(
+        HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
+    ) {
+        return $this->getFactory()
+            ->createCreditCardRegistrationReader()
+            ->findCreditCardRegistrationByIdAndQuote(
+                $findRegistrationRequestTransfer->getIdRegistration(),
+                $findRegistrationRequestTransfer->getQuote()
+            );
     }
 
 }

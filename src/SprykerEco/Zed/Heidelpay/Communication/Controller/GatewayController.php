@@ -9,6 +9,8 @@ namespace SprykerEco\Zed\Heidelpay\Communication\Controller;
 
 use Generated\Shared\Transfer\HeidelpayAuthorizeTransactionLogRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractGatewayController;
 
@@ -46,6 +48,28 @@ class GatewayController extends AbstractGatewayController
     public function processExternalPaymentResponseAction(HeidelpayExternalPaymentRequestTransfer $paymentRequestTransfer)
     {
         return $this->getFacade()->processExternalPaymentResponse($paymentRequestTransfer->getBody());
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer
+     */
+    public function saveCreditCardRegistrationAction(
+        HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
+    ) {
+        return $this->getFacade()->saveCreditCardRegistration($registrationRequestTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer|null
+     */
+    public function findCreditCardRegistrationAction(
+        HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
+    ) {
+        return $this->getFacade()->findCreditCardRegistrationByIdAndQuote($findRegistrationRequestTransfer);
     }
 
 }

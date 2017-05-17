@@ -57,7 +57,7 @@ class CreditCardSecure extends BaseHeidelpayPaymentMethod implements
         if ($this->isAuthorizeTransactionSentSuccessfully($authorizeTransactionLogTransfer) &&
             $this->hasCustomerRegisteredShipmentAddress($quoteTransfer->getShippingAddress())
         ) {
-            $this->saveCreditCardRegistration($quoteTransfer);
+            $this->updateCreditCardRegistrationWithAddressId($quoteTransfer);
         }
 
         $redirectUrl = $this->getCheckoutRedirectUrlFromAuthorizeTransactionLog(
@@ -94,9 +94,9 @@ class CreditCardSecure extends BaseHeidelpayPaymentMethod implements
      *
      * @return void
      */
-    protected function saveCreditCardRegistration(QuoteTransfer $quoteTransfer)
+    protected function updateCreditCardRegistrationWithAddressId(QuoteTransfer $quoteTransfer)
     {
-        $this->registrationWriter->saveRegistrationFromQuote($quoteTransfer);
+        $this->registrationWriter->updateRegistrationWithAddressIdFromQuote($quoteTransfer);
     }
 
     /**
@@ -104,7 +104,7 @@ class CreditCardSecure extends BaseHeidelpayPaymentMethod implements
      *
      * @return string
      */
-    protected function getRegistrationIdFromQuote(QuoteTransfer $quoteTransfer): string
+    protected function getRegistrationIdFromQuote(QuoteTransfer $quoteTransfer)
     {
         return $quoteTransfer
             ->getPayment()

@@ -32,12 +32,16 @@ class RegistrationWriter implements RegistrationWriterInterface
      *
      * @return void
      */
-    public function saveRegistrationFromQuote(QuoteTransfer $quoteTransfer)
+    public function updateRegistrationWithAddressIdFromQuote(QuoteTransfer $quoteTransfer)
     {
-        $registrationEntity = $this->fetchRegistrationFromQuote($quoteTransfer);
+        $registrationEntity = $this->findRegistrationFromQuote($quoteTransfer);
 
-        if (!$this->isRegistrationExists($registrationEntity)) {
-            $registrationEntity->save();
+        if ($registrationEntity !== null) {
+            $registrationEntity
+                ->setFkCustomerAddress(
+                    $quoteTransfer->getShippingAddress()->getIdCustomerAddress()
+                )
+                ->save();
         }
     }
 
@@ -50,6 +54,28 @@ class RegistrationWriter implements RegistrationWriterInterface
     {
         $registrationEntity = new SpyPaymentHeidelpayCreditCardRegistration();
         $this->fillRegistrationEntityFromQuoteTransfer($quoteTransfer, $registrationEntity);
+
+        return $registrationEntity;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration|null
+     */
+    protected function findRegistrationFromQuote(QuoteTransfer $quoteTransfer)
+    {
+        $registrationHash = $quoteTransfer
+            ->getPayment()
+            ->getHeidelpayCreditCardSecure()
+            ->getSelectedRegistration()
+            ->getRegistrationNumber();
+
+        $registrationEntity = $this->heidelpayQueryContainer
+            ->queryCreditCardRegistrationByRegistrationNumber(
+                $registrationHash
+            )
+            ->findOne();
 
         return $registrationEntity;
     }
@@ -89,7 +115,7 @@ class RegistrationWriter implements RegistrationWriterInterface
     protected function isRegistrationExists(SpyPaymentHeidelpayCreditCardRegistration $registrationEntity)
     {
         return $this->heidelpayQueryContainer
-            ->queryCreditCardRegistrationByIdRegistration(
+            ->queryCreditCardRegistrationByRegistrationNumber(
                 $registrationEntity->getRegistrationNumber()
             )
             ->exists();

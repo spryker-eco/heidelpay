@@ -17,6 +17,6 @@ interface RegistrationWriterInterface
      *
      * @return void
      */
-    public function saveRegistrationFromQuote(QuoteTransfer $quoteTransfer);
+    public function updateRegistrationWithAddressIdFromQuote(QuoteTransfer $quoteTransfer);
 
 }
