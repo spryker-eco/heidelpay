@@ -42,7 +42,7 @@ class LastSuccessfulRegistration implements PaymentOptionInterface
     ) {
         $lastSuccessfulRegistrationTransfer = $this->getLastSuccessfulRegistrationForQuote($quoteTransfer);
 
-        if ($lastSuccessfulRegistrationTransfer !== null) {
+        if ($lastSuccessfulRegistrationTransfer->getIdCreditCardRegistration() !== null) {
             $this->mapRegistrationToPaymentOptions($lastSuccessfulRegistrationTransfer, $paymentOptionsTransfer);
         }
     }
