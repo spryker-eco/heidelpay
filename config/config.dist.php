@@ -59,21 +59,12 @@ $config[KernelConstants::DEPENDENCY_INJECTOR_ZED] = [
     ],
 ];
 
-//$config[AclConstants::ACL_DEFAULT_RULES][] = [
-//    'bundle' => 'heidelpay',
-//    'controller' => 'transaction',
-//    'action' => '*',
-//    'type' => 'allow',
-//];
-
 $config[OmsConstants::PROCESS_LOCATION] = [
     OmsConfig::DEFAULT_PROCESS_LOCATION,
-    $config[KernelConstants::SPRYKER_ROOT] . '/DummyPayment/config/Zed/Oms',
-    $config[KernelConstants::SPRYKER_ROOT] . '/heidelpay/config/Zed/Oms',
+    $config[HeidelpayConstants::VENDOR_ROOT] . '/heidelpay/config/Zed/Oms',
 ];
 
 $config[OmsConstants::ACTIVE_PROCESSES] = [
-    'DummyPayment01',
     'HeidelpaySofort01',
     'HeidelpayPaypalAuthorize01',
     'HeidelpayPaypalDebit01',
