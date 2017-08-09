@@ -1,4 +1,4 @@
-# Heidelpay Bundle
+# Heidelpay Module
 
 ## Installation
 
