@@ -25,7 +25,7 @@ interface TransactionLogReaderInterface
     public function findOrderAuthorizeTransactionLogByOrderReference($orderReference);
 
     /**
-     * @param string $orderReference
+     * @param int $orderReference
      *
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
      */

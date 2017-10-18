@@ -9,13 +9,8 @@ namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Payment;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Heidelpay\PhpApi\PaymentMethods\IDealPaymentMethod;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface;
 
-class IdealPayment extends BasePayment implements
-    IdealPaymentInterface,
-    PaymentWithAuthorizeInterface,
-    PaymentWithExternalResponseInterface
+class IdealPayment extends BasePayment implements IdealPaymentInterface
 {
 
     /**

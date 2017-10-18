@@ -26,7 +26,7 @@ class AdapterFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface[]
      */
-    public function createAuthorizePaymentMethodAdapterCollection()
+    public function getAuthorizePaymentMethodAdapterCollection()
     {
         return [
             HeidelpayConstants::PAYMENT_METHOD_SOFORT => $this->createSofortPaymentMethodAdapter(),
@@ -39,7 +39,7 @@ class AdapterFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface[]
      */
-    public function createCapturePaymentMethodAdapterCollection()
+    public function getCapturePaymentMethodAdapterCollection()
     {
         return [
             HeidelpayConstants::PAYMENT_METHOD_PAYPAL_AUTHORIZE => $this->createPaypalPaymentMethodAdapter(),
@@ -50,7 +50,7 @@ class AdapterFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface[]
      */
-    public function createDebitPaymentMethodAdapterCollection()
+    public function getDebitPaymentMethodAdapterCollection()
     {
         return [
             HeidelpayConstants::PAYMENT_METHOD_PAYPAL_DEBIT => $this->createPaypalPaymentMethodAdapter(),
@@ -60,7 +60,7 @@ class AdapterFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface[]
      */
-    public function createExternalResponsePaymentMethodAdapterCollection()
+    public function getExternalResponsePaymentMethodAdapterCollection()
     {
         return [
             HeidelpayConstants::PAYMENT_METHOD_SOFORT => $this->createSofortPaymentMethodAdapter(),

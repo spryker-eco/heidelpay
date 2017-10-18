@@ -122,7 +122,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
      *
      * @api
      *
-     * @param $idRegistration
+     * @param int $idRegistration
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer|null
@@ -174,7 +174,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     }
 
     /**
-     * @param $idRegistration
+     * @param int $idRegistration
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer

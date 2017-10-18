@@ -18,7 +18,7 @@ class LastSuccessfulRegistration implements PaymentOptionInterface
 {
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationReaderInterface|\SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\RegistrationReaderInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationReaderInterface
      */
     protected $registrationReader;
 
@@ -114,7 +114,7 @@ class LastSuccessfulRegistration implements PaymentOptionInterface
         return
             ($quoteTransfer->getShippingAddress() !== null) &&
             ($quoteTransfer->getShippingAddress()->getIdCustomerAddress() !== null) &&
-            ($quoteTransfer->getShippingAddress()->getIdCustomerAddress() !== "");
+            ($quoteTransfer->getShippingAddress()->getIdCustomerAddress() !== '');
     }
 
     /**

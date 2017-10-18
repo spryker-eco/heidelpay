@@ -6,7 +6,7 @@
  */
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper;
 
-use \ArrayObject;
+use ArrayObject;
 use Generated\Shared\Transfer\HeidelpayBankCountryTransfer;
 use Generated\Shared\Transfer\HeidelpayBankTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseConfigTransfer;
@@ -120,6 +120,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      */
     protected function mapBanks(ConfigParameterGroup $config, HeidelpayResponseConfigTransfer $configTransfer)
     {
+        /** @var string[] $banks */
         $banks = $config->getBrands();
 
         if (empty($banks)) {
@@ -144,6 +145,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      */
     protected function mapBankCountries(ConfigParameterGroup $config, HeidelpayResponseConfigTransfer $configTransfer)
     {
+        /** @var string[] $bankCountries */
         $bankCountries = $config->getBankCountry();
 
         if (empty($bankCountries)) {
@@ -212,6 +214,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
         HeidelpayResponseTransfer $responseTransfer
     ) {
         try {
+            /** @var string $paymentFormUrl */
             $paymentFormUrl = $apiResponse->getPaymentFormUrl();
             $responseTransfer->setPaymentFormUrl($paymentFormUrl);
         } catch (PaymentFormUrlException $exception) {

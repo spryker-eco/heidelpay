@@ -33,7 +33,7 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
     protected $paymentMethodAdapterCollection;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReaderInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriterInterface
      */
     protected $paymentWriter;
 

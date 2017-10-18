@@ -65,8 +65,8 @@
     </transfer>
 
     <transfer name="HeidelpayCustomerPurchase">
-        <property name="idOrder" type="int"/>
-        <property name="amount" type="string"/>
+        <property name="idOrder" type="string"/>
+        <property name="amount" type="float"/>
         <property name="currencyCode" type="string"/>
         <property name="secret" type="string"/>
     </transfer>
@@ -121,7 +121,7 @@
         <property name="isSuccess" type="bool"/>
         <property name="isError" type="bool"/>
         <property name="isPending" type="bool"/>
-        <property name="idSalesOrder" type="int"/>
+        <property name="idSalesOrder" type="string"/>
         <property name="error" type="HeidelpayResponseError"/>
         <property name="idPaymentReference" type="string"/>
         <property name="processingCode" type="string"/>

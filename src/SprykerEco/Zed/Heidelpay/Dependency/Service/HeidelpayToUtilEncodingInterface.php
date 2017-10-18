@@ -11,7 +11,7 @@ interface HeidelpayToUtilEncodingInterface
 {
 
     /**
-     * @param string $value
+     * @param mixed $value
      * @param int|null $options
      * @param int|null $depth
      *
@@ -25,7 +25,7 @@ interface HeidelpayToUtilEncodingInterface
      * @param int|null $depth
      * @param int|null $options
      *
-     * @return array
+     * @return mixed|null
      */
     public function decodeJson($jsonValue, $assoc = false, $depth = null, $options = null);
 

@@ -16,9 +16,10 @@ use Heidelpay\PhpApi\Request;
 use Heidelpay\PhpApi\Response;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\RequestToHeidelpayInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpayInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface;
 use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
-class BasePayment
+class BasePayment implements PaymentWithExternalResponseInterface
 {
 
     /**

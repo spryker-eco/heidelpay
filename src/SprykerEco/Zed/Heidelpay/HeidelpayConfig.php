@@ -38,11 +38,11 @@ class HeidelpayConfig extends AbstractBundleConfig
     }
 
     /**
-     * @return string
+     * @return bool
      */
     public function getMerchantSandboxMode()
     {
-        return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_SANDBOX_REQUEST);
+        return (bool)$this->get(HeidelpayConstants::CONFIG_HEIDELPAY_SANDBOX_REQUEST);
     }
 
     /**

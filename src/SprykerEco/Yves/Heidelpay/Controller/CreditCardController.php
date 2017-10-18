@@ -29,7 +29,7 @@ class CreditCardController extends BaseHeidelpayController
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function registrationRequestAction(Request $request)
     {
@@ -166,7 +166,7 @@ class CreditCardController extends BaseHeidelpayController
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer $saveResponseTransfer
      *
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function redirectToRegistrationFailedAction(
         HeidelpayRegistrationSaveResponseTransfer $saveResponseTransfer
@@ -182,7 +182,7 @@ class CreditCardController extends BaseHeidelpayController
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
      *
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function getInvalidApiRequestActionUrl(
         HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
@@ -198,7 +198,7 @@ class CreditCardController extends BaseHeidelpayController
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer $saveResponseTransfer
      *
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function getRegistrationSuccessActionUrl(
         HeidelpayRegistrationSaveResponseTransfer $saveResponseTransfer
@@ -214,7 +214,7 @@ class CreditCardController extends BaseHeidelpayController
     /**
      * @param string $redirectUrl
      *
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function streamRedirectResponse($redirectUrl)
     {

@@ -83,6 +83,9 @@ class AbstractFacadeTest extends Test
 //        $this->statusLogQuery = new SpyPaymentPayolutionTransactionStatusLogQuery();
     }
 
+    /**
+     * @return void
+     */
     protected function prepareHeidelpayFacade()
     {
         $this->heidelpayFacade = (new HeidelpayFacade())

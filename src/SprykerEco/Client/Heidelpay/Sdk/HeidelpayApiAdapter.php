@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Client\Heidelpay\Sdk;
 
-use \Heidelpay\CustomerMessages\CustomerMessage;
+use Heidelpay\CustomerMessages\CustomerMessage;
 
 /**
  * @method \SprykerEco\Client\Heidelpay\HeidelpayFactory getFactory()
