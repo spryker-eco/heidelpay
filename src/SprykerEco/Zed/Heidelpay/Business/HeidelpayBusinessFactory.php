@@ -100,7 +100,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\AdapterFactory
+     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\AdapterFactoryInterface
      */
     public function createAdapterFactory()
     {
@@ -382,7 +382,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Sofort
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface
      */
     protected function createPaymentMethodSofort()
     {
@@ -393,7 +393,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\PaypalAuthorize
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface
      */
     protected function createPaymentMethodPaypalAuthorize()
     {
@@ -404,7 +404,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\PaypalDebit
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface
      */
     protected function createPaymentMethodPaypalDebit()
     {
@@ -415,7 +415,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Ideal
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface
      */
     protected function createPaymentMethodIdeal()
     {
@@ -426,7 +426,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCardSecure
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface
      */
     protected function createPaymentMethodCreditCardSecure()
     {

@@ -10,7 +10,7 @@ namespace SprykerEco\Yves\Heidelpay;
 use Spryker\Zed\Kernel\AbstractBundleConfig;
 use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 
-class HeidelpayConfig extends AbstractBundleConfig
+class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInterface
 {
 
     /**
