@@ -20,7 +20,7 @@ use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
 /**
  * @method \SprykerEco\Zed\Heidelpay\HeidelpayConfig getConfig()
  */
-class AdapterFactory extends AbstractBusinessFactory
+class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryInterface
 {
 
     /**
@@ -120,7 +120,7 @@ class AdapterFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\TransactionParser
+     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\TransactionParserInterface
      */
     public function createTransactionParser()
     {
@@ -131,7 +131,7 @@ class AdapterFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponsePayloadToApiResponse
+     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponsePayloadToApiResponseInterface
      */
     protected function createResponsePayloadToApiResponseMapper()
     {
@@ -159,7 +159,7 @@ class AdapterFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\HeidelpayConfig
+     * @return \SprykerEco\Zed\Heidelpay\HeidelpayConfigInterface
      */
     protected function getHeidelpayConfig()
     {

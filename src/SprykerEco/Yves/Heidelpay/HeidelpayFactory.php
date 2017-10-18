@@ -167,7 +167,7 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \SprykerEco\Yves\Heidelpay\HeidelpayConfig
+     * @return \SprykerEco\Yves\Heidelpay\HeidelpayConfigInterface
      */
     public function getYvesConfig()
     {

@@ -36,7 +36,7 @@ class BaseHeidelpayController extends AbstractController
     }
 
     /**
-     * @return \SprykerEco\Yves\Heidelpay\HeidelpayConfig
+     * @return \SprykerEco\Yves\Heidelpay\HeidelpayConfigInterface
      */
     protected function getConfig()
     {

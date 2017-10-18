@@ -25,7 +25,7 @@ class HeidelpayFactory extends AbstractFactory
     use ZedRequestClientFactoryTrait;
 
     /**
-     * @return \SprykerEco\Client\Heidelpay\Sdk\HeidelpayApiAdapter
+     * @return \SprykerEco\Client\Heidelpay\Sdk\HeidelpayApiAdapterInterface
      */
     public function createHeidelpayApiAdapter()
     {
