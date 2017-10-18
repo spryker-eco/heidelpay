@@ -121,7 +121,7 @@
         <property name="isSuccess" type="bool"/>
         <property name="isError" type="bool"/>
         <property name="isPending" type="bool"/>
-        <property name="idSalesOrder" type="string"/>
+        <property name="idSalesOrder" type="int"/>
         <property name="error" type="HeidelpayResponseError"/>
         <property name="idPaymentReference" type="string"/>
         <property name="processingCode" type="string"/>
