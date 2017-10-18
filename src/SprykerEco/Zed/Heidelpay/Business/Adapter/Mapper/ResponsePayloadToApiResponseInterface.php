@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper;
 
-use \Heidelpay\PhpApi\Response;
+use Heidelpay\PhpApi\Response;
 
 interface ResponsePayloadToApiResponseInterface
 {

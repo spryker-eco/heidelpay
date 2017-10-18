@@ -27,7 +27,7 @@ interface AdapterRequestFromOrderBuilderInterface
     public function buildDebitRequestFromOrder(OrderTransfer $orderTransfer);
 
     /**
-     * @param \Generated\Shared\Transfer\OrderTransfer
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */

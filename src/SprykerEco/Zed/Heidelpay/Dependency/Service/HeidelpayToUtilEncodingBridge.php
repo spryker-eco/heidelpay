@@ -23,7 +23,7 @@ class HeidelpayToUtilEncodingBridge implements HeidelpayToUtilEncodingInterface
     }
 
     /**
-     * @param array $value
+     * @param mixed $value
      * @param int|null $options
      * @param int|null $depth
      *
@@ -40,7 +40,7 @@ class HeidelpayToUtilEncodingBridge implements HeidelpayToUtilEncodingInterface
      * @param int|null $depth
      * @param int|null $options
      *
-     * @return array
+     * @return mixed|null
      */
     public function decodeJson($jsonValue, $assoc = false, $depth = null, $options = null)
     {

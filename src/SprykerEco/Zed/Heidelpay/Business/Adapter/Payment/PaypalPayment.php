@@ -9,17 +9,8 @@ namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Payment;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Heidelpay\PhpApi\PaymentMethods\PayPalPaymentMethod;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface;
 
-class PaypalPayment extends BasePayment implements
-    PaypalPaymentInterface,
-    PaymentWithAuthorizeInterface,
-    PaymentWithDebitInterface,
-    PaymentWithExternalResponseInterface,
-    PaymentWithCaptureInterface
+class PaypalPayment extends BasePayment implements PaypalPaymentInterface
 {
 
     /**

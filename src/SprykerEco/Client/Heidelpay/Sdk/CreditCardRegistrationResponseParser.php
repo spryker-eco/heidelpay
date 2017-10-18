@@ -20,7 +20,7 @@ class CreditCardRegistrationResponseParser implements CreditCardRegistrationResp
     const ERROR_CODE_INVALID_RESPONSE = 'invalid-response';
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\HeidelpayConfig
+     * @var \SprykerEco\Client\Heidelpay\HeidelpayConfig
      */
     protected $config;
 

@@ -7,14 +7,16 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
+use Generated\Shared\Transfer\CheckoutResponseTransfer;
+use Generated\Shared\Transfer\QuoteTransfer;
+use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulCreditCardSecureTransaction;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulIdealAuthorizeTransaction;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulPaypalAuthorizeTransaction;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulPaypalDebitTransaction;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulSofortAuthorizeTransaction;
-use Generated\Shared\Transfer\CheckoutResponseTransfer;
-use Generated\Shared\Transfer\QuoteTransfer;
-use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
+use SprykerTest\Shared\Testify\Helper\ConfigHelper;
 
 /**
  * @group Functional
@@ -35,6 +37,8 @@ class HeidelpayFacadePostSaveHookTest extends AbstractFacadeTest
      *
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
+     *
+     * @return void
      */
     public function testPostSaveHookForSuccessfulSalesOrdersSetsExternalRedirect(
         QuoteTransfer $quoteTransfer,
@@ -57,11 +61,15 @@ class HeidelpayFacadePostSaveHookTest extends AbstractFacadeTest
      *
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
+     *
+     * @return void
      */
     public function testPostSaveHookForSuccessfulIdealAuthorizeSetsRedirectToTheIdealFormStep(
         QuoteTransfer $quoteTransfer,
         CheckoutResponseTransfer $checkoutResponseTransfer
     ) {
+        $this->getModule('\\' . ConfigHelper::class)->setConfig(HeidelpayConstants::CONFIG_YVES_CHECKOUT_IDEAL_AUTHORIZE_URL, '');
+
         $this->heidelpayFacade->postSaveHook(
             $quoteTransfer,
             $checkoutResponseTransfer

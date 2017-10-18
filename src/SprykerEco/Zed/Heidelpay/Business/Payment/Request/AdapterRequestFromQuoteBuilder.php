@@ -23,16 +23,6 @@ class AdapterRequestFromQuoteBuilder extends BaseAdapterRequestBuilder implement
     protected $quoteToHeidelpayMapper;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface
-     */
-    protected $currencyFacade;
-
-    /**
-     * @var \SprykerEco\Zed\Heidelpay\HeidelpayConfig
-     */
-    protected $config;
-
-    /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Mapper\QuoteToHeidelpayRequestInterface $quoteToHeidelpayMapper
      * @param \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface $currencyFacade
      * @param \SprykerEco\Zed\Heidelpay\HeidelpayConfig $config
@@ -42,9 +32,8 @@ class AdapterRequestFromQuoteBuilder extends BaseAdapterRequestBuilder implement
         HeidelpayToCurrencyInterface $currencyFacade,
         HeidelpayConfig $config
     ) {
-        $this->currencyFacade = $currencyFacade;
+        parent::__construct($currencyFacade, $config);
         $this->quoteToHeidelpayMapper = $quoteToHeidelpayMapper;
-        $this->config = $config;
     }
 
     /**

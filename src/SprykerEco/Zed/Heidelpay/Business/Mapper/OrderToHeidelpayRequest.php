@@ -79,7 +79,7 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
         $heidelpayRequestTransfer->setCustomerPurchase(
             (new HeidelpayCustomerPurchaseTransfer())
                 ->setAmount($this->getOrderGrandTotalInDecimal($orderTransfer))
-                ->setIdOrder($orderTransfer->getIdSalesOrder())
+                ->setIdOrder((string)$orderTransfer->getIdSalesOrder())
         );
 
         return $heidelpayRequestTransfer;

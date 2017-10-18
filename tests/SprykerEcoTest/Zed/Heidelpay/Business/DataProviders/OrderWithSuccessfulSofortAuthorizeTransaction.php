@@ -7,10 +7,6 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders;
 
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\NewOrderWithOneItemTrait;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerTrait;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Transaction\AuthorizeTransactionTrait;
 use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
 use Generated\Shared\Transfer\ItemTransfer;
@@ -19,6 +15,10 @@ use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\SaveOrderTransfer;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerTrait;
+use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\NewOrderWithOneItemTrait;
+use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
+use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Transaction\AuthorizeTransactionTrait;
 
 class OrderWithSuccessfulSofortAuthorizeTransaction
 {
@@ -87,6 +87,8 @@ class OrderWithSuccessfulSofortAuthorizeTransaction
     }
 
     /**
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
+     *
      * @return \Generated\Shared\Transfer\CheckoutResponseTransfer
      */
     protected function createCheckoutResponseFromOrder(SpySalesOrder $orderEntity)
