@@ -81,4 +81,5 @@ interface HeidelpayConfigInterface
      * @return string
      */
     public function getMerchantTransactionChannelByPaymentType($paymentType);
+
 }

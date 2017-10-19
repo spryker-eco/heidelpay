@@ -34,4 +34,5 @@ interface HeidelpayConfigInterface
      * @return string
      */
     public function getYvesRegistrationSuccessUrl();
+
 }
