@@ -52,4 +52,5 @@ interface AdapterFactoryInterface
      * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\TransactionParser
      */
     public function createTransactionParser();
+
 }
