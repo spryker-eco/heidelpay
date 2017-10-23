@@ -9,18 +9,18 @@ namespace SprykerEco\Yves\Heidelpay\Form;
 
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentTransfer;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class CreditCardSecureSubForm extends AbstractHeidelpaySubForm implements SubFormInterface
+class CreditCardSecureSubForm extends AbstractHeidelpaySubForm
 {
-    const PAYMENT_METHOD = HeidelpayConstants::PAYMENT_METHOD_CREDIT_CARD_SECURE;
+    const PAYMENT_METHOD = HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE;
 
     const PAYMENT_OPTIONS = 'payment_options';
-    const PAYMENT_OPTION_EXISTING_REGISTRATION = HeidelpayConstants::PAYMENT_OPTION_EXISTING_REGISTRATION;
-    const PAYMENT_OPTION_NEW_REGISTRATION = HeidelpayConstants::PAYMENT_OPTION_NEW_REGISTRATION;
+    const PAYMENT_OPTION_EXISTING_REGISTRATION = HeidelpayConfig::PAYMENT_OPTION_EXISTING_REGISTRATION;
+    const PAYMENT_OPTION_NEW_REGISTRATION = HeidelpayConfig::PAYMENT_OPTION_NEW_REGISTRATION;
 
     const FIELD_CREDIT_CARD_PAYMENT_OPTION = 'selected_payment_option';
     const FIELD_CREDIT_CARD_REGISTRATION_ID = 'registration_id';

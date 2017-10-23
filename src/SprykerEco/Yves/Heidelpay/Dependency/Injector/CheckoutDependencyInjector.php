@@ -12,7 +12,7 @@ use Spryker\Shared\Kernel\Dependency\Injector\DependencyInjectorInterface;
 use Spryker\Yves\Checkout\CheckoutDependencyProvider;
 use Spryker\Yves\StepEngine\Dependency\Plugin\Form\SubFormPluginCollection;
 use Spryker\Yves\StepEngine\Dependency\Plugin\Handler\StepHandlerPluginCollection;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Yves\Heidelpay\Plugin\HeidelpayCreditCardHandlerPlugin;
 use SprykerEco\Yves\Heidelpay\Plugin\HeidelpayHandlerPlugin;
 use SprykerEco\Yves\Heidelpay\Plugin\Subform\HeidelpayCreditCardSecureSubFormPlugin;
@@ -63,11 +63,11 @@ class CheckoutDependencyInjector implements DependencyInjectorInterface
     protected function injectPaymentMethodHandler(ContainerInterface $container)
     {
         $container->extend(CheckoutDependencyProvider::PAYMENT_METHOD_HANDLER, function (StepHandlerPluginCollection $paymentMethodHandler) {
-            $paymentMethodHandler->add(new HeidelpayHandlerPlugin(), HeidelpayConstants::PAYMENT_METHOD_SOFORT);
-            $paymentMethodHandler->add(new HeidelpayHandlerPlugin(), HeidelpayConstants::PAYMENT_METHOD_PAYPAL_AUTHORIZE);
-            $paymentMethodHandler->add(new HeidelpayHandlerPlugin(), HeidelpayConstants::PAYMENT_METHOD_PAYPAL_DEBIT);
-            $paymentMethodHandler->add(new HeidelpayHandlerPlugin(), HeidelpayConstants::PAYMENT_METHOD_IDEAL);
-            $paymentMethodHandler->add(new HeidelpayCreditCardHandlerPlugin(), HeidelpayConstants::PAYMENT_METHOD_CREDIT_CARD_SECURE);
+            $paymentMethodHandler->add(new HeidelpayHandlerPlugin(), HeidelpayConfig::PAYMENT_METHOD_SOFORT);
+            $paymentMethodHandler->add(new HeidelpayHandlerPlugin(), HeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE);
+            $paymentMethodHandler->add(new HeidelpayHandlerPlugin(), HeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT);
+            $paymentMethodHandler->add(new HeidelpayHandlerPlugin(), HeidelpayConfig::PAYMENT_METHOD_IDEAL);
+            $paymentMethodHandler->add(new HeidelpayCreditCardHandlerPlugin(), HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE);
             return $paymentMethodHandler;
         });
 

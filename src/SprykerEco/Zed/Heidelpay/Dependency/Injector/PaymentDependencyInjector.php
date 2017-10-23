@@ -11,7 +11,7 @@ use Spryker\Zed\Kernel\Container;
 use Spryker\Zed\Kernel\Dependency\Injector\AbstractDependencyInjector;
 use Spryker\Zed\Payment\Dependency\Plugin\Checkout\CheckoutPluginCollection;
 use Spryker\Zed\Payment\PaymentDependencyProvider;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Communication\Plugin\Checkout\HeidelpayPostSavePlugin;
 use SprykerEco\Zed\Heidelpay\Communication\Plugin\Checkout\HeidelpaySaveOrderPlugin;
 
@@ -37,8 +37,8 @@ class PaymentDependencyInjector extends AbstractDependencyInjector
     protected function injectPaymentPlugin(Container $container)
     {
         $container->extend(PaymentDependencyProvider::CHECKOUT_PLUGINS, function (CheckoutPluginCollection $pluginCollection) {
-            $pluginCollection->add(new HeidelpaySaveOrderPlugin(), HeidelpayConstants::PROVIDER_NAME, PaymentDependencyProvider::CHECKOUT_ORDER_SAVER_PLUGINS);
-            $pluginCollection->add(new HeidelpayPostSavePlugin(), HeidelpayConstants::PROVIDER_NAME, PaymentDependencyProvider::CHECKOUT_POST_SAVE_PLUGINS);
+            $pluginCollection->add(new HeidelpaySaveOrderPlugin(), HeidelpayConfig::PROVIDER_NAME, PaymentDependencyProvider::CHECKOUT_ORDER_SAVER_PLUGINS);
+            $pluginCollection->add(new HeidelpayPostSavePlugin(), HeidelpayConfig::PROVIDER_NAME, PaymentDependencyProvider::CHECKOUT_POST_SAVE_PLUGINS);
 
             return $pluginCollection;
         });

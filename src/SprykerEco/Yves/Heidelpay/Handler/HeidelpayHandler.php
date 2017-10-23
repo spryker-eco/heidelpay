@@ -8,22 +8,22 @@
 namespace SprykerEco\Yves\Heidelpay\Handler;
 
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 
 class HeidelpayHandler implements HeidelpayHandlerInterface
 {
-    const PAYMENT_PROVIDER = HeidelpayConstants::PROVIDER_NAME;
+    const PAYMENT_PROVIDER = HeidelpayConfig::PROVIDER_NAME;
     const CHECKOUT_PARTIAL_SUMMARY_PATH = 'Heidelpay/partial/summary';
 
     /**
      * @var array
      */
     protected static $paymentMethods = [
-        HeidelpayConstants::PAYMENT_METHOD_PAYPAL_AUTHORIZE => HeidelpayConstants::PAYMENT_METHOD_PAYPAL_AUTHORIZE,
-        HeidelpayConstants::PAYMENT_METHOD_PAYPAL_DEBIT => HeidelpayConstants::PAYMENT_METHOD_PAYPAL_DEBIT,
-        HeidelpayConstants::PAYMENT_METHOD_CREDIT_CARD_SECURE => HeidelpayConstants::PAYMENT_METHOD_CREDIT_CARD_SECURE,
-        HeidelpayConstants::PAYMENT_METHOD_IDEAL => HeidelpayConstants::PAYMENT_METHOD_IDEAL,
-        HeidelpayConstants::PAYMENT_METHOD_SOFORT => HeidelpayConstants::PAYMENT_METHOD_SOFORT,
+        HeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE => HeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE,
+        HeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT => HeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT,
+        HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE => HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE,
+        HeidelpayConfig::PAYMENT_METHOD_IDEAL => HeidelpayConfig::PAYMENT_METHOD_IDEAL,
+        HeidelpayConfig::PAYMENT_METHOD_SOFORT => HeidelpayConfig::PAYMENT_METHOD_SOFORT,
     ];
 
     /**

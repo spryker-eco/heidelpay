@@ -9,14 +9,12 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Logger\TransactionLoggerInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface;
 
 class DebitTransaction implements DebitTransactionInterface
 {
-    const TRANSACTION_TYPE = HeidelpayConstants::TRANSACTION_TYPE_DEBIT;
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Logger\TransactionLoggerInterface
      */
@@ -57,7 +55,7 @@ class DebitTransaction implements DebitTransactionInterface
         HeidelpayResponseTransfer $debitResponseTransfer
     ) {
         $this->transactionLogger->logTransaction(
-            static::TRANSACTION_TYPE,
+            HeidelpayConfig::TRANSACTION_TYPE,
             $debitRequestTransfer,
             $debitResponseTransfer
         );
