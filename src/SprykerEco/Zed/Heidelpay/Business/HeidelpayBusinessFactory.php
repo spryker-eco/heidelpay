@@ -8,7 +8,7 @@
 namespace SprykerEco\Zed\Heidelpay\Business;
 
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\AdapterFactory;
 use SprykerEco\Zed\Heidelpay\Business\Hook\PostSaveHook;
 use SprykerEco\Zed\Heidelpay\Business\Mapper\OrderToHeidelpayRequest;
@@ -362,11 +362,11 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     protected function getPaymentMethodWithPostSaveOrderCollection()
     {
         return [
-            HeidelpayConstants::PAYMENT_METHOD_SOFORT => $this->createPaymentMethodSofort(),
-            HeidelpayConstants::PAYMENT_METHOD_PAYPAL_AUTHORIZE => $this->createPaymentMethodPaypalAuthorize(),
-            HeidelpayConstants::PAYMENT_METHOD_PAYPAL_DEBIT => $this->createPaymentMethodPaypalDebit(),
-            HeidelpayConstants::PAYMENT_METHOD_IDEAL => $this->createPaymentMethodIdeal(),
-            HeidelpayConstants::PAYMENT_METHOD_CREDIT_CARD_SECURE => $this->createPaymentMethodCreditCardSecure(),
+            HeidelpayConfig::PAYMENT_METHOD_SOFORT => $this->createPaymentMethodSofort(),
+            HeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE => $this->createPaymentMethodPaypalAuthorize(),
+            HeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT => $this->createPaymentMethodPaypalDebit(),
+            HeidelpayConfig::PAYMENT_METHOD_IDEAL => $this->createPaymentMethodIdeal(),
+            HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE => $this->createPaymentMethodCreditCardSecure(),
         ];
     }
 
@@ -376,7 +376,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     protected function getPaymentMethodWithPreSavePaymentCollection()
     {
         return [
-            HeidelpayConstants::PAYMENT_METHOD_CREDIT_CARD_SECURE => $this->createPaymentMethodCreditCardSecure(),
+            HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE => $this->createPaymentMethodCreditCardSecure(),
         ];
     }
 
