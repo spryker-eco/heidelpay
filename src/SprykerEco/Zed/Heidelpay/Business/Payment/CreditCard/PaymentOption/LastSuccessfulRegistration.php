@@ -11,7 +11,7 @@ use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentOptionTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationReaderInterface;
 
 class LastSuccessfulRegistration implements PaymentOptionInterface
@@ -98,7 +98,7 @@ class LastSuccessfulRegistration implements PaymentOptionInterface
 
         $optionsList = $paymentOptionsTransfer->getOptionsList();
         $optionsList[] = (new HeidelpayPaymentOptionTransfer())
-            ->setCode(HeidelpayConstants::PAYMENT_OPTION_EXISTING_REGISTRATION);
+            ->setCode(HeidelpayConfig::PAYMENT_OPTION_EXISTING_REGISTRATION);
 
         $paymentOptionsTransfer->setOptionsList($optionsList);
     }

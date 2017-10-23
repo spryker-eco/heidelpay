@@ -9,16 +9,13 @@ namespace SprykerEco\Zed\Heidelpay\Persistence;
 
 use Spryker\Zed\Kernel\Persistence\AbstractQueryContainer;
 use Spryker\Zed\PropelOrm\Business\Runtime\ActiveQuery\Criteria;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 
 /**
  * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayPersistenceFactory getFactory()
  */
 class HeidelpayQueryContainer extends AbstractQueryContainer implements HeidelpayQueryContainerInterface
 {
-    const TRANSACTION_TYPE_EXTERNAL_RESPONSE = HeidelpayConstants::TRANSACTION_TYPE_EXTERNAL_RESPONSE;
-    const TRANSACTION_TYPE_CAPTURE = HeidelpayConstants::TRANSACTION_TYPE_CAPTURE;
-
     /**
      * @api
      *
@@ -31,7 +28,7 @@ class HeidelpayQueryContainer extends AbstractQueryContainer implements Heidelpa
         return $this->getFactory()
             ->createPaymentHeidelpayTransactionLogQuery()
             ->filterByFkSalesOrder($idSalesOrder)
-            ->filterByTransactionType(static::TRANSACTION_TYPE_EXTERNAL_RESPONSE);
+            ->filterByTransactionType(HeidelpayConfig::TRANSACTION_TYPE_EXTERNAL_RESPONSE);
     }
 
     /**
@@ -46,7 +43,7 @@ class HeidelpayQueryContainer extends AbstractQueryContainer implements Heidelpa
         return $this->getFactory()
             ->createPaymentHeidelpayTransactionLogQuery()
             ->filterByFkSalesOrder($idSalesOrder)
-            ->filterByTransactionType(static::TRANSACTION_TYPE_CAPTURE);
+            ->filterByTransactionType(HeidelpayConfig::TRANSACTION_TYPE_CAPTURE);
     }
 
     /**

@@ -7,7 +7,7 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter;
 
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\RequestToHeidelpay;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpay;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponsePayloadToApiResponse;
@@ -28,10 +28,10 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     public function getAuthorizePaymentMethodAdapterCollection()
     {
         return [
-            HeidelpayConstants::PAYMENT_METHOD_SOFORT => $this->createSofortPaymentMethodAdapter(),
-            HeidelpayConstants::PAYMENT_METHOD_PAYPAL_AUTHORIZE => $this->createPaypalPaymentMethodAdapter(),
-            HeidelpayConstants::PAYMENT_METHOD_IDEAL => $this->createIdealPaymentMethodAdapter(),
-            HeidelpayConstants::PAYMENT_METHOD_CREDIT_CARD_SECURE => $this->createCreditCardPaymentMethodAdapter(),
+            HeidelpayConfig::PAYMENT_METHOD_SOFORT => $this->createSofortPaymentMethodAdapter(),
+            HeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE => $this->createPaypalPaymentMethodAdapter(),
+            HeidelpayConfig::PAYMENT_METHOD_IDEAL => $this->createIdealPaymentMethodAdapter(),
+            HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE => $this->createCreditCardPaymentMethodAdapter(),
         ];
     }
 
@@ -41,8 +41,8 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     public function getCapturePaymentMethodAdapterCollection()
     {
         return [
-            HeidelpayConstants::PAYMENT_METHOD_PAYPAL_AUTHORIZE => $this->createPaypalPaymentMethodAdapter(),
-            HeidelpayConstants::PAYMENT_METHOD_CREDIT_CARD_SECURE => $this->createCreditCardPaymentMethodAdapter(),
+            HeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE => $this->createPaypalPaymentMethodAdapter(),
+            HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE => $this->createCreditCardPaymentMethodAdapter(),
         ];
     }
 
@@ -52,7 +52,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     public function getDebitPaymentMethodAdapterCollection()
     {
         return [
-            HeidelpayConstants::PAYMENT_METHOD_PAYPAL_DEBIT => $this->createPaypalPaymentMethodAdapter(),
+            HeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT => $this->createPaypalPaymentMethodAdapter(),
         ];
     }
 
@@ -62,11 +62,11 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     public function getExternalResponsePaymentMethodAdapterCollection()
     {
         return [
-            HeidelpayConstants::PAYMENT_METHOD_SOFORT => $this->createSofortPaymentMethodAdapter(),
-            HeidelpayConstants::PAYMENT_METHOD_PAYPAL_AUTHORIZE => $this->createPaypalPaymentMethodAdapter(),
-            HeidelpayConstants::PAYMENT_METHOD_PAYPAL_DEBIT => $this->createPaypalPaymentMethodAdapter(),
-            HeidelpayConstants::PAYMENT_METHOD_IDEAL => $this->createIdealPaymentMethodAdapter(),
-            HeidelpayConstants::PAYMENT_METHOD_CREDIT_CARD_SECURE => $this->createCreditCardPaymentMethodAdapter(),
+            HeidelpayConfig::PAYMENT_METHOD_SOFORT => $this->createSofortPaymentMethodAdapter(),
+            HeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE => $this->createPaypalPaymentMethodAdapter(),
+            HeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT => $this->createPaypalPaymentMethodAdapter(),
+            HeidelpayConfig::PAYMENT_METHOD_IDEAL => $this->createIdealPaymentMethodAdapter(),
+            HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE => $this->createCreditCardPaymentMethodAdapter(),
         ];
     }
 

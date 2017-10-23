@@ -11,7 +11,7 @@ use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
 use Orm\Zed\Sales\Persistence\SpySalesOrderItem;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\Oms\Dependency\Plugin\Condition\ConditionInterface;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 
 /**
  * @method \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade getFacade()
@@ -20,8 +20,6 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
  */
 class IsDebitCompletedPlugin extends AbstractPlugin implements ConditionInterface
 {
-    const EXTERNAL_RESPONSE_TRANSACTION_STATUS_OK = HeidelpayConstants::EXTERNAL_RESPONSE_TRANSACTION_STATUS_OK;
-
     /**
      * @api
      *
@@ -67,6 +65,6 @@ class IsDebitCompletedPlugin extends AbstractPlugin implements ConditionInterfac
      */
     protected function isTransactionSuccessful(SpyPaymentHeidelpayTransactionLog $externalTransactionLog)
     {
-        return $externalTransactionLog->getResponseCode() === static::EXTERNAL_RESPONSE_TRANSACTION_STATUS_OK;
+        return $externalTransactionLog->getResponseCode() === HeidelpayConfig::EXTERNAL_RESPONSE_TRANSACTION_STATUS_OK;
     }
 }

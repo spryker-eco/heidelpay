@@ -11,7 +11,7 @@ use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentOptionTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilderInterface;
 
@@ -106,7 +106,7 @@ class NewRegistrationIframe implements PaymentOptionInterface
         $optionsList = $paymentOptionsTransfer->getOptionsList();
 
         $optionsList[] = (new HeidelpayPaymentOptionTransfer())
-            ->setCode(HeidelpayConstants::PAYMENT_OPTION_NEW_REGISTRATION);
+            ->setCode(HeidelpayConfig::PAYMENT_OPTION_NEW_REGISTRATION);
 
         $paymentOptionsTransfer->setOptionsList($optionsList);
     }
