@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
@@ -9,12 +9,11 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Transaction;
 
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
 
 trait DebitTransactionTrait
 {
-
     /**
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
      *
@@ -26,7 +25,7 @@ trait DebitTransactionTrait
         $debitTransaction
             ->setFkSalesOrder($orderEntity->getIdSalesOrder())
             ->setIdTransactionUnique('some unique id')
-            ->setTransactionType(HeidelpayConstants::TRANSACTION_TYPE_DEBIT)
+            ->setTransactionType(HeidelpayConfig::TRANSACTION_TYPE_DEBIT)
             ->setResponseCode('ACK')
             ->setRedirectUrl(HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL)
             ->setRequestPayload('{}')
@@ -40,5 +39,4 @@ trait DebitTransactionTrait
 
         $debitTransaction->save();
     }
-
 }

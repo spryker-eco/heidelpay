@@ -9,12 +9,10 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment;
 
 interface PaymentReaderInterface
 {
-
     /**
      * @param int $idSalesOrder
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentTransfer
      */
     public function getPaymentByIdSalesOrder($idSalesOrder);
-
 }

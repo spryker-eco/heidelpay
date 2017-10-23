@@ -15,7 +15,6 @@ use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponsePayloadToApiRespons
 
 class TransactionParser implements TransactionParserInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpayInterface
      */
@@ -67,5 +66,4 @@ class TransactionParser implements TransactionParserInterface
 
         return $apiResponseObject;
     }
-
 }

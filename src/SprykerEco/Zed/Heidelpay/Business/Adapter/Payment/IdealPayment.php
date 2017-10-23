@@ -12,7 +12,6 @@ use Heidelpay\PhpApi\PaymentMethods\IDealPaymentMethod;
 
 class IdealPayment extends BasePayment implements IdealPaymentInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $authorizeRequestTransfer
      *
@@ -25,5 +24,4 @@ class IdealPayment extends BasePayment implements IdealPaymentInterface
         $idealMethod->authorize();
         return $this->verifyAndParseResponse($idealMethod->getResponse());
     }
-
 }

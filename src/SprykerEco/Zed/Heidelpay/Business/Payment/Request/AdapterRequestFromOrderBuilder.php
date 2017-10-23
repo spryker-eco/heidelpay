@@ -15,7 +15,6 @@ use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implements AdapterRequestFromOrderBuilderInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\Mapper\OrderToHeidelpayRequestInterface
      */
@@ -99,5 +98,4 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
 
         return $heidelpayRequestTransfer;
     }
-
 }

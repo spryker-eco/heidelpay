@@ -17,7 +17,6 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ExternalResponseTransa
 
 class ExternalResponseTransactionHandler implements ExternalResponseTransactionHandlerInterface
 {
-
     const ERROR_MESSAGE_EXTERNAL_RESPONSE_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call external response transaction on payment method \'%s\' ' .
         'that does not support it';
@@ -151,5 +150,4 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
 
         return $paymentProcessingResponseTransfer;
     }
-
 }

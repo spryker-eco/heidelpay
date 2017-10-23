@@ -8,7 +8,6 @@ namespace SprykerEco\Zed\Heidelpay\Dependency\Service;
 
 class HeidelpayToUtilEncodingBridge implements HeidelpayToUtilEncodingInterface
 {
-
     /**
      * @var \Spryker\Service\UtilEncoding\UtilEncodingServiceInterface
      */
@@ -46,5 +45,4 @@ class HeidelpayToUtilEncodingBridge implements HeidelpayToUtilEncodingInterface
     {
         return $this->utilEncodingService->decodeJson($jsonValue, $assoc, $depth, $options);
     }
-
 }

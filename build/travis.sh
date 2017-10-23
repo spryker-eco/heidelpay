@@ -7,12 +7,6 @@ buildMessage=""
 result=0
 
 function runTests {
-    grep APPLICATION_ROOT_DIR "$TRAVIS_BUILD_DIR/$SHOP_DIR/vendor/composer/autoload_real.php"
-    result=$?
-    echo "result: >$result<"
-    if [ "$result" = "1" ]; then
-        echo "define('APPLICATION_ROOT_DIR', '$TRAVIS_BUILD_DIR/$SHOP_DIR');" >> "$TRAVIS_BUILD_DIR/$SHOP_DIR/vendor/composer/autoload_real.php"
-    fi
     "$TRAVIS_BUILD_DIR/$SHOP_DIR/vendor/bin/console" transfer:generate
     if [ "$?" = 0 ]; then
         buildMessage="${buildMessage}\n${GREEN}Transfer objects generation was successful"
@@ -29,6 +23,7 @@ function runTests {
         result=$((result+1))
     fi
 
+    echo "Setup for tests..."
     ./setup_test -f
 
     echo "Running tests..."
@@ -59,6 +54,12 @@ function checkArchRules {
 }
 
 function checkCodeSniffRules {
+    licenseFile="$TRAVIS_BUILD_DIR/.license"
+    if [ -f "$licenseFile" ]; then
+        echo "Preparing correct license for code sniffer..."
+        cp "$licenseFile" "$TRAVIS_BUILD_DIR/$SHOP_DIR/.license"
+    fi
+
     echo "Running code sniffer..."
     errors=`vendor/bin/console code:sniff "vendor/spryker-eco/$MODULE_NAME/src"`
     errorsCount=$?
@@ -124,6 +125,12 @@ function checkModuleWithLatestVersionOfDemoShop {
     fi
 }
 
+updatedFile="$TRAVIS_BUILD_DIR/$SHOP_DIR/vendor/codeception/codeception/src/Codeception/Application.php"
+grep APPLICATION_ROOT_DIR "$updatedFile"
+if [ $? = 1 ]; then
+    echo "define('APPLICATION_ROOT_DIR', '$TRAVIS_BUILD_DIR/$SHOP_DIR');" >> "$updatedFile"
+fi
+
 cd $SHOP_DIR
 checkWithLatestDemoShop
 if [ -d "vendor/spryker-eco/$MODULE_NAME/src" ]; then
@@ -131,5 +138,6 @@ if [ -d "vendor/spryker-eco/$MODULE_NAME/src" ]; then
     checkCodeSniffRules
     checkPHPStan
 fi
+
 echo -e "$buildMessage"
 exit $buildResult

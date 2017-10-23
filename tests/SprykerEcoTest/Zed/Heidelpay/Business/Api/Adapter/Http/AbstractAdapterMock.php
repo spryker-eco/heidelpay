@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
@@ -9,7 +9,6 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\Api\Adapter\Http;
 
 abstract class AbstractAdapterMock
 {
-
     /**
      * @var bool
      */
@@ -77,5 +76,4 @@ abstract class AbstractAdapterMock
      * @return array
      */
     abstract public function getFailureResponse();
-
 }

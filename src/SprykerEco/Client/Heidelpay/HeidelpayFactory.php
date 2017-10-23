@@ -20,7 +20,6 @@ use SprykerEco\Client\Heidelpay\Zed\HeidelpayStub;
  */
 class HeidelpayFactory extends AbstractFactory
 {
-
     use SessionClientFactoryTrait;
     use ZedRequestClientFactoryTrait;
 
@@ -74,5 +73,4 @@ class HeidelpayFactory extends AbstractFactory
     {
         return new ApiResponseToRegistrationRequestTransfer();
     }
-
 }

@@ -12,7 +12,6 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 class PaymentOptionsCalculator implements PaymentOptionsCalculatorInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\PaymentOption\PaymentOptionInterface[]
      */
@@ -44,5 +43,4 @@ class PaymentOptionsCalculator implements PaymentOptionsCalculatorInterface
 
         return $paymentOptionsTransfer;
     }
-
 }

@@ -16,7 +16,6 @@ use Spryker\Zed\PropelOrm\Business\Transaction\DatabaseTransactionHandlerTrait;
 
 class Saver implements SaverInterface
 {
-
     use DatabaseTransactionHandlerTrait;
 
     /**
@@ -118,7 +117,6 @@ class Saver implements SaverInterface
 
         $paymentMethod = $this->paymentCollection[$paymentMethodCode];
         $paymentMethod->addDataToPayment($paymentEntity, $quoteTransfer);
-
     }
 
     /**
@@ -130,5 +128,4 @@ class Saver implements SaverInterface
     {
         return isset($this->paymentCollection[$paymentMethodCode]);
     }
-
 }

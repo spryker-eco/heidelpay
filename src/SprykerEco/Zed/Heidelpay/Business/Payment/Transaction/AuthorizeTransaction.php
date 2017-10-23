@@ -15,7 +15,6 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface
 
 class AuthorizeTransaction implements AuthorizeTransactionInterface
 {
-
     const TRANSACTION_TYPE = HeidelpayConstants::TRANSACTION_TYPE_AUTHORIZE;
 
     /**
@@ -63,5 +62,4 @@ class AuthorizeTransaction implements AuthorizeTransactionInterface
             $authorizeResponseTransfer
         );
     }
-
 }

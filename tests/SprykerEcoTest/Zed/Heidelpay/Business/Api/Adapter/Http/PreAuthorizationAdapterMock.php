@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
@@ -9,7 +9,6 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\Api\Adapter\Http;
 
 class PreAuthorizationAdapterMock extends AbstractAdapterMock
 {
-
     /**
      * @return array
      */
@@ -123,5 +122,4 @@ class PreAuthorizationAdapterMock extends AbstractAdapterMock
             'address_zip=10623' . '&' .
             'name_title=Mr';
     }
-
 }

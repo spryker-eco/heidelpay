@@ -11,7 +11,6 @@ use Generated\Shared\Transfer\OrderTransfer;
 
 interface AdapterRequestFromOrderBuilderInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
@@ -32,5 +31,4 @@ interface AdapterRequestFromOrderBuilderInterface
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
     public function buildCaptureRequestFromOrder(OrderTransfer $orderTransfer);
-
 }

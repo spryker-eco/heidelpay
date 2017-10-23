@@ -17,7 +17,6 @@ use Spryker\Yves\Kernel\Controller\AbstractController;
  */
 class IdealController extends AbstractController
 {
-
     /**
      * @return array
      */
@@ -75,5 +74,4 @@ class IdealController extends AbstractController
             ->createHeidelpayResponseToIdealAuthorizeFormMapper()
             ->map($authorizeTransactionLogTransfer->getHeidelpayResponse(), $idealAuthorizeFormTransfer);
     }
-
 }

@@ -12,7 +12,6 @@ use Spryker\Yves\Application\Plugin\Provider\YvesControllerProvider;
 
 class HeidelpayControllerProvider extends YvesControllerProvider
 {
-
     const HEIDELPAY_PAYMENT = 'heidelpay-payment';
     const HEIDELPAY_PAYMENT_FAILED = 'heidelpay-payment-failed';
     const HEIDELPAY_IDEAL_AUTHORIZE = 'heidelpay-ideal-authorize';
@@ -66,5 +65,4 @@ class HeidelpayControllerProvider extends YvesControllerProvider
             'registrationSuccess'
         );
     }
-
 }

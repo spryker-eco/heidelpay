@@ -11,7 +11,6 @@ use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 
 interface TransactionLoggerInterface
 {
-
     /**
      * @param string $transactionType
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer|null $transactionRequest
@@ -24,5 +23,4 @@ interface TransactionLoggerInterface
         $transactionRequest,
         HeidelpayResponseTransfer $transactionResponse
     );
-
 }

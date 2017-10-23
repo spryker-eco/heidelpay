@@ -14,7 +14,6 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\AuthorizeNot
 
 class AuthorizeTransactionHandler implements AuthorizeTransactionHandlerInterface
 {
-
     const ERROR_MESSAGE_AUTHORIZE_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call authorize transaction on payment method \'%s\' ' .
         'that does not support it';
@@ -101,5 +100,4 @@ class AuthorizeTransactionHandler implements AuthorizeTransactionHandlerInterfac
     {
         return $orderTransfer->getHeidelpayPayment()->getPaymentMethod();
     }
-
 }

@@ -11,12 +11,10 @@ use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 
 interface TransactionParserInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer $transactionLogTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
     public function getHeidelpayResponseTransfer(HeidelpayTransactionLogTransfer $transactionLogTransfer);
-
 }

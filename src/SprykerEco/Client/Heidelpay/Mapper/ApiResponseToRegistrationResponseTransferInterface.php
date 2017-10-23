@@ -12,7 +12,6 @@ use Heidelpay\PhpApi\Response;
 
 interface ApiResponseToRegistrationResponseTransferInterface
 {
-
     /**
      * @param \Heidelpay\PhpApi\Response $apiResponseObject
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
@@ -31,5 +30,4 @@ interface ApiResponseToRegistrationResponseTransferInterface
         HeidelpayRegistrationRequestTransfer $registrationRequestTransfer,
         HeidelpayResponseErrorTransfer $errorTransfer
     );
-
 }

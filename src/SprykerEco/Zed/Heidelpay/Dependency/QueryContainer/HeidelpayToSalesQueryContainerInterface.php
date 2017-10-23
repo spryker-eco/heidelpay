@@ -9,12 +9,10 @@ namespace SprykerEco\Zed\Heidelpay\Dependency\QueryContainer;
 
 interface HeidelpayToSalesQueryContainerInterface
 {
-
     /**
      * @param string $orderReference
      *
      * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
      */
     public function getOrderByReference($orderReference);
-
 }

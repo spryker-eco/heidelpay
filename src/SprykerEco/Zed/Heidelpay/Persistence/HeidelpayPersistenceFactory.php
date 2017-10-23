@@ -18,7 +18,6 @@ use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
  */
 class HeidelpayPersistenceFactory extends AbstractPersistenceFactory
 {
-
     /**
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayQuery
      */
@@ -42,5 +41,4 @@ class HeidelpayPersistenceFactory extends AbstractPersistenceFactory
     {
         return SpyPaymentHeidelpayCreditCardRegistrationQuery::create();
     }
-
 }

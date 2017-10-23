@@ -17,12 +17,10 @@ interface CreditCardPaymentInterface extends
     PaymentWithExternalResponseInterface,
     PaymentWithCaptureInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $authorizeRequestTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
     public function register(HeidelpayRequestTransfer $authorizeRequestTransfer);
-
 }

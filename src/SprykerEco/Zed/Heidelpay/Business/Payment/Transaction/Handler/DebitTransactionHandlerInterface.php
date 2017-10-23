@@ -11,12 +11,10 @@ use Generated\Shared\Transfer\OrderTransfer;
 
 interface DebitTransactionHandlerInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
      * @return void
      */
     public function debit(OrderTransfer $orderTransfer);
-
 }

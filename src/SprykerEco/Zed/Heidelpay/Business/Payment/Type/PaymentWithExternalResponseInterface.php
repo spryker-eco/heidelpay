@@ -11,12 +11,10 @@ use Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer;
 
 interface PaymentWithExternalResponseInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer $externalResponseTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
     public function processExternalResponse(HeidelpayExternalPaymentResponseTransfer $externalResponseTransfer);
-
 }

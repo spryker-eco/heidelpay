@@ -15,7 +15,6 @@ use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface;
 
 class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface
      */
@@ -121,5 +120,4 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
 
         return $heidelpayRequestTransfer;
     }
-
 }

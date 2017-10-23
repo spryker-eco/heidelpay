@@ -10,7 +10,6 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 class PostSaveHook implements PostSaveHookInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface[]
      */
@@ -51,5 +50,4 @@ class PostSaveHook implements PostSaveHookInterface
     {
         return isset($this->paymentMethodsWithPostSaveOrderProcessing[$paymentMethod]);
     }
-
 }

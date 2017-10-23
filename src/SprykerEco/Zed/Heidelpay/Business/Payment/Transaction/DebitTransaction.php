@@ -15,7 +15,6 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface;
 
 class DebitTransaction implements DebitTransactionInterface
 {
-
     const TRANSACTION_TYPE = HeidelpayConstants::TRANSACTION_TYPE_DEBIT;
 
     /**
@@ -63,5 +62,4 @@ class DebitTransaction implements DebitTransactionInterface
             $debitResponseTransfer
         );
     }
-
 }

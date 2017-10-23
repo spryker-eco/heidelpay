@@ -20,7 +20,6 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
  */
 class IsCaptureApprovedPlugin extends AbstractPlugin implements ConditionInterface
 {
-
     const CAPTURE_TRANSACTION_STATUS_OK = HeidelpayConstants::CAPTURE_TRANSACTION_STATUS_OK;
 
     /**
@@ -70,5 +69,4 @@ class IsCaptureApprovedPlugin extends AbstractPlugin implements ConditionInterfa
     {
         return $caprureTransactionLog->getResponseCode() === static::CAPTURE_TRANSACTION_STATUS_OK;
     }
-
 }

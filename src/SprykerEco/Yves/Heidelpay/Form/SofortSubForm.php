@@ -12,7 +12,5 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 
 class SofortSubForm extends AbstractHeidelpaySubForm implements SubFormInterface
 {
-
     const PAYMENT_METHOD = HeidelpayConstants::PAYMENT_METHOD_SOFORT;
-
 }

@@ -17,7 +17,6 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBui
 
 class NewRegistrationIframe implements PaymentOptionInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilderInterface
      */
@@ -111,5 +110,4 @@ class NewRegistrationIframe implements PaymentOptionInterface
 
         $paymentOptionsTransfer->setOptionsList($optionsList);
     }
-
 }

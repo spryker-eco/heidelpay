@@ -9,7 +9,6 @@ namespace SprykerEco\Zed\Heidelpay\Dependency\Service;
 
 interface HeidelpayToUtilEncodingInterface
 {
-
     /**
      * @param mixed $value
      * @param int|null $options
@@ -28,5 +27,4 @@ interface HeidelpayToUtilEncodingInterface
      * @return mixed|null
      */
     public function decodeJson($jsonValue, $assoc = false, $depth = null, $options = null);
-
 }

@@ -19,7 +19,6 @@ use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface
 
 class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
 {
-
     const RESPONSE_PARAMETER_GROUP_PROCESSING = 'processing';
     const RESPONSE_PARAMETER_GROUP_ACCOUNT = 'account';
     const RESPONSE_PARAMETER_GROUP_ADDRESS = 'address';
@@ -221,5 +220,4 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
             $responseTransfer->setPaymentFormUrl(null);
         }
     }
-
 }

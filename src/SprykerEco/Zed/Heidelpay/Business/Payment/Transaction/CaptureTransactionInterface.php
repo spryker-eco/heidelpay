@@ -12,7 +12,6 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface;
 
 interface CaptureTransactionInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $captureRequestTransfer
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface $paymentAdapter
@@ -23,5 +22,4 @@ interface CaptureTransactionInterface
         HeidelpayRequestTransfer $captureRequestTransfer,
         PaymentWithCaptureInterface $paymentAdapter
     );
-
 }

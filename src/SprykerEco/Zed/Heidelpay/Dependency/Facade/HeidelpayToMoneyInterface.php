@@ -9,12 +9,10 @@ namespace SprykerEco\Zed\Heidelpay\Dependency\Facade;
 
 interface HeidelpayToMoneyInterface
 {
-
     /**
      * @param int $value
      *
      * @return float
      */
     public function convertIntegerToDecimal($value);
-
 }

@@ -16,7 +16,6 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\Registrati
 
 class LastSuccessfulRegistration implements PaymentOptionInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationReaderInterface
      */
@@ -164,5 +163,4 @@ class LastSuccessfulRegistration implements PaymentOptionInterface
 
         return $customerShippingAddressId === $lastRegistrationAddressId;
     }
-
 }

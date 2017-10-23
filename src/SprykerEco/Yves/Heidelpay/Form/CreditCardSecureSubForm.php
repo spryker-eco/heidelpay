@@ -16,7 +16,6 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CreditCardSecureSubForm extends AbstractHeidelpaySubForm implements SubFormInterface
 {
-
     const PAYMENT_METHOD = HeidelpayConstants::PAYMENT_METHOD_CREDIT_CARD_SECURE;
 
     const PAYMENT_OPTIONS = 'payment_options';
@@ -96,5 +95,4 @@ class CreditCardSecureSubForm extends AbstractHeidelpaySubForm implements SubFor
     {
         return new NotBlank(['groups' => $this->getPropertyPath()]);
     }
-
 }

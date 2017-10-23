@@ -11,12 +11,10 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 interface RegistrationWriterInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return void
      */
     public function updateRegistrationWithAddressIdFromQuote(QuoteTransfer $quoteTransfer);
-
 }

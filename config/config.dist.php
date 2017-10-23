@@ -8,10 +8,12 @@
  * Copy over the following configs to your config
  */
 
+use Spryker\Shared\Application\ApplicationConstants;
 use Spryker\Shared\Kernel\KernelConstants;
 use Spryker\Shared\Oms\OmsConstants;
 use Spryker\Shared\Sales\SalesConstants;
 use Spryker\Zed\Oms\OmsConfig;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 
 // Heidelpay configuration
@@ -61,7 +63,7 @@ $config[KernelConstants::DEPENDENCY_INJECTOR_ZED] = [
 
 $config[OmsConstants::PROCESS_LOCATION] = [
     OmsConfig::DEFAULT_PROCESS_LOCATION,
-    $config[HeidelpayConstants::VENDOR_ROOT] . '/heidelpay/config/Zed/Oms',
+    $config[KernelConstants::SPRYKER_ROOT] . '/heidelpay/config/Zed/Oms',
 ];
 
 $config[OmsConstants::ACTIVE_PROCESSES] = [
@@ -73,9 +75,9 @@ $config[OmsConstants::ACTIVE_PROCESSES] = [
 ];
 
 $config[SalesConstants::PAYMENT_METHOD_STATEMACHINE_MAPPING] = [
-    HeidelpayConstants::PAYMENT_METHOD_CREDIT_CARD_SECURE => 'HeidelpayCreditCardSecureAuthorize01',
-    HeidelpayConstants::PAYMENT_METHOD_SOFORT => 'HeidelpaySofort01',
-    HeidelpayConstants::PAYMENT_METHOD_PAYPAL_AUTHORIZE => 'HeidelpayPaypalAuthorize01',
-    HeidelpayConstants::PAYMENT_METHOD_PAYPAL_DEBIT => 'HeidelpayPaypalDebit01',
-    HeidelpayConstants::PAYMENT_METHOD_IDEAL => 'HeidelpayIdeal01',
+    HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE => 'HeidelpayCreditCardSecureAuthorize01',
+    HeidelpayConfig::PAYMENT_METHOD_SOFORT => 'HeidelpaySofort01',
+    HeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE => 'HeidelpayPaypalAuthorize01',
+    HeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT => 'HeidelpayPaypalDebit01',
+    HeidelpayConfig::PAYMENT_METHOD_IDEAL => 'HeidelpayIdeal01',
 ];

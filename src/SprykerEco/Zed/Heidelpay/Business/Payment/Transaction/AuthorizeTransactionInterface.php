@@ -12,7 +12,6 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface
 
 interface AuthorizeTransactionInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $authorizeRequestTransfer
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface $paymentAdapter
@@ -23,5 +22,4 @@ interface AuthorizeTransactionInterface
         HeidelpayRequestTransfer $authorizeRequestTransfer,
         PaymentWithAuthorizeInterface $paymentAdapter
     );
-
 }

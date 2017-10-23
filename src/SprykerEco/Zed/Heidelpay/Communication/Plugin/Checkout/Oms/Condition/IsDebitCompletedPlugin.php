@@ -20,7 +20,6 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
  */
 class IsDebitCompletedPlugin extends AbstractPlugin implements ConditionInterface
 {
-
     const EXTERNAL_RESPONSE_TRANSACTION_STATUS_OK = HeidelpayConstants::EXTERNAL_RESPONSE_TRANSACTION_STATUS_OK;
 
     /**
@@ -70,5 +69,4 @@ class IsDebitCompletedPlugin extends AbstractPlugin implements ConditionInterfac
     {
         return $externalTransactionLog->getResponseCode() === static::EXTERNAL_RESPONSE_TRANSACTION_STATUS_OK;
     }
-
 }

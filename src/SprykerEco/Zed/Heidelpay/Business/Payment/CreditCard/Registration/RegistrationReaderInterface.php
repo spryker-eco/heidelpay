@@ -11,7 +11,6 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 interface RegistrationReaderInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
@@ -26,5 +25,4 @@ interface RegistrationReaderInterface
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
      */
     public function findCreditCardRegistrationByIdAndQuote($idRegistration, QuoteTransfer $quoteTransfer);
-
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
@@ -9,7 +9,6 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\Api\Adapter\Http;
 
 class CaptureAdapterMock extends AbstractAdapterMock
 {
-
     /**
      * @return array
      */
@@ -97,5 +96,4 @@ class CaptureAdapterMock extends AbstractAdapterMock
             'PRESENTATION_AMOUNT=10000.00' . '&' .
             'ADDRESS_COUNTRY=DE\r\n';
     }
-
 }

@@ -12,7 +12,6 @@ namespace SprykerEco\Client\Heidelpay\MessageTranslator;
  */
 interface ErrorMessageTranslatorInterface
 {
-
     /**
      * @param string $errorCode
      * @param string $locale
@@ -20,5 +19,4 @@ interface ErrorMessageTranslatorInterface
      * @return string
      */
     public function getTranslatedErrorMessageByCode($errorCode, $locale);
-
 }

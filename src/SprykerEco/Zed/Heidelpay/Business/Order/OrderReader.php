@@ -11,7 +11,6 @@ use SprykerEco\Zed\Heidelpay\Dependency\QueryContainer\HeidelpayToSalesQueryCont
 
 class OrderReader implements OrderReaderInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Dependency\QueryContainer\HeidelpayToSalesQueryContainerInterface
      */
@@ -36,5 +35,4 @@ class OrderReader implements OrderReaderInterface
 
         return $orderEntity->getIdSalesOrder();
     }
-
 }

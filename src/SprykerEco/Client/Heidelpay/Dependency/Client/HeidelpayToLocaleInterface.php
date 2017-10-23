@@ -9,10 +9,8 @@ namespace SprykerEco\Client\Heidelpay\Dependency\Client;
 
 interface HeidelpayToLocaleInterface
 {
-
     /**
      * @return string
      */
     public function getCurrentLocale();
-
 }

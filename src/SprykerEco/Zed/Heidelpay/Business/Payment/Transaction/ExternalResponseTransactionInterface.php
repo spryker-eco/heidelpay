@@ -12,7 +12,6 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseIn
 
 interface ExternalResponseTransactionInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer $externalResponseTransfer
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface $paymentAdapter
@@ -23,5 +22,4 @@ interface ExternalResponseTransactionInterface
         HeidelpayExternalPaymentResponseTransfer $externalResponseTransfer,
         PaymentWithExternalResponseInterface $paymentAdapter
     );
-
 }

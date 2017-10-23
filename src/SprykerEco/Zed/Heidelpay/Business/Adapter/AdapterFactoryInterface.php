@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * MIT License
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ */
+
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter;
 
 /**
@@ -7,7 +12,6 @@ namespace SprykerEco\Zed\Heidelpay\Business\Adapter;
  */
 interface AdapterFactoryInterface
 {
-
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface[]
      */
@@ -52,5 +56,4 @@ interface AdapterFactoryInterface
      * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\TransactionParser
      */
     public function createTransactionParser();
-
 }

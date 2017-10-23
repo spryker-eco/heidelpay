@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
@@ -12,7 +12,6 @@ use Orm\Zed\Customer\Persistence\SpyCustomerAddress;
 
 trait CustomerAddressTrait
 {
-
     /**
      * @return \Orm\Zed\Customer\Persistence\SpyCustomerAddress
      */
@@ -42,5 +41,4 @@ trait CustomerAddressTrait
 
         return $customerAddress;
     }
-
 }

@@ -9,7 +9,6 @@ namespace SprykerEco\Zed\Heidelpay;
 
 interface HeidelpayConfigInterface
 {
-
     /**
      * @return string
      */
@@ -81,5 +80,4 @@ interface HeidelpayConfigInterface
      * @return string
      */
     public function getMerchantTransactionChannelByPaymentType($paymentType);
-
 }

@@ -9,7 +9,6 @@ namespace SprykerEco\Zed\Heidelpay\Dependency\Facade;
 
 class HeidelpayToCurrencyBridge implements HeidelpayToCurrencyInterface
 {
-
     /**
      * @var \Spryker\Zed\Currency\Business\CurrencyFacadeInterface
      */
@@ -30,5 +29,4 @@ class HeidelpayToCurrencyBridge implements HeidelpayToCurrencyInterface
     {
         return $this->currencyFacade->getCurrent();
     }
-
 }

@@ -21,7 +21,6 @@ use SprykerEco\Zed\Heidelpay\Communication\Plugin\Checkout\Oms\Condition\IsDebit
 
 class OmsDependencyInjector extends AbstractDependencyInjector
 {
-
     /**
      * @param \Spryker\Zed\Kernel\Container $container
      *
@@ -72,5 +71,4 @@ class OmsDependencyInjector extends AbstractDependencyInjector
 
         return $container;
     }
-
 }

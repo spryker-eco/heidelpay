@@ -9,12 +9,10 @@ namespace SprykerEco\Yves\Heidelpay\Handler;
 
 interface PaymentFailureHandlerInterface
 {
-
     /**
      * @param string $errorCode
      *
      * @return \Generated\Shared\Transfer\HeidelpayErrorRedirectResponseTransfer
      */
     public function handlePaymentFailureByErrorCode($errorCode);
-
 }

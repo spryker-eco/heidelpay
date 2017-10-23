@@ -49,7 +49,6 @@ use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
  */
 class HeidelpayBusinessFactory extends AbstractBusinessFactory
 {
-
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\AuthorizeTransactionHandlerInterface
      */
@@ -506,5 +505,4 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::SERVICE_UTIL_ENCODING);
     }
-
 }

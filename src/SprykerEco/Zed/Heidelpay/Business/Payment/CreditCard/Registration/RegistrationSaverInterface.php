@@ -11,12 +11,10 @@ use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 
 interface RegistrationSaverInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer
      */
     public function saveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer);
-
 }

@@ -12,7 +12,6 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 
 class HeidelpayHandler implements HeidelpayHandlerInterface
 {
-
     const PAYMENT_PROVIDER = HeidelpayConstants::PROVIDER_NAME;
     const CHECKOUT_PARTIAL_SUMMARY_PATH = 'Heidelpay/partial/summary';
 
@@ -41,5 +40,4 @@ class HeidelpayHandler implements HeidelpayHandlerInterface
 
         return $quoteTransfer;
     }
-
 }

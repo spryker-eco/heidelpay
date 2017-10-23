@@ -9,7 +9,6 @@ namespace SprykerEco\Zed\Heidelpay\Dependency\QueryContainer;
 
 class HeidelpayToSalesQueryContainerBridge implements HeidelpayToSalesQueryContainerInterface
 {
-
     /**
      * @var \Spryker\Zed\Sales\Persistence\SalesQueryContainerInterface
      */
@@ -33,5 +32,4 @@ class HeidelpayToSalesQueryContainerBridge implements HeidelpayToSalesQueryConta
         return $this->salesQueryContainer->querySalesOrder()
             ->findOneByOrderReference($orderReference);
     }
-
 }

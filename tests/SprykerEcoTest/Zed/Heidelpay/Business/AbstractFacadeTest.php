@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
@@ -36,7 +36,6 @@ use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
  */
 class AbstractFacadeTest extends Test
 {
-
     /**
      * @var \Orm\Zed\Sales\Persistence\SpySalesOrder
      */
@@ -271,5 +270,4 @@ class AbstractFacadeTest extends Test
         $this->assertNotNull($statusLog->getIdentificationShortid());
         $this->assertNotNull($statusLog->getProcessingTimestamp());
     }
-
 }

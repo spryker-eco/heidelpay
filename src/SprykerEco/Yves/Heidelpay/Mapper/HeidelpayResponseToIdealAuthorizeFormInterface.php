@@ -12,7 +12,6 @@ use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 
 interface HeidelpayResponseToIdealAuthorizeFormInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\HeidelpayResponseTransfer $responseTransfer
      * @param \Generated\Shared\Transfer\HeidelpayIdealAuthorizeFormTransfer $idealAuthoriseFormTransfer
@@ -20,5 +19,4 @@ interface HeidelpayResponseToIdealAuthorizeFormInterface
      * @return void
      */
     public function map(HeidelpayResponseTransfer $responseTransfer, HeidelpayIdealAuthorizeFormTransfer $idealAuthoriseFormTransfer);
-
 }

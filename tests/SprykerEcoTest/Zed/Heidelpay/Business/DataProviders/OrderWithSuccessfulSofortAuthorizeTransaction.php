@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
@@ -14,7 +14,7 @@ use Generated\Shared\Transfer\PaymentTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\SaveOrderTransfer;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\NewOrderWithOneItemTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
@@ -22,7 +22,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Transaction\AuthorizeTra
 
 class OrderWithSuccessfulSofortAuthorizeTransaction
 {
-
     use CustomerTrait, OrderAddressTrait, NewOrderWithOneItemTrait, AuthorizeTransactionTrait;
 
     /**
@@ -58,12 +57,12 @@ class OrderWithSuccessfulSofortAuthorizeTransaction
         $heidelpayPaymentTransfer = new HeidelpayPaymentTransfer();
 
         $heidelpayPaymentTransfer
-            ->setPaymentMethod(HeidelpayConstants::PAYMENT_METHOD_SOFORT)
+            ->setPaymentMethod(HeidelpayConfig::PAYMENT_METHOD_SOFORT)
             ->setFkSalesOrder($orderEntity->getIdSalesOrder());
 
         $paymentTransfer = new PaymentTransfer();
         $paymentTransfer->setHeidelpaySofort($heidelpayPaymentTransfer)
-            ->setPaymentMethod(HeidelpayConstants::PAYMENT_METHOD_SOFORT);
+            ->setPaymentMethod(HeidelpayConfig::PAYMENT_METHOD_SOFORT);
 
         return $paymentTransfer;
     }
@@ -113,5 +112,4 @@ class OrderWithSuccessfulSofortAuthorizeTransaction
 
         return $checkoutResponseTransfer;
     }
-
 }

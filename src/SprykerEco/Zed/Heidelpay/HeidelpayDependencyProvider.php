@@ -17,7 +17,6 @@ use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingBridge;
 
 class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
 {
-
     const FACADE_CURRENCY = 'currency facade';
     const FACADE_MONEY = 'money facade';
     const FACADE_SALES = 'sales facade';
@@ -69,5 +68,4 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
 
         return $container;
     }
-
 }

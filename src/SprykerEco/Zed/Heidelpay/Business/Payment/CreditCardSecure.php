@@ -21,7 +21,6 @@ class CreditCardSecure extends BaseHeidelpayPaymentMethod implements
     PaymentWithPostSaveOrderInterface,
     PaymentWithPreSavePaymentInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationWriterInterface
      */
@@ -112,5 +111,4 @@ class CreditCardSecure extends BaseHeidelpayPaymentMethod implements
             ->getSelectedRegistration()
             ->getRegistrationNumber();
     }
-
 }

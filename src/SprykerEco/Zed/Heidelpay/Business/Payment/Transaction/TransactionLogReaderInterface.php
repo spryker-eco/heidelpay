@@ -9,7 +9,6 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction;
 
 interface TransactionLogReaderInterface
 {
-
     /**
      * @param int $idSalesOrder
      *
@@ -30,5 +29,4 @@ interface TransactionLogReaderInterface
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
      */
     public function findOrderDebitTransactionLog($orderReference);
-
 }
