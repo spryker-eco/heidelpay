@@ -12,7 +12,6 @@ use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay;
 
 interface PaymentWithPreSavePaymentInterface
 {
-
     /**
      * @param \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay $paymentEntity
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
@@ -20,5 +19,4 @@ interface PaymentWithPreSavePaymentInterface
      * @return void
      */
     public function addDataToPayment(SpyPaymentHeidelpay $paymentEntity, QuoteTransfer $quoteTransfer);
-
 }

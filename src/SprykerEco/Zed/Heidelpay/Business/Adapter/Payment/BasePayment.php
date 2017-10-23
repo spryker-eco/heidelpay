@@ -21,7 +21,6 @@ use SprykerEco\Zed\Heidelpay\HeidelpayConfigInterface;
 
 class BasePayment implements PaymentWithExternalResponseInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\HeidelpayConfigInterface
      */
@@ -129,5 +128,4 @@ class BasePayment implements PaymentWithExternalResponseInterface
 
         return $errorTransfer;
     }
-
 }

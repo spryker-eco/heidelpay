@@ -13,7 +13,6 @@ use SprykerEco\Yves\Heidelpay\HeidelpayConfig;
 
 class PaymentFailureHandler implements PaymentFailureHandlerInterface
 {
-
     /**
      * @var \SprykerEco\Client\Heidelpay\HeidelpayClientInterface
      */
@@ -69,5 +68,4 @@ class PaymentFailureHandler implements PaymentFailureHandlerInterface
             ->setRedirectUrl($this->config->getYvesCheckoutPaymentStepPath())
             ->setErrorMessage($translatedErrorMessage);
     }
-
 }

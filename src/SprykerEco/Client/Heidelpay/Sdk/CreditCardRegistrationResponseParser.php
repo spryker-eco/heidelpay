@@ -16,7 +16,6 @@ use SprykerEco\Client\Heidelpay\Mapper\ApiResponseToRegistrationResponseTransfer
 
 class CreditCardRegistrationResponseParser implements CreditCardRegistrationResponseParserInterface
 {
-
     const ERROR_CODE_INVALID_RESPONSE = 'invalid-response';
 
     /**
@@ -115,5 +114,4 @@ class CreditCardRegistrationResponseParser implements CreditCardRegistrationResp
                 $registrationRequestTransfer
             );
     }
-
 }

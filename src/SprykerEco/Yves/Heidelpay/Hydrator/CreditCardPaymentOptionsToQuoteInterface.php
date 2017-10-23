@@ -11,12 +11,10 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 interface CreditCardPaymentOptionsToQuoteInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return void
      */
     public function hydrate(QuoteTransfer $quoteTransfer);
-
 }

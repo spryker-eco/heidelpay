@@ -13,7 +13,6 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInter
 
 class Sofort extends BaseHeidelpayPaymentMethod implements PaymentWithPostSaveOrderInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
@@ -28,5 +27,4 @@ class Sofort extends BaseHeidelpayPaymentMethod implements PaymentWithPostSaveOr
 
         $this->setExternalRedirect($redirectUrl, $checkoutResponseTransfer);
     }
-
 }

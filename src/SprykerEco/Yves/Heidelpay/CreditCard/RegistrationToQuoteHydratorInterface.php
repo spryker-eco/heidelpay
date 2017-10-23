@@ -12,7 +12,6 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 interface RegistrationToQuoteHydratorInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer $registrationTransfer
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
@@ -23,5 +22,4 @@ interface RegistrationToQuoteHydratorInterface
         HeidelpayCreditCardRegistrationTransfer $registrationTransfer,
         QuoteTransfer $quoteTransfer
     );
-
 }

@@ -11,7 +11,6 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 class QuoteUniqueIdGenerator
 {
-
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
@@ -25,5 +24,4 @@ class QuoteUniqueIdGenerator
 
         return sha1($quoteTransfer->getCustomer()->getEmail() . $quoteTransfer->getTotals()->getHash());
     }
-
 }

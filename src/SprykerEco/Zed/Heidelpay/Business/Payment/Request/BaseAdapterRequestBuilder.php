@@ -15,7 +15,6 @@ use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class BaseAdapterRequestBuilder
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface
      */
@@ -127,5 +126,4 @@ class BaseAdapterRequestBuilder
 
         return $requestTransfer;
     }
-
 }

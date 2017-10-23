@@ -12,7 +12,6 @@ use Heidelpay\PhpApi\PaymentMethods\SofortPaymentMethod;
 
 class SofortPayment extends BasePayment implements SofortPaymentInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $authorizeRequestTransfer
      *
@@ -26,5 +25,4 @@ class SofortPayment extends BasePayment implements SofortPaymentInterface
 
         return $this->verifyAndParseResponse($sofortMethod->getResponse());
     }
-
 }

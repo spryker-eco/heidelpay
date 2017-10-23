@@ -12,7 +12,6 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface;
 
 interface DebitTransactionInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $debitRequestTransfer
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface $paymentAdapter
@@ -23,5 +22,4 @@ interface DebitTransactionInterface
         HeidelpayRequestTransfer $debitRequestTransfer,
         PaymentWithDebitInterface $paymentAdapter
     );
-
 }

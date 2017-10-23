@@ -12,7 +12,6 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 interface HeidelpayClientInterface
 {
-
     /**
      * Specification:
      *  - Retrieves current locale;
@@ -110,5 +109,4 @@ interface HeidelpayClientInterface
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
     public function getQuoteFromSession();
-
 }

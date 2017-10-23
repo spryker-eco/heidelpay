@@ -11,7 +11,6 @@ use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 
 class HeidelpayResponseToIdealAuthorizeForm implements HeidelpayResponseToIdealAuthorizeFormInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\HeidelpayResponseTransfer $responseTransfer
      * @param \Generated\Shared\Transfer\HeidelpayIdealAuthorizeFormTransfer $idealAuthoriseFormTransfer
@@ -31,5 +30,4 @@ class HeidelpayResponseToIdealAuthorizeForm implements HeidelpayResponseToIdealA
                 $responseTransfer->getConfig()->getBankBrands()
             );
     }
-
 }

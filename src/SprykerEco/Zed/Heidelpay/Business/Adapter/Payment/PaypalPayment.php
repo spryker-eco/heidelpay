@@ -12,7 +12,6 @@ use Heidelpay\PhpApi\PaymentMethods\PayPalPaymentMethod;
 
 class PaypalPayment extends BasePayment implements PaypalPaymentInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $authorizeRequestTransfer
      *
@@ -52,5 +51,4 @@ class PaypalPayment extends BasePayment implements PaypalPaymentInterface
         $paypalMethod->debit();
         return $this->verifyAndParseResponse($paypalMethod->getResponse());
     }
-
 }

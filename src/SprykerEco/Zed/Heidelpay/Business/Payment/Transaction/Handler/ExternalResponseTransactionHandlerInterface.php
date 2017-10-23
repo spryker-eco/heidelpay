@@ -9,12 +9,10 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
 
 interface ExternalResponseTransactionHandlerInterface
 {
-
     /**
      * @param array $responseArray
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
     public function processExternalPaymentResponse(array $responseArray);
-
 }

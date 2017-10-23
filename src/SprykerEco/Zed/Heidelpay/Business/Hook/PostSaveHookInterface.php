@@ -10,7 +10,6 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 interface PostSaveHookInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
@@ -18,5 +17,4 @@ interface PostSaveHookInterface
      * @return \Generated\Shared\Transfer\CheckoutResponseTransfer
      */
     public function execute(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer);
-
 }

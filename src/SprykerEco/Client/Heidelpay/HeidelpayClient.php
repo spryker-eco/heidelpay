@@ -18,7 +18,6 @@ use Spryker\Client\Kernel\AbstractClient;
  */
 class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
 {
-
     /**
      * {@inheritdoc}
      *
@@ -185,5 +184,4 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
             ->setIdRegistration($idRegistration)
             ->setQuote($quoteTransfer);
     }
-
 }

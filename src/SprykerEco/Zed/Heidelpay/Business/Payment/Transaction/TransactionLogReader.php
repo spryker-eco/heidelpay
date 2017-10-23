@@ -16,7 +16,6 @@ use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
 
 class TransactionLogReader implements TransactionLogReaderInterface
 {
-
     const TRANSACTION_TYPE_AUTHORIZE = HeidelpayConstants::TRANSACTION_TYPE_AUTHORIZE;
     const TRANSACTION_TYPE_DEBIT = HeidelpayConstants::TRANSACTION_TYPE_DEBIT;
 
@@ -157,5 +156,4 @@ class TransactionLogReader implements TransactionLogReaderInterface
 
         return $transactionLogTransfer;
     }
-
 }

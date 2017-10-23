@@ -12,7 +12,6 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReaderInterface;
 
 class ExternalPaymentResponseBuilder implements ExternalPaymentResponseBuilderInterface
 {
-
     const REQUEST_PARAM_ORDER_ID = 'IDENTIFICATION_TRANSACTIONID';
 
     /**
@@ -58,5 +57,4 @@ class ExternalPaymentResponseBuilder implements ExternalPaymentResponseBuilderIn
 
         return $paymentTransfer->getPaymentMethod();
     }
-
 }

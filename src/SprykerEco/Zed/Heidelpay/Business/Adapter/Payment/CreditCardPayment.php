@@ -13,7 +13,6 @@ use Heidelpay\PhpApi\PaymentMethods\CreditCardPaymentMethod;
 class CreditCardPayment extends BasePayment implements
     CreditCardPaymentInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $registerRequestTransfer
      *
@@ -61,5 +60,4 @@ class CreditCardPayment extends BasePayment implements
 
         return $this->verifyAndParseResponse($creditCardMethod->getResponse());
     }
-
 }

@@ -12,7 +12,6 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 
 class HeidelpayCreditCardHandler extends HeidelpayHandler
 {
-
     const PAYMENT_PROVIDER = HeidelpayConstants::PROVIDER_NAME;
     const CHECKOUT_PARTIAL_SUMMARY_PATH = 'Heidelpay/partial/summary';
 
@@ -55,5 +54,4 @@ class HeidelpayCreditCardHandler extends HeidelpayHandler
             );
         }
     }
-
 }

@@ -9,12 +9,10 @@ namespace SprykerEco\Client\Heidelpay\Sdk;
 
 interface CreditCardRegistrationResponseParserInterface
 {
-
     /**
      * @param array $responseArray
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer
      */
     public function parseExternalResponse(array $responseArray);
-
 }

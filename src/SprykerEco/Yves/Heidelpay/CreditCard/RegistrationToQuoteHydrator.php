@@ -14,7 +14,6 @@ use SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface;
 
 class RegistrationToQuoteHydrator implements RegistrationToQuoteHydratorInterface
 {
-
     /**
      * @var \SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface
      */
@@ -50,5 +49,4 @@ class RegistrationToQuoteHydrator implements RegistrationToQuoteHydratorInterfac
             ->setSelectedRegistration($registrationTransfer)
             ->setSelectedPaymentOption(HeidelpayConstants::PAYMENT_OPTION_NEW_REGISTRATION);
     }
-
 }

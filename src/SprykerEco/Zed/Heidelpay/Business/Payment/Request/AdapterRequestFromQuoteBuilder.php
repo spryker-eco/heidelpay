@@ -16,7 +16,6 @@ use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class AdapterRequestFromQuoteBuilder extends BaseAdapterRequestBuilder implements AdapterRequestFromQuoteBuilderInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\Mapper\QuoteToHeidelpayRequestInterface
      */
@@ -104,5 +103,4 @@ class AdapterRequestFromQuoteBuilder extends BaseAdapterRequestBuilder implement
             $this->config->getYvesUrlForAsyncIframeResponse()
         );
     }
-
 }

@@ -9,7 +9,6 @@ namespace SprykerEco\Zed\Heidelpay\Dependency\Facade;
 
 class HeidelpayToMoneyBridge implements HeidelpayToMoneyInterface
 {
-
     /**
      * @var \Spryker\Zed\Money\Business\MoneyFacadeInterface
      */
@@ -32,5 +31,4 @@ class HeidelpayToMoneyBridge implements HeidelpayToMoneyInterface
     {
         return $this->moneyFacade->convertIntegerToDecimal($value);
     }
-
 }

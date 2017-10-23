@@ -11,7 +11,6 @@ use Heidelpay\PhpApi\Response;
 
 interface ResponsePayloadToApiResponseInterface
 {
-
     /**
      * @param string $transactionPayload
      * @param \Heidelpay\PhpApi\Response $heidelpayResponse
@@ -19,5 +18,4 @@ interface ResponsePayloadToApiResponseInterface
      * @return void
      */
     public function map($transactionPayload, Response $heidelpayResponse);
-
 }

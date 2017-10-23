@@ -21,7 +21,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class CreditCardController extends BaseHeidelpayController
 {
-
     const REQUEST_PARAM_REGISTRATION_ID = 'id_registration';
     const ERROR_CODE_REGISTRATION_NOT_FOUND = 'registration_not_found';
     const ERROR_CODE_QUOTE_EXPIRED = 'quote_expired';
@@ -224,5 +223,4 @@ class CreditCardController extends BaseHeidelpayController
 
         return $this->streamedResponse($callback)->send();
     }
-
 }

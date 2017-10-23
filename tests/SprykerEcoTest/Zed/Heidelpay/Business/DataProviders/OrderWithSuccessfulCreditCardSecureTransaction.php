@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
@@ -15,7 +15,7 @@ use Generated\Shared\Transfer\PaymentTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\SaveOrderTransfer;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\NewOrderWithOneItemTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
@@ -23,7 +23,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Transaction\AuthorizeTra
 
 class OrderWithSuccessfulCreditCardSecureTransaction
 {
-
     use CustomerTrait, OrderAddressTrait, NewOrderWithOneItemTrait, AuthorizeTransactionTrait;
 
     /**
@@ -60,7 +59,7 @@ class OrderWithSuccessfulCreditCardSecureTransaction
 
         $paymentTransfer = new PaymentTransfer();
         $paymentTransfer->setHeidelpayCreditCardSecure($heidelpayPaymentTransfer)
-            ->setPaymentMethod(HeidelpayConstants::PAYMENT_METHOD_CREDIT_CARD_SECURE);
+            ->setPaymentMethod(HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE);
 
         return $paymentTransfer;
     }
@@ -111,5 +110,4 @@ class OrderWithSuccessfulCreditCardSecureTransaction
 
         return $checkoutResponseTransfer;
     }
-
 }

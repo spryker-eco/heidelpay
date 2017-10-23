@@ -14,7 +14,6 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInter
 
 class Ideal extends BaseHeidelpayPaymentMethod implements PaymentWithPostSaveOrderInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
@@ -39,5 +38,4 @@ class Ideal extends BaseHeidelpayPaymentMethod implements PaymentWithPostSaveOrd
     {
         return $this->config->getIdealAuthorizeUrl();
     }
-
 }

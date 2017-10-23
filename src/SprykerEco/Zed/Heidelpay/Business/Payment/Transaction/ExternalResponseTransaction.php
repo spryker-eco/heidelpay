@@ -15,7 +15,6 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseIn
 
 class ExternalResponseTransaction implements ExternalResponseTransactionInterface
 {
-
     const TRANSACTION_TYPE = HeidelpayConstants::TRANSACTION_TYPE_EXTERNAL_RESPONSE;
 
     /**
@@ -61,5 +60,4 @@ class ExternalResponseTransaction implements ExternalResponseTransactionInterfac
             $externalResponseTransfer
         );
     }
-
 }

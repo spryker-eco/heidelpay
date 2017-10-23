@@ -30,7 +30,6 @@ use SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeForm;
  */
 class HeidelpayFactory extends AbstractFactory
 {
-
     /**
      * @return \SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface
      */
@@ -183,5 +182,4 @@ class HeidelpayFactory extends AbstractFactory
             $this->getHeidelpayClient()
         );
     }
-
 }

@@ -16,7 +16,6 @@ use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface;
 
 class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface
      */
@@ -127,5 +126,4 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
 
         return $quoteAmountDecimal;
     }
-
 }

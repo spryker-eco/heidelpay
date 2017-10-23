@@ -11,7 +11,6 @@ use Heidelpay\PhpApi\Request;
 
 class RequestToHeidelpay implements RequestToHeidelpayInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $requestTransfer
      * @param \Heidelpay\PhpApi\Request $heidelpayRequest
@@ -53,5 +52,4 @@ class RequestToHeidelpay implements RequestToHeidelpayInterface
             $requestTransfer->getCustomerPurchase()->getSecret()
         );
     }
-
 }

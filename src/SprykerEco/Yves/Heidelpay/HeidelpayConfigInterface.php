@@ -9,7 +9,6 @@ namespace SprykerEco\Yves\Heidelpay;
 
 interface HeidelpayConfigInterface
 {
-
     /**
      * @return string
      */
@@ -34,5 +33,4 @@ interface HeidelpayConfigInterface
      * @return string
      */
     public function getYvesRegistrationSuccessUrl();
-
 }

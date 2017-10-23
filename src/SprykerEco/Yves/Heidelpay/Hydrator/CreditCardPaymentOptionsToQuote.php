@@ -14,7 +14,6 @@ use SprykerEco\Client\Heidelpay\HeidelpayClientInterface;
 
 class CreditCardPaymentOptionsToQuote implements CreditCardPaymentOptionsToQuoteInterface
 {
-
     /**
      * @var \SprykerEco\Client\Heidelpay\HeidelpayClientInterface
      */
@@ -77,5 +76,4 @@ class CreditCardPaymentOptionsToQuote implements CreditCardPaymentOptionsToQuote
 
         $quoteTransfer->getPayment()->setHeidelpayCreditCardSecure($creditCardPaymentTransfer);
     }
-
 }

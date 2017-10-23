@@ -16,7 +16,6 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
  */
 class HeidelpayQueryContainer extends AbstractQueryContainer implements HeidelpayQueryContainerInterface
 {
-
     const TRANSACTION_TYPE_EXTERNAL_RESPONSE = HeidelpayConstants::TRANSACTION_TYPE_EXTERNAL_RESPONSE;
     const TRANSACTION_TYPE_CAPTURE = HeidelpayConstants::TRANSACTION_TYPE_CAPTURE;
 
@@ -125,5 +124,4 @@ class HeidelpayQueryContainer extends AbstractQueryContainer implements Heidelpa
             ->filterByIdCreditCardRegistration($idRegistration)
             ->filterByQuoteHash($quoteHash);
     }
-
 }

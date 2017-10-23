@@ -15,7 +15,6 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface;
 
 class CaptureTransaction implements CaptureTransactionInterface
 {
-
     const TRANSACTION_TYPE = HeidelpayConstants::TRANSACTION_TYPE_CAPTURE;
 
     /**
@@ -63,5 +62,4 @@ class CaptureTransaction implements CaptureTransactionInterface
             $captureResponseTransfer
         );
     }
-
 }

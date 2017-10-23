@@ -15,7 +15,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AbstractHeidelpaySubForm extends AbstractSubFormType implements SubFormInterface
 {
-
     /**
      * @const string
      */
@@ -70,5 +69,4 @@ class AbstractHeidelpaySubForm extends AbstractSubFormType implements SubFormInt
     {
         return static::PAYMENT_PROVIDER . '/' . static::PAYMENT_METHOD;
     }
-
 }

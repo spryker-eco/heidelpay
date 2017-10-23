@@ -12,7 +12,6 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 interface PaymentOptionInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer $paymentOptionsTransfer
@@ -30,5 +29,4 @@ interface PaymentOptionInterface
      * @return bool
      */
     public function isOptionAvailableForQuote(QuoteTransfer $quoteTransfer);
-
 }

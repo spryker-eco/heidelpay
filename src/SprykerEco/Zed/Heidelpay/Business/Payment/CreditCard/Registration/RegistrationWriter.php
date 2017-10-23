@@ -13,7 +13,6 @@ use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
 
 class RegistrationWriter implements RegistrationWriterInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface
      */
@@ -120,5 +119,4 @@ class RegistrationWriter implements RegistrationWriterInterface
             )
             ->exists();
     }
-
 }

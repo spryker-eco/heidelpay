@@ -12,7 +12,6 @@ use Heidelpay\PhpApi\Request;
 
 interface RequestToHeidelpayInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $requestTransfer
      * @param \Heidelpay\PhpApi\Request $heidelpayRequest
@@ -20,5 +19,4 @@ interface RequestToHeidelpayInterface
      * @return void
      */
     public function map(HeidelpayRequestTransfer $requestTransfer, Request $heidelpayRequest);
-
 }
