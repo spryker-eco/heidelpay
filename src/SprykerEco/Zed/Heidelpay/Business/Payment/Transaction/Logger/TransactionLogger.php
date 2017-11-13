@@ -7,8 +7,10 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Logger;
 
+use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
+use SprykerEco\Zed\Heidelpay\Business\Encrypter\EncrypterInterface;
 use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface;
 
 class TransactionLogger implements TransactionLoggerInterface
@@ -17,29 +19,38 @@ class TransactionLogger implements TransactionLoggerInterface
     /**
      * @var \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface
      */
-    private $utilEncoding;
+    protected $utilEncoding;
+
+    /**
+     * @var \SprykerEco\Zed\Heidelpay\Business\Encrypter\EncrypterInterface
+     */
+    protected $encrypter;
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface $utilEncoding
+     * @param \SprykerEco\Zed\Heidelpay\Business\Encrypter\EncrypterInterface $encrypter
      */
-    public function __construct(HeidelpayToUtilEncodingInterface $utilEncoding)
+    public function __construct(HeidelpayToUtilEncodingInterface $utilEncoding, EncrypterInterface $encrypter)
     {
         $this->utilEncoding = $utilEncoding;
+        $this->encrypter = $encrypter;
     }
 
     /**
      * @param string $transactionType
-     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer|null $requestTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $requestTransfer
      * @param \Generated\Shared\Transfer\HeidelpayResponseTransfer $responseTransfer
      *
      * @return void
      */
     public function logTransaction(
         $transactionType,
-        $requestTransfer,
+        HeidelpayRequestTransfer $requestTransfer,
         HeidelpayResponseTransfer $responseTransfer
     ) {
         $transactionLog = new SpyPaymentHeidelpayTransactionLog();
+        $this->addEncryptedRequestResponsePayload($transactionLog, $requestTransfer, $responseTransfer);
+
         $transactionLog
             ->setFkSalesOrder($responseTransfer->getIdSalesOrder())
             ->setTransactionType($transactionType)
@@ -47,23 +58,29 @@ class TransactionLogger implements TransactionLoggerInterface
             ->setIdTransactionUnique($responseTransfer->getIdTransactionUnique())
             ->setProcessingCode($responseTransfer->getProcessingCode())
             ->setRedirectUrl($responseTransfer->getPaymentFormUrl())
-            ->setRequestPayload($this->getRequestPayload($requestTransfer))
-            ->setResponsePayload($responseTransfer->getPayload())
             ->save();
     }
 
     /**
-     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer|null $requestTransfer
+     * @param SpyPaymentHeidelpayTransactionLog $transactionLog
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $requestTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayResponseTransfer $responseTransfer
      *
-     * @return string|null
+     * @return void
      */
-    protected function getRequestPayload($requestTransfer)
-    {
-        if ($requestTransfer === null) {
-            return null;
-        }
+    protected function addEncryptedRequestResponsePayload(
+        SpyPaymentHeidelpayTransactionLog $transactionLog,
+        HeidelpayRequestTransfer $requestTransfer,
+        HeidelpayResponseTransfer $responseTransfer
+    ) {
+        $encryptedRequestPayload = $this->encrypter
+            ->encryptData($this->encodeRequestTransfer($requestTransfer));
+        $encryptedResponsePayload = $this->encrypter
+            ->encryptData($responseTransfer->getPayload());
 
-        return $this->getRequestTransferEncoded($requestTransfer);
+        $transactionLog
+            ->setRequestPayload(base64_encode($encryptedRequestPayload))
+            ->setResponsePayload(base64_encode($encryptedResponsePayload));
     }
 
     /**
@@ -71,7 +88,7 @@ class TransactionLogger implements TransactionLoggerInterface
      *
      * @return string
      */
-    protected function getRequestTransferEncoded($requestTransfer): string
+    protected function encodeRequestTransfer(HeidelpayRequestTransfer $requestTransfer)
     {
         return $this->utilEncoding->encodeJson($requestTransfer->toArray());
     }

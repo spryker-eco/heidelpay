@@ -82,7 +82,7 @@ interface HeidelpayClientInterface
      *
      * @api
      *
-     * @param $idRegistration
+     * @param int $idRegistration
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer|null

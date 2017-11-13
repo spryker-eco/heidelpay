@@ -8,6 +8,7 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction;
 
 use Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer;
+use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Logger\TransactionLoggerInterface;
@@ -57,7 +58,7 @@ class ExternalResponseTransaction implements ExternalResponseTransactionInterfac
     ) {
         $this->transactionLogger->logTransaction(
             static::TRANSACTION_TYPE,
-            null,
+            (new HeidelpayRequestTransfer()),
             $externalResponseTransfer
         );
     }
