@@ -47,7 +47,7 @@ class AesEncrypter implements EncrypterInterface
             $initVector
         );
 
-        return implode([$encryptedData, base64_encode($initVector)], static::INIT_VECTOR_SEPARATOR);
+        return implode(static::INIT_VECTOR_SEPARATOR, [$encryptedData, base64_encode($initVector)]);
     }
 
     /**
