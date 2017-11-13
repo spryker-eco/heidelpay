@@ -12,7 +12,6 @@ use Generated\Shared\Transfer\OrderTransfer;
 
 interface OrderToHeidelpayRequestInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $heidelpayRequestTransfer
@@ -20,5 +19,4 @@ interface OrderToHeidelpayRequestInterface
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
     public function map(OrderTransfer $orderTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer);
-
 }

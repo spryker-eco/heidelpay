@@ -16,7 +16,6 @@ use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
 
 class RegistrationReader implements RegistrationReaderInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface
      */
@@ -59,7 +58,8 @@ class RegistrationReader implements RegistrationReaderInterface
         $quoteHash = $this->generateQuoteHash($quoteTransfer);
         $registrationEntity = $this->heidelpayQueryContainer
             ->queryRegistrationByIdAndQuoteHash(
-                $idRegistration, $quoteHash
+                $idRegistration,
+                $quoteHash
             )
             ->findOne();
 
@@ -126,5 +126,4 @@ class RegistrationReader implements RegistrationReaderInterface
 
         return $lastSuccessfulRegistration;
     }
-
 }

@@ -7,12 +7,9 @@
 
 namespace SprykerEco\Yves\Heidelpay\Form;
 
-use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 
-class PaypalAuthorizeSubForm extends AbstractHeidelpaySubForm implements SubFormInterface
+class PaypalAuthorizeSubForm extends AbstractHeidelpaySubForm
 {
-
-    const PAYMENT_METHOD = HeidelpayConstants::PAYMENT_METHOD_PAYPAL_AUTHORIZE;
-
+    const PAYMENT_METHOD = HeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE;
 }

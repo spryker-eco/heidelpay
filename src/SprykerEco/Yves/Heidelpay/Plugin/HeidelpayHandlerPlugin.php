@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class HeidelpayHandlerPlugin extends AbstractPlugin implements StepHandlerPluginInterface
 {
-
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer $quoteTransfer
@@ -28,5 +27,4 @@ class HeidelpayHandlerPlugin extends AbstractPlugin implements StepHandlerPlugin
     {
         $this->getFactory()->createHeidelpayHandler()->addPaymentToQuote($quoteTransfer);
     }
-
 }

@@ -11,12 +11,10 @@ use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 
 interface PaymentWithCaptureInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $captureRequestTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
     public function capture(HeidelpayRequestTransfer $captureRequestTransfer);
-
 }

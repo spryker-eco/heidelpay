@@ -14,7 +14,6 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 interface HeidelpayStubInterface
 {
-
     /**
      * @param int $idSalesOrder
      *
@@ -55,5 +54,4 @@ interface HeidelpayStubInterface
     public function saveCreditCardRegistration(
         HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
     );
-
 }

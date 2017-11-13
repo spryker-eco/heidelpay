@@ -12,14 +12,13 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 class PaymentOptionsCalculator implements PaymentOptionsCalculatorInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\PaymentOption\PaymentOptionInterface[]
      */
     protected $paymentOptions;
 
     /**
-     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\PaymentOption\PaymentOptionInterface[]
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\PaymentOption\PaymentOptionInterface[] $paymentOptions
      */
     public function __construct(array $paymentOptions)
     {
@@ -44,5 +43,4 @@ class PaymentOptionsCalculator implements PaymentOptionsCalculatorInterface
 
         return $paymentOptionsTransfer;
     }
-
 }

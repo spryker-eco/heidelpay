@@ -1,0 +1,4 @@
+/.idea
+/tests/_output/*
+!/tests/_output/.gitkeep
+/tests/*/*/_generated/*

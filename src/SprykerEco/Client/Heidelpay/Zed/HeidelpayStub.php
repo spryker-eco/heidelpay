@@ -16,7 +16,6 @@ use Spryker\Client\ZedRequest\Stub\ZedRequestStub;
 
 class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
 {
-
     const ZED_GET_AUTHORIZE_TRANSACTION_LOG = '/heidelpay/gateway/get-authorize-transaction-log';
     const ZED_GET_CREDIT_CARD_PAYMENT_OPTIONS = '/heidelpay/gateway/get-credit-card-payment-options';
     const ZED_GET_PROCESS_EXTERNAL_PAYMENT_RESPONSE = '/heidelpay/gateway/process-external-payment-response';
@@ -103,5 +102,4 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
 
         return $authorizeTransactionLogRequestTransfer;
     }
-
 }

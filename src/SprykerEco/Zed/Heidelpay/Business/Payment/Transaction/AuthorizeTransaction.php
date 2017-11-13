@@ -9,15 +9,12 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Logger\TransactionLoggerInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface;
 
 class AuthorizeTransaction implements AuthorizeTransactionInterface
 {
-
-    const TRANSACTION_TYPE = HeidelpayConstants::TRANSACTION_TYPE_AUTHORIZE;
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Logger\TransactionLoggerInterface
      */
@@ -58,10 +55,9 @@ class AuthorizeTransaction implements AuthorizeTransactionInterface
         HeidelpayResponseTransfer $authorizeResponseTransfer
     ) {
         $this->transactionLogger->logTransaction(
-            static::TRANSACTION_TYPE,
+            HeidelpayConfig::TRANSACTION_TYPE,
             $authorizeRequestTransfer,
             $authorizeResponseTransfer
         );
     }
-
 }

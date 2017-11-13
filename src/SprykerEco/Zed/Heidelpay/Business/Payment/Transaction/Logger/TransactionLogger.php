@@ -15,7 +15,6 @@ use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface
 
 class TransactionLogger implements TransactionLoggerInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface
      */
@@ -92,5 +91,4 @@ class TransactionLogger implements TransactionLoggerInterface
     {
         return $this->utilEncoding->encodeJson($requestTransfer->toArray());
     }
-
 }

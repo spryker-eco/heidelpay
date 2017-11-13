@@ -19,7 +19,6 @@ use Spryker\Zed\Kernel\Communication\Controller\AbstractGatewayController;
  */
 class GatewayController extends AbstractGatewayController
 {
-
     /**
      * @param \Generated\Shared\Transfer\HeidelpayAuthorizeTransactionLogRequestTransfer $authorizeLogRequestTransfer
      *
@@ -71,5 +70,4 @@ class GatewayController extends AbstractGatewayController
     ) {
         return $this->getFacade()->findCreditCardRegistrationByIdAndQuote($findRegistrationRequestTransfer);
     }
-
 }

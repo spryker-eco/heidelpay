@@ -9,7 +9,6 @@ namespace SprykerEco\Client\Heidelpay\Dependency\Client;
 
 class HeidelpayToLocaleBridge implements HeidelpayToLocaleInterface
 {
-
     /**
      * @var \Spryker\Client\Locale\LocaleClientInterface
      */
@@ -30,5 +29,4 @@ class HeidelpayToLocaleBridge implements HeidelpayToLocaleInterface
     {
         return $this->localeClient->getCurrentLocale();
     }
-
 }

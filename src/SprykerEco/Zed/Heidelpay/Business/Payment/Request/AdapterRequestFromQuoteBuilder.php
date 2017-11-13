@@ -9,28 +9,17 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment\Request;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig as SharedHeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\Mapper\QuoteToHeidelpayRequestInterface;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface;
 use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class AdapterRequestFromQuoteBuilder extends BaseAdapterRequestBuilder implements AdapterRequestFromQuoteBuilderInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\Mapper\QuoteToHeidelpayRequestInterface
      */
     protected $quoteToHeidelpayMapper;
-
-    /**
-     * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface
-     */
-    protected $currencyFacade;
-
-    /**
-     * @var \SprykerEco\Zed\Heidelpay\HeidelpayConfig
-     */
-    protected $config;
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Mapper\QuoteToHeidelpayRequestInterface $quoteToHeidelpayMapper
@@ -42,9 +31,8 @@ class AdapterRequestFromQuoteBuilder extends BaseAdapterRequestBuilder implement
         HeidelpayToCurrencyInterface $currencyFacade,
         HeidelpayConfig $config
     ) {
-        $this->currencyFacade = $currencyFacade;
+        parent::__construct($currencyFacade, $config);
         $this->quoteToHeidelpayMapper = $quoteToHeidelpayMapper;
-        $this->config = $config;
     }
 
     /**
@@ -68,7 +56,7 @@ class AdapterRequestFromQuoteBuilder extends BaseAdapterRequestBuilder implement
      */
     protected function setCreditCardTransactionChannel(HeidelpayRequestTransfer $heidelpayRequestTransfer)
     {
-        $paymentMethod = HeidelpayConstants::PAYMENT_METHOD_CREDIT_CARD_SECURE;
+        $paymentMethod = SharedHeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE;
         $this->hydrateTransactionChannel($heidelpayRequestTransfer, $paymentMethod);
     }
 
@@ -115,5 +103,4 @@ class AdapterRequestFromQuoteBuilder extends BaseAdapterRequestBuilder implement
             $this->config->getYvesUrlForAsyncIframeResponse()
         );
     }
-
 }

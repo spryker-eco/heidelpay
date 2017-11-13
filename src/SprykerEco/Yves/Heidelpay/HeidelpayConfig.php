@@ -10,9 +10,8 @@ namespace SprykerEco\Yves\Heidelpay;
 use Spryker\Zed\Kernel\AbstractBundleConfig;
 use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 
-class HeidelpayConfig extends AbstractBundleConfig
+class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInterface
 {
-
     /**
      * @return string
      */
@@ -52,5 +51,4 @@ class HeidelpayConfig extends AbstractBundleConfig
     {
         return $this->get(HeidelpayConstants::CONFIG_YVES_CHECKOUT_REGISTRATION_SUCCESS_URL);
     }
-
 }

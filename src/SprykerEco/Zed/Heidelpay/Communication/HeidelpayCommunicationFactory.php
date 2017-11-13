@@ -16,7 +16,6 @@ use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
  */
 class HeidelpayCommunicationFactory extends AbstractCommunicationFactory
 {
-
     /**
      * @return \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesInterface
      */
@@ -24,5 +23,4 @@ class HeidelpayCommunicationFactory extends AbstractCommunicationFactory
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::FACADE_SALES);
     }
-
 }

@@ -7,38 +7,20 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Payment;
 
-use Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface;
 
-interface CreditCardPaymentInterface
+interface CreditCardPaymentInterface extends
+    PaymentWithAuthorizeInterface,
+    PaymentWithExternalResponseInterface,
+    PaymentWithCaptureInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $authorizeRequestTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
     public function register(HeidelpayRequestTransfer $authorizeRequestTransfer);
-
-    /**
-     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $authorizeRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
-     */
-    public function authorize(HeidelpayRequestTransfer $authorizeRequestTransfer);
-
-    /**
-     * @param \Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer $externalResponse
-     *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
-     */
-    public function processExternalResponse(HeidelpayExternalPaymentResponseTransfer $externalResponse);
-
-    /**
-     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $captureRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
-     */
-    public function capture(HeidelpayRequestTransfer $captureRequestTransfer);
-
 }

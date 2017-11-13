@@ -12,7 +12,6 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 interface QuoteToHeidelpayRequestInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $heidelpayRequestTransfer
@@ -20,5 +19,4 @@ interface QuoteToHeidelpayRequestInterface
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
     public function map(QuoteTransfer $quoteTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer);
-
 }

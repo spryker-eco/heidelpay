@@ -7,24 +7,9 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Payment;
 
-use Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer;
-use Generated\Shared\Transfer\HeidelpayRequestTransfer;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface;
 
-interface SofortPaymentInterface
+interface SofortPaymentInterface extends PaymentWithAuthorizeInterface, PaymentWithExternalResponseInterface
 {
-
-    /**
-     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $authorizeRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
-     */
-    public function authorize(HeidelpayRequestTransfer $authorizeRequestTransfer);
-
-    /**
-     * @param \Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer $externalResponse
-     *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
-     */
-    public function processExternalResponse(HeidelpayExternalPaymentResponseTransfer $externalResponse);
-
 }

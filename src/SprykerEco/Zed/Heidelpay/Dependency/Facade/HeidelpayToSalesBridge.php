@@ -9,7 +9,6 @@ namespace SprykerEco\Zed\Heidelpay\Dependency\Facade;
 
 class HeidelpayToSalesBridge implements HeidelpayToSalesInterface
 {
-
     /**
      * @var \Spryker\Zed\Sales\Business\SalesFacadeInterface
      */
@@ -32,5 +31,4 @@ class HeidelpayToSalesBridge implements HeidelpayToSalesInterface
     {
         return $this->salesFacade->getOrderByIdSalesOrder($idSalesOrder);
     }
-
 }

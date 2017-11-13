@@ -16,13 +16,13 @@ use Heidelpay\PhpApi\Request;
 use Heidelpay\PhpApi\Response;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\RequestToHeidelpayInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpayInterface;
-use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface;
+use SprykerEco\Zed\Heidelpay\HeidelpayConfigInterface;
 
-class BasePayment
+class BasePayment implements PaymentWithExternalResponseInterface
 {
-
     /**
-     * @var \SprykerEco\Zed\Heidelpay\HeidelpayConfig
+     * @var \SprykerEco\Zed\Heidelpay\HeidelpayConfigInterface
      */
     protected $config;
 
@@ -39,12 +39,12 @@ class BasePayment
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\RequestToHeidelpayInterface $requestMapper
      * @param \SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpayInterface $responseMapper
-     * @param \SprykerEco\Zed\Heidelpay\HeidelpayConfig $config
+     * @param \SprykerEco\Zed\Heidelpay\HeidelpayConfigInterface $config
      */
     public function __construct(
         RequestToHeidelpayInterface $requestMapper,
         ResponseFromHeidelpayInterface $responseMapper,
-        HeidelpayConfig $config
+        HeidelpayConfigInterface $config
     ) {
         $this->requestMapper = $requestMapper;
         $this->responseMapper = $responseMapper;
@@ -128,5 +128,4 @@ class BasePayment
 
         return $errorTransfer;
     }
-
 }

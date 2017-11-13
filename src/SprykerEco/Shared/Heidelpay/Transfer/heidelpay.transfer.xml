@@ -65,8 +65,8 @@
     </transfer>
 
     <transfer name="HeidelpayCustomerPurchase">
-        <property name="idOrder" type="int"/>
-        <property name="amount" type="string"/>
+        <property name="idOrder" type="string"/>
+        <property name="amount" type="float"/>
         <property name="currencyCode" type="string"/>
         <property name="secret" type="string"/>
     </transfer>

@@ -9,7 +9,6 @@ namespace SprykerEco\Client\Heidelpay\Sdk;
 
 interface HeidelpayApiAdapterInterface
 {
-
     /**
      * @param string $messageCode
      * @param string $locale
@@ -17,5 +16,4 @@ interface HeidelpayApiAdapterInterface
      * @return string
      */
     public function getTranslatedMessageByCode($messageCode, $locale);
-
 }

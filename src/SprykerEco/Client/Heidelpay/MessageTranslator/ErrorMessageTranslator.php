@@ -14,7 +14,6 @@ use SprykerEco\Client\Heidelpay\Sdk\HeidelpayApiAdapterInterface;
  */
 class ErrorMessageTranslator implements ErrorMessageTranslatorInterface
 {
-
     const HEIDELPAY_PAYMENT_FAILED_DEFAULT_ERROR_MESSAGE = 'page.checkout.heidelpay.payment.failed';
 
     /**
@@ -66,5 +65,4 @@ class ErrorMessageTranslator implements ErrorMessageTranslatorInterface
     {
         return static::HEIDELPAY_PAYMENT_FAILED_DEFAULT_ERROR_MESSAGE;
     }
-
 }

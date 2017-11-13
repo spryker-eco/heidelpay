@@ -11,7 +11,6 @@ use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface
 
 class ResponsePayloadToApiResponse implements ResponsePayloadToApiResponseInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface
      */
@@ -100,5 +99,4 @@ class ResponsePayloadToApiResponse implements ResponsePayloadToApiResponseInterf
     {
         return $this->utilEncoding->decodeJson($transactionPayload, true);
     }
-
 }

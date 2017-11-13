@@ -12,13 +12,12 @@ use Generated\Shared\Transfer\PaymentTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Yves\Heidelpay\Form\CreditCardSecureSubForm;
 use SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface;
 
 class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterface
 {
-
     const PAYMENT_OPTION_TRANSLATION_PREFIX = 'heidelpay.payment.credit_card.';
     /**
      * @var \SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface
@@ -73,7 +72,7 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
     {
         if ($quoteTransfer->getPayment() === null) {
             $creditCardPaymentTransfer = (new PaymentTransfer())
-                ->setPaymentMethod(HeidelpayConstants::PAYMENT_METHOD_CREDIT_CARD_SECURE);
+                ->setPaymentMethod(HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE);
 
             $quoteTransfer->setPayment($creditCardPaymentTransfer);
         }
@@ -157,5 +156,4 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
 
         return $paymentOptions;
     }
-
 }

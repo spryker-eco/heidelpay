@@ -16,7 +16,6 @@ use Spryker\Zed\Payment\Dependency\Plugin\Checkout\CheckoutPostCheckPluginInterf
  */
 class HeidelpayPostSavePlugin extends BaseAbstractPlugin implements CheckoutPostCheckPluginInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
@@ -27,5 +26,4 @@ class HeidelpayPostSavePlugin extends BaseAbstractPlugin implements CheckoutPost
     {
         $this->getFacade()->postSaveHook($quoteTransfer, $checkoutResponseTransfer);
     }
-
 }

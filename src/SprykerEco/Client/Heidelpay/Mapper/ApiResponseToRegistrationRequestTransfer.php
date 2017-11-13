@@ -13,7 +13,6 @@ use Heidelpay\PhpApi\Response;
 
 class ApiResponseToRegistrationRequestTransfer implements ApiResponseToRegistrationResponseTransferInterface
 {
-
     /**
      * @param \Heidelpay\PhpApi\Response $apiResponseObject
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
@@ -90,5 +89,4 @@ class ApiResponseToRegistrationRequestTransfer implements ApiResponseToRegistrat
 
         $registrationRequestTransfer->setCreditCardInfo($creditCardInfoTransfer);
     }
-
 }

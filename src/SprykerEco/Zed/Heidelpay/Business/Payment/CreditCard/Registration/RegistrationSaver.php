@@ -14,7 +14,6 @@ use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
 
 class RegistrationSaver implements RegistrationSaverInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface
      */
@@ -75,5 +74,4 @@ class RegistrationSaver implements RegistrationSaverInterface
 
         return $registrationSaveResponse;
     }
-
 }

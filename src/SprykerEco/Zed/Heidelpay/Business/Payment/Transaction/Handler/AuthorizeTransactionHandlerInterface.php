@@ -11,12 +11,10 @@ use Generated\Shared\Transfer\OrderTransfer;
 
 interface AuthorizeTransactionHandlerInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
      * @return void
      */
     public function authorize(OrderTransfer $orderTransfer);
-
 }

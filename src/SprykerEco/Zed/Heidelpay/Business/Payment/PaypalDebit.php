@@ -14,7 +14,6 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInter
 
 class PaypalDebit extends BaseHeidelpayPaymentMethod implements PaymentWithPostSaveOrderInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
@@ -90,5 +89,4 @@ class PaypalDebit extends BaseHeidelpayPaymentMethod implements PaymentWithPostS
 
         return sprintf($paymentFailedUrl, $errorCode);
     }
-
 }

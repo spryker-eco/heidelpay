@@ -21,7 +21,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class CreditCardController extends BaseHeidelpayController
 {
-
     const REQUEST_PARAM_REGISTRATION_ID = 'id_registration';
     const ERROR_CODE_REGISTRATION_NOT_FOUND = 'registration_not_found';
     const ERROR_CODE_QUOTE_EXPIRED = 'quote_expired';
@@ -29,7 +28,7 @@ class CreditCardController extends BaseHeidelpayController
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function registrationRequestAction(Request $request)
     {
@@ -166,7 +165,7 @@ class CreditCardController extends BaseHeidelpayController
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer $saveResponseTransfer
      *
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function redirectToRegistrationFailedAction(
         HeidelpayRegistrationSaveResponseTransfer $saveResponseTransfer
@@ -182,7 +181,7 @@ class CreditCardController extends BaseHeidelpayController
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
      *
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function getInvalidApiRequestActionUrl(
         HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
@@ -198,7 +197,7 @@ class CreditCardController extends BaseHeidelpayController
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer $saveResponseTransfer
      *
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function getRegistrationSuccessActionUrl(
         HeidelpayRegistrationSaveResponseTransfer $saveResponseTransfer
@@ -214,7 +213,7 @@ class CreditCardController extends BaseHeidelpayController
     /**
      * @param string $redirectUrl
      *
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function streamRedirectResponse($redirectUrl)
     {
@@ -224,5 +223,4 @@ class CreditCardController extends BaseHeidelpayController
 
         return $this->streamedResponse($callback)->send();
     }
-
 }

@@ -11,7 +11,6 @@ use Spryker\Zed\Kernel\Persistence\QueryContainer\QueryContainerInterface;
 
 interface HeidelpayQueryContainerInterface extends QueryContainerInterface
 {
-
     /**
      * @api
      *
@@ -76,5 +75,4 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistrationQuery
      */
     public function queryRegistrationByIdAndQuoteHash($idRegistration, $quoteHash);
-
 }

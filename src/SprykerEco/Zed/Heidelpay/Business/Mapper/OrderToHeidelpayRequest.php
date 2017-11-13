@@ -15,7 +15,6 @@ use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface;
 
 class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface
      */
@@ -79,7 +78,7 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
         $heidelpayRequestTransfer->setCustomerPurchase(
             (new HeidelpayCustomerPurchaseTransfer())
                 ->setAmount($this->getOrderGrandTotalInDecimal($orderTransfer))
-                ->setIdOrder($orderTransfer->getIdSalesOrder())
+                ->setIdOrder((string)$orderTransfer->getIdSalesOrder())
         );
 
         return $heidelpayRequestTransfer;
@@ -121,5 +120,4 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
 
         return $heidelpayRequestTransfer;
     }
-
 }

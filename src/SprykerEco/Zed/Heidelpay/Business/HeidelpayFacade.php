@@ -20,7 +20,6 @@ use Spryker\Zed\Kernel\Business\AbstractFacade;
  */
 class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
 {
-
     /**
      * {@inheritdoc}
      *
@@ -202,5 +201,4 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
                 $findRegistrationRequestTransfer->getQuote()
             );
     }
-
 }

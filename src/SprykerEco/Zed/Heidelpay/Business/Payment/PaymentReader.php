@@ -12,7 +12,6 @@ use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
 
 class PaymentReader implements PaymentReaderInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface
      */
@@ -54,5 +53,4 @@ class PaymentReader implements PaymentReaderInterface
 
         return $heidelpayPaymentEntity;
     }
-
 }

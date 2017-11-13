@@ -15,21 +15,10 @@ use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implements AdapterRequestFromOrderBuilderInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\Mapper\OrderToHeidelpayRequestInterface
      */
     protected $orderToHeidelpayMapper;
-
-    /**
-     * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface
-     */
-    protected $currencyFacade;
-
-    /**
-     * @var \SprykerEco\Zed\Heidelpay\HeidelpayConfig
-     */
-    protected $config;
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Mapper\OrderToHeidelpayRequestInterface $orderToHeidelpayMapper
@@ -41,13 +30,12 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
         HeidelpayToCurrencyInterface $currencyFacade,
         HeidelpayConfig $config
     ) {
+        parent::__construct($currencyFacade, $config);
         $this->orderToHeidelpayMapper = $orderToHeidelpayMapper;
-        $this->currencyFacade = $currencyFacade;
-        $this->config = $config;
     }
 
     /**
-     * @param \Generated\Shared\Transfer\OrderTransfer
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
@@ -67,7 +55,7 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
     }
 
     /**
-     * @param \Generated\Shared\Transfer\OrderTransfer
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
@@ -110,5 +98,4 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
 
         return $heidelpayRequestTransfer;
     }
-
 }

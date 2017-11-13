@@ -11,12 +11,10 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 interface AdapterRequestFromQuoteBuilderInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
     public function buildCreditCardRegistrationRequest(QuoteTransfer $quoteTransfer);
-
 }

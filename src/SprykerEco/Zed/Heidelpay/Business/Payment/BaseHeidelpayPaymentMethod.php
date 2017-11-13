@@ -14,7 +14,6 @@ use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class BaseHeidelpayPaymentMethod
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\HeidelpayConfig
      */
@@ -109,5 +108,4 @@ class BaseHeidelpayPaymentMethod
 
         return sprintf($paymentFailedUrl, $errorCode);
     }
-
 }

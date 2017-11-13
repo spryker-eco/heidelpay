@@ -8,11 +8,11 @@
 namespace SprykerEco\Zed\Heidelpay;
 
 use Spryker\Zed\Kernel\AbstractBundleConfig;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig as SharedHeidelpayConfig;
 use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 
-class HeidelpayConfig extends AbstractBundleConfig
+class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInterface
 {
-
     /**
      * @return string
      */
@@ -38,11 +38,11 @@ class HeidelpayConfig extends AbstractBundleConfig
     }
 
     /**
-     * @return string
+     * @return bool
      */
     public function getMerchantSandboxMode()
     {
-        return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_SANDBOX_REQUEST);
+        return (bool)$this->get(HeidelpayConstants::CONFIG_HEIDELPAY_SANDBOX_REQUEST);
     }
 
     /**
@@ -133,23 +133,22 @@ class HeidelpayConfig extends AbstractBundleConfig
     public function getMerchantTransactionChannelByPaymentType($paymentType)
     {
         switch ($paymentType) {
-            case HeidelpayConstants::PAYMENT_METHOD_SOFORT:
+            case SharedHeidelpayConfig::PAYMENT_METHOD_SOFORT:
                 return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_SOFORT);
 
-            case HeidelpayConstants::PAYMENT_METHOD_CREDIT_CARD_SECURE:
+            case SharedHeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE:
                 return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_CC_3D_SECURE);
 
-            case HeidelpayConstants::PAYMENT_METHOD_IDEAL:
+            case SharedHeidelpayConfig::PAYMENT_METHOD_IDEAL:
                 return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_IDEAL);
 
-            case HeidelpayConstants::PAYMENT_METHOD_PAYPAL_AUTHORIZE:
+            case SharedHeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE:
                 return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_PAYPAL);
 
-            case HeidelpayConstants::PAYMENT_METHOD_PAYPAL_DEBIT:
+            case SharedHeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT:
                 return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_PAYPAL);
         }
 
         return '';
     }
-
 }

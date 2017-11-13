@@ -13,7 +13,6 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInter
 
 class PaypalAuthorize extends BaseHeidelpayPaymentMethod implements PaymentWithPostSaveOrderInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
@@ -28,5 +27,4 @@ class PaypalAuthorize extends BaseHeidelpayPaymentMethod implements PaymentWithP
 
         $this->setExternalRedirect($redirectUrl, $checkoutResponseTransfer);
     }
-
 }

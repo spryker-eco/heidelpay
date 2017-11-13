@@ -9,7 +9,6 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment;
 
 interface PaymentWriterInterface
 {
-
     /**
      * @param string $paymentReference
      * @param int $idSalesOrder
@@ -17,5 +16,4 @@ interface PaymentWriterInterface
      * @return void
      */
     public function updatePaymentReferenceByIdSalesOrder($paymentReference, $idSalesOrder);
-
 }

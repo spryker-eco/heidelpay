@@ -9,17 +9,13 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction;
 
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\TransactionParserInterface;
 use SprykerEco\Zed\Heidelpay\Business\Order\OrderReaderInterface;
 use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
 
 class TransactionLogReader implements TransactionLogReaderInterface
 {
-
-    const TRANSACTION_TYPE_AUTHORIZE = HeidelpayConstants::TRANSACTION_TYPE_AUTHORIZE;
-    const TRANSACTION_TYPE_DEBIT = HeidelpayConstants::TRANSACTION_TYPE_DEBIT;
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface
      */
@@ -105,7 +101,7 @@ class TransactionLogReader implements TransactionLogReaderInterface
             ->queryContainer
             ->queryTransactionByIdSalesOrderAndType(
                 $idSalesOrder,
-                static::TRANSACTION_TYPE_AUTHORIZE
+                HeidelpayConfig::TRANSACTION_TYPE_AUTHORIZE
             )
             ->findOne();
 
@@ -123,7 +119,7 @@ class TransactionLogReader implements TransactionLogReaderInterface
             ->queryContainer
             ->queryTransactionByIdSalesOrderAndType(
                 $idSalesOrder,
-                static::TRANSACTION_TYPE_DEBIT
+                HeidelpayConfig::TRANSACTION_TYPE_DEBIT
             )
             ->findOne();
 
@@ -157,5 +153,4 @@ class TransactionLogReader implements TransactionLogReaderInterface
 
         return $transactionLogTransfer;
     }
-
 }

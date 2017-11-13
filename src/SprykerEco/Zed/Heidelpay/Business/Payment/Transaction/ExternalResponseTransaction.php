@@ -10,15 +10,12 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction;
 use Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Logger\TransactionLoggerInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface;
 
 class ExternalResponseTransaction implements ExternalResponseTransactionInterface
 {
-
-    const TRANSACTION_TYPE = HeidelpayConstants::TRANSACTION_TYPE_EXTERNAL_RESPONSE;
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Logger\TransactionLoggerInterface
      */
@@ -57,10 +54,9 @@ class ExternalResponseTransaction implements ExternalResponseTransactionInterfac
         HeidelpayResponseTransfer $externalResponseTransfer
     ) {
         $this->transactionLogger->logTransaction(
-            static::TRANSACTION_TYPE,
+            HeidelpayConfig::TRANSACTION_TYPE_EXTERNAL_RESPONSE,
             (new HeidelpayRequestTransfer()),
             $externalResponseTransfer
         );
     }
-
 }

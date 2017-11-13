@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
  */
 class BaseHeidelpayController extends AbstractController
 {
-
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
@@ -36,7 +35,7 @@ class BaseHeidelpayController extends AbstractController
     }
 
     /**
-     * @return \SprykerEco\Yves\Heidelpay\HeidelpayConfig
+     * @return \SprykerEco\Yves\Heidelpay\HeidelpayConfigInterface
      */
     protected function getConfig()
     {
@@ -57,5 +56,4 @@ class BaseHeidelpayController extends AbstractController
 
         return $streamedResponse;
     }
-
 }

@@ -12,7 +12,6 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 
 class HeidelpayConfig extends AbstractBundleConfig
 {
-
     /**
      * @return string
      */
@@ -20,5 +19,4 @@ class HeidelpayConfig extends AbstractBundleConfig
     {
         return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_APPLICATION_SECRET);
     }
-
 }

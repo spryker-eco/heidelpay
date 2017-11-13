@@ -14,7 +14,6 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\DebitNotSupp
 
 class DebitTransactionHandler implements DebitTransactionHandlerInterface
 {
-
     const ERROR_MESSAGE_DEBIT_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call debit transaction on payment method \'%s\' ' .
         'that does not support it';
@@ -102,5 +101,4 @@ class DebitTransactionHandler implements DebitTransactionHandlerInterface
     {
         return $orderTransfer->getHeidelpayPayment()->getPaymentMethod();
     }
-
 }

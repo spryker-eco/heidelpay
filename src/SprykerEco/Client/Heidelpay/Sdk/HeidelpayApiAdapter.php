@@ -7,14 +7,13 @@
 
 namespace SprykerEco\Client\Heidelpay\Sdk;
 
-use \Heidelpay\CustomerMessages\CustomerMessage;
+use Heidelpay\CustomerMessages\CustomerMessage;
 
 /**
  * @method \SprykerEco\Client\Heidelpay\HeidelpayFactory getFactory()
  */
 class HeidelpayApiAdapter implements HeidelpayApiAdapterInterface
 {
-
     /**
      * @param string $messageCode
      * @param string $locale
@@ -27,5 +26,4 @@ class HeidelpayApiAdapter implements HeidelpayApiAdapterInterface
 
         return $heidelpayMessage->getMessage($messageCode);
     }
-
 }

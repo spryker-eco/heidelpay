@@ -6,7 +6,7 @@
  */
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper;
 
-use \ArrayObject;
+use ArrayObject;
 use Generated\Shared\Transfer\HeidelpayBankCountryTransfer;
 use Generated\Shared\Transfer\HeidelpayBankTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseConfigTransfer;
@@ -19,7 +19,6 @@ use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface
 
 class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
 {
-
     const RESPONSE_PARAMETER_GROUP_PROCESSING = 'processing';
     const RESPONSE_PARAMETER_GROUP_ACCOUNT = 'account';
     const RESPONSE_PARAMETER_GROUP_ADDRESS = 'address';
@@ -59,7 +58,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
     {
         $responseTransfer->setIsPending($apiResponse->isPending())
             ->setIsSuccess($apiResponse->isSuccess())
-            ->setIdSalesOrder($apiResponse->getIdentification()->getTransactionId())
+            ->setIdSalesOrder((int)$apiResponse->getIdentification()->getTransactionId())
             ->setIsError($apiResponse->isError())
             ->setIdPaymentReference($apiResponse->getPaymentReferenceId())
             ->setProcessingCode($apiResponse->getProcessing()->code)
@@ -120,6 +119,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      */
     protected function mapBanks(ConfigParameterGroup $config, HeidelpayResponseConfigTransfer $configTransfer)
     {
+        /** @var string[] $banks */
         $banks = $config->getBrands();
 
         if (empty($banks)) {
@@ -144,6 +144,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      */
     protected function mapBankCountries(ConfigParameterGroup $config, HeidelpayResponseConfigTransfer $configTransfer)
     {
+        /** @var string[] $bankCountries */
         $bankCountries = $config->getBankCountry();
 
         if (empty($bankCountries)) {
@@ -212,11 +213,11 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
         HeidelpayResponseTransfer $responseTransfer
     ) {
         try {
+            /** @var string $paymentFormUrl */
             $paymentFormUrl = $apiResponse->getPaymentFormUrl();
             $responseTransfer->setPaymentFormUrl($paymentFormUrl);
         } catch (PaymentFormUrlException $exception) {
             $responseTransfer->setPaymentFormUrl(null);
         }
     }
-
 }

@@ -14,7 +14,6 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 interface HeidelpayFacadeInterface
 {
-
     /**
      * Specification:
      *  - Executes a post save hook for the following payment methods:
@@ -129,5 +128,4 @@ interface HeidelpayFacadeInterface
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer
      */
     public function getCreditCardPaymentOptions(QuoteTransfer $quoteTransfer);
-
 }

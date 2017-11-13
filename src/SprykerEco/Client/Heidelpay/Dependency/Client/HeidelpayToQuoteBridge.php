@@ -9,7 +9,6 @@ namespace SprykerEco\Client\Heidelpay\Dependency\Client;
 
 class HeidelpayToQuoteBridge implements HeidelpayToQuoteInterface
 {
-
     /**
      * @var \Spryker\Client\Quote\Session\QuoteSessionInterface
      */
@@ -30,5 +29,4 @@ class HeidelpayToQuoteBridge implements HeidelpayToQuoteInterface
     {
         return $this->quoteSession->getQuote();
     }
-
 }
