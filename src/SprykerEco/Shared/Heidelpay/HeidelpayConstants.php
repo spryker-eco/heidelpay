@@ -9,7 +9,6 @@ namespace SprykerEco\Shared\Heidelpay;
 
 interface HeidelpayConstants
 {
-
     const PROVIDER_NAME = 'heidelpay';
 
     const VENDOR_ROOT = 'VENDOR_ROOT';
@@ -63,4 +62,5 @@ interface HeidelpayConstants
     const CONFIG_YVES_CHECKOUT_PAYMENT_FRAME_CUSTOM_CSS_URL = 'CONFIG_YVES_CHECKOUT_PAYMENT_FRAME_CUSTOM_CSS_URL';
     const CONFIG_YVES_CHECKOUT_PAYMENT_FRAME_PREVENT_ASYNC_REDIRECT = 'CONFIG_YVES_CHECKOUT_PAYMENT_FRAME_PREVENT_ASYNC_REDIRECT';
 
+    const CONFIG_ENCRYPTION_KEY = 'HeidelpayConstants:CONFIG_ENCRYPTION_KEY';
 }

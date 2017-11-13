@@ -10,6 +10,7 @@ namespace SprykerEco\Zed\Heidelpay\Business;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\AdapterFactory;
+use SprykerEco\Zed\Heidelpay\Business\Encrypter\AesEncrypter;
 use SprykerEco\Zed\Heidelpay\Business\Hook\PostSaveHook;
 use SprykerEco\Zed\Heidelpay\Business\Mapper\OrderToHeidelpayRequest;
 use SprykerEco\Zed\Heidelpay\Business\Mapper\QuoteToHeidelpayRequest;
@@ -113,7 +114,8 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     public function createTransactionLogger()
     {
         return new TransactionLogger(
-            $this->getUtilEncodingService()
+            $this->getUtilEncodingService(),
+            $this->createAesEncrypter()
         );
     }
 
@@ -454,6 +456,16 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     {
         return new ExternalResponseTransaction(
             $this->createTransactionLogger()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Encrypter\EncrypterInterface
+     */
+    protected function createAesEncrypter()
+    {
+        return new AesEncrypter(
+            $this->getConfig()
         );
     }
 

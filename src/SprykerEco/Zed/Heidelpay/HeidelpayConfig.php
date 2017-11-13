@@ -118,6 +118,14 @@ class HeidelpayConfig extends AbstractBundleConfig
     }
 
     /**
+     * @return string
+     */
+    public function getEncryptionKey()
+    {
+        return $this->get(HeidelpayConstants::CONFIG_ENCRYPTION_KEY);
+    }
+
+    /**
      * @param string $paymentType
      *
      * @return string
