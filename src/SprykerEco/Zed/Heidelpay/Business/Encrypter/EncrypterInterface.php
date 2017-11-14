@@ -9,7 +9,6 @@ namespace SprykerEco\Zed\Heidelpay\Business\Encrypter;
 
 interface EncrypterInterface
 {
-
     /**
      * @param string $data
      *

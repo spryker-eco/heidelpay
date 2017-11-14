@@ -61,7 +61,7 @@ class TransactionLogger implements TransactionLoggerInterface
     }
 
     /**
-     * @param SpyPaymentHeidelpayTransactionLog $transactionLog
+     * @param \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog $transactionLog
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $requestTransfer
      * @param \Generated\Shared\Transfer\HeidelpayResponseTransfer $responseTransfer
      *

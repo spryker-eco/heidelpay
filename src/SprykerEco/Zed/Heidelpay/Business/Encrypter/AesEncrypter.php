@@ -11,7 +11,6 @@ use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class AesEncrypter implements EncrypterInterface
 {
-
     const CYPHER_METHOD = 'aes-256-cbc';
     const INIT_VECTOR_SEPARATOR = ':::';
 
