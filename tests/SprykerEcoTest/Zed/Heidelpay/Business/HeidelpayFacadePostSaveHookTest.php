@@ -45,6 +45,9 @@ class HeidelpayFacadePostSaveHookTest extends Test
 
         $this->heidelpayFacade = (new HeidelpayFacade())
             ->setFactory(new HeidelpayBusinessFactory());
+
+        $this->getModule('\\' . ConfigHelper::class)
+            ->setConfig(HeidelpayConstants::CONFIG_ENCRYPTION_KEY, 'encryption_key');
     }
 
     /**
@@ -87,8 +90,7 @@ class HeidelpayFacadePostSaveHookTest extends Test
         CheckoutResponseTransfer $checkoutResponseTransfer
     ) {
         $this->getModule('\\' . ConfigHelper::class)
-            ->setConfig(HeidelpayConstants::CONFIG_YVES_CHECKOUT_IDEAL_AUTHORIZE_URL, '')
-            ->setConfig(HeidelpayConstants::CONFIG_ENCRYPTION_KEY, 'encryption_key');
+            ->setConfig(HeidelpayConstants::CONFIG_YVES_CHECKOUT_IDEAL_AUTHORIZE_URL, '');
 
         $this->heidelpayFacade->postSaveHook(
             $quoteTransfer,

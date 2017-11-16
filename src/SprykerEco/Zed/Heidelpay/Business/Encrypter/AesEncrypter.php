@@ -52,14 +52,19 @@ class AesEncrypter implements EncrypterInterface
     /**
      * @param string $data
      *
-     * @return string
+     * @return string|null
      */
     public function decryptData($data)
     {
         $encryptionKey = $this->config
             ->getEncryptionKey();
 
-        list($encryptedData, $initVector) = explode(static::INIT_VECTOR_SEPARATOR, $data);
+        $dataChunks = explode(static::INIT_VECTOR_SEPARATOR, $data);
+        if (count($dataChunks) !== 2) {
+            return null;
+        }
+
+        list($encryptedData, $initVector) = $dataChunks;
 
         return openssl_decrypt(
             $encryptedData,
