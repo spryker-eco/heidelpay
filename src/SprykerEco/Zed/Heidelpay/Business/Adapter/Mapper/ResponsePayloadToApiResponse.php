@@ -97,6 +97,6 @@ class ResponsePayloadToApiResponse implements ResponsePayloadToApiResponseInterf
      */
     protected function getTransactionPayloadArray($transactionPayload)
     {
-        return $this->utilEncoding->decodeJson($transactionPayload, true);
+        return (array)$this->utilEncoding->decodeJson($transactionPayload, true);
     }
 }

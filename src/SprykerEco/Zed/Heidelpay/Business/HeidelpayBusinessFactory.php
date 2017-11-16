@@ -168,7 +168,8 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
         return new TransactionLogReader(
             $this->getQueryContainer(),
             $this->createAdapterFactory()->createTransactionParser(),
-            $this->createOrderReader()
+            $this->createOrderReader(),
+            $this->createAesEncrypter()
         );
     }
 

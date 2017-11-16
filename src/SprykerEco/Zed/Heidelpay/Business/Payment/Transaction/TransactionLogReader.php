@@ -11,6 +11,7 @@ use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\TransactionParserInterface;
+use SprykerEco\Zed\Heidelpay\Business\Encrypter\EncrypterInterface;
 use SprykerEco\Zed\Heidelpay\Business\Order\OrderReaderInterface;
 use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
 
@@ -32,18 +33,26 @@ class TransactionLogReader implements TransactionLogReaderInterface
     protected $orderReader;
 
     /**
+     * @var \SprykerEco\Zed\Heidelpay\Business\Encrypter\EncrypterInterface
+     */
+    protected $encrypter;
+
+    /**
      * @param \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface $queryContainer
      * @param \SprykerEco\Zed\Heidelpay\Business\Adapter\TransactionParserInterface $transactionAdapter
      * @param \SprykerEco\Zed\Heidelpay\Business\Order\OrderReaderInterface $orderReader
+     * @param \SprykerEco\Zed\Heidelpay\Business\Encrypter\EncrypterInterface $encrypter
      */
     public function __construct(
         HeidelpayQueryContainerInterface $queryContainer,
         TransactionParserInterface $transactionAdapter,
-        OrderReaderInterface $orderReader
+        OrderReaderInterface $orderReader,
+        EncrypterInterface $encrypter
     ) {
         $this->queryContainer = $queryContainer;
         $this->transactionAdapter = $transactionAdapter;
         $this->orderReader = $orderReader;
+        $this->encrypter = $encrypter;
     }
 
     /**
@@ -133,12 +142,13 @@ class TransactionLogReader implements TransactionLogReaderInterface
      */
     protected function buildTransactionTransfer(SpyPaymentHeidelpayTransactionLog $transactionLogEntry)
     {
-        $transactionLogTransfer = new HeidelpayTransactionLogTransfer();
-        $transactionLogTransfer->fromArray($transactionLogEntry->toArray(), true);
+        $responsePayload = $this->prepareResponsePayload($transactionLogEntry);
 
-        $transactionLogTransfer = $this->hydrateHeidelpayPayloadTransfer($transactionLogTransfer);
+        $transactionLogTransfer = (new HeidelpayTransactionLogTransfer())
+            ->fromArray($transactionLogEntry->toArray(), true)
+            ->setResponsePayload($responsePayload);
 
-        return $transactionLogTransfer;
+        return $this->hydrateHeidelpayPayloadTransfer($transactionLogTransfer);
     }
 
     /**
@@ -152,5 +162,21 @@ class TransactionLogReader implements TransactionLogReaderInterface
         $transactionLogTransfer->setHeidelpayResponse($payloadTransfer);
 
         return $transactionLogTransfer;
+    }
+
+    /**
+     * @param \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog $transactionLogEntry
+     *
+     * @return string
+     */
+    protected function prepareResponsePayload(SpyPaymentHeidelpayTransactionLog $transactionLogEntry)
+    {
+        $responsePayload = $transactionLogEntry->getResponsePayload();
+        if ($responsePayload !== null) {
+            $responsePayload = $this->encrypter
+                ->decryptData(base64_decode($responsePayload));
+        }
+
+        return $responsePayload;
     }
 }
