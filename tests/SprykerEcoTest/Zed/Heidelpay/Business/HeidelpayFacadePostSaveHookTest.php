@@ -7,9 +7,12 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
+use Codeception\TestCase\Test;
 use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
+use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
+use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulCreditCardSecureTransaction;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulIdealAuthorizeTransaction;
@@ -26,8 +29,24 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
  * @group Business
  * @group HeidelpayFacadeCaptureTest
  */
-class HeidelpayFacadePostSaveHookTest extends AbstractFacadeTest
+class HeidelpayFacadePostSaveHookTest extends Test
 {
+    /**
+     * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade
+     */
+    protected $heidelpayFacade;
+
+    /**
+     * @return void
+     */
+    protected function _before()
+    {
+        parent::_before();
+
+        $this->heidelpayFacade = (new HeidelpayFacade())
+            ->setFactory(new HeidelpayBusinessFactory());
+    }
+
     /**
      * @dataProvider _createOrderWithSofortAuthorizeTransaction
      * @dataProvider _createOrderWithPaypalDebitTransaction
@@ -67,7 +86,9 @@ class HeidelpayFacadePostSaveHookTest extends AbstractFacadeTest
         QuoteTransfer $quoteTransfer,
         CheckoutResponseTransfer $checkoutResponseTransfer
     ) {
-        $this->getModule('\\' . ConfigHelper::class)->setConfig(HeidelpayConstants::CONFIG_YVES_CHECKOUT_IDEAL_AUTHORIZE_URL, '');
+        $this->getModule('\\' . ConfigHelper::class)
+            ->setConfig(HeidelpayConstants::CONFIG_YVES_CHECKOUT_IDEAL_AUTHORIZE_URL, '')
+            ->setConfig(HeidelpayConstants::CONFIG_ENCRYPTION_KEY, 'encryption_key');
 
         $this->heidelpayFacade->postSaveHook(
             $quoteTransfer,
