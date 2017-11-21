@@ -27,7 +27,7 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
  * @group Zed
  * @group Heidelpay
  * @group Business
- * @group HeidelpayFacadeCaptureTest
+ * @group HeidelpayFacadePostSaveHookTest
  */
 class HeidelpayFacadePostSaveHookTest extends Test
 {
@@ -37,6 +37,11 @@ class HeidelpayFacadePostSaveHookTest extends Test
     protected $heidelpayFacade;
 
     /**
+     * @var
+     */
+    protected $heidelpayFactory;
+
+    /**
      * @return void
      */
     protected function _before()
@@ -44,7 +49,7 @@ class HeidelpayFacadePostSaveHookTest extends Test
         parent::_before();
 
         $this->heidelpayFacade = (new HeidelpayFacade())
-            ->setFactory(new HeidelpayBusinessFactory());
+            ->setFactory($this->createHeidelpayFactory());
 
         $this->getModule('\\' . ConfigHelper::class)
             ->setConfig(HeidelpayConstants::CONFIG_ENCRYPTION_KEY, 'encryption_key');
@@ -112,7 +117,7 @@ class HeidelpayFacadePostSaveHookTest extends Test
      */
     public function _createOrderWithPaypalDebitTransaction()
     {
-        $orderWithPaypalAuthorize = new OrderWithSuccessfulPaypalDebitTransaction();
+        $orderWithPaypalAuthorize = new OrderWithSuccessfulPaypalDebitTransaction($this->createHeidelpayFactory());
 
         return [$orderWithPaypalAuthorize->createOrderWithPaypalDebitTransaction()];
     }
@@ -122,7 +127,7 @@ class HeidelpayFacadePostSaveHookTest extends Test
      */
     public function _createOrderWithIdealAuthorizeTransaction()
     {
-        $orderWithPaypalAuthorize = new OrderWithSuccessfulIdealAuthorizeTransaction();
+        $orderWithPaypalAuthorize = new OrderWithSuccessfulIdealAuthorizeTransaction($this->createHeidelpayFactory());
 
         return [$orderWithPaypalAuthorize->createOrderWithIdealAuthorizeTransaction()];
     }
@@ -132,7 +137,7 @@ class HeidelpayFacadePostSaveHookTest extends Test
      */
     public function _createOrderWithSofortAuthorizeTransaction()
     {
-        $orderWithPaypalAuthorize = new OrderWithSuccessfulSofortAuthorizeTransaction();
+        $orderWithPaypalAuthorize = new OrderWithSuccessfulSofortAuthorizeTransaction($this->createHeidelpayFactory());
 
         return [$orderWithPaypalAuthorize->createOrderWithSofortAuthorizeTransaction()];
     }
@@ -142,7 +147,7 @@ class HeidelpayFacadePostSaveHookTest extends Test
      */
     public function _createOrderWithPaypalAuthorizeTransaction()
     {
-        $orderWithPaypalAuthorize = new OrderWithSuccessfulPaypalAuthorizeTransaction();
+        $orderWithPaypalAuthorize = new OrderWithSuccessfulPaypalAuthorizeTransaction($this->createHeidelpayFactory());
 
         return [$orderWithPaypalAuthorize->createOrderWithPaypalAuthorizeTransaction()];
     }
@@ -152,8 +157,17 @@ class HeidelpayFacadePostSaveHookTest extends Test
      */
     public function _createOrderWithCreditCardSecureTransaction()
     {
-        $orderWithPaypalAuthorize = new OrderWithSuccessfulCreditCardSecureTransaction();
+        $orderWithPaypalAuthorize = new OrderWithSuccessfulCreditCardSecureTransaction($this->createHeidelpayFactory());
 
         return [$orderWithPaypalAuthorize->createOrderWithCreditCardSecureTransaction()];
+    }
+
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
+     */
+    protected function createHeidelpayFactory()
+    {
+        return new HeidelpayBusinessFactory();
     }
 }

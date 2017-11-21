@@ -13,6 +13,7 @@ use Orm\Zed\Oms\Persistence\SpyOmsOrderProcess;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use Orm\Zed\Sales\Persistence\SpySalesOrderAddress;
 use Orm\Zed\Sales\Persistence\SpySalesOrderItem;
+use Orm\Zed\Sales\Persistence\SpySalesOrderTotals;
 
 trait NewOrderWithOneItemTrait
 {
@@ -47,7 +48,9 @@ trait NewOrderWithOneItemTrait
             ->setOrderReference('reference-' . $customer->getEmail());
         $orderEntity->save();
 
-        $this->createOrderItemEntity($orderEntity->getIdSalesOrder());
+        $orderItemEntity = $this->createOrderItemEntity($orderEntity->getIdSalesOrder());
+
+        $this->createTotalsEntity($orderEntity, $orderItemEntity);
 
         return $orderEntity;
     }
@@ -70,6 +73,10 @@ trait NewOrderWithOneItemTrait
             ->setName('test product')
             ->setSku('1324354657687980')
             ->setGrossPrice(1000)
+            ->setPrice(1000)
+            ->setNetPrice(1000)
+            ->setPriceToPayAggregation(1000)
+            ->setRefundableAmount(1000)
             ->setQuantity(1);
         $orderItemEntity->save();
 
@@ -122,5 +129,17 @@ trait NewOrderWithOneItemTrait
         }
 
         return $this->uniqueOmsProcess;
+    }
+
+    /**
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem $orderItemEntity
+     */
+    protected function createTotalsEntity($orderEntity, $orderItemEntity)
+    {
+        $totals = new SpySalesOrderTotals();
+        $totals->setFkSalesOrder($orderEntity->getIdSalesOrder());
+        $totals->setGrandTotal($orderItemEntity->getGrossPrice());
+        $totals->save();
     }
 }

@@ -9,11 +9,16 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Transaction;
 
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
+use PDO;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
+use SprykerEco\Zed\Heidelpay\Business\Encrypter\AesEncrypter;
+use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
+use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Encoder\EncoderTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
 
 trait AuthorizeTransactionTrait
 {
+    use EncoderTrait;
     /**
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
      *
@@ -29,14 +34,16 @@ trait AuthorizeTransactionTrait
             ->setResponseCode('ACK')
             ->setRedirectUrl(HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL)
             ->setRequestPayload('{}')
-            ->setResponsePayload(
-                '{
-                    "processing": {"result": "ACK"}, 
-                    "payment": {"code": "CC.PA"}, 
-                    "frontend": {"payment_frame_url": "' . HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"} 
-                }'
+            ->setResponsePayload($this->encryptData(
+                    '{
+                        "processing": {"result": "ACK"}, 
+                        "payment": {"code": "CC.PA"}, 
+                        "frontend": {"payment_frame_url": "' . HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"} 
+                    }'
+                )
             );
 
         $authorizeTransaction->save();
     }
+
 }

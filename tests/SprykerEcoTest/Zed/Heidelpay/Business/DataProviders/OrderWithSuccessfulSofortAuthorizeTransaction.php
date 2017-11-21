@@ -15,7 +15,9 @@ use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\SaveOrderTransfer;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
+use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerTrait;
+use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Encoder\EncoderTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\NewOrderWithOneItemTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Transaction\AuthorizeTransactionTrait;
@@ -23,6 +25,19 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Transaction\AuthorizeTra
 class OrderWithSuccessfulSofortAuthorizeTransaction
 {
     use CustomerTrait, OrderAddressTrait, NewOrderWithOneItemTrait, AuthorizeTransactionTrait;
+
+    /**
+     * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
+     */
+    protected $factory;
+
+    /**
+     * @param \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory $factory
+     */
+    public function __construct(HeidelpayBusinessFactory $factory)
+    {
+        $this->factory = $factory;
+    }
 
     /**
      * @return array
