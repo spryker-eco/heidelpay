@@ -13,11 +13,11 @@ use Generated\Shared\Transfer\PaymentTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\FailedSofortPaymentExternalResponseWhithIncorrectHashBuilder;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\FailedSofortPaymentExternalResponseWhithFailedProcessingResultBuilder;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\FailedSofortPaymentExternalResponseWhithIncorrectTransactionIdBuilder;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ResponseBuilder;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\SuccessSofortPaymentExternalResponseBuilder;
+use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\FailedSofortPaymentExternalResponseWhithIncorrectHashBuilder;
+use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\FailedSofortPaymentExternalResponseWhithFailedProcessingResultBuilder;
+use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\FailedSofortPaymentExternalResponseWhithIncorrectTransactionIdBuilder;
+use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\ExternalResponseBuilder;
+use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\SuccessSofortPaymentExternalResponseBuilder;
 use SprykerTest\Shared\Testify\Helper\ConfigHelper;
 
 /**
@@ -61,7 +61,7 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends Test
     /**
      * @return void
      */
-    public function xtestProcessExternalPaymentSuccessSofortPaymentResponse()
+    public function testProcessExternalPaymentSuccessSofortPaymentResponse()
     {
         $heidelpayResponse = $this->_createSuccessSofortPaymentExternalResponse();
 
@@ -86,7 +86,7 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends Test
     /**
      * @return void
      */
-    public function xtestProcessExternalPaymentFailedSofortResponseWhichUnsuccessful()
+    public function testProcessExternalPaymentFailedSofortResponseWhichUnsuccessful()
     {
         $heidelpayResponse = $this->_createFailedSofortPaymentExternalResponseThatIsUnsuccessful();
 
@@ -112,7 +112,7 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends Test
     /**
      * @return void
      */
-    public function xtestProcessExternalPaymentFailedSofortResponseWhithIncorrectHash()
+    public function testProcessExternalPaymentFailedSofortResponseWhithIncorrectHash()
     {
         $heidelpayResponse = $this->_createFailedSofortPaymentExternalResponseWhithIncorrectHash();
 

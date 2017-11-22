@@ -35,7 +35,7 @@ class PaymentBuilder
     /**
      * @param string $paymentMethod
      *
-     * @return array
+     * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
      */
     public function createPayment(string $paymentMethod)
     {
@@ -56,7 +56,7 @@ class PaymentBuilder
 
 
 
-        return [$orderEntity];
+        return $orderEntity;
     }
 
 }

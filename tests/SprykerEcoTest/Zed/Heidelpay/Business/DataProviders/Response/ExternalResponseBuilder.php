@@ -16,7 +16,7 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\Action\HeidelpayResponseTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentHeidelpayTrait;
 
-class ResponseBuilder
+class ExternalResponseBuilder
 {
     const EMAIL = 'email';
     const RESPONSE_URL = 'responseUrl';

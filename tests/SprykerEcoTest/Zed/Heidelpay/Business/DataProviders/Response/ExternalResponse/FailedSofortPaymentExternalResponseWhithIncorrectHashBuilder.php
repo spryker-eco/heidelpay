@@ -5,10 +5,12 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response;
+namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse;
 
 
-class FailedSofortPaymentExternalResponseWhithIncorrectHashBuilder extends ResponseBuilder
+use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponseBuilder;
+
+class FailedSofortPaymentExternalResponseWhithIncorrectHashBuilder extends ExternalResponseBuilder
 {
     /**
      * @param $identificationTransactionId
