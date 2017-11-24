@@ -9,6 +9,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\Api\Adapter\Http;
 
 class ReAuthorizationAdapterMock extends AbstractAdapterMock
 {
+
     /**
      * @return array
      */
@@ -98,4 +99,5 @@ class ReAuthorizationAdapterMock extends AbstractAdapterMock
             'PRESENTATION_AMOUNT=20000.00' . '&' .
             'ADDRESS_COUNTRY=DE\r\n';
     }
+
 }

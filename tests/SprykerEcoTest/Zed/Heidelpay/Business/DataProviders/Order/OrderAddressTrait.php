@@ -12,6 +12,7 @@ use Orm\Zed\Sales\Persistence\SpySalesOrderAddress;
 
 trait OrderAddressTrait
 {
+
     /**
      * @return \Orm\Zed\Sales\Persistence\SpySalesOrderAddress
      */
@@ -41,4 +42,5 @@ trait OrderAddressTrait
 
         return $billingAddress;
     }
+
 }

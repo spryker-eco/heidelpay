@@ -31,6 +31,7 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
  */
 class HeidelpayFacadePostSaveHookTest extends Test
 {
+
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade
      */
@@ -56,11 +57,6 @@ class HeidelpayFacadePostSaveHookTest extends Test
     }
 
     /**
-     * @dataProvider _createOrderWithSofortAuthorizeTransaction
-     * @dataProvider _createOrderWithPaypalDebitTransaction
-     * @dataProvider _createOrderWithPaypalAuthorizeTransaction
-     * @dataProvider _createOrderWithCreditCardSecureTransaction
-     *
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
      *
@@ -83,8 +79,6 @@ class HeidelpayFacadePostSaveHookTest extends Test
     }
 
     /**
-     * @dataProvider _createOrderWithIdealAuthorizeTransaction
-     *
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
      *
@@ -162,7 +156,6 @@ class HeidelpayFacadePostSaveHookTest extends Test
         return [$orderWithPaypalAuthorize->createOrderWithCreditCardSecureTransaction()];
     }
 
-
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
      */
@@ -170,4 +163,5 @@ class HeidelpayFacadePostSaveHookTest extends Test
     {
         return new HeidelpayBusinessFactory();
     }
+
 }

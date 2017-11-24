@@ -9,6 +9,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\Api\Adapter\Http;
 
 abstract class AbstractAdapterMock
 {
+
     /**
      * @var bool
      */
@@ -76,4 +77,5 @@ abstract class AbstractAdapterMock
      * @return array
      */
     abstract public function getFailureResponse();
+
 }

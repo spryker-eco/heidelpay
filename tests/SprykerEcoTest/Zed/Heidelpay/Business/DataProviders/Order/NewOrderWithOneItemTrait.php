@@ -17,6 +17,7 @@ use Orm\Zed\Sales\Persistence\SpySalesOrderTotals;
 
 trait NewOrderWithOneItemTrait
 {
+
     /**
      * @var string
      */
@@ -39,6 +40,7 @@ trait NewOrderWithOneItemTrait
         SpySalesOrderAddress $billingAddress,
         SpySalesOrderAddress $shippingAddress
     ) {
+
         $orderEntity = (new SpySalesOrder())
             ->setEmail($customer->getEmail())
             ->setIsTest(true)
@@ -47,7 +49,6 @@ trait NewOrderWithOneItemTrait
             ->setCustomer($customer)
             ->setOrderReference('reference-' . $customer->getEmail());
         $orderEntity->save();
-
         $orderItemEntity = $this->createOrderItemEntity($orderEntity->getIdSalesOrder());
 
         $this->createTotalsEntity($orderEntity, $orderItemEntity);
@@ -134,6 +135,8 @@ trait NewOrderWithOneItemTrait
     /**
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem $orderItemEntity
+     *
+     * @return void
      */
     protected function createTotalsEntity($orderEntity, $orderItemEntity)
     {
@@ -142,4 +145,5 @@ trait NewOrderWithOneItemTrait
         $totals->setGrandTotal($orderItemEntity->getGrossPrice());
         $totals->save();
     }
+
 }

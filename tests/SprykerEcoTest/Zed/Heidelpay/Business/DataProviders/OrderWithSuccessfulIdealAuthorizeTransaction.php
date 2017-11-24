@@ -23,6 +23,7 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Transaction\AuthorizeTra
 
 class OrderWithSuccessfulIdealAuthorizeTransaction
 {
+
     use CustomerTrait, OrderAddressTrait, NewOrderWithOneItemTrait, AuthorizeTransactionTrait;
 
     /**
@@ -126,4 +127,5 @@ class OrderWithSuccessfulIdealAuthorizeTransaction
 
         return $checkoutResponseTransfer;
     }
+
 }

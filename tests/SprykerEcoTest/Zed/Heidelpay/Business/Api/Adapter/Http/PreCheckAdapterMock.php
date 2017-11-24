@@ -9,6 +9,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\Api\Adapter\Http;
 
 class PreCheckAdapterMock extends AbstractAdapterMock
 {
+
     /**
      * @return array
      */
@@ -112,4 +113,5 @@ class PreCheckAdapterMock extends AbstractAdapterMock
             'NAME_SEX=M' . '&' .
             'ADDRESS_ZIP=10623\r\n';
     }
+
 }

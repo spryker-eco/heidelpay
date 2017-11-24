@@ -26,9 +26,11 @@ use Codeception\Actor;
  */
 class HeidelpayZedTester extends Actor
 {
+
     use _generated\HeidelpayZedTesterActions;
 
    /**
     * Define custom actions here
     */
+
 }

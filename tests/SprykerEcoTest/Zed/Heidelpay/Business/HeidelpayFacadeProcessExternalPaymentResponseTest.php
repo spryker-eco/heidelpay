@@ -13,10 +13,9 @@ use Generated\Shared\Transfer\PaymentTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\FailedSofortPaymentExternalResponseWhithIncorrectHashBuilder;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\FailedSofortPaymentExternalResponseWhithFailedProcessingResultBuilder;
+use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\FailedSofortPaymentExternalResponseWhithIncorrectHashBuilder;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\FailedSofortPaymentExternalResponseWhithIncorrectTransactionIdBuilder;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\ExternalResponseBuilder;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\SuccessSofortPaymentExternalResponseBuilder;
 use SprykerTest\Shared\Testify\Helper\ConfigHelper;
 
@@ -30,6 +29,7 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
  */
 class HeidelpayFacadeProcessExternalPaymentResponseTest extends Test
 {
+
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade
      */
@@ -54,9 +54,7 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends Test
 
         $this->heidelpayFacade = (new HeidelpayFacade())
             ->setFactory($this->createHeidelpayFactory());
-
     }
-
 
     /**
      * @return void
@@ -159,7 +157,7 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends Test
         $orderBuilder = new FailedSofortPaymentExternalResponseWhithIncorrectTransactionIdBuilder($this->createHeidelpayFactory());
         $heidelpayResponse = $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_SOFORT);
         return $heidelpayResponse;
-    }    
+    }
 
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory

@@ -10,13 +10,12 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Transaction;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
-use SprykerEco\Zed\Heidelpay\Business\Encrypter\AesEncrypter;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Encoder\EncoderTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
 
 trait DebitTransactionTrait
 {
+
     use EncoderTrait;
     /**
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity

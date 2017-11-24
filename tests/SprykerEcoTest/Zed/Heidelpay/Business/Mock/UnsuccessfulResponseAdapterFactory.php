@@ -7,13 +7,15 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\Mock;
 
-
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\AdapterFactory;
+use SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods\UnsuccessfulCreditCardCapturePaymentMock;
+use SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods\UnsuccessfulPaypalDebitPaymentMock;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods\UnsuccessfulSofortPaymentMock;
 
 class UnsuccessfulResponseAdapterFactory extends AdapterFactory
 {
+
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface[]
      */
@@ -21,6 +23,26 @@ class UnsuccessfulResponseAdapterFactory extends AdapterFactory
     {
         return [
             HeidelpayConfig::PAYMENT_METHOD_SOFORT => $this->createSofortPaymentMethodAdapter(),
+        ];
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface[]
+     */
+    public function getDebitPaymentMethodAdapterCollection()
+    {
+        return [
+            HeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT => $this->createPaypalPaymentMethodAdapter(),
+        ];
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface[]
+     */
+    public function getCapturePaymentMethodAdapterCollection()
+    {
+        return [
+            HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE => $this->createCreditCardPaymentMethodAdapter(),
         ];
     }
 
@@ -35,4 +57,29 @@ class UnsuccessfulResponseAdapterFactory extends AdapterFactory
             $this->getHeidelpayConfig()
         );
     }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\PaypalPaymentInterface
+     */
+    public function createPaypalPaymentMethodAdapter()
+    {
+        return new UnsuccessfulPaypalDebitPaymentMock(
+            $this->createRequestToHeidelpayMapper(),
+            $this->createResponseFromHeidelpayMapper(),
+            $this->getHeidelpayConfig()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface
+     */
+    public function createCreditCardPaymentMethodAdapter()
+    {
+        return new UnsuccessfulCreditCardCapturePaymentMock(
+            $this->createRequestToHeidelpayMapper(),
+            $this->createResponseFromHeidelpayMapper(),
+            $this->getHeidelpayConfig()
+        );
+    }
+
 }

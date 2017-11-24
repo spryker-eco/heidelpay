@@ -7,18 +7,20 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse;
 
-
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponseBuilder;
 
 class FailedSofortPaymentExternalResponseWhithIncorrectHashBuilder extends ExternalResponseBuilder
 {
+
     /**
      * @param $identificationTransactionId
      * @param $secret
+     *
      * @return string
      */
     protected function getCriterionSecret($identificationTransactionId, $secret)
     {
         return 'failed-secret-value';
     }
+
 }

@@ -7,11 +7,11 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse;
 
-
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponseBuilder;
 
 class FailedSofortPaymentExternalResponseWhithFailedProcessingResultBuilder extends ExternalResponseBuilder
 {
+
     /**
      * @return string
      */
@@ -19,4 +19,5 @@ class FailedSofortPaymentExternalResponseWhithFailedProcessingResultBuilder exte
     {
         return null;
     }
+
 }

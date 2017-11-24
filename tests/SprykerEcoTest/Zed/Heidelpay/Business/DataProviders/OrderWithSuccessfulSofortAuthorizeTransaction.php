@@ -17,13 +17,13 @@ use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerTrait;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Encoder\EncoderTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\NewOrderWithOneItemTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Transaction\AuthorizeTransactionTrait;
 
 class OrderWithSuccessfulSofortAuthorizeTransaction
 {
+
     use CustomerTrait, OrderAddressTrait, NewOrderWithOneItemTrait, AuthorizeTransactionTrait;
 
     /**
@@ -127,4 +127,5 @@ class OrderWithSuccessfulSofortAuthorizeTransaction
 
         return $checkoutResponseTransfer;
     }
+
 }

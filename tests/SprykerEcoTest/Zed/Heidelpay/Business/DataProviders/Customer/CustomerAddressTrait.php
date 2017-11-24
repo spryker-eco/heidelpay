@@ -12,6 +12,7 @@ use Orm\Zed\Customer\Persistence\SpyCustomerAddress;
 
 trait CustomerAddressTrait
 {
+
     /**
      * @return \Orm\Zed\Customer\Persistence\SpyCustomerAddress
      */
@@ -41,4 +42,5 @@ trait CustomerAddressTrait
 
         return $customerAddress;
     }
+
 }

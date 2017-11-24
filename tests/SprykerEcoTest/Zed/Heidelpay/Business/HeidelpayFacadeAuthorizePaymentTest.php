@@ -9,18 +9,19 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
 use Codeception\TestCase\Test;
 
-use Generated\Shared\Transfer\HeidelpayResponseTransfer;
-
 use Generated\Shared\Transfer\PaymentTransfer;
+use Propel\Runtime\Propel;
 use Spryker\Zed\Sales\Business\SalesFacade;
 use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesBridge;
+use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentHeidelpayTransferBuilderTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
 
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\SuccessfulResponseHeidelpayBusinessFactory;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusinessFactory;
+use SprykerEcoTest\Zed\Heidelpay\Business\Test\PaymentResponseTestTrait;
 use SprykerTest\Shared\Testify\Helper\ConfigHelper;
 
 /**
@@ -34,6 +35,8 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
 class HeidelpayFacadeAuthorizePaymentTest extends Test
 {
 
+    use PaymentHeidelpayTransferBuilderTrait, PaymentResponseTestTrait;
+
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade
      */
@@ -43,7 +46,6 @@ class HeidelpayFacadeAuthorizePaymentTest extends Test
      * @var
      */
     protected $heidelpayFactory;
-
 
     /**
      * @var
@@ -56,8 +58,6 @@ class HeidelpayFacadeAuthorizePaymentTest extends Test
     protected function _before()
     {
         parent::_before();
-
-
 
         $this->heidelpayToSales = new HeidelpayToSalesBridge(new SalesFacade());
 
@@ -78,31 +78,19 @@ class HeidelpayFacadeAuthorizePaymentTest extends Test
      */
     public function testProcessSuccessfulExternalPaymentResponseForSofort()
     {
-       $salesOrder = $this->_createSuccessOrder();
+        $salesOrder = $this->_createSuccessOrder();
 
-       $heidelpayFacade = (new HeidelpayFacade())
+        $heidelpayFacade = (new HeidelpayFacade())
             ->setFactory($this->createSuccessfulPaymentHeidelpayFactoryMock());
 
-       $paymentTransfer = $heidelpayFacade->getPaymentByIdSalesOrder($salesOrder->getIdSalesOrder());
-       $orderTransfer = $this->heidelpayToSales->getOrderByIdSalesOrder($salesOrder->getIdSalesOrder());
-       $orderTransfer->setHeidelpayPayment($paymentTransfer);
+        $orderTransfer = $this->getPaymentTransfer($heidelpayFacade, $salesOrder);
 
-       $heidelpayFacade->authorizePayment($orderTransfer);
+        $heidelpayFacade->authorizePayment($orderTransfer);
 
-       $transaction = $this->createHeidelpayFactory()->createTransactionLogReader()
+        $transaction = $this->createHeidelpayFactory()->createTransactionLogReader()
            ->findOrderAuthorizeTransactionLogByIdSalesOrder($salesOrder->getIdSalesOrder());
 
-       $this->assertNotNull($transaction->getHeidelpayResponse());
-       $this->assertInstanceOf(HeidelpayResponseTransfer::class, $transaction->getHeidelpayResponse());
-       $this->assertFalse($transaction->getHeidelpayResponse()->getIsError());
-       $this->assertTrue($transaction->getHeidelpayResponse()->getIsSuccess());
-       $this->assertEquals(
-           HeidelpayTestConstants::HEIDELPAY_SUCCESS_RESPONSE,
-           $transaction->getHeidelpayResponse()->getResultCode()
-       );
-
-
-
+        $this->testSuccessfulHeidelpayPaymentResponse($transaction);
     }
 
     /**
@@ -126,27 +114,21 @@ class HeidelpayFacadeAuthorizePaymentTest extends Test
     /**
      * @return void
      */
-    public function testProcessUnccessfulExternalPaymentResponseForSofort()
+    public function testProcessUnsuccessfulExternalPaymentResponseForSofort()
     {
         $salesOrder = $this->_createSuccessOrder();
 
         $heidelpayFacade = (new HeidelpayFacade())
             ->setFactory($this->createUnsuccessfulPaymentHeidelpayFactoryMock());
 
-        $paymentTransfer = $heidelpayFacade->getPaymentByIdSalesOrder($salesOrder->getIdSalesOrder());
-        $orderTransfer = $this->heidelpayToSales->getOrderByIdSalesOrder($salesOrder->getIdSalesOrder());
-        $orderTransfer->setHeidelpayPayment($paymentTransfer);
+        $orderTransfer = $this->getPaymentTransfer($heidelpayFacade, $salesOrder);
 
         $heidelpayFacade->authorizePayment($orderTransfer);
 
         $transaction = $this->createHeidelpayFactory()->createTransactionLogReader()
             ->findOrderAuthorizeTransactionLogByIdSalesOrder($salesOrder->getIdSalesOrder());
 
-        $this->assertNotNull($transaction->getHeidelpayResponse());
-        $this->assertInstanceOf(HeidelpayResponseTransfer::class, $transaction->getHeidelpayResponse());
-        $this->assertTrue($transaction->getHeidelpayResponse()->getIsError());
-        $this->assertFalse($transaction->getHeidelpayResponse()->getIsSuccess());
-
+        $this->testUnsuccessfulHeidelpayPaymentResponse($transaction);
     }
 
     /**
@@ -155,6 +137,15 @@ class HeidelpayFacadeAuthorizePaymentTest extends Test
     protected function createUnsuccessfulPaymentHeidelpayFactoryMock()
     {
         return new UnsuccesfulResponseHeidelpayBusinessFactory();
+    }
+
+    /**
+     * @return void
+     */
+    protected function _after()
+    {
+        $con = Propel::getConnection();
+        $con->commit();
     }
 
 }

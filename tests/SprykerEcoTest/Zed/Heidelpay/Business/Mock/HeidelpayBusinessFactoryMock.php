@@ -1,13 +1,14 @@
 <?php
 
-namespace SprykerEcoTest\Zed\Heidelpay\Business\Mock;
-
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
-
 /**
  * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
+
+namespace SprykerEcoTest\Zed\Heidelpay\Business\Mock;
+
+use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
+
 class HeidelpayBusinessFactoryMock extends HeidelpayBusinessFactory
 {
 
@@ -26,4 +27,13 @@ class HeidelpayBusinessFactoryMock extends HeidelpayBusinessFactory
     {
         return new UnsuccessfulResponseAdapterFactory();
     }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface
+     */
+    public function getHeidelpayQueryContainer()
+    {
+        return $this->getQueryContainer();
+    }
+
 }

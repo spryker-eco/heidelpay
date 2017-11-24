@@ -8,30 +8,29 @@
 namespace SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
-use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\SofortPayment;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\PaypalPayment;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentResponseTransferBuilderTrait;
 
-class UnsuccessfulSofortPaymentMock extends SofortPayment
+class UnsuccessfulPaypalDebitPaymentMock extends PaypalPayment
 {
 
     use PaymentResponseTransferBuilderTrait;
-
     /**
-     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $authorizeRequestTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $debitRequestTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function authorize(HeidelpayRequestTransfer $authorizeRequestTransfer)
+    public function debit(HeidelpayRequestTransfer $debitRequestTransfer)
     {
         $transfer['payload'] = '{
-                        "processing": {"result": "null"}, 
-                        "payment": {"code": "OT.RC"}                         
+                        "processing": {"result": "NOK"}, 
+                        "payment": {"code": "VA.RC"}                         
                     }';
 
-        $transfer['processingCode'] = 'OT.RC.90.00';
+        $transfer['processingCode'] = 'VA.RC.90.00';
 
         $transfer['idTransactionUnique'] = 'some unique transaction';
-        $transfer['idSalesOrder'] = $authorizeRequestTransfer->getCustomerPurchase()->getIdOrder();
+        $transfer['idSalesOrder'] = $debitRequestTransfer->getCustomerPurchase()->getIdOrder();
 
         $responseTransfer = $this->getUnsuccessfulHeidelpayTransfer($transfer);
 

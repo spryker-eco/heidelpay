@@ -10,8 +10,6 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business;
 use Codeception\TestCase\Test;
 
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
-use Generated\Shared\Transfer\HeidelpayResponseTransfer;
-use Generated\Shared\Transfer\OrderTransfer;
 
 use Generated\Shared\Transfer\PaymentTransfer;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
@@ -45,7 +43,6 @@ class HeidelpayFacadeGetPaymentBySalesOrderTest extends Test
      */
     protected $heidelpayFactory;
 
-
     /**
      * @var
      */
@@ -68,18 +65,18 @@ class HeidelpayFacadeGetPaymentBySalesOrderTest extends Test
     }
 
     /**
-     * @dataProvider _createSofortSuccessOrder
-     *
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $salesOrder
+     *
+     * @return void
      */
     public function testProcessExternalPaymentResponseForSofort(SpySalesOrder $salesOrder)
     {
-       $paymentTransfer = $this->heidelpayFacade->getPaymentByIdSalesOrder($salesOrder->getIdSalesOrder());
-       $this->assertInstanceOf(HeidelpayPaymentTransfer::class, $paymentTransfer);
-       $this->assertNotNull($paymentTransfer);
-       $this->assertEquals('31HA07BC814BBB667B564498D53E60F7', $paymentTransfer->getIdPaymentReference());
-       $this->assertEquals(PaymentTransfer::HEIDELPAY_SOFORT, $paymentTransfer->getPaymentMethod());
-       $this->assertNotNull($paymentTransfer->getFkSalesOrder());
+        $paymentTransfer = $this->heidelpayFacade->getPaymentByIdSalesOrder($salesOrder->getIdSalesOrder());
+        $this->assertInstanceOf(HeidelpayPaymentTransfer::class, $paymentTransfer);
+        $this->assertNotNull($paymentTransfer);
+        $this->assertEquals('31HA07BC814BBB667B564498D53E60F7', $paymentTransfer->getIdPaymentReference());
+        $this->assertEquals(PaymentTransfer::HEIDELPAY_SOFORT, $paymentTransfer->getPaymentMethod());
+        $this->assertNotNull($paymentTransfer->getFkSalesOrder());
     }
 
     /**
@@ -104,8 +101,6 @@ class HeidelpayFacadeGetPaymentBySalesOrderTest extends Test
         foreach ($paymentTransferArray as $paymentTransferOption => $value) {
             $this->assertNull($value);
         }
-
-
     }
 
     /**

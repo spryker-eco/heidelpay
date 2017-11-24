@@ -7,10 +7,8 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse;
 
-
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponseBuilder;
 
 class SuccessSofortPaymentExternalResponseBuilder extends ExternalResponseBuilder
 {
-
 }
