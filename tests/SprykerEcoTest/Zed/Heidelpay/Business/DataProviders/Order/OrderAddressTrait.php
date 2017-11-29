@@ -22,6 +22,20 @@ trait OrderAddressTrait
     }
 
     /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer
+     *
+     * @return \Orm\Zed\Sales\Persistence\SpySalesOrderAddress
+     */
+    public function createOrderAddressByQoute($quoteTransfer)
+    {
+        return $this->createAddress(
+            $quoteTransfer->getCustomer()->getFirstName(),
+            $quoteTransfer->getCustomer()->getLastName()
+        );
+
+    }
+
+    /**
      * @param string $firstName
      * @param string $lastName
      *

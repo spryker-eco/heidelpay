@@ -65,6 +65,8 @@ class HeidelpayFacadeGetPaymentBySalesOrderTest extends Test
     }
 
     /**
+     * @dataProvider _createSofortSuccessOrder
+     *
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $salesOrder
      *
      * @return void
@@ -74,7 +76,7 @@ class HeidelpayFacadeGetPaymentBySalesOrderTest extends Test
         $paymentTransfer = $this->heidelpayFacade->getPaymentByIdSalesOrder($salesOrder->getIdSalesOrder());
         $this->assertInstanceOf(HeidelpayPaymentTransfer::class, $paymentTransfer);
         $this->assertNotNull($paymentTransfer);
-        $this->assertEquals('31HA07BC814BBB667B564498D53E60F7', $paymentTransfer->getIdPaymentReference());
+        $this->assertEquals(HeidelpayTestConstants::HEIDELPAY_REFERENCE, $paymentTransfer->getIdPaymentReference());
         $this->assertEquals(PaymentTransfer::HEIDELPAY_SOFORT, $paymentTransfer->getPaymentMethod());
         $this->assertNotNull($paymentTransfer->getFkSalesOrder());
     }

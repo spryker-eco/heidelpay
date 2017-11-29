@@ -27,17 +27,17 @@ class SuccessfulPaypalDebitPaymentMock extends PaypalPayment
      */
     public function debit(HeidelpayRequestTransfer $debitRequestTransfer)
     {
-        $transfer['payload'] = '{
+        $response['payload'] = '{
                         "processing": {"result": "ACK"}, 
                         "payment": {"code": "VA.RC"}                         
                     }';
 
-        $transfer['processingCode'] = 'VA.RC.90.00';
+        $response['processingCode'] = 'VA.RC.90.00';
 
-        $transfer['idTransactionUnique'] = 'some unique transaction';
-        $transfer['idSalesOrder'] = $debitRequestTransfer->getCustomerPurchase()->getIdOrder();
+        $response['idTransactionUnique'] = 'some unique transaction';
+        $response['idSalesOrder'] = $debitRequestTransfer->getCustomerPurchase()->getIdOrder();
 
-        $responseTransfer = $this->getSuccessfulHeidelpayTransfer($transfer);
+        $responseTransfer = $this->getSuccessfulHeidelpayTransfer($response);
 
         return $responseTransfer;
     }

@@ -31,44 +31,9 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
  * @group Business
  * @group HeidelpayFacadeCapturePaymentTest
  */
-class HeidelpayFacadeCapturePaymentTest extends Test
+class HeidelpayFacadeCapturePaymentTest extends HeidelpayPaymentTest
 {
 
-    /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade
-     */
-    protected $heidelpayFacade;
-
-    /**
-     * @var
-     */
-    protected $heidelpayFactory;
-
-    /**
-     * @var
-     */
-    protected $heidelpayToSales;
-
-    /**
-     * @return void
-     */
-    protected function _before()
-    {
-        parent::_before();
-
-        $this->heidelpayToSales = new HeidelpayToSalesBridge(new SalesFacade());
-
-        $this->getModule('\\' . ConfigHelper::class)
-            ->setConfig(HeidelpayConstants::CONFIG_ENCRYPTION_KEY, 'encryption_key');
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
-     */
-    protected function createHeidelpayFactory()
-    {
-        return new HeidelpayBusinessFactoryMock();
-    }
 
     /**
      * @return void
@@ -147,26 +112,10 @@ class HeidelpayFacadeCapturePaymentTest extends Test
     }
 
     /**
-     * @return void
+     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
      */
-    protected function _after()
+    protected function createHeidelpayFactory()
     {
-        $con = Propel::getConnection();
-        $con->commit();
+        return new HeidelpayBusinessFactoryMock();
     }
-
-    /**
-     * @param \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade $heidelpayFacade
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $salesOrder
-     *
-     * @return mixed
-     */
-    protected function getPaymentTransfer($heidelpayFacade, $salesOrder)
-    {
-        $paymentTransfer = $heidelpayFacade->getPaymentByIdSalesOrder($salesOrder->getIdSalesOrder());
-        $orderTransfer = $this->heidelpayToSales->getOrderByIdSalesOrder($salesOrder->getIdSalesOrder());
-        $orderTransfer->setHeidelpayPayment($paymentTransfer);
-        return $orderTransfer;
-    }
-
 }

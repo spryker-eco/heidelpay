@@ -27,17 +27,17 @@ class SuccessfulSofortPaymentMock extends SofortPayment
      */
     public function authorize(HeidelpayRequestTransfer $authorizeRequestTransfer)
     {
-        $transfer['payload'] = '{
+        $response['payload'] = '{
                         "processing": {"result": "ACK"}, 
                         "payment": {"code": "OT.RC"}                         
                     }';
 
-        $transfer['processingCode'] = 'OT.RC.90.00';
+        $response['processingCode'] = 'OT.RC.90.00';
 
-        $transfer['idTransactionUnique'] = 'some unique transaction';
-        $transfer['idSalesOrder'] = $authorizeRequestTransfer->getCustomerPurchase()->getIdOrder();
+        $response['idTransactionUnique'] = 'some unique transaction';
+        $response['idSalesOrder'] = $authorizeRequestTransfer->getCustomerPurchase()->getIdOrder();
 
-        $responseTransfer = $this->getSuccessfulHeidelpayTransfer($transfer);
+        $responseTransfer = $this->getSuccessfulHeidelpayTransfer($response);
 
         return $responseTransfer;
     }

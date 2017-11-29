@@ -32,46 +32,8 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
  * @group Business
  * @group HeidelpayFacadeDebitPaymentTest
  */
-class HeidelpayFacadeDebitPaymentTest extends Test
+class HeidelpayFacadeDebitPaymentTest extends HeidelpayPaymentTest
 {
-
-    use PaymentHeidelpayTransferBuilderTrait, PaymentResponseTestTrait;
-
-    /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade
-     */
-    protected $heidelpayFacade;
-
-    /**
-     * @var
-     */
-    protected $heidelpayFactory;
-
-    /**
-     * @var
-     */
-    protected $heidelpayToSales;
-
-    /**
-     * @return void
-     */
-    protected function _before()
-    {
-        parent::_before();
-
-        $this->heidelpayToSales = new HeidelpayToSalesBridge(new SalesFacade());
-
-        $this->getModule('\\' . ConfigHelper::class)
-            ->setConfig(HeidelpayConstants::CONFIG_ENCRYPTION_KEY, 'encryption_key');
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
-     */
-    protected function createHeidelpayFactory()
-    {
-        return new HeidelpayBusinessFactory();
-    }
 
     /**
      * @return void
@@ -137,15 +99,6 @@ class HeidelpayFacadeDebitPaymentTest extends Test
     protected function createUnsuccessfulPaymentHeidelpayFactoryMock()
     {
         return new UnsuccesfulResponseHeidelpayBusinessFactory();
-    }
-
-    /**
-     * @return void
-     */
-    protected function _after()
-    {
-        $con = Propel::getConnection();
-        $con->commit();
     }
 
 }

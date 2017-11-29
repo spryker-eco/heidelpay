@@ -15,31 +15,31 @@ trait PaymentResponseTransferBuilderTrait
 {
 
     /**
-     * @param array $transfer
+     * @param array $response
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    protected function getSuccessfulHeidelpayTransfer(array $transfer)
+    protected function getSuccessfulHeidelpayTransfer(array $response)
     {
         $responseTransfer = new HeidelpayResponseTransfer();
         $responseTransfer->setIsSuccess(true);
         $responseTransfer->setIsError(false);
 
-        $responseTransfer->setIdSalesOrder($transfer['idSalesOrder']);
+        $responseTransfer->setIdSalesOrder($response['idSalesOrder']);
         $responseTransfer->setResultCode(HeidelpayTestConstants::HEIDELPAY_SUCCESS_RESPONSE);
-        $responseTransfer->setIdTransactionUnique($transfer['idTransactionUnique']);
-        $responseTransfer->setProcessingCode($transfer['processingCode']);
+        $responseTransfer->setIdTransactionUnique($response['idTransactionUnique']);
+        $responseTransfer->setProcessingCode($response['processingCode']);
         $responseTransfer->setCustomerRedirectUrl(HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL);
-        $responseTransfer->setPayload($transfer['payload']);
+        $responseTransfer->setPayload($response['payload']);
         return $responseTransfer;
     }
 
     /**
-     * @param array $transfer
+     * @param array $response
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    protected function getUnsuccessfulHeidelpayTransfer(array $transfer)
+    protected function getUnsuccessfulHeidelpayTransfer(array $response)
     {
         $responseTransfer = new HeidelpayResponseTransfer();
         $responseTransfer->setIsSuccess(false);
@@ -49,12 +49,12 @@ trait PaymentResponseTransferBuilderTrait
         $errorTransfer = $this->extractErrorTransferFromException($exception);
         $responseTransfer->setError($errorTransfer);
 
-        $responseTransfer->setIdSalesOrder($transfer['idSalesOrder']);
+        $responseTransfer->setIdSalesOrder($response['idSalesOrder']);
         $responseTransfer->setResultCode(HeidelpayTestConstants::HEIDELPAY_UNSUCCESS_RESPONSE);
-        $responseTransfer->setIdTransactionUnique($transfer['idTransactionUnique']);
-        $responseTransfer->setProcessingCode($transfer['processingCode']);
+        $responseTransfer->setIdTransactionUnique($response['idTransactionUnique']);
+        $responseTransfer->setProcessingCode($response['processingCode']);
         $responseTransfer->setCustomerRedirectUrl(HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL);
-        $responseTransfer->setPayload($transfer['payload']);
+        $responseTransfer->setPayload($response['payload']);
 
         return $responseTransfer;
     }

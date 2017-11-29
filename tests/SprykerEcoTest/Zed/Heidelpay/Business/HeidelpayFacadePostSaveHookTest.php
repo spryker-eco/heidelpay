@@ -38,11 +38,6 @@ class HeidelpayFacadePostSaveHookTest extends Test
     protected $heidelpayFacade;
 
     /**
-     * @var
-     */
-    protected $heidelpayFactory;
-
-    /**
      * @return void
      */
     protected function _before()
@@ -57,6 +52,11 @@ class HeidelpayFacadePostSaveHookTest extends Test
     }
 
     /**
+     * @dataProvider _createOrderWithSofortAuthorizeTransaction
+     * @dataProvider _createOrderWithPaypalDebitTransaction
+     * @dataProvider _createOrderWithPaypalAuthorizeTransaction
+     * @dataProvider _createOrderWithCreditCardSecureTransaction
+     *
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
      *
@@ -79,6 +79,8 @@ class HeidelpayFacadePostSaveHookTest extends Test
     }
 
     /**
+     * @dataProvider _createOrderWithIdealAuthorizeTransaction
+     * 
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
      *
@@ -147,6 +149,8 @@ class HeidelpayFacadePostSaveHookTest extends Test
     }
 
     /**
+     * @dataProvider _createOrderWithIdealAuthorizeTransaction
+     *
      * @return array
      */
     public function _createOrderWithCreditCardSecureTransaction()
