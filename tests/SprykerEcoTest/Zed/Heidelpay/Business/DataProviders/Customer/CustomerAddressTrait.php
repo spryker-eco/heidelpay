@@ -25,7 +25,6 @@ trait CustomerAddressTrait
     }
 
     /**
-     *
      * @param \Orm\Zed\Customer\Persistence\Base\SpyCustomer $customer
      *
      * @return \Orm\Zed\Customer\Persistence\SpyCustomerAddress

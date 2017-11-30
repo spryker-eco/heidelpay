@@ -7,8 +7,6 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
-
-
 use Generated\Shared\Transfer\PaymentTransfer;
 
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;

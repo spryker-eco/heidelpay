@@ -13,11 +13,9 @@ use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
 
 use Generated\Shared\Transfer\PaymentTransfer;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
-use Spryker\Zed\Sales\Business\SalesFacade;
 use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
-use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesBridge;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
 
 use SprykerTest\Shared\Testify\Helper\ConfigHelper;
@@ -37,16 +35,6 @@ class HeidelpayFacadeGetPaymentBySalesOrderTest extends Test
      * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade
      */
     protected $heidelpayFacade;
-
-    /**
-     * @var
-     */
-    protected $heidelpayFactory;
-
-    /**
-     * @var
-     */
-    protected $heidelpayToSales;
 
     /**
      * @return void

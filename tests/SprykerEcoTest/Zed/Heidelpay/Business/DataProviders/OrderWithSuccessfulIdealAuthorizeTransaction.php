@@ -98,7 +98,6 @@ class OrderWithSuccessfulIdealAuthorizeTransaction
             ->setPayment($paymentTransfer)
             ->setOrderReference($orderEntity->getOrderReference());
 
-
         return $quoteTransfer;
     }
 

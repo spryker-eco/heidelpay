@@ -11,9 +11,7 @@ use Codeception\TestCase\Test;
 use Generated\Shared\Transfer\HeidelpayCreditCardInfoTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer;
-use Orm\Zed\Heidelpay\Persistence\Base\SpyPaymentHeidelpayCreditCardRegistration;
 use Orm\Zed\Heidelpay\Persistence\Base\SpyPaymentHeidelpayCreditCardRegistrationQuery;
-use Propel\Runtime\Propel;
 use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
@@ -29,6 +27,7 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
  */
 class HeidelpayFacadeSaveCreditCardRegistrationTest extends Test
 {
+
     const QUOTE_HASH = 'bea74ee13da897592f633fc93024ab3f5231d74d';
     const REGISTRATION_HASH = '31HA07BC814CA0300B131ABC71AEECB3';
     const ACCOUNT_EXPIRY_YEAR = 2030;
@@ -68,10 +67,11 @@ class HeidelpayFacadeSaveCreditCardRegistrationTest extends Test
      * @dataProvider _createRegistrationTransfer
      *
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $cardRegistrationTransfer
+     *
+     * @return void
      */
     public function testSuccessfulSaveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $cardRegistrationTransfer)
     {
-
         $response = $this->heidelpayFacade->saveCreditCardRegistration($cardRegistrationTransfer);
 
         $this->assertNotNull($response);
@@ -84,7 +84,6 @@ class HeidelpayFacadeSaveCreditCardRegistrationTest extends Test
             ->findByIdCreditCardRegistration($response->getIdRegistration());
 
         $this->assertGreaterThan(0, count($cardRegistration->toArray()));
-
     }
 
     /**
@@ -99,7 +98,6 @@ class HeidelpayFacadeSaveCreditCardRegistrationTest extends Test
 
         return [[$cardRegistrationTransfer]];
     }
-
 
     /**
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardInfoTransfer
@@ -116,4 +114,5 @@ class HeidelpayFacadeSaveCreditCardRegistrationTest extends Test
 
         return $creditCardInfo;
     }
+
 }

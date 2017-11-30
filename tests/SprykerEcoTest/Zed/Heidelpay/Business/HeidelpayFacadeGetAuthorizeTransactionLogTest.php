@@ -6,18 +6,15 @@
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
-use Generated\Shared\Transfer\CheckoutResponseTransfer;
+
 use Generated\Shared\Transfer\HeidelpayAuthorizeTransactionLogRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseErrorTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
-use Generated\Shared\Transfer\PaymentTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulIdealAuthorizeTransaction;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulSofortAuthorizeTransaction;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithUnsuccessfulIdealAuthorizeTransaction;
-use SprykerEcoTest\Zed\Heidelpay\Business\Mock\SuccessfulResponseHeidelpayBusinessFactory;
 
 /**
  * @group Functional
@@ -29,6 +26,7 @@ use SprykerEcoTest\Zed\Heidelpay\Business\Mock\SuccessfulResponseHeidelpayBusine
  */
 class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
 {
+
     /**
      * @dataProvider _createOrderWithSuccessfulIdealAuthorizeTransaction
      *
@@ -47,7 +45,6 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
             ->setFactory($this->createHeidelpayFactory());
 
         $transactionLogTransfer = $heidelpayFacade->getAuthorizeTransactionLog($authorizeTransactionLogRequestTransfer);
-
 
         $this->assertInstanceOf(HeidelpayTransactionLogTransfer::class, $transactionLogTransfer);
 
@@ -69,7 +66,6 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
 
     }
 
-
     /**
      * @dataProvider _createOrderWithUnsuccessfulIdealAuthorizeTransaction
      *
@@ -79,9 +75,7 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
      */
     public function testUnsuccessfulGetAuthorizeTransactionLog(
         QuoteTransfer $quoteTransfer
-    )
-    {
-
+    ) {
         $authorizeTransactionLogRequestTransfer = new HeidelpayAuthorizeTransactionLogRequestTransfer();
         $authorizeTransactionLogRequestTransfer->setOrderReference($quoteTransfer->getOrderReference());
 
@@ -109,7 +103,6 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
 
         $this->assertFalse($heidelpayResponse->getIsSuccess());
         $this->assertTrue($heidelpayResponse->getIsError());
-
     }
 
     /**

@@ -34,6 +34,8 @@ trait CustomerTrait
     }
 
     /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
      * @return \Orm\Zed\Customer\Persistence\SpyCustomer
      */
     public function createOrGetCustomerByQuote(QuoteTransfer $quoteTransfer)

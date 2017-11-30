@@ -9,7 +9,6 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
 use Codeception\TestCase\Test;
 use Generated\Shared\DataBuilder\QuoteBuilder;
-use Generated\Shared\Transfer\AddressTransfer;
 use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardInfoTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
@@ -26,7 +25,6 @@ use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
 use SprykerTest\Shared\Testify\Helper\ConfigHelper;
-
 
 /**
  * @group Functional
@@ -79,17 +77,15 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Test
         $creditCardRegistrationEntity = $this->_createCardRegistrationTransfer($quote);
         $transfer->setIdRegistration($creditCardRegistrationEntity->getIdCreditCardRegistration());
 
-
         $response = $this->heidelpayFacade->findCreditCardRegistrationByIdAndQuote($transfer);
 
         $this->assertInstanceOf(HeidelpayCreditCardRegistrationTransfer::class, $response);
         $this->assertNotNull($response->getIdCreditCardRegistration());
         $this->assertNotNull($response->getCreditCardInfo());
-        $this->assertInstanceOf(HeidelpayCreditCardInfoTransfer::class,$response->getCreditCardInfo());
+        $this->assertInstanceOf(HeidelpayCreditCardInfoTransfer::class, $response->getCreditCardInfo());
 
         $this->assertEquals($response->getCreditCardInfo()->getAccountHolder(), $this->getAccountHolder($quote));
         $this->assertEquals($response->getCreditCardInfo()->getAccountBrand(), HeidelpayTestConstants::CARD_BRAND);
-
     }
 
     /**
@@ -105,13 +101,11 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Test
         $creditCardRegistrationEntity->save();
         $transfer->setIdRegistration($creditCardRegistrationEntity->getIdCreditCardRegistration());
 
-
         $response = $this->heidelpayFacade->findCreditCardRegistrationByIdAndQuote($transfer);
 
         $this->assertInstanceOf(HeidelpayCreditCardRegistrationTransfer::class, $response);
         $this->assertNull($response->getIdCreditCardRegistration());
         $this->assertNull($response->getCreditCardInfo());
-
     }
 
     /**
@@ -134,7 +128,6 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Test
         return $quote;
     }
 
-
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
@@ -153,7 +146,6 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Test
         ->setAccountNumber(HeidelpayTestConstants::CARD_ACCOUNT_NUMBER)
         ->setFkCustomerAddress($quoteTransfer->getBillingAddress()->getIdCustomerAddress())
 
-
         ->setQuoteHash($quoteHash);
         $creditCardRegistrationEntity->save();
 
@@ -162,6 +154,7 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Test
 
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $qoute
+     *
      * @return string
      */
     protected function getAccountHolder(QuoteTransfer $qoute)
@@ -184,7 +177,6 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Test
         $query->delete();
         $con = Propel::getConnection();
         $con->commit();
-
     }
 
 }

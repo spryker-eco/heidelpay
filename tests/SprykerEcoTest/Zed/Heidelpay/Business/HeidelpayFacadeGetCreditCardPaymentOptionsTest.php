@@ -16,7 +16,6 @@ use Generated\Shared\Transfer\HeidelpayPaymentOptionTransfer;
 use Generated\Shared\Transfer\PaymentTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\TotalsTransfer;
-use Orm\Zed\Heidelpay\Persistence\Base\SpyPaymentHeidelpayCreditCardRegistrationQuery;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration;
 use Propel\Runtime\Propel;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
@@ -30,7 +29,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Quote\QuoteMockTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\SuccessfulResponseHeidelpayBusinessFactory;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusinessFactory;
 use SprykerTest\Shared\Testify\Helper\ConfigHelper;
-
 
 /**
  * @group Functional
@@ -101,7 +99,6 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends Test
         $this->assertEquals(HeidelpayConfig::PAYMENT_OPTION_NEW_REGISTRATION, $option->getCode());
     }
 
-
     /**
      * @return void
      */
@@ -115,7 +112,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends Test
         $heidelpayCreditCardPaymentOptionsTransfer = $heidelpayFacade
             ->getCreditCardPaymentOptions($quoteTransfer);
 
-        $this->checkUnsuccessfulGetOption($heidelpayCreditCardPaymentOptionsTransfer);
+        $this->checkUnsuccessfulGetOptionResponse($heidelpayCreditCardPaymentOptionsTransfer);
     }
 
     /**
@@ -133,9 +130,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends Test
             ->getCreditCardPaymentOptions($quoteTransfer);
 
         $this->checkSuccessfulResponseForRegisteredCard($heidelpayCreditCardPaymentOptionsTransfer, $cardEntity, $quoteTransfer);
-
     }
-
 
     /**
      * @return void
@@ -172,7 +167,6 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends Test
         $option = $optionsList[0];
         $this->assertInstanceOf(HeidelpayPaymentOptionTransfer::class, $option);
         $this->assertEquals(HeidelpayConfig::PAYMENT_OPTION_NEW_REGISTRATION, $option->getCode());
-
     }
 
     /**
@@ -200,7 +194,6 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends Test
             ->getCreditCardPaymentOptions($quoteTransfer);
 
         $this->checkSuccessfulResponseForRegisteredCard($heidelpayCreditCardPaymentOptionsTransfer, $cardEntity, $quoteTransfer);
-
     }
 
     /**
@@ -265,19 +258,16 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends Test
         );
 
         return $quoteTransfer;
-
     }
 
     /**
-     *
-     *
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration $cardEntity
+     *
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
     protected function addLastSuccessfulRegistration(QuoteTransfer $quoteTransfer, SpyPaymentHeidelpayCreditCardRegistration $cardEntity)
     {
-
         $lastSuccessfulRegistration = new HeidelpayCreditCardRegistrationTransfer();
         $lastSuccessfulRegistration->setIdCustomerAddress(
             $quoteTransfer->getShippingAddress()->getIdCustomerAddress()
@@ -295,9 +285,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends Test
             );
 
         return $quoteTransfer;
-
     }
-
 
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
@@ -311,12 +299,12 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends Test
     }
 
     /**
-     * @param $heidelpayCreditCardPaymentOptionsTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer $heidelpayCreditCardPaymentOptionsTransfer
+     *
+     * @return void
      */
-    protected function checkUnsuccessfulGetOption($heidelpayCreditCardPaymentOptionsTransfer)
+    protected function checkUnsuccessfulGetOptionResponse(HeidelpayCreditCardPaymentOptionsTransfer $heidelpayCreditCardPaymentOptionsTransfer)
     {
-        $this->assertNotNull($heidelpayCreditCardPaymentOptionsTransfer);
-        $this->assertInstanceOf(HeidelpayCreditCardPaymentOptionsTransfer::class, $heidelpayCreditCardPaymentOptionsTransfer);
         $this->assertNull(
             $heidelpayCreditCardPaymentOptionsTransfer->getPaymentFrameUrl()
         );
@@ -328,14 +316,17 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends Test
     }
 
     /**
-     * @param $heidelpayCreditCardPaymentOptionsTransfer
-     * @param $cardEntity
-     * @param $quoteTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer $heidelpayCreditCardPaymentOptionsTransfer
+     * @param \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration $cardEntity
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return void
      */
-    protected function checkSuccessfulResponseForRegisteredCard($heidelpayCreditCardPaymentOptionsTransfer, $cardEntity, $quoteTransfer)
-    {
-        $this->assertNotNull($heidelpayCreditCardPaymentOptionsTransfer);
-        $this->assertInstanceOf(HeidelpayCreditCardPaymentOptionsTransfer::class, $heidelpayCreditCardPaymentOptionsTransfer);
+    protected function checkSuccessfulResponseForRegisteredCard(
+        HeidelpayCreditCardPaymentOptionsTransfer $heidelpayCreditCardPaymentOptionsTransfer,
+        SpyPaymentHeidelpayCreditCardRegistration $cardEntity,
+        QuoteTransfer $quoteTransfer
+    ) {
         $this->assertEquals(
             HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL,
             $heidelpayCreditCardPaymentOptionsTransfer->getPaymentFrameUrl()
@@ -364,7 +355,6 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends Test
             $lastSuccessfulRegistration->getIdCustomerAddress()
         );
 
-
         $optionsList = $heidelpayCreditCardPaymentOptionsTransfer->getOptionsList();
         $this->assertEquals(2, $optionsList->count());
 
@@ -377,4 +367,5 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends Test
         $this->assertTrue(in_array(HeidelpayConfig::PAYMENT_OPTION_EXISTING_REGISTRATION, $availableOptions));
         $this->assertTrue(in_array(HeidelpayConfig::PAYMENT_OPTION_NEW_REGISTRATION, $availableOptions));
     }
+
 }

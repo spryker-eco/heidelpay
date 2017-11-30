@@ -14,8 +14,8 @@ trait PaymentHeidelpayTransactionLogTrait
 
     /**
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $salesOrderEntity
-     * @param string $idPaymentReference
-     * @param string $paymentMethod
+     * @param string $responseCode
+     * @param string $transactionType
      *
      * @return void
      */

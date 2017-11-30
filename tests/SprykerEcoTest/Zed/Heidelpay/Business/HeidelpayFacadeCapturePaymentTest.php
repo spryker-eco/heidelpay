@@ -7,21 +7,14 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
-use Codeception\TestCase\Test;
-
 use Generated\Shared\Transfer\PaymentTransfer;
-use Propel\Runtime\Propel;
-use Spryker\Zed\Sales\Business\SalesFacade;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
-use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesBridge;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
 
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\HeidelpayBusinessFactoryMock;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\SuccessfulResponseHeidelpayBusinessFactory;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusinessFactory;
-use SprykerTest\Shared\Testify\Helper\ConfigHelper;
 
 /**
  * @group Functional
@@ -33,7 +26,6 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
  */
 class HeidelpayFacadeCapturePaymentTest extends HeidelpayPaymentTest
 {
-
 
     /**
      * @return void
@@ -118,4 +110,5 @@ class HeidelpayFacadeCapturePaymentTest extends HeidelpayPaymentTest
     {
         return new HeidelpayBusinessFactoryMock();
     }
+
 }

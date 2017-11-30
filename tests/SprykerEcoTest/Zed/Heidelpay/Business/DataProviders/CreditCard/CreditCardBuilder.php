@@ -7,14 +7,12 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\CreditCard;
 
-
 use Generated\Shared\Transfer\QuoteTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration;
 use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
 
 class CreditCardBuilder
 {
-
 
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
@@ -39,6 +37,7 @@ class CreditCardBuilder
 
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $qouteTransfer
+     *
      * @return string
      */
     protected function getAccountHolder(QuoteTransfer $qouteTransfer)
@@ -50,4 +49,5 @@ class CreditCardBuilder
             ]
         );
     }
+
 }

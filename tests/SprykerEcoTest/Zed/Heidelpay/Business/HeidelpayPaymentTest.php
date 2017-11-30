@@ -19,6 +19,7 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
 
 class HeidelpayPaymentTest extends Test
 {
+
     use PaymentHeidelpayTransferBuilderTrait, PaymentResponseTestTrait;
 
     /**
@@ -27,12 +28,12 @@ class HeidelpayPaymentTest extends Test
     protected $heidelpayFacade;
 
     /**
-     * @var
+     * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
      */
     protected $heidelpayFactory;
 
     /**
-     * @var
+     * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesBridge
      */
     protected $heidelpayToSales;
 

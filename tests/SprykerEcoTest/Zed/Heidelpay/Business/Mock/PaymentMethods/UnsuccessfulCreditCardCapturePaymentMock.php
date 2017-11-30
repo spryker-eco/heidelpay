@@ -38,12 +38,11 @@ class UnsuccessfulCreditCardCapturePaymentMock extends CreditCardPayment
         return $responseTransfer;
     }
 
-
         /**
-     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $debitRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
-     */
+         * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $debitRequestTransfer
+         *
+         * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+         */
     public function capture(HeidelpayRequestTransfer $debitRequestTransfer)
     {
         $response['payload'] = '{

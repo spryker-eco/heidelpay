@@ -15,6 +15,7 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\NewOrderWithOneIte
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\Action\HeidelpayResponseTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentHeidelpayTrait;
+use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
 
 class ExternalResponseBuilder
 {
@@ -44,8 +45,8 @@ class ExternalResponseBuilder
 
     const PAYMENT_METHOD_CLASS_NAME = 'PaymentMethod';
     const PROCESSING_RESULT = 'HEIDELPAY:PROCESSING_RESULT';
-    const ACK = 'ACK';
 
+    const SHA_512_ENCODE_ALGO = 'sha512';
     use HeidelpayResponseTrait, CustomerTrait, OrderAddressTrait, NewOrderWithOneItemTrait, PaymentHeidelpayTrait;
 
     /**
@@ -61,6 +62,11 @@ class ExternalResponseBuilder
         $this->factory = $factory;
     }
 
+    /**
+     * @param string $paymentMethod
+     *
+     * @return array
+     */
     public function createHeidelpayResponse($paymentMethod)
     {
         $customerJohnDoe = $this->createOrGetCustomerJohnDoe();
@@ -79,29 +85,29 @@ class ExternalResponseBuilder
         );
 
         $config = $this->factory->getConfig();
-        $param[static::EMAIL] = $customerJohnDoe->getEmail();
-        $param[static::RESPONSE_URL] = $config->getZedResponseUrl();
-        $param[static::CUSTOMER_NAME] = $customerJohnDoe->getFirstName();
-        $param[static::CUSTOMER_FULL_NAME] = $customerJohnDoe->getFirstName();
+        $responseParam[static::EMAIL] = $customerJohnDoe->getEmail();
+        $responseParam[static::RESPONSE_URL] = $config->getZedResponseUrl();
+        $responseParam[static::CUSTOMER_NAME] = $customerJohnDoe->getFirstName();
+        $responseParam[static::CUSTOMER_FULL_NAME] = $customerJohnDoe->getFirstName();
 
-        $param[static::AMOUNT] = $orderEntity->getLastOrderTotals()->getGrandTotal();
+        $responseParam[static::AMOUNT] = $orderEntity->getLastOrderTotals()->getGrandTotal();
 
-        $param[static::TRANSACRTION_ID] = $this->getTransationId($orderEntity);
-        $param[static::TRANSACRTION_CHANNEL] = $config->getMerchantTransactionChannelByPaymentType($paymentMethod);
-        $param[static::SECURITY_SENDER] = $config->getMerchantSecuritySender();
-        $param[static::USER_LOGIN] = $config->getMerchantUserLogin();
-        $param[static::USER_PWD] = $config->getMerchantUserPassword();
+        $responseParam[static::TRANSACRTION_ID] = $this->getTransationId($orderEntity);
+        $responseParam[static::TRANSACRTION_CHANNEL] = $config->getMerchantTransactionChannelByPaymentType($paymentMethod);
+        $responseParam[static::SECURITY_SENDER] = $config->getMerchantSecuritySender();
+        $responseParam[static::USER_LOGIN] = $config->getMerchantUserLogin();
+        $responseParam[static::USER_PWD] = $config->getMerchantUserPassword();
 
-        $param[static::CRITERION_SDK_NAME] = static::CRITERION_SDK_VALUE;
+        $responseParam[static::CRITERION_SDK_NAME] = static::CRITERION_SDK_VALUE;
 
-        $param[static::CRITERION_SECRET] = $this->getCriterionSecret($this->getTransationId($orderEntity), $config->getApplicationSecret());
+        $responseParam[static::CRITERION_SECRET] = $this->getCriterionSecret($this->getTransationId($orderEntity), $config->getApplicationSecret());
 
-        $param[static::PAYMENT_BRAND] = $this->getPaymentBrand($paymentMethod);
-        $param[static::PAYMENT_METHOD] = $this->getClassName($paymentMethod);
+        $responseParam[static::PAYMENT_BRAND] = $this->getPaymentBrand($paymentMethod);
+        $responseParam[static::PAYMENT_METHOD] = $this->getClassName($paymentMethod);
 
-        $param[static::PROCESSING_RESULT] = $this->getProcessingResult();
+        $responseParam[static::PROCESSING_RESULT] = $this->getProcessingResult();
 
-        $response = $this->getHeidelpayResponseTemplate($param);
+        $response = $this->getHeidelpayResponseTemplate($responseParam);
 
         return $response;
     }
@@ -109,9 +115,9 @@ class ExternalResponseBuilder
     /**
      * @param string $paymentMethod
      *
-     * @return mixed
+     * @return string $brand
      */
-    protected function getPaymentBrand(string $paymentMethod)
+    protected function getPaymentBrand($paymentMethod)
     {
         $paymentMethodName = $this->getPaymentMethod($paymentMethod);
         $className = $this->getClassName($paymentMethodName);
@@ -129,15 +135,15 @@ class ExternalResponseBuilder
     /**
      * @param string $paymentMethod
      *
-     * @return mixed
+     * @return string
      */
-    protected function getPaymentMethod(string $paymentMethod)
+    protected function getPaymentMethod($paymentMethod)
     {
         return mb_strtolower(preg_replace('~' . HeidelpayConfig::PROVIDER_NAME . '~', '', $paymentMethod));
     }
 
     /**
-     * @param $paymentMethodName
+     * @param string $paymentMethodName
      *
      * @return string
      */
@@ -152,13 +158,13 @@ class ExternalResponseBuilder
      */
     protected function getProcessingResult()
     {
-        return static::ACK;
+        return HeidelpayTestConstants::HEIDELPAY_SUCCESS_RESPONSE;
     }
 
     /**
-     * @param $orderEntity
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
      *
-     * @return mixed
+     * @return int
      */
     protected function getTransationId($orderEntity)
     {
@@ -166,14 +172,14 @@ class ExternalResponseBuilder
     }
 
     /**
-     * @param $identificationTransactionId
-     * @param $secret
+     * @param int $identificationTransactionId
+     * @param string $secret
      *
      * @return string
      */
     protected function getCriterionSecret($identificationTransactionId, $secret)
     {
-        return hash('sha512', $identificationTransactionId . $secret);
+        return hash(self::SHA_512_ENCODE_ALGO, $identificationTransactionId . $secret);
     }
 
 }

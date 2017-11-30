@@ -17,7 +17,6 @@ class SuccessfulCreditCardCapturePaymentMock extends CreditCardPayment
 
     use PaymentResponseTransferBuilderTrait;
 
-
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $captureRequestTransfer
      *

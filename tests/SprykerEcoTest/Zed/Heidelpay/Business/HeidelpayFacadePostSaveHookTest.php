@@ -80,7 +80,7 @@ class HeidelpayFacadePostSaveHookTest extends Test
 
     /**
      * @dataProvider _createOrderWithIdealAuthorizeTransaction
-     * 
+     *
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
      *

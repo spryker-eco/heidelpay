@@ -7,17 +7,18 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse;
 
+use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponseBuilder;
 
 class FailedSofortPaymentExternalResponseWhithIncorrectTransactionIdBuilder extends ExternalResponseBuilder
 {
 
     /**
-     * @param $orderEntity
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
      *
-     * @return integer
+     * @return int
      */
-    protected function getTransationId($orderEntity)
+    protected function getTransationId(SpySalesOrder $orderEntity)
     {
         return 100000000000;
     }

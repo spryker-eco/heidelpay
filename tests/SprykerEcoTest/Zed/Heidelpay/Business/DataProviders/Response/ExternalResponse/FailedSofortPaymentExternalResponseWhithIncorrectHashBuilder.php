@@ -13,8 +13,8 @@ class FailedSofortPaymentExternalResponseWhithIncorrectHashBuilder extends Exter
 {
 
     /**
-     * @param $identificationTransactionId
-     * @param $secret
+     * @param int $identificationTransactionId
+     * @param string $secret
      *
      * @return string
      */

@@ -35,11 +35,11 @@ trait AuthorizeTransactionTrait
             ->setRequestPayload('{}')
             ->setResponsePayload(
                 $this->encryptData(
-                    $this->truncate(
+                    $this->prepareJsonString(
                         '{
                             "processing": {"result": "ACK"}, 
                             "payment": {"code": "CC.PA"}, 
-                            "identification": {"transactionid": "'. $orderEntity->getIdSalesOrder() .'"},
+                            "identification": {"transactionid": "' . $orderEntity->getIdSalesOrder() . '"},
                             "frontend": {"payment_frame_url": "' . HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"} 
                         }'
                     )
@@ -66,7 +66,7 @@ trait AuthorizeTransactionTrait
             ->setRequestPayload('{}')
             ->setResponsePayload(
                 $this->encryptData(
-                    $this->truncate(
+                    $this->prepareJsonString(
                         '{
                             "processing": {
                                 "result": "NOK",
@@ -74,7 +74,7 @@ trait AuthorizeTransactionTrait
                                 "status": "REJECTED_VALIDATION"
                             }, 
                             "payment": {"code": "CC.PA"}, 
-                            "identification": {"transactionid": "'. $orderEntity->getIdSalesOrder() .'"},
+                            "identification": {"transactionid": "' . $orderEntity->getIdSalesOrder() . '"},
                             "frontend": {"payment_frame_url": "' . HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"} 
                         }'
                     )
@@ -85,13 +85,13 @@ trait AuthorizeTransactionTrait
     }
 
     /**
-     * @param $string
+     * @param string $jsonString
      *
      * @return string
      */
-    protected function truncate($string)
+    protected function prepareJsonString($jsonString)
     {
-        return preg_replace("~[\n \t]+~", '', $string);
+        return preg_replace("~[\n \t]+~", '', $jsonString);
     }
 
 }

@@ -13,8 +13,6 @@ use Generated\Shared\Transfer\HeidelpayCreditCardPaymentTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\PaymentTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
-use Orm\Zed\Heidelpay\Persistence\Base\SpyPaymentHeidelpay;
-use Orm\Zed\Heidelpay\Persistence\Base\SpyPaymentHeidelpayOrderItem;
 use Orm\Zed\Heidelpay\Persistence\Base\SpyPaymentHeidelpayOrderItemQuery;
 use Orm\Zed\Heidelpay\Persistence\Base\SpyPaymentHeidelpayQuery;
 use Propel\Runtime\Propel;
@@ -24,7 +22,6 @@ use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\NewOrderWithOneItemTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulCreditCardSecureTransaction;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulSofortAuthorizeTransaction;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Quote\QuoteMockTrait;
 use SprykerTest\Shared\Testify\Helper\ConfigHelper;
 
 /**
@@ -69,7 +66,6 @@ class HeidelpayFacadeSaveOrderPaymentTest extends Test
         return new HeidelpayBusinessFactory();
     }
 
-
     /**
      * @dataProvider _createOrderWithCreditCardSecureTransaction
      *
@@ -81,8 +77,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends Test
     public function testSuccessfulSaveOrderPaymentTest(
         QuoteTransfer $quoteTransfer,
         CheckoutResponseTransfer $checkoutResponseTransfer
-    )
-    {
+    ) {
         $quoteTransfer = $this->createCreditCardPaymentQuote();
 
         $this->heidelpayFacade->saveOrderPayment($quoteTransfer, $checkoutResponseTransfer);
@@ -128,8 +123,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends Test
     public function testUnsuccessfulSaveOrderPaymentTest(
         QuoteTransfer $quoteTransfer,
         CheckoutResponseTransfer $checkoutResponseTransfer
-    )
-    {
+    ) {
         $quoteTransfer = $this->createSofortPaymentQuote();
 
         $this->heidelpayFacade->saveOrderPayment($quoteTransfer, $checkoutResponseTransfer);
@@ -216,7 +210,8 @@ class HeidelpayFacadeSaveOrderPaymentTest extends Test
     }
 
     /**
-     * @param $correctMethodName
+     * @param string $correctMethodName
+     *
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
     protected function createQuote($correctMethodName)

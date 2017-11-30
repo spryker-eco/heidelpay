@@ -36,11 +36,6 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends Test
     protected $heidelpayFacade;
 
     /**
-     * @var
-     */
-    protected $heidelpayFactory;
-
-    /**
      * @return void
      */
     protected function _before()
@@ -78,6 +73,7 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends Test
     {
         $orderBuilder = new SuccessSofortPaymentExternalResponseBuilder($this->createHeidelpayFactory());
         $heidelpayResponse = $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_SOFORT);
+
         return $heidelpayResponse;
     }
 
@@ -104,6 +100,7 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends Test
     {
         $orderBuilder = new FailedSofortPaymentExternalResponseWhithFailedProcessingResultBuilder($this->createHeidelpayFactory());
         $heidelpayResponse = $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_SOFORT);
+
         return $heidelpayResponse;
     }
 
@@ -130,6 +127,7 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends Test
     {
         $orderBuilder = new FailedSofortPaymentExternalResponseWhithIncorrectHashBuilder($this->createHeidelpayFactory());
         $heidelpayResponse = $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_SOFORT);
+
         return $heidelpayResponse;
     }
 
@@ -156,6 +154,7 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends Test
     {
         $orderBuilder = new FailedSofortPaymentExternalResponseWhithIncorrectTransactionIdBuilder($this->createHeidelpayFactory());
         $heidelpayResponse = $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_SOFORT);
+
         return $heidelpayResponse;
     }
 

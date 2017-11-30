@@ -19,4 +19,5 @@ class HeidelpayTestConstants
     const CARD_ACCOUNT_NUMBER = '471110******0000';
     const CARD_BRAND = 'MASTER';
     const CARD_QUOTE_HASH = '1f7f60dcf32900f266e3a516b13358792cbee777';
+
 }
