@@ -17,6 +17,7 @@ trait AuthorizeTransactionTrait
 {
 
     use EncoderTrait;
+
     /**
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
      *
@@ -29,19 +30,68 @@ trait AuthorizeTransactionTrait
             ->setFkSalesOrder($orderEntity->getIdSalesOrder())
             ->setIdTransactionUnique('some unique id')
             ->setTransactionType(HeidelpayConfig::TRANSACTION_TYPE_AUTHORIZE)
-            ->setResponseCode('ACK')
+            ->setResponseCode(HeidelpayTestConstants::HEIDELPAY_SUCCESS_RESPONSE)
             ->setRedirectUrl(HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL)
             ->setRequestPayload('{}')
-            ->setResponsePayload($this->encryptData(
-                    '{
-                        "processing": {"result": "ACK"}, 
-                        "payment": {"code": "CC.PA"}, 
-                        "frontend": {"payment_frame_url": "' . HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"} 
-                    }'
+            ->setResponsePayload(
+                $this->encryptData(
+                    $this->truncate(
+                        '{
+                            "processing": {"result": "ACK"}, 
+                            "payment": {"code": "CC.PA"}, 
+                            "identification": {"transactionid": "'. $orderEntity->getIdSalesOrder() .'"},
+                            "frontend": {"payment_frame_url": "' . HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"} 
+                        }'
+                    )
                 )
             );
 
         $authorizeTransaction->save();
+    }
+
+    /**
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
+     *
+     * @return void
+     */
+    public function createUnsuccessfulAuthorizeTransactionForOrder(SpySalesOrder $orderEntity)
+    {
+        $authorizeTransaction = new SpyPaymentHeidelpayTransactionLog();
+        $authorizeTransaction
+            ->setFkSalesOrder($orderEntity->getIdSalesOrder())
+            ->setIdTransactionUnique('some unique id')
+            ->setTransactionType(HeidelpayConfig::TRANSACTION_TYPE_AUTHORIZE)
+            ->setResponseCode(HeidelpayTestConstants::HEIDELPAY_UNSUCCESS_RESPONSE)
+            ->setRedirectUrl(HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL)
+            ->setRequestPayload('{}')
+            ->setResponsePayload(
+                $this->encryptData(
+                    $this->truncate(
+                        '{
+                            "processing": {
+                                "result": "NOK",
+                                "return": "Custom error",
+                                "status": "REJECTED_VALIDATION"
+                            }, 
+                            "payment": {"code": "CC.PA"}, 
+                            "identification": {"transactionid": "'. $orderEntity->getIdSalesOrder() .'"},
+                            "frontend": {"payment_frame_url": "' . HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"} 
+                        }'
+                    )
+                )
+            );
+
+        $authorizeTransaction->save();
+    }
+
+    /**
+     * @param $string
+     *
+     * @return string
+     */
+    protected function truncate($string)
+    {
+        return preg_replace("~[\n \t]+~", '', $string);
     }
 
 }

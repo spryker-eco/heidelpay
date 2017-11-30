@@ -41,8 +41,6 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Test
 
     use OrderAddressTrait;
 
-
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade
      */
@@ -90,7 +88,7 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Test
         $this->assertInstanceOf(HeidelpayCreditCardInfoTransfer::class,$response->getCreditCardInfo());
 
         $this->assertEquals($response->getCreditCardInfo()->getAccountHolder(), $this->getAccountHolder($quote));
-        $this->assertEquals($response->getCreditCardInfo()->getAccountBrand(), static::CARD_BRAND);
+        $this->assertEquals($response->getCreditCardInfo()->getAccountBrand(), HeidelpayTestConstants::CARD_BRAND);
 
     }
 
@@ -103,7 +101,7 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Test
         $transfer = new HeidelpayRegistrationByIdAndQuoteRequestTransfer();
         $transfer->setQuote($quote);
         $creditCardRegistrationEntity = $this->_createCardRegistrationTransfer($quote);
-        $creditCardRegistrationEntity->setQuoteHash(static::QOUTE_HASH);
+        $creditCardRegistrationEntity->setQuoteHash(HeidelpayTestConstants::CARD_QUOTE_HASH);
         $creditCardRegistrationEntity->save();
         $transfer->setIdRegistration($creditCardRegistrationEntity->getIdCreditCardRegistration());
 

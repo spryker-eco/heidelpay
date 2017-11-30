@@ -53,7 +53,7 @@ class OrderWithSuccessfulIdealAuthorizeTransaction
             $shippingAddressJohnDoe
         );
 
-        $this->createSuccessfulAuthorizeTransactionForOrder($orderEntity);
+        $this->createTransaction($orderEntity);
 
         $checkoutResponseTransfer = $this->createCheckoutResponseFromOrder($orderEntity);
 
@@ -95,7 +95,9 @@ class OrderWithSuccessfulIdealAuthorizeTransaction
 
         $quoteTransfer = (new QuoteTransfer())
             ->setCustomer($customerTransfer)
-            ->setPayment($paymentTransfer);
+            ->setPayment($paymentTransfer)
+            ->setOrderReference($orderEntity->getOrderReference());
+
 
         return $quoteTransfer;
     }
@@ -126,6 +128,16 @@ class OrderWithSuccessfulIdealAuthorizeTransaction
         }
 
         return $checkoutResponseTransfer;
+    }
+
+    /**
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
+     *
+     * @return void
+     */
+    protected function createTransaction($orderEntity)
+    {
+        $this->createSuccessfulAuthorizeTransactionForOrder($orderEntity);
     }
 
 }

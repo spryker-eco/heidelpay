@@ -58,8 +58,6 @@ class HeidelpayFacadeGetPaymentBySalesOrderTest extends Test
         $this->heidelpayFacade = (new HeidelpayFacade())
             ->setFactory($this->createHeidelpayFactory());
 
-        $this->heidelpayToSales = new HeidelpayToSalesBridge(new SalesFacade());
-
         $this->getModule('\\' . ConfigHelper::class)
             ->setConfig(HeidelpayConstants::CONFIG_ENCRYPTION_KEY, 'encryption_key');
     }
