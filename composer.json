@@ -33,9 +33,9 @@
     "spryker/installer": "If you want to use Installer plugins you need to install spryker/installer."
   },
   "autoload": {
-    "psr-0": {
-      "SprykerEco": "src/",
-      "SprykerEcoTest": "tests/"
+    "psr-4": {
+      "SprykerEco\\": "src/SprykerEco/",
+      "SprykerEcoTest\\": "tests/SprykerEcoTest/"
     }
   },
   "minimum-stability": "dev",
