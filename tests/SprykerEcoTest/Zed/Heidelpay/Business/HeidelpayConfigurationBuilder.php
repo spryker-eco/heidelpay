@@ -18,7 +18,7 @@ class HeidelpayConfigurationBuilder
 {
 
     /**
-     * @return mixed
+     * @return array
      */
     public function getHeidelpayConfigurationOptions()
     {
