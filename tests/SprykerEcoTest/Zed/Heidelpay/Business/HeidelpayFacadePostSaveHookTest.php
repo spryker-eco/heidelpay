@@ -7,7 +7,6 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
-use Codeception\TestCase\Test;
 use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
@@ -29,7 +28,7 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
  * @group Business
  * @group HeidelpayFacadePostSaveHookTest
  */
-class HeidelpayFacadePostSaveHookTest extends Test
+class HeidelpayFacadePostSaveHookTest extends HeidelpayPaymentTest
 {
 
     /**

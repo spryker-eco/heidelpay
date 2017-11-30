@@ -7,18 +7,11 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
-use Codeception\TestCase\Test;
-
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
 
 use Generated\Shared\Transfer\PaymentTransfer;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
-
-use SprykerTest\Shared\Testify\Helper\ConfigHelper;
 
 /**
  * @group Functional
@@ -28,27 +21,8 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
  * @group Business
  * @group HeidelpayFacadeGetPaymentBySalesOrderTest
  */
-class HeidelpayFacadeGetPaymentBySalesOrderTest extends Test
+class HeidelpayFacadeGetPaymentBySalesOrderTest extends HeidelpayPaymentTest
 {
-
-    /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade
-     */
-    protected $heidelpayFacade;
-
-    /**
-     * @return void
-     */
-    protected function _before()
-    {
-        parent::_before();
-
-        $this->heidelpayFacade = (new HeidelpayFacade())
-            ->setFactory($this->createHeidelpayFactory());
-
-        $this->getModule('\\' . ConfigHelper::class)
-            ->setConfig(HeidelpayConstants::CONFIG_ENCRYPTION_KEY, 'encryption_key');
-    }
 
     /**
      * @dataProvider createSofortSuccessOrder
@@ -89,14 +63,6 @@ class HeidelpayFacadeGetPaymentBySalesOrderTest extends Test
         foreach ($paymentTransferArray as $value) {
             $this->assertNull($value);
         }
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
-     */
-    protected function createHeidelpayFactory()
-    {
-        return new HeidelpayBusinessFactory();
     }
 
 }

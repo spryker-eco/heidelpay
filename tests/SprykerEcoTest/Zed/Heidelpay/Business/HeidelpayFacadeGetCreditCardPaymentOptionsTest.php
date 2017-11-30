@@ -7,7 +7,6 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
-use Codeception\TestCase\Test;
 use Generated\Shared\Transfer\HeidelpayCreditCardInfoTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentTransfer;
@@ -17,10 +16,7 @@ use Generated\Shared\Transfer\PaymentTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\TotalsTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration;
-use Propel\Runtime\Propel;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\CreditCard\CreditCardBuilder;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerAddressTrait;
@@ -28,7 +24,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Quote\QuoteMockTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\SuccessfulResponseHeidelpayBusinessFactory;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusinessFactory;
-use SprykerTest\Shared\Testify\Helper\ConfigHelper;
 
 /**
  * @group Functional
@@ -38,38 +33,11 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
  * @group Business
  * @group HeidelpayFacadeGetCreditCardPaymentOptionsTest
  */
-class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends Test
+class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTest
 {
 
     const CUSTOMER_ADDRESS_ID = 100000000;
     use QuoteMockTrait, CustomerAddressTrait, CustomerTrait;
-
-    /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade
-     */
-    protected $heidelpayFacade;
-
-    /**
-     * @return void
-     */
-    protected function _before()
-    {
-        parent::_before();
-
-        $this->heidelpayFacade = (new HeidelpayFacade())
-            ->setFactory($this->createHeidelpayFactory());
-
-        $this->getModule('\\' . ConfigHelper::class)
-            ->setConfig(HeidelpayConstants::CONFIG_ENCRYPTION_KEY, 'encryption_key');
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
-     */
-    protected function createHeidelpayFactory()
-    {
-        return new HeidelpayBusinessFactory();
-    }
 
     /**
      * @return void
@@ -210,15 +178,6 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends Test
     protected function createUnsuccessfulPaymentHeidelpayFactoryMock()
     {
         return new UnsuccesfulResponseHeidelpayBusinessFactory();
-    }
-
-    /**
-     * @return void
-     */
-    protected function _after()
-    {
-        $con = Propel::getConnection();
-        $con->commit();
     }
 
     /**

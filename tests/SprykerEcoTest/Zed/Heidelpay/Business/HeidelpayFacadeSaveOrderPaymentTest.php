@@ -7,7 +7,6 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
-use Codeception\TestCase\Test;
 use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
@@ -15,14 +14,9 @@ use Generated\Shared\Transfer\PaymentTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Orm\Zed\Heidelpay\Persistence\Base\SpyPaymentHeidelpayOrderItemQuery;
 use Orm\Zed\Heidelpay\Persistence\Base\SpyPaymentHeidelpayQuery;
-use Propel\Runtime\Propel;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\NewOrderWithOneItemTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulCreditCardSecureTransaction;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulSofortAuthorizeTransaction;
-use SprykerTest\Shared\Testify\Helper\ConfigHelper;
 
 /**
  * @group Functional
@@ -32,39 +26,12 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
  * @group Business
  * @group HeidelpayFacadeSaveOrderPaymentTest
  */
-class HeidelpayFacadeSaveOrderPaymentTest extends Test
+class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
 {
 
     const REGISTRATION_NUMBER = '31HA07BC814CA0300B135019D1515E08';
 
     use NewOrderWithOneItemTrait;
-
-    /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade
-     */
-    protected $heidelpayFacade;
-
-    /**
-     * @return void
-     */
-    protected function _before()
-    {
-        parent::_before();
-
-        $this->heidelpayFacade = (new HeidelpayFacade())
-            ->setFactory($this->createHeidelpayFactory());
-
-        $this->getModule('\\' . ConfigHelper::class)
-            ->setConfig(HeidelpayConstants::CONFIG_ENCRYPTION_KEY, 'encryption_key');
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
-     */
-    protected function createHeidelpayFactory()
-    {
-        return new HeidelpayBusinessFactory();
-    }
 
     /**
      * @dataProvider createOrderWithCreditCardSecureTransaction
@@ -198,15 +165,6 @@ class HeidelpayFacadeSaveOrderPaymentTest extends Test
         $orderWithPaypalAuthorize = new OrderWithSuccessfulSofortAuthorizeTransaction($this->createHeidelpayFactory());
 
         return [$orderWithPaypalAuthorize->createOrderWithSofortAuthorizeTransaction()];
-    }
-
-    /**
-     * @return void
-     */
-    protected function _after()
-    {
-        $con = Propel::getConnection();
-        $con->commit();
     }
 
     /**

@@ -7,15 +7,10 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
-use Codeception\TestCase\Test;
 use Generated\Shared\Transfer\HeidelpayCreditCardInfoTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer;
 use Orm\Zed\Heidelpay\Persistence\Base\SpyPaymentHeidelpayCreditCardRegistrationQuery;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
-use SprykerTest\Shared\Testify\Helper\ConfigHelper;
 
 /**
  * @group Functional
@@ -25,7 +20,7 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
  * @group Business
  * @group HeidelpayFacadeSaveCreditCardRegistrationTest
  */
-class HeidelpayFacadeSaveCreditCardRegistrationTest extends Test
+class HeidelpayFacadeSaveCreditCardRegistrationTest extends HeidelpayPaymentTest
 {
 
     const QUOTE_HASH = 'bea74ee13da897592f633fc93024ab3f5231d74d';
@@ -35,33 +30,6 @@ class HeidelpayFacadeSaveCreditCardRegistrationTest extends Test
     const ACCOUNT_HOLDER_NAME = 'John Doe';
     const CREDIT_CARD_BRAND = 'MASTER';
     const CREDIT_CARD_NUMBER = '471110******0000';
-
-    /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade
-     */
-    protected $heidelpayFacade;
-
-    /**
-     * @return void
-     */
-    protected function _before()
-    {
-        parent::_before();
-
-        $this->heidelpayFacade = (new HeidelpayFacade())
-            ->setFactory($this->createHeidelpayFactory());
-
-        $this->getModule('\\' . ConfigHelper::class)
-            ->setConfig(HeidelpayConstants::CONFIG_ENCRYPTION_KEY, 'encryption_key');
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
-     */
-    protected function createHeidelpayFactory()
-    {
-        return new HeidelpayBusinessFactory();
-    }
 
     /**
      * @dataProvider createRegistrationTransfer

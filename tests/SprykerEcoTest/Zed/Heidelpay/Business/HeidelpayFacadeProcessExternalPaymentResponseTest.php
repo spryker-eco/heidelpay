@@ -7,17 +7,12 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
-use Codeception\TestCase\Test;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\PaymentTransfer;
-use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\FailedSofortPaymentExternalResponseWhithFailedProcessingResultBuilder;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\FailedSofortPaymentExternalResponseWhithIncorrectHashBuilder;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\FailedSofortPaymentExternalResponseWhithIncorrectTransactionIdBuilder;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\SuccessSofortPaymentExternalResponseBuilder;
-use SprykerTest\Shared\Testify\Helper\ConfigHelper;
 
 /**
  * @group Functional
@@ -27,29 +22,8 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
  * @group Business
  * @group HeidelpayFacadeProcessExternalPaymentResponseTest
  */
-class HeidelpayFacadeProcessExternalPaymentResponseTest extends Test
+class HeidelpayFacadeProcessExternalPaymentResponseTest extends HeidelpayPaymentTest
 {
-
-    /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade
-     */
-    protected $heidelpayFacade;
-
-    /**
-     * @return void
-     */
-    protected function _before()
-    {
-        parent::_before();
-
-        $this->getModule('\\' . ConfigHelper::class)
-            ->setConfig(HeidelpayConstants::CONFIG_ENCRYPTION_KEY, 'encryption_key');
-        $this->getModule('\\' . ConfigHelper::class)
-            ->setConfig(HeidelpayConstants::CONFIG_HEIDELPAY_APPLICATION_SECRET, 'debug_secret');
-
-        $this->heidelpayFacade = (new HeidelpayFacade())
-            ->setFactory($this->createHeidelpayFactory());
-    }
 
     /**
      * @return void
@@ -156,14 +130,6 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends Test
         $heidelpayResponse = $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_SOFORT);
 
         return $heidelpayResponse;
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
-     */
-    protected function createHeidelpayFactory()
-    {
-        return new HeidelpayBusinessFactory();
     }
 
 }
