@@ -12,6 +12,7 @@ use Generated\Shared\Transfer\HeidelpayResponseErrorTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
+use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulIdealAuthorizeTransaction;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithUnsuccessfulIdealAuthorizeTransaction;
@@ -110,7 +111,7 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
      */
     public static function createOrderWithSuccessfulIdealAuthorizeTransaction()
     {
-        $orderWithPaypalAuthorize = new OrderWithSuccessfulIdealAuthorizeTransaction($this->createHeidelpayFactory());
+        $orderWithPaypalAuthorize = new OrderWithSuccessfulIdealAuthorizeTransaction(new HeidelpayBusinessFactory());
         $order = $orderWithPaypalAuthorize->createOrderWithIdealAuthorizeTransaction();
 
         return [[$order[0]]];
@@ -121,7 +122,7 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
      */
     public static function createOrderWithUnsuccessfulIdealAuthorizeTransaction()
     {
-        $orderWithPaypalAuthorize = new OrderWithUnsuccessfulIdealAuthorizeTransaction($this->createHeidelpayFactory());
+        $orderWithPaypalAuthorize = new OrderWithUnsuccessfulIdealAuthorizeTransaction(new HeidelpayBusinessFactory());
         $order = $orderWithPaypalAuthorize->createOrderWithIdealAuthorizeTransaction();
 
         return [[$order[0]]];
