@@ -32,7 +32,7 @@ class HeidelpayFacadeCapturePaymentTest extends HeidelpayPaymentTest
      */
     public function testProcessSuccessfulExternalPaymentResponseForCreditCardCapture()
     {
-        $salesOrder = $this->_createOrder();
+        $salesOrder = $this->createOrder();
 
         $heidelpayFacade = (new HeidelpayFacade())
             ->setFactory($this->createSuccessfulPaymentHeidelpayFactoryMock());
@@ -55,7 +55,7 @@ class HeidelpayFacadeCapturePaymentTest extends HeidelpayPaymentTest
     /**
      * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
      */
-    public function _createOrder()
+    public function createOrder()
     {
         $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
         $orderTransfer = $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_CREDIT_CARD_SECURE);
@@ -75,7 +75,7 @@ class HeidelpayFacadeCapturePaymentTest extends HeidelpayPaymentTest
      */
     public function testProcessUnsuccessfulExternalPaymentResponseForCreditCardCapture()
     {
-        $salesOrder = $this->_createOrder();
+        $salesOrder = $this->createOrder();
 
         $heidelpayFacade = (new HeidelpayFacade())
             ->setFactory($this->createUnsuccessfulPaymentHeidelpayFactoryMock());

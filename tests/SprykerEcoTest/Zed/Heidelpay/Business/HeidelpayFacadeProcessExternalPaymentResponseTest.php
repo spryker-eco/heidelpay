@@ -56,7 +56,7 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends Test
      */
     public function testProcessExternalPaymentSuccessSofortPaymentResponse()
     {
-        $heidelpayResponse = $this->_createSuccessSofortPaymentExternalResponse();
+        $heidelpayResponse = $this->createSuccessSofortPaymentExternalResponse();
 
         $response = $this->heidelpayFacade->processExternalPaymentResponse(
             $heidelpayResponse
@@ -69,7 +69,7 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends Test
     /**
      * @return array
      */
-    public function _createSuccessSofortPaymentExternalResponse()
+    public function createSuccessSofortPaymentExternalResponse()
     {
         $orderBuilder = new SuccessSofortPaymentExternalResponseBuilder($this->createHeidelpayFactory());
         $heidelpayResponse = $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_SOFORT);
@@ -82,7 +82,7 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends Test
      */
     public function testProcessExternalPaymentFailedSofortResponseWhichUnsuccessful()
     {
-        $heidelpayResponse = $this->_createFailedSofortPaymentExternalResponseThatIsUnsuccessful();
+        $heidelpayResponse = $this->createFailedSofortPaymentExternalResponseThatIsUnsuccessful();
 
         $response = $this->heidelpayFacade->processExternalPaymentResponse(
             $heidelpayResponse
@@ -96,7 +96,7 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends Test
     /**
      * @return array
      */
-    public function _createFailedSofortPaymentExternalResponseThatIsUnsuccessful()
+    public function createFailedSofortPaymentExternalResponseThatIsUnsuccessful()
     {
         $orderBuilder = new FailedSofortPaymentExternalResponseWhithFailedProcessingResultBuilder($this->createHeidelpayFactory());
         $heidelpayResponse = $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_SOFORT);
@@ -109,7 +109,7 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends Test
      */
     public function testProcessExternalPaymentFailedSofortResponseWhithIncorrectHash()
     {
-        $heidelpayResponse = $this->_createFailedSofortPaymentExternalResponseWhithIncorrectHash();
+        $heidelpayResponse = $this->createFailedSofortPaymentExternalResponseWhithIncorrectHash();
 
         $response = $this->heidelpayFacade->processExternalPaymentResponse(
             $heidelpayResponse
@@ -123,7 +123,7 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends Test
     /**
      * @return array
      */
-    public function _createFailedSofortPaymentExternalResponseWhithIncorrectHash()
+    public function createFailedSofortPaymentExternalResponseWhithIncorrectHash()
     {
         $orderBuilder = new FailedSofortPaymentExternalResponseWhithIncorrectHashBuilder($this->createHeidelpayFactory());
         $heidelpayResponse = $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_SOFORT);
@@ -136,7 +136,7 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends Test
      */
     public function testProcessExternalPaymentFailedSofortResponseWithIncorrectHeidelpayTransactionId()
     {
-        $heidelpayResponse = $this->_createFailedSofortPaymentExternalResponseWhithIncorrectHash();
+        $heidelpayResponse = $this->createFailedSofortPaymentExternalResponseWhithIncorrectHash();
 
         $response = $this->heidelpayFacade->processExternalPaymentResponse(
             $heidelpayResponse
@@ -150,7 +150,7 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends Test
     /**
      * @return array
      */
-    public function _createFailedSofortPaymentExternalResponseWithIncorrectHeidelpayTransactionId()
+    public function createFailedSofortPaymentExternalResponseWithIncorrectHeidelpayTransactionId()
     {
         $orderBuilder = new FailedSofortPaymentExternalResponseWhithIncorrectTransactionIdBuilder($this->createHeidelpayFactory());
         $heidelpayResponse = $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_SOFORT);

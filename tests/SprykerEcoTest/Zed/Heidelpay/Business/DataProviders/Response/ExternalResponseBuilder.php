@@ -7,6 +7,7 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response;
 
+use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use ReflectionObject;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
@@ -154,7 +155,7 @@ class ExternalResponseBuilder
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     protected function getProcessingResult()
     {
@@ -166,7 +167,7 @@ class ExternalResponseBuilder
      *
      * @return int
      */
-    protected function getTransationId($orderEntity)
+    protected function getTransationId(SpySalesOrder $orderEntity)
     {
         return $orderEntity->getIdSalesOrder();
     }

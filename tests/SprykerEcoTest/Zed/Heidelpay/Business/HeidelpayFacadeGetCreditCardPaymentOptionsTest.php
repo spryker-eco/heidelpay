@@ -224,9 +224,9 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends Test
     /**
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    protected function createQuote()
+    protected function createQuoteWithPaymentTransfer()
     {
-        $quote = $this->_createQuote();
+        $quote = $this->createQuote();
         $paymentTransfer = (new PaymentTransfer())
             ->setHeidelpayCreditCardSecure(
                 (new HeidelpayCreditCardPaymentTransfer())
@@ -244,7 +244,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends Test
      */
     protected function createQuoteForNotRegisteredCard()
     {
-        $quoteTransfer = $this->createQuote();
+        $quoteTransfer = $this->createQuoteWithPaymentTransfer();
         $quoteTransfer->setTotals(
             (new TotalsTransfer())
                 ->setGrandTotal(10000)

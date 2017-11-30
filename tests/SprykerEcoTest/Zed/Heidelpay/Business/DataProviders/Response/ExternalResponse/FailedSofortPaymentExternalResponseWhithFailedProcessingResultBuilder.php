@@ -13,7 +13,7 @@ class FailedSofortPaymentExternalResponseWhithFailedProcessingResultBuilder exte
 {
 
     /**
-     * @return string
+     * @return string|null
      */
     protected function getProcessingResult()
     {

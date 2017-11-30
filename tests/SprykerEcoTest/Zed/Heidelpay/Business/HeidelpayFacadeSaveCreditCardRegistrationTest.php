@@ -64,7 +64,7 @@ class HeidelpayFacadeSaveCreditCardRegistrationTest extends Test
     }
 
     /**
-     * @dataProvider _createRegistrationTransfer
+     * @dataProvider createRegistrationTransfer
      *
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $cardRegistrationTransfer
      *
@@ -89,7 +89,7 @@ class HeidelpayFacadeSaveCreditCardRegistrationTest extends Test
     /**
      * @return array
      */
-    public function _createRegistrationTransfer()
+    public function createRegistrationTransfer()
     {
         $cardRegistrationTransfer = new HeidelpayRegistrationRequestTransfer();
         $cardRegistrationTransfer->setQuoteHash(static::QUOTE_HASH)

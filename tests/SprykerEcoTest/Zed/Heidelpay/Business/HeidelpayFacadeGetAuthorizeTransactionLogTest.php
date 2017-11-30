@@ -28,7 +28,7 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
 {
 
     /**
-     * @dataProvider _createOrderWithSuccessfulIdealAuthorizeTransaction
+     * @dataProvider createOrderWithSuccessfulIdealAuthorizeTransaction
      *
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
@@ -67,7 +67,7 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
     }
 
     /**
-     * @dataProvider _createOrderWithUnsuccessfulIdealAuthorizeTransaction
+     * @dataProvider createOrderWithUnsuccessfulIdealAuthorizeTransaction
      *
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
@@ -108,7 +108,7 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
     /**
      * @return array
      */
-    public function _createOrderWithSuccessfulIdealAuthorizeTransaction()
+    public function createOrderWithSuccessfulIdealAuthorizeTransaction()
     {
         $orderWithPaypalAuthorize = new OrderWithSuccessfulIdealAuthorizeTransaction($this->createHeidelpayFactory());
         list($quoteTransfer, $checkoutResponseTransfer) = $orderWithPaypalAuthorize->createOrderWithIdealAuthorizeTransaction();
@@ -119,7 +119,7 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
     /**
      * @return array
      */
-    public function _createOrderWithUnsuccessfulIdealAuthorizeTransaction()
+    public function createOrderWithUnsuccessfulIdealAuthorizeTransaction()
     {
         $orderWithPaypalAuthorize = new OrderWithUnsuccessfulIdealAuthorizeTransaction($this->createHeidelpayFactory());
         list($quoteTransfer, $checkoutResponseTransfer) = $orderWithPaypalAuthorize->createOrderWithIdealAuthorizeTransaction();

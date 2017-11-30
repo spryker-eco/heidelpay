@@ -67,7 +67,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends Test
     }
 
     /**
-     * @dataProvider _createOrderWithCreditCardSecureTransaction
+     * @dataProvider createOrderWithCreditCardSecureTransaction
      *
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
@@ -113,7 +113,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends Test
     }
 
     /**
-     * @dataProvider _createOrderWithSofortAuthorizeTransaction
+     * @dataProvider createOrderWithSofortAuthorizeTransaction
      *
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
@@ -179,11 +179,11 @@ class HeidelpayFacadeSaveOrderPaymentTest extends Test
     }
 
     /**
-     * @dataProvider _createOrderWithIdealAuthorizeTransaction
+     * @dataProvider createOrderWithIdealAuthorizeTransaction
      *
      * @return array
      */
-    public function _createOrderWithCreditCardSecureTransaction()
+    public function createOrderWithCreditCardSecureTransaction()
     {
         $orderWithPaypalAuthorize = new OrderWithSuccessfulCreditCardSecureTransaction($this->createHeidelpayFactory());
 
@@ -193,7 +193,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends Test
     /**
      * @return array
      */
-    public function _createOrderWithSofortAuthorizeTransaction()
+    public function createOrderWithSofortAuthorizeTransaction()
     {
         $orderWithPaypalAuthorize = new OrderWithSuccessfulSofortAuthorizeTransaction($this->createHeidelpayFactory());
 

@@ -17,7 +17,7 @@ trait QuoteMockTrait
     /**
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function _createQuote()
+    public function createQuote()
     {
         $product = $this->tester->haveProduct();
         $this->tester->haveProductInStock([StockProductTransfer::SKU => $product->getSku()]);

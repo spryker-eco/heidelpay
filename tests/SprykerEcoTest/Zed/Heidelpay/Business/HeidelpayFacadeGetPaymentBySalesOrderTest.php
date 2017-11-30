@@ -51,7 +51,7 @@ class HeidelpayFacadeGetPaymentBySalesOrderTest extends Test
     }
 
     /**
-     * @dataProvider _createSofortSuccessOrder
+     * @dataProvider createSofortSuccessOrder
      *
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $salesOrder
      *
@@ -70,7 +70,7 @@ class HeidelpayFacadeGetPaymentBySalesOrderTest extends Test
     /**
      * @return array
      */
-    public function _createSofortSuccessOrder()
+    public function createSofortSuccessOrder()
     {
         $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
         $orderTransfer = $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_SOFORT);

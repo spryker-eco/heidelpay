@@ -71,10 +71,10 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Test
      */
     public function testSuccessfulFindCreditCardRegistrationByIdAndQuote()
     {
-        $quote = $this->_createQuote();
+        $quote = $this->createQuote();
         $transfer = new HeidelpayRegistrationByIdAndQuoteRequestTransfer();
         $transfer->setQuote($quote);
-        $creditCardRegistrationEntity = $this->_createCardRegistrationTransfer($quote);
+        $creditCardRegistrationEntity = $this->createCardRegistrationTransfer($quote);
         $transfer->setIdRegistration($creditCardRegistrationEntity->getIdCreditCardRegistration());
 
         $response = $this->heidelpayFacade->findCreditCardRegistrationByIdAndQuote($transfer);
@@ -93,10 +93,10 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Test
      */
     public function testUnsuccessfulFindCreditCardRegistrationByIdAndQuote()
     {
-        $quote = $this->_createQuote();
+        $quote = $this->createQuote();
         $transfer = new HeidelpayRegistrationByIdAndQuoteRequestTransfer();
         $transfer->setQuote($quote);
-        $creditCardRegistrationEntity = $this->_createCardRegistrationTransfer($quote);
+        $creditCardRegistrationEntity = $this->createCardRegistrationTransfer($quote);
         $creditCardRegistrationEntity->setQuoteHash(HeidelpayTestConstants::CARD_QUOTE_HASH);
         $creditCardRegistrationEntity->save();
         $transfer->setIdRegistration($creditCardRegistrationEntity->getIdCreditCardRegistration());
@@ -111,7 +111,7 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Test
     /**
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function _createQuote()
+    public function createQuote()
     {
         $product = $this->tester->haveProduct();
         $this->tester->haveProductInStock([StockProductTransfer::SKU => $product->getSku()]);
@@ -133,7 +133,7 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Test
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration
      */
-    public function _createCardRegistrationTransfer(QuoteTransfer $quoteTransfer)
+    public function createCardRegistrationTransfer(QuoteTransfer $quoteTransfer)
     {
         $creditCardRegistrationEntity = new SpyPaymentHeidelpayCreditCardRegistration();
         $quoteHash = QuoteUniqueIdGenerator::getHashByCustomerEmailAndTotals($quoteTransfer);
