@@ -52,6 +52,7 @@ class HeidelpayPaymentTest extends Test
         $this->heidelpayToSales = new HeidelpayToSalesBridge(new SalesFacade());
 
         $config[HeidelpayConstants::CONFIG_ENCRYPTION_KEY] = 'encryption_key';
+        $config[ApplicationConstants::HOST_YVES] = 'www.de.spryker.test';
         $YVES_HOST_PROTOCOL = 'http';
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_PAYMENT_RESPONSE_URL] = $YVES_HOST_PROTOCOL . '://' . $config[ApplicationConstants::HOST_YVES] . '/heidelpay/payment';
 
@@ -74,7 +75,6 @@ class HeidelpayPaymentTest extends Test
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_IDEAL] = '31HA07BC8142C5A171744B56E61281E5';
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_SOFORT] = '31HA07BC8142C5A171749CDAA43365D2';
         // Shop configuration values
-        $config[HeidelpayConstants::CONFIG_HEIDELPAY_APPLICATION_SECRET] = '39542395235ßfsokkspreipsr';
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_APPLICATION_SECRET] = 'debug_secret';
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_SANDBOX_REQUEST] = true;
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_LANGUAGE_CODE] = 'DE';
