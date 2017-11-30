@@ -46,8 +46,13 @@ class HeidelpayPaymentTest extends Test
 
         $this->heidelpayToSales = new HeidelpayToSalesBridge(new SalesFacade());
 
-        $this->getModule('\\' . ConfigHelper::class)
-            ->setConfig(HeidelpayConstants::CONFIG_ENCRYPTION_KEY, 'encryption_key');
+        $config[HeidelpayConstants::CONFIG_ENCRYPTION_KEY] = 'encryption_key';
+        $config[HeidelpayConstants::CONFIG_HEIDELPAY_USER_LOGIN] = '31ha07bc8142c5a171744e5aef11ffd3';
+
+        foreach ($config as $key => $value) {
+            $this->getModule('\\' . ConfigHelper::class)
+                ->setConfig($key, $value);
+        }
     }
 
     /**
