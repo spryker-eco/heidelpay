@@ -86,7 +86,7 @@ class HeidelpayFacadeGetPaymentBySalesOrderTest extends Test
         $this->assertInstanceOf(HeidelpayPaymentTransfer::class, $paymentTransfer);
         $this->assertNotNull($paymentTransfer);
         $paymentTransferArray = $paymentTransfer->toArray();
-        foreach ($paymentTransferArray as $paymentTransferOption => $value) {
+        foreach ($paymentTransferArray as $value) {
             $this->assertNull($value);
         }
     }

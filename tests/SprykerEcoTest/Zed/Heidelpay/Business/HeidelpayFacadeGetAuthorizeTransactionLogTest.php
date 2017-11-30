@@ -111,9 +111,9 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
     public function createOrderWithSuccessfulIdealAuthorizeTransaction()
     {
         $orderWithPaypalAuthorize = new OrderWithSuccessfulIdealAuthorizeTransaction($this->createHeidelpayFactory());
-        list($quoteTransfer, $checkoutResponseTransfer) = $orderWithPaypalAuthorize->createOrderWithIdealAuthorizeTransaction();
+        $order = $orderWithPaypalAuthorize->createOrderWithIdealAuthorizeTransaction();
 
-        return [[$quoteTransfer]];
+        return [[$order[0]]];
     }
 
     /**
@@ -122,9 +122,9 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
     public function createOrderWithUnsuccessfulIdealAuthorizeTransaction()
     {
         $orderWithPaypalAuthorize = new OrderWithUnsuccessfulIdealAuthorizeTransaction($this->createHeidelpayFactory());
-        list($quoteTransfer, $checkoutResponseTransfer) = $orderWithPaypalAuthorize->createOrderWithIdealAuthorizeTransaction();
+        $order = $orderWithPaypalAuthorize->createOrderWithIdealAuthorizeTransaction();
 
-        return [[$quoteTransfer]];
+        return [[$order[0]]];
     }
 
 }
