@@ -110,7 +110,7 @@ class HeidelpayFacadePostSaveHookTest extends HeidelpayPaymentTest
     /**
      * @return array
      */
-    public function createOrderWithPaypalDebitTransaction()
+    public static function createOrderWithPaypalDebitTransaction()
     {
         $orderWithPaypalAuthorize = new OrderWithSuccessfulPaypalDebitTransaction($this->createHeidelpayFactory());
 
@@ -120,7 +120,7 @@ class HeidelpayFacadePostSaveHookTest extends HeidelpayPaymentTest
     /**
      * @return array
      */
-    public function createOrderWithIdealAuthorizeTransaction()
+    public static function createOrderWithIdealAuthorizeTransaction()
     {
         $orderWithPaypalAuthorize = new OrderWithSuccessfulIdealAuthorizeTransaction($this->createHeidelpayFactory());
 
@@ -130,7 +130,7 @@ class HeidelpayFacadePostSaveHookTest extends HeidelpayPaymentTest
     /**
      * @return array
      */
-    public function createOrderWithSofortAuthorizeTransaction()
+    public static function createOrderWithSofortAuthorizeTransaction()
     {
         $orderWithPaypalAuthorize = new OrderWithSuccessfulSofortAuthorizeTransaction($this->createHeidelpayFactory());
 
@@ -140,7 +140,7 @@ class HeidelpayFacadePostSaveHookTest extends HeidelpayPaymentTest
     /**
      * @return array
      */
-    public function createOrderWithPaypalAuthorizeTransaction()
+    public static function createOrderWithPaypalAuthorizeTransaction()
     {
         $orderWithPaypalAuthorize = new OrderWithSuccessfulPaypalAuthorizeTransaction($this->createHeidelpayFactory());
 
@@ -152,7 +152,7 @@ class HeidelpayFacadePostSaveHookTest extends HeidelpayPaymentTest
      *
      * @return array
      */
-    public function createOrderWithCreditCardSecureTransaction()
+    public static function createOrderWithCreditCardSecureTransaction()
     {
         $orderWithPaypalAuthorize = new OrderWithSuccessfulCreditCardSecureTransaction($this->createHeidelpayFactory());
 
