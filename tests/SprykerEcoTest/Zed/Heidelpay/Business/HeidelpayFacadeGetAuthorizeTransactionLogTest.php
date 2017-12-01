@@ -11,8 +11,6 @@ use Generated\Shared\Transfer\HeidelpayAuthorizeTransactionLogRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseErrorTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
-use Generated\Shared\Transfer\QuoteTransfer;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulIdealAuthorizeTransaction;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithUnsuccessfulIdealAuthorizeTransaction;
@@ -29,16 +27,11 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
 {
 
     /**
-     * @dataProvider createOrderWithSuccessfulIdealAuthorizeTransaction
-     *
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
      * @return void
      */
-    public function testSuccessfulGetAuthorizeTransactionLog(
-        QuoteTransfer $quoteTransfer
-    ) {
-
+    public function testSuccessfulGetAuthorizeTransactionLog()
+    {
+        $quoteTransfer = $this->createOrderWithSuccessfulIdealAuthorizeTransaction();
         $authorizeTransactionLogRequestTransfer = new HeidelpayAuthorizeTransactionLogRequestTransfer();
         $authorizeTransactionLogRequestTransfer->setOrderReference($quoteTransfer->getOrderReference());
 
@@ -64,19 +57,14 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
         $this->assertTrue($heidelpayResponse->getIsSuccess());
         $this->assertFalse($heidelpayResponse->getIsError());
         $this->assertEquals(HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL, $heidelpayResponse->getPaymentFormUrl());
-
     }
 
     /**
-     * @dataProvider createOrderWithUnsuccessfulIdealAuthorizeTransaction
-     *
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
      * @return void
      */
-    public function testUnsuccessfulGetAuthorizeTransactionLog(
-        QuoteTransfer $quoteTransfer
-    ) {
+    public function testUnsuccessfulGetAuthorizeTransactionLog()
+    {
+        $quoteTransfer = $this->createOrderWithUnsuccessfulIdealAuthorizeTransaction();
         $authorizeTransactionLogRequestTransfer = new HeidelpayAuthorizeTransactionLogRequestTransfer();
         $authorizeTransactionLogRequestTransfer->setOrderReference($quoteTransfer->getOrderReference());
 
@@ -109,23 +97,23 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
     /**
      * @return array
      */
-    public static function createOrderWithSuccessfulIdealAuthorizeTransaction()
+    public function createOrderWithSuccessfulIdealAuthorizeTransaction()
     {
-        $orderWithPaypalAuthorize = new OrderWithSuccessfulIdealAuthorizeTransaction(new HeidelpayBusinessFactory());
+        $orderWithPaypalAuthorize = new OrderWithSuccessfulIdealAuthorizeTransaction($this->createHeidelpayFactory());
         $order = $orderWithPaypalAuthorize->createOrderWithIdealAuthorizeTransaction();
 
-        return [[$order[0]]];
+        return $order[0];
     }
 
     /**
      * @return array
      */
-    public static function createOrderWithUnsuccessfulIdealAuthorizeTransaction()
+    public function createOrderWithUnsuccessfulIdealAuthorizeTransaction()
     {
-        $orderWithPaypalAuthorize = new OrderWithUnsuccessfulIdealAuthorizeTransaction(new HeidelpayBusinessFactory());
+        $orderWithPaypalAuthorize = new OrderWithUnsuccessfulIdealAuthorizeTransaction($this->createHeidelpayFactory());
         $order = $orderWithPaypalAuthorize->createOrderWithIdealAuthorizeTransaction();
 
-        return [[$order[0]]];
+        return $order[0];
     }
 
 }

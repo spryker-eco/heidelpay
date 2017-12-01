@@ -34,14 +34,35 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
     use NewOrderWithOneItemTrait;
 
     /**
-     * @dataProvider createOrderWithCreditCardSecureTransaction
+     * @dataProvider functionListForSuccessfulSaveOrderPaymentTest
      *
+     * @param string $dataProviderFunctionName
+     * @param string $testFunctionName
+     *
+     * @return void
+     */
+    public function testSuccessfulSaveOrderPaymentTest($dataProviderFunctionName, $testFunctionName)
+    {
+        $this->testExecutor($dataProviderFunctionName, $testFunctionName);
+    }
+
+    /**
+     * @return array
+     */
+    public static function functionListForSuccessfulSaveOrderPaymentTest()
+    {
+        return [
+            ['createOrderWithCreditCardSecureTransaction', 'successfulSaveOrderPaymentTest'],
+        ];
+    }
+
+    /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
      *
      * @return void
      */
-    public function testSuccessfulSaveOrderPaymentTest(
+    protected function successfulSaveOrderPaymentTest(
         QuoteTransfer $quoteTransfer,
         CheckoutResponseTransfer $checkoutResponseTransfer
     ) {
@@ -80,14 +101,35 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
     }
 
     /**
-     * @dataProvider createOrderWithSofortAuthorizeTransaction
+     * @dataProvider functionListForUnsuccessfulSaveOrderPaymentTest
      *
+     * @param string $dataProviderFunctionName
+     * @param string $testFunctionName
+     *
+     * @return void
+     */
+    public function testUnsuccessfulSaveOrderPaymentTest($dataProviderFunctionName, $testFunctionName)
+    {
+        $this->testExecutor($dataProviderFunctionName, $testFunctionName);
+    }
+
+    /**
+     * @return array
+     */
+    public static function functionListForUnsuccessfulSaveOrderPaymentTest()
+    {
+        return [
+            ['createOrderWithCreditCardSecureTransaction', 'unsuccessfulSaveOrderPaymentTest'],
+        ];
+    }
+
+    /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
      *
      * @return void
      */
-    public function testUnsuccessfulSaveOrderPaymentTest(
+    protected function unsuccessfulSaveOrderPaymentTest(
         QuoteTransfer $quoteTransfer,
         CheckoutResponseTransfer $checkoutResponseTransfer
     ) {
@@ -146,15 +188,13 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
     }
 
     /**
-     * @dataProvider createOrderWithIdealAuthorizeTransaction
-     *
      * @return array
      */
     public function createOrderWithCreditCardSecureTransaction()
     {
         $orderWithPaypalAuthorize = new OrderWithSuccessfulCreditCardSecureTransaction($this->createHeidelpayFactory());
 
-        return [$orderWithPaypalAuthorize->createOrderWithCreditCardSecureTransaction()];
+        return $orderWithPaypalAuthorize->createOrderWithCreditCardSecureTransaction();
     }
 
     /**
@@ -164,7 +204,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
     {
         $orderWithPaypalAuthorize = new OrderWithSuccessfulSofortAuthorizeTransaction($this->createHeidelpayFactory());
 
-        return [$orderWithPaypalAuthorize->createOrderWithSofortAuthorizeTransaction()];
+        return $orderWithPaypalAuthorize->createOrderWithSofortAuthorizeTransaction();
     }
 
     /**

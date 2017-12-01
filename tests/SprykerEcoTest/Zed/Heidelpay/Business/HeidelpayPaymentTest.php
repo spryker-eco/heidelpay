@@ -82,4 +82,17 @@ class HeidelpayPaymentTest extends Test
         return (new HeidelpayConfigurationBuilder())->getHeidelpayConfigurationOptions();
     }
 
+    /**
+     * @param string $dataProviderFunctionName
+     * @param string $testFunctionName
+     *
+     * @return void
+     */
+    protected function testExecutor($dataProviderFunctionName, $testFunctionName)
+    {
+        $data = $this->$dataProviderFunctionName();
+        list($quoteTransfer, $checkoutResponseTransfer) = $data;
+        $this->$testFunctionName($quoteTransfer, $checkoutResponseTransfer);
+    }
+
 }

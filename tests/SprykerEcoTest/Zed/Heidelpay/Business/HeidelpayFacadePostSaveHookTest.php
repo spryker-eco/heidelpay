@@ -51,17 +51,38 @@ class HeidelpayFacadePostSaveHookTest extends HeidelpayPaymentTest
     }
 
     /**
-     * @dataProvider createOrderWithSofortAuthorizeTransaction
-     * @dataProvider createOrderWithPaypalDebitTransaction
-     * @dataProvider createOrderWithPaypalAuthorizeTransaction
-     * @dataProvider createOrderWithCreditCardSecureTransaction
+     * @dataProvider functionForPostSaveHookForSuccessfulSalesOrdersSetsExternalRedirectTest
      *
+     * @param string $dataProviderFunctionName
+     * @param string $testFunctionName
+     *
+     * @return void
+     */
+    public function testPostSaveHookForSuccessfulSalesOrdersSetsExternalRedirect($dataProviderFunctionName, $testFunctionName)
+    {
+        $this->testExecutor($dataProviderFunctionName, $testFunctionName);
+    }
+
+    /**
+     * @return array
+     */
+    public static function functionForPostSaveHookForSuccessfulSalesOrdersSetsExternalRedirectTest()
+    {
+        return [
+            ['createOrderWithSofortAuthorizeTransaction', 'postSaveHookForSuccessfulSalesOrdersSetsExternalRedirectTest'],
+            ['createOrderWithPaypalDebitTransaction', 'postSaveHookForSuccessfulSalesOrdersSetsExternalRedirectTest'],
+            ['createOrderWithPaypalAuthorizeTransaction', 'postSaveHookForSuccessfulSalesOrdersSetsExternalRedirectTest'],
+            ['createOrderWithCreditCardSecureTransaction', 'postSaveHookForSuccessfulSalesOrdersSetsExternalRedirectTest'],
+        ];
+    }
+
+    /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
      *
      * @return void
      */
-    public function testPostSaveHookForSuccessfulSalesOrdersSetsExternalRedirect(
+    protected function postSaveHookForSuccessfulSalesOrdersSetsExternalRedirectTest(
         QuoteTransfer $quoteTransfer,
         CheckoutResponseTransfer $checkoutResponseTransfer
     ) {
@@ -78,14 +99,35 @@ class HeidelpayFacadePostSaveHookTest extends HeidelpayPaymentTest
     }
 
     /**
-     * @dataProvider createOrderWithIdealAuthorizeTransaction
+     * @dataProvider functionForPostSaveHookForSuccessfulSalesOrdersSetsExternalRedirectTest
      *
+     * @param string $dataProviderFunctionName
+     * @param string $testFunctionName
+     *
+     * @return void
+     */
+    public function testPostSaveHookForSuccessfulIdealAuthorizeSetsRedirectToTheIdealFormStepTest($dataProviderFunctionName, $testFunctionName)
+    {
+        $this->testExecutor($dataProviderFunctionName, $testFunctionName);
+    }
+
+    /**
+     * @return array
+     */
+    public static function functionForPostSaveHookForSuccessfulIdealAuthorizeSetsRedirectToTheIdealFormStepTest()
+    {
+        return [
+            ['createOrderWithCreditCardSecureTransaction', 'postSaveHookForSuccessfulIdealAuthorizeSetsRedirectToTheIdealFormStepTest'],
+        ];
+    }
+
+    /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
      *
      * @return void
      */
-    public function testPostSaveHookForSuccessfulIdealAuthorizeSetsRedirectToTheIdealFormStep(
+    protected function postSaveHookForSuccessfulIdealAuthorizeSetsRedirectToTheIdealFormStepTest(
         QuoteTransfer $quoteTransfer,
         CheckoutResponseTransfer $checkoutResponseTransfer
     ) {
@@ -110,41 +152,41 @@ class HeidelpayFacadePostSaveHookTest extends HeidelpayPaymentTest
     /**
      * @return array
      */
-    public static function createOrderWithPaypalDebitTransaction()
+    public function createOrderWithPaypalDebitTransaction()
     {
         $orderWithPaypalAuthorize = new OrderWithSuccessfulPaypalDebitTransaction($this->createHeidelpayFactory());
 
-        return [$orderWithPaypalAuthorize->createOrderWithPaypalDebitTransaction()];
+        return $orderWithPaypalAuthorize->createOrderWithPaypalDebitTransaction();
     }
 
     /**
      * @return array
      */
-    public static function createOrderWithIdealAuthorizeTransaction()
+    public function createOrderWithIdealAuthorizeTransaction()
     {
         $orderWithPaypalAuthorize = new OrderWithSuccessfulIdealAuthorizeTransaction($this->createHeidelpayFactory());
 
-        return [$orderWithPaypalAuthorize->createOrderWithIdealAuthorizeTransaction()];
+        return $orderWithPaypalAuthorize->createOrderWithIdealAuthorizeTransaction();
     }
 
     /**
      * @return array
      */
-    public static function createOrderWithSofortAuthorizeTransaction()
+    public function createOrderWithSofortAuthorizeTransaction()
     {
         $orderWithPaypalAuthorize = new OrderWithSuccessfulSofortAuthorizeTransaction($this->createHeidelpayFactory());
 
-        return [$orderWithPaypalAuthorize->createOrderWithSofortAuthorizeTransaction()];
+        return $orderWithPaypalAuthorize->createOrderWithSofortAuthorizeTransaction();
     }
 
     /**
      * @return array
      */
-    public static function createOrderWithPaypalAuthorizeTransaction()
+    public function createOrderWithPaypalAuthorizeTransaction()
     {
         $orderWithPaypalAuthorize = new OrderWithSuccessfulPaypalAuthorizeTransaction($this->createHeidelpayFactory());
 
-        return [$orderWithPaypalAuthorize->createOrderWithPaypalAuthorizeTransaction()];
+        return $orderWithPaypalAuthorize->createOrderWithPaypalAuthorizeTransaction();
     }
 
     /**
@@ -152,11 +194,11 @@ class HeidelpayFacadePostSaveHookTest extends HeidelpayPaymentTest
      *
      * @return array
      */
-    public static function createOrderWithCreditCardSecureTransaction()
+    public function createOrderWithCreditCardSecureTransaction()
     {
         $orderWithPaypalAuthorize = new OrderWithSuccessfulCreditCardSecureTransaction($this->createHeidelpayFactory());
 
-        return [$orderWithPaypalAuthorize->createOrderWithCreditCardSecureTransaction()];
+        return $orderWithPaypalAuthorize->createOrderWithCreditCardSecureTransaction();
     }
 
     /**
