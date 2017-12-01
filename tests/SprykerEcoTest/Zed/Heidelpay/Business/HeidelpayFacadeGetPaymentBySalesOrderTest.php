@@ -10,7 +10,6 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business;
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
 
 use Generated\Shared\Transfer\PaymentTransfer;
-use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
 
 /**
@@ -25,14 +24,11 @@ class HeidelpayFacadeGetPaymentBySalesOrderTest extends HeidelpayPaymentTest
 {
 
     /**
-     * @dataProvider createSofortSuccessOrder
-     *
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $salesOrder
-     *
      * @return void
      */
-    public function testProcessExternalPaymentResponseForSofort(SpySalesOrder $salesOrder)
+    public function testProcessExternalPaymentResponseForSofort()
     {
+        $salesOrder = $this->createSofortSuccessOrder();
         $paymentTransfer = $this->heidelpayFacade->getPaymentByIdSalesOrder($salesOrder->getIdSalesOrder());
         $this->assertInstanceOf(HeidelpayPaymentTransfer::class, $paymentTransfer);
         $this->assertNotNull($paymentTransfer);
@@ -42,13 +38,13 @@ class HeidelpayFacadeGetPaymentBySalesOrderTest extends HeidelpayPaymentTest
     }
 
     /**
-     * @return array
+     * @return \Orm\Zed\Sales\Persistence\SpySalesOrder $salesOrder
      */
     public function createSofortSuccessOrder()
     {
         $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
         $orderTransfer = $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_SOFORT);
-        return [$orderTransfer];
+        return $orderTransfer;
     }
 
     /**
