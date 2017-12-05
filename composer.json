@@ -31,9 +31,13 @@
   "suggest": {
     "spryker/silex": "*"
   },
+  "autoload": {
+    "psr-4": {
+      "SprykerEco\\": "src/SprykerEco/"
+    }
+  },
   "autoload-dev": {
     "psr-4": {
-      "SprykerEco\\": "src/SprykerEco/",
       "SprykerEcoTest\\": "tests/SprykerEcoTest/"
     }
   },
