@@ -28,7 +28,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulSofor
  */
 class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
 {
-
     const REGISTRATION_NUMBER = '31HA07BC814CA0300B135019D1515E08';
 
     use NewOrderWithOneItemTrait;
@@ -163,7 +162,6 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
 
             $this->assertNull($savedPayment->getIdPaymentRegistration());
             $this->assertEquals(PaymentTransfer::HEIDELPAY_SOFORT, $savedPayment->getPaymentMethod());
-
         }
     }
 
@@ -220,7 +218,6 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
         $heidelpayCreditCardPayment->setSelectedRegistration(
             (new HeidelpayCreditCardRegistrationTransfer())
                 ->setRegistrationNumber(static::REGISTRATION_NUMBER)
-
         );
 
         $payment = (new PaymentTransfer())
@@ -231,5 +228,4 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
 
         return $quote;
     }
-
 }

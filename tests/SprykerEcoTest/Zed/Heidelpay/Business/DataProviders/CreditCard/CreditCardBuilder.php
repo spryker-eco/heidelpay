@@ -13,7 +13,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
 
 class CreditCardBuilder
 {
-
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
@@ -42,12 +41,12 @@ class CreditCardBuilder
      */
     protected function getAccountHolder(QuoteTransfer $qouteTransfer)
     {
-        return vsprintf("%s %s",
+        return vsprintf(
+            "%s %s",
             [
                 $qouteTransfer->getCustomer()->getFirstName(),
                 $qouteTransfer->getCustomer()->getLastName(),
             ]
         );
     }
-
 }

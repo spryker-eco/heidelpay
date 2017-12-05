@@ -11,7 +11,6 @@ use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
 
 trait PaymentHeidelpayTransactionLogTrait
 {
-
     /**
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $salesOrderEntity
      * @param string $responseCode
@@ -30,5 +29,4 @@ trait PaymentHeidelpayTransactionLogTrait
         $payment->setResponseCode($responseCode);
         $payment->save();
     }
-
 }

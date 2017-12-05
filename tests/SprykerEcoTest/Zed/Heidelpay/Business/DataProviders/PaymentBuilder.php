@@ -16,7 +16,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
 
 class PaymentBuilder
 {
-
     use CustomerTrait, OrderAddressTrait, NewOrderWithOneItemTrait, PaymentHeidelpayTrait;
 
     /**
@@ -56,5 +55,4 @@ class PaymentBuilder
 
         return $orderEntity;
     }
-
 }

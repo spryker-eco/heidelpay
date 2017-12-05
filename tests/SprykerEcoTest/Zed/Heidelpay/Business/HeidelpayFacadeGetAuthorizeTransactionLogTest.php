@@ -25,7 +25,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithUnsuccessfulIde
  */
 class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
 {
-
     /**
      * @return void
      */
@@ -115,5 +114,4 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
 
         return $order[0];
     }
-
 }

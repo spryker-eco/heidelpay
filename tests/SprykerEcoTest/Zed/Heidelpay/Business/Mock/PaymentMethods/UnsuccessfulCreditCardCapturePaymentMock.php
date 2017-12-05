@@ -13,7 +13,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentResponseT
 
 class UnsuccessfulCreditCardCapturePaymentMock extends CreditCardPayment
 {
-
     use PaymentResponseTransferBuilderTrait;
 
     /**
@@ -59,5 +58,4 @@ class UnsuccessfulCreditCardCapturePaymentMock extends CreditCardPayment
 
         return $responseTransfer;
     }
-
 }

@@ -12,7 +12,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalRespons
 
 class FailedSofortPaymentExternalResponseWhithIncorrectTransactionIdBuilder extends ExternalResponseBuilder
 {
-
     /**
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
      *
@@ -22,5 +21,4 @@ class FailedSofortPaymentExternalResponseWhithIncorrectTransactionIdBuilder exte
     {
         return 100000000000;
     }
-
 }

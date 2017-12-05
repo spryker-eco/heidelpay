@@ -15,7 +15,6 @@ use SprykerEco\Zed\Heidelpay\Business\Encrypter\AesEncrypter;
  */
 trait EncoderTrait
 {
-
     /**
      * @param string $data
      *
@@ -29,5 +28,4 @@ trait EncoderTrait
 
         return $enc;
     }
-
 }

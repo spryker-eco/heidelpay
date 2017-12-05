@@ -9,7 +9,6 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
 class HeidelpayTestConstants
 {
-
     const CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL = 'http://url-to-redirect-customer.com';
     const HEIDELPAY_SUCCESS_RESPONSE = 'ACK';
     const HEIDELPAY_UNSUCCESS_RESPONSE = 'NOK';
@@ -20,5 +19,4 @@ class HeidelpayTestConstants
     const CARD_ACCOUNT_NUMBER = '471110******0000';
     const CARD_BRAND = 'MASTER';
     const CARD_QUOTE_HASH = '1f7f60dcf32900f266e3a516b13358792cbee777';
-
 }

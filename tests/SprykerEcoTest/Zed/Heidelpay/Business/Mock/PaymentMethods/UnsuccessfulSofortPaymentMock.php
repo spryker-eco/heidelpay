@@ -13,7 +13,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentResponseT
 
 class UnsuccessfulSofortPaymentMock extends SofortPayment
 {
-
     use PaymentResponseTransferBuilderTrait;
 
     /**
@@ -37,5 +36,4 @@ class UnsuccessfulSofortPaymentMock extends SofortPayment
 
         return $responseTransfer;
     }
-
 }

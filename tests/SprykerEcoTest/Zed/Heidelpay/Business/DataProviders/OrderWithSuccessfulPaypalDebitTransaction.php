@@ -23,7 +23,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Transaction\DebitTransac
 
 class OrderWithSuccessfulPaypalDebitTransaction
 {
-
     use CustomerTrait, OrderAddressTrait, NewOrderWithOneItemTrait, DebitTransactionTrait;
 
     /**
@@ -127,5 +126,4 @@ class OrderWithSuccessfulPaypalDebitTransaction
 
         return $checkoutResponseTransfer;
     }
-
 }

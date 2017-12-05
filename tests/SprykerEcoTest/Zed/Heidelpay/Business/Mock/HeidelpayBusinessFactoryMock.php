@@ -11,7 +11,6 @@ use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
 
 class HeidelpayBusinessFactoryMock extends HeidelpayBusinessFactory
 {
-
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\AdapterFactoryInterface
      */
@@ -35,5 +34,4 @@ class HeidelpayBusinessFactoryMock extends HeidelpayBusinessFactory
     {
         return $this->getQueryContainer();
     }
-
 }

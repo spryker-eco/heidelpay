@@ -16,7 +16,6 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 
 class HeidelpayConfigurationBuilder
 {
-
     /**
      * @return array
      */
@@ -73,5 +72,4 @@ class HeidelpayConfigurationBuilder
 
         return $config;
     }
-
 }

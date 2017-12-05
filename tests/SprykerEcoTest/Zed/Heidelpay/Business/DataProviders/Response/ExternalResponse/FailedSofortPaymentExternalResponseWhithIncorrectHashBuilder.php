@@ -11,7 +11,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalRespons
 
 class FailedSofortPaymentExternalResponseWhithIncorrectHashBuilder extends ExternalResponseBuilder
 {
-
     /**
      * @param int $identificationTransactionId
      * @param string $secret
@@ -22,5 +21,4 @@ class FailedSofortPaymentExternalResponseWhithIncorrectHashBuilder extends Exter
     {
         return 'failed-secret-value';
     }
-
 }

@@ -13,7 +13,6 @@ use Generated\Shared\Transfer\StockProductTransfer;
 
 trait QuoteMockTrait
 {
-
     /**
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
@@ -33,5 +32,4 @@ trait QuoteMockTrait
 
         return $quote;
     }
-
 }

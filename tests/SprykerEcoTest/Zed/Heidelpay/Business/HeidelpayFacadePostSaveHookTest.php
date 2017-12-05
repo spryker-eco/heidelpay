@@ -30,7 +30,6 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
  */
 class HeidelpayFacadePostSaveHookTest extends HeidelpayPaymentTest
 {
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade
      */
@@ -208,5 +207,4 @@ class HeidelpayFacadePostSaveHookTest extends HeidelpayPaymentTest
     {
         return new HeidelpayBusinessFactory();
     }
-
 }

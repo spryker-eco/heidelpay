@@ -24,7 +24,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Transaction\AuthorizeTra
 
 class OrderWithSuccessfulCreditCardSecureTransaction
 {
-
     use CustomerTrait, OrderAddressTrait, NewOrderWithOneItemTrait, AuthorizeTransactionTrait;
 
     /**
@@ -125,5 +124,4 @@ class OrderWithSuccessfulCreditCardSecureTransaction
 
         return $checkoutResponseTransfer;
     }
-
 }

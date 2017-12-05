@@ -15,7 +15,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
 
 trait AuthorizeTransactionTrait
 {
-
     use EncoderTrait;
 
     /**
@@ -93,5 +92,4 @@ trait AuthorizeTransactionTrait
     {
         return preg_replace("~[\n \t]+~", '', $jsonString);
     }
-
 }

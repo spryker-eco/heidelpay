@@ -9,7 +9,6 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment;
 
 trait PaymentHeidelpayTransferBuilderTrait
 {
-
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade $heidelpayFacade
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $salesOrder
@@ -23,5 +22,4 @@ trait PaymentHeidelpayTransferBuilderTrait
         $orderTransfer->setHeidelpayPayment($paymentTransfer);
         return $orderTransfer;
     }
-
 }

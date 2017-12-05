@@ -20,7 +20,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
 
 class ExternalResponseBuilder
 {
-
     const EMAIL = 'email';
     const RESPONSE_URL = 'responseUrl';
     const PAYMENT_BRAND = 'paymentBrand';
@@ -182,5 +181,4 @@ class ExternalResponseBuilder
     {
         return hash(self::SHA_512_ENCODE_ALGO, $identificationTransactionId . $secret);
     }
-
 }

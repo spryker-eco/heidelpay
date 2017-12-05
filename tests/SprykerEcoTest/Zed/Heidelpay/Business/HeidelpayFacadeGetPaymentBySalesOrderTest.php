@@ -22,7 +22,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
  */
 class HeidelpayFacadeGetPaymentBySalesOrderTest extends HeidelpayPaymentTest
 {
-
     /**
      * @return void
      */
@@ -60,5 +59,4 @@ class HeidelpayFacadeGetPaymentBySalesOrderTest extends HeidelpayPaymentTest
             $this->assertNull($value);
         }
     }
-
 }

@@ -11,7 +11,6 @@ use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay;
 
 trait PaymentHeidelpayTrait
 {
-
     /**
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $salesOrderEntity
      * @param string $idPaymentReference
@@ -33,5 +32,4 @@ trait PaymentHeidelpayTrait
         $payment->setPaymentMethod($paymentMethod);
         $payment->save();
     }
-
 }

@@ -22,7 +22,6 @@ use Orm\Zed\Heidelpay\Persistence\Base\SpyPaymentHeidelpayCreditCardRegistration
  */
 class HeidelpayFacadeSaveCreditCardRegistrationTest extends HeidelpayPaymentTest
 {
-
     const QUOTE_HASH = 'bea74ee13da897592f633fc93024ab3f5231d74d';
     const REGISTRATION_HASH = '31HA07BC814CA0300B131ABC71AEECB3';
     const ACCOUNT_EXPIRY_YEAR = 2030;
@@ -82,5 +81,4 @@ class HeidelpayFacadeSaveCreditCardRegistrationTest extends HeidelpayPaymentTest
 
         return $creditCardInfo;
     }
-
 }

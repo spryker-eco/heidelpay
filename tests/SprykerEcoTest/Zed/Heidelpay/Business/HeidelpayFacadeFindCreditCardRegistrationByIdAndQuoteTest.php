@@ -31,7 +31,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
  */
 class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends HeidelpayPaymentTest
 {
-
     use OrderAddressTrait;
 
     /**
@@ -127,7 +126,8 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Heidelpa
      */
     protected function getAccountHolder(QuoteTransfer $qoute)
     {
-        return vsprintf("%s %s",
+        return vsprintf(
+            "%s %s",
             [
                 $qoute->getCustomer()->getFirstName(),
                 $qoute->getCustomer()->getLastName(),
@@ -146,5 +146,4 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Heidelpa
         $con = Propel::getConnection();
         $con->commit();
     }
-
 }

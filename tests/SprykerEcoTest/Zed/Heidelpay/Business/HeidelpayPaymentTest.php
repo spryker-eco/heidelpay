@@ -19,7 +19,6 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
 
 class HeidelpayPaymentTest extends Test
 {
-
     use PaymentHeidelpayTransferBuilderTrait, PaymentResponseTestTrait;
 
     /**
@@ -94,5 +93,4 @@ class HeidelpayPaymentTest extends Test
         list($quoteTransfer, $checkoutResponseTransfer) = $data;
         $this->$testFunctionName($quoteTransfer, $checkoutResponseTransfer);
     }
-
 }

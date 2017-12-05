@@ -24,7 +24,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalRespons
  */
 class HeidelpayFacadeProcessExternalPaymentResponseTest extends HeidelpayPaymentTest
 {
-
     /**
      * @return void
      */
@@ -131,5 +130,4 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends HeidelpayPayment
 
         return $heidelpayResponse;
     }
-
 }

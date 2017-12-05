@@ -26,7 +26,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusin
  */
 class HeidelpayFacadeCapturePaymentTest extends HeidelpayPaymentTest
 {
-
     /**
      * @return void
      */
@@ -110,5 +109,4 @@ class HeidelpayFacadeCapturePaymentTest extends HeidelpayPaymentTest
     {
         return new HeidelpayBusinessFactoryMock();
     }
-
 }

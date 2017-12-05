@@ -15,7 +15,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
 
 trait DebitTransactionTrait
 {
-
     use EncoderTrait;
     /**
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
@@ -33,15 +32,13 @@ trait DebitTransactionTrait
             ->setRedirectUrl(HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL)
             ->setRequestPayload('{}')
             ->setResponsePayload($this->encryptData(
-                    '{
+                '{
                         "processing": {"result": "ACK"}, 
                         "payment": {"code": "CC.PA"}, 
                         "frontend": {"payment_frame_url": "' . HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"} 
                     }'
-                )
-            );
+            ));
 
         $debitTransaction->save();
     }
-
 }

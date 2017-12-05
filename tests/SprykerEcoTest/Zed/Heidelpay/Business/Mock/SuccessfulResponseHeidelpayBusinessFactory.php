@@ -9,7 +9,6 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\Mock;
 
 class SuccessfulResponseHeidelpayBusinessFactory extends HeidelpayBusinessFactoryMock
 {
-
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\AdapterFactoryInterface
      */
@@ -17,5 +16,4 @@ class SuccessfulResponseHeidelpayBusinessFactory extends HeidelpayBusinessFactor
     {
         return $this->createPositiveResponseAdapterFactory();
     }
-
 }

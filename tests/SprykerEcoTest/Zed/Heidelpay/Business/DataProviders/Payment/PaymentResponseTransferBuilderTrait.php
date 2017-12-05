@@ -13,7 +13,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
 
 trait PaymentResponseTransferBuilderTrait
 {
-
     /**
      * @param array $response
      *
@@ -58,5 +57,4 @@ trait PaymentResponseTransferBuilderTrait
 
         return $responseTransfer;
     }
-
 }

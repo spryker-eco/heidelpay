@@ -11,7 +11,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalRespons
 
 class FailedSofortPaymentExternalResponseWhithFailedProcessingResultBuilder extends ExternalResponseBuilder
 {
-
     /**
      * @return string|null
      */
@@ -19,5 +18,4 @@ class FailedSofortPaymentExternalResponseWhithFailedProcessingResultBuilder exte
     {
         return null;
     }
-
 }

@@ -14,7 +14,6 @@ use Orm\Zed\Customer\Persistence\SpyCustomer;
 
 trait CustomerTrait
 {
-
     /**
      * @var array
      */
@@ -109,5 +108,4 @@ trait CustomerTrait
 
         return $this->uniqueCustomerEmailSlugs[$emailSlug];
     }
-
 }

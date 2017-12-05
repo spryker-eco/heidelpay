@@ -8,7 +8,6 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\Action;
 
 trait HeidelpayResponseTrait
 {
-
     /**
      * @param array $responseParam
      *
@@ -71,5 +70,4 @@ trait HeidelpayResponseTrait
         'ACCOUNT_IBAN' => "DE06000000000023456789",
         ];
     }
-
 }

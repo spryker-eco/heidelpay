@@ -9,7 +9,6 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders;
 
 class OrderWithUnsuccessfulIdealAuthorizeTransaction extends OrderWithSuccessfulIdealAuthorizeTransaction
 {
-
     /**
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
      *
@@ -19,5 +18,4 @@ class OrderWithUnsuccessfulIdealAuthorizeTransaction extends OrderWithSuccessful
     {
         $this->createUnsuccessfulAuthorizeTransactionForOrder($orderEntity);
     }
-
 }

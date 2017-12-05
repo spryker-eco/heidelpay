@@ -18,7 +18,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentResponseT
  */
 class SuccessfulPaypalDebitPaymentMock extends PaypalPayment
 {
-
     use PaymentResponseTransferBuilderTrait;
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $debitRequestTransfer
@@ -41,5 +40,4 @@ class SuccessfulPaypalDebitPaymentMock extends PaypalPayment
 
         return $responseTransfer;
     }
-
 }

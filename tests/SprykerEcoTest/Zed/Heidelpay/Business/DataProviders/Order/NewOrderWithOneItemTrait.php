@@ -17,7 +17,6 @@ use Orm\Zed\Sales\Persistence\SpySalesOrderTotals;
 
 trait NewOrderWithOneItemTrait
 {
-
     /**
      * @var string
      */
@@ -145,5 +144,4 @@ trait NewOrderWithOneItemTrait
         $totals->setGrandTotal($orderItemEntity->getGrossPrice());
         $totals->save();
     }
-
 }

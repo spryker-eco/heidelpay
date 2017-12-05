@@ -16,7 +16,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
  */
 trait PaymentResponseTestTrait
 {
-
     /**
      * @param \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer $transaction
      *
@@ -46,5 +45,4 @@ trait PaymentResponseTestTrait
         $this->assertTrue($transaction->getHeidelpayResponse()->getIsError());
         $this->assertFalse($transaction->getHeidelpayResponse()->getIsSuccess());
     }
-
 }

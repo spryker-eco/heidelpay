@@ -15,7 +15,6 @@ use SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods\UnsuccessfulSofort
 
 class UnsuccessfulResponseAdapterFactory extends AdapterFactory
 {
-
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface[]
      */
@@ -81,5 +80,4 @@ class UnsuccessfulResponseAdapterFactory extends AdapterFactory
             $this->getHeidelpayConfig()
         );
     }
-
 }
