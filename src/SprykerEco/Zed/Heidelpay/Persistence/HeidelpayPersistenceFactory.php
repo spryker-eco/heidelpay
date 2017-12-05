@@ -14,7 +14,7 @@ use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
 
 /**
  * @method \SprykerEco\Zed\Heidelpay\HeidelpayConfig getConfig()
- * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainer getQueryContainer()
+ * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface getQueryContainer()
  */
 class HeidelpayPersistenceFactory extends AbstractPersistenceFactory
 {
