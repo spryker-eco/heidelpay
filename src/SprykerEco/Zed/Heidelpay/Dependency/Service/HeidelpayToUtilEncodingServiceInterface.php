@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Zed\Heidelpay\Dependency\Service;
 
-interface HeidelpayToUtilEncodingInterface
+interface HeidelpayToUtilEncodingServiceInterface
 {
     /**
      * @param mixed $value

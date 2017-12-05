@@ -11,12 +11,12 @@ use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
 use SprykerEco\Zed\Heidelpay\Business\Encrypter\EncrypterInterface;
-use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface;
+use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceInterface;
 
 class TransactionLogger implements TransactionLoggerInterface
 {
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface
+     * @var \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceInterface
      */
     protected $utilEncoding;
 
@@ -26,10 +26,10 @@ class TransactionLogger implements TransactionLoggerInterface
     protected $encrypter;
 
     /**
-     * @param \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface $utilEncoding
+     * @param \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceInterface $utilEncoding
      * @param \SprykerEco\Zed\Heidelpay\Business\Encrypter\EncrypterInterface $encrypter
      */
-    public function __construct(HeidelpayToUtilEncodingInterface $utilEncoding, EncrypterInterface $encrypter)
+    public function __construct(HeidelpayToUtilEncodingServiceInterface $utilEncoding, EncrypterInterface $encrypter)
     {
         $this->utilEncoding = $utilEncoding;
         $this->encrypter = $encrypter;

@@ -166,7 +166,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface
+     * @return \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceInterface
      */
     protected function getUtilEncodingService()
     {
