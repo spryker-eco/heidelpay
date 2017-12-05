@@ -10,6 +10,8 @@ composer require spryker-eco/heidelpay
 
 [Documentation](https://academy.spryker.com/developing_with_spryker/industry_partner_integration/integration_payment_heidelpay.html)
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/badges/quality-score.png?b=dev)](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/?branch=dev)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/?branch=master)
 
-[![Code Coverage](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/badges/coverage.png?b=feature%2FECO-442-functional-tests-3)](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/?branch=feature%2FECO-442-functional-tests-3)
+[![Code Coverage](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/?branch=master)
+
+[![Build Status](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/badges/build.png?b=master)](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/build-status/master)
