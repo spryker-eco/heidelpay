@@ -35,6 +35,11 @@ class PaymentReader implements PaymentReaderInterface
         $heidelpayPaymentEntity = $this->getPaymentEntityByIdSalesOrder($idSalesOrder);
 
         $paymentTransfer = new HeidelpayPaymentTransfer();
+
+        if ($heidelpayPaymentEntity === null) {
+            return $paymentTransfer;
+        }
+
         $paymentTransfer->fromArray($heidelpayPaymentEntity->toArray(), true);
 
         return $paymentTransfer;

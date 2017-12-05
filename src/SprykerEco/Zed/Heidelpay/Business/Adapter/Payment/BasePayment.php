@@ -90,6 +90,7 @@ class BasePayment implements PaymentWithExternalResponseInterface
         } catch (HashVerificationException $exception) {
             $errorTransfer = $this->extractErrorTransferFromException($exception);
             $parsedResponseTransfer->setError($errorTransfer);
+            $parsedResponseTransfer->setIsError(true);
         }
 
         return $parsedResponseTransfer;

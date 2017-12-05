@@ -8,6 +8,7 @@
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer;
 
 use Generated\Shared\Transfer\CustomerTransfer;
+use Generated\Shared\Transfer\QuoteTransfer;
 use Orm\Zed\Customer\Persistence\Map\SpyCustomerTableMap;
 use Orm\Zed\Customer\Persistence\SpyCustomer;
 
@@ -29,6 +30,19 @@ trait CustomerTrait
     public function createOrGetCustomerJohnDoe()
     {
         return $this->createCustomer('John', 'Doe');
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Orm\Zed\Customer\Persistence\SpyCustomer
+     */
+    public function createOrGetCustomerByQuote(QuoteTransfer $quoteTransfer)
+    {
+        return $this->createCustomer(
+            $quoteTransfer->getCustomer()->getFirstName(),
+            $quoteTransfer->getCustomer()->getLastName()
+        );
     }
 
     /**
