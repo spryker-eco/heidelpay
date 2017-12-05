@@ -1,7 +1,7 @@
 {
   "name": "spryker-eco/heidelpay",
   "description": "Heidelpay bundle",
-  "license": "proprietary",
+  "license": "mit",
   "require": {
     "heidelpay/php-api": "dev-master",
     "heidelpay/php-customer-messages": "dev-master",
@@ -29,8 +29,7 @@
     "spryker/testify": "*"
   },
   "suggest": {
-    "spryker/silex": "*",
-    "spryker/installer": "If you want to use Installer plugins you need to install spryker/installer."
+    "spryker/silex": "*"
   },
   "autoload": {
     "psr-4": {
