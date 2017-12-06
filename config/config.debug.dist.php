@@ -19,17 +19,17 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 // Heidelpay configuration
 
 // Merchant config values, got from Heidelpay
-$config[HeidelpayConstants::CONFIG_HEIDELPAY_SECURITY_SENDER] = '31HA07BC8142C5A171745D00AD63D182';
-$config[HeidelpayConstants::CONFIG_HEIDELPAY_USER_LOGIN] = '31ha07bc8142c5a171744e5aef11ffd3';
-$config[HeidelpayConstants::CONFIG_HEIDELPAY_USER_PASSWORD] = '93167DE7';
+$config[HeidelpayConstants::CONFIG_HEIDELPAY_SECURITY_SENDER] = '';
+$config[HeidelpayConstants::CONFIG_HEIDELPAY_USER_LOGIN] = '';
+$config[HeidelpayConstants::CONFIG_HEIDELPAY_USER_PASSWORD] = '';
 
-$config[HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_CC_3D_SECURE] = '31HA07BC8142C5A171749A60D979B6E4';
-$config[HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_PAYPAL] = '31HA07BC8142C5A171749A60D979B6E4';
-$config[HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_IDEAL] = '31HA07BC8142C5A171744B56E61281E5';
-$config[HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_SOFORT] = '31HA07BC8142C5A171749CDAA43365D2';
+$config[HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_CC_3D_SECURE] = '';
+$config[HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_PAYPAL] = '';
+$config[HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_IDEAL] = '';
+$config[HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_SOFORT] = '';
 
 // Shop configuration values
-$config[HeidelpayConstants::CONFIG_HEIDELPAY_APPLICATION_SECRET] = '39542395235ßfsokkspreipsr';
+$config[HeidelpayConstants::CONFIG_HEIDELPAY_APPLICATION_SECRET] = '';
 $config[HeidelpayConstants::CONFIG_HEIDELPAY_SANDBOX_REQUEST] = true;
 
 $config[HeidelpayConstants::CONFIG_HEIDELPAY_LANGUAGE_CODE] = 'DE';
@@ -48,7 +48,7 @@ $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_PAYMENT_FRAME_PREVENT_ASYNC_RED
 
 $config[OmsConstants::PROCESS_LOCATION] = [
     OmsConfig::DEFAULT_PROCESS_LOCATION,
-    $config[KernelConstants::SPRYKER_ROOT] . '/heidelpay/config/Zed/Oms',
+    APPLICATION_ROOT_DIR . '/vendor/spryker-eco/heidelpay/config/Zed/Oms',
 ];
 
 $config[OmsConstants::ACTIVE_PROCESSES] = [
