@@ -49,21 +49,6 @@ $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_PAYMENT_FRAME_PREVENT_ASYNC_RED
 //Payload encryption key
 $config[HeidelpayConstants::CONFIG_ENCRYPTION_KEY] = '';
 
-$config[KernelConstants::DEPENDENCY_INJECTOR_YVES] = [
-    'Checkout' => [
-        'Heidelpay',
-    ],
-];
-
-$config[KernelConstants::DEPENDENCY_INJECTOR_ZED] = [
-    'Payment' => [
-        'Heidelpay',
-    ],
-    'Oms' => [
-        'Heidelpay',
-    ],
-];
-
 $config[OmsConstants::PROCESS_LOCATION] = [
     OmsConfig::DEFAULT_PROCESS_LOCATION,
     $config[KernelConstants::SPRYKER_ROOT] . '/heidelpay/config/Zed/Oms',
