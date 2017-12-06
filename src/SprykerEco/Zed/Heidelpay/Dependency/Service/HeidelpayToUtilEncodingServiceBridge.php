@@ -6,7 +6,7 @@
 
 namespace SprykerEco\Zed\Heidelpay\Dependency\Service;
 
-class HeidelpayToUtilEncodingBridge implements HeidelpayToUtilEncodingInterface
+class HeidelpayToUtilEncodingServiceBridge implements HeidelpayToUtilEncodingServiceInterface
 {
     /**
      * @var \Spryker\Service\UtilEncoding\UtilEncodingServiceInterface

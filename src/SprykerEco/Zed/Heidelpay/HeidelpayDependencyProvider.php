@@ -13,7 +13,7 @@ use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyBridge;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyBridge;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesBridge;
 use SprykerEco\Zed\Heidelpay\Dependency\QueryContainer\HeidelpayToSalesQueryContainerBridge;
-use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingBridge;
+use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceBridge;
 
 class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
 {
@@ -49,7 +49,7 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
         };
 
         $container[self::SERVICE_UTIL_ENCODING] = function (Container $container) {
-            return new HeidelpayToUtilEncodingBridge($container->getLocator()->utilEncoding()->service());
+            return new HeidelpayToUtilEncodingServiceBridge($container->getLocator()->utilEncoding()->service());
         };
 
         return $container;

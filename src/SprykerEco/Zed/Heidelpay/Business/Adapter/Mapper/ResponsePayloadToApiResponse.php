@@ -7,19 +7,19 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper;
 
 use Heidelpay\PhpApi\Response;
-use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface;
+use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceInterface;
 
 class ResponsePayloadToApiResponse implements ResponsePayloadToApiResponseInterface
 {
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface
+     * @var \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceInterface
      */
     protected $utilEncoding;
 
     /**
-     * @param \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingInterface $utilEncoding
+     * @param \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceInterface $utilEncoding
      */
-    public function __construct(HeidelpayToUtilEncodingInterface $utilEncoding)
+    public function __construct(HeidelpayToUtilEncodingServiceInterface $utilEncoding)
     {
         $this->utilEncoding = $utilEncoding;
     }
