@@ -10,6 +10,7 @@ namespace SprykerEco\Yves\Heidelpay\Form;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentTransfer;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -59,7 +60,7 @@ class CreditCardSecureSubForm extends AbstractHeidelpaySubForm
     {
         $builder->add(
             static::FIELD_CREDIT_CARD_PAYMENT_OPTION,
-            'choice',
+            ChoiceType::class,
             [
                 'choices' => $options['select_options'][self::PAYMENT_OPTIONS],
                 'label' => false,
