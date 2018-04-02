@@ -8,7 +8,7 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Payment;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
-use Heidelpay\PhpApi\PaymentMethods\CreditCardPaymentMethod;
+use Heidelpay\PhpPaymentApi\PaymentMethods\CreditCardPaymentMethod;
 
 class CreditCardPayment extends BasePayment implements
     CreditCardPaymentInterface

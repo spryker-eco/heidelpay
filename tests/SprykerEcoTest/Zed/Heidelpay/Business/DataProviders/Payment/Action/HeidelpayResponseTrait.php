@@ -17,7 +17,7 @@ trait HeidelpayResponseTrait
     {
         return [
         'NAME_FAMILY' => $responseParam[self::CUSTOMER_FULL_NAME], //"Muster"
-        'CRITERION_SDK_NAME' => $responseParam[static::CRITERION_SDK_NAME], //"Heidelpay\PhpApi"
+        'CRITERION_SDK_NAME' => $responseParam[static::CRITERION_SDK_NAME], //"Heidelpay\PhpPaymentApi"
         'ACCOUNT_IDENTIFICATION' => "3750.9565.0284",
         'IDENTIFICATION_TRANSACTIONID' => $responseParam[static::TRANSACRTION_ID],
         'ACCOUNT_BIC' => "SFRTDE20XXX",

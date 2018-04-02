@@ -8,7 +8,7 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Payment;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
-use Heidelpay\PhpApi\PaymentMethods\IDealPaymentMethod;
+use Heidelpay\PhpPaymentApi\PaymentMethods\IDealPaymentMethod;
 
 class IdealPayment extends BasePayment implements IdealPaymentInterface
 {
