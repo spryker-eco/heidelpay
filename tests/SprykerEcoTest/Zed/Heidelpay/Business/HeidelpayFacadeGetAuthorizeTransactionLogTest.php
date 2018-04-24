@@ -45,7 +45,6 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
         $heidelpayResponse = $transactionLogTransfer->getHeidelpayResponse();
 
         $this->assertInstanceOf(HeidelpayResponseTransfer::class, $heidelpayResponse);
-        $this->assertEquals(HeidelpayTestConstants::HEIDELPAY_SUCCESS_RESPONSE, $heidelpayResponse->getResultCode());
         $this->assertEquals(
             $quoteTransfer->getPayment()->getHeidelpayIdeal()->getFkSalesOrder(),
             $heidelpayResponse->getIdSalesOrder()
