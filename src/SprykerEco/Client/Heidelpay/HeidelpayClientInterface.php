@@ -109,4 +109,16 @@ interface HeidelpayClientInterface
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
     public function getQuoteFromSession();
+
+    /**
+     * Specification:
+     *  - Filter response from heidelpay from unnecessary params.
+     *
+     * @api
+     *
+     * @param array $responseArray
+     *
+     * @return array
+     */
+    public function filterResponseParameters(array $responseArray);
 }
