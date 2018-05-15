@@ -162,13 +162,9 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
      */
     public function filterResponseParameters(array $responseArray)
     {
-        foreach ($responseArray as $key => $value) {
-            if (preg_match('/^paymentForm+|^lang+/', $key)) {
-                unset($responseArray[$key]);
-            }
-        }
-
-        return $responseArray;
+        return array_filter($responseArray, function ($key) {
+            return !preg_match('/^paymentForm+|^lang+/', $key);
+        }, ARRAY_FILTER_USE_KEY);
     }
 
     /**
