@@ -43,7 +43,10 @@ class HeidelpayFactory extends AbstractFactory
      */
     public function createHeidelpayCreditCardHandler()
     {
-        return new HeidelpayCreditCardHandler();
+        return new HeidelpayCreditCardHandler(
+            $this->getCalculationClient(),
+            $this->getQuoteClient()
+        );
     }
 
     /**
@@ -148,6 +151,22 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
+     * @return \Spryker\Client\Calculation\CalculationClientInterface
+     */
+    public function getCalculationClient()
+    {
+        return $this->getProvidedDependency(HeidelpayDependencyProvider::CLIENT_CALCULATION);
+    }
+
+    /**
+     * @return \Spryker\Client\Quote\QuoteClientInterface
+     */
+    public function getQuoteClient()
+    {
+        return $this->getProvidedDependency(HeidelpayDependencyProvider::CLIENT_QUOTE);
+    }
+
+    /**
      * @return \SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeFormInterface
      */
     public function createHeidelpayResponseToIdealAuthorizeFormMapper()
@@ -161,7 +180,7 @@ class HeidelpayFactory extends AbstractFactory
     public function createCreditCardRegistrationToQuoteHydrator()
     {
         return new RegistrationToQuoteHydrator(
-            $this->createHeidelpayHandler()
+            $this->createHeidelpayCreditCardHandler()
         );
     }
 

@@ -90,7 +90,7 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends HeidelpayPayment
 
         $this->assertInstanceOf(HeidelpayPaymentProcessingResponseTransfer::class, $response);
         $this->assertTrue($response->getIsError());
-        $this->assertEquals('Hash does not match. This could be some kind of manipulation or misconfiguration!', $response->getError()->getInternalMessage());
+        $this->assertEquals('Hashes do not match. This could be some kind of manipulation or misconfiguration!', $response->getError()->getInternalMessage());
     }
 
     /**
@@ -117,7 +117,7 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends HeidelpayPayment
 
         $this->assertInstanceOf(HeidelpayPaymentProcessingResponseTransfer::class, $response);
         $this->assertTrue($response->getIsError());
-        $this->assertEquals('Hash does not match. This could be some kind of manipulation or misconfiguration!', $response->getError()->getInternalMessage());
+        $this->assertEquals('Hashes do not match. This could be some kind of manipulation or misconfiguration!', $response->getError()->getInternalMessage());
     }
 
     /**

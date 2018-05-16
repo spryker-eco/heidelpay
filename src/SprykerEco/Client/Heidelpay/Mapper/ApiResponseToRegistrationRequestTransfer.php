@@ -9,12 +9,12 @@ namespace SprykerEco\Client\Heidelpay\Mapper;
 use Generated\Shared\Transfer\HeidelpayCreditCardInfoTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseErrorTransfer;
-use Heidelpay\PhpApi\Response;
+use Heidelpay\PhpPaymentApi\Response;
 
 class ApiResponseToRegistrationRequestTransfer implements ApiResponseToRegistrationResponseTransferInterface
 {
     /**
-     * @param \Heidelpay\PhpApi\Response $apiResponseObject
+     * @param \Heidelpay\PhpPaymentApi\Response $apiResponseObject
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
      *
      * @return void
@@ -49,7 +49,7 @@ class ApiResponseToRegistrationRequestTransfer implements ApiResponseToRegistrat
     }
 
     /**
-     * @param \Heidelpay\PhpApi\Response $apiResponse
+     * @param \Heidelpay\PhpPaymentApi\Response $apiResponse
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $responseTransfer
      *
      * @return void
@@ -69,7 +69,7 @@ class ApiResponseToRegistrationRequestTransfer implements ApiResponseToRegistrat
     }
 
     /**
-     * @param \Heidelpay\PhpApi\Response $apiResponseObject
+     * @param \Heidelpay\PhpPaymentApi\Response $apiResponseObject
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
      *
      * @return void

@@ -52,7 +52,9 @@ class HeidelpayController extends BaseHeidelpayController
         }
 
         $requestAsArray = $this->getUrldecodedRequestBody($request);
-        $processingResultTransfer = $this->processPaymentResponse($requestAsArray);
+        $processingResultTransfer = $this->processPaymentResponse(
+            $this->getClient()->filterResponseParameters($requestAsArray)
+        );
 
         return $this->streamResponse($processingResultTransfer);
     }

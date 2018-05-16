@@ -34,7 +34,9 @@ class CreditCardController extends BaseHeidelpayController
     {
         $apiResponseAsArray = $this->getUrldecodedRequestBody($request);
 
-        $registrationRequestTransfer = $this->getValidatedRegistrationRequest($apiResponseAsArray);
+        $registrationRequestTransfer = $this->getValidatedRegistrationRequest(
+            $this->getClient()->filterResponseParameters($apiResponseAsArray)
+        );
 
         if ($registrationRequestTransfer->getIsError()) {
             return $this->getInvalidApiRequestActionUrl($registrationRequestTransfer);

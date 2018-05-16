@@ -12,9 +12,9 @@ use Generated\Shared\Transfer\HeidelpayBankTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseConfigTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseErrorTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
-use Heidelpay\PhpApi\Exceptions\PaymentFormUrlException;
-use Heidelpay\PhpApi\ParameterGroups\ConfigParameterGroup;
-use Heidelpay\PhpApi\Response;
+use Heidelpay\PhpPaymentApi\Exceptions\PaymentFormUrlException;
+use Heidelpay\PhpPaymentApi\ParameterGroups\ConfigParameterGroup;
+use Heidelpay\PhpPaymentApi\Response;
 use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceInterface;
 
 class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
@@ -49,7 +49,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
     }
 
     /**
-     * @param \Heidelpay\PhpApi\Response $apiResponse
+     * @param \Heidelpay\PhpPaymentApi\Response $apiResponse
      * @param \Generated\Shared\Transfer\HeidelpayResponseTransfer $responseTransfer
      *
      * @return void
@@ -73,7 +73,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
     }
 
     /**
-     * @param \Heidelpay\PhpApi\Response $apiResponse
+     * @param \Heidelpay\PhpPaymentApi\Response $apiResponse
      * @param \Generated\Shared\Transfer\HeidelpayResponseTransfer $responseTransfer
      *
      * @return void
@@ -95,7 +95,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
     }
 
     /**
-     * @param \Heidelpay\PhpApi\Response $apiResponse
+     * @param \Heidelpay\PhpPaymentApi\Response $apiResponse
      * @param \Generated\Shared\Transfer\HeidelpayResponseTransfer $responseTransfer
      *
      * @return void
@@ -112,7 +112,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
     }
 
     /**
-     * @param \Heidelpay\PhpApi\ParameterGroups\ConfigParameterGroup $config
+     * @param \Heidelpay\PhpPaymentApi\ParameterGroups\ConfigParameterGroup $config
      * @param \Generated\Shared\Transfer\HeidelpayResponseConfigTransfer $configTransfer
      *
      * @return void
@@ -137,7 +137,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
     }
 
     /**
-     * @param \Heidelpay\PhpApi\ParameterGroups\ConfigParameterGroup $config
+     * @param \Heidelpay\PhpPaymentApi\ParameterGroups\ConfigParameterGroup $config
      * @param \Generated\Shared\Transfer\HeidelpayResponseConfigTransfer $configTransfer
      *
      * @return void
@@ -162,7 +162,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
     }
 
     /**
-     * @param \Heidelpay\PhpApi\Response $apiResponse
+     * @param \Heidelpay\PhpPaymentApi\Response $apiResponse
      * @param \Generated\Shared\Transfer\HeidelpayResponseTransfer $responseTransfer
      *
      * @return void
@@ -175,7 +175,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
     }
 
     /**
-     * @param \Heidelpay\PhpApi\Response $apiResponse
+     * @param \Heidelpay\PhpPaymentApi\Response $apiResponse
      *
      * @return string
      */
@@ -203,7 +203,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
     }
 
     /**
-     * @param \Heidelpay\PhpApi\Response $apiResponse
+     * @param \Heidelpay\PhpPaymentApi\Response $apiResponse
      * @param \Generated\Shared\Transfer\HeidelpayResponseTransfer $responseTransfer
      *
      * @return void

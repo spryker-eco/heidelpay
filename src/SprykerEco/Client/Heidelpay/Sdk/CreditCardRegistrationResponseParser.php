@@ -9,8 +9,8 @@ namespace SprykerEco\Client\Heidelpay\Sdk;
 
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseErrorTransfer;
-use Heidelpay\PhpApi\Exceptions\HashVerificationException;
-use Heidelpay\PhpApi\Response;
+use Heidelpay\PhpPaymentApi\Exceptions\HashVerificationException;
+use Heidelpay\PhpPaymentApi\Response;
 use SprykerEco\Client\Heidelpay\HeidelpayConfig;
 use SprykerEco\Client\Heidelpay\Mapper\ApiResponseToRegistrationResponseTransferInterface;
 
@@ -62,7 +62,7 @@ class CreditCardRegistrationResponseParser implements CreditCardRegistrationResp
     /**
      * @param array $apiResponseArray
      *
-     * @return \Heidelpay\PhpApi\Response
+     * @return \Heidelpay\PhpPaymentApi\Response
      */
     protected function getValidatedApiResponseObject(array $apiResponseArray)
     {
@@ -99,7 +99,7 @@ class CreditCardRegistrationResponseParser implements CreditCardRegistrationResp
     }
 
     /**
-     * @param \Heidelpay\PhpApi\Response $apiResponseObject
+     * @param \Heidelpay\PhpPaymentApi\Response $apiResponseObject
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
      *
      * @return void

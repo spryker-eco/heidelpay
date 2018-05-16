@@ -53,7 +53,7 @@
         <behavior name="timestampable">
             <parameter name="disable_updated_at" value="true"/>
         </behavior>
-        <foreign-key name="spy_payment_heidelpay_credit_card_registration-fk_customer_address" foreignTable="spy_customer_address">
+        <foreign-key name="spy_payment_heidelpay_credit_card_reg-fk_customer_address" foreignTable="spy_customer_address">
             <reference foreign="id_customer_address" local="fk_customer_address"/>
         </foreign-key>
         <unique name="spy_heidelpay_registration_number-customer_address">

@@ -152,6 +152,22 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     }
 
     /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param array $responseArray
+     *
+     * @return array
+     */
+    public function filterResponseParameters(array $responseArray)
+    {
+        return array_filter($responseArray, function ($key) {
+            return !preg_match('/^paymentForm+|^lang+/', $key);
+        }, ARRAY_FILTER_USE_KEY);
+    }
+
+    /**
      * @return string
      */
     protected function getCurrentLocale()

@@ -8,12 +8,12 @@ namespace SprykerEco\Client\Heidelpay\Mapper;
 
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseErrorTransfer;
-use Heidelpay\PhpApi\Response;
+use Heidelpay\PhpPaymentApi\Response;
 
 interface ApiResponseToRegistrationResponseTransferInterface
 {
     /**
-     * @param \Heidelpay\PhpApi\Response $apiResponseObject
+     * @param \Heidelpay\PhpPaymentApi\Response $apiResponseObject
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
      *
      * @return void

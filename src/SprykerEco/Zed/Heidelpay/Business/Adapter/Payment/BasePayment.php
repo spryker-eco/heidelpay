@@ -11,9 +11,9 @@ use Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseErrorTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
-use Heidelpay\PhpApi\Exceptions\HashVerificationException;
-use Heidelpay\PhpApi\Request;
-use Heidelpay\PhpApi\Response;
+use Heidelpay\PhpPaymentApi\Exceptions\HashVerificationException;
+use Heidelpay\PhpPaymentApi\Request;
+use Heidelpay\PhpPaymentApi\Response;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\RequestToHeidelpayInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpayInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface;
@@ -64,7 +64,7 @@ class BasePayment implements PaymentWithExternalResponseInterface
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $requestTransfer
-     * @param \Heidelpay\PhpApi\Request $apiRequest
+     * @param \Heidelpay\PhpPaymentApi\Request $apiRequest
      *
      * @return void
      */
@@ -74,7 +74,7 @@ class BasePayment implements PaymentWithExternalResponseInterface
     }
 
     /**
-     * @param \Heidelpay\PhpApi\Response $apiResponseObject
+     * @param \Heidelpay\PhpPaymentApi\Response $apiResponseObject
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
@@ -97,7 +97,7 @@ class BasePayment implements PaymentWithExternalResponseInterface
     }
 
     /**
-     * @param \Heidelpay\PhpApi\Response $apiResponse
+     * @param \Heidelpay\PhpPaymentApi\Response $apiResponse
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
@@ -118,7 +118,7 @@ class BasePayment implements PaymentWithExternalResponseInterface
     }
 
     /**
-     * @param \Heidelpay\PhpApi\Exceptions\HashVerificationException $exception
+     * @param \Heidelpay\PhpPaymentApi\Exceptions\HashVerificationException $exception
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseErrorTransfer
      */

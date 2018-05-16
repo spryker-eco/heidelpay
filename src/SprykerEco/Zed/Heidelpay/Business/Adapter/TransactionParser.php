@@ -9,7 +9,7 @@ namespace SprykerEco\Zed\Heidelpay\Business\Adapter;
 
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
-use Heidelpay\PhpApi\Response;
+use Heidelpay\PhpPaymentApi\Response;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpayInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponsePayloadToApiResponseInterface;
 
@@ -55,7 +55,7 @@ class TransactionParser implements TransactionParserInterface
     /**
      * @param \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer $transactionLogTransfer
      *
-     * @return \Heidelpay\PhpApi\Response
+     * @return \Heidelpay\PhpPaymentApi\Response
      */
     protected function createApiResponse(HeidelpayTransactionLogTransfer $transactionLogTransfer)
     {
