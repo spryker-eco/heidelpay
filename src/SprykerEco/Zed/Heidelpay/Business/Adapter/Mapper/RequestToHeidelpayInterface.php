@@ -8,13 +8,13 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
-use Heidelpay\PhpApi\Request;
+use Heidelpay\PhpPaymentApi\Request;
 
 interface RequestToHeidelpayInterface
 {
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $requestTransfer
-     * @param \Heidelpay\PhpApi\Request $heidelpayRequest
+     * @param \Heidelpay\PhpPaymentApi\Request $heidelpayRequest
      *
      * @return void
      */

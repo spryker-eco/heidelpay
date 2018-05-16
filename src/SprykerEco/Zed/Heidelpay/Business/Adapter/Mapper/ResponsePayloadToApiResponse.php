@@ -6,7 +6,7 @@
  */
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper;
 
-use Heidelpay\PhpApi\Response;
+use Heidelpay\PhpPaymentApi\Response;
 use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceInterface;
 
 class ResponsePayloadToApiResponse implements ResponsePayloadToApiResponseInterface
@@ -26,7 +26,7 @@ class ResponsePayloadToApiResponse implements ResponsePayloadToApiResponseInterf
 
     /**
      * @param string $transactionPayload
-     * @param \Heidelpay\PhpApi\Response $heidelpayResponse
+     * @param \Heidelpay\PhpPaymentApi\Response $heidelpayResponse
      *
      * @return void
      */
@@ -42,7 +42,7 @@ class ResponsePayloadToApiResponse implements ResponsePayloadToApiResponseInterf
     /**
      * @param string $parameterGroup
      * @param array $values
-     * @param \Heidelpay\PhpApi\Response $heidelpayResponse
+     * @param \Heidelpay\PhpPaymentApi\Response $heidelpayResponse
      *
      * @return void
      */
@@ -61,7 +61,7 @@ class ResponsePayloadToApiResponse implements ResponsePayloadToApiResponseInterf
 
     /**
      * @param string $parameterGroup
-     * @param \Heidelpay\PhpApi\Response $heidelpayResponse
+     * @param \Heidelpay\PhpPaymentApi\Response $heidelpayResponse
      *
      * @return object|null
      */

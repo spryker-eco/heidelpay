@@ -86,7 +86,7 @@ class Saver implements SaverInterface
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay
      */
-    protected function buildPaymentEntity(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer): \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay
+    protected function buildPaymentEntity(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer): SpyPaymentHeidelpay
     {
         $paymentEntity = new SpyPaymentHeidelpay();
         $paymentEntity

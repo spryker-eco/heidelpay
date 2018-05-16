@@ -150,8 +150,8 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
             ->getOptionsList();
 
         foreach ($paymentOptionsList as $optionTransfer) {
-            $paymentOptions[$optionTransfer->getCode()] =
-                static::PAYMENT_OPTION_TRANSLATION_PREFIX . $optionTransfer->getCode();
+            $paymentOptions[static::PAYMENT_OPTION_TRANSLATION_PREFIX . $optionTransfer->getCode()] =
+                $optionTransfer->getCode();
         }
 
         return $paymentOptions;

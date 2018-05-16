@@ -7,13 +7,13 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper;
 
-use Heidelpay\PhpApi\Response;
+use Heidelpay\PhpPaymentApi\Response;
 
 interface ResponsePayloadToApiResponseInterface
 {
     /**
      * @param string $transactionPayload
-     * @param \Heidelpay\PhpApi\Response $heidelpayResponse
+     * @param \Heidelpay\PhpPaymentApi\Response $heidelpayResponse
      *
      * @return void
      */

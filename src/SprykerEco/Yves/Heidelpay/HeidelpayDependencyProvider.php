@@ -14,6 +14,7 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
 {
     const CLIENT_HEIDELPAY = 'heidelpay client';
     const CLIENT_QUOTE = 'quote client';
+    const CLIENT_CALCULATION = 'calculation client';
 
     /**
      * @param \Spryker\Yves\Kernel\Container $container
@@ -40,6 +41,10 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
 
         $container[static::CLIENT_QUOTE] = function (Container $container) {
             return $container->getLocator()->quote()->client();
+        };
+
+        $container[static::CLIENT_CALCULATION] = function (Container $container) {
+            return $container->getLocator()->calculation()->client();
         };
 
         return $container;

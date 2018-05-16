@@ -38,9 +38,9 @@ class ExternalResponseBuilder
     const TRANSACRTION_ID = 'TRANSACRTION_ID';
 
     const CRITERION_SDK_NAME = 'HEIDELPAY:CRITERION_SDK_NAME';
-    const CRITERION_SDK_VALUE = "Heidelpay\PhpApi";
+    const CRITERION_SDK_VALUE = "Heidelpay\PhpPaymentApi";
 
-    const BRAND_PROPERTY_NAME = '_brand';
+    const BRAND_PROPERTY_NAME = 'brand';
     const CRITERION_SECRET = 'HEIDELPAY:CRITERION_SECRET';
 
     const PAYMENT_METHOD_CLASS_NAME = 'PaymentMethod';

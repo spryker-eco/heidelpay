@@ -8,7 +8,7 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Payment;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
-use Heidelpay\PhpApi\PaymentMethods\SofortPaymentMethod;
+use Heidelpay\PhpPaymentApi\PaymentMethods\SofortPaymentMethod;
 
 class SofortPayment extends BasePayment implements SofortPaymentInterface
 {

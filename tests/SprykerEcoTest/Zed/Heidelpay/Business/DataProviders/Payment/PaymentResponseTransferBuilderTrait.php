@@ -8,7 +8,7 @@
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment;
 
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
-use Heidelpay\PhpApi\Exceptions\HashVerificationException;
+use Heidelpay\PhpPaymentApi\Exceptions\HashVerificationException;
 use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
 
 trait PaymentResponseTransferBuilderTrait
