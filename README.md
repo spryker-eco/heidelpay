@@ -1,4 +1,13 @@
-# Heidelpay Module
+# heidelpay integration
+
+heidelpay integration for your spryker project.
+
+# Currently supported payment methods:
+
+* credit card
+* PayPal
+* Sofort
+* iDeal
 
 ## Installation
 
@@ -8,7 +17,7 @@ composer require spryker-eco/heidelpay
 
 ## Documentation
 
-[Documentation](https://academy.spryker.com/developing_with_spryker/industry_partner_integration/integration_payment_heidelpay.html)
+[Documentation](https://academy.spryker.com/developing_with_spryker/industry_partner_integration/heidelpay/integration_payment_heidelpay.html?Highlight=heidelpay)
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/?branch=master)
 
