@@ -1,8 +1,8 @@
-# heidelpay integration
+# Heidelpay Module
 
 heidelpay integration for your spryker project.
 
-# Currently supported payment methods:
+## Currently supported payment methods:
 
 * credit card
 * PayPal
