@@ -16,6 +16,7 @@ interface HeidelpayConfig
     const PAYMENT_METHOD_PAYPAL_AUTHORIZE = self::PROVIDER_NAME . 'PaypalAuthorize';
     const PAYMENT_METHOD_PAYPAL_DEBIT = self::PROVIDER_NAME . 'PaypalDebit';
     const PAYMENT_METHOD_IDEAL = self::PROVIDER_NAME . 'Ideal';
+    const PAYMENT_METHOD_EASY_CREDIT = self::PROVIDER_NAME . 'EasyCredit';
 
     const PAYMENT_OPTION_NEW_REGISTRATION = 'new-registration';
     const PAYMENT_OPTION_EXISTING_REGISTRATION = 'existing-registration';

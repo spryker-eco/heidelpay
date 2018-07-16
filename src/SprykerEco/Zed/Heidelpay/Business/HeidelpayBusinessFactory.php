@@ -24,6 +24,8 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\Registrati
 use SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationWriter;
 use SprykerEco\Zed\Heidelpay\Business\Payment\CreditCardSecure;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Ideal;
+use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentMethodFilter;
+use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentMethodFilterInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReader;
 use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriter;
 use SprykerEco\Zed\Heidelpay\Business\Payment\PaypalAuthorize;
@@ -471,6 +473,8 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
 
     /**
      * @return \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesInterface
+     *
+     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
     public function getSalesFacade()
     {
@@ -479,6 +483,8 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
 
     /**
      * @return \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface
+     *
+     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
     protected function getCurrencyFacade()
     {
@@ -497,6 +503,8 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
 
     /**
      * @return \SprykerEco\Zed\Heidelpay\Dependency\QueryContainer\HeidelpayToSalesQueryContainerInterface
+     *
+     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
     protected function getSalesQueryContainer()
     {
@@ -505,6 +513,8 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
 
     /**
      * @return \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface
+     *
+     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
     protected function getMoneyFacade()
     {
@@ -513,9 +523,19 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
 
     /**
      * @return \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceInterface
+     *
+     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
     protected function getUtilEncodingService()
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::SERVICE_UTIL_ENCODING);
+    }
+
+    /**
+     * @return PaymentMethodFilterInterface
+     */
+    public function createPaymentMethodFilter(): PaymentMethodFilterInterface
+    {
+        return new PaymentMethodFilter($this->getConfig());
     }
 }

@@ -17,7 +17,9 @@ use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
 class HeidelpayCommunicationFactory extends AbstractCommunicationFactory
 {
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesInterface
+     * @return mixed
+     *
+     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
     public function getSalesFacade()
     {
