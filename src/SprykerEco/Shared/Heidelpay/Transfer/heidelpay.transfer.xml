@@ -166,6 +166,7 @@
     <transfer name="Payment">
         <property name="heidelpaySofort" type="HeidelpayPayment"/>
         <property name="heidelpayIdeal" type="HeidelpayPayment"/>
+        <property name="heidelpayEasyCredit" type="HeidelpayPayment"/>
         <property name="HeidelpayPaypalAuthorize" type="HeidelpayPayment"/>
         <property name="HeidelpayPaypalDebit" type="HeidelpayPayment"/>
         <property name="HeidelpayCreditCardSecure" type="HeidelpayCreditCardPayment"/>

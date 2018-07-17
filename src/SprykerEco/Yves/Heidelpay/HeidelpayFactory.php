@@ -11,6 +11,7 @@ use Spryker\Yves\Kernel\AbstractFactory;
 use SprykerEco\Yves\Heidelpay\CreditCard\RegistrationToQuoteHydrator;
 use SprykerEco\Yves\Heidelpay\Form\CreditCardSecureSubForm;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\CreditCardSecureDataProvider;
+use SprykerEco\Yves\Heidelpay\Form\DataProvider\EasyCreditDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\IdealDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\PaypalAuthorizeDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\PaypalDebitDataProvider;
@@ -24,6 +25,7 @@ use SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandler;
 use SprykerEco\Yves\Heidelpay\Handler\PaymentFailureHandler;
 use SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuote;
 use SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeForm;
+use SprykerEco\Yves\Heidelpay\Form\EasyCreditSubForm;
 
 /**
  * @method \SprykerEco\Yves\Heidelpay\HeidelpayConfig getConfig()
@@ -87,6 +89,14 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
      */
+    public function createEasyCreditForm()
+    {
+        return new EasyCreditSubForm();
+    }
+
+    /**
+     * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
+     */
     public function createPaypalAuthorizeForm()
     {
         return new PaypalAuthorizeSubForm();
@@ -140,6 +150,14 @@ class HeidelpayFactory extends AbstractFactory
     public function createPaypalDebitFormDataProvider()
     {
         return new PaypalDebitDataProvider();
+    }
+
+    /**
+     * @return \Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface
+     */
+    public function createEasyCreditFormDataProvider()
+    {
+        return new EasyCreditDataProvider();
     }
 
     /**

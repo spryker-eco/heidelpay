@@ -15,9 +15,9 @@ use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class PaymentMethodFilter implements PaymentMethodFilterInterface
 {
-    protected const HEIDELPAY_PAYMENT_METHOD = 'heidelpay';
-    protected const CONFIG_METHOD_PART_GET_CRIF = 'getCrif';
-    protected const CONFIG_METHOD_PART_PAYMENT_METHODS = 'PaymentMethods';
+    protected const HEIDELPAY_EASY_CREDIT_PAYMENT_METHOD = 'heidelpayEasyCredit';
+    protected const GRAND_TOTAL_LESS_THAN = 200;
+    protected const GRAND_TOTAL_MORE_THAN = 3000;
 
     /**
      * @var \SprykerEco\Zed\Heidelpay\HeidelpayConfig
@@ -42,12 +42,11 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
         PaymentMethodsTransfer $paymentMethodsTransfer,
         QuoteTransfer $quoteTransfer
     ): PaymentMethodsTransfer {
-        $availableMethods = $this->getAvailablePaymentMethods($quoteTransfer);
 
         $result = new ArrayObject();
-
+        $grandTotal = $quoteTransfer->getTotals()->getGrandTotal();
         foreach ($paymentMethodsTransfer->getMethods() as $paymentMethod) {
-            if ($this->isPaymentMethodHeidelpay($paymentMethod) && !$this->isAvailable($paymentMethod, $availableMethods)) {
+            if ($this->isPaymentMethodHeidelpayEasyCredit($paymentMethod) && ($grandTotal < static::GRAND_TOTAL_LESS_THAN || $grandTotal > static::GRAND_TOTAL_MORE_THAN)) {
                 continue;
             }
 
@@ -60,41 +59,12 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
     }
 
     /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return string[]
-     */
-    protected function getAvailablePaymentMethods(QuoteTransfer $quoteTransfer): array
-    {
-        $method = static::CONFIG_METHOD_PART_GET_CRIF .
-            ucfirst(strtolower($quoteTransfer->getHeidelpayCrif()->getResult())) .
-            static::CONFIG_METHOD_PART_PAYMENT_METHODS;
-
-        if (method_exists($this->config, $method)) {
-            return $this->config->$method();
-        }
-
-        return $this->config->getCrifRedPaymentMethods();
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\PaymentMethodTransfer $paymentMethodTransfer
-     * @param string[] $availableMethods
-     *
-     * @return bool
-     */
-    protected function isAvailable(PaymentMethodTransfer $paymentMethodTransfer, $availableMethods): bool
-    {
-        return in_array($paymentMethodTransfer->getMethodName(), $availableMethods);
-    }
-
-    /**
      * @param \Generated\Shared\Transfer\PaymentMethodTransfer $paymentMethodTransfer
      *
      * @return bool
      */
-    protected function isPaymentMethodHeidelpay(PaymentMethodTransfer $paymentMethodTransfer): bool
+    protected function isPaymentMethodHeidelpayEasyCredit(PaymentMethodTransfer $paymentMethodTransfer): bool
     {
-        return strpos($paymentMethodTransfer->getMethodName(), static::HEIDELPAY_PAYMENT_METHOD) !== false;
+        return $paymentMethodTransfer->getMethodName() === static::HEIDELPAY_EASY_CREDIT_PAYMENT_METHOD;
     }
 }
