@@ -17,7 +17,11 @@ use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface;
 class PaymentMethodFilter implements PaymentMethodFilterInterface
 {
     protected const HEIDELPAY_EASY_CREDIT_PAYMENT_METHOD = 'heidelpayEasyCredit';
+
+    protected const PACKSTATION = 'Packstation';
+
     protected const GRAND_TOTAL_LESS_THAN = 200;
+
     protected const GRAND_TOTAL_MORE_THAN = 3000;
 
     /**
@@ -53,10 +57,12 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
         QuoteTransfer $quoteTransfer
     ): PaymentMethodsTransfer {
 
+
         $result = new ArrayObject();
         $grandTotal = $this->moneyFacade->convertIntegerToDecimal($quoteTransfer->getTotals()->getGrandTotal());
         foreach ($paymentMethodsTransfer->getMethods() as $paymentMethod) {
-            if ($this->isPaymentMethodHeidelpayEasyCredit($paymentMethod) && ($grandTotal < static::GRAND_TOTAL_LESS_THAN || $grandTotal > static::GRAND_TOTAL_MORE_THAN)) {
+            $address = $this->isAddressCorrect($quoteTransfer);
+            if ($this->isPaymentMethodHeidelpayEasyCredit($paymentMethod) && $this->isTotalOutOfRange($grandTotal) && $this->isAddressCorrect($quoteTransfer)) {
                 continue;
             }
 
@@ -76,5 +82,26 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
     protected function isPaymentMethodHeidelpayEasyCredit(PaymentMethodTransfer $paymentMethodTransfer): bool
     {
         return $paymentMethodTransfer->getMethodName() === static::HEIDELPAY_EASY_CREDIT_PAYMENT_METHOD;
+    }
+
+    /**
+     * @param float $grandTotal
+     *
+     * @return bool
+     */
+    protected function isTotalOutOfRange(float $grandTotal): bool
+    {
+        return $grandTotal < static::GRAND_TOTAL_LESS_THAN || $grandTotal > static::GRAND_TOTAL_MORE_THAN;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return bool
+     */
+    protected function isAddressCorrect(QuoteTransfer $quoteTransfer): bool
+    {
+        return strpos($quoteTransfer->getShippingAddress()->getAddress1(), static::PACKSTATION) === false
+            && strpos($quoteTransfer->getBillingAddress()->getAddress1(), static::PACKSTATION) === false;
     }
 }
