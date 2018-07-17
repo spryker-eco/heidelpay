@@ -12,6 +12,7 @@ use Generated\Shared\Transfer\PaymentMethodsTransfer;
 use Generated\Shared\Transfer\PaymentMethodTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
+use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface;
 
 class PaymentMethodFilter implements PaymentMethodFilterInterface
 {
@@ -25,11 +26,19 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
     protected $config;
 
     /**
+     * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface
+     */
+    protected $moneyFacade;
+
+    /**
      * @param \SprykerEco\Zed\Heidelpay\HeidelpayConfig $config
      */
-    public function __construct(HeidelpayConfig $config)
-    {
+    public function __construct(
+        HeidelpayConfig $config,
+        HeidelpayToMoneyInterface $moneyFacade
+    ) {
         $this->config = $config;
+        $this->moneyFacade = $moneyFacade;
     }
 
     /**
@@ -44,7 +53,7 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
     ): PaymentMethodsTransfer {
 
         $result = new ArrayObject();
-        $grandTotal = $quoteTransfer->getTotals()->getGrandTotal();
+        $grandTotal = $this->moneyFacade->convertIntegerToDecimal($quoteTransfer->getTotals()->getGrandTotal());
         foreach ($paymentMethodsTransfer->getMethods() as $paymentMethod) {
             if ($this->isPaymentMethodHeidelpayEasyCredit($paymentMethod) && ($grandTotal < static::GRAND_TOTAL_LESS_THAN || $grandTotal > static::GRAND_TOTAL_MORE_THAN)) {
                 continue;

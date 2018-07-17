@@ -536,6 +536,6 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
      */
     public function createPaymentMethodFilter(): PaymentMethodFilterInterface
     {
-        return new PaymentMethodFilter($this->getConfig());
+        return new PaymentMethodFilter($this->getConfig(), $this->getMoneyFacade());
     }
 }
