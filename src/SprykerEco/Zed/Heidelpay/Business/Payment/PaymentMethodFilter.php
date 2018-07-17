@@ -31,7 +31,8 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
     protected $moneyFacade;
 
     /**
-     * @param \SprykerEco\Zed\Heidelpay\HeidelpayConfig $config
+     * @param HeidelpayConfig $config
+     * @param HeidelpayToMoneyInterface $moneyFacade
      */
     public function __construct(
         HeidelpayConfig $config,
