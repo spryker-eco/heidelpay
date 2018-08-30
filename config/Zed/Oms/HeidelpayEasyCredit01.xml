@@ -6,7 +6,7 @@
 
     <process name="HeidelpayEasyCredit01" main="true">
         <subprocesses>
-            <process>Authorization</process>
+            <process>AuthorizationOnRegistration</process>
         </subprocesses>
 
         <states>
@@ -26,6 +26,6 @@
         </events>
     </process>
 
-    <process name="Authorization" file="HeidelpaySubprocesses/Authorization.xml"/>
+    <process name="AuthorizationOnRegistration" file="HeidelpaySubprocesses/AuthorizationOnRegistration.xml"/>
 
 </statemachine>

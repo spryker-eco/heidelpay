@@ -43,6 +43,11 @@ interface AdapterFactoryInterface
     public function createIdealPaymentMethodAdapter();
 
     /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\EasyCreditPaymentInterface
+     */
+    public function createEasyCreditPaymentMethodAdapter();
+
+    /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\PaypalPaymentInterface
      */
     public function createPaypalPaymentMethodAdapter();

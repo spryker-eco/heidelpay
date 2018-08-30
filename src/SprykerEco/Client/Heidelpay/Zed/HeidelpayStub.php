@@ -16,7 +16,8 @@ use Spryker\Client\ZedRequest\Stub\ZedRequestStub;
 
 class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
 {
-    const ZED_GET_AUTHORIZE_TRANSACTION_LOG = '/heidelpay/gateway/get-authorize-transaction-log';
+    const ZED_EASYCREDIT_REQUEST = '/heidelpay/gateway/easycredit-request';
+    const ZED_GET_AUTHORIZE_ON_REGISTRATION_TRANSACTION_LOG = '/heidelpay/gateway/get-authorize-on-registration-transaction-log';
     const ZED_GET_CREDIT_CARD_PAYMENT_OPTIONS = '/heidelpay/gateway/get-credit-card-payment-options';
     const ZED_GET_PROCESS_EXTERNAL_PAYMENT_RESPONSE = '/heidelpay/gateway/process-external-payment-response';
     const ZED_GET_SAVE_CREDIT_CARD_REGISTRATION = '/heidelpay/gateway/save-credit-card-registration';
@@ -87,6 +88,18 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
         return $this->zedStub->call(
             static::ZED_GET_FIND_CREDIT_CARD_REGISTRATION,
             $findRegistrationRequestTransfer
+        );
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|\Spryker\Shared\Kernel\Transfer\TransferInterface
+     */
+    public function easycreditRequest(QuoteTransfer $quoteTransfer) {
+        return $this->zedStub->call(
+            static::ZED_EASYCREDIT_REQUEST,
+            $quoteTransfer
         );
     }
 

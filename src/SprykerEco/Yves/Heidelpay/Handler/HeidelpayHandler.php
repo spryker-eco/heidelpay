@@ -24,6 +24,7 @@ class HeidelpayHandler implements HeidelpayHandlerInterface
         HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE => HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE,
         HeidelpayConfig::PAYMENT_METHOD_IDEAL => HeidelpayConfig::PAYMENT_METHOD_IDEAL,
         HeidelpayConfig::PAYMENT_METHOD_SOFORT => HeidelpayConfig::PAYMENT_METHOD_SOFORT,
+        HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT => HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT,
     ];
 
     /**

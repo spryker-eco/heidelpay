@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business;
 
+use Heidelpay\PhpPaymentApi\PaymentMethods\EasyCreditPaymentMethod;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\AdapterFactory;
@@ -34,11 +35,14 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBui
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilder;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\ExternalPaymentResponseBuilder;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Sofort;
+use SprykerEco\Zed\Heidelpay\Business\Payment\EasyCredit;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\AuthorizeTransaction;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\AuthorizeOnRegistrationTransaction;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\CaptureTransaction;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\DebitTransaction;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ExternalResponseTransaction;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\AuthorizeTransactionHandler;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\AuthorizeOnRegistrationTransactionHandler;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\CaptureTransactionHandler;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\DebitTransactionHandler;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\ExternalResponseTransactionHandler;
@@ -61,6 +65,18 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
             $this->createAuthorizeTransaction(),
             $this->getAuthorizePaymentMethodAdapterCollection(),
             $this->createAdapterRequestFromOrderBuilder()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\AuthorizeTransactionHandlerInterface
+     */
+    public function createAuthorizeOnRegistrationTransactionHandler()
+    {
+        return new AuthorizeOnRegistrationTransactionHandler(
+            $this->createAuthorizeOnRegistrationTransaction(),
+            $this->getAuthorizeOnRegistrationPaymentMethodAdapterCollection(),
+            $this->createAdapterRequestFromQuoteBuilder()
         );
     }
 
@@ -258,6 +274,16 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeOnRegistrationInterface[]
+     */
+    protected function getAuthorizeOnRegistrationPaymentMethodAdapterCollection()
+    {
+        return $this
+            ->createAdapterFactory()
+            ->getAuthorizeOnRegistrationPaymentMethodAdapterCollection();
+    }
+
+    /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface[]
      */
     protected function getCapturePaymentMethodAdapterCollection()
@@ -342,6 +368,16 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\AuthorizeOnRegistrationTransactionInterface
+     */
+    protected function createAuthorizeOnRegistrationTransaction()
+    {
+        return new AuthorizeOnRegistrationTransaction(
+            $this->createTransactionLogger()
+        );
+    }
+    
+    /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\DebitTransactionInterface
      */
     protected function createDebitTransaction()
@@ -372,6 +408,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
             HeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT => $this->createPaymentMethodPaypalDebit(),
             HeidelpayConfig::PAYMENT_METHOD_IDEAL => $this->createPaymentMethodIdeal(),
             HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE => $this->createPaymentMethodCreditCardSecure(),
+            HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT => $this->createPaymentMethodEasyCredit(),
         ];
     }
 
@@ -413,6 +450,17 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     protected function createPaymentMethodPaypalDebit()
     {
         return new PaypalDebit(
+            $this->createTransactionLogReader(),
+            $this->getConfig()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface
+     */
+    protected function createPaymentMethodEasyCredit()
+    {
+        return new EasyCredit(
             $this->createTransactionLogReader(),
             $this->getConfig()
         );

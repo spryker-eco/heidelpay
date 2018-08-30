@@ -75,6 +75,38 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @api
      *
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function authorizeOnRegistrationPayment(QuoteTransfer $quoteTransfer)
+    {
+        $this->getFactory()
+            ->createAuthorizeOnRegistrationTransactionHandler()
+            ->authorizeOnRegistration($quoteTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function heidelpayEasycreditRequest(QuoteTransfer $quoteTransfer)
+    {
+        return $this->getFactory()
+            ->createAuthorizeOnRegistrationTransactionHandler()
+            ->authorizeOnRegistration($quoteTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
@@ -149,6 +181,22 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
         return $this->getFactory()
             ->createTransactionLogReader()
             ->findOrderAuthorizeTransactionLogByOrderReference($authorizeLogRequestTransfer->getOrderReference());
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\HeidelpayAuthorizeOnRegistrationTransactionLogRequestTransfer $authorizeOnRegistrationLogRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
+     */
+    public function getAuthorizeOnRegistrationTransactionLog(HeidelpayAuthorizeOnRegistrationTransactionLogRequestTransfer $authorizeOnRegistrationLogRequestTransfer)
+    {
+        return $this->getFactory()
+            ->createTransactionLogReader()
+            ->findOrderAuthorizeOnRegistrationTransactionLogByOrderReference($authorizeOnRegistrationLogRequestTransfer->getOrderReference());
     }
 
     /**

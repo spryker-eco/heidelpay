@@ -147,6 +147,9 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
 
             case SharedHeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT:
                 return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_PAYPAL);
+
+            case SharedHeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT:
+                return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_EASY_CREDIT);
         }
 
         return '';

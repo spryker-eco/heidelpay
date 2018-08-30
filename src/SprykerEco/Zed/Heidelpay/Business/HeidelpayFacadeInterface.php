@@ -56,6 +56,17 @@ interface HeidelpayFacadeInterface
     public function authorizePayment(OrderTransfer $orderTransfer);
 
     /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function authorizeOnRegistrationPayment(QuoteTransfer $quoteTransfer);
+
+    /**
      * Specification:
      * - Sends payment debit request to Heidelpay gateway.
      * - Saves the transaction result in DB for future recognition

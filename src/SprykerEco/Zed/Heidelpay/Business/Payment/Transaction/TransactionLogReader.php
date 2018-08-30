@@ -88,6 +88,22 @@ class TransactionLogReader implements TransactionLogReaderInterface
     }
 
     /**
+     * @param int $idSalesOrder
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     */
+    public function findOrderAuthorizeOnRegistrationTransactionLogByIdSalesOrder($idSalesOrder)
+    {
+        $spyTransactionLog = $this->findOrderAuthorizeOnRegistrationTransactionEntity($idSalesOrder);
+
+        if ($spyTransactionLog === null) {
+            return null;
+        }
+
+        return $this->buildTransactionTransfer($spyTransactionLog);
+    }
+
+    /**
      * @param string $orderReference
      *
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
@@ -97,6 +113,18 @@ class TransactionLogReader implements TransactionLogReaderInterface
         $idSalesOrder = $this->orderReader->getOrderIdByReference($orderReference);
 
         return $this->findOrderAuthorizeTransactionLogByIdSalesOrder($idSalesOrder);
+    }
+
+    /**
+     * @param string $orderReference
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     */
+    public function findOrderAuthorizeOnRegistrationTransactionLogByOrderReference($orderReference)
+    {
+        $idSalesOrder = $this->orderReader->getOrderIdByReference($orderReference);
+
+        return $this->findOrderAuthorizeOnRegistrationTransactionLogByIdSalesOrder($idSalesOrder);
     }
 
     /**
@@ -111,6 +139,24 @@ class TransactionLogReader implements TransactionLogReaderInterface
             ->queryTransactionByIdSalesOrderAndType(
                 $idSalesOrder,
                 HeidelpayConfig::TRANSACTION_TYPE_AUTHORIZE
+            )
+            ->findOne();
+
+        return $transactionLogEntity;
+    }
+
+    /**
+     * @param int $idSalesOrder
+     *
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog|null
+     */
+    protected function findOrderAuthorizeOnRegistrationTransactionEntity($idSalesOrder)
+    {
+        $transactionLogEntity = $this
+            ->queryContainer
+            ->queryTransactionByIdSalesOrderAndType(
+                $idSalesOrder,
+                HeidelpayConfig::TRANSACTION_TYPE_AUTHORIZE_ON_REGISTRATION
             )
             ->findOne();
 
