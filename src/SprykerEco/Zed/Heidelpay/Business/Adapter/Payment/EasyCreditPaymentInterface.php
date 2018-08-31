@@ -7,9 +7,9 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Payment;
 
-use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeOnRegistrationInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithInitializeInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface;
 
-interface EasyCreditPaymentInterface extends PaymentWithAuthorizeOnRegistrationInterface, PaymentWithExternalResponseInterface
+interface EasyCreditPaymentInterface extends PaymentWithInitializeInterface, PaymentWithExternalResponseInterface
 {
 }

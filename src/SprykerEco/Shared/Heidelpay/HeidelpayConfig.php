@@ -25,6 +25,7 @@ interface HeidelpayConfig
     const TRANSACTION_TYPE_DEBIT = 'debit';
     const TRANSACTION_TYPE_AUTHORIZE = 'authorize';
     const TRANSACTION_TYPE_AUTHORIZE_ON_REGISTRATION = 'authorize_on_registration';
+    const TRANSACTION_TYPE_INITIALIZE = 'initialize';
     const TRANSACTION_TYPE_CAPTURE = 'capture';
 
     const EXTERNAL_RESPONSE_TRANSACTION_STATUS_OK = 'ACK';

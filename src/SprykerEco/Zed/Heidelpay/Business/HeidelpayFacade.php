@@ -79,6 +79,22 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
+    public function initializePayment(QuoteTransfer $quoteTransfer)
+    {
+        $this->getFactory()
+            ->createInitializeTransactionHandler()
+            ->initialize($quoteTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
     public function authorizeOnRegistrationPayment(QuoteTransfer $quoteTransfer)
     {
         $this->getFactory()
@@ -98,8 +114,8 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     public function heidelpayEasycreditRequest(QuoteTransfer $quoteTransfer)
     {
         return $this->getFactory()
-            ->createAuthorizeOnRegistrationTransactionHandler()
-            ->authorizeOnRegistration($quoteTransfer);
+            ->createInitializeTransactionHandler()
+            ->initialize($quoteTransfer);
     }
 
     /**
@@ -181,6 +197,22 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
         return $this->getFactory()
             ->createTransactionLogReader()
             ->findOrderAuthorizeTransactionLogByOrderReference($authorizeLogRequestTransfer->getOrderReference());
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\HeidelpayInitializeTransactionLogRequestTransfer $initializeLogRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
+     */
+    public function getInitializeTransactionLog(HeidelpayInitializeTransactionLogRequestTransfer $initializeLogRequestTransfer)
+    {
+        return $this->getFactory()
+            ->createTransactionLogReader()
+            ->findQuoteInitializeTransactionLogByOrderReference($initializeLogRequestTransfer->getOrderReference());
     }
 
     /**

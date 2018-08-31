@@ -46,6 +46,8 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\AuthorizeOnReg
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\CaptureTransactionHandler;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\DebitTransactionHandler;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\ExternalResponseTransactionHandler;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\InitializeTransactionHandler;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\InitializeTransaction;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Logger\TransactionLogger;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\TransactionLogReader;
 use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
@@ -76,6 +78,18 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
         return new AuthorizeOnRegistrationTransactionHandler(
             $this->createAuthorizeOnRegistrationTransaction(),
             $this->getAuthorizeOnRegistrationPaymentMethodAdapterCollection(),
+            $this->createAdapterRequestFromQuoteBuilder()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\InitializeTransactionHandlerInterface
+     */
+    public function createInitializeTransactionHandler()
+    {
+        return new InitializeTransactionHandler(
+            $this->createInitializeTransaction(),
+            $this->getInitializePaymentMethodAdapterCollection(),
             $this->createAdapterRequestFromQuoteBuilder()
         );
     }
@@ -294,6 +308,16 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithInitializeInterface[]
+     */
+    protected function getInitializePaymentMethodAdapterCollection()
+    {
+        return $this
+            ->createAdapterFactory()
+            ->getInitializePaymentMethodAdapterCollection();
+    }
+
+    /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface[]
      */
     protected function getDebitPaymentMethodAdapterCollection()
@@ -373,6 +397,16 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     protected function createAuthorizeOnRegistrationTransaction()
     {
         return new AuthorizeOnRegistrationTransaction(
+            $this->createTransactionLogger()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\InitializeTransactionInterface
+     */
+    protected function createInitializeTransaction()
+    {
+        return new InitializeTransaction(
             $this->createTransactionLogger()
         );
     }

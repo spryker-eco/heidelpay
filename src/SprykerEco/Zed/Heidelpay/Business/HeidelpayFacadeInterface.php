@@ -9,11 +9,13 @@ namespace SprykerEco\Zed\Heidelpay\Business;
 
 use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayAuthorizeTransactionLogRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
 use Generated\Shared\Transfer\PaymentMethodsTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 
-interface HeidelpayFacadeInterface
+interface   HeidelpayFacadeInterface
 {
     /**
      * Specification:
@@ -41,6 +43,17 @@ interface HeidelpayFacadeInterface
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
     public function processExternalPaymentResponse(array $externalResponse);
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function heidelpayEasycreditRequest(QuoteTransfer $quoteTransfer);
 
     /**
      * Specification:
@@ -152,4 +165,59 @@ interface HeidelpayFacadeInterface
      * @return \Generated\Shared\Transfer\PaymentMethodsTransfer
      */
     public function filterPaymentMethods(PaymentMethodsTransfer $paymentMethodsTransfer, QuoteTransfer $quoteTransfer);
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer|null
+     */
+    public function findCreditCardRegistrationByIdAndQuote(HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer);
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer
+     */
+    public function saveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer);
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\HeidelpayAuthorizeOnRegistrationTransactionLogRequestTransfer $authorizeOnRegistrationLogRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
+     */
+    public function getAuthorizeOnRegistrationTransactionLog(HeidelpayAuthorizeOnRegistrationTransactionLogRequestTransfer $authorizeOnRegistrationLogRequestTransfer);
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\HeidelpayInitializeTransactionLogRequestTransfer $initializeLogRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
+     */
+    public function getInitializeTransactionLog(HeidelpayInitializeTransactionLogRequestTransfer $initializeLogRequestTransfer);
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function initializePayment(QuoteTransfer $quoteTransfer);
 }
