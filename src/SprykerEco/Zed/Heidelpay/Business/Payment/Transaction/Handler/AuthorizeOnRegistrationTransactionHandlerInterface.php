@@ -7,14 +7,14 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
 
-use Generated\Shared\Transfer\QuoteTransfer;
+use Generated\Shared\Transfer\OrderTransfer;
 
 interface AuthorizeOnRegistrationTransactionHandlerInterface
 {
     /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
      * @return void
      */
-    public function authorizeOnRegistration(QuoteTransfer $quoteTransfer);
+    public function authorizeOnRegistration(OrderTransfer $orderTransfer);
 }

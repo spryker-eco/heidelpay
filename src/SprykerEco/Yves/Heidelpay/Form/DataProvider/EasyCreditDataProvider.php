@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Yves\Heidelpay\Form\DataProvider;
 
+use Generated\Shared\Transfer\HeidelpayEasyCreditPaymentTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
 use Generated\Shared\Transfer\PaymentTransfer;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
@@ -23,7 +24,7 @@ class EasyCreditDataProvider implements StepEngineFormDataProviderInterface
     {
         if ($quoteTransfer->getPayment() === null) {
             $paymentTransfer = new PaymentTransfer();
-            $paymentTransfer->setHeidelpayEasyCredit(new HeidelpayPaymentTransfer());
+            $paymentTransfer->setHeidelpayEasyCredit(new HeidelpayEasyCreditPaymentTransfer());
             $quoteTransfer->setPayment($paymentTransfer);
         }
 

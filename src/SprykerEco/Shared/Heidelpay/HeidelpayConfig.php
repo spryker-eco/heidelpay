@@ -23,6 +23,8 @@ interface HeidelpayConfig
 
     const TRANSACTION_TYPE_EXTERNAL_RESPONSE = 'external_response';
     const TRANSACTION_TYPE_DEBIT = 'debit';
+    const TRANSACTION_TYPE_FINALIZE = 'finalize';
+    const TRANSACTION_TYPE_RESERVATION = 'reservation';
     const TRANSACTION_TYPE_AUTHORIZE = 'authorize';
     const TRANSACTION_TYPE_AUTHORIZE_ON_REGISTRATION = 'authorize_on_registration';
     const TRANSACTION_TYPE_INITIALIZE = 'initialize';
@@ -30,4 +32,6 @@ interface HeidelpayConfig
 
     const EXTERNAL_RESPONSE_TRANSACTION_STATUS_OK = 'ACK';
     const CAPTURE_TRANSACTION_STATUS_OK = 'ACK';
+    const RESERVATION_TRANSACTION_STATUS_OK = 'ACK';
+    const FINALIZE_TRANSACTION_STATUS_OK = 'NOK';
 }

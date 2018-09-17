@@ -28,6 +28,16 @@ interface AdapterFactoryInterface
     public function getDebitPaymentMethodAdapterCollection();
 
     /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithFinalizeInterface[]
+     */
+    public function getFinalizePaymentMethodAdapterCollection();
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithReservationInterface[]
+     */
+    public function getReservationPaymentMethodAdapterCollection();
+
+    /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface[]
      */
     public function getExternalResponsePaymentMethodAdapterCollection();

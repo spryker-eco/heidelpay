@@ -59,6 +59,42 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
+    public function buildReservationRequestFromOrder(OrderTransfer $orderTransfer)
+    {
+        return $this->buildBaseOrderHeidelpayRequest($orderTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
+     */
+    public function buildAuthorizeOnRegistrationRequestFromOrder(OrderTransfer $orderTransfer)
+    {
+        $requestTransfer = $this->buildBaseOrderHeidelpayRequest($orderTransfer);
+        $requestTransfer->setIdPaymentReference($orderTransfer->getHeidelpayPayment()->getIdPaymentReference());
+
+        return $requestTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
+     */
+    public function buildFinalizeRequestFromOrder(OrderTransfer $orderTransfer)
+    {
+        $requestTransfer = $this->buildBaseOrderHeidelpayRequest($orderTransfer);
+        $requestTransfer->setIdPaymentReference($orderTransfer->getHeidelpayPayment()->getIdPaymentReference());
+
+        return $requestTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
+     */
     public function buildCaptureRequestFromOrder(OrderTransfer $orderTransfer)
     {
         $requestTransfer = $this->buildBaseOrderHeidelpayRequest($orderTransfer);

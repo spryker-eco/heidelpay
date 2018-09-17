@@ -30,16 +30,6 @@ class GatewayController extends AbstractGatewayController
     }
 
     /**
-     * @param \Generated\Shared\Transfer\HeidelpayAuthorizeOnTransactionTransactionLogRequestTransfer $authorizeOnTransactionLogRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
-     */
-    public function getAuthorizeOnRegistrationTransactionLogAction(HeidelpayAuthorizeOnTransactionTransactionLogRequestTransfer $authorizeOnTransactionLogRequestTransfer)
-    {
-        return $this->getFacade()->getAuthorizeOnRegistrationTransactionLog($authorizeOnTransactionLogRequestTransfer);
-    }
-
-    /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer
@@ -59,6 +49,16 @@ class GatewayController extends AbstractGatewayController
         return $this->getFacade()->processExternalPaymentResponse($paymentRequestTransfer->getBody());
     }
 
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer $paymentRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
+     */
+    public function processExternalEasyCreditPaymentResponseAction(HeidelpayExternalPaymentRequestTransfer $paymentRequestTransfer)
+    {
+        return $this->getFacade()->processExternalEasyCreditPaymentResponse($paymentRequestTransfer->getBody());
+    }
+    
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
      *
@@ -88,6 +88,6 @@ class GatewayController extends AbstractGatewayController
      */
     public function easycreditRequestAction(QuoteTransfer $quoteTransfer)
     {
-        return $this->getFacade()->heidelpayEasycreditRequest($quoteTransfer);
+        return $this->getFacade()->easycreditRequest($quoteTransfer);
     }
 }

@@ -51,6 +51,36 @@ class HeidelpayQueryContainer extends AbstractQueryContainer implements Heidelpa
      *
      * @param int $idSalesOrder
      *
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery
+     */
+    public function queryReservationTransactionLog($idSalesOrder)
+    {
+        return $this->getFactory()
+            ->createPaymentHeidelpayTransactionLogQuery()
+            ->filterByFkSalesOrder($idSalesOrder)
+            ->filterByTransactionType(HeidelpayConfig::TRANSACTION_TYPE_AUTHORIZE_ON_REGISTRATION);
+    }
+
+    /**
+     * @api
+     *
+     * @param int $idSalesOrder
+     *
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery
+     */
+    public function queryFinalizeTransactionLog($idSalesOrder)
+    {
+        return $this->getFactory()
+            ->createPaymentHeidelpayTransactionLogQuery()
+            ->filterByFkSalesOrder($idSalesOrder)
+            ->filterByTransactionType(HeidelpayConfig::TRANSACTION_TYPE_FINALIZE);
+    }
+
+    /**
+     * @api
+     *
+     * @param int $idSalesOrder
+     *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayQuery
      */
     public function queryPaymentByIdSalesOrder($idSalesOrder)

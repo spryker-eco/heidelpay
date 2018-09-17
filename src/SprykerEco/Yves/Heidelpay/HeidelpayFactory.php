@@ -26,6 +26,8 @@ use SprykerEco\Yves\Heidelpay\Handler\PaymentFailureHandler;
 use SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuote;
 use SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeForm;
 use SprykerEco\Yves\Heidelpay\Form\EasyCreditSubForm;
+use SprykerEco\Yves\Heidelpay\Handler\HeidelpayEasyCreditHandler;
+use SprykerEco\Yves\Heidelpay\Hydrator\EasyCreditResponseToQuoteHydrator;
 
 /**
  * @method \SprykerEco\Yves\Heidelpay\HeidelpayConfig getConfig()
@@ -47,6 +49,16 @@ class HeidelpayFactory extends AbstractFactory
     {
         return new HeidelpayCreditCardHandler(
             $this->getCalculationClient(),
+            $this->getQuoteClient()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface
+     */
+    public function createHeidelpayEasyCreditHandler()
+    {
+        return new HeidelpayEasyCreditHandler(
             $this->getQuoteClient()
         );
     }
@@ -199,6 +211,16 @@ class HeidelpayFactory extends AbstractFactory
     {
         return new RegistrationToQuoteHydrator(
             $this->createHeidelpayCreditCardHandler()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Yves\Heidelpay\CreditCard\RegistrationToQuoteHydratorInterface
+     */
+    public function createEasyCreditResponseToQuoteHydrator()
+    {
+        return new EasyCreditResponseToQuoteHydrator(
+            $this->createHeidelpayEasyCreditHandler()
         );
     }
 

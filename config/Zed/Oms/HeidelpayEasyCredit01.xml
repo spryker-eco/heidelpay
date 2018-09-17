@@ -6,7 +6,9 @@
 
     <process name="HeidelpayEasyCredit01" main="true">
         <subprocesses>
-            <process>AuthorizationOnRegistration</process>
+            <process>Reservation</process>
+            <process>Shipment</process>
+            <process>Finalize</process>
         </subprocesses>
 
         <states>
@@ -14,18 +16,36 @@
         </states>
 
         <transitions>
+
             <transition>
                 <source>new</source>
-                <target>ready for authorization</target>
-                <event>start authorization process</event>
+                <target>ready for reservation</target>
+                <event>start reservation process</event>
             </transition>
+
+            <transition>
+                <source>reservation succeeded</source>
+                <target>ready for shipment</target>
+                <event>start shipment process</event>
+            </transition>
+
+            <transition>
+                <source>shipped</source>
+                <target>ready for finalize</target>
+                <event>start finalize process</event>
+            </transition>
+
         </transitions>
 
         <events>
-            <event name="start authorization process" onEnter="true" />
+            <event name="start reservation process" onEnter="true" />
+            <event name="start shipment process" manual="true"/>
+            <event name="start finalize process" onEnter="true" />
         </events>
     </process>
 
-    <process name="AuthorizationOnRegistration" file="HeidelpaySubprocesses/AuthorizationOnRegistration.xml"/>
+    <process name="Reservation" file="HeidelpaySubprocesses/Reservation.xml"/>
+    <process name="Shipment" file="HeidelpaySubprocesses/Shipment.xml"/>
+    <process name="Finalize" file="HeidelpaySubprocesses/Finalize.xml"/>
 
 </statemachine>

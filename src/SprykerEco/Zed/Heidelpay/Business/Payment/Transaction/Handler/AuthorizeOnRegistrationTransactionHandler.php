@@ -7,11 +7,10 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
 
-use Generated\Shared\Transfer\QuoteTransfer;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilderauthorizeOnRegistration;
+use Generated\Shared\Transfer\OrderTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\AuthorizeOnRegistrationTransactionInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\AuthorizeOnRegistrationNotSupportedException;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilder;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilder;
 
 class AuthorizeOnRegistrationTransactionHandler implements AuthorizeOnRegistrationTransactionHandlerInterface
 {
@@ -29,19 +28,19 @@ class AuthorizeOnRegistrationTransactionHandler implements AuthorizeOnRegistrati
     protected $paymentMethodAdapterCollection;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilder
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilder
      */
     protected $heidelpayRequestBuilder;
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\AuthorizeOnRegistrationTransactionInterface $transaction
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeOnRegistrationInterface[] $paymentMethodAdapterCollection
-     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilder $heidelpayRequestBuilder
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilder $heidelpayRequestBuilder
      */
     public function __construct(
         AuthorizeOnRegistrationTransactionInterface $transaction,
         array $paymentMethodAdapterCollection,
-        AdapterRequestFromQuoteBuilder $heidelpayRequestBuilder
+        AdapterRequestFromOrderBuilder $heidelpayRequestBuilder
     ) {
         $this->transaction = $transaction;
         $this->paymentMethodAdapterCollection = $paymentMethodAdapterCollection;
@@ -49,39 +48,39 @@ class AuthorizeOnRegistrationTransactionHandler implements AuthorizeOnRegistrati
     }
 
     /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $orderTransfer
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
      * @return void
      */
-    public function authorizeOnRegistration(QuoteTransfer $quoteTransfer)
+    public function authorizeOnRegistration(OrderTransfer $orderTransfer)
     {
-        $authorizeOnRegistrationRequestTransfer = $this->buildAuthorizeOnRegistrationRequest($quoteTransfer);
-        $paymentAdapter = $this->getPaymentMethodAdapter($quoteTransfer);
+        $authorizeOnRegistrationRequestTransfer = $this->buildAuthorizeOnRegistrationRequest($orderTransfer);
+        $paymentAdapter = $this->getPaymentMethodAdapter($orderTransfer);
         return $this->transaction->executeTransaction($authorizeOnRegistrationRequestTransfer, $paymentAdapter);
     }
 
     /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    protected function buildAuthorizeOnRegistrationRequest(QuoteTransfer $quoteTransfer)
+    protected function buildAuthorizeOnRegistrationRequest(OrderTransfer $orderTransfer)
     {
-        $authorizeRequestTransfer = $this->heidelpayRequestBuilder->buildEasyCreditRequest($quoteTransfer);
+        $authorizeRequestTransfer = $this->heidelpayRequestBuilder->buildAuthorizeOnRegistrationRequestFromOrder($orderTransfer);
 
         return $authorizeRequestTransfer;
     }
 
     /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
      * @throws \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\AuthorizeOnRegistrationNotSupportedException
      *
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeOnRegistrationInterface
      */
-    protected function getPaymentMethodAdapter(QuoteTransfer $quoteTransfer)
+    protected function getPaymentMethodAdapter(OrderTransfer $orderTransfer)
     {
-        $paymentMethodCode = $this->getPaymentMethodCode($quoteTransfer);
+        $paymentMethodCode = $this->getPaymentMethodCode($orderTransfer);
 
         if (!isset($this->paymentMethodAdapterCollection[$paymentMethodCode])) {
             throw new AuthorizeOnRegistrationNotSupportedException(
@@ -93,12 +92,12 @@ class AuthorizeOnRegistrationTransactionHandler implements AuthorizeOnRegistrati
     }
 
     /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
      * @return string
      */
-    protected function getPaymentMethodCode(QuoteTransfer $quoteTransfer)
+    protected function getPaymentMethodCode(OrderTransfer $orderTransfer)
     {
-        return $quoteTransfer->getPayment()->getPaymentMethod();
+        return $orderTransfer->getHeidelpayPayment()->getPaymentMethod();
     }
 }

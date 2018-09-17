@@ -14,7 +14,7 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\InitializeNo
 
 class InitializeTransactionHandler implements InitializeTransactionHandlerInterface
 {
-    const ERROR_MESSAGE_DEBIT_TRANSACTION_NOT_SUPPORTED =
+    const ERROR_MESSAGE_INITIALIZE_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call initialize transaction on payment method \'%s\' ' .
         'that does not support it';
 

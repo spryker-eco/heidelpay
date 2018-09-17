@@ -30,11 +30,37 @@ class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterfac
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function initialize(HeidelpayRequestTransfer $authorizeRequestTransfer)
+    public function initialize(HeidelpayRequestTransfer $initializeRequestTransfer)
     {
         $easyCreditMethod = new EasyCreditPaymentMethod();
-        $this->prepareRequest($authorizeRequestTransfer, $easyCreditMethod->getRequest());
+        $this->prepareRequest($initializeRequestTransfer, $easyCreditMethod->getRequest());
         $easyCreditMethod->initialize();
+        return $this->verifyAndParseResponse($easyCreditMethod->getResponse());
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $reservationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function reservation(HeidelpayRequestTransfer $reservationRequestTransfer)
+    {
+        $easyCreditMethod = new EasyCreditPaymentMethod();
+        $this->prepareRequest($reservationRequestTransfer, $easyCreditMethod->getRequest());
+        $easyCreditMethod->reservation();
+        return $this->verifyAndParseResponse($easyCreditMethod->getResponse());
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $finalizeRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function finalize(HeidelpayRequestTransfer $finalizeRequestTransfer)
+    {
+        $easyCreditMethod = new EasyCreditPaymentMethod();
+        $this->prepareRequest($finalizeRequestTransfer, $easyCreditMethod->getRequest());
+        $easyCreditMethod->finalize($finalizeRequestTransfer->getIdPaymentRegistration());
         return $this->verifyAndParseResponse($easyCreditMethod->getResponse());
     }
 }

@@ -64,6 +64,18 @@ interface HeidelpayClientInterface
 
     /**
      * Specification:
+     *  - Sends external response from payment provider (POST request) to Zed for processing. Specific for Easy Credit
+     *
+     * @api
+     *
+     * @param array $externalResponse
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
+     */
+    public function processExternalEasyCreditPaymentResponse(array $externalResponse);
+
+    /**
+     * Specification:
      *  - Sends credit card registration request to Zed for saving
      *
      * @api

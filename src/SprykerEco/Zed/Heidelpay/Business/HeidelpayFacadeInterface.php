@@ -32,6 +32,50 @@ interface   HeidelpayFacadeInterface
     public function postSaveHook(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer);
 
     /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param array $externalResponse
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
+     */
+    public function processExternalEasyCreditPaymentResponse(array $externalResponse);
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function authorizeOnRegistrationPayment(OrderTransfer $orderTransfer);
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function finalizePayment(OrderTransfer $orderTransfer);
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function reservationPayment(OrderTransfer $orderTransfer);
+
+    /**
      * Specification:
      *  - Prepares the request for ExternalResponseTransaction
      *  - Executes ExternalResponseTransaction and returns the results
@@ -53,7 +97,7 @@ interface   HeidelpayFacadeInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function heidelpayEasycreditRequest(QuoteTransfer $quoteTransfer);
+    public function easycreditRequest(QuoteTransfer $quoteTransfer);
 
     /**
      * Specification:
@@ -67,17 +111,6 @@ interface   HeidelpayFacadeInterface
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
     public function authorizePayment(OrderTransfer $orderTransfer);
-
-    /**
-     * {@inheritdoc}
-     *
-     * @api
-     *
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
-     */
-    public function authorizeOnRegistrationPayment(QuoteTransfer $quoteTransfer);
 
     /**
      * Specification:
@@ -187,37 +220,4 @@ interface   HeidelpayFacadeInterface
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer
      */
     public function saveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer);
-
-    /**
-     * {@inheritdoc}
-     *
-     * @api
-     *
-     * @param \Generated\Shared\Transfer\HeidelpayAuthorizeOnRegistrationTransactionLogRequestTransfer $authorizeOnRegistrationLogRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
-     */
-    public function getAuthorizeOnRegistrationTransactionLog(HeidelpayAuthorizeOnRegistrationTransactionLogRequestTransfer $authorizeOnRegistrationLogRequestTransfer);
-
-    /**
-     * {@inheritdoc}
-     *
-     * @api
-     *
-     * @param \Generated\Shared\Transfer\HeidelpayInitializeTransactionLogRequestTransfer $initializeLogRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
-     */
-    public function getInitializeTransactionLog(HeidelpayInitializeTransactionLogRequestTransfer $initializeLogRequestTransfer);
-
-    /**
-     * {@inheritdoc}
-     *
-     * @api
-     *
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
-     */
-    public function initializePayment(QuoteTransfer $quoteTransfer);
 }

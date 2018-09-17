@@ -59,6 +59,22 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @api
      *
+     * @param array $externalResponse
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
+     */
+    public function processExternalEasyCreditPaymentResponse(array $externalResponse)
+    {
+        return $this->getFactory()
+            ->createExternalEasyCreditResponseTransactionHandler()
+            ->processExternalEasyCreditPaymentResponse($externalResponse);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
@@ -75,31 +91,15 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @api
      *
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function initializePayment(QuoteTransfer $quoteTransfer)
-    {
-        $this->getFactory()
-            ->createInitializeTransactionHandler()
-            ->initialize($quoteTransfer);
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @api
-     *
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
-     */
-    public function authorizeOnRegistrationPayment(QuoteTransfer $quoteTransfer)
+    public function authorizeOnRegistrationPayment(OrderTransfer $orderTransfer)
     {
         $this->getFactory()
             ->createAuthorizeOnRegistrationTransactionHandler()
-            ->authorizeOnRegistration($quoteTransfer);
+            ->authorizeOnRegistration($orderTransfer);
     }
 
     /**
@@ -111,7 +111,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function heidelpayEasycreditRequest(QuoteTransfer $quoteTransfer)
+    public function easycreditRequest(QuoteTransfer $quoteTransfer)
     {
         return $this->getFactory()
             ->createInitializeTransactionHandler()
@@ -132,6 +132,38 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
         $this->getFactory()
             ->createDebitTransactionHandler()
             ->debit($orderTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function finalizePayment(OrderTransfer $orderTransfer)
+    {
+        $this->getFactory()
+            ->createFinalizeTransactionHandler()
+            ->finalize($orderTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function reservationPayment(OrderTransfer $orderTransfer)
+    {
+        $this->getFactory()
+            ->createReservationTransactionHandler()
+            ->reservation($orderTransfer);
     }
 
     /**
@@ -197,38 +229,6 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
         return $this->getFactory()
             ->createTransactionLogReader()
             ->findOrderAuthorizeTransactionLogByOrderReference($authorizeLogRequestTransfer->getOrderReference());
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @api
-     *
-     * @param \Generated\Shared\Transfer\HeidelpayInitializeTransactionLogRequestTransfer $initializeLogRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
-     */
-    public function getInitializeTransactionLog(HeidelpayInitializeTransactionLogRequestTransfer $initializeLogRequestTransfer)
-    {
-        return $this->getFactory()
-            ->createTransactionLogReader()
-            ->findQuoteInitializeTransactionLogByOrderReference($initializeLogRequestTransfer->getOrderReference());
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @api
-     *
-     * @param \Generated\Shared\Transfer\HeidelpayAuthorizeOnRegistrationTransactionLogRequestTransfer $authorizeOnRegistrationLogRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
-     */
-    public function getAuthorizeOnRegistrationTransactionLog(HeidelpayAuthorizeOnRegistrationTransactionLogRequestTransfer $authorizeOnRegistrationLogRequestTransfer)
-    {
-        return $this->getFactory()
-            ->createTransactionLogReader()
-            ->findOrderAuthorizeOnRegistrationTransactionLogByOrderReference($authorizeOnRegistrationLogRequestTransfer->getOrderReference());
     }
 
     /**

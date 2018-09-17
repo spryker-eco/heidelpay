@@ -121,6 +121,24 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
      *
      * @api
      *
+     * @param array $externalResponse
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
+     */
+    public function processExternalEasyCreditPaymentResponse(array $externalResponse)
+    {
+        $externalResponseTransfer = $this->buildTransferFromExternalResponseArray($externalResponse);
+
+        return $this->getFactory()
+            ->createZedStub()
+            ->processExternalEasyCreditPaymentResponse($externalResponseTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer

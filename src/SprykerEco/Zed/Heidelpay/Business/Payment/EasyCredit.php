@@ -21,6 +21,7 @@ class EasyCredit extends BaseHeidelpayPaymentMethod implements PaymentWithPostSa
      */
     public function postSaveOrder(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer)
     {
+
         $redirectUrl = $this->getCheckoutRedirectUrlFromAuthorizeOnRegistrationTransactionLog(
             $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder()
         );

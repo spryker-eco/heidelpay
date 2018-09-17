@@ -104,6 +104,22 @@ class TransactionLogReader implements TransactionLogReaderInterface
     }
 
     /**
+     * @param int $idSalesOrder
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     */
+    public function findQuoteInitializeTransactionLogByIdSalesOrder($idSalesOrder)
+    {
+        $spyTransactionLog = $this->findQuoteInitializeTransactionEntity($idSalesOrder);
+
+        if ($spyTransactionLog === null) {
+            return null;
+        }
+
+        return $this->buildTransactionTransfer($spyTransactionLog);
+    }
+
+    /**
      * @param string $orderReference
      *
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
@@ -125,6 +141,18 @@ class TransactionLogReader implements TransactionLogReaderInterface
         $idSalesOrder = $this->orderReader->getOrderIdByReference($orderReference);
 
         return $this->findOrderAuthorizeOnRegistrationTransactionLogByIdSalesOrder($idSalesOrder);
+    }
+
+    /**
+     * @param string $orderReference
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     */
+    public function findQuoteInitializeTransactionLogByOrderReference($orderReference)
+    {
+        $idSalesOrder = $this->orderReader->getOrderIdByReference($orderReference);
+
+        return $this->findQuoteInitializeTransactionLogByIdSalesOrder($idSalesOrder);
     }
 
     /**
@@ -157,6 +185,24 @@ class TransactionLogReader implements TransactionLogReaderInterface
             ->queryTransactionByIdSalesOrderAndType(
                 $idSalesOrder,
                 HeidelpayConfig::TRANSACTION_TYPE_AUTHORIZE_ON_REGISTRATION
+            )
+            ->findOne();
+
+        return $transactionLogEntity;
+    }
+
+    /**
+     * @param int $idSalesOrder
+     *
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog|null
+     */
+    protected function findQuoteInitializeTransactionEntity($idSalesOrder)
+    {
+        $transactionLogEntity = $this
+            ->queryContainer
+            ->queryTransactionByIdSalesOrderAndType(
+                $idSalesOrder,
+                HeidelpayConfig::TRANSACTION_TYPE_INITIALIZE
             )
             ->findOne();
 

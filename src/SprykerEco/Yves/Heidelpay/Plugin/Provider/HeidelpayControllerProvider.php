@@ -13,6 +13,7 @@ use Spryker\Yves\Application\Plugin\Provider\YvesControllerProvider;
 class HeidelpayControllerProvider extends YvesControllerProvider
 {
     const HEIDELPAY_PAYMENT = 'heidelpay-payment';
+    const HEIDELPAY_EASY_CREDIT_PAYMENT = 'heidelpay-easy-credit-payment';
     const HEIDELPAY_PAYMENT_FAILED = 'heidelpay-payment-failed';
     const HEIDELPAY_IDEAL_AUTHORIZE = 'heidelpay-ideal-authorize';
     const HEIDELPAY_CREDIT_CARD_REGISTER = 'heidelpay-cc-register';
@@ -39,6 +40,14 @@ class HeidelpayControllerProvider extends YvesControllerProvider
             'Heidelpay',
             'Heidelpay',
             'payment'
+        );
+
+        $this->createController(
+            '/heidelpay/easyCreditPayment',
+            static::HEIDELPAY_EASY_CREDIT_PAYMENT,
+            'Heidelpay',
+            'EasyCredit',
+            'easyCreditPayment'
         );
 
         $this->createController(

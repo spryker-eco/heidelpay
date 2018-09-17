@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<statemachine
+        xmlns="spryker:oms-01"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
+
+    <process name="Reservation">
+        <states>
+            <state name="ready for reservation"/>
+            <state name="reservation request sent"/>
+            <state name="reservation succeeded"/>
+            <state name="invalid"/>
+        </states>
+
+        <transitions>
+            <!-- pre-reservation -->
+            <transition happy="true">
+                <source>ready for reservation</source>
+                <target>reservation request sent</target>
+                <event>send reservation request</event>
+            </transition>
+
+            <transition happy="true" condition="Heidelpay/IsReservationCompleted">
+                <source>reservation request sent</source>
+                <target>reservation succeeded</target>
+                <event>reservation payment</event>
+            </transition>
+
+            <transition>
+                <source>reservation request sent</source>
+                <target>invalid</target>
+                <event>reservation payment</event>
+            </transition>
+        </transitions>
+
+        <events>
+            <event name="send reservation request" onEnter="true" command="Heidelpay/Reservation" />
+            <event name="reservation payment" manual="true" />
+        </events>
+    </process>
+</statemachine>
