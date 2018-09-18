@@ -111,7 +111,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function easycreditRequest(QuoteTransfer $quoteTransfer)
+    public function initializePayment(QuoteTransfer $quoteTransfer)
     {
         return $this->getFactory()
             ->createInitializeTransactionHandler()

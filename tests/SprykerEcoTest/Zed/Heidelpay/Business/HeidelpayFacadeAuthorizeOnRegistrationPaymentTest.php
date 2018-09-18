@@ -12,6 +12,7 @@ use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 use Generated\Shared\Transfer\PaymentTransfer;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\SuccessfulResponseHeidelpayBusinessFactory;
+use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusinessFactory;
 
 /**
  * @group Functional
@@ -26,7 +27,7 @@ class HeidelpayFacadeAuthorizeOnRegistrationPaymentTest extends HeidelpayPayment
     /**
      * @return void
      */
-    public function testProcessAuthorizeOnRegistrationPayment()
+    public function testProcessSuccessAuthorizeOnRegistrationPayment()
     {
         $salesOrder = $this->createSuccessOrder();
 
@@ -56,5 +57,30 @@ class HeidelpayFacadeAuthorizeOnRegistrationPaymentTest extends HeidelpayPayment
     protected function createSuccessfulPaymentHeidelpayFactoryMock()
     {
         return new SuccessfulResponseHeidelpayBusinessFactory();
+    }
+
+    /**
+     * @return void
+     */
+    public function testProcessUnsuccessfulAuthorizeOnRegistrationPayment()
+    {
+        $salesOrder = $this->createSuccessOrder();
+
+        $heidelpayFacade = (new HeidelpayFacade())->setFactory($this->createUnsuccessfulPaymentHeidelpayFactoryMock());
+        $orderTransfer = $this->getPaymentTransfer($heidelpayFacade, $salesOrder);
+        $heidelpayFacade->authorizeOnRegistrationPayment($orderTransfer);
+
+        $transaction = $this->createHeidelpayFactory()->createTransactionLogReader()
+            ->findOrderAuthorizeOnRegistrationTransactionLogByIdSalesOrder($salesOrder->getIdSalesOrder());
+
+        $this->testUnsuccessfulHeidelpayPaymentResponse($transaction);
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
+     */
+    protected function createUnsuccessfulPaymentHeidelpayFactoryMock()
+    {
+        return new UnsuccesfulResponseHeidelpayBusinessFactory();
     }
 }

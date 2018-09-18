@@ -172,6 +172,12 @@
         <property name="items" type="Item[]" singular="item"/>
     </transfer>
 
+    <transfer name="Quote">
+        <property name="idSalesOrder" type="int" />
+        <property name="heidelpayPayment" type="HeidelpayPayment"/>
+        <property name="items" type="Item[]" singular="item"/>
+    </transfer>
+
     <transfer name="Payment">
         <property name="heidelpaySofort" type="HeidelpayPayment"/>
         <property name="heidelpayIdeal" type="HeidelpayPayment"/>

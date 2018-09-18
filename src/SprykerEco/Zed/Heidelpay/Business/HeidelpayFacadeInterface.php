@@ -15,7 +15,7 @@ use Generated\Shared\Transfer\OrderTransfer;
 use Generated\Shared\Transfer\PaymentMethodsTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 
-interface   HeidelpayFacadeInterface
+interface HeidelpayFacadeInterface
 {
     /**
      * Specification:
@@ -97,7 +97,7 @@ interface   HeidelpayFacadeInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function easycreditRequest(QuoteTransfer $quoteTransfer);
+    public function initializePayment(QuoteTransfer $quoteTransfer);
 
     /**
      * Specification:

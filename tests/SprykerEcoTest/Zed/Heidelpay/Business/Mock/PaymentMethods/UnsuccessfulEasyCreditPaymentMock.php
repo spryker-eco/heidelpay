@@ -11,11 +11,7 @@ use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\EasyCreditPayment;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentResponseTransferBuilderTrait;
 
-/**
- * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
- */
-class SuccessfulEasyCreditPaymentMock extends EasyCreditPayment
+class UnsuccessfulEasyCreditPaymentMock extends EasyCreditPayment
 {
     use PaymentResponseTransferBuilderTrait;
 
@@ -27,7 +23,7 @@ class SuccessfulEasyCreditPaymentMock extends EasyCreditPayment
     public function authorizeOnRegistration(HeidelpayRequestTransfer $authorizeRequestTransfer)
     {
         $response['payload'] = '{
-                        "processing": {"result": "ACK"}, 
+                        "processing": {"result": "NOK"}, 
                         "payment": {"code": "OT.RC"}                         
                     }';
 
@@ -36,7 +32,7 @@ class SuccessfulEasyCreditPaymentMock extends EasyCreditPayment
         $response['idTransactionUnique'] = 'some unique transaction';
         $response['idSalesOrder'] = $authorizeRequestTransfer->getCustomerPurchase()->getIdOrder();
 
-        $responseTransfer = $this->getSuccessfulHeidelpayTransfer($response);
+        $responseTransfer = $this->getUnsuccessfulHeidelpayTransfer($response);
 
         return $responseTransfer;
     }
@@ -49,7 +45,7 @@ class SuccessfulEasyCreditPaymentMock extends EasyCreditPayment
     public function initialize(HeidelpayRequestTransfer $authorizeRequestTransfer)
     {
         $response['payload'] = '{
-                        "processing": {"result": "ACK"}, 
+                        "processing": {"result": "NOK"}, 
                         "payment": {"code": "OT.RC"}                         
                     }';
 
@@ -58,7 +54,7 @@ class SuccessfulEasyCreditPaymentMock extends EasyCreditPayment
         $response['idTransactionUnique'] = 'some unique transaction';
         $response['idSalesOrder'] = 1000;
 
-        $responseTransfer = $this->getSuccessfulHeidelpayTransfer($response);
+        $responseTransfer = $this->getUnsuccessfulHeidelpayTransfer($response);
 
         return $responseTransfer;
     }

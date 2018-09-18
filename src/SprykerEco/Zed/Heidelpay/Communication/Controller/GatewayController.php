@@ -88,6 +88,6 @@ class GatewayController extends AbstractGatewayController
      */
     public function easycreditRequestAction(QuoteTransfer $quoteTransfer)
     {
-        return $this->getFacade()->easycreditRequest($quoteTransfer);
+        return $this->getFacade()->initializePayment($quoteTransfer);
     }
 }
