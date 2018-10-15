@@ -48,6 +48,17 @@ class PaymentReader implements PaymentReaderInterface
     /**
      * @param int $idSalesOrder
      *
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentTransfer
+     */
+    public function getBasketIdByIdSalesOrder($idSalesOrder)
+    {
+        $heidelpayPaymentEntity = $this->getPaymentEntityByIdSalesOrder($idSalesOrder);
+        return $heidelpayPaymentEntity->getIdBasket();
+    }
+
+    /**
+     * @param int $idSalesOrder
+     *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay
      */
     protected function getPaymentEntityByIdSalesOrder($idSalesOrder)

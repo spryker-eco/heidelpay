@@ -69,6 +69,7 @@
         <property name="amount" type="float"/>
         <property name="currencyCode" type="string"/>
         <property name="secret" type="string"/>
+        <property name="basketId" type="string"/>
     </transfer>
 
     <transfer name="HeidelpayRequest">
@@ -169,6 +170,7 @@
         <property name="HeidelpayPaypalAuthorize" type="HeidelpayPayment"/>
         <property name="HeidelpayPaypalDebit" type="HeidelpayPayment"/>
         <property name="HeidelpayCreditCardSecure" type="HeidelpayCreditCardPayment"/>
+        <property name="basketId" type="string" />
     </transfer>
 
     <transfer name="HeidelpayIdealAuthorizeForm">

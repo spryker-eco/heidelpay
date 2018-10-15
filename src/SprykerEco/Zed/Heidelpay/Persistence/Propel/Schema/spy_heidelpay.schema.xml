@@ -13,6 +13,7 @@
 
         <column name="id_payment_reference" required="false" type="VARCHAR"/>
         <column name="id_payment_registration" required="false" type="VARCHAR"/>
+        <column name="id_basket" required="false" type="VARCHAR"/>
 
         <column name="payment_method" required="true" type="VARCHAR"/>
 

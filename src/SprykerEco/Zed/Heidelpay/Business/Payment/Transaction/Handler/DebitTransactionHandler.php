@@ -11,6 +11,7 @@ use Generated\Shared\Transfer\OrderTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\DebitTransactionInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\DebitNotSupportedException;
+use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReader;
 
 class DebitTransactionHandler implements DebitTransactionHandlerInterface
 {
@@ -34,6 +35,11 @@ class DebitTransactionHandler implements DebitTransactionHandlerInterface
     protected $heidelpayRequestBuilder;
 
     /**
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReaderInterface
+     */
+    protected $paymentReader;
+
+    /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\DebitTransactionInterface $transaction
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface[] $paymentMethodAdapterCollection
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder
@@ -41,11 +47,13 @@ class DebitTransactionHandler implements DebitTransactionHandlerInterface
     public function __construct(
         DebitTransactionInterface $transaction,
         array $paymentMethodAdapterCollection,
-        AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder
+        AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder,
+        PaymentReader $paymentReader
     ) {
         $this->transaction = $transaction;
         $this->paymentMethodAdapterCollection = $paymentMethodAdapterCollection;
         $this->heidelpayRequestBuilder = $heidelpayRequestBuilder;
+        $this->paymentReader = $paymentReader;
     }
 
     /**
