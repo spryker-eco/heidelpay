@@ -108,7 +108,8 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
         return new DebitTransactionHandler(
             $this->createDebitTransaction(),
             $this->getDebitPaymentMethodAdapterCollection(),
-            $this->createAdapterRequestFromOrderBuilder()
+            $this->createAdapterRequestFromOrderBuilder(),
+            $this->createPaymentReader()
         );
     }
 
@@ -418,7 +419,8 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
         return new AdapterRequestFromOrderBuilder(
             $this->createOrderToHeidelpayRequestMapper(),
             $this->getCurrencyFacade(),
-            $this->getConfig()
+            $this->getConfig(),
+            $this->createPaymentReader()
         );
     }
 

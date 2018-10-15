@@ -15,4 +15,11 @@ interface PaymentReaderInterface
      * @return \Generated\Shared\Transfer\HeidelpayPaymentTransfer
      */
     public function getPaymentByIdSalesOrder($idSalesOrder);
+
+    /**
+     * @param int $idSalesOrder
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentTransfer
+     */
+    public function getBasketIdByIdSalesOrder($idSalesOrder);
 }

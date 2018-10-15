@@ -12,6 +12,7 @@ use Generated\Shared\Transfer\OrderTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Mapper\OrderToHeidelpayRequestInterface;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface;
 use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
+use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReader;
 
 class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implements AdapterRequestFromOrderBuilderInterface
 {
@@ -24,14 +25,17 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
      * @param \SprykerEco\Zed\Heidelpay\Business\Mapper\OrderToHeidelpayRequestInterface $orderToHeidelpayMapper
      * @param \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface $currencyFacade
      * @param \SprykerEco\Zed\Heidelpay\HeidelpayConfig $config
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReaderInterface $paymentReader
      */
     public function __construct(
         OrderToHeidelpayRequestInterface $orderToHeidelpayMapper,
         HeidelpayToCurrencyInterface $currencyFacade,
-        HeidelpayConfig $config
+        HeidelpayConfig $config,
+        PaymentReader $paymentReader
     ) {
         parent::__construct($currencyFacade, $config);
         $this->orderToHeidelpayMapper = $orderToHeidelpayMapper;
+        $this->paymentReader = $paymentReader;
     }
 
     /**
@@ -51,7 +55,10 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
      */
     public function buildDebitRequestFromOrder(OrderTransfer $orderTransfer)
     {
-        return $this->buildBaseOrderHeidelpayRequest($orderTransfer);
+        $requestTransfer = $this->buildBaseOrderHeidelpayRequest($orderTransfer);
+        $basketId = $this->getBasketId($orderTransfer);
+        $requestTransfer->getCustomerPurchase()->setBasketId($basketId);
+        return $requestTransfer;
     }
 
     /**
@@ -133,5 +140,15 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
         $this->orderToHeidelpayMapper->map($orderTransfer, $heidelpayRequestTransfer);
 
         return $heidelpayRequestTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return string
+     */
+    protected function getBasketId(OrderTransfer $orderTransfer)
+    {
+        return $this->paymentReader->getBasketIdByIdSalesOrder($orderTransfer->getIdSalesOrder());
     }
 }

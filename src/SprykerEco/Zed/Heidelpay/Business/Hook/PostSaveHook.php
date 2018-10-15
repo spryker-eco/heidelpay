@@ -7,6 +7,7 @@ namespace SprykerEco\Zed\Heidelpay\Business\Hook;
 
 use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
+use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriterInterface;
 
 class PostSaveHook implements PostSaveHookInterface
 {
