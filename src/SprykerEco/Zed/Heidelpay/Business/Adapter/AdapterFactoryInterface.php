@@ -71,4 +71,9 @@ interface AdapterFactoryInterface
      * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\TransactionParser
      */
     public function createTransactionParser();
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Basket\BasketInterface
+     */
+    public function createBasketAdapter();
 }
