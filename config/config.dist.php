@@ -9,7 +9,6 @@
  */
 
 use Spryker\Shared\Application\ApplicationConstants;
-use Spryker\Shared\Kernel\KernelConstants;
 use Spryker\Shared\Oms\OmsConstants;
 use Spryker\Shared\Sales\SalesConstants;
 use Spryker\Zed\Oms\OmsConfig;
@@ -48,6 +47,9 @@ $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_PAYMENT_FRAME_PREVENT_ASYNC_RED
 
 //Payload encryption key
 $config[HeidelpayConstants::CONFIG_ENCRYPTION_KEY] = '';
+
+//Split payment enable
+$config[HeidelpayConstants::CONFIG_HEIDELPAY_SPLIT_PAYMENT_ENABLE] = false;
 
 $config[OmsConstants::PROCESS_LOCATION] = [
     OmsConfig::DEFAULT_PROCESS_LOCATION,

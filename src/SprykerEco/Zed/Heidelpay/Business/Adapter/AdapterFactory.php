@@ -1,4 +1,5 @@
 <?php
+
 /**
  * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
@@ -8,10 +9,14 @@ namespace SprykerEco\Zed\Heidelpay\Business\Adapter;
 
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Basket\Basket;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\BasketRequestToHeidelpay;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\BasketResponseFromHeidelpay;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\RequestToHeidelpay;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpay;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponsePayloadToApiResponse;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPayment;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\EasyCreditPayment;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\IdealPayment;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\PaypalPayment;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\SofortPayment;
@@ -68,6 +73,18 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
             HeidelpayConfig::PAYMENT_METHOD_IDEAL => $this->createIdealPaymentMethodAdapter(),
             HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE => $this->createCreditCardPaymentMethodAdapter(),
         ];
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Basket\BasketInterface
+     */
+    public function createBasketAdapter()
+    {
+        return new Basket(
+            $this->createBasketRequestToHeidelpayMapper(),
+            $this->createBasketResponseFromHeidelpayMapper(),
+            $this->getHeidelpayConfig()
+        );
     }
 
     /**
@@ -148,11 +165,29 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     }
 
     /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\BasketRequestToHeidelpayInterface
+     */
+    protected function createBasketRequestToHeidelpayMapper()
+    {
+        return new BasketRequestToHeidelpay();
+    }
+
+    /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpayInterface
      */
     protected function createResponseFromHeidelpayMapper()
     {
         return new ResponseFromHeidelpay(
+            $this->getUtilEncodingService()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\BasketResponseFromHeidelpayInterface
+     */
+    protected function createBasketResponseFromHeidelpayMapper()
+    {
+        return new BasketResponseFromHeidelpay(
             $this->getUtilEncodingService()
         );
     }

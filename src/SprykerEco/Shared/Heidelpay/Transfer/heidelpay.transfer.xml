@@ -10,6 +10,15 @@
         <property name="idPaymentRegistration" type="string" />
     </transfer>
 
+    <transfer name="HeidelpayEasyCreditPayment">
+        <property name="fkSalesOrder" type="int" />
+        <property name="paymentMethod" type="string" />
+        <property name="idPaymentReference" type="string" />
+        <property name="amortisationText" type="string" />
+        <property name="accruingInterest" type="string" />
+        <property name="totalAmount" type="string" />
+    </transfer>
+
     <transfer name="HeidelpayCreditCardPayment">
         <property name="selectedPaymentOption" type="string" />
         <property name="selectedRegistration" type="HeidelpayCreditCardRegistration" />
@@ -80,6 +89,17 @@
         <property name="idPaymentReference" type="string" />
         <property name="idPaymentRegistration" type="string" />
         <property name="paymentMethod" type="string" />
+    </transfer>
+
+    <transfer name="HeidelpayBasketRequest">
+        <property name="items" type="Item[]" />
+        <property name="totals" type="Totals" />
+        <property name="expenses" type="Expense[]" singular="expense"/>
+        <property name="currency" type="Currency" />
+    </transfer>
+
+    <transfer name="HeidelpayBasketResponse">
+        <property name="basketId" type="int" />
     </transfer>
 
     <transfer name="HeidelpayExternalPaymentResponse">
@@ -164,9 +184,20 @@
         <property name="items" type="Item[]" singular="item"/>
     </transfer>
 
+    <transfer name="Quote">
+        <property name="idSalesOrder" type="int" />
+        <property name="heidelpayPayment" type="HeidelpayPayment"/>
+        <property name="items" type="Item[]" singular="item"/>
+    </transfer>
+
+    <transfer name="Item">
+        <property name="heidelpayItemChannelId" type="string" />
+    </transfer>
+
     <transfer name="Payment">
         <property name="heidelpaySofort" type="HeidelpayPayment"/>
         <property name="heidelpayIdeal" type="HeidelpayPayment"/>
+        <property name="heidelpayEasyCredit" type="HeidelpayEasyCreditPayment"/>
         <property name="HeidelpayPaypalAuthorize" type="HeidelpayPayment"/>
         <property name="HeidelpayPaypalDebit" type="HeidelpayPayment"/>
         <property name="HeidelpayCreditCardSecure" type="HeidelpayCreditCardPayment"/>
