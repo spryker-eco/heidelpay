@@ -13,6 +13,8 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 
 class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInterface
 {
+    public const MERCHANT_TRANSACTION_CONFIG_NOT_FOUND = '';
+
     /**
      * @return string
      */
@@ -132,26 +134,34 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
      */
     public function getMerchantTransactionChannelByPaymentType($paymentType)
     {
-        switch ($paymentType) {
-            case SharedHeidelpayConfig::PAYMENT_METHOD_SOFORT:
-                return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_SOFORT);
-
-            case SharedHeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE:
-                return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_CC_3D_SECURE);
-
-            case SharedHeidelpayConfig::PAYMENT_METHOD_IDEAL:
-                return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_IDEAL);
-
-            case SharedHeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE:
-                return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_PAYPAL);
-
-            case SharedHeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT:
-                return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_PAYPAL);
-
-            case SharedHeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT:
-                return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_EASY_CREDIT);
+        if ($paymentType === SharedHeidelpayConfig::PAYMENT_METHOD_SOFORT) {
+            return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_SOFORT);
         }
 
-        return '';
+        if ($paymentType === SharedHeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE) {
+            return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_CC_3D_SECURE);
+        }
+
+        if ($paymentType === SharedHeidelpayConfig::PAYMENT_METHOD_IDEAL) {
+            return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_IDEAL);
+        }
+
+        if (in_array($paymentType, [SharedHeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT, SharedHeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE])) {
+            return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_PAYPAL);
+        }
+
+        if ($paymentType === SharedHeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT) {
+            return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_EASY_CREDIT);
+        }
+
+        return static::MERCHANT_TRANSACTION_CONFIG_NOT_FOUND;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSplitPaymentEnable()
+    {
+        return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_SPLIT_PAYMENT_ENABLE, false);
     }
 }
