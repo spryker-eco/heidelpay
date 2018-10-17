@@ -42,6 +42,15 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
      * @api
      *
      * @param int $idSalesOrder
+     *
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery
+     */
+    public function queryFinalizeTransactionLog($idSalesOrder);
+
+    /**
+     * @api
+     *
+     * @param int $idSalesOrder
      * @param string $transactionType
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery

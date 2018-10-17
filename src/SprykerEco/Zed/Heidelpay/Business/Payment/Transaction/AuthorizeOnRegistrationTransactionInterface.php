@@ -19,7 +19,7 @@ interface AuthorizeOnRegistrationTransactionInterface
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
     public function executeTransaction(
-        HeidelpayRequestTransfer $authorizeRequestTransfer,
+        HeidelpayRequestTransfer $authorizeOnRegistrationRequestTransfer,
         PaymentWithAuthorizeOnRegistrationInterface $paymentAdapter
     );
 }

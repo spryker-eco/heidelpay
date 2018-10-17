@@ -77,7 +77,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     * @return void
      */
     public function authorizePayment(OrderTransfer $orderTransfer)
     {
@@ -93,7 +93,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     * @return void
      */
     public function authorizeOnRegistrationPayment(OrderTransfer $orderTransfer)
     {
@@ -125,7 +125,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     * @return void
      */
     public function debitPayment(OrderTransfer $orderTransfer)
     {
@@ -141,7 +141,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     * @return void
      */
     public function finalizePayment(OrderTransfer $orderTransfer)
     {
@@ -157,7 +157,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     * @return void
      */
     public function reservationPayment(OrderTransfer $orderTransfer)
     {
@@ -173,7 +173,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     * @return void
      */
     public function capturePayment(OrderTransfer $orderTransfer)
     {

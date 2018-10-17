@@ -11,8 +11,8 @@ use ArrayObject;
 use Generated\Shared\Transfer\PaymentMethodsTransfer;
 use Generated\Shared\Transfer\PaymentMethodTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
-use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface;
+use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class PaymentMethodFilter implements PaymentMethodFilterInterface
 {
@@ -35,8 +35,8 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
     protected $moneyFacade;
 
     /**
-     * @param HeidelpayConfig $config
-     * @param HeidelpayToMoneyInterface $moneyFacade
+     * @param \SprykerEco\Zed\Heidelpay\HeidelpayConfig $config
+     * @param \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface $moneyFacade
      */
     public function __construct(
         HeidelpayConfig $config,
@@ -56,7 +56,6 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
         PaymentMethodsTransfer $paymentMethodsTransfer,
         QuoteTransfer $quoteTransfer
     ): PaymentMethodsTransfer {
-
 
         $result = new ArrayObject();
         $grandTotal = $this->moneyFacade->convertIntegerToDecimal($quoteTransfer->getTotals()->getGrandTotal());

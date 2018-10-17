@@ -18,8 +18,6 @@ class HeidelpayCommunicationFactory extends AbstractCommunicationFactory
 {
     /**
      * @return mixed
-     *
-     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
     public function getSalesFacade()
     {

@@ -58,7 +58,7 @@ class GatewayController extends AbstractGatewayController
     {
         return $this->getFacade()->processExternalEasyCreditPaymentResponse($paymentRequestTransfer->getBody());
     }
-    
+
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
      *
@@ -84,7 +84,7 @@ class GatewayController extends AbstractGatewayController
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return mixed
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
     public function easycreditRequestAction(QuoteTransfer $quoteTransfer)
     {

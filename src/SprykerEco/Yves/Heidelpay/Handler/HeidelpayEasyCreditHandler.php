@@ -7,7 +7,6 @@
 
 namespace SprykerEco\Yves\Heidelpay\Handler;
 
-use Spryker\Client\Calculation\CalculationClientInterface;
 use Spryker\Client\Quote\QuoteClientInterface;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
@@ -27,7 +26,6 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
     protected $quoteClient;
 
     /**
-     * @param array $heidelpayEasyCreditResponse
      * @param \Spryker\Client\Quote\QuoteClientInterface $quoteClient
      */
     public function __construct(
@@ -37,15 +35,13 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
     }
 
     /**
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer|\Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return \Spryker\Shared\Kernel\Transfer\AbstractTransfer
+     * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function addEasyCreditResponseToQuote(QuoteTransfer $quoteTransfer)
+    public function addEasyCreditResponseToQuote(AbstractTransfer $quoteTransfer)
     {
         $quoteTransfer = parent::addPaymentToQuote($quoteTransfer);
-        $this->addCurrentRegistrationToQuote($quoteTransfer);
-        $quoteTransfer = $this->calculationClient->recalculate($quoteTransfer);
         $this->quoteClient->setQuote($quoteTransfer);
         return $quoteTransfer;
     }

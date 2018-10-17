@@ -9,8 +9,8 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
 
 use Generated\Shared\Transfer\OrderTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ReservationTransactionInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\ReservationNotSupportedException;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ReservationTransactionInterface;
 
 class ReservationTransactionHandler implements ReservationTransactionHandlerInterface
 {
@@ -51,7 +51,7 @@ class ReservationTransactionHandler implements ReservationTransactionHandlerInte
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
-     * @return void
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
     public function reservation(OrderTransfer $orderTransfer)
     {

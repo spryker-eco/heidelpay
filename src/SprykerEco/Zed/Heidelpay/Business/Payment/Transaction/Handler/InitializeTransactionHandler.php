@@ -9,8 +9,8 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
 
 use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilderInterface;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\InitializeTransactionInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\InitializeNotSupportedException;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\InitializeTransactionInterface;
 
 class InitializeTransactionHandler implements InitializeTransactionHandlerInterface
 {
@@ -51,7 +51,7 @@ class InitializeTransactionHandler implements InitializeTransactionHandlerInterf
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return void
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
     public function initialize(QuoteTransfer $quoteTransfer)
     {

@@ -50,9 +50,9 @@ class HeidelpayCreditCardHandler extends HeidelpayHandler
     }
 
     /**
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer|\Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return \Spryker\Shared\Kernel\Transfer\AbstractTransfer
+     * @return \Generated\Shared\Transfer\QuoteTransfer
      */
     public function addPaymentToQuote(AbstractTransfer $quoteTransfer)
     {
@@ -64,7 +64,7 @@ class HeidelpayCreditCardHandler extends HeidelpayHandler
     }
 
     /**
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer|\Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\QuoteTransfer|\Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return void
      */

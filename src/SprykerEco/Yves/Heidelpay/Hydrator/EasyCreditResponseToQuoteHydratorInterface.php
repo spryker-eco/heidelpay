@@ -7,7 +7,6 @@
 
 namespace SprykerEco\Yves\Heidelpay\Hydrator;
 
-use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 
 interface EasyCreditResponseToQuoteHydratorInterface

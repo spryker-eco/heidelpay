@@ -8,9 +8,9 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
 
 use Generated\Shared\Transfer\OrderTransfer;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\AuthorizeOnRegistrationTransactionInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\AuthorizeOnRegistrationNotSupportedException;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilder;
 
 class AuthorizeOnRegistrationTransactionHandler implements AuthorizeOnRegistrationTransactionHandlerInterface
 {
@@ -28,19 +28,19 @@ class AuthorizeOnRegistrationTransactionHandler implements AuthorizeOnRegistrati
     protected $paymentMethodAdapterCollection;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilder
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface
      */
     protected $heidelpayRequestBuilder;
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\AuthorizeOnRegistrationTransactionInterface $transaction
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeOnRegistrationInterface[] $paymentMethodAdapterCollection
-     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilder $heidelpayRequestBuilder
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder
      */
     public function __construct(
         AuthorizeOnRegistrationTransactionInterface $transaction,
         array $paymentMethodAdapterCollection,
-        AdapterRequestFromOrderBuilder $heidelpayRequestBuilder
+        AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder
     ) {
         $this->transaction = $transaction;
         $this->paymentMethodAdapterCollection = $paymentMethodAdapterCollection;
@@ -50,7 +50,7 @@ class AuthorizeOnRegistrationTransactionHandler implements AuthorizeOnRegistrati
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
-     * @return void
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
     public function authorizeOnRegistration(OrderTransfer $orderTransfer)
     {

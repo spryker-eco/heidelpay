@@ -19,7 +19,7 @@ interface PaymentReaderInterface
     /**
      * @param int $idSalesOrder
      *
-     * @return \Generated\Shared\Transfer\HeidelpayPaymentTransfer
+     * @return string
      */
     public function getBasketIdByIdSalesOrder($idSalesOrder);
 }

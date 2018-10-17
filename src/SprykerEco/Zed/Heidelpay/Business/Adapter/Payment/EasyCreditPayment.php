@@ -26,7 +26,7 @@ class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterfac
     }
 
     /**
-     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $authorizeRequestTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $initializeRequestTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
@@ -47,7 +47,6 @@ class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterfac
     {
         $easyCreditMethod = new EasyCreditPaymentMethod();
         $this->prepareRequest($reservationRequestTransfer, $easyCreditMethod->getRequest());
-        $easyCreditMethod->reservation();
         return $this->verifyAndParseResponse($easyCreditMethod->getResponse());
     }
 

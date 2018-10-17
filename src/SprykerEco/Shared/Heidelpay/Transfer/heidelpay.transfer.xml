@@ -99,7 +99,7 @@
     </transfer>
 
     <transfer name="HeidelpayBasketResponse">
-        <property name="basketId" type="int" />
+        <property name="basketId" type="string" />
     </transfer>
 
     <transfer name="HeidelpayExternalPaymentResponse">

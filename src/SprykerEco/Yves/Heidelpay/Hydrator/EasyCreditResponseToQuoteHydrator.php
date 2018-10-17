@@ -8,27 +8,27 @@
 namespace SprykerEco\Yves\Heidelpay\Hydrator;
 
 use Generated\Shared\Transfer\QuoteTransfer;
-use SprykerEco\Client\Heidelpay\HeidelpayClientInterface;
-use SprykerEco\Yves\Heidelpay\Hydrator\EasyCreditResponseToQuoteHydratorInterface;
-use SprykerEco\Yves\Heidelpay\Handler\HeidelpayEasyCreditHandler;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
+use SprykerEco\Yves\Heidelpay\Handler\HeidelpayEasyCreditHandler;
+use SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface;
 
 class EasyCreditResponseToQuoteHydrator implements EasyCreditResponseToQuoteHydratorInterface
 {
     /**
-     * @var \SprykerEco\Yves\Heidelpay\Handler\HeidelpayEasyCreditHandler
+     * @var \SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface
      */
     private $heidelpayEasyCreditHandler;
 
     /**
-     * @param \SprykerEco\Client\Heidelpay\HeidelpayClientInterface $heidelpayClient
+     * @param \SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface $heidelpayEasyCreditHandler
      */
-    public function __construct(HeidelpayEasyCreditHandler $heidelpayEasyCreditHandler)
+    public function __construct(HeidelpayHandlerInterface $heidelpayEasyCreditHandler)
     {
         $this->heidelpayEasyCreditHandler = $heidelpayEasyCreditHandler;
     }
 
     /**
+     * @param array $responseAsArray
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return void

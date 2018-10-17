@@ -34,9 +34,9 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
     }
 
     /**
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer|\Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return \Spryker\Shared\Kernel\Transfer\AbstractTransfer|\Generated\Shared\Transfer\QuoteTransfer
+     * @return \Generated\Shared\Transfer\QuoteTransfer
      */
     public function getData(AbstractTransfer $quoteTransfer)
     {
@@ -44,7 +44,7 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
     }
 
     /**
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer|\Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return array
      */
@@ -68,7 +68,7 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
      *
      * @return void
      */
-    protected function initPaymentObject(QuoteTransfer $quoteTransfer)
+    protected function initPaymentObject(AbstractTransfer $quoteTransfer)
     {
         if ($quoteTransfer->getPayment() === null) {
             $creditCardPaymentTransfer = (new PaymentTransfer())
@@ -83,7 +83,7 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
      *
      * @return void
      */
-    protected function hydratePaymentOptionsToQuote(QuoteTransfer $quoteTransfer)
+    protected function hydratePaymentOptionsToQuote(AbstractTransfer $quoteTransfer)
     {
         $quoteTransfer->requirePayment();
         $this->paymentOptionsHydrator->hydrate($quoteTransfer);

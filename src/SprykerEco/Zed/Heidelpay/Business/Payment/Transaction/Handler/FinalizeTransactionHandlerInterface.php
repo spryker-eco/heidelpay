@@ -12,7 +12,7 @@ use Generated\Shared\Transfer\OrderTransfer;
 interface FinalizeTransactionHandlerInterface
 {
     /**
-     * @param \Generated\Shared\Transfer\OrderTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
      * @return void
      */

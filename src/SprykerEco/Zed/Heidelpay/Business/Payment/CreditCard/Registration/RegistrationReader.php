@@ -114,7 +114,7 @@ class RegistrationReader implements RegistrationReaderInterface
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration|null
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration
      */
     protected function findLastSuccessfulRegistrationByQuote(QuoteTransfer $quoteTransfer)
     {

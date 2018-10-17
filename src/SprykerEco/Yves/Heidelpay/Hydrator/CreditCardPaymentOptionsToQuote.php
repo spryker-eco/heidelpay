@@ -10,6 +10,7 @@ namespace SprykerEco\Yves\Heidelpay\Hydrator;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
+use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use SprykerEco\Client\Heidelpay\HeidelpayClientInterface;
 
 class CreditCardPaymentOptionsToQuote implements CreditCardPaymentOptionsToQuoteInterface
@@ -32,7 +33,7 @@ class CreditCardPaymentOptionsToQuote implements CreditCardPaymentOptionsToQuote
      *
      * @return void
      */
-    public function hydrate(QuoteTransfer $quoteTransfer)
+    public function hydrate(AbstractTransfer $quoteTransfer)
     {
         if (!$this->hasQuoteCreditCardPayment($quoteTransfer)) {
             $this->initCreditCardPayment($quoteTransfer);

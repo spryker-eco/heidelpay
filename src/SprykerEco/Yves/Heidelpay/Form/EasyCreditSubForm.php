@@ -8,9 +8,9 @@
 namespace SprykerEco\Yves\Heidelpay\Form;
 
 use Generated\Shared\Transfer\HeidelpayEasyCreditPaymentTransfer;
+use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
 
 class EasyCreditSubForm extends AbstractHeidelpaySubForm
 {

@@ -18,6 +18,21 @@ interface AdapterFactoryInterface
     public function getAuthorizePaymentMethodAdapterCollection();
 
     /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeOnRegistrationInterface[]
+     */
+    public function getAuthorizeOnRegistrationPaymentMethodAdapterCollection();
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithInitializeInterface[]
+     */
+    public function getInitializePaymentMethodAdapterCollection();
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithReservationInterface[]
+     */
+    public function getReservationPaymentMethodAdapterCollection();
+
+    /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface[]
      */
     public function getCapturePaymentMethodAdapterCollection();
@@ -31,11 +46,6 @@ interface AdapterFactoryInterface
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithFinalizeInterface[]
      */
     public function getFinalizePaymentMethodAdapterCollection();
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithReservationInterface[]
-     */
-    public function getReservationPaymentMethodAdapterCollection();
 
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface[]

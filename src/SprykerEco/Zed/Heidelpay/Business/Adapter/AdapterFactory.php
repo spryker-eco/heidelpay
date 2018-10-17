@@ -62,7 +62,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithReservationInterfaceInterface[]
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithReservationInterface[]
      */
     public function getReservationPaymentMethodAdapterCollection()
     {
@@ -72,7 +72,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithFinalizeInterfaceInterface[]
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithFinalizeInterface[]
      */
     public function getFinalizePaymentMethodAdapterCollection()
     {
@@ -242,9 +242,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
      */
     protected function createBasketResponseFromHeidelpayMapper()
     {
-        return new BasketResponseFromHeidelpay(
-            $this->getUtilEncodingService()
-        );
+        return new BasketResponseFromHeidelpay();
     }
 
     /**
@@ -257,6 +255,8 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
 
     /**
      * @return \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceInterface
+     *
+     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
     protected function getUtilEncodingService()
     {

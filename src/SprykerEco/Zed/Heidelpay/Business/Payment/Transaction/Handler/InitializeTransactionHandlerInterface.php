@@ -14,7 +14,7 @@ interface InitializeTransactionHandlerInterface
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return void
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
     public function initialize(QuoteTransfer $quoteTransfer);
 }

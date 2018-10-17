@@ -15,11 +15,11 @@ use Generated\Shared\Transfer\QuoteTransfer;
 interface HeidelpayStubInterface
 {
     /**
-     * @param int $idSalesOrder
+     * @param string $orderReference
      *
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
      */
-    public function getAuthorizeTransactionLogByOrderReference($idSalesOrder);
+    public function getAuthorizeTransactionLogByOrderReference($orderReference);
 
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
@@ -31,7 +31,7 @@ interface HeidelpayStubInterface
     /**
      * @param \Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer|\Spryker\Shared\Kernel\Transfer\TransferInterface
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
     public function processExternalPaymentResponse(
         HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer
@@ -40,9 +40,7 @@ interface HeidelpayStubInterface
     /**
      * @param \Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer
      *
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer|\Spryker\Shared\Kernel\Transfer\TransferInterface
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
     public function processExternalEasyCreditPaymentResponse(HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer);
 
@@ -58,9 +56,16 @@ interface HeidelpayStubInterface
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer|\Spryker\Shared\Kernel\Transfer\TransferInterface
+     * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer
      */
     public function saveCreditCardRegistration(
         HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
     );
+
+    /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer
+     */
+    public function easycreditRequest(QuoteTransfer $quoteTransfer);
 }

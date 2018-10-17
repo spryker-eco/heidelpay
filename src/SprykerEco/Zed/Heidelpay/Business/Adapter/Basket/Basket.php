@@ -14,6 +14,7 @@ use Heidelpay\PhpBasketApi\Object\Basket as HeidelpayBasket;
 use Heidelpay\PhpBasketApi\Request;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\BasketRequestToHeidelpayInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\BasketResponseFromHeidelpay;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\BasketResponseFromHeidelpayInterface;
 use SprykerEco\Zed\Heidelpay\HeidelpayConfigInterface;
 
 class Basket implements BasketInterface
@@ -29,18 +30,18 @@ class Basket implements BasketInterface
     protected $responseMapper;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\BasketRequestToHeidelpay
+     * @var \SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\BasketRequestToHeidelpayInterface
      */
     protected $requestMapper;
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\BasketRequestToHeidelpayInterface $requestMapper
-     * @param \SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\BasketResponseFromHeidelpay $responseMapper
+     * @param \SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\BasketResponseFromHeidelpayInterface $responseMapper
      * @param \SprykerEco\Zed\Heidelpay\HeidelpayConfigInterface $config
      */
     public function __construct(
         BasketRequestToHeidelpayInterface $requestMapper,
-        BasketResponseFromHeidelpay $responseMapper,
+        BasketResponseFromHeidelpayInterface $responseMapper,
         HeidelpayConfigInterface $config
     ) {
         $this->requestMapper = $requestMapper;
@@ -69,6 +70,9 @@ class Basket implements BasketInterface
         return $heidelpayBasketResponseTransfer;
     }
 
+    /**
+     * @return \Heidelpay\PhpBasketApi\Object\Authentication
+     */
     protected function doAuthentication(): Authentication
     {
         return new Authentication(

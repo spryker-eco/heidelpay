@@ -9,8 +9,8 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
 
 use Generated\Shared\Transfer\OrderTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\FinalizeTransactionInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\FinalizeNotSupportedException;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\FinalizeTransactionInterface;
 
 class FinalizeTransactionHandler implements FinalizeTransactionHandlerInterface
 {
@@ -51,7 +51,7 @@ class FinalizeTransactionHandler implements FinalizeTransactionHandlerInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
-     * @return void
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
     public function finalize(OrderTransfer $orderTransfer)
     {
