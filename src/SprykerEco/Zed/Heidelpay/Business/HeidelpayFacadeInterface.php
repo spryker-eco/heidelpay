@@ -37,7 +37,7 @@ interface HeidelpayFacadeInterface
      *
      * @param array $externalResponse
      *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
     public function processExternalPaymentResponse(array $externalResponse);
 

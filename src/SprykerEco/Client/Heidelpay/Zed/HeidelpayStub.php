@@ -17,6 +17,7 @@ use Spryker\Client\ZedRequest\Stub\ZedRequestStub;
 class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
 {
     const ZED_GET_AUTHORIZE_TRANSACTION_LOG = '/heidelpay/gateway/get-authorize-transaction-log';
+    const ZED_GET_AUTHORIZE_ON_REGISTRATION_TRANSACTION_LOG = '/heidelpay/gateway/get-authorize-on-registration-transaction-log';
     const ZED_GET_CREDIT_CARD_PAYMENT_OPTIONS = '/heidelpay/gateway/get-credit-card-payment-options';
     const ZED_GET_PROCESS_EXTERNAL_PAYMENT_RESPONSE = '/heidelpay/gateway/process-external-payment-response';
     const ZED_GET_SAVE_CREDIT_CARD_REGISTRATION = '/heidelpay/gateway/save-credit-card-registration';
@@ -25,69 +26,84 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
     /**
      * @param string $orderReference
      *
-     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|\Spryker\Shared\Kernel\Transfer\TransferInterface
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
      */
     public function getAuthorizeTransactionLogByOrderReference($orderReference)
     {
-        return $this->zedStub->call(
+        /** @var \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer $responseTransfer */
+        $responseTransfer = $this->zedStub->call(
             static::ZED_GET_AUTHORIZE_TRANSACTION_LOG,
             $this->createAuthorizeTransactionLogRequestByOrderReference($orderReference)
         );
+
+        return $responseTransfer;
     }
 
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer|\Spryker\Shared\Kernel\Transfer\TransferInterface
+     * @return \Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer
      */
     public function getCreditCardPaymentOptions(QuoteTransfer $quoteTransfer)
     {
-        return $this->zedStub->call(
+        /** @var \Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer $responseTransfer */
+        $responseTransfer = $this->zedStub->call(
             static::ZED_GET_CREDIT_CARD_PAYMENT_OPTIONS,
             $quoteTransfer
         );
+
+        return $responseTransfer;
     }
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer|\Spryker\Shared\Kernel\Transfer\TransferInterface
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
     public function processExternalPaymentResponse(
         HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer
     ) {
-        return $this->zedStub->call(
+        /** @var \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer $responseTransfer */
+        $responseTransfer = $this->zedStub->call(
             static::ZED_GET_PROCESS_EXTERNAL_PAYMENT_RESPONSE,
             $externalPaymentRequestTransfer
         );
+
+        return $responseTransfer;
     }
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer|\Spryker\Shared\Kernel\Transfer\TransferInterface
+     * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer
      */
     public function saveCreditCardRegistration(
         HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
     ) {
-        return $this->zedStub->call(
+        /** @var \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer $responseTransfer */
+        $responseTransfer = $this->zedStub->call(
             static::ZED_GET_SAVE_CREDIT_CARD_REGISTRATION,
             $registrationRequestTransfer
         );
+
+        return $responseTransfer;
     }
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
      *
-     * @return \Spryker\Shared\Kernel\Transfer\TransferInterface|\Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer|null
+     * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
      */
     public function findCreditCardRegistrationByIdAndQuote(
         HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
     ) {
-        return $this->zedStub->call(
+        /** @var \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer $responseTransfer */
+        $responseTransfer = $this->zedStub->call(
             static::ZED_GET_FIND_CREDIT_CARD_REGISTRATION,
             $findRegistrationRequestTransfer
         );
+
+        return $responseTransfer;
     }
 
     /**
@@ -97,6 +113,7 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
      */
     protected function createAuthorizeTransactionLogRequestByOrderReference($orderReference)
     {
+        /** @var \Generated\Shared\Transfer\HeidelpayAuthorizeTransactionLogRequestTransfer $authorizeTransactionLogRequestTransfer */
         $authorizeTransactionLogRequestTransfer = new HeidelpayAuthorizeTransactionLogRequestTransfer();
         $authorizeTransactionLogRequestTransfer->setOrderReference($orderReference);
 

@@ -16,5 +16,5 @@ interface AdapterRequestFromQuoteBuilderInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    public function buildCreditCardRegistrationRequest(QuoteTransfer $quoteTransfer);
+    public function buildEasyCreditRequest(QuoteTransfer $quoteTransfer);
 }

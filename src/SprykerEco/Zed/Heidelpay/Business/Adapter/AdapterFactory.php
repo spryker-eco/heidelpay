@@ -16,7 +16,6 @@ use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\RequestToHeidelpay;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponseFromHeidelpay;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponsePayloadToApiResponse;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPayment;
-use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\EasyCreditPayment;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\IdealPayment;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\PaypalPayment;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\SofortPayment;
