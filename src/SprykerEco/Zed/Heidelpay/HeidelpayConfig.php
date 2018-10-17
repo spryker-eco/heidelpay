@@ -156,12 +156,4 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
 
         return static::MERCHANT_TRANSACTION_CONFIG_NOT_FOUND;
     }
-
-    /**
-     * @return string
-     */
-    public function getSplitPaymentEnable()
-    {
-        return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_SPLIT_PAYMENT_ENABLE, false);
-    }
 }

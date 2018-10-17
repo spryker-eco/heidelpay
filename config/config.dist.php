@@ -46,10 +46,6 @@ $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_PAYMENT_FRAME_CUSTOM_CSS_URL] =
 $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_PAYMENT_FRAME_PREVENT_ASYNC_REDIRECT] = "FALSE";
 
 //Payload encryption key
-$config[HeidelpayConstants::CONFIG_ENCRYPTION_KEY] = '';
-
-//Split payment enable
-$config[HeidelpayConstants::CONFIG_HEIDELPAY_SPLIT_PAYMENT_ENABLE] = false;
 
 $config[OmsConstants::PROCESS_LOCATION] = [
     OmsConfig::DEFAULT_PROCESS_LOCATION,
