@@ -10,9 +10,9 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment\Request;
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Mapper\OrderToHeidelpayRequestInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReaderInterface;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface;
 use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
-use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReader;
 
 class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implements AdapterRequestFromOrderBuilderInterface
 {
@@ -20,6 +20,11 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
      * @var \SprykerEco\Zed\Heidelpay\Business\Mapper\OrderToHeidelpayRequestInterface
      */
     protected $orderToHeidelpayMapper;
+
+    /**
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReaderInterface
+     */
+    protected $paymentReader;
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Mapper\OrderToHeidelpayRequestInterface $orderToHeidelpayMapper
@@ -31,7 +36,7 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
         OrderToHeidelpayRequestInterface $orderToHeidelpayMapper,
         HeidelpayToCurrencyInterface $currencyFacade,
         HeidelpayConfig $config,
-        PaymentReader $paymentReader
+        PaymentReaderInterface $paymentReader
     ) {
         parent::__construct($currencyFacade, $config);
         $this->orderToHeidelpayMapper = $orderToHeidelpayMapper;
@@ -69,6 +74,8 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
     public function buildCaptureRequestFromOrder(OrderTransfer $orderTransfer)
     {
         $requestTransfer = $this->buildBaseOrderHeidelpayRequest($orderTransfer);
+        $basketId = $this->getBasketId($orderTransfer);
+        $requestTransfer->getCustomerPurchase()->setBasketId($basketId);
         $requestTransfer->setIdPaymentReference($orderTransfer->getHeidelpayPayment()->getIdPaymentReference());
 
         return $requestTransfer;

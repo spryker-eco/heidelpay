@@ -45,7 +45,7 @@ class CreditCardPaymentOptionsToQuote implements CreditCardPaymentOptionsToQuote
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return boolean
+     * @return bool
      */
     protected function hasQuoteCreditCardPayment(QuoteTransfer $quoteTransfer)
     {

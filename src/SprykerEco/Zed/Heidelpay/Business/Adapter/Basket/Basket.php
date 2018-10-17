@@ -13,7 +13,6 @@ use Heidelpay\PhpBasketApi\Object\Authentication;
 use Heidelpay\PhpBasketApi\Object\Basket as HeidelpayBasket;
 use Heidelpay\PhpBasketApi\Request;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\BasketRequestToHeidelpayInterface;
-use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\BasketResponseFromHeidelpay;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\BasketResponseFromHeidelpayInterface;
 use SprykerEco\Zed\Heidelpay\HeidelpayConfigInterface;
 

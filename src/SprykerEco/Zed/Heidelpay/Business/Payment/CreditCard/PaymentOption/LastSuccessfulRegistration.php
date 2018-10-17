@@ -59,7 +59,7 @@ class LastSuccessfulRegistration implements PaymentOptionInterface
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return null|\Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
      */
     protected function getLastSuccessfulRegistrationForQuote(QuoteTransfer $quoteTransfer)
     {
@@ -135,7 +135,7 @@ class LastSuccessfulRegistration implements PaymentOptionInterface
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return null|\Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
      */
     protected function getLastSuccessfulRegistrationFromQuote(QuoteTransfer $quoteTransfer)
     {
