@@ -10,6 +10,7 @@ namespace SprykerEco\Zed\Heidelpay\Business;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\AdapterFactory;
+use SprykerEco\Zed\Heidelpay\Business\Basket\BasketHandler;
 use SprykerEco\Zed\Heidelpay\Business\Encrypter\AesEncrypter;
 use SprykerEco\Zed\Heidelpay\Business\Hook\PostSaveHook;
 use SprykerEco\Zed\Heidelpay\Business\Mapper\OrderToHeidelpayRequest;
@@ -124,7 +125,10 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
      */
     public function createOrderSaver()
     {
-        return new Saver($this->getPaymentMethodWithPreSavePaymentCollection());
+        return new Saver(
+            $this->createBasketHanlder(),
+            $this->getPaymentMethodWithPreSavePaymentCollection()
+        );
     }
 
     /**
@@ -519,5 +523,15 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     protected function getUtilEncodingService()
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::SERVICE_UTIL_ENCODING);
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Basket\BasketHandlerInterface
+     */
+    public function createBasketHanlder()
+    {
+        return new BasketHandler(
+            $this->createAdapterFactory()->createBasketAdapter()
+        );
     }
 }

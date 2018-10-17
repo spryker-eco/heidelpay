@@ -33,7 +33,7 @@ class Saver implements SaverInterface
      * @param \SprykerEco\Zed\Heidelpay\Business\Basket\BasketHandlerInterface $basketHandler
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface[] $paymentCollection
      */
-    public function __construct(BasketHandlerInterface $basketHandler, array $paymentCollection)
+    public function __construct(array $paymentCollection, BasketHandlerInterface $basketHandler)
     {
         $this->basketHandler = $basketHandler;
         $this->paymentCollection = $paymentCollection;

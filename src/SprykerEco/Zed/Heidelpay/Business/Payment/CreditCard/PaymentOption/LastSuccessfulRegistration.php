@@ -110,8 +110,7 @@ class LastSuccessfulRegistration implements PaymentOptionInterface
      */
     protected function isRegisteredShippingAddressUsed(QuoteTransfer $quoteTransfer)
     {
-        return
-            ($quoteTransfer->getShippingAddress() !== null) &&
+        return ($quoteTransfer->getShippingAddress() !== null) &&
             ($quoteTransfer->getShippingAddress()->getIdCustomerAddress() !== null) &&
             ($quoteTransfer->getShippingAddress()->getIdCustomerAddress() !== '');
     }

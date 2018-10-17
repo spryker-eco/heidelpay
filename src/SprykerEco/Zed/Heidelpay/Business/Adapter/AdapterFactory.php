@@ -186,9 +186,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
      */
     protected function createBasketResponseFromHeidelpayMapper()
     {
-        return new BasketResponseFromHeidelpay(
-            $this->getUtilEncodingService()
-        );
+        return new BasketResponseFromHeidelpay();
     }
 
     /**
