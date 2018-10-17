@@ -8,10 +8,13 @@
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
 use Generated\Shared\Transfer\CheckoutResponseTransfer;
+use Generated\Shared\Transfer\CurrencyTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\PaymentTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
+use Generated\Shared\Transfer\TaxTotalTransfer;
+use Generated\Shared\Transfer\TotalsTransfer;
 use Orm\Zed\Heidelpay\Persistence\Base\SpyPaymentHeidelpayOrderItemQuery;
 use Orm\Zed\Heidelpay\Persistence\Base\SpyPaymentHeidelpayQuery;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\NewOrderWithOneItemTrait;
@@ -223,6 +226,15 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
         $payment = (new PaymentTransfer())
             ->setPaymentMethod($correctMethodName)
             ->setHeidelpayCreditCardSecure($heidelpayCreditCardPayment);
+
+        $quote->setTotals(
+            (new TotalsTransfer())
+                ->setNetTotal(10000)
+                ->setTaxTotal((new TaxTotalTransfer())->setAmount(10))
+                ->setDiscountTotal(0)
+        );
+
+        $quote->setCurrency((new CurrencyTransfer())->setCode('EUR'));
 
         $quote->setPayment($payment);
 

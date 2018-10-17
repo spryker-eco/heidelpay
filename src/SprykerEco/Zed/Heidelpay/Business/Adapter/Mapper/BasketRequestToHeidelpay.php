@@ -40,8 +40,8 @@ class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
     protected function mapBasketItems(HeidelpayBasketRequestTransfer $requestTransfer, Basket $heidelpayBasket): void
     {
         $position = 1;
+        /** @var \Generated\Shared\Transfer\ItemTransfer $itemTransfer */
         foreach ($requestTransfer->getItems() as $itemTransfer) {
-            /** @var \Generated\Shared\Transfer\ItemTransfer $itemTransfer */
             $basketItem = (new BasketItem())
                 ->setPosition($position++)
                 ->setBasketItemReferenceId($itemTransfer->getSku())
