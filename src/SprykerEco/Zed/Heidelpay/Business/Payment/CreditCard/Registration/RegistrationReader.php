@@ -32,7 +32,7 @@ class RegistrationReader implements RegistrationReaderInterface
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return null|\Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
      */
     public function getLastSuccessfulRegistrationForQuote(QuoteTransfer $quoteTransfer)
     {

@@ -67,17 +67,6 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \SprykerEco\Client\Heidelpay\Sdk\CreditCardRegistrationResponseParserInterface
-     */
-    public function authorisationOnRegistration()
-    {
-        return new CreditCardRegistrationResponseParser(
-            $this->createApiResponseToRegistrationResponseTransferMapper(),
-            $this->getConfig()
-        );
-    }
-
-    /**
      * @return \SprykerEco\Client\Heidelpay\Mapper\ApiResponseToRegistrationResponseTransferInterface
      */
     protected function createApiResponseToRegistrationResponseTransferMapper()

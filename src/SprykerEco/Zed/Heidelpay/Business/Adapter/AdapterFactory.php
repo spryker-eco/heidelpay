@@ -255,8 +255,6 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
 
     /**
      * @return \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceInterface
-     *
-     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
     protected function getUtilEncodingService()
     {

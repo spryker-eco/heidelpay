@@ -44,7 +44,7 @@ class PostSaveHook implements PostSaveHookInterface
     /**
      * @param string $paymentMethod
      *
-     * @return boolean
+     * @return bool
      */
     protected function hasPaymentMethodPostSaveOrderProcessing($paymentMethod)
     {

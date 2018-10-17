@@ -17,7 +17,7 @@ use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
 class HeidelpayCommunicationFactory extends AbstractCommunicationFactory
 {
     /**
-     * @return mixed
+     * @return \Spryker\Zed\Sales\Business\SalesFacadeInterface
      */
     public function getSalesFacade()
     {

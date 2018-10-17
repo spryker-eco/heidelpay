@@ -9,7 +9,6 @@ namespace SprykerEco\Yves\Heidelpay\Hydrator;
 
 use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
-use SprykerEco\Yves\Heidelpay\Handler\HeidelpayEasyCreditHandler;
 use SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface;
 
 class EasyCreditResponseToQuoteHydrator implements EasyCreditResponseToQuoteHydratorInterface

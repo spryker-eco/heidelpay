@@ -84,7 +84,7 @@ class CreditCardController extends BaseHeidelpayController
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return boolean
+     * @return bool
      */
     protected function isQuoteExpired(QuoteTransfer $quoteTransfer)
     {

@@ -64,7 +64,7 @@ class HeidelpayCreditCardHandler extends HeidelpayHandler
     }
 
     /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer|\Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return void
      */

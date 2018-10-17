@@ -109,7 +109,7 @@ class RegistrationWriter implements RegistrationWriterInterface
     /**
      * @param \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration $registrationEntity
      *
-     * @return boolean
+     * @return bool
      */
     protected function isRegistrationExists(SpyPaymentHeidelpayCreditCardRegistration $registrationEntity)
     {

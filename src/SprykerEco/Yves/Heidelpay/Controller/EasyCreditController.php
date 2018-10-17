@@ -23,6 +23,8 @@ class EasyCreditController extends BaseHeidelpayController
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
     public function easyCreditPaymentAction(Request $request)
     {

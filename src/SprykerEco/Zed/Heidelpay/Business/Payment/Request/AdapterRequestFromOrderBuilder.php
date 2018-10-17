@@ -10,7 +10,6 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment\Request;
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Mapper\OrderToHeidelpayRequestInterface;
-use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReader;
 use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReaderInterface;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface;
 use SprykerEco\Zed\Heidelpay\HeidelpayConfig;

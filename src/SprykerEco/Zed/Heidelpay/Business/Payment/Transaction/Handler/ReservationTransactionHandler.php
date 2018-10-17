@@ -51,7 +51,7 @@ class ReservationTransactionHandler implements ReservationTransactionHandlerInte
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     * @return void
      */
     public function reservation(OrderTransfer $orderTransfer)
     {

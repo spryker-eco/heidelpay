@@ -28,7 +28,7 @@ class HeidelpayHandler implements HeidelpayHandlerInterface
     ];
 
     /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer|\Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
