@@ -179,10 +179,22 @@
         <property name="idSalesOrder" type="int" />
         <property name="heidelpayPayment" type="HeidelpayPayment"/>
         <property name="items" type="Item[]" singular="item"/>
+        <property name="totals" type="Totals" />
+        <property name="expenses" type="Expense[]" singular="expense"/>
+        <property name="currency" type="Currency" />
     </transfer>
 
     <transfer name="Item">
         <property name="heidelpayItemChannelId" type="string" />
+        <property name="name" type="string" />
+        <property name="description" type="string" />
+        <property name="unitGrossPrice" type="int" />
+        <property name="quantity" type="int" />
+        <property name="sumGrossPrice" type="int" />
+        <property name="taxRate" type="float" />
+        <property name="sku" type="string" />
+        <property name="sumTaxAmountFullAggregation" type="int" />
+        <property name="sumDiscountAmountFullAggregation" type="int" />
     </transfer>
 
     <transfer name="Payment">
