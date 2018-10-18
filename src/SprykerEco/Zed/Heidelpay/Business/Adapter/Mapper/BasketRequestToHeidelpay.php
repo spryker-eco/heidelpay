@@ -13,6 +13,8 @@ use Heidelpay\PhpBasketApi\Object\BasketItem;
 class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
 {
     public const BASKET_ITEM_GOODS_TYPE = 'goods';
+    public const SHIPMENT_EXPENSE_TYPE = 'SHIPMENT_EXPENSE_TYPE';
+    public const BASKET_ITEM_SHIPPING_TYPE = 'shipping';
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayBasketRequestTransfer $requestTransfer
@@ -29,6 +31,7 @@ class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
             ->setCurrencyCode($requestTransfer->getCurrency()->getCode());
 
         $this->mapBasketItems($requestTransfer, $heidelpayBasket);
+        $this->mapShipmentItems($requestTransfer, $heidelpayBasket);
     }
 
     /**
@@ -40,11 +43,10 @@ class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
     protected function mapBasketItems(HeidelpayBasketRequestTransfer $requestTransfer, Basket $heidelpayBasket): void
     {
         $position = 1;
-        /** @var \Generated\Shared\Transfer\ItemTransfer $itemTransfer */
         foreach ($requestTransfer->getItems() as $itemTransfer) {
             $basketItem = (new BasketItem())
                 ->setPosition($position++)
-                ->setBasketItemReferenceId($itemTransfer->getSku())
+                ->setBasketItemReferenceId($itemTransfer->getSku() . $position)
                 ->setChannel($itemTransfer->getHeidelpayItemChannelId())
                 ->setArticleId($itemTransfer->getSku())
                 ->setTitle($itemTransfer->getName())
@@ -57,6 +59,39 @@ class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
                 ->setAmountGross($itemTransfer->getSumGrossPrice())
                 ->setAmountVat($itemTransfer->getSumTaxAmountFullAggregation())
                 ->setAmountDiscount($itemTransfer->getSumDiscountAmountFullAggregation());
+
+            $heidelpayBasket->addBasketItem($basketItem);
+        }
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayBasketRequestTransfer $requestTransfer
+     * @param \Heidelpay\PhpBasketApi\Object\Basket $heidelpayBasket
+     *
+     * @return void
+     */
+    protected function mapShipmentItems(HeidelpayBasketRequestTransfer $requestTransfer, Basket $heidelpayBasket): void
+    {
+        $position = $requestTransfer->getItems()->count() + 1;
+        foreach ($requestTransfer->getExpenses() as $expenseTransfer) {
+
+            if ($expenseTransfer->getType() !== static::SHIPMENT_EXPENSE_TYPE) {
+                continue;
+            }
+
+            $basketItem = (new BasketItem())
+                ->setPosition($position++)
+                ->setBasketItemReferenceId($expenseTransfer->getName() . $position)
+                ->setArticleId($expenseTransfer->getName())
+                ->setTitle($expenseTransfer->getName())
+                ->setType(static::BASKET_ITEM_SHIPPING_TYPE)
+                ->setQuantity($expenseTransfer->getQuantity())
+                ->setVat($expenseTransfer->getTaxRate())
+                ->setAmountPerUnit($expenseTransfer->getUnitGrossPrice())
+                ->setAmountNet($expenseTransfer->getUnitNetPrice())
+                ->setAmountGross($expenseTransfer->getSumGrossPrice())
+                ->setAmountVat($expenseTransfer->getSumTaxAmount())
+                ->setAmountDiscount($expenseTransfer->getSumDiscountAmountAggregation());
 
             $heidelpayBasket->addBasketItem($basketItem);
         }
