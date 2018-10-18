@@ -113,7 +113,6 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
      */
     protected function createAuthorizeTransactionLogRequestByOrderReference($orderReference)
     {
-        /** @var \Generated\Shared\Transfer\HeidelpayAuthorizeTransactionLogRequestTransfer $authorizeTransactionLogRequestTransfer */
         $authorizeTransactionLogRequestTransfer = new HeidelpayAuthorizeTransactionLogRequestTransfer();
         $authorizeTransactionLogRequestTransfer->setOrderReference($orderReference);
 

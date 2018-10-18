@@ -149,7 +149,7 @@ interface HeidelpayFacadeInterface
      *
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer|null
+     * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
      */
     public function findCreditCardRegistrationByIdAndQuote(HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer);
 }

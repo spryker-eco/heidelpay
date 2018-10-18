@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Yves\Heidelpay\Hydrator;
 
-use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
+use Generated\Shared\Transfer\QuoteTransfer;
 
 interface CreditCardPaymentOptionsToQuoteInterface
 {
@@ -16,5 +16,5 @@ interface CreditCardPaymentOptionsToQuoteInterface
      *
      * @return void
      */
-    public function hydrate(AbstractTransfer $quoteTransfer);
+    public function hydrate(QuoteTransfer $quoteTransfer);
 }

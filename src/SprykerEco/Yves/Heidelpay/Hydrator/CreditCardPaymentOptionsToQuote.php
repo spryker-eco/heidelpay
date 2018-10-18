@@ -33,7 +33,7 @@ class CreditCardPaymentOptionsToQuote implements CreditCardPaymentOptionsToQuote
      *
      * @return void
      */
-    public function hydrate(AbstractTransfer $quoteTransfer)
+    public function hydrate(QuoteTransfer $quoteTransfer)
     {
         if (!$this->hasQuoteCreditCardPayment($quoteTransfer)) {
             $this->initCreditCardPayment($quoteTransfer);
