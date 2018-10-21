@@ -30,5 +30,5 @@ interface TransactionLogReaderInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
      */
-    public function findOrderDebitTransactionLog(int $orderReference): HeidelpayTransactionLogTransfer;
+    public function findOrderDebitTransactionLog(int $orderReference);
 }

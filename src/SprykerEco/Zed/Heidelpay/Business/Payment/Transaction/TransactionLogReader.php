@@ -60,7 +60,7 @@ class TransactionLogReader implements TransactionLogReaderInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
      */
-    public function findOrderDebitTransactionLog(int $idSalesOrder): HeidelpayTransactionLogTransfer
+    public function findOrderDebitTransactionLog(int $idSalesOrder)
     {
         $spyTransactionLog = $this->findOrderDebitTransactionEntity($idSalesOrder);
 
