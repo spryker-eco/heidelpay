@@ -10,7 +10,7 @@ namespace SprykerEco\Zed\Heidelpay\Business\Basket;
 use Generated\Shared\Transfer\HeidelpayBasketResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 
-interface BasketHandlerInterface
+interface BasketCreatorInterface
 {
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer

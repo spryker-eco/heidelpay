@@ -13,16 +13,16 @@ use Generated\Shared\Transfer\QuoteTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayOrderItem;
 use Spryker\Zed\PropelOrm\Business\Transaction\DatabaseTransactionHandlerTrait;
-use SprykerEco\Zed\Heidelpay\Business\Basket\BasketHandlerInterface;
+use SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreatorInterface;
 
 class Saver implements SaverInterface
 {
     use DatabaseTransactionHandlerTrait;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Basket\BasketHandlerInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreatorInterface
      */
-    protected $basketHandler;
+    protected $basketCreator;
 
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface[]
@@ -30,12 +30,12 @@ class Saver implements SaverInterface
     protected $paymentCollection;
 
     /**
-     * @param \SprykerEco\Zed\Heidelpay\Business\Basket\BasketHandlerInterface $basketHandler
+     * @param \SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreatorInterface $basketCreator
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface[] $paymentCollection
      */
-    public function __construct(BasketHandlerInterface $basketHandler, array $paymentCollection)
+    public function __construct(BasketCreatorInterface $basketCreator, array $paymentCollection)
     {
-        $this->basketHandler = $basketHandler;
+        $this->basketCreator = $basketCreator;
         $this->paymentCollection = $paymentCollection;
     }
 
@@ -147,7 +147,7 @@ class Saver implements SaverInterface
      */
     protected function addBasketInformation(QuoteTransfer $quoteTransfer, SpyPaymentHeidelpay $paymentEntity): void
     {
-        $heidelpayBasketResponseTransfer = $this->basketHandler
+        $heidelpayBasketResponseTransfer = $this->basketCreator
             ->createBasket($quoteTransfer);
 
         $paymentEntity->setIdBasket($heidelpayBasketResponseTransfer->getBasketId());

@@ -15,6 +15,14 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
 {
     public const MERCHANT_TRANSACTION_CONFIG_NOT_FOUND = '';
 
+    protected const MERCHANT_TRANSACTION_CHANNEL_PAYMENT_TYPE_MAPPING = [
+        SharedHeidelpayConfig::PAYMENT_METHOD_SOFORT => HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_SOFORT,
+        SharedHeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE => HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_CC_3D_SECURE,
+        SharedHeidelpayConfig::PAYMENT_METHOD_IDEAL => HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_IDEAL,
+        SharedHeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT => HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_PAYPAL,
+        SharedHeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE => HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_PAYPAL,
+    ];
+
     /**
      * @return string
      */
@@ -134,20 +142,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
      */
     public function getMerchantTransactionChannelByPaymentType(string $paymentType): string
     {
-        if ($paymentType === SharedHeidelpayConfig::PAYMENT_METHOD_SOFORT) {
-            return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_SOFORT);
-        }
-
-        if ($paymentType === SharedHeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE) {
-            return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_CC_3D_SECURE);
-        }
-
-        if ($paymentType === SharedHeidelpayConfig::PAYMENT_METHOD_IDEAL) {
-            return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_IDEAL);
-        }
-
-        if (in_array($paymentType, [SharedHeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT, SharedHeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE])) {
-            return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_PAYPAL);
+        if (array_key_exists($paymentType, static::MERCHANT_TRANSACTION_CHANNEL_PAYMENT_TYPE_MAPPING)) {
+            return $this->get(static::MERCHANT_TRANSACTION_CHANNEL_PAYMENT_TYPE_MAPPING[$paymentType]);
         }
 
         return static::MERCHANT_TRANSACTION_CONFIG_NOT_FOUND;

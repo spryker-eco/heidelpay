@@ -47,7 +47,7 @@ class RequestToHeidelpay implements RequestToHeidelpayInterface
 
         $heidelpayRequest->basketData(
             $requestTransfer->getCustomerPurchase()->getIdOrder(),
-            (string)$requestTransfer->getCustomerPurchase()->getAmount(),
+            $requestTransfer->getCustomerPurchase()->getAmount(),
             $requestTransfer->getCustomerPurchase()->getCurrencyCode(),
             $requestTransfer->getCustomerPurchase()->getSecret()
         );

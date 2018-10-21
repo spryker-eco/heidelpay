@@ -12,7 +12,7 @@ use Generated\Shared\Transfer\HeidelpayBasketResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Basket\BasketInterface;
 
-class BasketHandler implements BasketHandlerInterface
+class BasketCreator implements BasketCreatorInterface
 {
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\Adapter\Basket\BasketInterface

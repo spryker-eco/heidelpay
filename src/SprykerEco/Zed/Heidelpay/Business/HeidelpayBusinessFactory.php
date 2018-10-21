@@ -12,8 +12,8 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\AdapterFactory;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\AdapterFactoryInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface;
-use SprykerEco\Zed\Heidelpay\Business\Basket\BasketHandler;
-use SprykerEco\Zed\Heidelpay\Business\Basket\BasketHandlerInterface;
+use SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreator;
+use SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreatorInterface;
 use SprykerEco\Zed\Heidelpay\Business\Encrypter\AesEncrypter;
 use SprykerEco\Zed\Heidelpay\Business\Encrypter\EncrypterInterface;
 use SprykerEco\Zed\Heidelpay\Business\Hook\PostSaveHook;
@@ -560,11 +560,11 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Basket\BasketHandlerInterface
+     * @return \SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreatorInterface
      */
-    public function createBasketHanlder(): BasketHandlerInterface
+    public function createBasketHanlder(): BasketCreatorInterface
     {
-        return new BasketHandler(
+        return new BasketCreator(
             $this->createAdapterFactory()->createBasketAdapter()
         );
     }
