@@ -140,7 +140,7 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
      *
      * @return string
      */
-    public function getMerchantTransactionChannelByPaymentType(string $paymentType): string
+    public function getMerchantTransactionChannelByPaymentType($paymentType): string
     {
         if (array_key_exists($paymentType, static::MERCHANT_TRANSACTION_CHANNEL_PAYMENT_TYPE_MAPPING)) {
             return $this->get(static::MERCHANT_TRANSACTION_CHANNEL_PAYMENT_TYPE_MAPPING[$paymentType]);

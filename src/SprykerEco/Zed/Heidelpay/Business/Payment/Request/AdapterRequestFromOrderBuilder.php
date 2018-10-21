@@ -118,7 +118,7 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
      *
      * @return string
      */
-    protected function getBasketId(OrderTransfer $orderTransfer): string
+    protected function getBasketId(OrderTransfer $orderTransfer)
     {
         return $this->paymentReader->getBasketIdByIdSalesOrder($orderTransfer->getIdSalesOrder());
     }

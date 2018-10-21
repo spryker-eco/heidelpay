@@ -9,7 +9,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\PaypalPayment;
-
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentResponseTransferBuilderTrait;
 
 /**
@@ -24,7 +24,7 @@ class SuccessfulPaypalDebitPaymentMock extends PaypalPayment
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function debit(HeidelpayRequestTransfer $debitRequestTransfer)
+    public function debit(HeidelpayRequestTransfer $debitRequestTransfer): HeidelpayResponseTransfer
     {
         $response['payload'] = '{
                         "processing": {"result": "ACK"}, 

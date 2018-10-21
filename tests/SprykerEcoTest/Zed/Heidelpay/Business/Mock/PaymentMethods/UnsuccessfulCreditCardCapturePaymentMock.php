@@ -10,6 +10,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods;
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPayment;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentResponseTransferBuilderTrait;
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 
 class UnsuccessfulCreditCardCapturePaymentMock extends CreditCardPayment
 {
@@ -20,7 +21,7 @@ class UnsuccessfulCreditCardCapturePaymentMock extends CreditCardPayment
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function register(HeidelpayRequestTransfer $captureRequestTransfer)
+    public function register(HeidelpayRequestTransfer $captureRequestTransfer): HeidelpayResponseTransfer
     {
         $response['payload'] = '{
                         "processing": {"result": "NOK"}, 
@@ -42,7 +43,7 @@ class UnsuccessfulCreditCardCapturePaymentMock extends CreditCardPayment
          *
          * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
          */
-    public function capture(HeidelpayRequestTransfer $debitRequestTransfer)
+    public function capture(HeidelpayRequestTransfer $debitRequestTransfer): HeidelpayResponseTransfer
     {
         $response['payload'] = '{
                         "processing": {"result": "NOK"}, 

@@ -21,7 +21,7 @@ interface PaymentReaderInterface
     /**
      * @param int $idSalesOrder
      *
-     * @return string
+     * @return string|null
      */
-    public function getBasketIdByIdSalesOrder(int $idSalesOrder): string;
+    public function getBasketIdByIdSalesOrder(int $idSalesOrder);
 }
