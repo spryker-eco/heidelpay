@@ -45,7 +45,7 @@ class Saver implements SaverInterface
      *
      * @return void
      */
-    public function saveOrderPayment(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer)
+    public function saveOrderPayment(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer): void
     {
         $this->handleDatabaseTransaction(function () use ($quoteTransfer, $checkoutResponseTransfer) {
             $this->executeSavePaymentForOrderAndItemsTransaction($quoteTransfer, $checkoutResponseTransfer);
@@ -61,7 +61,7 @@ class Saver implements SaverInterface
     protected function executeSavePaymentForOrderAndItemsTransaction(
         QuoteTransfer $quoteTransfer,
         CheckoutResponseTransfer $checkoutResponseTransfer
-    ) {
+    ): void {
 
         $paymentEntity = $this->buildPaymentEntity($quoteTransfer, $checkoutResponseTransfer);
         $this->addBasketInformation($quoteTransfer, $paymentEntity);
@@ -81,7 +81,7 @@ class Saver implements SaverInterface
      *
      * @return void
      */
-    protected function savePaymentForOrderItem(ItemTransfer $orderItemTransfer, $idPayment)
+    protected function savePaymentForOrderItem(ItemTransfer $orderItemTransfer, $idPayment): void
     {
         $paymentOrderItemEntity = new SpyPaymentHeidelpayOrderItem();
         $paymentOrderItemEntity
@@ -117,7 +117,7 @@ class Saver implements SaverInterface
     protected function hydratePaymentMethodSpecificDataToPayment(
         SpyPaymentHeidelpay $paymentEntity,
         QuoteTransfer $quoteTransfer
-    ) {
+    ): void {
 
         $paymentMethodCode = $quoteTransfer->getPayment()->getPaymentMethod();
 
@@ -134,7 +134,7 @@ class Saver implements SaverInterface
      *
      * @return bool
      */
-    protected function hasPaymentMethodSpecificDataToSave($paymentMethodCode)
+    protected function hasPaymentMethodSpecificDataToSave($paymentMethodCode): bool
     {
         return isset($this->paymentCollection[$paymentMethodCode]);
     }

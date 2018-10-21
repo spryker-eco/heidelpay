@@ -42,7 +42,7 @@ class TransactionParser implements TransactionParserInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function getHeidelpayResponseTransfer(HeidelpayTransactionLogTransfer $transactionLogTransfer)
+    public function getHeidelpayResponseTransfer(HeidelpayTransactionLogTransfer $transactionLogTransfer): HeidelpayResponseTransfer
     {
         $apiResponseObject = $this->createApiResponse($transactionLogTransfer);
 
@@ -57,7 +57,7 @@ class TransactionParser implements TransactionParserInterface
      *
      * @return \Heidelpay\PhpPaymentApi\Response
      */
-    protected function createApiResponse(HeidelpayTransactionLogTransfer $transactionLogTransfer)
+    protected function createApiResponse(HeidelpayTransactionLogTransfer $transactionLogTransfer): Response
     {
         $responsePayload = $transactionLogTransfer->getResponsePayload();
         $apiResponseObject = new Response();

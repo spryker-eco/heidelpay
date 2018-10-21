@@ -54,7 +54,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      *
      * @return void
      */
-    public function map(Response $apiResponse, HeidelpayResponseTransfer $responseTransfer)
+    public function map(Response $apiResponse, HeidelpayResponseTransfer $responseTransfer): void
     {
         $responseTransfer->setIsPending($apiResponse->isPending())
             ->setIsSuccess($apiResponse->isSuccess())
@@ -78,7 +78,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      *
      * @return void
      */
-    protected function mapError(Response $apiResponse, HeidelpayResponseTransfer $responseTransfer)
+    protected function mapError(Response $apiResponse, HeidelpayResponseTransfer $responseTransfer): void
     {
         if (!$apiResponse->isError()) {
             return;
@@ -100,7 +100,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      *
      * @return void
      */
-    protected function mapConfig(Response $apiResponse, HeidelpayResponseTransfer $responseTransfer)
+    protected function mapConfig(Response $apiResponse, HeidelpayResponseTransfer $responseTransfer): void
     {
         $responseConfig = $apiResponse->getConfig();
         $configTransfer = new HeidelpayResponseConfigTransfer();
@@ -117,7 +117,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      *
      * @return void
      */
-    protected function mapBanks(ConfigParameterGroup $config, HeidelpayResponseConfigTransfer $configTransfer)
+    protected function mapBanks(ConfigParameterGroup $config, HeidelpayResponseConfigTransfer $configTransfer): void
     {
         /** @var string[] $banks */
         $banks = $config->getBrands();
@@ -142,7 +142,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      *
      * @return void
      */
-    protected function mapBankCountries(ConfigParameterGroup $config, HeidelpayResponseConfigTransfer $configTransfer)
+    protected function mapBankCountries(ConfigParameterGroup $config, HeidelpayResponseConfigTransfer $configTransfer): void
     {
         /** @var string[] $bankCountries */
         $bankCountries = $config->getBankCountry();
@@ -167,7 +167,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      *
      * @return void
      */
-    protected function addResponseFullPayload(Response $apiResponse, HeidelpayResponseTransfer $responseTransfer)
+    protected function addResponseFullPayload(Response $apiResponse, HeidelpayResponseTransfer $responseTransfer): void
     {
         $responseTransfer->setPayload(
             $this->getJsonEncodedPayloadFromApiResponse($apiResponse)
@@ -179,7 +179,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      *
      * @return string
      */
-    protected function getJsonEncodedPayloadFromApiResponse(Response $apiResponse)
+    protected function getJsonEncodedPayloadFromApiResponse(Response $apiResponse): string
     {
         $payload = [
             static::RESPONSE_PARAMETER_GROUP_PROCESSING => get_object_vars($apiResponse->getProcessing()),
@@ -211,7 +211,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
     protected function mapPaymentFormUrl(
         Response $apiResponse,
         HeidelpayResponseTransfer $responseTransfer
-    ) {
+    ): void {
         try {
             /** @var string $paymentFormUrl */
             $paymentFormUrl = $apiResponse->getPaymentFormUrl();

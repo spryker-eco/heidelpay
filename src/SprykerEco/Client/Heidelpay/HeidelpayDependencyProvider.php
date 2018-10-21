@@ -26,7 +26,7 @@ class HeidelpayDependencyProvider extends AbstractDependencyProvider
      *
      * @return \Spryker\Client\Kernel\Container
      */
-    public function provideServiceLayerDependencies(Container $container)
+    public function provideServiceLayerDependencies(Container $container): Container
     {
         $container[static::CLIENT_LOCALE] = function (Container $container) {
             return new HeidelpayToLocaleBridge($container->getLocator()->locale()->client());

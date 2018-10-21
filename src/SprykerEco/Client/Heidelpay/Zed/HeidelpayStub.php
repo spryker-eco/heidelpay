@@ -8,9 +8,14 @@
 namespace SprykerEco\Client\Heidelpay\Zed;
 
 use Generated\Shared\Transfer\HeidelpayAuthorizeTransactionLogRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
+use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer;
+use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Client\ZedRequest\Stub\ZedRequestStub;
 
@@ -28,7 +33,7 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
      */
-    public function getAuthorizeTransactionLogByOrderReference($orderReference)
+    public function getAuthorizeTransactionLogByOrderReference(string $orderReference): HeidelpayTransactionLogTransfer
     {
         /** @var \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer $responseTransfer */
         $responseTransfer = $this->zedStub->call(
@@ -44,7 +49,7 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer
      */
-    public function getCreditCardPaymentOptions(QuoteTransfer $quoteTransfer)
+    public function getCreditCardPaymentOptions(QuoteTransfer $quoteTransfer): HeidelpayCreditCardPaymentOptionsTransfer
     {
         /** @var \Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer $responseTransfer */
         $responseTransfer = $this->zedStub->call(
@@ -62,7 +67,7 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
      */
     public function processExternalPaymentResponse(
         HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer
-    ) {
+    ): HeidelpayPaymentProcessingResponseTransfer {
         /** @var \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer $responseTransfer */
         $responseTransfer = $this->zedStub->call(
             static::ZED_GET_PROCESS_EXTERNAL_PAYMENT_RESPONSE,
@@ -79,7 +84,7 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
      */
     public function saveCreditCardRegistration(
         HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
-    ) {
+    ): HeidelpayRegistrationSaveResponseTransfer {
         /** @var \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer $responseTransfer */
         $responseTransfer = $this->zedStub->call(
             static::ZED_GET_SAVE_CREDIT_CARD_REGISTRATION,
@@ -96,7 +101,7 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
      */
     public function findCreditCardRegistrationByIdAndQuote(
         HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
-    ) {
+    ): HeidelpayCreditCardRegistrationTransfer {
         /** @var \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer $responseTransfer */
         $responseTransfer = $this->zedStub->call(
             static::ZED_GET_FIND_CREDIT_CARD_REGISTRATION,
@@ -111,7 +116,7 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayAuthorizeTransactionLogRequestTransfer
      */
-    protected function createAuthorizeTransactionLogRequestByOrderReference($orderReference)
+    protected function createAuthorizeTransactionLogRequestByOrderReference(string $orderReference): HeidelpayAuthorizeTransactionLogRequestTransfer
     {
         $authorizeTransactionLogRequestTransfer = new HeidelpayAuthorizeTransactionLogRequestTransfer();
         $authorizeTransactionLogRequestTransfer->setOrderReference($orderReference);

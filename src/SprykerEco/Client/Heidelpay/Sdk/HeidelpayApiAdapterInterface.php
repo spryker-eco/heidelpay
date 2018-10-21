@@ -15,5 +15,5 @@ interface HeidelpayApiAdapterInterface
      *
      * @return string
      */
-    public function getTranslatedMessageByCode($messageCode, $locale);
+    public function getTranslatedMessageByCode($messageCode, $locale): string;
 }

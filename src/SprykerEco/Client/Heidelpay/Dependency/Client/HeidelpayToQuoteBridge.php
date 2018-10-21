@@ -7,6 +7,8 @@
 
 namespace SprykerEco\Client\Heidelpay\Dependency\Client;
 
+use Generated\Shared\Transfer\QuoteTransfer;
+
 class HeidelpayToQuoteBridge implements HeidelpayToQuoteInterface
 {
     /**
@@ -25,7 +27,7 @@ class HeidelpayToQuoteBridge implements HeidelpayToQuoteInterface
     /**
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function getQuote()
+    public function getQuote(): QuoteTransfer
     {
         return $this->quoteSession->getQuote();
     }

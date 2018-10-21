@@ -19,7 +19,7 @@ class PaypalAuthorize extends BaseHeidelpayPaymentMethod implements PaymentWithP
      *
      * @return void
      */
-    public function postSaveOrder(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer)
+    public function postSaveOrder(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer): void
     {
         $redirectUrl = $this->getCheckoutRedirectUrlFromAuthorizeTransactionLog(
             $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder()

@@ -15,7 +15,7 @@ class HeidelpayConfig extends AbstractBundleConfig
     /**
      * @return string
      */
-    public function getApplicationSecret()
+    public function getApplicationSecret(): string
     {
         return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_APPLICATION_SECRET);
     }

@@ -14,9 +14,9 @@ class QuoteUniqueIdGenerator
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return mixed
+     * @return string
      */
-    public static function getHashByCustomerEmailAndTotals(QuoteTransfer $quoteTransfer)
+    public static function getHashByCustomerEmailAndTotals(QuoteTransfer $quoteTransfer): string
     {
         $quoteTransfer
             ->requireCustomer()

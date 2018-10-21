@@ -27,7 +27,7 @@ class DebitPlugin extends AbstractPlugin implements CommandByOrderInterface
      *
      * @return array
      */
-    public function run(array $orderItems, SpySalesOrder $orderEntity, ReadOnlyArrayObject $data)
+    public function run(array $orderItems, SpySalesOrder $orderEntity, ReadOnlyArrayObject $data): array
     {
         $orderTransfer = $this->getOrderWithPaymentTransfer($orderEntity->getIdSalesOrder());
         $this->getFacade()->debitPayment($orderTransfer);
@@ -40,7 +40,7 @@ class DebitPlugin extends AbstractPlugin implements CommandByOrderInterface
      *
      * @return \Generated\Shared\Transfer\OrderTransfer
      */
-    protected function getOrderWithPaymentTransfer($idSalesOrder)
+    protected function getOrderWithPaymentTransfer(int $idSalesOrder): OrderTransfer
     {
         $orderTransfer = $this->getFactory()
             ->getSalesFacade()
@@ -56,7 +56,7 @@ class DebitPlugin extends AbstractPlugin implements CommandByOrderInterface
      *
      * @return \Generated\Shared\Transfer\OrderTransfer
      */
-    protected function hydrateHeidelpayPayment(OrderTransfer $orderTransfer)
+    protected function hydrateHeidelpayPayment(OrderTransfer $orderTransfer): OrderTransfer
     {
         $paymentTransfer = $this->getFacade()->getPaymentByIdSalesOrder($orderTransfer->getIdSalesOrder());
         $orderTransfer->setHeidelpayPayment($paymentTransfer);

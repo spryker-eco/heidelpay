@@ -8,6 +8,7 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Payment;
 
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
+use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay;
 use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
 
 class PaymentReader implements PaymentReaderInterface
@@ -30,7 +31,7 @@ class PaymentReader implements PaymentReaderInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentTransfer
      */
-    public function getPaymentByIdSalesOrder($idSalesOrder)
+    public function getPaymentByIdSalesOrder(int $idSalesOrder): HeidelpayPaymentTransfer
     {
         $heidelpayPaymentEntity = $this->getPaymentEntityByIdSalesOrder($idSalesOrder);
 
@@ -50,7 +51,7 @@ class PaymentReader implements PaymentReaderInterface
      *
      * @return string
      */
-    public function getBasketIdByIdSalesOrder($idSalesOrder)
+    public function getBasketIdByIdSalesOrder(int $idSalesOrder): string
     {
         $heidelpayPaymentEntity = $this->getPaymentEntityByIdSalesOrder($idSalesOrder);
         return $heidelpayPaymentEntity->getIdBasket();
@@ -61,7 +62,7 @@ class PaymentReader implements PaymentReaderInterface
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay
      */
-    protected function getPaymentEntityByIdSalesOrder($idSalesOrder)
+    protected function getPaymentEntityByIdSalesOrder(int $idSalesOrder): SpyPaymentHeidelpay
     {
         $heidelpayPaymentEntity = $this->heidelpayQueryContainer
             ->queryPaymentByIdSalesOrder($idSalesOrder)

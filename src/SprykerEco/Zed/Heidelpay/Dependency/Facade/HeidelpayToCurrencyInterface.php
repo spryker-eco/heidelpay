@@ -7,10 +7,12 @@
 
 namespace SprykerEco\Zed\Heidelpay\Dependency\Facade;
 
+use Generated\Shared\Transfer\CurrencyTransfer;
+
 interface HeidelpayToCurrencyInterface
 {
     /**
      * @return \Generated\Shared\Transfer\CurrencyTransfer
      */
-    public function getCurrent();
+    public function getCurrent(): CurrencyTransfer;
 }

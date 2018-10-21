@@ -21,12 +21,12 @@ interface PaymentOptionInterface
     public function hydrateToPaymentOptions(
         QuoteTransfer $quoteTransfer,
         HeidelpayCreditCardPaymentOptionsTransfer $paymentOptionsTransfer
-    );
+    ): void;
 
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return bool
      */
-    public function isOptionAvailableForQuote(QuoteTransfer $quoteTransfer);
+    public function isOptionAvailableForQuote(QuoteTransfer $quoteTransfer): bool;
 }

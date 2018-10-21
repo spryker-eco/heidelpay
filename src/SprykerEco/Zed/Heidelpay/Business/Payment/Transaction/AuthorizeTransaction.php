@@ -37,7 +37,7 @@ class AuthorizeTransaction implements AuthorizeTransactionInterface
     public function executeTransaction(
         HeidelpayRequestTransfer $authorizeRequestTransfer,
         PaymentWithAuthorizeInterface $paymentAdapter
-    ) {
+    ): HeidelpayResponseTransfer {
         $authorizeResponseTransfer = $paymentAdapter->authorize($authorizeRequestTransfer);
         $this->logTransaction($authorizeRequestTransfer, $authorizeResponseTransfer);
 
@@ -53,7 +53,7 @@ class AuthorizeTransaction implements AuthorizeTransactionInterface
     protected function logTransaction(
         HeidelpayRequestTransfer $authorizeRequestTransfer,
         HeidelpayResponseTransfer $authorizeResponseTransfer
-    ) {
+    ): void {
         $this->transactionLogger->logTransaction(
             HeidelpayConfig::TRANSACTION_TYPE_AUTHORIZE,
             $authorizeRequestTransfer,

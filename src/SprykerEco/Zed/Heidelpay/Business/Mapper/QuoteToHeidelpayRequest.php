@@ -35,7 +35,7 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    public function map(QuoteTransfer $quoteTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer)
+    public function map(QuoteTransfer $quoteTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer): HeidelpayRequestTransfer
     {
         $heidelpayRequestTransfer = $this->mapCustomerAddress($quoteTransfer, $heidelpayRequestTransfer);
         $heidelpayRequestTransfer = $this->mapQuoteInformation($quoteTransfer, $heidelpayRequestTransfer);
@@ -49,7 +49,7 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    protected function mapCustomerAddress(QuoteTransfer $quoteTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer)
+    protected function mapCustomerAddress(QuoteTransfer $quoteTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer): HeidelpayRequestTransfer
     {
         $heidelpayRequestTransfer->setCustomerAddress(
             (new HeidelpayCustomerAddressTransfer())
@@ -73,7 +73,7 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    protected function mapQuoteInformation(QuoteTransfer $quoteTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer)
+    protected function mapQuoteInformation(QuoteTransfer $quoteTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer): HeidelpayRequestTransfer
     {
         $heidelpayRequestTransfer->setCustomerPurchase(
             (new HeidelpayCustomerPurchaseTransfer())
@@ -89,7 +89,7 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
      *
      * @return string
      */
-    protected function generateQuoteId(QuoteTransfer $quoteTransfer)
+    protected function generateQuoteId(QuoteTransfer $quoteTransfer): string
     {
         return QuoteUniqueIdGenerator::getHashByCustomerEmailAndTotals($quoteTransfer);
     }
@@ -99,7 +99,7 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
      *
      * @return string
      */
-    protected function getFullStreetName(AddressTransfer $shippingAddressTransfer)
+    protected function getFullStreetName(AddressTransfer $shippingAddressTransfer): string
     {
         return sprintf('%s %s', $shippingAddressTransfer->getAddress1(), $shippingAddressTransfer->getAddress2());
     }
@@ -109,7 +109,7 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
      *
      * @return int
      */
-    protected function getQuoteAmount(QuoteTransfer $quoteTransfer)
+    protected function getQuoteAmount(QuoteTransfer $quoteTransfer): int
     {
         return $quoteTransfer->getTotals()->getGrandTotal();
     }
@@ -119,7 +119,7 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
      *
      * @return float
      */
-    protected function getDecimalQuoteAmount(QuoteTransfer $quoteTransfer)
+    protected function getDecimalQuoteAmount(QuoteTransfer $quoteTransfer): float
     {
         $quoteAmountInt = $quoteTransfer->getTotals()->getGrandTotal();
         $quoteAmountDecimal = $this->moneyFacade->convertIntegerToDecimal($quoteAmountInt);

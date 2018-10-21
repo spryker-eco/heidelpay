@@ -48,7 +48,7 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    public function buildAuthorizeRequestFromOrder(OrderTransfer $orderTransfer)
+    public function buildAuthorizeRequestFromOrder(OrderTransfer $orderTransfer): HeidelpayRequestTransfer
     {
         return $this->buildBaseOrderHeidelpayRequest($orderTransfer);
     }
@@ -58,7 +58,7 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    public function buildDebitRequestFromOrder(OrderTransfer $orderTransfer)
+    public function buildDebitRequestFromOrder(OrderTransfer $orderTransfer): HeidelpayRequestTransfer
     {
         $requestTransfer = $this->buildBaseOrderHeidelpayRequest($orderTransfer);
         $basketId = $this->getBasketId($orderTransfer);
@@ -71,7 +71,7 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    public function buildCaptureRequestFromOrder(OrderTransfer $orderTransfer)
+    public function buildCaptureRequestFromOrder(OrderTransfer $orderTransfer): HeidelpayRequestTransfer
     {
         $requestTransfer = $this->buildBaseOrderHeidelpayRequest($orderTransfer);
         $basketId = $this->getBasketId($orderTransfer);
@@ -86,7 +86,7 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    protected function buildBaseOrderHeidelpayRequest(OrderTransfer $orderTransfer)
+    protected function buildBaseOrderHeidelpayRequest(OrderTransfer $orderTransfer): HeidelpayRequestTransfer
     {
         $requestTransfer = new HeidelpayRequestTransfer();
 
@@ -106,7 +106,7 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    protected function hydrateOrder(HeidelpayRequestTransfer $heidelpayRequestTransfer, OrderTransfer $orderTransfer)
+    protected function hydrateOrder(HeidelpayRequestTransfer $heidelpayRequestTransfer, OrderTransfer $orderTransfer): HeidelpayRequestTransfer
     {
         $this->orderToHeidelpayMapper->map($orderTransfer, $heidelpayRequestTransfer);
 
@@ -118,7 +118,7 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
      *
      * @return string
      */
-    protected function getBasketId(OrderTransfer $orderTransfer)
+    protected function getBasketId(OrderTransfer $orderTransfer): string
     {
         return $this->paymentReader->getBasketIdByIdSalesOrder($orderTransfer->getIdSalesOrder());
     }

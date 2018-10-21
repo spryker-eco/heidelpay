@@ -29,7 +29,7 @@ class PostSaveHook implements PostSaveHookInterface
      *
      * @return \Generated\Shared\Transfer\CheckoutResponseTransfer
      */
-    public function execute(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer)
+    public function execute(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer): CheckoutResponseTransfer
     {
         $paymentMethodCode = $quoteTransfer->getPayment()->getPaymentMethod();
 
@@ -46,7 +46,7 @@ class PostSaveHook implements PostSaveHookInterface
      *
      * @return bool
      */
-    protected function hasPaymentMethodPostSaveOrderProcessing($paymentMethod)
+    protected function hasPaymentMethodPostSaveOrderProcessing(string $paymentMethod): bool
     {
         return isset($this->paymentMethodsWithPostSaveOrderProcessing[$paymentMethod]);
     }

@@ -27,7 +27,7 @@ class IsCaptureApprovedPlugin extends AbstractPlugin implements ConditionInterfa
      *
      * @return bool
      */
-    public function check(SpySalesOrderItem $orderItem)
+    public function check(SpySalesOrderItem $orderItem): bool
     {
         return $this->isCaptureSuccessful($orderItem->getFkSalesOrder());
     }
@@ -37,7 +37,7 @@ class IsCaptureApprovedPlugin extends AbstractPlugin implements ConditionInterfa
      *
      * @return bool
      */
-    protected function isCaptureSuccessful($idSalesOrder)
+    protected function isCaptureSuccessful(int $idSalesOrder): bool
     {
         $captureTransactionLog = $this->getCaptureTransactionLogEntry($idSalesOrder);
         if ($captureTransactionLog === null) {
@@ -50,9 +50,9 @@ class IsCaptureApprovedPlugin extends AbstractPlugin implements ConditionInterfa
     /**
      * @param int $idSalesOrder
      *
-     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog|null
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog
      */
-    protected function getCaptureTransactionLogEntry($idSalesOrder)
+    protected function getCaptureTransactionLogEntry(int $idSalesOrder): SpyPaymentHeidelpayTransactionLog
     {
         $transactionLogQuery = $this->getQueryContainer()->queryCaptureTransactionLog($idSalesOrder);
         return $transactionLogQuery->findOne();
@@ -63,7 +63,7 @@ class IsCaptureApprovedPlugin extends AbstractPlugin implements ConditionInterfa
      *
      * @return bool
      */
-    protected function isTransactionSuccessful(SpyPaymentHeidelpayTransactionLog $caprureTransactionLog)
+    protected function isTransactionSuccessful(SpyPaymentHeidelpayTransactionLog $caprureTransactionLog): bool
     {
         return $caprureTransactionLog->getResponseCode() === HeidelpayConfig::CAPTURE_TRANSACTION_STATUS_OK;
     }

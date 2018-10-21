@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Basket;
 
+use Generated\Shared\Transfer\HeidelpayBasketResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 
 interface BasketHandlerInterface
@@ -14,7 +15,7 @@ interface BasketHandlerInterface
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return \Heidelpay\PhpBasketApi\Response
+     * @return \Generated\Shared\Transfer\HeidelpayBasketResponseTransfer
      */
-    public function createBasket(QuoteTransfer $quoteTransfer);
+    public function createBasket(QuoteTransfer $quoteTransfer): HeidelpayBasketResponseTransfer;
 }

@@ -37,7 +37,7 @@ class CaptureTransaction implements CaptureTransactionInterface
     public function executeTransaction(
         HeidelpayRequestTransfer $captureRequestTransfer,
         PaymentWithCaptureInterface $paymentAdapter
-    ) {
+    ): HeidelpayResponseTransfer {
         $captureResponseTransfer = $paymentAdapter->capture($captureRequestTransfer);
         $this->logTransaction($captureRequestTransfer, $captureResponseTransfer);
 
@@ -53,7 +53,7 @@ class CaptureTransaction implements CaptureTransactionInterface
     protected function logTransaction(
         HeidelpayRequestTransfer $captureRequestTransfer,
         HeidelpayResponseTransfer $captureResponseTransfer
-    ) {
+    ): void {
         $this->transactionLogger->logTransaction(
             HeidelpayConfig::TRANSACTION_TYPE_CAPTURE,
             $captureRequestTransfer,

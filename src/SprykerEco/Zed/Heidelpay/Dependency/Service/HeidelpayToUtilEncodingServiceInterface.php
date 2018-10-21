@@ -16,7 +16,7 @@ interface HeidelpayToUtilEncodingServiceInterface
      *
      * @return string
      */
-    public function encodeJson($value, $options = null, $depth = null);
+    public function encodeJson($value, $options = null, $depth = null): string;
 
     /**
      * @param string $jsonValue

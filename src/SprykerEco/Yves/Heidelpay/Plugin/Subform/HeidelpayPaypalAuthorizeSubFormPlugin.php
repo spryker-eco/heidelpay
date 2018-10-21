@@ -8,6 +8,8 @@
 namespace SprykerEco\Yves\Heidelpay\Plugin\Subform;
 
 use Spryker\Yves\Kernel\AbstractPlugin;
+use Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface;
+use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
 use Spryker\Yves\StepEngine\Dependency\Plugin\Form\SubFormPluginInterface;
 
 /**
@@ -18,7 +20,7 @@ class HeidelpayPaypalAuthorizeSubFormPlugin extends AbstractPlugin implements Su
     /**
      * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
      */
-    public function createSubForm()
+    public function createSubForm(): SubFormInterface
     {
         return $this->getFactory()->createPaypalAuthorizeForm();
     }
@@ -26,7 +28,7 @@ class HeidelpayPaypalAuthorizeSubFormPlugin extends AbstractPlugin implements Su
     /**
      * @return \Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface
      */
-    public function createSubFormDataProvider()
+    public function createSubFormDataProvider(): StepEngineFormDataProviderInterface
     {
         return $this->getFactory()->createPaypalAuthorizeFormDataProvider();
     }

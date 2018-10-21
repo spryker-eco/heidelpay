@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Yves\Heidelpay\Plugin;
 
+use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use Spryker\Yves\Kernel\AbstractPlugin;
 use Spryker\Yves\StepEngine\Dependency\Plugin\Handler\StepHandlerPluginInterface;
@@ -23,7 +24,7 @@ class HeidelpayHandlerPlugin extends AbstractPlugin implements StepHandlerPlugin
      *
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function addToDataClass(Request $request, AbstractTransfer $quoteTransfer)
+    public function addToDataClass(Request $request, AbstractTransfer $quoteTransfer): QuoteTransfer
     {
         return $this->getFactory()->createHeidelpayHandler()->addPaymentToQuote($quoteTransfer);
     }

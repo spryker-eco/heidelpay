@@ -7,6 +7,8 @@
 
 namespace SprykerEco\Zed\Heidelpay\Dependency\Facade;
 
+use Generated\Shared\Transfer\CurrencyTransfer;
+
 class HeidelpayToCurrencyBridge implements HeidelpayToCurrencyInterface
 {
     /**
@@ -25,7 +27,7 @@ class HeidelpayToCurrencyBridge implements HeidelpayToCurrencyInterface
     /**
      * @return \Generated\Shared\Transfer\CurrencyTransfer
      */
-    public function getCurrent()
+    public function getCurrent(): CurrencyTransfer
     {
         return $this->currencyFacade->getCurrent();
     }

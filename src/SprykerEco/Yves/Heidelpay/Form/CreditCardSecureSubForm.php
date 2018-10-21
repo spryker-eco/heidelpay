@@ -13,6 +13,7 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CreditCardSecureSubForm extends AbstractHeidelpaySubForm
@@ -31,7 +32,7 @@ class CreditCardSecureSubForm extends AbstractHeidelpaySubForm
      *
      * @return void
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => HeidelpayCreditCardPaymentTransfer::class,
@@ -45,7 +46,7 @@ class CreditCardSecureSubForm extends AbstractHeidelpaySubForm
      *
      * @return void
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $this->addCreditCardPaymentOptions($builder, $options);
     }
@@ -56,7 +57,7 @@ class CreditCardSecureSubForm extends AbstractHeidelpaySubForm
      *
      * @return $this
      */
-    public function addCreditCardPaymentOptions(FormBuilderInterface $builder, array $options)
+    public function addCreditCardPaymentOptions(FormBuilderInterface $builder, array $options): self
     {
         $builder->add(
             static::FIELD_CREDIT_CARD_PAYMENT_OPTION,
@@ -82,7 +83,7 @@ class CreditCardSecureSubForm extends AbstractHeidelpaySubForm
      *
      * @return bool
      */
-    protected function hasExistingRegistrationOption(array $options)
+    protected function hasExistingRegistrationOption(array $options): bool
     {
         $paymentOptions = $options['select_options'][static::PAYMENT_OPTIONS];
 
@@ -92,7 +93,7 @@ class CreditCardSecureSubForm extends AbstractHeidelpaySubForm
     /**
      * @return \Symfony\Component\Validator\Constraint
      */
-    protected function createNotBlankConstraint()
+    protected function createNotBlankConstraint(): Constraint
     {
         return new NotBlank(['groups' => $this->getPropertyPath()]);
     }

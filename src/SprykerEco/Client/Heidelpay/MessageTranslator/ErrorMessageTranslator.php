@@ -33,7 +33,7 @@ class ErrorMessageTranslator implements ErrorMessageTranslatorInterface
      *
      * @return string
      */
-    public function getTranslatedErrorMessageByCode($errorCode, $locale)
+    public function getTranslatedErrorMessageByCode($errorCode, $locale): string
     {
         $translatedMessage = $this->getSdkTranslation($errorCode, $locale);
 
@@ -46,7 +46,7 @@ class ErrorMessageTranslator implements ErrorMessageTranslatorInterface
      *
      * @return string
      */
-    protected function getSdkTranslation($errorCode, $locale)
+    protected function getSdkTranslation($errorCode, $locale): string
     {
         return $this->heidelpayApiAdapter
             ->getTranslatedMessageByCode($errorCode, $locale);

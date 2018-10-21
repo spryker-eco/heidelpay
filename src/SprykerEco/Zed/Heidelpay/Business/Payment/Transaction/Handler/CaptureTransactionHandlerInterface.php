@@ -16,5 +16,5 @@ interface CaptureTransactionHandlerInterface
      *
      * @return void
      */
-    public function capture(OrderTransfer $orderTransfer);
+    public function capture(OrderTransfer $orderTransfer): void;
 }

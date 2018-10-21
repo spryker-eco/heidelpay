@@ -9,6 +9,7 @@ namespace SprykerEco\Yves\Heidelpay\Form\DataProvider;
 
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentTransfer;
 use Generated\Shared\Transfer\PaymentTransfer;
+use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
@@ -37,7 +38,7 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
      *
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function getData(AbstractTransfer $quoteTransfer)
+    public function getData(AbstractTransfer $quoteTransfer): QuoteTransfer
     {
         return $quoteTransfer;
     }
@@ -47,7 +48,7 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
      *
      * @return array
      */
-    public function getOptions(AbstractTransfer $quoteTransfer)
+    public function getOptions(AbstractTransfer $quoteTransfer): array
     {
         $this->initPaymentObject($quoteTransfer);
         $this->hydratePaymentOptionsToQuote($quoteTransfer);
@@ -67,7 +68,7 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
      *
      * @return void
      */
-    protected function initPaymentObject(AbstractTransfer $quoteTransfer)
+    protected function initPaymentObject(AbstractTransfer $quoteTransfer): void
     {
         if ($quoteTransfer->getPayment() === null) {
             $creditCardPaymentTransfer = (new PaymentTransfer())
@@ -82,7 +83,7 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
      *
      * @return void
      */
-    protected function hydratePaymentOptionsToQuote(AbstractTransfer $quoteTransfer)
+    protected function hydratePaymentOptionsToQuote(AbstractTransfer $quoteTransfer): void
     {
         $quoteTransfer->requirePayment();
         $this->paymentOptionsHydrator->hydrate($quoteTransfer);
@@ -93,7 +94,7 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
      *
      * @return void
      */
-    protected function selectPaymentOption(HeidelpayCreditCardPaymentTransfer $creditCardPaymentTransfer)
+    protected function selectPaymentOption(HeidelpayCreditCardPaymentTransfer $creditCardPaymentTransfer): void
     {
         $this->unsetNotAvailableSelection($creditCardPaymentTransfer);
 
@@ -109,7 +110,7 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
      *
      * @return void
      */
-    protected function unsetNotAvailableSelection(HeidelpayCreditCardPaymentTransfer $creditCardPaymentTransfer)
+    protected function unsetNotAvailableSelection(HeidelpayCreditCardPaymentTransfer $creditCardPaymentTransfer): void
     {
         $selectedPaymentOption = $creditCardPaymentTransfer->getSelectedPaymentOption();
 
@@ -129,7 +130,7 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
      *
      * @return void
      */
-    protected function setDefaultPaymentOption(HeidelpayCreditCardPaymentTransfer $creditCardPaymentTransfer)
+    protected function setDefaultPaymentOption(HeidelpayCreditCardPaymentTransfer $creditCardPaymentTransfer): void
     {
         $availableOptions = array_keys($this->fetchPaymentOptions($creditCardPaymentTransfer));
         $creditCardPaymentTransfer->setSelectedPaymentOption(array_shift($availableOptions));
@@ -140,7 +141,7 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
      *
      * @return array
      */
-    protected function fetchPaymentOptions(HeidelpayCreditCardPaymentTransfer $creditCardPaymentTransfer)
+    protected function fetchPaymentOptions(HeidelpayCreditCardPaymentTransfer $creditCardPaymentTransfer): array
     {
         $paymentOptions = [];
 

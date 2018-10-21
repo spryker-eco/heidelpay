@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration;
 
+use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 
 interface RegistrationReaderInterface
@@ -16,7 +17,7 @@ interface RegistrationReaderInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
      */
-    public function getLastSuccessfulRegistrationForQuote(QuoteTransfer $quoteTransfer);
+    public function getLastSuccessfulRegistrationForQuote(QuoteTransfer $quoteTransfer): HeidelpayCreditCardRegistrationTransfer;
 
     /**
      * @param int $idRegistration
@@ -24,5 +25,5 @@ interface RegistrationReaderInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
      */
-    public function findCreditCardRegistrationByIdAndQuote($idRegistration, QuoteTransfer $quoteTransfer);
+    public function findCreditCardRegistrationByIdAndQuote(int $idRegistration, QuoteTransfer $quoteTransfer): HeidelpayCreditCardRegistrationTransfer;
 }

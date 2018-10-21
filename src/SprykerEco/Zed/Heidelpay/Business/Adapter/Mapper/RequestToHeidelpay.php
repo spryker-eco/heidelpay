@@ -17,7 +17,7 @@ class RequestToHeidelpay implements RequestToHeidelpayInterface
      *
      * @return void
      */
-    public function map(HeidelpayRequestTransfer $requestTransfer, Request $heidelpayRequest)
+    public function map(HeidelpayRequestTransfer $requestTransfer, Request $heidelpayRequest): void
     {
         $heidelpayRequest->async(
             $requestTransfer->getAsync()->getLanguageCode(),

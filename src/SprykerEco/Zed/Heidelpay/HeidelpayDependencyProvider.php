@@ -30,7 +30,7 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
      *
      * @return \Spryker\Zed\Kernel\Container
      */
-    public function provideBusinessLayerDependencies(Container $container)
+    public function provideBusinessLayerDependencies(Container $container): Container
     {
         $container[static::FACADE_CURRENCY] = function (Container $container) {
             return new HeidelpayToCurrencyBridge($container->getLocator()->currency()->facade());
@@ -60,7 +60,7 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
      *
      * @return \Spryker\Zed\Kernel\Container
      */
-    public function provideCommunicationLayerDependencies(Container $container)
+    public function provideCommunicationLayerDependencies(Container $container): Container
     {
         $container[self::FACADE_SALES] = function (Container $container) {
             return new HeidelpayToSalesBridge($container->getLocator()->sales()->facade());

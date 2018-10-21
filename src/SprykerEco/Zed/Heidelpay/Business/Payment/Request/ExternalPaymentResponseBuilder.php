@@ -32,7 +32,7 @@ class ExternalPaymentResponseBuilder implements ExternalPaymentResponseBuilderIn
      *
      * @return \Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer
      */
-    public function buildExternalResponseTransfer(array $postRequestParams)
+    public function buildExternalResponseTransfer(array $postRequestParams): HeidelpayExternalPaymentResponseTransfer
     {
         $idSalesOrder = $postRequestParams[static::REQUEST_PARAM_ORDER_ID];
 
@@ -51,7 +51,7 @@ class ExternalPaymentResponseBuilder implements ExternalPaymentResponseBuilderIn
      *
      * @return string
      */
-    protected function getPaymentMethodForOrder($idSalesOrder)
+    protected function getPaymentMethodForOrder(int $idSalesOrder): string
     {
         $paymentTransfer = $this->paymentReader->getPaymentByIdSalesOrder($idSalesOrder);
 

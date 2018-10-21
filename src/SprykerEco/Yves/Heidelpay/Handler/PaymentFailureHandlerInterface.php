@@ -7,6 +7,8 @@
 
 namespace SprykerEco\Yves\Heidelpay\Handler;
 
+use Generated\Shared\Transfer\HeidelpayErrorRedirectResponseTransfer;
+
 interface PaymentFailureHandlerInterface
 {
     /**
@@ -14,5 +16,5 @@ interface PaymentFailureHandlerInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayErrorRedirectResponseTransfer
      */
-    public function handlePaymentFailureByErrorCode($errorCode);
+    public function handlePaymentFailureByErrorCode($errorCode): HeidelpayErrorRedirectResponseTransfer;
 }

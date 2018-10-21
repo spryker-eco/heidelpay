@@ -21,7 +21,7 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
      *
      * @return \Spryker\Yves\Kernel\Container
      */
-    public function provideDependencies(Container $container)
+    public function provideDependencies(Container $container): Container
     {
         $container = $this->provideClients($container);
 
@@ -33,7 +33,7 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
      *
      * @return \Spryker\Yves\Kernel\Container
      */
-    protected function provideClients(Container $container)
+    protected function provideClients(Container $container): Container
     {
         $container[static::CLIENT_HEIDELPAY] = function (Container $container) {
             return $container->getLocator()->heidelpay()->client();

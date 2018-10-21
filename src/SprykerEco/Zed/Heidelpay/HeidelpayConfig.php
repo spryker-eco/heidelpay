@@ -18,7 +18,7 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     /**
      * @return string
      */
-    public function getMerchantSecuritySender()
+    public function getMerchantSecuritySender(): string
     {
         return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_SECURITY_SENDER);
     }
@@ -26,7 +26,7 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     /**
      * @return string
      */
-    public function getMerchantUserLogin()
+    public function getMerchantUserLogin(): string
     {
         return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_USER_LOGIN);
     }
@@ -34,7 +34,7 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     /**
      * @return string
      */
-    public function getMerchantUserPassword()
+    public function getMerchantUserPassword(): string
     {
         return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_USER_PASSWORD);
     }
@@ -42,7 +42,7 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     /**
      * @return bool
      */
-    public function getMerchantSandboxMode()
+    public function getMerchantSandboxMode(): bool
     {
         return (bool)$this->get(HeidelpayConstants::CONFIG_HEIDELPAY_SANDBOX_REQUEST);
     }
@@ -50,7 +50,7 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     /**
      * @return string
      */
-    public function getApplicationSecret()
+    public function getApplicationSecret(): string
     {
         return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_APPLICATION_SECRET);
     }
@@ -58,7 +58,7 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     /**
      * @return string
      */
-    public function getAsyncLanguageCode()
+    public function getAsyncLanguageCode(): string
     {
         return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_LANGUAGE_CODE);
     }
@@ -66,7 +66,7 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     /**
      * @return string
      */
-    public function getZedResponseUrl()
+    public function getZedResponseUrl(): string
     {
         return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_PAYMENT_RESPONSE_URL);
     }
@@ -74,7 +74,7 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     /**
      * @return string
      */
-    public function getYvesCheckoutPaymentFailedUrl()
+    public function getYvesCheckoutPaymentFailedUrl(): string
     {
         return $this->get(HeidelpayConstants::CONFIG_YVES_CHECKOUT_PAYMENT_FAILED_URL);
     }
@@ -82,7 +82,7 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     /**
      * @return string
      */
-    public function getYvesUrlForAsyncIframeResponse()
+    public function getYvesUrlForAsyncIframeResponse(): string
     {
         return $this->get(HeidelpayConstants::CONFIG_YVES_CHECKOUT_ASYNC_RESPONSE_URL);
     }
@@ -90,7 +90,7 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     /**
      * @return string
      */
-    public function getIdealAuthorizeUrl()
+    public function getIdealAuthorizeUrl(): string
     {
         return $this->get(HeidelpayConstants::CONFIG_YVES_CHECKOUT_IDEAL_AUTHORIZE_URL);
     }
@@ -98,7 +98,7 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     /**
      * @return string
      */
-    public function getCreditCardPaymentFrameOrigin()
+    public function getCreditCardPaymentFrameOrigin(): string
     {
         return $this->get(HeidelpayConstants::CONFIG_YVES_URL);
     }
@@ -106,7 +106,7 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     /**
      * @return string
      */
-    public function getCreditCardPaymentFrameCustomCssUrl()
+    public function getCreditCardPaymentFrameCustomCssUrl(): string
     {
         return $this->get(HeidelpayConstants::CONFIG_YVES_CHECKOUT_PAYMENT_FRAME_CUSTOM_CSS_URL);
     }
@@ -114,7 +114,7 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     /**
      * @return string
      */
-    public function getCreditCardPaymentFramePreventAsyncRedirect()
+    public function getCreditCardPaymentFramePreventAsyncRedirect(): string
     {
         return $this->get(HeidelpayConstants::CONFIG_YVES_CHECKOUT_PAYMENT_FRAME_PREVENT_ASYNC_REDIRECT);
     }
@@ -122,7 +122,7 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     /**
      * @return string
      */
-    public function getEncryptionKey()
+    public function getEncryptionKey(): string
     {
         return $this->get(HeidelpayConstants::CONFIG_ENCRYPTION_KEY);
     }
@@ -132,7 +132,7 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
      *
      * @return string
      */
-    public function getMerchantTransactionChannelByPaymentType($paymentType)
+    public function getMerchantTransactionChannelByPaymentType(string $paymentType): string
     {
         if ($paymentType === SharedHeidelpayConfig::PAYMENT_METHOD_SOFORT) {
             return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_SOFORT);

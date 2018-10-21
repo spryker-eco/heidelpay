@@ -7,10 +7,12 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
 
+use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\DebitTransactionInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\DebitNotSupportedException;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface;
 
 class DebitTransactionHandler implements DebitTransactionHandlerInterface
 {
@@ -53,7 +55,7 @@ class DebitTransactionHandler implements DebitTransactionHandlerInterface
      *
      * @return void
      */
-    public function debit(OrderTransfer $orderTransfer)
+    public function debit(OrderTransfer $orderTransfer): void
     {
         $debitRequestTransfer = $this->buildDebitRequest($orderTransfer);
         $paymentAdapter = $this->getPaymentMethodAdapter($orderTransfer);
@@ -65,7 +67,7 @@ class DebitTransactionHandler implements DebitTransactionHandlerInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    protected function buildDebitRequest(OrderTransfer $orderTransfer)
+    protected function buildDebitRequest(OrderTransfer $orderTransfer): HeidelpayRequestTransfer
     {
         $debitRequestTransfer = $this->heidelpayRequestBuilder->buildDebitRequestFromOrder($orderTransfer);
 
@@ -79,7 +81,7 @@ class DebitTransactionHandler implements DebitTransactionHandlerInterface
      *
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface
      */
-    protected function getPaymentMethodAdapter(OrderTransfer $orderTransfer)
+    protected function getPaymentMethodAdapter(OrderTransfer $orderTransfer): PaymentWithDebitInterface
     {
         $paymentMethodCode = $this->getPaymentMethodCode($orderTransfer);
 
@@ -97,7 +99,7 @@ class DebitTransactionHandler implements DebitTransactionHandlerInterface
      *
      * @return string
      */
-    protected function getPaymentMethodCode(OrderTransfer $orderTransfer)
+    protected function getPaymentMethodCode(OrderTransfer $orderTransfer): string
     {
         return $orderTransfer->getHeidelpayPayment()->getPaymentMethod();
     }

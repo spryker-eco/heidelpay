@@ -22,7 +22,7 @@ class HeidelpayPostSavePlugin extends BaseAbstractPlugin implements CheckoutPost
      *
      * @return void
      */
-    public function execute(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer)
+    public function execute(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer): void
     {
         $this->getFacade()->postSaveHook($quoteTransfer, $checkoutResponseTransfer);
     }

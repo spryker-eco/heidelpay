@@ -20,7 +20,7 @@ class Ideal extends BaseHeidelpayPaymentMethod implements PaymentWithPostSaveOrd
      *
      * @return void
      */
-    public function postSaveOrder(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer)
+    public function postSaveOrder(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer): void
     {
         $redirectUrl = $this->getCheckoutRedirectUrlFromAuthorizeTransactionLog(
             $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder()
@@ -34,7 +34,7 @@ class Ideal extends BaseHeidelpayPaymentMethod implements PaymentWithPostSaveOrd
      *
      * @return string
      */
-    protected function getAuthorizeRedirectUrl(HeidelpayTransactionLogTransfer $transactionLogTransfer)
+    protected function getAuthorizeRedirectUrl(HeidelpayTransactionLogTransfer $transactionLogTransfer): string
     {
         return $this->config->getIdealAuthorizeUrl();
     }

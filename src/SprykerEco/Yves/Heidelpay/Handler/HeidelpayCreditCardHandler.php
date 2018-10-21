@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Yves\Heidelpay\Handler;
 
+use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Client\Calculation\CalculationClientInterface;
 use Spryker\Client\Quote\QuoteClientInterface;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
@@ -54,7 +55,7 @@ class HeidelpayCreditCardHandler extends HeidelpayHandler
      *
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function addPaymentToQuote(AbstractTransfer $quoteTransfer)
+    public function addPaymentToQuote(AbstractTransfer $quoteTransfer): QuoteTransfer
     {
         $quoteTransfer = parent::addPaymentToQuote($quoteTransfer);
         $this->addCurrentRegistrationToQuote($quoteTransfer);
@@ -68,7 +69,7 @@ class HeidelpayCreditCardHandler extends HeidelpayHandler
      *
      * @return void
      */
-    protected function addCurrentRegistrationToQuote(AbstractTransfer $quoteTransfer)
+    protected function addCurrentRegistrationToQuote(AbstractTransfer $quoteTransfer): void
     {
         $creditCardPayment = $quoteTransfer->getPayment()->getHeidelpayCreditCardSecure();
         $paymentOption = $creditCardPayment->getSelectedPaymentOption();
