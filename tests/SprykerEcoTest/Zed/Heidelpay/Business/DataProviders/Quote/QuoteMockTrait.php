@@ -9,6 +9,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Quote;
 use Generated\Shared\DataBuilder\QuoteBuilder;
 use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\ItemTransfer;
+use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\StockProductTransfer;
 
 trait QuoteMockTrait
@@ -16,7 +17,7 @@ trait QuoteMockTrait
     /**
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function createQuote()
+    public function createQuote(): QuoteTransfer
     {
         $product = $this->tester->haveProduct();
         $this->tester->haveProductInStock([StockProductTransfer::SKU => $product->getSku()]);

@@ -118,7 +118,7 @@ class CreditCardController extends BaseHeidelpayController
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer|null
      */
-    protected function findRegistrationByIdAndQuote(int $idRegistration, QuoteTransfer $quoteTransfer)
+    protected function findRegistrationByIdAndQuote(int $idRegistration, QuoteTransfer $quoteTransfer): ?HeidelpayCreditCardRegistrationTransfer
     {
         return $this
             ->getClient()

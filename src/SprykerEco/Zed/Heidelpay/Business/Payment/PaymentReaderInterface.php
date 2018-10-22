@@ -23,5 +23,5 @@ interface PaymentReaderInterface
      *
      * @return string|null
      */
-    public function getBasketIdByIdSalesOrder(int $idSalesOrder);
+    public function getBasketIdByIdSalesOrder(int $idSalesOrder): ?string;
 }

@@ -38,7 +38,7 @@ trait NewOrderWithOneItemTrait
         SpyCustomer $customer,
         SpySalesOrderAddress $billingAddress,
         SpySalesOrderAddress $shippingAddress
-    ) {
+    ): SpySalesOrder {
 
         $orderEntity = (new SpySalesOrder())
             ->setEmail($customer->getEmail())
@@ -60,7 +60,7 @@ trait NewOrderWithOneItemTrait
      *
      * @return \Orm\Zed\Sales\Persistence\SpySalesOrderItem
      */
-    private function createOrderItemEntity($idSalesOrder)
+    private function createOrderItemEntity(int $idSalesOrder): SpySalesOrderItem
     {
         $stateEntity = $this->createOrderItemStateEntity();
         $processEntity = $this->createOrderProcessEntity();
@@ -86,7 +86,7 @@ trait NewOrderWithOneItemTrait
     /**
      * @return \Orm\Zed\Oms\Persistence\SpyOmsOrderItemState
      */
-    private function createOrderItemStateEntity()
+    private function createOrderItemStateEntity(): SpyOmsOrderItemState
     {
         $stateEntity = new SpyOmsOrderItemState();
         $stateEntity->setName($this->getUniqueOrderItemState());
@@ -98,7 +98,7 @@ trait NewOrderWithOneItemTrait
     /**
      * @return \Orm\Zed\Oms\Persistence\SpyOmsOrderProcess
      */
-    private function createOrderProcessEntity()
+    private function createOrderProcessEntity(): SpyOmsOrderProcess
     {
         $processEntity = new SpyOmsOrderProcess();
         $processEntity->setName($this->getUniqueOmsProcess());
@@ -110,7 +110,7 @@ trait NewOrderWithOneItemTrait
     /**
      * @return string
      */
-    public function getUniqueOrderItemState()
+    public function getUniqueOrderItemState(): string
     {
         if ($this->uniqueOrderItemState === null) {
             $this->uniqueOrderItemState = uniqid() . '-state';
@@ -122,7 +122,7 @@ trait NewOrderWithOneItemTrait
     /**
      * @return string
      */
-    public function getUniqueOmsProcess()
+    public function getUniqueOmsProcess(): string
     {
         if ($this->uniqueOmsProcess === null) {
             $this->uniqueOmsProcess = uniqid() . '-process';
@@ -137,7 +137,7 @@ trait NewOrderWithOneItemTrait
      *
      * @return void
      */
-    protected function createTotalsEntity($orderEntity, $orderItemEntity)
+    protected function createTotalsEntity(SpySalesOrder $orderEntity, SpySalesOrderItem$orderItemEntity): void
     {
         $totals = new SpySalesOrderTotals();
         $totals->setFkSalesOrder($orderEntity->getIdSalesOrder());

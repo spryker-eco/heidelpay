@@ -13,7 +13,7 @@ trait HeidelpayResponseTrait
      *
      * @return array
      */
-    public function getHeidelpayResponseTemplate(array $responseParam)
+    public function getHeidelpayResponseTemplate(array $responseParam): array
     {
         return [
         'NAME_FAMILY' => $responseParam[self::CUSTOMER_FULL_NAME], //"Muster"

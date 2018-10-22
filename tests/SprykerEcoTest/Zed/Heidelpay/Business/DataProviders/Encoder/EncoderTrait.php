@@ -20,7 +20,7 @@ trait EncoderTrait
      *
      * @return string
      */
-    public function encryptData($data)
+    public function encryptData(string $data): string
     {
         $config = $this->factory->getConfig();
         $enc = (new AesEncrypter($config))->encryptData($data);

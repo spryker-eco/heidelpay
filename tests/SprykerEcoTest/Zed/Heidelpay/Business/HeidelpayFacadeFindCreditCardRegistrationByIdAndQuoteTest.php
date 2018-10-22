@@ -36,7 +36,7 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Heidelpa
     /**
      * @return void
      */
-    public function testSuccessfulFindCreditCardRegistrationByIdAndQuote()
+    public function testSuccessfulFindCreditCardRegistrationByIdAndQuote(): void
     {
         $quote = $this->createQuote();
         $transfer = new HeidelpayRegistrationByIdAndQuoteRequestTransfer();
@@ -58,7 +58,7 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Heidelpa
     /**
      * @return void
      */
-    public function testUnsuccessfulFindCreditCardRegistrationByIdAndQuote()
+    public function testUnsuccessfulFindCreditCardRegistrationByIdAndQuote(): void
     {
         $quote = $this->createQuote();
         $transfer = new HeidelpayRegistrationByIdAndQuoteRequestTransfer();
@@ -78,7 +78,7 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Heidelpa
     /**
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function createQuote()
+    public function createQuote(): QuoteTransfer
     {
         $product = $this->tester->haveProduct();
         $this->tester->haveProductInStock([StockProductTransfer::SKU => $product->getSku()]);
@@ -100,7 +100,7 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Heidelpa
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration
      */
-    public function createCardRegistrationTransfer(QuoteTransfer $quoteTransfer)
+    public function createCardRegistrationTransfer(QuoteTransfer $quoteTransfer): SpyPaymentHeidelpayCreditCardRegistration
     {
         $creditCardRegistrationEntity = new SpyPaymentHeidelpayCreditCardRegistration();
         $quoteHash = QuoteUniqueIdGenerator::getHashByCustomerEmailAndTotals($quoteTransfer);
@@ -124,7 +124,7 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Heidelpa
      *
      * @return string
      */
-    protected function getAccountHolder(QuoteTransfer $qoute)
+    protected function getAccountHolder(QuoteTransfer $qoute): string
     {
         return vsprintf(
             "%s %s",
@@ -138,7 +138,7 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Heidelpa
     /**
      * @return void
      */
-    protected function _after()
+    protected function _after(): void
     {
         $query = SpyPaymentHeidelpayCreditCardRegistrationQuery::create()
             ->findByQuoteHash(HeidelpayTestConstants::CARD_QUOTE_HASH);

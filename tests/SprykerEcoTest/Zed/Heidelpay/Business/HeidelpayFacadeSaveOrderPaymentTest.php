@@ -43,7 +43,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
      *
      * @return void
      */
-    public function testSuccessfulSaveOrderPaymentTest($dataProviderFunctionName, $testFunctionName)
+    public function testSuccessfulSaveOrderPaymentTest(string $dataProviderFunctionName, string $testFunctionName): void
     {
         $this->testExecutor($dataProviderFunctionName, $testFunctionName);
     }
@@ -51,7 +51,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
     /**
      * @return array
      */
-    public static function functionListForSuccessfulSaveOrderPaymentTest()
+    public static function functionListForSuccessfulSaveOrderPaymentTest(): array
     {
         return [
             ['createOrderWithCreditCardSecureTransaction', 'successfulSaveOrderPaymentTest'],
@@ -67,7 +67,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
     protected function successfulSaveOrderPaymentTest(
         QuoteTransfer $quoteTransfer,
         CheckoutResponseTransfer $checkoutResponseTransfer
-    ) {
+    ): void {
         $quoteTransfer = $this->createCreditCardPaymentQuote();
 
         $this->heidelpayFacade->saveOrderPayment($quoteTransfer, $checkoutResponseTransfer);
@@ -110,7 +110,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
      *
      * @return void
      */
-    public function testUnsuccessfulSaveOrderPaymentTest($dataProviderFunctionName, $testFunctionName)
+    public function testUnsuccessfulSaveOrderPaymentTest($dataProviderFunctionName, $testFunctionName): void
     {
         $this->testExecutor($dataProviderFunctionName, $testFunctionName);
     }
@@ -118,7 +118,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
     /**
      * @return array
      */
-    public static function functionListForUnsuccessfulSaveOrderPaymentTest()
+    public static function functionListForUnsuccessfulSaveOrderPaymentTest(): array
     {
         return [
             ['createOrderWithCreditCardSecureTransaction', 'unsuccessfulSaveOrderPaymentTest'],
@@ -134,7 +134,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
     protected function unsuccessfulSaveOrderPaymentTest(
         QuoteTransfer $quoteTransfer,
         CheckoutResponseTransfer $checkoutResponseTransfer
-    ) {
+    ): void {
         $quoteTransfer = $this->createSofortPaymentQuote();
 
         $this->heidelpayFacade->saveOrderPayment($quoteTransfer, $checkoutResponseTransfer);
@@ -171,7 +171,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
     /**
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    protected function createCreditCardPaymentQuote()
+    protected function createCreditCardPaymentQuote(): QuoteTransfer
     {
         $quote = $this->createQuote(PaymentTransfer::HEIDELPAY_CREDIT_CARD_SECURE);
 
@@ -181,7 +181,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
     /**
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    protected function createSofortPaymentQuote()
+    protected function createSofortPaymentQuote(): QuoteTransfer
     {
         $quote = $this->createQuote(PaymentTransfer::HEIDELPAY_SOFORT);
 
@@ -191,7 +191,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
     /**
      * @return array
      */
-    public function createOrderWithCreditCardSecureTransaction()
+    public function createOrderWithCreditCardSecureTransaction(): array
     {
         $orderWithPaypalAuthorize = new OrderWithSuccessfulCreditCardSecureTransaction($this->createHeidelpayFactory());
 
@@ -201,7 +201,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
     /**
      * @return array
      */
-    public function createOrderWithSofortAuthorizeTransaction()
+    public function createOrderWithSofortAuthorizeTransaction(): array
     {
         $orderWithPaypalAuthorize = new OrderWithSuccessfulSofortAuthorizeTransaction($this->createHeidelpayFactory());
 
@@ -213,7 +213,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
      *
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    protected function createQuote($correctMethodName)
+    protected function createQuote(string $correctMethodName): QuoteTransfer
     {
         $quote = new QuoteTransfer();
 

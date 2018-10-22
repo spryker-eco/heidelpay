@@ -116,7 +116,7 @@ class RegistrationReader implements RegistrationReaderInterface
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration|null
      */
-    protected function findLastSuccessfulRegistrationByQuote(QuoteTransfer $quoteTransfer)
+    protected function findLastSuccessfulRegistrationByQuote(QuoteTransfer $quoteTransfer): ?SpyPaymentHeidelpayCreditCardRegistration
     {
         $lastSuccessfulRegistration = $this->heidelpayQueryContainer
             ->queryLatestRegistrationByIdShippingAddress(

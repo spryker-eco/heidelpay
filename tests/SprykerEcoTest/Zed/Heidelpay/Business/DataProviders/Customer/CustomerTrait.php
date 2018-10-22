@@ -27,7 +27,7 @@ trait CustomerTrait
     /**
      * @return \Orm\Zed\Customer\Persistence\SpyCustomer
      */
-    public function createOrGetCustomerJohnDoe()
+    public function createOrGetCustomerJohnDoe(): SpyCustomer
     {
         return $this->createCustomer('John', 'Doe');
     }
@@ -37,7 +37,7 @@ trait CustomerTrait
      *
      * @return \Orm\Zed\Customer\Persistence\SpyCustomer
      */
-    public function createOrGetCustomerByQuote(QuoteTransfer $quoteTransfer)
+    public function createOrGetCustomerByQuote(QuoteTransfer $quoteTransfer): SpyCustomer
     {
         return $this->createCustomer(
             $quoteTransfer->getCustomer()->getFirstName(),
@@ -48,7 +48,7 @@ trait CustomerTrait
     /**
      * @return \Generated\Shared\Transfer\CustomerTransfer
      */
-    public function createCustomerJohnDoeTransfer()
+    public function createCustomerJohnDoeTransfer(): CustomerTransfer
     {
         $johnDoeEntity = $this->createOrGetCustomerJohnDoe();
 
@@ -61,7 +61,7 @@ trait CustomerTrait
     /**
      * @return \Generated\Shared\Transfer\CustomerTransfer
      */
-    public function createCustomerJohnDoeGuestTransfer()
+    public function createCustomerJohnDoeGuestTransfer(): CustomerTransfer
     {
         $johnDoeTransfer = $this->createCustomerJohnDoeTransfer();
 
@@ -77,7 +77,7 @@ trait CustomerTrait
      *
      * @return \Orm\Zed\Customer\Persistence\SpyCustomer
      */
-    private function createCustomer($firstName, $lastName)
+    private function createCustomer(string $firstName, string $lastName): SpyCustomer
     {
         if ($this->johnDoeEntity === null) {
             $customer = (new SpyCustomer())
@@ -100,7 +100,7 @@ trait CustomerTrait
      *
      * @return string
      */
-    private function getUniqueCustomerEmail($emailSlug)
+    private function getUniqueCustomerEmail(string $emailSlug): string
     {
         if (!isset($this->uniqueCustomerEmailSlugs[$emailSlug])) {
             $this->uniqueCustomerEmailSlugs[$emailSlug] = uniqid($emailSlug) . '@test.com';

@@ -8,6 +8,7 @@
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment;
 
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay;
+use Orm\Zed\Sales\Persistence\SpySalesOrder;
 
 trait PaymentHeidelpayTrait
 {
@@ -19,10 +20,10 @@ trait PaymentHeidelpayTrait
      * @return void
      */
     protected function createHeidelpayPaymentEntity(
-        $salesOrderEntity,
+        SpySalesOrder $salesOrderEntity,
         string $idPaymentReference,
         string $paymentMethod
-    ) {
+    ): void {
         $payment = new SpyPaymentHeidelpay();
         $payment->setFkSalesOrder($salesOrderEntity->getIdSalesOrder());
 

@@ -97,11 +97,11 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer|null
      */
     public function findCreditCardRegistrationByIdAndQuote(
         HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
-    ): HeidelpayCreditCardRegistrationTransfer {
+    ): ?HeidelpayCreditCardRegistrationTransfer {
         /** @var \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer $responseTransfer */
         $responseTransfer = $this->zedStub->call(
             static::ZED_GET_FIND_CREDIT_CARD_REGISTRATION,

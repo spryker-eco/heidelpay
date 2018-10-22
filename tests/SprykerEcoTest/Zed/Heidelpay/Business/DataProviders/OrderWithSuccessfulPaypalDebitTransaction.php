@@ -41,7 +41,7 @@ class OrderWithSuccessfulPaypalDebitTransaction
     /**
      * @return array
      */
-    public function createOrderWithPaypalDebitTransaction()
+    public function createOrderWithPaypalDebitTransaction(): array
     {
         $customerJohnDoe = $this->createOrGetCustomerJohnDoe();
         $billingAddressJohnDoe = $shippingAddressJohnDoe = $this->createOrderAddressJohnDoe();
@@ -66,7 +66,7 @@ class OrderWithSuccessfulPaypalDebitTransaction
      *
      * @return \Generated\Shared\Transfer\PaymentTransfer
      */
-    protected function buildPaymentTransfer(SpySalesOrder $orderEntity)
+    protected function buildPaymentTransfer(SpySalesOrder $orderEntity): PaymentTransfer
     {
         $heidelpayPaymentTransfer = new HeidelpayPaymentTransfer();
 
@@ -88,7 +88,7 @@ class OrderWithSuccessfulPaypalDebitTransaction
      */
     private function createQuoteTransferWithPaypalDebitPayment(
         SpySalesOrder $orderEntity
-    ) {
+    ): QuoteTransfer {
         $paymentTransfer = $this->buildPaymentTransfer($orderEntity);
         $customerTransfer = $this->createCustomerJohnDoeGuestTransfer();
 
@@ -104,7 +104,7 @@ class OrderWithSuccessfulPaypalDebitTransaction
      *
      * @return \Generated\Shared\Transfer\CheckoutResponseTransfer
      */
-    protected function createCheckoutResponseFromOrder(SpySalesOrder $orderEntity)
+    protected function createCheckoutResponseFromOrder(SpySalesOrder $orderEntity): CheckoutResponseTransfer
     {
         $checkoutResponseTransfer = new CheckoutResponseTransfer();
         $saveOrderTransfer = new SaveOrderTransfer();

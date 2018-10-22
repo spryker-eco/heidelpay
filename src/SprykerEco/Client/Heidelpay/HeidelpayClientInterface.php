@@ -89,9 +89,9 @@ interface HeidelpayClientInterface
      * @param int $idRegistration
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer|null
      */
-    public function findRegistrationByIdAndQuote(int $idRegistration, QuoteTransfer $quoteTransfer);
+    public function findRegistrationByIdAndQuote(int $idRegistration, QuoteTransfer $quoteTransfer): ?HeidelpayCreditCardRegistrationTransfer;
 
     /**
      * Specification:

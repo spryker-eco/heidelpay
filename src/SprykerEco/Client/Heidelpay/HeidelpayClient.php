@@ -131,7 +131,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer|null
      */
-    public function findRegistrationByIdAndQuote(int $idRegistration, QuoteTransfer $quoteTransfer)
+    public function findRegistrationByIdAndQuote(int $idRegistration, QuoteTransfer $quoteTransfer): ?HeidelpayCreditCardRegistrationTransfer
     {
         $findRegistrationRequestTransfer = $this->buildFindRegistrationRequestTransfer($idRegistration, $quoteTransfer);
 

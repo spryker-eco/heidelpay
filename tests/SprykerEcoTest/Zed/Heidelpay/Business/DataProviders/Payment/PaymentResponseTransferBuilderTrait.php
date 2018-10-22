@@ -18,7 +18,7 @@ trait PaymentResponseTransferBuilderTrait
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    protected function getSuccessfulHeidelpayTransfer(array $response)
+    protected function getSuccessfulHeidelpayTransfer(array $response): HeidelpayResponseTransfer
     {
         $responseTransfer = new HeidelpayResponseTransfer();
         $responseTransfer->setIsSuccess(true);
@@ -38,7 +38,7 @@ trait PaymentResponseTransferBuilderTrait
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    protected function getUnsuccessfulHeidelpayTransfer(array $response)
+    protected function getUnsuccessfulHeidelpayTransfer(array $response): HeidelpayResponseTransfer
     {
         $responseTransfer = new HeidelpayResponseTransfer();
         $responseTransfer->setIsSuccess(false);

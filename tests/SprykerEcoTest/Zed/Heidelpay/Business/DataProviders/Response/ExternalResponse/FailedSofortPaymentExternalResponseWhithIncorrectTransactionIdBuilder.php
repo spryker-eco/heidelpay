@@ -17,7 +17,7 @@ class FailedSofortPaymentExternalResponseWhithIncorrectTransactionIdBuilder exte
      *
      * @return int
      */
-    protected function getTransationId(SpySalesOrder $orderEntity)
+    protected function getTransationId(SpySalesOrder $orderEntity): int
     {
         return 100000000000;
     }

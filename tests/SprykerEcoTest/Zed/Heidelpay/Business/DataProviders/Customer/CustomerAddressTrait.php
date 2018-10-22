@@ -18,7 +18,7 @@ trait CustomerAddressTrait
      *
      * @return \Orm\Zed\Customer\Persistence\SpyCustomerAddress
      */
-    public function createCustomerAddressByCustomer(SpyCustomer $customer)
+    public function createCustomerAddressByCustomer(SpyCustomer $customer): SpyCustomerAddress
     {
         return $this->createAddress($customer);
     }
@@ -28,7 +28,7 @@ trait CustomerAddressTrait
      *
      * @return \Orm\Zed\Customer\Persistence\SpyCustomerAddress
      */
-    private function createAddress(SpyCustomer $customer)
+    private function createAddress(SpyCustomer $customer): SpyCustomerAddress
     {
         $country = SpyCountryQuery::create()->findOneByIso2Code('DE');
 

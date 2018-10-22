@@ -7,6 +7,8 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders;
 
+use Orm\Zed\Sales\Persistence\SpySalesOrder;
+
 class OrderWithUnsuccessfulIdealAuthorizeTransaction extends OrderWithSuccessfulIdealAuthorizeTransaction
 {
     /**
@@ -14,7 +16,7 @@ class OrderWithUnsuccessfulIdealAuthorizeTransaction extends OrderWithSuccessful
      *
      * @return void
      */
-    protected function createTransaction($orderEntity)
+    protected function createTransaction(SpySalesOrder $orderEntity): void
     {
         $this->createUnsuccessfulAuthorizeTransactionForOrder($orderEntity);
     }

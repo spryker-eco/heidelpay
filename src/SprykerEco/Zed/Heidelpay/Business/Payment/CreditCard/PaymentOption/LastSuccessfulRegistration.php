@@ -136,7 +136,7 @@ class LastSuccessfulRegistration implements PaymentOptionInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer|null
      */
-    protected function getLastSuccessfulRegistrationFromQuote(QuoteTransfer $quoteTransfer)
+    protected function getLastSuccessfulRegistrationFromQuote(QuoteTransfer $quoteTransfer): ?HeidelpayCreditCardRegistrationTransfer
     {
         $lastRegistration = $quoteTransfer
             ->getPayment()

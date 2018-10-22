@@ -37,7 +37,7 @@ class HeidelpayFacadeSaveCreditCardRegistrationTest extends HeidelpayPaymentTest
      *
      * @return void
      */
-    public function testSuccessfulSaveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $cardRegistrationTransfer)
+    public function testSuccessfulSaveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $cardRegistrationTransfer): void
     {
         $response = $this->heidelpayFacade->saveCreditCardRegistration($cardRegistrationTransfer);
 
@@ -56,7 +56,7 @@ class HeidelpayFacadeSaveCreditCardRegistrationTest extends HeidelpayPaymentTest
     /**
      * @return array
      */
-    public function createRegistrationTransfer()
+    public function createRegistrationTransfer(): array
     {
         $cardRegistrationTransfer = new HeidelpayRegistrationRequestTransfer();
         $cardRegistrationTransfer->setQuoteHash(static::QUOTE_HASH)
@@ -69,7 +69,7 @@ class HeidelpayFacadeSaveCreditCardRegistrationTest extends HeidelpayPaymentTest
     /**
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardInfoTransfer
      */
-    protected function getCreditCardInfo()
+    protected function getCreditCardInfo(): HeidelpayCreditCardInfoTransfer
     {
         $creditCardInfo = new HeidelpayCreditCardInfoTransfer();
 

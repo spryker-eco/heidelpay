@@ -51,7 +51,7 @@ class PaymentReader implements PaymentReaderInterface
      *
      * @return string|null
      */
-    public function getBasketIdByIdSalesOrder(int $idSalesOrder)
+    public function getBasketIdByIdSalesOrder(int $idSalesOrder): ?string
     {
         $heidelpayPaymentEntity = $this->getPaymentEntityByIdSalesOrder($idSalesOrder);
         return $heidelpayPaymentEntity->getIdBasket();
@@ -62,7 +62,7 @@ class PaymentReader implements PaymentReaderInterface
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay|null
      */
-    protected function getPaymentEntityByIdSalesOrder(int $idSalesOrder)
+    protected function getPaymentEntityByIdSalesOrder(int $idSalesOrder): ?SpyPaymentHeidelpay
     {
         $heidelpayPaymentEntity = $this->heidelpayQueryContainer
             ->queryPaymentByIdSalesOrder($idSalesOrder)

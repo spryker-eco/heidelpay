@@ -7,6 +7,7 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders;
 
+use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\NewOrderWithOneItemTrait;
@@ -36,7 +37,7 @@ class PaymentBuilder
      *
      * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
      */
-    public function createPayment(string $paymentMethod)
+    public function createPayment(string $paymentMethod): SpySalesOrder
     {
         $customerJohnDoe = $this->createOrGetCustomerJohnDoe();
         $billingAddressJohnDoe = $shippingAddressJohnDoe = $this->createOrderAddressJohnDoe();

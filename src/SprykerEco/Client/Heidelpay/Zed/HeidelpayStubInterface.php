@@ -49,7 +49,7 @@ interface HeidelpayStubInterface
      */
     public function findCreditCardRegistrationByIdAndQuote(
         HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
-    );
+    ): ?HeidelpayCreditCardRegistrationTransfer;
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer

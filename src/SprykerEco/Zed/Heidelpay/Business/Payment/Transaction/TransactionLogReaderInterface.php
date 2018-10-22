@@ -28,7 +28,7 @@ interface TransactionLogReaderInterface
     /**
      * @param int $orderReference
      *
-     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
      */
-    public function findOrderDebitTransactionLog(int $orderReference);
+    public function findOrderDebitTransactionLog(int $orderReference): ?HeidelpayTransactionLogTransfer;
 }

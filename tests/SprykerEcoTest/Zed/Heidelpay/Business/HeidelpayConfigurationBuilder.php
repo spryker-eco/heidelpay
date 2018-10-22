@@ -19,7 +19,7 @@ class HeidelpayConfigurationBuilder
     /**
      * @return array
      */
-    public function getHeidelpayConfigurationOptions()
+    public function getHeidelpayConfigurationOptions(): array
     {
         $config[HeidelpayConstants::CONFIG_ENCRYPTION_KEY] = 'encryption_key';
         $config[ApplicationConstants::HOST_YVES] = 'www.de.spryker.test';
