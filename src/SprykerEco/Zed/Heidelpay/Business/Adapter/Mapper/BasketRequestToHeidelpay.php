@@ -60,6 +60,7 @@ class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
                 ->setAmountVat($itemTransfer->getSumTaxAmountFullAggregation())
                 ->setAmountDiscount($itemTransfer->getSumDiscountAmountFullAggregation());
 
+            $basketItem->setIsMarketplaceItem(!is_null($itemTransfer->getHeidelpayItemChannelId()));
             $heidelpayBasket->addBasketItem($basketItem);
         }
     }
