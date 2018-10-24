@@ -84,6 +84,7 @@ class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
                 ->setPosition($position++)
                 ->setBasketItemReferenceId($expenseTransfer->getName() . $position)
                 ->setArticleId($expenseTransfer->getName())
+                ->setChannel($expenseTransfer->getHeidelpayItemChannelId())
                 ->setTitle($expenseTransfer->getName())
                 ->setType(static::BASKET_ITEM_SHIPPING_TYPE)
                 ->setQuantity($expenseTransfer->getQuantity())

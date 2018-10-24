@@ -169,6 +169,10 @@
         <property name="error" type="HeidelpayResponseError"/>
     </transfer>
 
+    <transfer name="Expense">
+        <property name="heidelpayItemChannelId" type="string" />
+    </transfer>
+
     <transfer name="Order">
         <property name="idSalesOrder" type="int" />
         <property name="heidelpayPayment" type="HeidelpayPayment"/>
