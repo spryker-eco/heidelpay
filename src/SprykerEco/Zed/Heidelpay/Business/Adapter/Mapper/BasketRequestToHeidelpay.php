@@ -9,12 +9,27 @@ namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper;
 use Generated\Shared\Transfer\HeidelpayBasketRequestTransfer;
 use Heidelpay\PhpBasketApi\Object\Basket;
 use Heidelpay\PhpBasketApi\Object\BasketItem;
+use SprykerEco\Zed\Heidelpay\HeidelpayConfigInterface;
 
 class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
 {
     public const BASKET_ITEM_GOODS_TYPE = 'goods';
     public const SHIPMENT_EXPENSE_TYPE = 'SHIPMENT_EXPENSE_TYPE';
     public const BASKET_ITEM_SHIPPING_TYPE = 'shipping';
+
+    /**
+     * @var \SprykerEco\Zed\Heidelpay\HeidelpayConfigInterface
+     */
+    protected $config;
+
+    /**
+     * @param \SprykerEco\Zed\Heidelpay\HeidelpayConfigInterface $config
+     */
+    public function __construct(
+        HeidelpayConfigInterface $config
+    ) {
+        $this->config = $config;
+    }
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayBasketRequestTransfer $requestTransfer
@@ -43,11 +58,12 @@ class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
     protected function mapBasketItems(HeidelpayBasketRequestTransfer $requestTransfer, Basket $heidelpayBasket): void
     {
         $position = 1;
+        $isSplitPaymentEnabled = $this->config->getIsSplitPaymentEnabledKey();
+
         foreach ($requestTransfer->getItems() as $itemTransfer) {
             $basketItem = (new BasketItem())
                 ->setPosition($position++)
                 ->setBasketItemReferenceId($itemTransfer->getSku() . $position)
-                ->setChannel($itemTransfer->getHeidelpayItemChannelId())
                 ->setArticleId($itemTransfer->getSku())
                 ->setTitle($itemTransfer->getName())
                 ->setDescription($itemTransfer->getDescription())
@@ -60,7 +76,12 @@ class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
                 ->setAmountVat($itemTransfer->getSumTaxAmountFullAggregation())
                 ->setAmountDiscount($itemTransfer->getSumDiscountAmountFullAggregation());
 
-            $basketItem->setIsMarketplaceItem(!is_null($itemTransfer->getHeidelpayItemChannelId()));
+            if ($isSplitPaymentEnabled) {
+                $basketItem
+                    ->setChannel($itemTransfer->getHeidelpayItemChannelId())
+                    ->setIsMarketplaceItem(!is_null($itemTransfer->getHeidelpayItemChannelId()));
+            }
+
             $heidelpayBasket->addBasketItem($basketItem);
         }
     }
@@ -74,8 +95,9 @@ class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
     protected function mapShipmentItems(HeidelpayBasketRequestTransfer $requestTransfer, Basket $heidelpayBasket): void
     {
         $position = $requestTransfer->getItems()->count() + 1;
-        foreach ($requestTransfer->getExpenses() as $expenseTransfer) {
+        $isSplitPaymentEnabled = $this->config->getIsSplitPaymentEnabledKey();
 
+        foreach ($requestTransfer->getExpenses() as $expenseTransfer) {
             if ($expenseTransfer->getType() !== static::SHIPMENT_EXPENSE_TYPE) {
                 continue;
             }
@@ -94,6 +116,12 @@ class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
                 ->setAmountGross($expenseTransfer->getSumGrossPrice())
                 ->setAmountVat($expenseTransfer->getSumTaxAmount())
                 ->setAmountDiscount($expenseTransfer->getSumDiscountAmountAggregation());
+
+            if ($isSplitPaymentEnabled) {
+                $basketItem
+                    ->setChannel($expenseTransfer->getHeidelpayItemChannelId())
+                    ->setIsMarketplaceItem(!is_null($expenseTransfer->getHeidelpayItemChannelId()));
+            }
 
             $heidelpayBasket->addBasketItem($basketItem);
         }

@@ -180,7 +180,9 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
      */
     protected function createBasketRequestToHeidelpayMapper(): BasketRequestToHeidelpayInterface
     {
-        return new BasketRequestToHeidelpay();
+        return new BasketRequestToHeidelpay(
+            $this->getHeidelpayConfig()
+        );
     }
 
     /**

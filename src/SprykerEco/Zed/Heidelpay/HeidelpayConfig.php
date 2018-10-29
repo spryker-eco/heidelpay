@@ -136,6 +136,14 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @return bool
+     */
+    public function getIsSplitPaymentEnabledKey(): bool
+    {
+        return $this->get(HeidelpayConstants::CONFIG_IS_SPLIT_PAYMENT_ENABLED_KEY, false);
+    }
+
+    /**
      * @param string $paymentType
      *
      * @return string

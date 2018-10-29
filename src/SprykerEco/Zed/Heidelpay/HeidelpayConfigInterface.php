@@ -75,6 +75,11 @@ interface HeidelpayConfigInterface
     public function getCreditCardPaymentFramePreventAsyncRedirect(): string;
 
     /**
+     * @return bool
+     */
+    public function getIsSplitPaymentEnabledKey(): bool;
+
+    /**
      * @param string $paymentType
      *
      * @return string
