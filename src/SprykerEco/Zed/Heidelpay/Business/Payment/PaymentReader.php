@@ -51,9 +51,10 @@ class PaymentReader implements PaymentReaderInterface
      *
      * @return string|null
      */
-    public function getBasketIdByIdSalesOrder(int $idSalesOrder): ?string
+    public function getIdBasketByIdSalesOrder(int $idSalesOrder): ?string
     {
         $heidelpayPaymentEntity = $this->getPaymentEntityByIdSalesOrder($idSalesOrder);
+
         return $heidelpayPaymentEntity->getIdBasket();
     }
 

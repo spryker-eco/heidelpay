@@ -8,6 +8,7 @@
         <property name="paymentMethod" type="string" />
         <property name="idPaymentReference" type="string" />
         <property name="idPaymentRegistration" type="string" />
+        <property name="idBasket" type="string" />
     </transfer>
 
     <transfer name="HeidelpayCreditCardPayment">
@@ -69,7 +70,6 @@
         <property name="amount" type="float"/>
         <property name="currencyCode" type="string"/>
         <property name="secret" type="string"/>
-        <property name="basketId" type="string"/>
     </transfer>
 
     <transfer name="HeidelpayRequest">
@@ -79,6 +79,7 @@
         <property name="customerPurchase" type="HeidelpayCustomerPurchase" />
         <property name="idPaymentReference" type="string" />
         <property name="idPaymentRegistration" type="string" />
+        <property name="idBasket" type="string"/>
         <property name="paymentMethod" type="string" />
     </transfer>
 
@@ -90,7 +91,7 @@
     </transfer>
 
     <transfer name="HeidelpayBasketResponse">
-        <property name="basketId" type="string" />
+        <property name="idBasket" type="string" />
     </transfer>
 
     <transfer name="HeidelpayExternalPaymentResponse">
@@ -207,7 +208,7 @@
         <property name="HeidelpayPaypalAuthorize" type="HeidelpayPayment"/>
         <property name="HeidelpayPaypalDebit" type="HeidelpayPayment"/>
         <property name="HeidelpayCreditCardSecure" type="HeidelpayCreditCardPayment"/>
-        <property name="basketId" type="string" />
+        <property name="idBasket" type="string" />
     </transfer>
 
     <transfer name="HeidelpayIdealAuthorizeForm">

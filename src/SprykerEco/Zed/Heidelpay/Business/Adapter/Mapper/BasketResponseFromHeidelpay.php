@@ -19,6 +19,6 @@ class BasketResponseFromHeidelpay implements BasketResponseFromHeidelpayInterfac
      */
     public function map(Response $apiResponse, HeidelpayBasketResponseTransfer $responseTransfer): void
     {
-        $responseTransfer->setBasketId($apiResponse->getBasketId());
+        $responseTransfer->setIdBasket($apiResponse->getBasketId());
     }
 }

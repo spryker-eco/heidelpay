@@ -6,6 +6,7 @@
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter;
+
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Basket\BasketInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\IdealPaymentInterface;

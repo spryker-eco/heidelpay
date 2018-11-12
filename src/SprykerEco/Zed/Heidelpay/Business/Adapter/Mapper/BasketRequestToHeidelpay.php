@@ -79,7 +79,7 @@ class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
             if ($isSplitPaymentEnabled) {
                 $basketItem
                     ->setChannel($itemTransfer->getHeidelpayItemChannelId())
-                    ->setIsMarketplaceItem(!is_null($itemTransfer->getHeidelpayItemChannelId()));
+                    ->setIsMarketplaceItem($itemTransfer->getHeidelpayItemChannelId() !== null);
             }
 
             $heidelpayBasket->addBasketItem($basketItem);
@@ -120,7 +120,7 @@ class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
             if ($isSplitPaymentEnabled) {
                 $basketItem
                     ->setChannel($expenseTransfer->getHeidelpayItemChannelId())
-                    ->setIsMarketplaceItem(!is_null($expenseTransfer->getHeidelpayItemChannelId()));
+                    ->setIsMarketplaceItem($expenseTransfer->getHeidelpayItemChannelId() !== null);
             }
 
             $heidelpayBasket->addBasketItem($basketItem);

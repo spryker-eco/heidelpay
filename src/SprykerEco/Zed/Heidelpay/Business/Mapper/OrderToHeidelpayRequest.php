@@ -116,7 +116,9 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
     protected function mapOrderPayment(OrderTransfer $orderTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer): HeidelpayRequestTransfer
     {
         $heidelpayPayment = $orderTransfer->getHeidelpayPayment();
-        $heidelpayRequestTransfer->setIdPaymentRegistration($heidelpayPayment->getIdPaymentRegistration());
+        $heidelpayRequestTransfer
+            ->setIdBasket($heidelpayPayment->getIdBasket())
+            ->setIdPaymentRegistration($heidelpayPayment->getIdPaymentRegistration());
 
         return $heidelpayRequestTransfer;
     }

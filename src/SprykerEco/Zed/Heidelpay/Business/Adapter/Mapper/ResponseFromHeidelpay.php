@@ -19,21 +19,21 @@ use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceIn
 
 class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
 {
-    const RESPONSE_PARAMETER_GROUP_PROCESSING = 'processing';
-    const RESPONSE_PARAMETER_GROUP_ACCOUNT = 'account';
-    const RESPONSE_PARAMETER_GROUP_ADDRESS = 'address';
-    const RESPONSE_PARAMETER_GROUP_CONFIG = 'config';
-    const RESPONSE_PARAMETER_GROUP_CONTACT = 'contact';
-    const RESPONSE_PARAMETER_GROUP_CRITERION = 'criterion';
-    const RESPONSE_PARAMETER_GROUP_FRONTEND = 'frontend';
-    const RESPONSE_PARAMETER_GROUP_IDENTIFICATION = 'identification';
-    const RESPONSE_PARAMETER_GROUP_NAME = 'name';
-    const RESPONSE_PARAMETER_GROUP_PAYMENT = 'payment';
-    const RESPONSE_PARAMETER_GROUP_PRESENTATION = 'presentation';
-    const RESPONSE_PARAMETER_GROUP_REQUEST = 'request';
-    const RESPONSE_PARAMETER_GROUP_SECURITY = 'security';
-    const RESPONSE_PARAMETER_GROUP_TRANSACTION = 'transaction';
-    const RESPONSE_PARAMETER_GROUP_USER = 'user';
+    public const RESPONSE_PARAMETER_GROUP_PROCESSING = 'processing';
+    public const RESPONSE_PARAMETER_GROUP_ACCOUNT = 'account';
+    public const RESPONSE_PARAMETER_GROUP_ADDRESS = 'address';
+    public const RESPONSE_PARAMETER_GROUP_CONFIG = 'config';
+    public const RESPONSE_PARAMETER_GROUP_CONTACT = 'contact';
+    public const RESPONSE_PARAMETER_GROUP_CRITERION = 'criterion';
+    public const RESPONSE_PARAMETER_GROUP_FRONTEND = 'frontend';
+    public const RESPONSE_PARAMETER_GROUP_IDENTIFICATION = 'identification';
+    public const RESPONSE_PARAMETER_GROUP_NAME = 'name';
+    public const RESPONSE_PARAMETER_GROUP_PAYMENT = 'payment';
+    public const RESPONSE_PARAMETER_GROUP_PRESENTATION = 'presentation';
+    public const RESPONSE_PARAMETER_GROUP_REQUEST = 'request';
+    public const RESPONSE_PARAMETER_GROUP_SECURITY = 'security';
+    public const RESPONSE_PARAMETER_GROUP_TRANSACTION = 'transaction';
+    public const RESPONSE_PARAMETER_GROUP_USER = 'user';
 
     /**
      * @var \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceInterface

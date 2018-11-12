@@ -60,10 +60,7 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
      */
     public function buildDebitRequestFromOrder(OrderTransfer $orderTransfer): HeidelpayRequestTransfer
     {
-        $requestTransfer = $this->buildBaseOrderHeidelpayRequest($orderTransfer);
-        $basketId = $this->getBasketId($orderTransfer);
-        $requestTransfer->getCustomerPurchase()->setBasketId($basketId);
-        return $requestTransfer;
+        return $this->buildBaseOrderHeidelpayRequest($orderTransfer);
     }
 
     /**
@@ -74,8 +71,6 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
     public function buildCaptureRequestFromOrder(OrderTransfer $orderTransfer): HeidelpayRequestTransfer
     {
         $requestTransfer = $this->buildBaseOrderHeidelpayRequest($orderTransfer);
-        $basketId = $this->getBasketId($orderTransfer);
-        $requestTransfer->getCustomerPurchase()->setBasketId($basketId);
         $requestTransfer->setIdPaymentReference($orderTransfer->getHeidelpayPayment()->getIdPaymentReference());
 
         return $requestTransfer;
@@ -108,18 +103,7 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
      */
     protected function hydrateOrder(HeidelpayRequestTransfer $heidelpayRequestTransfer, OrderTransfer $orderTransfer): HeidelpayRequestTransfer
     {
-        $this->orderToHeidelpayMapper->map($orderTransfer, $heidelpayRequestTransfer);
-
-        return $heidelpayRequestTransfer;
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return string
-     */
-    protected function getBasketId(OrderTransfer $orderTransfer)
-    {
-        return $this->paymentReader->getBasketIdByIdSalesOrder($orderTransfer->getIdSalesOrder());
+        return $this->orderToHeidelpayMapper
+            ->map($orderTransfer, $heidelpayRequestTransfer);
     }
 }

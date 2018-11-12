@@ -150,6 +150,6 @@ class Saver implements SaverInterface
         $heidelpayBasketResponseTransfer = $this->basketCreator
             ->createBasket($quoteTransfer);
 
-        $paymentEntity->setIdBasket($heidelpayBasketResponseTransfer->getBasketId());
+        $paymentEntity->setIdBasket($heidelpayBasketResponseTransfer->getIdBasket());
     }
 }
