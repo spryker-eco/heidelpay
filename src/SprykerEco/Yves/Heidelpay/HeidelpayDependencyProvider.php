@@ -12,9 +12,9 @@ use Spryker\Yves\Kernel\Container;
 
 class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
 {
-    const CLIENT_HEIDELPAY = 'heidelpay client';
-    const CLIENT_QUOTE = 'quote client';
-    const CLIENT_CALCULATION = 'calculation client';
+    public const CLIENT_HEIDELPAY = 'heidelpay client';
+    public const CLIENT_QUOTE = 'quote client';
+    public const CLIENT_CALCULATION = 'calculation client';
 
     /**
      * @param \Spryker\Yves\Kernel\Container $container

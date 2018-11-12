@@ -17,13 +17,13 @@ use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceBr
 
 class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
 {
-    const FACADE_CURRENCY = 'currency facade';
-    const FACADE_MONEY = 'money facade';
-    const FACADE_SALES = 'sales facade';
+    public const FACADE_CURRENCY = 'currency facade';
+    public const FACADE_MONEY = 'money facade';
+    public const FACADE_SALES = 'sales facade';
 
-    const QUERY_CONTAINER_SALES = 'sales query container';
+    public const QUERY_CONTAINER_SALES = 'sales query container';
 
-    const SERVICE_UTIL_ENCODING = 'util encoding service';
+    public const SERVICE_UTIL_ENCODING = 'util encoding service';
 
     /**
      * @param \Spryker\Zed\Kernel\Container $container

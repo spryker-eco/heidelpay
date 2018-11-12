@@ -9,23 +9,23 @@ namespace SprykerEco\Shared\Heidelpay;
 
 interface HeidelpayConfig
 {
-    const PROVIDER_NAME = 'heidelpay';
+    public const PROVIDER_NAME = 'heidelpay';
 
-    const PAYMENT_METHOD_SOFORT = self::PROVIDER_NAME . 'Sofort';
-    const PAYMENT_METHOD_CREDIT_CARD_SECURE = self::PROVIDER_NAME . 'CreditCardSecure';
-    const PAYMENT_METHOD_PAYPAL_AUTHORIZE = self::PROVIDER_NAME . 'PaypalAuthorize';
-    const PAYMENT_METHOD_PAYPAL_DEBIT = self::PROVIDER_NAME . 'PaypalDebit';
-    const PAYMENT_METHOD_IDEAL = self::PROVIDER_NAME . 'Ideal';
+    public const PAYMENT_METHOD_SOFORT = self::PROVIDER_NAME . 'Sofort';
+    public const PAYMENT_METHOD_CREDIT_CARD_SECURE = self::PROVIDER_NAME . 'CreditCardSecure';
+    public const PAYMENT_METHOD_PAYPAL_AUTHORIZE = self::PROVIDER_NAME . 'PaypalAuthorize';
+    public const PAYMENT_METHOD_PAYPAL_DEBIT = self::PROVIDER_NAME . 'PaypalDebit';
+    public const PAYMENT_METHOD_IDEAL = self::PROVIDER_NAME . 'Ideal';
 
-    const PAYMENT_OPTION_NEW_REGISTRATION = 'new-registration';
-    const PAYMENT_OPTION_EXISTING_REGISTRATION = 'existing-registration';
+    public const PAYMENT_OPTION_NEW_REGISTRATION = 'new-registration';
+    public const PAYMENT_OPTION_EXISTING_REGISTRATION = 'existing-registration';
 
-    const TRANSACTION_TYPE_EXTERNAL_RESPONSE = 'external_response';
-    const TRANSACTION_TYPE_DEBIT = 'debit';
-    const TRANSACTION_TYPE_AUTHORIZE = 'authorize';
-    const TRANSACTION_TYPE_AUTHORIZE_ON_REGISTRATION = 'authorize_on_registration';
-    const TRANSACTION_TYPE_CAPTURE = 'capture';
+    public const TRANSACTION_TYPE_EXTERNAL_RESPONSE = 'external_response';
+    public const TRANSACTION_TYPE_DEBIT = 'debit';
+    public const TRANSACTION_TYPE_AUTHORIZE = 'authorize';
+    public const TRANSACTION_TYPE_AUTHORIZE_ON_REGISTRATION = 'authorize_on_registration';
+    public const TRANSACTION_TYPE_CAPTURE = 'capture';
 
-    const EXTERNAL_RESPONSE_TRANSACTION_STATUS_OK = 'ACK';
-    const CAPTURE_TRANSACTION_STATUS_OK = 'ACK';
+    public const EXTERNAL_RESPONSE_TRANSACTION_STATUS_OK = 'ACK';
+    public const CAPTURE_TRANSACTION_STATUS_OK = 'ACK';
 }

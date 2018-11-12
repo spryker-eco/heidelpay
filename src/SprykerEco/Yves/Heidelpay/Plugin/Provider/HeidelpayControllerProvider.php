@@ -12,11 +12,11 @@ use Spryker\Yves\Application\Plugin\Provider\YvesControllerProvider;
 
 class HeidelpayControllerProvider extends YvesControllerProvider
 {
-    const HEIDELPAY_PAYMENT = 'heidelpay-payment';
-    const HEIDELPAY_PAYMENT_FAILED = 'heidelpay-payment-failed';
-    const HEIDELPAY_IDEAL_AUTHORIZE = 'heidelpay-ideal-authorize';
-    const HEIDELPAY_CREDIT_CARD_REGISTER = 'heidelpay-cc-register';
-    const HEIDELPAY_CREDIT_CARD_REGISTER_SUCCESS = 'heidelpay-cc-register-success';
+    public const HEIDELPAY_PAYMENT = 'heidelpay-payment';
+    public const HEIDELPAY_PAYMENT_FAILED = 'heidelpay-payment-failed';
+    public const HEIDELPAY_IDEAL_AUTHORIZE = 'heidelpay-ideal-authorize';
+    public const HEIDELPAY_CREDIT_CARD_REGISTER = 'heidelpay-cc-register';
+    public const HEIDELPAY_CREDIT_CARD_REGISTER_SUCCESS = 'heidelpay-cc-register-success';
 
     /**
      * @param \Silex\Application $app

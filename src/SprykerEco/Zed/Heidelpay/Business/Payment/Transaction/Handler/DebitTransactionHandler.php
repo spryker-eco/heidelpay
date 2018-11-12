@@ -16,7 +16,7 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface;
 
 class DebitTransactionHandler implements DebitTransactionHandlerInterface
 {
-    const ERROR_MESSAGE_DEBIT_TRANSACTION_NOT_SUPPORTED =
+    public const ERROR_MESSAGE_DEBIT_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call debit transaction on payment method \'%s\' ' .
         'that does not support it';
 

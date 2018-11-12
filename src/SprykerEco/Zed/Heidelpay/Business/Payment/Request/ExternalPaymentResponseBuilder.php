@@ -12,7 +12,7 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReaderInterface;
 
 class ExternalPaymentResponseBuilder implements ExternalPaymentResponseBuilderInterface
 {
-    const REQUEST_PARAM_ORDER_ID = 'IDENTIFICATION_TRANSACTIONID';
+    public const REQUEST_PARAM_ORDER_ID = 'IDENTIFICATION_TRANSACTIONID';
 
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReaderInterface

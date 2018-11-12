@@ -22,9 +22,9 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class CreditCardController extends BaseHeidelpayController
 {
-    const REQUEST_PARAM_REGISTRATION_ID = 'id_registration';
-    const ERROR_CODE_REGISTRATION_NOT_FOUND = 'registration_not_found';
-    const ERROR_CODE_QUOTE_EXPIRED = 'quote_expired';
+    public const REQUEST_PARAM_REGISTRATION_ID = 'id_registration';
+    public const ERROR_CODE_REGISTRATION_NOT_FOUND = 'registration_not_found';
+    public const ERROR_CODE_QUOTE_EXPIRED = 'quote_expired';
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request

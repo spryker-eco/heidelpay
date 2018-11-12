@@ -16,10 +16,10 @@ use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteBridge;
 
 class HeidelpayDependencyProvider extends AbstractDependencyProvider
 {
-    const CLIENT_LOCALE = 'client locale';
-    const CLIENT_SESSION = SessionClientServiceProvider::CLIENT_SESSION;
-    const CLIENT_ZED_REQUEST = ZedRequestClientServiceProvider::CLIENT_ZED_REQUEST;
-    const CLIENT_QUOTE = 'client quote';
+    public const CLIENT_LOCALE = 'client locale';
+    public const CLIENT_SESSION = SessionClientServiceProvider::CLIENT_SESSION;
+    public const CLIENT_ZED_REQUEST = ZedRequestClientServiceProvider::CLIENT_ZED_REQUEST;
+    public const CLIENT_QUOTE = 'client quote';
 
     /**
      * @param \Spryker\Client\Kernel\Container $container

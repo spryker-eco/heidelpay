@@ -8,7 +8,6 @@
 namespace SprykerEco\Zed\Heidelpay\Dependency\QueryContainer;
 
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
-use Spryker\Zed\Sales\Persistence\SalesQueryContainerInterface;
 
 class HeidelpayToSalesQueryContainerBridge implements HeidelpayToSalesQueryContainerInterface
 {
@@ -20,7 +19,7 @@ class HeidelpayToSalesQueryContainerBridge implements HeidelpayToSalesQueryConta
     /**
      * @param \Spryker\Zed\Sales\Persistence\SalesQueryContainerInterface $salesQueryContainer
      */
-    public function __construct(SalesQueryContainerInterface $salesQueryContainer)
+    public function __construct($salesQueryContainer)
     {
         $this->salesQueryContainer = $salesQueryContainer;
     }

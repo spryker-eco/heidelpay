@@ -11,8 +11,8 @@ use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class AesEncrypter implements EncrypterInterface
 {
-    const CYPHER_METHOD = 'aes-256-cbc';
-    const INIT_VECTOR_SEPARATOR = ':::';
+    public const CYPHER_METHOD = 'aes-256-cbc';
+    public const INIT_VECTOR_SEPARATOR = ':::';
 
     /**
      * @var \SprykerEco\Zed\Heidelpay\HeidelpayConfig
@@ -64,7 +64,7 @@ class AesEncrypter implements EncrypterInterface
             return null;
         }
 
-        list($encryptedData, $initVector) = $dataChunks;
+        [$encryptedData, $initVector] = $dataChunks;
 
         return openssl_decrypt(
             $encryptedData,

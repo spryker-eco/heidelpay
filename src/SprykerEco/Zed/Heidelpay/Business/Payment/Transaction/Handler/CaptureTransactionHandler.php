@@ -16,7 +16,7 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface;
 
 class CaptureTransactionHandler implements CaptureTransactionHandlerInterface
 {
-    const ERROR_MESSAGE_CAPTURE_TRANSACTION_NOT_SUPPORTED =
+    public const ERROR_MESSAGE_CAPTURE_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call capture transaction on payment method \'%s\' ' .
         'that does not support it';
 

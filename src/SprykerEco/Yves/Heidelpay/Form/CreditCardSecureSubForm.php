@@ -18,14 +18,14 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CreditCardSecureSubForm extends AbstractHeidelpaySubForm
 {
-    const PAYMENT_METHOD = HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE;
+    public const PAYMENT_METHOD = HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE;
 
-    const PAYMENT_OPTIONS = 'payment_options';
-    const PAYMENT_OPTION_EXISTING_REGISTRATION = HeidelpayConfig::PAYMENT_OPTION_EXISTING_REGISTRATION;
-    const PAYMENT_OPTION_NEW_REGISTRATION = HeidelpayConfig::PAYMENT_OPTION_NEW_REGISTRATION;
+    public const PAYMENT_OPTIONS = 'payment_options';
+    public const PAYMENT_OPTION_EXISTING_REGISTRATION = HeidelpayConfig::PAYMENT_OPTION_EXISTING_REGISTRATION;
+    public const PAYMENT_OPTION_NEW_REGISTRATION = HeidelpayConfig::PAYMENT_OPTION_NEW_REGISTRATION;
 
-    const FIELD_CREDIT_CARD_PAYMENT_OPTION = 'selected_payment_option';
-    const FIELD_CREDIT_CARD_REGISTRATION_ID = 'registration_id';
+    public const FIELD_CREDIT_CARD_PAYMENT_OPTION = 'selected_payment_option';
+    public const FIELD_CREDIT_CARD_REGISTRATION_ID = 'registration_id';
 
     /**
      * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver

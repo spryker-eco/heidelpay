@@ -18,7 +18,7 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseIn
 
 class ExternalResponseTransactionHandler implements ExternalResponseTransactionHandlerInterface
 {
-    const ERROR_MESSAGE_EXTERNAL_RESPONSE_TRANSACTION_NOT_SUPPORTED =
+    public const ERROR_MESSAGE_EXTERNAL_RESPONSE_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call external response transaction on payment method \'%s\' ' .
         'that does not support it';
 

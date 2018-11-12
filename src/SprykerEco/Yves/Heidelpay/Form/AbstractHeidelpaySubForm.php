@@ -18,12 +18,12 @@ class AbstractHeidelpaySubForm extends AbstractSubFormType implements SubFormInt
     /**
      * @const string
      */
-    const PAYMENT_PROVIDER = HeidelpayConfig::PROVIDER_NAME;
+    public const PAYMENT_PROVIDER = HeidelpayConfig::PROVIDER_NAME;
 
     /**
      * @const string
      */
-    const PAYMENT_METHOD = '';
+    public const PAYMENT_METHOD = '';
 
     /**
      * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
