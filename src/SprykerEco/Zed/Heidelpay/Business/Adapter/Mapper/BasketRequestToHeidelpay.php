@@ -70,9 +70,9 @@ class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
                 ->setType(static::BASKET_ITEM_GOODS_TYPE)
                 ->setQuantity($itemTransfer->getQuantity())
                 ->setVat($itemTransfer->getTaxRate())
-                ->setAmountPerUnit($itemTransfer->getUnitGrossPrice())
-                ->setAmountNet($itemTransfer->getSumPriceToPayAggregation() - $itemTransfer->getSumTaxAmountFullAggregation())
-                ->setAmountGross($itemTransfer->getSumGrossPrice())
+                ->setAmountPerUnit($itemTransfer->getUnitPriceToPayAggregation())
+                ->setAmountNet($itemTransfer->getSumPriceToPayAggregation() - $itemTransfer->getSumTaxAmount())
+                ->setAmountGross($itemTransfer->getSumPriceToPayAggregation())
                 ->setAmountVat($itemTransfer->getSumTaxAmountFullAggregation())
                 ->setAmountDiscount($itemTransfer->getSumDiscountAmountFullAggregation());
 
@@ -111,9 +111,9 @@ class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
                 ->setType(static::BASKET_ITEM_SHIPPING_TYPE)
                 ->setQuantity($expenseTransfer->getQuantity())
                 ->setVat($expenseTransfer->getTaxRate())
-                ->setAmountPerUnit($expenseTransfer->getUnitGrossPrice())
-                ->setAmountNet($expenseTransfer->getUnitNetPrice())
-                ->setAmountGross($expenseTransfer->getSumGrossPrice())
+                ->setAmountPerUnit($expenseTransfer->getUnitPriceToPayAggregation())
+                ->setAmountNet($expenseTransfer->getSumPriceToPayAggregation() - $expenseTransfer->getSumDiscountAmountAggregation())
+                ->setAmountGross($expenseTransfer->getSumPriceToPayAggregation())
                 ->setAmountVat($expenseTransfer->getSumTaxAmount())
                 ->setAmountDiscount($expenseTransfer->getSumDiscountAmountAggregation());
 
