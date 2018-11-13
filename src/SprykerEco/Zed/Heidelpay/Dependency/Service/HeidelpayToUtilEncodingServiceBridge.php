@@ -1,4 +1,5 @@
 <?php
+
 /**
  * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
@@ -28,7 +29,7 @@ class HeidelpayToUtilEncodingServiceBridge implements HeidelpayToUtilEncodingSer
      *
      * @return string
      */
-    public function encodeJson($value, $options = null, $depth = null)
+    public function encodeJson($value, $options = null, $depth = null): string
     {
         return $this->utilEncodingService->encodeJson($value, $options, $depth);
     }

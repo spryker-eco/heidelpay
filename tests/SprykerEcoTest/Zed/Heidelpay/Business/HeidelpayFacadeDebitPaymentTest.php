@@ -8,6 +8,8 @@
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
 use Generated\Shared\Transfer\PaymentTransfer;
+use Orm\Zed\Sales\Persistence\SpySalesOrder;
+use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
 
@@ -27,7 +29,7 @@ class HeidelpayFacadeDebitPaymentTest extends HeidelpayPaymentTest
     /**
      * @return void
      */
-    public function testProcessSuccessfulExternalPaymentResponseForPaypalDebit()
+    public function testProcessSuccessfulExternalPaymentResponseForPaypalDebit(): void
     {
         $salesOrder = $this->createOrder();
 
@@ -47,7 +49,7 @@ class HeidelpayFacadeDebitPaymentTest extends HeidelpayPaymentTest
     /**
      * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
      */
-    public function createOrder()
+    public function createOrder(): SpySalesOrder
     {
         $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
         $orderTransfer = $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_PAYPAL_DEBIT);
@@ -57,7 +59,7 @@ class HeidelpayFacadeDebitPaymentTest extends HeidelpayPaymentTest
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
      */
-    protected function createSuccessfulPaymentHeidelpayFactoryMock()
+    protected function createSuccessfulPaymentHeidelpayFactoryMock(): HeidelpayBusinessFactory
     {
         return new SuccessfulResponseHeidelpayBusinessFactory();
     }
@@ -65,7 +67,7 @@ class HeidelpayFacadeDebitPaymentTest extends HeidelpayPaymentTest
     /**
      * @return void
      */
-    public function testProcessUnsuccessfulExternalPaymentResponseForPaypalDebit()
+    public function testProcessUnsuccessfulExternalPaymentResponseForPaypalDebit(): void
     {
         $salesOrder = $this->createOrder();
 
@@ -85,7 +87,7 @@ class HeidelpayFacadeDebitPaymentTest extends HeidelpayPaymentTest
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
      */
-    protected function createUnsuccessfulPaymentHeidelpayFactoryMock()
+    protected function createUnsuccessfulPaymentHeidelpayFactoryMock(): HeidelpayBusinessFactory
     {
         return new UnsuccesfulResponseHeidelpayBusinessFactory();
     }

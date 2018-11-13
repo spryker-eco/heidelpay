@@ -14,8 +14,6 @@ use SprykerEco\Client\Heidelpay\Sdk\HeidelpayApiAdapterInterface;
  */
 class ErrorMessageTranslator implements ErrorMessageTranslatorInterface
 {
-    const HEIDELPAY_PAYMENT_FAILED_DEFAULT_ERROR_MESSAGE = 'page.checkout.heidelpay.payment.failed';
-
     /**
      * @var \SprykerEco\Client\Heidelpay\Sdk\HeidelpayApiAdapterInterface
      */
@@ -35,13 +33,9 @@ class ErrorMessageTranslator implements ErrorMessageTranslatorInterface
      *
      * @return string
      */
-    public function getTranslatedErrorMessageByCode($errorCode, $locale)
+    public function getTranslatedErrorMessageByCode($errorCode, $locale): string
     {
         $translatedMessage = $this->getSdkTranslation($errorCode, $locale);
-
-        if ($translatedMessage === null) {
-            $translatedMessage = $this->getDefaultPaymentFailedMessage();
-        }
 
         return $translatedMessage;
     }
@@ -52,17 +46,9 @@ class ErrorMessageTranslator implements ErrorMessageTranslatorInterface
      *
      * @return string
      */
-    protected function getSdkTranslation($errorCode, $locale)
+    protected function getSdkTranslation($errorCode, $locale): string
     {
         return $this->heidelpayApiAdapter
             ->getTranslatedMessageByCode($errorCode, $locale);
-    }
-
-    /**
-     * @return string
-     */
-    protected function getDefaultPaymentFailedMessage()
-    {
-        return static::HEIDELPAY_PAYMENT_FAILED_DEFAULT_ERROR_MESSAGE;
     }
 }

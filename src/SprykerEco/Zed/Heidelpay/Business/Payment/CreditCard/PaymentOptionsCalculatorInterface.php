@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard;
 
+use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 
 interface PaymentOptionsCalculatorInterface
@@ -16,5 +17,5 @@ interface PaymentOptionsCalculatorInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer
      */
-    public function getCreditCardPaymentOptions(QuoteTransfer $quoteTransfer);
+    public function getCreditCardPaymentOptions(QuoteTransfer $quoteTransfer): HeidelpayCreditCardPaymentOptionsTransfer;
 }

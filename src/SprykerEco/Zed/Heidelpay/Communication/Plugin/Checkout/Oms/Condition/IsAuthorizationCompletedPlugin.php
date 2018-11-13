@@ -27,7 +27,7 @@ class IsAuthorizationCompletedPlugin extends AbstractPlugin implements Condition
      *
      * @return bool
      */
-    public function check(SpySalesOrderItem $orderItem)
+    public function check(SpySalesOrderItem $orderItem): bool
     {
         return $this->hasCustomerCompletedAuthorization($orderItem->getFkSalesOrder());
     }
@@ -37,7 +37,7 @@ class IsAuthorizationCompletedPlugin extends AbstractPlugin implements Condition
      *
      * @return bool
      */
-    protected function hasCustomerCompletedAuthorization($idSalesOrder)
+    protected function hasCustomerCompletedAuthorization(int $idSalesOrder): bool
     {
         $externalTransactionLog = $this->getExternalTransactionLogEntry($idSalesOrder);
         if ($externalTransactionLog === null) {
@@ -50,9 +50,9 @@ class IsAuthorizationCompletedPlugin extends AbstractPlugin implements Condition
     /**
      * @param int $idSalesOrder
      *
-     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog|null
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog
      */
-    protected function getExternalTransactionLogEntry($idSalesOrder)
+    protected function getExternalTransactionLogEntry(int $idSalesOrder): SpyPaymentHeidelpayTransactionLog
     {
         $transactionLogQuery = $this->getQueryContainer()->queryExternalResponseTransactionLog($idSalesOrder);
         return $transactionLogQuery->findOne();
@@ -63,7 +63,7 @@ class IsAuthorizationCompletedPlugin extends AbstractPlugin implements Condition
      *
      * @return bool
      */
-    protected function isTransactionSuccessful(SpyPaymentHeidelpayTransactionLog $externalTransactionLog)
+    protected function isTransactionSuccessful(SpyPaymentHeidelpayTransactionLog $externalTransactionLog): bool
     {
         return $externalTransactionLog->getResponseCode() === HeidelpayConfig::EXTERNAL_RESPONSE_TRANSACTION_STATUS_OK;
     }

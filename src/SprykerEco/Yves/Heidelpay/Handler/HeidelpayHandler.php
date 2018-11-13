@@ -7,13 +7,14 @@
 
 namespace SprykerEco\Yves\Heidelpay\Handler;
 
+use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 
 class HeidelpayHandler implements HeidelpayHandlerInterface
 {
-    const PAYMENT_PROVIDER = HeidelpayConfig::PROVIDER_NAME;
-    const CHECKOUT_PARTIAL_SUMMARY_PATH = 'Heidelpay/partial/summary';
+    public const PAYMENT_PROVIDER = HeidelpayConfig::PROVIDER_NAME;
+    public const CHECKOUT_PARTIAL_SUMMARY_PATH = 'Heidelpay/partial/summary';
 
     /**
      * @var array
@@ -27,11 +28,11 @@ class HeidelpayHandler implements HeidelpayHandlerInterface
     ];
 
     /**
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer|\Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return \Spryker\Shared\Kernel\Transfer\AbstractTransfer
+     * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function addPaymentToQuote(AbstractTransfer $quoteTransfer)
+    public function addPaymentToQuote(AbstractTransfer $quoteTransfer): QuoteTransfer
     {
         $paymentSelection = $quoteTransfer->getPayment()->getPaymentSelection();
         $quoteTransfer->getPayment()

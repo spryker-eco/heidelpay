@@ -11,8 +11,8 @@ use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class AesEncrypter implements EncrypterInterface
 {
-    const CYPHER_METHOD = 'aes-256-cbc';
-    const INIT_VECTOR_SEPARATOR = ':::';
+    public const CYPHER_METHOD = 'aes-256-cbc';
+    public const INIT_VECTOR_SEPARATOR = ':::';
 
     /**
      * @var \SprykerEco\Zed\Heidelpay\HeidelpayConfig
@@ -32,7 +32,7 @@ class AesEncrypter implements EncrypterInterface
      *
      * @return string
      */
-    public function encryptData($data)
+    public function encryptData(string $data): string
     {
         $encryptionKey = $this->config
             ->getEncryptionKey();
@@ -52,9 +52,9 @@ class AesEncrypter implements EncrypterInterface
     /**
      * @param string $data
      *
-     * @return string|null
+     * @return string
      */
-    public function decryptData($data)
+    public function decryptData(string $data)
     {
         $encryptionKey = $this->config
             ->getEncryptionKey();
@@ -64,7 +64,7 @@ class AesEncrypter implements EncrypterInterface
             return null;
         }
 
-        list($encryptedData, $initVector) = $dataChunks;
+        [$encryptedData, $initVector] = $dataChunks;
 
         return openssl_decrypt(
             $encryptedData,
@@ -78,7 +78,7 @@ class AesEncrypter implements EncrypterInterface
     /**
      * @return string
      */
-    protected function getRandomPseudoBytes()
+    protected function getRandomPseudoBytes(): string
     {
         $cipherIvLength = openssl_cipher_iv_length(static::CYPHER_METHOD);
 

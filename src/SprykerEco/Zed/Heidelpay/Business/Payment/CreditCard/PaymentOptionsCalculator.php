@@ -30,7 +30,7 @@ class PaymentOptionsCalculator implements PaymentOptionsCalculatorInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer
      */
-    public function getCreditCardPaymentOptions(QuoteTransfer $quoteTransfer)
+    public function getCreditCardPaymentOptions(QuoteTransfer $quoteTransfer): HeidelpayCreditCardPaymentOptionsTransfer
     {
         $paymentOptionsTransfer = new HeidelpayCreditCardPaymentOptionsTransfer();
 

@@ -8,6 +8,7 @@
 namespace SprykerEcoTest\Zed\Heidelpay\Business\Test;
 
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
+use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
 
 /**
@@ -21,7 +22,7 @@ trait PaymentResponseTestTrait
      *
      * @return void
      */
-    protected function testSuccessfulHeidelpayPaymentResponse($transaction)
+    protected function testSuccessfulHeidelpayPaymentResponse(HeidelpayTransactionLogTransfer $transaction): void
     {
         $this->assertNotNull($transaction->getHeidelpayResponse());
         $this->assertInstanceOf(HeidelpayResponseTransfer::class, $transaction->getHeidelpayResponse());
@@ -38,7 +39,7 @@ trait PaymentResponseTestTrait
      *
      * @return void
      */
-    protected function testUnsuccessfulHeidelpayPaymentResponse($transaction)
+    protected function testUnsuccessfulHeidelpayPaymentResponse(HeidelpayTransactionLogTransfer $transaction): void
     {
         $this->assertNotNull($transaction->getHeidelpayResponse());
         $this->assertInstanceOf(HeidelpayResponseTransfer::class, $transaction->getHeidelpayResponse());

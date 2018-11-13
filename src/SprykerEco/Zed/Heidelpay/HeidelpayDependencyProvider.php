@@ -17,20 +17,20 @@ use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceBr
 
 class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
 {
-    const FACADE_CURRENCY = 'currency facade';
-    const FACADE_MONEY = 'money facade';
-    const FACADE_SALES = 'sales facade';
+    public const FACADE_CURRENCY = 'currency facade';
+    public const FACADE_MONEY = 'money facade';
+    public const FACADE_SALES = 'sales facade';
 
-    const QUERY_CONTAINER_SALES = 'sales query container';
+    public const QUERY_CONTAINER_SALES = 'sales query container';
 
-    const SERVICE_UTIL_ENCODING = 'util encoding service';
+    public const SERVICE_UTIL_ENCODING = 'util encoding service';
 
     /**
      * @param \Spryker\Zed\Kernel\Container $container
      *
      * @return \Spryker\Zed\Kernel\Container
      */
-    public function provideBusinessLayerDependencies(Container $container)
+    public function provideBusinessLayerDependencies(Container $container): Container
     {
         $container[static::FACADE_CURRENCY] = function (Container $container) {
             return new HeidelpayToCurrencyBridge($container->getLocator()->currency()->facade());
@@ -60,7 +60,7 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
      *
      * @return \Spryker\Zed\Kernel\Container
      */
-    public function provideCommunicationLayerDependencies(Container $container)
+    public function provideCommunicationLayerDependencies(Container $container): Container
     {
         $container[self::FACADE_SALES] = function (Container $container) {
             return new HeidelpayToSalesBridge($container->getLocator()->sales()->facade());

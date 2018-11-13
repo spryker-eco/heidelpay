@@ -8,6 +8,7 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface;
 
 interface CaptureTransactionInterface
@@ -21,5 +22,5 @@ interface CaptureTransactionInterface
     public function executeTransaction(
         HeidelpayRequestTransfer $captureRequestTransfer,
         PaymentWithCaptureInterface $paymentAdapter
-    );
+    ): HeidelpayResponseTransfer;
 }

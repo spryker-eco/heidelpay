@@ -20,7 +20,7 @@ class HeidelpayApiAdapter implements HeidelpayApiAdapterInterface
      *
      * @return string
      */
-    public function getTranslatedMessageByCode($messageCode, $locale)
+    public function getTranslatedMessageByCode($messageCode, $locale): string
     {
         $heidelpayMessage = new MessageCodeMapper($locale);
 

@@ -10,6 +10,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods;
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\SofortPayment;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentResponseTransferBuilderTrait;
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 
 /**
  * MIT License
@@ -24,7 +25,7 @@ class SuccessfulSofortPaymentMock extends SofortPayment
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function authorize(HeidelpayRequestTransfer $authorizeRequestTransfer)
+    public function authorize(HeidelpayRequestTransfer $authorizeRequestTransfer): HeidelpayResponseTransfer
     {
         $response['payload'] = '{
                         "processing": {"result": "ACK"}, 

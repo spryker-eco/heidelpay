@@ -16,5 +16,5 @@ interface CreditCardPaymentOptionsToQuoteInterface
      *
      * @return void
      */
-    public function hydrate(QuoteTransfer $quoteTransfer);
+    public function hydrate(QuoteTransfer $quoteTransfer): void;
 }

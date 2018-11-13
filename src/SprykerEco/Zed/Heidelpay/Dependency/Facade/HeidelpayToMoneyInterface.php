@@ -14,5 +14,5 @@ interface HeidelpayToMoneyInterface
      *
      * @return float
      */
-    public function convertIntegerToDecimal($value);
+    public function convertIntegerToDecimal(int $value): float;
 }

@@ -18,7 +18,7 @@ interface ApiResponseToRegistrationResponseTransferInterface
      *
      * @return void
      */
-    public function map(Response $apiResponseObject, HeidelpayRegistrationRequestTransfer $registrationRequestTransfer);
+    public function map(Response $apiResponseObject, HeidelpayRegistrationRequestTransfer $registrationRequestTransfer): void;
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
@@ -29,5 +29,5 @@ interface ApiResponseToRegistrationResponseTransferInterface
     public function hydrateErrorToRegistrationRequest(
         HeidelpayRegistrationRequestTransfer $registrationRequestTransfer,
         HeidelpayResponseErrorTransfer $errorTransfer
-    );
+    ): void;
 }

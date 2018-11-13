@@ -7,26 +7,28 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction;
 
+use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
+
 interface TransactionLogReaderInterface
 {
     /**
      * @param int $idSalesOrder
      *
-     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
      */
-    public function findOrderAuthorizeTransactionLogByIdSalesOrder($idSalesOrder);
+    public function findOrderAuthorizeTransactionLogByIdSalesOrder(int $idSalesOrder): HeidelpayTransactionLogTransfer;
 
     /**
      * @param string $orderReference
      *
-     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
      */
-    public function findOrderAuthorizeTransactionLogByOrderReference($orderReference);
+    public function findOrderAuthorizeTransactionLogByOrderReference(string $orderReference): HeidelpayTransactionLogTransfer;
 
     /**
      * @param int $orderReference
      *
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
      */
-    public function findOrderDebitTransactionLog($orderReference);
+    public function findOrderDebitTransactionLog(int $orderReference): ?HeidelpayTransactionLogTransfer;
 }

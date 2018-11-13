@@ -15,5 +15,5 @@ interface PaymentWriterInterface
      *
      * @return void
      */
-    public function updatePaymentReferenceByIdSalesOrder($paymentReference, $idSalesOrder);
+    public function updatePaymentReferenceByIdSalesOrder(string $paymentReference, int $idSalesOrder): void;
 }

@@ -20,8 +20,8 @@ interface TransactionLoggerInterface
      * @return void
      */
     public function logTransaction(
-        $transactionType,
+        string $transactionType,
         HeidelpayRequestTransfer $transactionRequest,
         HeidelpayResponseTransfer $transactionResponse
-    );
+    ): void;
 }

@@ -43,10 +43,10 @@ class TransactionLogger implements TransactionLoggerInterface
      * @return void
      */
     public function logTransaction(
-        $transactionType,
+        string $transactionType,
         HeidelpayRequestTransfer $requestTransfer,
         HeidelpayResponseTransfer $responseTransfer
-    ) {
+    ): void {
         $transactionLog = new SpyPaymentHeidelpayTransactionLog();
         $this->addEncryptedRequestResponsePayload($transactionLog, $requestTransfer, $responseTransfer);
 
@@ -71,7 +71,7 @@ class TransactionLogger implements TransactionLoggerInterface
         SpyPaymentHeidelpayTransactionLog $transactionLog,
         HeidelpayRequestTransfer $requestTransfer,
         HeidelpayResponseTransfer $responseTransfer
-    ) {
+    ): void {
         $encryptedRequestPayload = $this->encrypter
             ->encryptData($this->encodeRequestTransfer($requestTransfer));
         $encryptedResponsePayload = $this->encrypter
@@ -87,7 +87,7 @@ class TransactionLogger implements TransactionLoggerInterface
      *
      * @return string
      */
-    protected function encodeRequestTransfer(HeidelpayRequestTransfer $requestTransfer)
+    protected function encodeRequestTransfer(HeidelpayRequestTransfer $requestTransfer): string
     {
         return $this->utilEncoding->encodeJson($requestTransfer->toArray());
     }

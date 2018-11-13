@@ -21,13 +21,15 @@ use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
 class CapturePlugin extends AbstractPlugin implements CommandByOrderInterface
 {
     /**
+     * @api
+     *
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
      * @param \Spryker\Zed\Oms\Business\Util\ReadOnlyArrayObject $data
      *
      * @return array
      */
-    public function run(array $orderItems, SpySalesOrder $orderEntity, ReadOnlyArrayObject $data)
+    public function run(array $orderItems, SpySalesOrder $orderEntity, ReadOnlyArrayObject $data): array
     {
         $orderTransfer = $this->getOrderWithPaymentTransfer($orderEntity->getIdSalesOrder());
         $this->getFacade()->capturePayment($orderTransfer);
@@ -40,7 +42,7 @@ class CapturePlugin extends AbstractPlugin implements CommandByOrderInterface
      *
      * @return \Generated\Shared\Transfer\OrderTransfer
      */
-    protected function getOrderWithPaymentTransfer($idSalesOrder)
+    protected function getOrderWithPaymentTransfer($idSalesOrder): OrderTransfer
     {
         $orderTransfer = $this->getFactory()
             ->getSalesFacade()
@@ -56,7 +58,7 @@ class CapturePlugin extends AbstractPlugin implements CommandByOrderInterface
      *
      * @return \Generated\Shared\Transfer\OrderTransfer
      */
-    protected function hydrateHeidelpayPayment(OrderTransfer $orderTransfer)
+    protected function hydrateHeidelpayPayment(OrderTransfer $orderTransfer): OrderTransfer
     {
         $paymentTransfer = $this->getFacade()->getPaymentByIdSalesOrder($orderTransfer->getIdSalesOrder());
         $orderTransfer->setHeidelpayPayment($paymentTransfer);

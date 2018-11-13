@@ -67,7 +67,7 @@ class ExternalResponseBuilder
      *
      * @return array
      */
-    public function createHeidelpayResponse($paymentMethod)
+    public function createHeidelpayResponse(string $paymentMethod): array
     {
         $customerJohnDoe = $this->createOrGetCustomerJohnDoe();
         $billingAddressJohnDoe = $shippingAddressJohnDoe = $this->createOrderAddressJohnDoe();
@@ -117,7 +117,7 @@ class ExternalResponseBuilder
      *
      * @return string $brand
      */
-    protected function getPaymentBrand($paymentMethod)
+    protected function getPaymentBrand(string $paymentMethod): string
     {
         $paymentMethodName = $this->getPaymentMethod($paymentMethod);
         $className = $this->getClassName($paymentMethodName);
@@ -137,7 +137,7 @@ class ExternalResponseBuilder
      *
      * @return string
      */
-    protected function getPaymentMethod($paymentMethod)
+    protected function getPaymentMethod(string $paymentMethod): string
     {
         return mb_strtolower(preg_replace('~' . HeidelpayConfig::PROVIDER_NAME . '~', '', $paymentMethod));
     }
@@ -147,7 +147,7 @@ class ExternalResponseBuilder
      *
      * @return string
      */
-    protected function getClassName($paymentMethodName)
+    protected function getClassName(string $paymentMethodName): string
     {
         $className = $paymentMethodName . self::PAYMENT_METHOD_CLASS_NAME;
         return ucfirst($className);
@@ -156,7 +156,7 @@ class ExternalResponseBuilder
     /**
      * @return string|null
      */
-    protected function getProcessingResult()
+    protected function getProcessingResult(): ?string
     {
         return HeidelpayTestConstants::HEIDELPAY_SUCCESS_RESPONSE;
     }
@@ -166,7 +166,7 @@ class ExternalResponseBuilder
      *
      * @return int
      */
-    protected function getTransationId(SpySalesOrder $orderEntity)
+    protected function getTransationId(SpySalesOrder $orderEntity): int
     {
         return $orderEntity->getIdSalesOrder();
     }
@@ -177,7 +177,7 @@ class ExternalResponseBuilder
      *
      * @return string
      */
-    protected function getCriterionSecret($identificationTransactionId, $secret)
+    protected function getCriterionSecret(int $identificationTransactionId, string $secret): string
     {
         return hash(self::SHA_512_ENCODE_ALGO, $identificationTransactionId . $secret);
     }

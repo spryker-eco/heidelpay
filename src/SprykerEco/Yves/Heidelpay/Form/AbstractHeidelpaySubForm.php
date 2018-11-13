@@ -18,19 +18,19 @@ class AbstractHeidelpaySubForm extends AbstractSubFormType implements SubFormInt
     /**
      * @const string
      */
-    const PAYMENT_PROVIDER = HeidelpayConfig::PROVIDER_NAME;
+    public const PAYMENT_PROVIDER = HeidelpayConfig::PROVIDER_NAME;
 
     /**
      * @const string
      */
-    const PAYMENT_METHOD = '';
+    public const PAYMENT_METHOD = '';
 
     /**
      * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      *
      * @return void
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => HeidelpayPaymentTransfer::class,
@@ -44,7 +44,7 @@ class AbstractHeidelpaySubForm extends AbstractSubFormType implements SubFormInt
      *
      * @return string
      */
-    public function getPropertyPath()
+    public function getPropertyPath(): string
     {
         return static::PAYMENT_METHOD;
     }
@@ -55,7 +55,7 @@ class AbstractHeidelpaySubForm extends AbstractSubFormType implements SubFormInt
      *
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return static::PAYMENT_METHOD;
     }
@@ -65,7 +65,7 @@ class AbstractHeidelpaySubForm extends AbstractSubFormType implements SubFormInt
      *
      * @return string
      */
-    public function getTemplatePath()
+    public function getTemplatePath(): string
     {
         return static::PAYMENT_PROVIDER . '/' . static::PAYMENT_METHOD;
     }

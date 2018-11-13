@@ -18,7 +18,7 @@ class CreditCardBuilder
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration
      */
-    public function createCreditCard(QuoteTransfer $quoteTransfer)
+    public function createCreditCard(QuoteTransfer $quoteTransfer): SpyPaymentHeidelpayCreditCardRegistration
     {
         $cardRegistrationEntity = new SpyPaymentHeidelpayCreditCardRegistration();
         $cardRegistrationEntity
@@ -39,7 +39,7 @@ class CreditCardBuilder
      *
      * @return string
      */
-    protected function getAccountHolder(QuoteTransfer $qouteTransfer)
+    protected function getAccountHolder(QuoteTransfer $qouteTransfer): string
     {
         return vsprintf(
             "%s %s",

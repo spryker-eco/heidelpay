@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Request;
 
+use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 
 interface AdapterRequestFromQuoteBuilderInterface
@@ -16,5 +17,5 @@ interface AdapterRequestFromQuoteBuilderInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    public function buildCreditCardRegistrationRequest(QuoteTransfer $quoteTransfer);
+    public function buildCreditCardRegistrationRequest(QuoteTransfer $quoteTransfer): HeidelpayRequestTransfer;
 }

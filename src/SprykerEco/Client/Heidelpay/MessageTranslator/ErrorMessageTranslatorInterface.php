@@ -18,5 +18,5 @@ interface ErrorMessageTranslatorInterface
      *
      * @return string
      */
-    public function getTranslatedErrorMessageByCode($errorCode, $locale);
+    public function getTranslatedErrorMessageByCode($errorCode, $locale): string;
 }

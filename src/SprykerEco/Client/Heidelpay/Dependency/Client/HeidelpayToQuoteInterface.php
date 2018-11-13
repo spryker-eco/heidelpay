@@ -7,10 +7,12 @@
 
 namespace SprykerEco\Client\Heidelpay\Dependency\Client;
 
+use Generated\Shared\Transfer\QuoteTransfer;
+
 interface HeidelpayToQuoteInterface
 {
     /**
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function getQuote();
+    public function getQuote(): QuoteTransfer;
 }

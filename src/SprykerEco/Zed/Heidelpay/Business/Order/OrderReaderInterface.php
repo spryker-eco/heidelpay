@@ -14,5 +14,5 @@ interface OrderReaderInterface
      *
      * @return int
      */
-    public function getOrderIdByReference($orderReference);
+    public function getOrderIdByReference(string $orderReference): int;
 }

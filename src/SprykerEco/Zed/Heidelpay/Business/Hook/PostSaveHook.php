@@ -1,4 +1,5 @@
 <?php
+
 /**
  * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
@@ -29,7 +30,7 @@ class PostSaveHook implements PostSaveHookInterface
      *
      * @return \Generated\Shared\Transfer\CheckoutResponseTransfer
      */
-    public function execute(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer)
+    public function execute(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer): CheckoutResponseTransfer
     {
         $paymentMethodCode = $quoteTransfer->getPayment()->getPaymentMethod();
 
@@ -44,9 +45,9 @@ class PostSaveHook implements PostSaveHookInterface
     /**
      * @param string $paymentMethod
      *
-     * @return boolean
+     * @return bool
      */
-    protected function hasPaymentMethodPostSaveOrderProcessing($paymentMethod)
+    protected function hasPaymentMethodPostSaveOrderProcessing(string $paymentMethod): bool
     {
         return isset($this->paymentMethodsWithPostSaveOrderProcessing[$paymentMethod]);
     }

@@ -11,5 +11,5 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 
 class PaypalAuthorizeSubForm extends AbstractHeidelpaySubForm
 {
-    const PAYMENT_METHOD = HeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE;
+    public const PAYMENT_METHOD = HeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE;
 }

@@ -31,7 +31,7 @@ class RegistrationWriter implements RegistrationWriterInterface
      *
      * @return void
      */
-    public function updateRegistrationWithAddressIdFromQuote(QuoteTransfer $quoteTransfer)
+    public function updateRegistrationWithAddressIdFromQuote(QuoteTransfer $quoteTransfer): void
     {
         $registrationEntity = $this->findRegistrationFromQuote($quoteTransfer);
 
@@ -49,7 +49,7 @@ class RegistrationWriter implements RegistrationWriterInterface
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration
      */
-    protected function fetchRegistrationFromQuote(QuoteTransfer $quoteTransfer)
+    protected function fetchRegistrationFromQuote(QuoteTransfer $quoteTransfer): SpyPaymentHeidelpayCreditCardRegistration
     {
         $registrationEntity = new SpyPaymentHeidelpayCreditCardRegistration();
         $this->fillRegistrationEntityFromQuoteTransfer($quoteTransfer, $registrationEntity);
@@ -60,9 +60,9 @@ class RegistrationWriter implements RegistrationWriterInterface
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration|null
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration
      */
-    protected function findRegistrationFromQuote(QuoteTransfer $quoteTransfer)
+    protected function findRegistrationFromQuote(QuoteTransfer $quoteTransfer): SpyPaymentHeidelpayCreditCardRegistration
     {
         $registrationHash = $quoteTransfer
             ->getPayment()
@@ -88,7 +88,7 @@ class RegistrationWriter implements RegistrationWriterInterface
     protected function fillRegistrationEntityFromQuoteTransfer(
         QuoteTransfer $quoteTransfer,
         SpyPaymentHeidelpayCreditCardRegistration $registrationEntity
-    ) {
+    ): void {
         $creditCardPayment = $quoteTransfer
             ->getPayment()
             ->getHeidelpayCreditCardSecure()
@@ -109,9 +109,9 @@ class RegistrationWriter implements RegistrationWriterInterface
     /**
      * @param \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration $registrationEntity
      *
-     * @return boolean
+     * @return bool
      */
-    protected function isRegistrationExists(SpyPaymentHeidelpayCreditCardRegistration $registrationEntity)
+    protected function isRegistrationExists(SpyPaymentHeidelpayCreditCardRegistration $registrationEntity): bool
     {
         return $this->heidelpayQueryContainer
             ->queryCreditCardRegistrationByRegistrationNumber(

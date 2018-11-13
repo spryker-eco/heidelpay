@@ -7,6 +7,8 @@
 
 namespace SprykerEco\Zed\Heidelpay\Dependency\QueryContainer;
 
+use Orm\Zed\Sales\Persistence\SpySalesOrder;
+
 interface HeidelpayToSalesQueryContainerInterface
 {
     /**
@@ -14,5 +16,5 @@ interface HeidelpayToSalesQueryContainerInterface
      *
      * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
      */
-    public function getOrderByReference($orderReference);
+    public function getOrderByReference(string $orderReference): SpySalesOrder;
 }

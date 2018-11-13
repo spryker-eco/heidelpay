@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Yves\Heidelpay\Handler;
 
+use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Client\Calculation\CalculationClientInterface;
 use Spryker\Client\Quote\QuoteClientInterface;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
@@ -14,8 +15,8 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 
 class HeidelpayCreditCardHandler extends HeidelpayHandler
 {
-    const PAYMENT_PROVIDER = HeidelpayConfig::PROVIDER_NAME;
-    const CHECKOUT_PARTIAL_SUMMARY_PATH = 'Heidelpay/partial/summary';
+    public const PAYMENT_PROVIDER = HeidelpayConfig::PROVIDER_NAME;
+    public const CHECKOUT_PARTIAL_SUMMARY_PATH = 'Heidelpay/partial/summary';
 
     /**
      * @var \Spryker\Client\Calculation\CalculationClientInterface
@@ -50,11 +51,11 @@ class HeidelpayCreditCardHandler extends HeidelpayHandler
     }
 
     /**
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer|\Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return \Spryker\Shared\Kernel\Transfer\AbstractTransfer
+     * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function addPaymentToQuote(AbstractTransfer $quoteTransfer)
+    public function addPaymentToQuote(AbstractTransfer $quoteTransfer): QuoteTransfer
     {
         $quoteTransfer = parent::addPaymentToQuote($quoteTransfer);
         $this->addCurrentRegistrationToQuote($quoteTransfer);
@@ -64,11 +65,11 @@ class HeidelpayCreditCardHandler extends HeidelpayHandler
     }
 
     /**
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer|\Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return void
      */
-    protected function addCurrentRegistrationToQuote(AbstractTransfer $quoteTransfer)
+    protected function addCurrentRegistrationToQuote(AbstractTransfer $quoteTransfer): void
     {
         $creditCardPayment = $quoteTransfer->getPayment()->getHeidelpayCreditCardSecure();
         $paymentOption = $creditCardPayment->getSelectedPaymentOption();

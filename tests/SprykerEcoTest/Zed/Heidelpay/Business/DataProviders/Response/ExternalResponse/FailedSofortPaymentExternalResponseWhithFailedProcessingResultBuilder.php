@@ -14,7 +14,7 @@ class FailedSofortPaymentExternalResponseWhithFailedProcessingResultBuilder exte
     /**
      * @return string|null
      */
-    protected function getProcessingResult()
+    protected function getProcessingResult(): ?string
     {
         return null;
     }

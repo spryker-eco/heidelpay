@@ -7,6 +7,8 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment;
 
+use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
+
 interface PaymentReaderInterface
 {
     /**
@@ -14,5 +16,12 @@ interface PaymentReaderInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentTransfer
      */
-    public function getPaymentByIdSalesOrder($idSalesOrder);
+    public function getPaymentByIdSalesOrder(int $idSalesOrder): HeidelpayPaymentTransfer;
+
+    /**
+     * @param int $idSalesOrder
+     *
+     * @return string|null
+     */
+    public function getIdBasketByIdSalesOrder(int $idSalesOrder): ?string;
 }

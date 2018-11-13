@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter;
 
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 
 interface TransactionParserInterface
@@ -16,5 +17,5 @@ interface TransactionParserInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function getHeidelpayResponseTransfer(HeidelpayTransactionLogTransfer $transactionLogTransfer);
+    public function getHeidelpayResponseTransfer(HeidelpayTransactionLogTransfer $transactionLogTransfer): HeidelpayResponseTransfer;
 }

@@ -7,6 +7,8 @@
 
 namespace SprykerEco\Zed\Heidelpay\Dependency\Facade;
 
+use Generated\Shared\Transfer\OrderTransfer;
+
 interface HeidelpayToSalesInterface
 {
     /**
@@ -14,5 +16,5 @@ interface HeidelpayToSalesInterface
      *
      * @return \Generated\Shared\Transfer\OrderTransfer
      */
-    public function getOrderByIdSalesOrder($idSalesOrder);
+    public function getOrderByIdSalesOrder(int $idSalesOrder): OrderTransfer;
 }

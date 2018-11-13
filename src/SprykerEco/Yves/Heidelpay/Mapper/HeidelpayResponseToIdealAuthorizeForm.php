@@ -17,7 +17,7 @@ class HeidelpayResponseToIdealAuthorizeForm implements HeidelpayResponseToIdealA
      *
      * @return void
      */
-    public function map(HeidelpayResponseTransfer $responseTransfer, HeidelpayIdealAuthorizeFormTransfer $idealAuthoriseFormTransfer)
+    public function map(HeidelpayResponseTransfer $responseTransfer, HeidelpayIdealAuthorizeFormTransfer $idealAuthoriseFormTransfer): void
     {
         $idealAuthoriseFormTransfer
             ->setActionUrl(

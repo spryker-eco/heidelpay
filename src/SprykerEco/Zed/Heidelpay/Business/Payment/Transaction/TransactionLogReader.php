@@ -60,7 +60,7 @@ class TransactionLogReader implements TransactionLogReaderInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
      */
-    public function findOrderDebitTransactionLog($idSalesOrder)
+    public function findOrderDebitTransactionLog(int $idSalesOrder): ?HeidelpayTransactionLogTransfer
     {
         $spyTransactionLog = $this->findOrderDebitTransactionEntity($idSalesOrder);
 
@@ -74,9 +74,9 @@ class TransactionLogReader implements TransactionLogReaderInterface
     /**
      * @param int $idSalesOrder
      *
-     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
      */
-    public function findOrderAuthorizeTransactionLogByIdSalesOrder($idSalesOrder)
+    public function findOrderAuthorizeTransactionLogByIdSalesOrder(int $idSalesOrder): HeidelpayTransactionLogTransfer
     {
         $spyTransactionLog = $this->findOrderAuthorizeTransactionEntity($idSalesOrder);
 
@@ -90,9 +90,9 @@ class TransactionLogReader implements TransactionLogReaderInterface
     /**
      * @param string $orderReference
      *
-     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
      */
-    public function findOrderAuthorizeTransactionLogByOrderReference($orderReference)
+    public function findOrderAuthorizeTransactionLogByOrderReference(string $orderReference): HeidelpayTransactionLogTransfer
     {
         $idSalesOrder = $this->orderReader->getOrderIdByReference($orderReference);
 
@@ -102,9 +102,9 @@ class TransactionLogReader implements TransactionLogReaderInterface
     /**
      * @param int $idSalesOrder
      *
-     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog|null
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog
      */
-    protected function findOrderAuthorizeTransactionEntity($idSalesOrder)
+    protected function findOrderAuthorizeTransactionEntity(int $idSalesOrder): SpyPaymentHeidelpayTransactionLog
     {
         $transactionLogEntity = $this
             ->queryContainer
@@ -120,9 +120,9 @@ class TransactionLogReader implements TransactionLogReaderInterface
     /**
      * @param int $idSalesOrder
      *
-     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog|null
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog
      */
-    protected function findOrderDebitTransactionEntity($idSalesOrder)
+    protected function findOrderDebitTransactionEntity(int $idSalesOrder): SpyPaymentHeidelpayTransactionLog
     {
         $transactionLogEntity = $this
             ->queryContainer
@@ -140,7 +140,7 @@ class TransactionLogReader implements TransactionLogReaderInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
      */
-    protected function buildTransactionTransfer(SpyPaymentHeidelpayTransactionLog $transactionLogEntry)
+    protected function buildTransactionTransfer(SpyPaymentHeidelpayTransactionLog $transactionLogEntry): HeidelpayTransactionLogTransfer
     {
         $responsePayload = $this->prepareResponsePayload($transactionLogEntry);
 
@@ -156,7 +156,7 @@ class TransactionLogReader implements TransactionLogReaderInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
      */
-    protected function hydrateHeidelpayPayloadTransfer($transactionLogTransfer)
+    protected function hydrateHeidelpayPayloadTransfer(HeidelpayTransactionLogTransfer $transactionLogTransfer): HeidelpayTransactionLogTransfer
     {
         $payloadTransfer = $this->transactionAdapter->getHeidelpayResponseTransfer($transactionLogTransfer);
         $transactionLogTransfer->setHeidelpayResponse($payloadTransfer);
@@ -169,7 +169,7 @@ class TransactionLogReader implements TransactionLogReaderInterface
      *
      * @return string
      */
-    protected function prepareResponsePayload(SpyPaymentHeidelpayTransactionLog $transactionLogEntry)
+    protected function prepareResponsePayload(SpyPaymentHeidelpayTransactionLog $transactionLogEntry): string
     {
         $responsePayload = $transactionLogEntry->getResponsePayload();
         if ($responsePayload !== null) {

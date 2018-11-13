@@ -29,7 +29,7 @@ class OrderReader implements OrderReaderInterface
      *
      * @return int
      */
-    public function getOrderIdByReference($orderReference)
+    public function getOrderIdByReference(string $orderReference): int
     {
         $orderEntity = $this->salesQueryContainer->getOrderByReference($orderReference);
 

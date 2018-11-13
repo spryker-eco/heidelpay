@@ -17,5 +17,5 @@ interface ResponsePayloadToApiResponseInterface
      *
      * @return void
      */
-    public function map($transactionPayload, Response $heidelpayResponse);
+    public function map($transactionPayload, Response $heidelpayResponse): void;
 }

@@ -40,7 +40,7 @@ class AdapterRequestFromQuoteBuilder extends BaseAdapterRequestBuilder implement
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    public function buildCreditCardRegistrationRequest(QuoteTransfer $quoteTransfer)
+    public function buildCreditCardRegistrationRequest(QuoteTransfer $quoteTransfer): HeidelpayRequestTransfer
     {
         $registrationRequestTransfer = $this->buildBaseQuoteHeidelpayRequest($quoteTransfer);
         $this->setCreditCardTransactionChannel($registrationRequestTransfer);
@@ -54,7 +54,7 @@ class AdapterRequestFromQuoteBuilder extends BaseAdapterRequestBuilder implement
      *
      * @return void
      */
-    protected function setCreditCardTransactionChannel(HeidelpayRequestTransfer $heidelpayRequestTransfer)
+    protected function setCreditCardTransactionChannel(HeidelpayRequestTransfer $heidelpayRequestTransfer): void
     {
         $paymentMethod = SharedHeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE;
         $this->hydrateTransactionChannel($heidelpayRequestTransfer, $paymentMethod);
@@ -65,7 +65,7 @@ class AdapterRequestFromQuoteBuilder extends BaseAdapterRequestBuilder implement
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    protected function buildBaseQuoteHeidelpayRequest(QuoteTransfer $quoteTransfer)
+    protected function buildBaseQuoteHeidelpayRequest(QuoteTransfer $quoteTransfer): HeidelpayRequestTransfer
     {
         $requestTransfer = new HeidelpayRequestTransfer();
 
@@ -85,7 +85,7 @@ class AdapterRequestFromQuoteBuilder extends BaseAdapterRequestBuilder implement
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    protected function hydrateQuote(HeidelpayRequestTransfer $heidelpayRequestTransfer, QuoteTransfer $quoteTransfer)
+    protected function hydrateQuote(HeidelpayRequestTransfer $heidelpayRequestTransfer, QuoteTransfer $quoteTransfer): HeidelpayRequestTransfer
     {
         $this->quoteToHeidelpayMapper->map($quoteTransfer, $heidelpayRequestTransfer);
 
@@ -97,7 +97,7 @@ class AdapterRequestFromQuoteBuilder extends BaseAdapterRequestBuilder implement
      *
      * @return void
      */
-    protected function setYvesUrlForAsyncIframeResponse(HeidelpayRequestTransfer $requestTransfer)
+    protected function setYvesUrlForAsyncIframeResponse(HeidelpayRequestTransfer $requestTransfer): void
     {
         $requestTransfer->getAsync()->setResponseUrl(
             $this->config->getYvesUrlForAsyncIframeResponse()

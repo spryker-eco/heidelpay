@@ -21,7 +21,7 @@ trait DebitTransactionTrait
      *
      * @return void
      */
-    public function createSuccessfulDebitTransactionForOrder(SpySalesOrder $orderEntity)
+    public function createSuccessfulDebitTransactionForOrder(SpySalesOrder $orderEntity): void
     {
         $debitTransaction = new SpyPaymentHeidelpayTransactionLog();
         $debitTransaction

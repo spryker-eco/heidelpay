@@ -18,5 +18,5 @@ interface PaymentWithPreSavePaymentInterface
      *
      * @return void
      */
-    public function addDataToPayment(SpyPaymentHeidelpay $paymentEntity, QuoteTransfer $quoteTransfer);
+    public function addDataToPayment(SpyPaymentHeidelpay $paymentEntity, QuoteTransfer $quoteTransfer): void;
 }

@@ -16,7 +16,7 @@ use SprykerEco\Client\Heidelpay\Mapper\ApiResponseToRegistrationResponseTransfer
 
 class CreditCardRegistrationResponseParser implements CreditCardRegistrationResponseParserInterface
 {
-    const ERROR_CODE_INVALID_RESPONSE = 'invalid-response';
+    public const ERROR_CODE_INVALID_RESPONSE = 'invalid-response';
 
     /**
      * @var \SprykerEco\Client\Heidelpay\HeidelpayConfig
@@ -45,7 +45,7 @@ class CreditCardRegistrationResponseParser implements CreditCardRegistrationResp
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer
      */
-    public function parseExternalResponse(array $responseArray)
+    public function parseExternalResponse(array $responseArray): HeidelpayRegistrationRequestTransfer
     {
         $registrationRequestTransfer = new HeidelpayRegistrationRequestTransfer();
 
@@ -64,7 +64,7 @@ class CreditCardRegistrationResponseParser implements CreditCardRegistrationResp
      *
      * @return \Heidelpay\PhpPaymentApi\Response
      */
-    protected function getValidatedApiResponseObject(array $apiResponseArray)
+    protected function getValidatedApiResponseObject(array $apiResponseArray): Response
     {
         $apiResponse = new Response($apiResponseArray);
 
@@ -81,7 +81,7 @@ class CreditCardRegistrationResponseParser implements CreditCardRegistrationResp
      *
      * @return void
      */
-    protected function hydrateValidationErrorToRequest(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer)
+    protected function hydrateValidationErrorToRequest(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer): void
     {
         $errorTransfer = new HeidelpayResponseErrorTransfer();
         $errorTransfer->setCode(static::ERROR_CODE_INVALID_RESPONSE);
@@ -93,7 +93,7 @@ class CreditCardRegistrationResponseParser implements CreditCardRegistrationResp
     /**
      * @return string
      */
-    protected function getApplicationSecret()
+    protected function getApplicationSecret(): string
     {
         return $this->config->getApplicationSecret();
     }
@@ -107,7 +107,7 @@ class CreditCardRegistrationResponseParser implements CreditCardRegistrationResp
     protected function hydrateResponseToTransfer(
         Response $apiResponseObject,
         HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
-    ) {
+    ): void {
         $this->apiResponseToRegistrationResponseMapper
             ->map(
                 $apiResponseObject,

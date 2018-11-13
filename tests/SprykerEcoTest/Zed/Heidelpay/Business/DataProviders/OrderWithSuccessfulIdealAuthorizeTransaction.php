@@ -41,7 +41,7 @@ class OrderWithSuccessfulIdealAuthorizeTransaction
     /**
      * @return array
      */
-    public function createOrderWithIdealAuthorizeTransaction()
+    public function createOrderWithIdealAuthorizeTransaction(): array
     {
         $customerJohnDoe = $this->createOrGetCustomerJohnDoe();
         $billingAddressJohnDoe = $shippingAddressJohnDoe = $this->createOrderAddressJohnDoe();
@@ -66,7 +66,7 @@ class OrderWithSuccessfulIdealAuthorizeTransaction
      *
      * @return \Generated\Shared\Transfer\PaymentTransfer
      */
-    protected function buildPaymentTransfer(SpySalesOrder $orderEntity)
+    protected function buildPaymentTransfer(SpySalesOrder $orderEntity): PaymentTransfer
     {
         $heidelpayPaymentTransfer = new HeidelpayPaymentTransfer();
 
@@ -88,7 +88,7 @@ class OrderWithSuccessfulIdealAuthorizeTransaction
      */
     private function createQuoteTransferWithIdealAuthorizePayment(
         SpySalesOrder $orderEntity
-    ) {
+    ): QuoteTransfer {
         $paymentTransfer = $this->buildPaymentTransfer($orderEntity);
         $customerTransfer = $this->createCustomerJohnDoeGuestTransfer();
 
@@ -105,7 +105,7 @@ class OrderWithSuccessfulIdealAuthorizeTransaction
      *
      * @return \Generated\Shared\Transfer\CheckoutResponseTransfer
      */
-    protected function createCheckoutResponseFromOrder(SpySalesOrder $orderEntity)
+    protected function createCheckoutResponseFromOrder(SpySalesOrder $orderEntity): CheckoutResponseTransfer
     {
         $checkoutResponseTransfer = new CheckoutResponseTransfer();
         $saveOrderTransfer = new SaveOrderTransfer();
@@ -133,7 +133,7 @@ class OrderWithSuccessfulIdealAuthorizeTransaction
      *
      * @return void
      */
-    protected function createTransaction($orderEntity)
+    protected function createTransaction(SpySalesOrder $orderEntity): void
     {
         $this->createSuccessfulAuthorizeTransactionForOrder($orderEntity);
     }

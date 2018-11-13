@@ -16,5 +16,5 @@ interface AuthorizeTransactionHandlerInterface
      *
      * @return void
      */
-    public function authorize(OrderTransfer $orderTransfer);
+    public function authorize(OrderTransfer $orderTransfer): void;
 }

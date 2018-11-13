@@ -18,5 +18,5 @@ interface ResponseFromHeidelpayInterface
      *
      * @return void
      */
-    public function map(Response $apiResponse, HeidelpayResponseTransfer $responseTransfer);
+    public function map(Response $apiResponse, HeidelpayResponseTransfer $responseTransfer): void;
 }

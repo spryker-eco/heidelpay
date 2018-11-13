@@ -22,7 +22,7 @@ trait AuthorizeTransactionTrait
      *
      * @return void
      */
-    public function createSuccessfulAuthorizeTransactionForOrder(SpySalesOrder $orderEntity)
+    public function createSuccessfulAuthorizeTransactionForOrder(SpySalesOrder $orderEntity): void
     {
         $authorizeTransaction = new SpyPaymentHeidelpayTransactionLog();
         $authorizeTransaction
@@ -53,7 +53,7 @@ trait AuthorizeTransactionTrait
      *
      * @return void
      */
-    public function createUnsuccessfulAuthorizeTransactionForOrder(SpySalesOrder $orderEntity)
+    public function createUnsuccessfulAuthorizeTransactionForOrder(SpySalesOrder $orderEntity): void
     {
         $authorizeTransaction = new SpyPaymentHeidelpayTransactionLog();
         $authorizeTransaction
@@ -88,7 +88,7 @@ trait AuthorizeTransactionTrait
      *
      * @return string
      */
-    protected function prepareJsonString($jsonString)
+    protected function prepareJsonString($jsonString): string
     {
         return preg_replace("~[\n \t]+~", '', $jsonString);
     }

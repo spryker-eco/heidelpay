@@ -7,26 +7,29 @@
 
 namespace SprykerEco\Client\Heidelpay\Zed;
 
+use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
+use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 
 interface HeidelpayStubInterface
 {
     /**
-     * @param int $idSalesOrder
+     * @param string $idSalesOrder
      *
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
      */
-    public function getAuthorizeTransactionLogByOrderReference($idSalesOrder);
+    public function getAuthorizeTransactionLogByOrderReference(string $idSalesOrder): HeidelpayTransactionLogTransfer;
 
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer
      */
-    public function getCreditCardPaymentOptions(QuoteTransfer $quoteTransfer);
+    public function getCreditCardPaymentOptions(QuoteTransfer $quoteTransfer): HeidelpayCreditCardPaymentOptionsTransfer;
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer
@@ -44,7 +47,7 @@ interface HeidelpayStubInterface
      */
     public function findCreditCardRegistrationByIdAndQuote(
         HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
-    );
+    ): ?HeidelpayCreditCardRegistrationTransfer;
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer

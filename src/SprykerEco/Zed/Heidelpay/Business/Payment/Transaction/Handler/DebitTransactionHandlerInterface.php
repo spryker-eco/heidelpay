@@ -16,5 +16,5 @@ interface DebitTransactionHandlerInterface
      *
      * @return void
      */
-    public function debit(OrderTransfer $orderTransfer);
+    public function debit(OrderTransfer $orderTransfer): void;
 }
