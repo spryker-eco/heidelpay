@@ -70,7 +70,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
     ): void {
         $quoteTransfer = $this->createCreditCardPaymentQuote();
 
-        $this->heidelpayFacade->saveOrderPayment($quoteTransfer, $checkoutResponseTransfer);
+        $this->heidelpayFacade->saveOrderPayment($quoteTransfer, $checkoutResponseTransfer->getSaveOrder());
 
         $heidelpayOrderItems = $checkoutResponseTransfer
             ->getSaveOrder()
@@ -137,7 +137,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
     ): void {
         $quoteTransfer = $this->createSofortPaymentQuote();
 
-        $this->heidelpayFacade->saveOrderPayment($quoteTransfer, $checkoutResponseTransfer);
+        $this->heidelpayFacade->saveOrderPayment($quoteTransfer, $checkoutResponseTransfer->getSaveOrder());
 
         $heidelpayOrderItems = $checkoutResponseTransfer
             ->getSaveOrder()
