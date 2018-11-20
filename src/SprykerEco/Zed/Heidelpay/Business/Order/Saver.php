@@ -7,17 +7,17 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Order;
 
-use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\ItemTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
+use Generated\Shared\Transfer\SaveOrderTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayOrderItem;
-use Spryker\Zed\PropelOrm\Business\Transaction\DatabaseTransactionHandlerTrait;
+use Spryker\Zed\Kernel\Persistence\EntityManager\TransactionTrait;
 use SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreatorInterface;
 
 class Saver implements SaverInterface
 {
-    use DatabaseTransactionHandlerTrait;
+    use TransactionTrait;
 
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreatorInterface
@@ -41,36 +41,36 @@ class Saver implements SaverInterface
 
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
+     * @param \Generated\Shared\Transfer\SaveOrderTransfer $saveOrderTransfer
      *
      * @return void
      */
-    public function saveOrderPayment(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer): void
+    public function saveOrderPayment(QuoteTransfer $quoteTransfer, SaveOrderTransfer $saveOrderTransfer): void
     {
-        $this->handleDatabaseTransaction(function () use ($quoteTransfer, $checkoutResponseTransfer) {
-            $this->executeSavePaymentForOrderAndItemsTransaction($quoteTransfer, $checkoutResponseTransfer);
+        $this->getTransactionHandler()->handleTransaction(function () use ($quoteTransfer, $saveOrderTransfer) {
+            $this->executeSavePaymentForOrderAndItemsTransaction($quoteTransfer, $saveOrderTransfer);
         });
     }
 
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
+     * @param \Generated\Shared\Transfer\SaveOrderTransfer $saveOrderTransfer
      *
      * @return void
      */
     protected function executeSavePaymentForOrderAndItemsTransaction(
         QuoteTransfer $quoteTransfer,
-        CheckoutResponseTransfer $checkoutResponseTransfer
+        SaveOrderTransfer $saveOrderTransfer
     ): void {
 
-        $paymentEntity = $this->buildPaymentEntity($quoteTransfer, $checkoutResponseTransfer);
+        $paymentEntity = $this->buildPaymentEntity($quoteTransfer, $saveOrderTransfer);
         $this->addBasketInformation($quoteTransfer, $paymentEntity);
 
         $paymentEntity->save();
 
         $idPayment = $paymentEntity->getIdPaymentHeidelpay();
 
-        foreach ($checkoutResponseTransfer->getSaveOrder()->getOrderItems() as $orderItem) {
+        foreach ($saveOrderTransfer->getOrderItems() as $orderItem) {
             $this->savePaymentForOrderItem($orderItem, $idPayment);
         }
     }
@@ -92,16 +92,16 @@ class Saver implements SaverInterface
 
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
+     * @param \Generated\Shared\Transfer\SaveOrderTransfer $saveOrderTransfer
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay
      */
-    protected function buildPaymentEntity(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer): SpyPaymentHeidelpay
+    protected function buildPaymentEntity(QuoteTransfer $quoteTransfer, SaveOrderTransfer $saveOrderTransfer): SpyPaymentHeidelpay
     {
         $paymentEntity = new SpyPaymentHeidelpay();
         $paymentEntity
             ->setPaymentMethod($quoteTransfer->getPayment()->getPaymentMethod())
-            ->setFkSalesOrder($checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder());
+            ->setFkSalesOrder($saveOrderTransfer->getIdSalesOrder());
 
         $this->hydratePaymentMethodSpecificDataToPayment($paymentEntity, $quoteTransfer);
 
