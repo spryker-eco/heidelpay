@@ -75,7 +75,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \SprykerEco\Client\Heidelpay\Mapper\ApiResponseToRegistrationResponseTransferInterface
      */
-    protected function createApiResponseToRegistrationResponseTransferMapper(): ApiResponseToRegistrationResponseTransferInterface
+    public function createApiResponseToRegistrationResponseTransferMapper(): ApiResponseToRegistrationResponseTransferInterface
     {
         return new ApiResponseToRegistrationRequestTransfer();
     }

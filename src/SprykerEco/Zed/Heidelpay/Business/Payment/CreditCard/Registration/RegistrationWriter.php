@@ -100,8 +100,8 @@ class RegistrationWriter implements RegistrationWriterInterface
             ->setAccountVerification($creditCardInfo->getAccountVerification())
             ->setAccountNumber($creditCardInfo->getAccountNumber())
             ->setAccountHolder($creditCardInfo->getAccountHolder())
-            ->setAccountExpiryYear($creditCardInfo->getAccountExpiryYear())
-            ->setAccountExpiryMonth($creditCardInfo->getAccountExpiryMonth())
+            ->setAccountExpiryYear((int)$creditCardInfo->getAccountExpiryYear())
+            ->setAccountExpiryMonth((int)$creditCardInfo->getAccountExpiryMonth())
             ->setAccountBrand($creditCardInfo->getAccountBrand())
             ->setRegistrationNumber($creditCardPayment->getRegistrationNumber());
     }

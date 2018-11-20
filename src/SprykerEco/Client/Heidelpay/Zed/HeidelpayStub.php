@@ -65,9 +65,8 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
-    public function processExternalPaymentResponse(
-        HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer
-    ): HeidelpayPaymentProcessingResponseTransfer {
+    public function processExternalPaymentResponse(HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer): HeidelpayPaymentProcessingResponseTransfer
+    {
         /** @var \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer $responseTransfer */
         $responseTransfer = $this->zedStub->call(
             static::ZED_GET_PROCESS_EXTERNAL_PAYMENT_RESPONSE,

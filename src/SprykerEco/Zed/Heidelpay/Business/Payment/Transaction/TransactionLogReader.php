@@ -74,9 +74,9 @@ class TransactionLogReader implements TransactionLogReaderInterface
     /**
      * @param int $idSalesOrder
      *
-     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
      */
-    public function findOrderAuthorizeTransactionLogByIdSalesOrder(int $idSalesOrder): HeidelpayTransactionLogTransfer
+    public function findOrderAuthorizeTransactionLogByIdSalesOrder(int $idSalesOrder): ?HeidelpayTransactionLogTransfer
     {
         $spyTransactionLog = $this->findOrderAuthorizeTransactionEntity($idSalesOrder);
 
@@ -102,9 +102,9 @@ class TransactionLogReader implements TransactionLogReaderInterface
     /**
      * @param int $idSalesOrder
      *
-     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog|null
      */
-    protected function findOrderAuthorizeTransactionEntity(int $idSalesOrder): SpyPaymentHeidelpayTransactionLog
+    protected function findOrderAuthorizeTransactionEntity(int $idSalesOrder): ?SpyPaymentHeidelpayTransactionLog
     {
         $transactionLogEntity = $this
             ->queryContainer
@@ -120,9 +120,9 @@ class TransactionLogReader implements TransactionLogReaderInterface
     /**
      * @param int $idSalesOrder
      *
-     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog|null
      */
-    protected function findOrderDebitTransactionEntity(int $idSalesOrder): SpyPaymentHeidelpayTransactionLog
+    protected function findOrderDebitTransactionEntity(int $idSalesOrder): ?SpyPaymentHeidelpayTransactionLog
     {
         $transactionLogEntity = $this
             ->queryContainer

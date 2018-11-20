@@ -50,9 +50,9 @@ class IsCaptureApprovedPlugin extends AbstractPlugin implements ConditionInterfa
     /**
      * @param int $idSalesOrder
      *
-     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog|null
      */
-    protected function getCaptureTransactionLogEntry(int $idSalesOrder): SpyPaymentHeidelpayTransactionLog
+    protected function getCaptureTransactionLogEntry(int $idSalesOrder): ?SpyPaymentHeidelpayTransactionLog
     {
         $transactionLogQuery = $this->getQueryContainer()->queryCaptureTransactionLog($idSalesOrder);
         return $transactionLogQuery->findOne();

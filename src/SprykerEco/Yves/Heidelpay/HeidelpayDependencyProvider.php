@@ -9,6 +9,8 @@ namespace SprykerEco\Yves\Heidelpay;
 
 use Spryker\Yves\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Yves\Kernel\Container;
+use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientBridge;
+use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientBridge;
 
 class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
 {
@@ -23,7 +25,10 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
      */
     public function provideDependencies(Container $container): Container
     {
-        $container = $this->provideClients($container);
+        $container = parent::provideDependencies($container);
+        $container = $this->addHeidelpayClient($container);
+        $container = $this->addQuoteClient($container);
+        $container = $this->addCalculationClient($container);
 
         return $container;
     }
@@ -33,18 +38,38 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
      *
      * @return \Spryker\Yves\Kernel\Container
      */
-    protected function provideClients(Container $container): Container
+    protected function addHeidelpayClient(Container $container): Container
     {
         $container[static::CLIENT_HEIDELPAY] = function (Container $container) {
             return $container->getLocator()->heidelpay()->client();
         };
 
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Yves\Kernel\Container $container
+     *
+     * @return \Spryker\Yves\Kernel\Container
+     */
+    protected function addQuoteClient(Container $container): Container
+    {
         $container[static::CLIENT_QUOTE] = function (Container $container) {
-            return $container->getLocator()->quote()->client();
+            return new HeidelpayToQuoteClientBridge($container->getLocator()->quote()->client());
         };
 
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Yves\Kernel\Container $container
+     *
+     * @return \Spryker\Yves\Kernel\Container
+     */
+    protected function addCalculationClient(Container $container): Container
+    {
         $container[static::CLIENT_CALCULATION] = function (Container $container) {
-            return $container->getLocator()->calculation()->client();
+            return new HeidelpayToCalculationClientBridge($container->getLocator()->calculation()->client());
         };
 
         return $container;

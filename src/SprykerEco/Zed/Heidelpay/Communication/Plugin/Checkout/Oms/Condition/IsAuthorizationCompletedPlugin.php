@@ -50,9 +50,9 @@ class IsAuthorizationCompletedPlugin extends AbstractPlugin implements Condition
     /**
      * @param int $idSalesOrder
      *
-     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog|null
      */
-    protected function getExternalTransactionLogEntry(int $idSalesOrder): SpyPaymentHeidelpayTransactionLog
+    protected function getExternalTransactionLogEntry(int $idSalesOrder): ?SpyPaymentHeidelpayTransactionLog
     {
         $transactionLogQuery = $this->getQueryContainer()->queryExternalResponseTransactionLog($idSalesOrder);
         return $transactionLogQuery->findOne();
