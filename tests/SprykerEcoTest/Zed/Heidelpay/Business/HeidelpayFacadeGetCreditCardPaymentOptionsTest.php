@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
@@ -36,7 +36,7 @@ use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusin
  */
 class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTest
 {
-    const CUSTOMER_ADDRESS_ID = 100000000;
+    public const CUSTOMER_ADDRESS_ID = 100000000;
     use QuoteMockTrait, CustomerAddressTrait, CustomerTrait;
 
     /**

@@ -2,14 +2,14 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
-use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\PaypalPayment;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\PaypalPayment;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentResponseTransferBuilderTrait;
 
 /**
