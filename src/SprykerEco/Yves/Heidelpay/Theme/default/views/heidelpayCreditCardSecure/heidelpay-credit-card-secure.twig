@@ -1,0 +1,49 @@
+{% extends model('template') %}
+
+{% define data = {
+    form: form,
+    parentFormId: parentFormId
+} %}
+
+{% block body %}
+    <div class="payment-method payment-subform heidelpay-form heidelpay-sofort-form payment-form" style="margin-left: 40px" id="heidelpaySofort">
+        <div class="heidelpay small-12 columns">
+            {{ 'payment.heidelpay.pay_with_credit_card' | trans }}
+            {{ form_errors(data.form.heidelpayCreditCardSecure) }}
+            <div class="small-12 columns">
+                <ul class="no-bullet">
+                    {% for paymentOption in data.form.heidelpayCreditCardSecure.selected_payment_option %}
+                        <li>
+                            <div class="row">
+                                {% include '@Heidelpay/credit-card/' ~ paymentOption.vars.value ~ '.twig' with
+                                    {
+                                        paymentOption: paymentOption,
+                                        paymentMethod: data.form.vars.value.payment.heidelpayCreditCardSecure
+                                    }
+                                %}
+                            </div>
+                        </li>
+                        {#<li>#}
+                            {#{% include molecule('registration-existing', 'Heidelpay') with {#}
+                                {#data: {#}
+                                    {#paymentOption: paymentOption,#}
+                                    {#paymentMethod: data.form.vars.value.payment.heidelpayCreditCardSecure,#}
+                                    {#parentFormId: data.parentFormId#}
+                                {#}#}
+                            {#} only %}#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#{% include molecule('registration-new', 'Heidelpay') with {#}
+                                {#data: {#}
+                                    {#paymentOption: paymentOption,#}
+                                    {#paymentMethod: data.form.vars.value.payment.heidelpayCreditCardSecure,#}
+                                    {#parentFormId: data.parentFormId#}
+                                {#}#}
+                            {#} only %}#}
+                        {#</li>#}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

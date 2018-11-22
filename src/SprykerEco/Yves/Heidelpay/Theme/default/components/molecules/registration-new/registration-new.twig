@@ -1,0 +1,24 @@
+{% extends model('component') %}
+
+{% define config = {
+    name: 'registration-new',
+    tag: 'registration-new'
+} %}
+
+{% define data = {
+    paymentOption: '',
+    paymentMethod: '',
+    parentFormId: data.parentFormId
+} %}
+
+{% define attributes = {
+    'parent-form-id': data.parentFormId
+} %}
+
+{% block body %}
+    {{ form_widget(data.paymentOption) }}
+    {{ form_label(data.paymentOption) }}
+    <div class="{{ config.name }}__option spacing-top">
+        <iframe id="{{ config.jsName }}" class="{{ config.name }}__iframe" src="{{ data.paymentMethod.paymentOptions.paymentFrameUrl }}"></iframe>
+    </div>
+{% endblock %}

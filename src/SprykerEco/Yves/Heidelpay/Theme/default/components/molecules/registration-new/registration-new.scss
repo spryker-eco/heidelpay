@@ -1,0 +1,11 @@
+@mixin heidelpay-registration-new($name: '.registration-new') {
+    #{$name} {
+        &__iframe {
+            min-height: 15.625rem;
+        }
+
+        @content;
+    }
+}
+
+@include heidelpay-registration-new();
