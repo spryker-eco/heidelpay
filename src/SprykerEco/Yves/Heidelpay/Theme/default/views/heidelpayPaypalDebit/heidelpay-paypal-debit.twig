@@ -5,11 +5,9 @@
 } %}
 
 {% block body %}
-    <div class="payment-method payment-subform heidelpay-form heidelpay-paypal-debit-form payment-form" id="heidelpayPaypalDebit">
-        <div class="heidelpay small-12 columns">
-            {{ 'payment.heidelpay.pay_with_paypal_debit' | trans }}
-            {{ form_errors(data.form.heidelpayPaypalDebit) }}
-            {{ form_widget(data.form.heidelpayPaypalDebit) }}
-        </div>
+    <div class="payment-method">
+        {{ 'payment.heidelpay.pay_with_paypal_debit' | trans }}
+        {{ form_errors(data.form.heidelpayPaypalDebit) }}
+        {{ form_widget(data.form.heidelpayPaypalDebit) }}
     </div>
 {% endblock %}

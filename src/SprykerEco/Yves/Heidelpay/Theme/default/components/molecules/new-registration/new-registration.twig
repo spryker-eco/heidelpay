@@ -1,18 +1,21 @@
 {% extends model('component') %}
 
 {% define config = {
-    name: 'registration-new',
-    tag: 'registration-new'
+    name: 'new-registration',
+    tag: 'new-registration'
 } %}
 
 {% define data = {
-    paymentOption: '',
-    paymentMethod: '',
-    parentFormId: data.parentFormId
+    paymentOption: data.paymentOption,
+    paymentMethod: data.paymentMethod,
+    parentFormId: data.parentFormId,
+    togglerName: data.togglerName,
 } %}
 
 {% define attributes = {
-    'parent-form-id': data.parentFormId
+    'parent-form-id': data.parentFormId,
+    'payment-input-name': data.paymentOption.vars.full_name,
+    'payment-toggler-name': data.togglerName
 } %}
 
 {% block body %}

@@ -5,11 +5,9 @@
 } %}
 
 {% block body %}
-    <div class="payment-method payment-subform heidelpay-form heidelpay-sofort-form payment-form" id="heidelpaySofort">
-        <div class="heidelpay small-12 columns">
-            {{ 'payment.heidelpay.pay_with_ideal' | trans }}
-            {{ form_errors(data.form.heidelpayIdeal) }}
-            {{ form_widget(data.form.heidelpayIdeal) }}
-        </div>
+    <div class="payment-method">
+        {{ 'payment.heidelpay.pay_with_ideal' | trans }}
+        {{ form_errors(data.form.heidelpayIdeal) }}
+        {{ form_widget(data.form.heidelpayIdeal) }}
     </div>
 {% endblock %}
