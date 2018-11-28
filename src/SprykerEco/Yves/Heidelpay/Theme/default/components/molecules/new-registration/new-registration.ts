@@ -23,7 +23,7 @@ export default class RegistrationNew extends Component {
         this.paymentStepFormElements = <IFormElements[]>Array.from(this.paymentStepForm.querySelectorAll('input, select, textarea'));
         this.creditCardPaymentOptionSelectors = <HTMLInputElement[]>Array.from(this.paymentStepForm.querySelectorAll(`input[name="${this.paymentInputName}"`));
         this.paymentFormSelections = <HTMLInputElement[]>Array.from(this.paymentStepForm.querySelectorAll(`input[name="${this.paymentTogglerName}"]`));
-        this.paymentFrameFormSubmit();
+        this.mapEvents();
     }
 
     protected serializeIframeForm(): object {
@@ -39,25 +39,28 @@ export default class RegistrationNew extends Component {
     protected isCreditCardNewRegistrationActive(): boolean {
         let response = false;
         this.paymentFormSelections.forEach(formSelection => {
-            this.creditCardPaymentOptionSelectors.forEach(creditCardSelector => {
-                if(formSelection.value === this.paymentName &&
-                    creditCardSelector.value === this.name) {
-                    response = true;
-                }
-            })
+            if(formSelection.checked) {
+                this.creditCardPaymentOptionSelectors.forEach(creditCardSelector => {
+                    if(creditCardSelector.checked &&
+                        formSelection.value === this.paymentName &&
+                        creditCardSelector.value === this.name) {
+                        response = true;
+                    }
+                });
+            }
         });
         return response;
     }
 
-    protected paymentFrameFormSubmit(): void {
-        this.paymentStepForm.addEventListener('submit', this.submitHandler.bind(this));
-    }
-    
-    protected submitHandler(event: Event): void {
-        if(this.isCreditCardNewRegistrationActive()) {
-            event.preventDefault();
-            this.paymentIframe.contentWindow.postMessage(JSON.stringify(this.serializeIframeForm()), this.paymentIframeSrc);
-        }
+    protected mapEvents(): void {
+        this.paymentStepForm.addEventListener('submit', event => {
+            if(this.isCreditCardNewRegistrationActive()) {
+                const serializeForm = JSON.stringify(this.serializeIframeForm());
+
+                event.preventDefault();
+                this.paymentIframe.contentWindow.postMessage(serializeForm, this.paymentIframeSrc);
+            }
+        });
     }
 
     get paretnFormId(): string {
