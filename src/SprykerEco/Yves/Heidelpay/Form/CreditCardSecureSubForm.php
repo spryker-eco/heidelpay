@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CreditCardSecureSubForm extends AbstractHeidelpaySubForm
 {
-    public const PAYMENT_METHOD = 'credit-card-secure';
+    public const PAYMENT_METHOD = HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE;
 
     public const PAYMENT_OPTIONS = 'payment_options';
     public const PAYMENT_OPTION_EXISTING_REGISTRATION = HeidelpayConfig::PAYMENT_OPTION_EXISTING_REGISTRATION;
