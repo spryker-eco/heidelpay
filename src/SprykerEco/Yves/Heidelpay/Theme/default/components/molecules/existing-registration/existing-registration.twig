@@ -15,7 +15,7 @@
     {{ form_label(data.paymentOption) }}
     <div class="{{ config.name }}__option spacing-top">
         <small>
-            {% set creditCardInfo = paymentMethod.paymentOptions.lastSuccessfulRegistration.creditCardInfo %}
+            {% set creditCardInfo = data.paymentMethod.paymentOptions.lastSuccessfulRegistration.creditCardInfo %}
             <strong>{{ 'payment.heidelpay.credit_card' | trans }}:</strong><br />
             <div>{{ 'payment.heidelpay.credit_card.holder' | trans }} - {{ creditCardInfo.accountHolder }}</div>
             <div>{{ 'payment.heidelpay.credit_card.type' | trans }} - {{ creditCardInfo.accountBrand }}</div>

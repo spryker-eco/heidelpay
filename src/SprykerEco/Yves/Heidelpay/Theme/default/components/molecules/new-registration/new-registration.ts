@@ -37,19 +37,12 @@ export default class RegistrationNew extends Component {
     }
 
     protected isCreditCardNewRegistrationActive(): boolean {
-        let response = false;
-        this.paymentFormSelections.forEach(formSelection => {
-            if(formSelection.checked) {
-                this.creditCardPaymentOptionSelectors.forEach(creditCardSelector => {
-                    if(creditCardSelector.checked &&
-                        formSelection.value === this.paymentName &&
-                        creditCardSelector.value === this.name) {
-                        response = true;
-                    }
-                });
-            }
-        });
-        return response;
+        const paymentMethodSelected = this.paymentFormSelections.find(formSelection => formSelection.checked);
+        const creditCardTypeSelected = this.creditCardPaymentOptionSelectors.find(creditCardSelector => creditCardSelector.checked);
+        return (paymentMethodSelected &&
+                creditCardTypeSelected &&
+                paymentMethodSelected.value === this.paymentName &&
+                creditCardTypeSelected.value === this.name) ? true : false;
     }
 
     protected mapEvents(): void {
