@@ -7,9 +7,7 @@
 
 namespace SprykerEco\Yves\Heidelpay\Form;
 
-use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
-
 class IdealSubForm extends AbstractHeidelpaySubForm
 {
-    public const PAYMENT_METHOD = HeidelpayConfig::PAYMENT_METHOD_IDEAL;
+    public const PAYMENT_METHOD = 'ideal';
 }

@@ -7,9 +7,7 @@
 
 namespace SprykerEco\Yves\Heidelpay\Form;
 
-use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
-
 class PaypalDebitSubForm extends AbstractHeidelpaySubForm
 {
-    public const PAYMENT_METHOD = HeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT;
+    public const PAYMENT_METHOD = 'paypal-debit';
 }

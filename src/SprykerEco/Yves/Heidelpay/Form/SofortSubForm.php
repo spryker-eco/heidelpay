@@ -7,9 +7,7 @@
 
 namespace SprykerEco\Yves\Heidelpay\Form;
 
-use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
-
 class SofortSubForm extends AbstractHeidelpaySubForm
 {
-    public const PAYMENT_METHOD = HeidelpayConfig::PAYMENT_METHOD_SOFORT;
+    public const PAYMENT_METHOD = 'sofort';
 }
