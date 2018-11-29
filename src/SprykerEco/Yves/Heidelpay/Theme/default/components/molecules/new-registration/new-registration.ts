@@ -19,7 +19,7 @@ export default class RegistrationNew extends Component {
     protected readyCallback(): void {
         this.paymentIframe = <HTMLIFrameElement>this.querySelector(`#${this.jsName}`);
         this.paymentIframeSrc = this.getDomainFromUrl;
-        this.paymentStepForm = <HTMLFormElement>document.getElementById(this.paretnFormId);
+        this.paymentStepForm = <HTMLFormElement>document.getElementById(this.parentFormId);
         this.paymentStepFormElements = <IFormElements[]>Array.from(this.paymentStepForm.querySelectorAll('input, select, textarea'));
         this.creditCardPaymentOptionSelectors = <HTMLInputElement[]>Array.from(this.paymentStepForm.querySelectorAll(`input[name="${this.paymentInputName}"`));
         this.paymentFormSelections = <HTMLInputElement[]>Array.from(this.paymentStepForm.querySelectorAll(`input[name="${this.paymentTogglerName}"]`));
@@ -56,7 +56,7 @@ export default class RegistrationNew extends Component {
         });
     }
 
-    get paretnFormId(): string {
+    get parentFormId(): string {
         return this.getAttribute('parent-form-id');
     }
     
