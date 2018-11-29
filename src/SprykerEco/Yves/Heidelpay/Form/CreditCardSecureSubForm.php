@@ -27,6 +27,8 @@ class CreditCardSecureSubForm extends AbstractHeidelpaySubForm
     public const FIELD_CREDIT_CARD_PAYMENT_OPTION = 'selected_payment_option';
     public const FIELD_CREDIT_CARD_REGISTRATION_ID = 'registration_id';
 
+    public const PAYMENT_METHOD_TEMPLATE_PATH = 'credit-card-secure';
+
     /**
      * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      *
