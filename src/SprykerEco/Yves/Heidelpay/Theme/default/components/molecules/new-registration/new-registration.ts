@@ -70,7 +70,7 @@ export default class RegistrationNew extends Component {
 
     get getDomainFromUrl(): string {
         const url = this.paymentIframe.getAttribute('src');
-        const arr = url.split("/");
-        return arr[0] + "//" + arr[2];
+        const arr = url.split('/');
+        return arr[0] + '//' + arr[2];
     }
 }
