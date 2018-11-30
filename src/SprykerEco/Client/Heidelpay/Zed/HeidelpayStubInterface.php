@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Client\Heidelpay\Zed;
@@ -10,8 +10,10 @@ namespace SprykerEco\Client\Heidelpay\Zed;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 
@@ -34,11 +36,9 @@ interface HeidelpayStubInterface
     /**
      * @param \Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer|\Spryker\Shared\Kernel\Transfer\TransferInterface
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
-    public function processExternalPaymentResponse(
-        HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer
-    );
+    public function processExternalPaymentResponse(HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer): HeidelpayPaymentProcessingResponseTransfer;
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
@@ -52,9 +52,7 @@ interface HeidelpayStubInterface
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer|\Spryker\Shared\Kernel\Transfer\TransferInterface
+     * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer
      */
-    public function saveCreditCardRegistration(
-        HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
-    );
+    public function saveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer): HeidelpayRegistrationSaveResponseTransfer;
 }

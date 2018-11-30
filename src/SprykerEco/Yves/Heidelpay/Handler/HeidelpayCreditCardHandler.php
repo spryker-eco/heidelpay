@@ -2,16 +2,16 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Yves\Heidelpay\Handler;
 
 use Generated\Shared\Transfer\QuoteTransfer;
-use Spryker\Client\Calculation\CalculationClientInterface;
-use Spryker\Client\Quote\QuoteClientInterface;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
+use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface;
+use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
 
 class HeidelpayCreditCardHandler extends HeidelpayHandler
 {
@@ -19,12 +19,12 @@ class HeidelpayCreditCardHandler extends HeidelpayHandler
     public const CHECKOUT_PARTIAL_SUMMARY_PATH = 'Heidelpay/partial/summary';
 
     /**
-     * @var \Spryker\Client\Calculation\CalculationClientInterface
+     * @var \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface
      */
     protected $calculationClient;
 
     /**
-     * @var \Spryker\Client\Quote\QuoteClientInterface
+     * @var \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface
      */
     protected $quoteClient;
 
@@ -39,12 +39,12 @@ class HeidelpayCreditCardHandler extends HeidelpayHandler
     ];
 
     /**
-     * @param \Spryker\Client\Calculation\CalculationClientInterface $calculationClient
-     * @param \Spryker\Client\Quote\QuoteClientInterface $quoteClient
+     * @param \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface $calculationClient
+     * @param \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface $quoteClient
      */
     public function __construct(
-        CalculationClientInterface $calculationClient,
-        QuoteClientInterface $quoteClient
+        HeidelpayToCalculationClientInterface $calculationClient,
+        HeidelpayToQuoteClientInterface $quoteClient
     ) {
         $this->calculationClient = $calculationClient;
         $this->quoteClient = $quoteClient;

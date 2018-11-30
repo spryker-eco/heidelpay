@@ -6,13 +6,14 @@
     "heidelpay/php-payment-api": "^1.5.0",
     "heidelpay/php-message-code-mapper": "^1.0.1",
     "heidelpay/php-basket-api": "^1.0.2",
-    "spryker/checkout": "^3.0.0 || ^4.0.0",
+    "spryker/calculation": "^4.0.0",
+    "spryker/checkout-extension": "^1.0.0",
+    "spryker/customer": "^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0",
     "spryker/currency": "^2.0.0 || ^3.0.0",
     "spryker/kernel": "^3.0.0",
     "spryker/locale": "^3.0.0",
     "spryker/money": "^2.0.0",
-    "spryker/oms": "^6.0.0 || ^7.0.0 || ^8.0.0",
-    "spryker/payment": "^3.0.0 || ^4.0.0",
+    "spryker/propel-orm": "^1.5.0",
     "spryker/quote": "^1.0.0 || ^2.0.0",
     "spryker/sales": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0",
     "spryker/session": "^3.0.0 || ^4.0.0",
@@ -22,14 +23,22 @@
     "spryker/zed-request": "^3.0.0"
   },
   "require-dev": {
-    "spryker/code-sniffer": "*",
+    "spryker/application": "*",
+    "spryker-shop/shop-application": "*",
+    "spryker/checkout": "*",
     "spryker/country": "*",
-    "spryker/customer": "*",
     "spryker/propel": "*",
+    "spryker/oms": "*",
+    "spryker/product": "*",
+    "spryker/silex": "*",
+    "spryker/stock": "*",
     "spryker/testify": "*"
   },
   "suggest": {
-    "spryker/silex": "*"
+    "spryker/checkout": "CheckoutPostSaveHookInterface is used.",
+    "spryker/oms": "OMS commands and conditions used.",
+    "spryker-shop/shop-application": "Abstract Yves controller provider is used.",
+    "spryker/silex": "Silex application is used."
   },
   "autoload": {
     "psr-4": {

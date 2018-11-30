@@ -12,7 +12,7 @@ matrix:
 
 services:
   - postgresql
-  - redis
+  - redis-server
   - rabbitmq
 
 addons:
@@ -43,5 +43,5 @@ before_install:
   - echo "extension = redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
 script:
-  - git clone -b 0.1.1 https://github.com/spryker-eco/eco-ci.git ecoci
+  - git clone -b 0.2.0 https://github.com/spryker-eco/eco-ci.git ecoci
   - ./ecoci/build/travis.sh

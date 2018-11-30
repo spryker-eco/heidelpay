@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
@@ -22,13 +22,13 @@ use Orm\Zed\Heidelpay\Persistence\Base\SpyPaymentHeidelpayCreditCardRegistration
  */
 class HeidelpayFacadeSaveCreditCardRegistrationTest extends HeidelpayPaymentTest
 {
-    const QUOTE_HASH = 'bea74ee13da897592f633fc93024ab3f5231d74d';
-    const REGISTRATION_HASH = '31HA07BC814CA0300B131ABC71AEECB3';
-    const ACCOUNT_EXPIRY_YEAR = 2030;
-    const ACCOUNT_EXPIRY_MONTH = '03';
-    const ACCOUNT_HOLDER_NAME = 'John Doe';
-    const CREDIT_CARD_BRAND = 'MASTER';
-    const CREDIT_CARD_NUMBER = '471110******0000';
+    public const QUOTE_HASH = 'bea74ee13da897592f633fc93024ab3f5231d74d';
+    public const REGISTRATION_HASH = '31HA07BC814CA0300B131ABC71AEECB3';
+    public const ACCOUNT_EXPIRY_YEAR = 2030;
+    public const ACCOUNT_EXPIRY_MONTH = '03';
+    public const ACCOUNT_HOLDER_NAME = 'John Doe';
+    public const CREDIT_CARD_BRAND = 'MASTER';
+    public const CREDIT_CARD_NUMBER = '471110******0000';
 
     /**
      * @dataProvider createRegistrationTransfer

@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Communication\Plugin\Checkout\Oms\Condition;
@@ -50,9 +50,9 @@ class IsDebitCompletedPlugin extends AbstractPlugin implements ConditionInterfac
     /**
      * @param int $idSalesOrder
      *
-     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog|null
      */
-    protected function getExternalTransactionLogEntry(int $idSalesOrder): SpyPaymentHeidelpayTransactionLog
+    protected function getExternalTransactionLogEntry(int $idSalesOrder): ?SpyPaymentHeidelpayTransactionLog
     {
         $transactionLogQuery = $this->getQueryContainer()->queryExternalResponseTransactionLog($idSalesOrder);
         return $transactionLogQuery->findOne();

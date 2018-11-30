@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response;
@@ -20,33 +20,33 @@ use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
 
 class ExternalResponseBuilder
 {
-    const EMAIL = 'email';
-    const RESPONSE_URL = 'responseUrl';
-    const PAYMENT_BRAND = 'paymentBrand';
-    const AMOUNT = 'amount';
+    public const EMAIL = 'email';
+    public const RESPONSE_URL = 'responseUrl';
+    public const PAYMENT_BRAND = 'paymentBrand';
+    public const AMOUNT = 'amount';
 
-    const FULL_NAME = 'fullName';
-    const PAYMENT_METHOD = 'paymentMethod';
-    const CUSTOMER_NAME = 'customerName';
-    const CUSTOMER_LAST_NAME = 'lastName';
-    const CUSTOMER_FULL_NAME = 'fullName';
+    public const FULL_NAME = 'fullName';
+    public const PAYMENT_METHOD = 'paymentMethod';
+    public const CUSTOMER_NAME = 'customerName';
+    public const CUSTOMER_LAST_NAME = 'lastName';
+    public const CUSTOMER_FULL_NAME = 'fullName';
 
-    const TRANSACRTION_CHANNEL = 'transactionChannel';
-    const SECURITY_SENDER = 'SECURITY_SENDER';
-    const USER_LOGIN = 'USER_LOGIN';
-    const USER_PWD = 'USER_PWD';
-    const TRANSACRTION_ID = 'TRANSACRTION_ID';
+    public const TRANSACRTION_CHANNEL = 'transactionChannel';
+    public const SECURITY_SENDER = 'SECURITY_SENDER';
+    public const USER_LOGIN = 'USER_LOGIN';
+    public const USER_PWD = 'USER_PWD';
+    public const TRANSACRTION_ID = 'TRANSACRTION_ID';
 
-    const CRITERION_SDK_NAME = 'HEIDELPAY:CRITERION_SDK_NAME';
-    const CRITERION_SDK_VALUE = "Heidelpay\PhpPaymentApi";
+    public const CRITERION_SDK_NAME = 'HEIDELPAY:CRITERION_SDK_NAME';
+    public const CRITERION_SDK_VALUE = "Heidelpay\PhpPaymentApi";
 
-    const BRAND_PROPERTY_NAME = 'brand';
-    const CRITERION_SECRET = 'HEIDELPAY:CRITERION_SECRET';
+    public const BRAND_PROPERTY_NAME = 'brand';
+    public const CRITERION_SECRET = 'HEIDELPAY:CRITERION_SECRET';
 
-    const PAYMENT_METHOD_CLASS_NAME = 'PaymentMethod';
-    const PROCESSING_RESULT = 'HEIDELPAY:PROCESSING_RESULT';
+    public const PAYMENT_METHOD_CLASS_NAME = 'PaymentMethod';
+    public const PROCESSING_RESULT = 'HEIDELPAY:PROCESSING_RESULT';
 
-    const SHA_512_ENCODE_ALGO = 'sha512';
+    public const SHA_512_ENCODE_ALGO = 'sha512';
     use HeidelpayResponseTrait, CustomerTrait, OrderAddressTrait, NewOrderWithOneItemTrait, PaymentHeidelpayTrait;
 
     /**

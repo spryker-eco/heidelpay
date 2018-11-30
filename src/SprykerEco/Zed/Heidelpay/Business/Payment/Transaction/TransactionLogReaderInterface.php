@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction;
@@ -14,9 +14,9 @@ interface TransactionLogReaderInterface
     /**
      * @param int $idSalesOrder
      *
-     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
      */
-    public function findOrderAuthorizeTransactionLogByIdSalesOrder(int $idSalesOrder): HeidelpayTransactionLogTransfer;
+    public function findOrderAuthorizeTransactionLogByIdSalesOrder(int $idSalesOrder): ?HeidelpayTransactionLogTransfer;
 
     /**
      * @param string $orderReference
