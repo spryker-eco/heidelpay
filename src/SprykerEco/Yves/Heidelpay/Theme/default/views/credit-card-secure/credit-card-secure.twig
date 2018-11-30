@@ -13,11 +13,13 @@
         <div class="small-12 columns">
             <ul class="no-bullet">
                 {% for paymentOption in data.form.heidelpayCreditCardSecure.selected_payment_option %}
+                    {% set checked = (paymentOption.vars.value == 'existing-registration') ? true : false %}
                     <li>
                         {{ form_row(paymentOption, {
                             required: false,
                             component: molecule('toggler-radio'),
                             attributes: {
+                                'checked': checked,
                                 'target-selector': '.js-heidelpay-method-' ~ paymentOption.vars.value,
                                 'class-to-toggle': 'is-hidden'
                             }
