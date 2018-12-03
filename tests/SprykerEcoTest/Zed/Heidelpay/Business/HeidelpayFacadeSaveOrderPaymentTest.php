@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
@@ -31,7 +31,7 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulSofor
  */
 class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
 {
-    const REGISTRATION_NUMBER = '31HA07BC814CA0300B135019D1515E08';
+    public const REGISTRATION_NUMBER = '31HA07BC814CA0300B135019D1515E08';
 
     use NewOrderWithOneItemTrait;
 
@@ -70,7 +70,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
     ): void {
         $quoteTransfer = $this->createCreditCardPaymentQuote();
 
-        $this->heidelpayFacade->saveOrderPayment($quoteTransfer, $checkoutResponseTransfer);
+        $this->heidelpayFacade->saveOrderPayment($quoteTransfer, $checkoutResponseTransfer->getSaveOrder());
 
         $heidelpayOrderItems = $checkoutResponseTransfer
             ->getSaveOrder()
@@ -137,7 +137,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
     ): void {
         $quoteTransfer = $this->createSofortPaymentQuote();
 
-        $this->heidelpayFacade->saveOrderPayment($quoteTransfer, $checkoutResponseTransfer);
+        $this->heidelpayFacade->saveOrderPayment($quoteTransfer, $checkoutResponseTransfer->getSaveOrder());
 
         $heidelpayOrderItems = $checkoutResponseTransfer
             ->getSaveOrder()

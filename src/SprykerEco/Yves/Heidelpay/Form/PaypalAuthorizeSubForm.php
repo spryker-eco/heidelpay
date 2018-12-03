@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Yves\Heidelpay\Form;
@@ -12,4 +12,5 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 class PaypalAuthorizeSubForm extends AbstractHeidelpaySubForm
 {
     public const PAYMENT_METHOD = HeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE;
+    public const PAYMENT_METHOD_TEMPLATE_PATH = 'paypal-authorize';
 }

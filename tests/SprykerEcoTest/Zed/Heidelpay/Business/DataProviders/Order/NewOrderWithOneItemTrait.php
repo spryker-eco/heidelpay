@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order;
@@ -137,7 +137,7 @@ trait NewOrderWithOneItemTrait
      *
      * @return void
      */
-    protected function createTotalsEntity(SpySalesOrder $orderEntity, SpySalesOrderItem$orderItemEntity): void
+    protected function createTotalsEntity(SpySalesOrder $orderEntity, SpySalesOrderItem $orderItemEntity): void
     {
         $totals = new SpySalesOrderTotals();
         $totals->setFkSalesOrder($orderEntity->getIdSalesOrder());

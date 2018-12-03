@@ -1,0 +1,42 @@
+{% extends model('template') %}
+
+{% define data = {
+    form: form,
+    parentFormId: parentFormId,
+    togglerName: togglerName
+} %}
+
+{% block body %}
+    <div class="payment-method spacing-left">
+        {{ 'payment.heidelpay.pay_with_credit_card' | trans }}
+        {{ form_errors(data.form.heidelpayCreditCardSecure) }}
+        <div class="small-12 columns">
+            <ul class="no-bullet">
+                {% for paymentOption in data.form.heidelpayCreditCardSecure.selected_payment_option %}
+                    {% set checked = (paymentOption.vars.value == 'existing-registration') ? true : false %}
+                    <li>
+                        {{ form_row(paymentOption, {
+                            required: false,
+                            component: molecule('toggler-radio'),
+                            attributes: {
+                                'checked': checked,
+                                'target-selector': '.js-heidelpay-method-' ~ paymentOption.vars.value,
+                                'class-to-toggle': 'is-hidden'
+                            }
+                        }) }}
+                        <div class="js-heidelpay-method-{{ paymentOption.vars.value }}">
+                            {% include molecule(paymentOption.vars.value, 'Heidelpay') with {
+                                data: {
+                                    paymentOption: paymentOption,
+                                    paymentMethod: data.form.vars.value.payment.heidelpayCreditCardSecure,
+                                    parentFormId: data.parentFormId,
+                                    togglerName: data.togglerName
+                                }
+                            } only %}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

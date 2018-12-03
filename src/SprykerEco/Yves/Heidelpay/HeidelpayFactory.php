@@ -2,19 +2,19 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Yves\Heidelpay;
 
-use Spryker\Client\Calculation\CalculationClientInterface;
-use Spryker\Client\Quote\QuoteClientInterface;
 use Spryker\Yves\Kernel\AbstractFactory;
 use Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
 use SprykerEco\Client\Heidelpay\HeidelpayClientInterface;
 use SprykerEco\Yves\Heidelpay\CreditCard\RegistrationToQuoteHydrator;
 use SprykerEco\Yves\Heidelpay\CreditCard\RegistrationToQuoteHydratorInterface;
+use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface;
+use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
 use SprykerEco\Yves\Heidelpay\Form\CreditCardSecureSubForm;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\CreditCardSecureDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\IdealDataProvider;
@@ -161,17 +161,17 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Client\Calculation\CalculationClientInterface
+     * @return \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface
      */
-    public function getCalculationClient(): CalculationClientInterface
+    public function getCalculationClient(): HeidelpayToCalculationClientInterface
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::CLIENT_CALCULATION);
     }
 
     /**
-     * @return \Spryker\Client\Quote\QuoteClientInterface
+     * @return \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface
      */
-    public function getQuoteClient(): QuoteClientInterface
+    public function getQuoteClient(): HeidelpayToQuoteClientInterface
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::CLIENT_QUOTE);
     }
@@ -205,7 +205,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface
      */
-    protected function createCreditCardPaymentOptionsToQuoteHydrator(): CreditCardPaymentOptionsToQuoteInterface
+    public function createCreditCardPaymentOptionsToQuoteHydrator(): CreditCardPaymentOptionsToQuoteInterface
     {
         return new CreditCardPaymentOptionsToQuote(
             $this->getHeidelpayClient()

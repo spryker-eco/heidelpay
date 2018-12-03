@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Client\Heidelpay\Zed;
@@ -65,9 +65,8 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
-    public function processExternalPaymentResponse(
-        HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer
-    ): HeidelpayPaymentProcessingResponseTransfer {
+    public function processExternalPaymentResponse(HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer): HeidelpayPaymentProcessingResponseTransfer
+    {
         /** @var \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer $responseTransfer */
         $responseTransfer = $this->zedStub->call(
             static::ZED_GET_PROCESS_EXTERNAL_PAYMENT_RESPONSE,

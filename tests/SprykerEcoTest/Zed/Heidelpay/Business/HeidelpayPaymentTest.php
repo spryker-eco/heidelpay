@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
@@ -90,7 +90,7 @@ class HeidelpayPaymentTest extends Test
     protected function testExecutor(string $dataProviderFunctionName, string $testFunctionName): void
     {
         $data = $this->$dataProviderFunctionName();
-        list($quoteTransfer, $checkoutResponseTransfer) = $data;
+        [$quoteTransfer, $checkoutResponseTransfer] = $data;
         $this->$testFunctionName($quoteTransfer, $checkoutResponseTransfer);
     }
 }
