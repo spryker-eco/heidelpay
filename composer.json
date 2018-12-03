@@ -46,6 +46,11 @@
       "SprykerEcoTest\\": "tests/SprykerEcoTest/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "SprykerEcoTest\\": "tests/SprykerEcoTest/"
+    }
+  },
   "minimum-stability": "dev",
   "prefer-stable": true,
   "extra": {
