@@ -2,12 +2,14 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Yves\Heidelpay\Plugin\Subform;
 
 use Spryker\Yves\Kernel\AbstractPlugin;
+use Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface;
+use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
 use Spryker\Yves\StepEngine\Dependency\Plugin\Form\SubFormPluginInterface;
 
 /**
@@ -18,7 +20,7 @@ class HeidelpayCreditCardSecureSubFormPlugin extends AbstractPlugin implements S
     /**
      * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
      */
-    public function createSubForm()
+    public function createSubForm(): SubFormInterface
     {
         return $this->getFactory()->createCreditCardSecureForm();
     }
@@ -26,7 +28,7 @@ class HeidelpayCreditCardSecureSubFormPlugin extends AbstractPlugin implements S
     /**
      * @return \Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface
      */
-    public function createSubFormDataProvider()
+    public function createSubFormDataProvider(): StepEngineFormDataProviderInterface
     {
         return $this->getFactory()->createCreditCardSecureFormDataProvider();
     }

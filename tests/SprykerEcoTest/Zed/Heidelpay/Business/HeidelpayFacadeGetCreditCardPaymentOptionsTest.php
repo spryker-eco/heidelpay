@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
@@ -17,6 +17,7 @@ use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\TotalsTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
+use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\CreditCard\CreditCardBuilder;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerAddressTrait;
@@ -35,13 +36,13 @@ use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusin
  */
 class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTest
 {
-    const CUSTOMER_ADDRESS_ID = 100000000;
+    public const CUSTOMER_ADDRESS_ID = 100000000;
     use QuoteMockTrait, CustomerAddressTrait, CustomerTrait;
 
     /**
      * @return void
      */
-    public function testSuccessfulGetCreditCardPaymentOptionsForNotRegisteredCard()
+    public function testSuccessfulGetCreditCardPaymentOptionsForNotRegisteredCard(): void
     {
         $quoteTransfer = $this->createQuoteForNotRegisteredCard();
 
@@ -69,7 +70,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
     /**
      * @return void
      */
-    public function testUnsuccessfulGetCreditCardPaymentOptionsForNotRegisteredCard()
+    public function testUnsuccessfulGetCreditCardPaymentOptionsForNotRegisteredCard(): void
     {
         $quoteTransfer = $this->createQuoteForNotRegisteredCard();
 
@@ -85,7 +86,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
     /**
      * @return void
      */
-    public function testSuccessfulGetCreditCardPaymentOptionsForRegisteredCardWithSameAddress()
+    public function testSuccessfulGetCreditCardPaymentOptionsForRegisteredCardWithSameAddress(): void
     {
         $quoteTransfer = $this->createQuoteForNotRegisteredCard();
         $cardEntity = $this->registerCard($quoteTransfer);
@@ -102,7 +103,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
     /**
      * @return void
      */
-    public function testUnsuccessfulGetCreditCardPaymentOptionsForRegisteredCardWithSameAddressButWithoutSuccessfulTransaction()
+    public function testUnsuccessfulGetCreditCardPaymentOptionsForRegisteredCardWithSameAddressButWithoutSuccessfulTransaction(): void
     {
         $quoteTransfer = $this->createQuoteForNotRegisteredCard();
 
@@ -139,7 +140,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
     /**
      * @return void
      */
-    public function testSuccessfulGetCreditCardPaymentOptionsForRegisteredCardWithSameAddressButWithoutSuccessfulLastTransaction()
+    public function testSuccessfulGetCreditCardPaymentOptionsForRegisteredCardWithSameAddressButWithoutSuccessfulLastTransaction(): void
     {
         $quoteTransfer = $this->createQuoteForNotRegisteredCard();
 
@@ -166,7 +167,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
      */
-    protected function createSuccessfulPaymentHeidelpayFactoryMock()
+    protected function createSuccessfulPaymentHeidelpayFactoryMock(): HeidelpayBusinessFactory
     {
         return new SuccessfulResponseHeidelpayBusinessFactory();
     }
@@ -174,7 +175,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
      */
-    protected function createUnsuccessfulPaymentHeidelpayFactoryMock()
+    protected function createUnsuccessfulPaymentHeidelpayFactoryMock(): HeidelpayBusinessFactory
     {
         return new UnsuccesfulResponseHeidelpayBusinessFactory();
     }
@@ -182,7 +183,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
     /**
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    protected function createQuoteWithPaymentTransfer()
+    protected function createQuoteWithPaymentTransfer(): QuoteTransfer
     {
         $quote = $this->createQuote();
         $paymentTransfer = (new PaymentTransfer())
@@ -200,7 +201,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
     /**
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    protected function createQuoteForNotRegisteredCard()
+    protected function createQuoteForNotRegisteredCard(): QuoteTransfer
     {
         $quoteTransfer = $this->createQuoteWithPaymentTransfer();
         $quoteTransfer->setTotals(
@@ -224,7 +225,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
      *
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    protected function addLastSuccessfulRegistration(QuoteTransfer $quoteTransfer, SpyPaymentHeidelpayCreditCardRegistration $cardEntity)
+    protected function addLastSuccessfulRegistration(QuoteTransfer $quoteTransfer, SpyPaymentHeidelpayCreditCardRegistration $cardEntity): QuoteTransfer
     {
         $lastSuccessfulRegistration = new HeidelpayCreditCardRegistrationTransfer();
         $lastSuccessfulRegistration->setIdCustomerAddress(
@@ -250,7 +251,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration
      */
-    protected function registerCard(QuoteTransfer $quoteTransfer)
+    protected function registerCard(QuoteTransfer $quoteTransfer): SpyPaymentHeidelpayCreditCardRegistration
     {
         $cardBuilder = new CreditCardBuilder();
         return $cardBuilder->createCreditCard($quoteTransfer);
@@ -261,7 +262,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
      *
      * @return void
      */
-    protected function checkUnsuccessfulGetOptionResponse(HeidelpayCreditCardPaymentOptionsTransfer $heidelpayCreditCardPaymentOptionsTransfer)
+    protected function checkUnsuccessfulGetOptionResponse(HeidelpayCreditCardPaymentOptionsTransfer $heidelpayCreditCardPaymentOptionsTransfer): void
     {
         $this->assertNull(
             $heidelpayCreditCardPaymentOptionsTransfer->getPaymentFrameUrl()
@@ -284,7 +285,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
         HeidelpayCreditCardPaymentOptionsTransfer $heidelpayCreditCardPaymentOptionsTransfer,
         SpyPaymentHeidelpayCreditCardRegistration $cardEntity,
         QuoteTransfer $quoteTransfer
-    ) {
+    ): void {
         $this->assertEquals(
             HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL,
             $heidelpayCreditCardPaymentOptionsTransfer->getPaymentFrameUrl()

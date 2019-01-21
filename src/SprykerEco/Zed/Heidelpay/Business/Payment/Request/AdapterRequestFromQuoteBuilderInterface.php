@@ -2,11 +2,12 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Request;
 
+use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 
 interface AdapterRequestFromQuoteBuilderInterface
@@ -16,5 +17,5 @@ interface AdapterRequestFromQuoteBuilderInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    public function buildCreditCardRegistrationRequest(QuoteTransfer $quoteTransfer);
+    public function buildCreditCardRegistrationRequest(QuoteTransfer $quoteTransfer): HeidelpayRequestTransfer;
 }

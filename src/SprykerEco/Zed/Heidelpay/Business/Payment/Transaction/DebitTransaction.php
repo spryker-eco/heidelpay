@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction;
@@ -37,7 +37,7 @@ class DebitTransaction implements DebitTransactionInterface
     public function executeTransaction(
         HeidelpayRequestTransfer $debitRequestTransfer,
         PaymentWithDebitInterface $paymentAdapter
-    ) {
+    ): HeidelpayResponseTransfer {
         $debitResponseTransfer = $paymentAdapter->debit($debitRequestTransfer);
         $this->logTransaction($debitRequestTransfer, $debitResponseTransfer);
 
@@ -53,7 +53,7 @@ class DebitTransaction implements DebitTransactionInterface
     protected function logTransaction(
         HeidelpayRequestTransfer $debitRequestTransfer,
         HeidelpayResponseTransfer $debitResponseTransfer
-    ) {
+    ): void {
         $this->transactionLogger->logTransaction(
             HeidelpayConfig::TRANSACTION_TYPE_DEBIT,
             $debitRequestTransfer,

@@ -2,11 +2,12 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard;
 
+use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 
 interface PaymentOptionsCalculatorInterface
@@ -16,5 +17,5 @@ interface PaymentOptionsCalculatorInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer
      */
-    public function getCreditCardPaymentOptions(QuoteTransfer $quoteTransfer);
+    public function getCreditCardPaymentOptions(QuoteTransfer $quoteTransfer): HeidelpayCreditCardPaymentOptionsTransfer;
 }

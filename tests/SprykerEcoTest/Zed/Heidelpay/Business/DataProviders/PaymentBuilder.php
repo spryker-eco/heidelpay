@@ -2,11 +2,12 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders;
 
+use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\NewOrderWithOneItemTrait;
@@ -36,7 +37,7 @@ class PaymentBuilder
      *
      * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
      */
-    public function createPayment(string $paymentMethod)
+    public function createPayment(string $paymentMethod): SpySalesOrder
     {
         $customerJohnDoe = $this->createOrGetCustomerJohnDoe();
         $billingAddressJohnDoe = $shippingAddressJohnDoe = $this->createOrderAddressJohnDoe();

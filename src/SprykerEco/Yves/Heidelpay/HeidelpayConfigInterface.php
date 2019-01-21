@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Yves\Heidelpay;
@@ -12,25 +12,25 @@ interface HeidelpayConfigInterface
     /**
      * @return string
      */
-    public function getYvesCheckoutPaymentStepPath();
+    public function getYvesCheckoutPaymentStepPath(): string;
 
     /**
      * @return string
      */
-    public function getYvesCheckoutPaymentFailedUrl();
+    public function getYvesCheckoutPaymentFailedUrl(): string;
 
     /**
      * @return string
      */
-    public function getYvesCheckoutSummaryStepUrl();
+    public function getYvesCheckoutSummaryStepUrl(): string;
 
     /**
      * @return string
      */
-    public function getYvesCheckoutSuccessUrl();
+    public function getYvesCheckoutSuccessUrl(): string;
 
     /**
      * @return string
      */
-    public function getYvesRegistrationSuccessUrl();
+    public function getYvesRegistrationSuccessUrl(): string;
 }

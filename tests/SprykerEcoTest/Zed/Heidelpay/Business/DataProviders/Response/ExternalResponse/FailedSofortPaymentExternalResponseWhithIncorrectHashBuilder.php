@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse;
@@ -17,7 +17,7 @@ class FailedSofortPaymentExternalResponseWhithIncorrectHashBuilder extends Exter
      *
      * @return string
      */
-    protected function getCriterionSecret($identificationTransactionId, $secret)
+    protected function getCriterionSecret(int $identificationTransactionId, string $secret): string
     {
         return 'failed-secret-value';
     }

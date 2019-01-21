@@ -2,13 +2,19 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Yves\Heidelpay;
 
 use Spryker\Yves\Kernel\AbstractFactory;
+use Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface;
+use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
+use SprykerEco\Client\Heidelpay\HeidelpayClientInterface;
 use SprykerEco\Yves\Heidelpay\CreditCard\RegistrationToQuoteHydrator;
+use SprykerEco\Yves\Heidelpay\CreditCard\RegistrationToQuoteHydratorInterface;
+use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface;
+use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
 use SprykerEco\Yves\Heidelpay\Form\CreditCardSecureSubForm;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\CreditCardSecureDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\EasyCreditDataProvider;
@@ -22,9 +28,13 @@ use SprykerEco\Yves\Heidelpay\Form\PaypalDebitSubForm;
 use SprykerEco\Yves\Heidelpay\Form\SofortSubForm;
 use SprykerEco\Yves\Heidelpay\Handler\HeidelpayCreditCardHandler;
 use SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandler;
+use SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface;
 use SprykerEco\Yves\Heidelpay\Handler\PaymentFailureHandler;
+use SprykerEco\Yves\Heidelpay\Handler\PaymentFailureHandlerInterface;
 use SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuote;
+use SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface;
 use SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeForm;
+use SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeFormInterface;
 use SprykerEco\Yves\Heidelpay\Form\EasyCreditSubForm;
 use SprykerEco\Yves\Heidelpay\Handler\HeidelpayEasyCreditHandler;
 use SprykerEco\Yves\Heidelpay\Hydrator\EasyCreditResponseToQuoteHydrator;
@@ -37,7 +47,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface
      */
-    public function createHeidelpayHandler()
+    public function createHeidelpayHandler(): HeidelpayHandlerInterface
     {
         return new HeidelpayHandler();
     }
@@ -45,7 +55,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface
      */
-    public function createHeidelpayCreditCardHandler()
+    public function createHeidelpayCreditCardHandler(): HeidelpayHandlerInterface
     {
         return new HeidelpayCreditCardHandler(
             $this->getCalculationClient(),
@@ -66,7 +76,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \SprykerEco\Yves\Heidelpay\Handler\PaymentFailureHandlerInterface
      */
-    public function createPaymentFailureHandler()
+    public function createPaymentFailureHandler(): PaymentFailureHandlerInterface
     {
         return new PaymentFailureHandler(
             $this->getHeidelpayClient(),
@@ -77,7 +87,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
      */
-    public function createSofortForm()
+    public function createSofortForm(): SubFormInterface
     {
         return new SofortSubForm();
     }
@@ -85,7 +95,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
      */
-    public function createIdealForm()
+    public function createIdealForm(): SubFormInterface
     {
         return new IdealSubForm();
     }
@@ -93,7 +103,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
      */
-    public function createCreditCardSecureForm()
+    public function createCreditCardSecureForm(): SubFormInterface
     {
         return new CreditCardSecureSubForm();
     }
@@ -109,7 +119,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
      */
-    public function createPaypalAuthorizeForm()
+    public function createPaypalAuthorizeForm(): SubFormInterface
     {
         return new PaypalAuthorizeSubForm();
     }
@@ -117,7 +127,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
      */
-    public function createPaypalDebitForm()
+    public function createPaypalDebitForm(): SubFormInterface
     {
         return new PaypalDebitSubForm();
     }
@@ -125,7 +135,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface
      */
-    public function createSofortFormDataProvider()
+    public function createSofortFormDataProvider(): StepEngineFormDataProviderInterface
     {
         return new SofortDataProvider();
     }
@@ -133,7 +143,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface
      */
-    public function createIdealFormDataProvider()
+    public function createIdealFormDataProvider(): StepEngineFormDataProviderInterface
     {
         return new IdealDataProvider();
     }
@@ -141,7 +151,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface
      */
-    public function createCreditCardSecureFormDataProvider()
+    public function createCreditCardSecureFormDataProvider(): StepEngineFormDataProviderInterface
     {
         return new CreditCardSecureDataProvider(
             $this->createCreditCardPaymentOptionsToQuoteHydrator()
@@ -151,7 +161,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface
      */
-    public function createPaypalAuthorizeFormDataProvider()
+    public function createPaypalAuthorizeFormDataProvider(): StepEngineFormDataProviderInterface
     {
         return new PaypalAuthorizeDataProvider();
     }
@@ -159,7 +169,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface
      */
-    public function createPaypalDebitFormDataProvider()
+    public function createPaypalDebitFormDataProvider(): StepEngineFormDataProviderInterface
     {
         return new PaypalDebitDataProvider();
     }
@@ -175,23 +185,23 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \SprykerEco\Client\Heidelpay\HeidelpayClientInterface
      */
-    public function getHeidelpayClient()
+    public function getHeidelpayClient(): HeidelpayClientInterface
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::CLIENT_HEIDELPAY);
     }
 
     /**
-     * @return \Spryker\Client\Calculation\CalculationClientInterface
+     * @return \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface
      */
-    public function getCalculationClient()
+    public function getCalculationClient(): HeidelpayToCalculationClientInterface
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::CLIENT_CALCULATION);
     }
 
     /**
-     * @return \Spryker\Client\Quote\QuoteClientInterface
+     * @return \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface
      */
-    public function getQuoteClient()
+    public function getQuoteClient(): HeidelpayToQuoteClientInterface
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::CLIENT_QUOTE);
     }
@@ -199,7 +209,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeFormInterface
      */
-    public function createHeidelpayResponseToIdealAuthorizeFormMapper()
+    public function createHeidelpayResponseToIdealAuthorizeFormMapper(): HeidelpayResponseToIdealAuthorizeFormInterface
     {
         return new HeidelpayResponseToIdealAuthorizeForm();
     }
@@ -207,7 +217,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \SprykerEco\Yves\Heidelpay\CreditCard\RegistrationToQuoteHydratorInterface
      */
-    public function createCreditCardRegistrationToQuoteHydrator()
+    public function createCreditCardRegistrationToQuoteHydrator(): RegistrationToQuoteHydratorInterface
     {
         return new RegistrationToQuoteHydrator(
             $this->createHeidelpayCreditCardHandler()
@@ -227,7 +237,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \SprykerEco\Yves\Heidelpay\HeidelpayConfigInterface
      */
-    public function getYvesConfig()
+    public function getYvesConfig(): HeidelpayConfigInterface
     {
         return $this->getConfig();
     }
@@ -235,7 +245,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface
      */
-    protected function createCreditCardPaymentOptionsToQuoteHydrator()
+    public function createCreditCardPaymentOptionsToQuoteHydrator(): CreditCardPaymentOptionsToQuoteInterface
     {
         return new CreditCardPaymentOptionsToQuote(
             $this->getHeidelpayClient()

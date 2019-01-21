@@ -2,12 +2,13 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment;
 
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
+use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay;
 use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
 
 class PaymentReader implements PaymentReaderInterface
@@ -30,7 +31,7 @@ class PaymentReader implements PaymentReaderInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentTransfer
      */
-    public function getPaymentByIdSalesOrder($idSalesOrder)
+    public function getPaymentByIdSalesOrder(int $idSalesOrder): HeidelpayPaymentTransfer
     {
         $heidelpayPaymentEntity = $this->getPaymentEntityByIdSalesOrder($idSalesOrder);
 
@@ -48,9 +49,21 @@ class PaymentReader implements PaymentReaderInterface
     /**
      * @param int $idSalesOrder
      *
-     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay
+     * @return string|null
      */
-    protected function getPaymentEntityByIdSalesOrder($idSalesOrder)
+    public function getIdBasketByIdSalesOrder(int $idSalesOrder): ?string
+    {
+        $heidelpayPaymentEntity = $this->getPaymentEntityByIdSalesOrder($idSalesOrder);
+
+        return $heidelpayPaymentEntity->getIdBasket();
+    }
+
+    /**
+     * @param int $idSalesOrder
+     *
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay|null
+     */
+    protected function getPaymentEntityByIdSalesOrder(int $idSalesOrder): ?SpyPaymentHeidelpay
     {
         $heidelpayPaymentEntity = $this->heidelpayQueryContainer
             ->queryPaymentByIdSalesOrder($idSalesOrder)

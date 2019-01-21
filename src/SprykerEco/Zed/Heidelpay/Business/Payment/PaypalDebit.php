@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment;
@@ -20,7 +20,7 @@ class PaypalDebit extends BaseHeidelpayPaymentMethod implements PaymentWithPostS
      *
      * @return void
      */
-    public function postSaveOrder(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer)
+    public function postSaveOrder(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer): void
     {
         $redirectUrl = $this->getCheckoutRedirectUrlFromDebitTransactionLog(
             $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder()
@@ -32,9 +32,9 @@ class PaypalDebit extends BaseHeidelpayPaymentMethod implements PaymentWithPostS
     /**
      * @param int $idSalesOrder
      *
-     * @return string|null
+     * @return string
      */
-    protected function getCheckoutRedirectUrlFromDebitTransactionLog($idSalesOrder)
+    protected function getCheckoutRedirectUrlFromDebitTransactionLog(int $idSalesOrder): string
     {
         $debitTransactionLogTransfer = $this->findOrderDebitTransactionLog($idSalesOrder);
 
@@ -50,9 +50,9 @@ class PaypalDebit extends BaseHeidelpayPaymentMethod implements PaymentWithPostS
     /**
      * @param int $idSalesOrder
      *
-     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
      */
-    protected function findOrderDebitTransactionLog($idSalesOrder)
+    protected function findOrderDebitTransactionLog(int $idSalesOrder): HeidelpayTransactionLogTransfer
     {
         return $this->transactionLogManager->findOrderDebitTransactionLog($idSalesOrder);
     }
@@ -62,7 +62,7 @@ class PaypalDebit extends BaseHeidelpayPaymentMethod implements PaymentWithPostS
      *
      * @return bool
      */
-    protected function isDebitTransactionSentSuccessfully(HeidelpayTransactionLogTransfer $debitTransactionLogTransfer)
+    protected function isDebitTransactionSentSuccessfully(HeidelpayTransactionLogTransfer $debitTransactionLogTransfer): bool
     {
         return $debitTransactionLogTransfer->getHeidelpayResponse()->getIsSuccess();
     }
@@ -72,7 +72,7 @@ class PaypalDebit extends BaseHeidelpayPaymentMethod implements PaymentWithPostS
      *
      * @return string
      */
-    protected function getDebitRedirectUrl(HeidelpayTransactionLogTransfer $transactionLogTransfer)
+    protected function getDebitRedirectUrl(HeidelpayTransactionLogTransfer $transactionLogTransfer): string
     {
         return $transactionLogTransfer->getHeidelpayResponse()->getPaymentFormUrl();
     }
@@ -82,7 +82,7 @@ class PaypalDebit extends BaseHeidelpayPaymentMethod implements PaymentWithPostS
      *
      * @return string
      */
-    protected function getDebitFailedRedirectUrl(HeidelpayTransactionLogTransfer $transactionLogTransfer)
+    protected function getDebitFailedRedirectUrl(HeidelpayTransactionLogTransfer $transactionLogTransfer): string
     {
         $errorCode = $transactionLogTransfer->getHeidelpayResponse()->getError()->getCode();
         $paymentFailedUrl = $this->config->getYvesCheckoutPaymentFailedUrl();

@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Encrypter;
@@ -11,8 +11,8 @@ use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class AesEncrypter implements EncrypterInterface
 {
-    const CYPHER_METHOD = 'aes-256-cbc';
-    const INIT_VECTOR_SEPARATOR = ':::';
+    public const CYPHER_METHOD = 'aes-256-cbc';
+    public const INIT_VECTOR_SEPARATOR = ':::';
 
     /**
      * @var \SprykerEco\Zed\Heidelpay\HeidelpayConfig
@@ -32,7 +32,7 @@ class AesEncrypter implements EncrypterInterface
      *
      * @return string
      */
-    public function encryptData($data)
+    public function encryptData(string $data): string
     {
         $encryptionKey = $this->config
             ->getEncryptionKey();
@@ -54,7 +54,7 @@ class AesEncrypter implements EncrypterInterface
      *
      * @return string|null
      */
-    public function decryptData($data)
+    public function decryptData(string $data)
     {
         $encryptionKey = $this->config
             ->getEncryptionKey();
@@ -64,7 +64,7 @@ class AesEncrypter implements EncrypterInterface
             return null;
         }
 
-        list($encryptedData, $initVector) = $dataChunks;
+        [$encryptedData, $initVector] = $dataChunks;
 
         return openssl_decrypt(
             $encryptedData,
@@ -78,7 +78,7 @@ class AesEncrypter implements EncrypterInterface
     /**
      * @return string
      */
-    protected function getRandomPseudoBytes()
+    protected function getRandomPseudoBytes(): string
     {
         $cipherIvLength = openssl_cipher_iv_length(static::CYPHER_METHOD);
 

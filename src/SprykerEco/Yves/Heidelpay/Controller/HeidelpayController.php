@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Yves\Heidelpay\Controller;
@@ -10,6 +10,7 @@ namespace SprykerEco\Yves\Heidelpay\Controller;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Generated\Shared\Transfer\QuoteTransfer;
 
@@ -19,14 +20,14 @@ use Generated\Shared\Transfer\QuoteTransfer;
  */
 class HeidelpayController extends BaseHeidelpayController
 {
-    const PARAM_ERROR_CODE = 'error_code';
+    public const PARAM_ERROR_CODE = 'error_code';
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function paymentFailedAction(Request $request)
+    public function paymentFailedAction(Request $request): RedirectResponse
     {
         $errorCode = $request->get(static::PARAM_ERROR_CODE, '');
 
@@ -46,7 +47,7 @@ class HeidelpayController extends BaseHeidelpayController
      *
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
-    public function paymentAction(Request $request)
+    public function paymentAction(Request $request): StreamedResponse
     {
         if (!$request->isMethod(Request::METHOD_POST)) {
             throw new NotFoundHttpException();
@@ -65,7 +66,7 @@ class HeidelpayController extends BaseHeidelpayController
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
-    protected function processPaymentResponse(array $requestArray)
+    protected function processPaymentResponse(array $requestArray): HeidelpayPaymentProcessingResponseTransfer
     {
         return $this
             ->getClient()
@@ -77,7 +78,7 @@ class HeidelpayController extends BaseHeidelpayController
      *
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
-    protected function streamResponse(HeidelpayPaymentProcessingResponseTransfer $processingResultTransfer)
+    protected function streamResponse(HeidelpayPaymentProcessingResponseTransfer $processingResultTransfer): StreamedResponse
     {
         $callback = function () use ($processingResultTransfer) {
             echo $this->getCustomerRedirectUrl($processingResultTransfer);
@@ -91,7 +92,7 @@ class HeidelpayController extends BaseHeidelpayController
      *
      * @return string
      */
-    protected function getCustomerRedirectUrl(HeidelpayPaymentProcessingResponseTransfer $processingResultTransfer)
+    protected function getCustomerRedirectUrl(HeidelpayPaymentProcessingResponseTransfer $processingResultTransfer): string
     {
         return $processingResultTransfer->getIsError()
             ? $this->getFailureRedirectUrl($processingResultTransfer)
@@ -101,7 +102,7 @@ class HeidelpayController extends BaseHeidelpayController
     /**
      * @return string
      */
-    protected function getSuccessRedirectUrl()
+    protected function getSuccessRedirectUrl(): string
     {
         return $this->getConfig()->getYvesCheckoutSuccessUrl();
     }
@@ -111,7 +112,7 @@ class HeidelpayController extends BaseHeidelpayController
      *
      * @return string
      */
-    protected function getFailureRedirectUrl(HeidelpayPaymentProcessingResponseTransfer $processingResultTransfer)
+    protected function getFailureRedirectUrl(HeidelpayPaymentProcessingResponseTransfer $processingResultTransfer): string
     {
         return sprintf(
             $this->getConfig()->getYvesCheckoutPaymentFailedUrl(),

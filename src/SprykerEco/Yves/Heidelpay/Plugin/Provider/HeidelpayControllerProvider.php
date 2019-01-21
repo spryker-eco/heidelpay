@@ -2,29 +2,29 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Yves\Heidelpay\Plugin\Provider;
 
 use Silex\Application;
-use Spryker\Yves\Application\Plugin\Provider\YvesControllerProvider;
+use SprykerShop\Yves\ShopApplication\Plugin\Provider\AbstractYvesControllerProvider;
 
-class HeidelpayControllerProvider extends YvesControllerProvider
+class HeidelpayControllerProvider extends AbstractYvesControllerProvider
 {
-    const HEIDELPAY_PAYMENT = 'heidelpay-payment';
-    const HEIDELPAY_EASY_CREDIT_PAYMENT = 'heidelpay-easy-credit-payment';
-    const HEIDELPAY_PAYMENT_FAILED = 'heidelpay-payment-failed';
-    const HEIDELPAY_IDEAL_AUTHORIZE = 'heidelpay-ideal-authorize';
-    const HEIDELPAY_CREDIT_CARD_REGISTER = 'heidelpay-cc-register';
-    const HEIDELPAY_CREDIT_CARD_REGISTER_SUCCESS = 'heidelpay-cc-register-success';
+    public const HEIDELPAY_PAYMENT = 'heidelpay-payment';
+    public const HEIDELPAY_EASY_CREDIT_PAYMENT = 'heidelpay-easy-credit-payment';
+    public const HEIDELPAY_PAYMENT_FAILED = 'heidelpay-payment-failed';
+    public const HEIDELPAY_IDEAL_AUTHORIZE = 'heidelpay-ideal-authorize';
+    public const HEIDELPAY_CREDIT_CARD_REGISTER = 'heidelpay-cc-register';
+    public const HEIDELPAY_CREDIT_CARD_REGISTER_SUCCESS = 'heidelpay-cc-register-success';
 
     /**
      * @param \Silex\Application $app
      *
      * @return void
      */
-    protected function defineControllers(Application $app)
+    protected function defineControllers(Application $app): void
     {
         $this->createController(
             '/heidelpay/payment-failed',

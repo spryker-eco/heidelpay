@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Persistence;
@@ -21,7 +21,7 @@ class HeidelpayPersistenceFactory extends AbstractPersistenceFactory
     /**
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayQuery
      */
-    public function createPaymentHeidelpayQuery()
+    public function createPaymentHeidelpayQuery(): SpyPaymentHeidelpayQuery
     {
         return SpyPaymentHeidelpayQuery::create();
     }
@@ -29,7 +29,7 @@ class HeidelpayPersistenceFactory extends AbstractPersistenceFactory
     /**
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery
      */
-    public function createPaymentHeidelpayTransactionLogQuery()
+    public function createPaymentHeidelpayTransactionLogQuery(): SpyPaymentHeidelpayTransactionLogQuery
     {
         return SpyPaymentHeidelpayTransactionLogQuery::create();
     }
@@ -37,7 +37,7 @@ class HeidelpayPersistenceFactory extends AbstractPersistenceFactory
     /**
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistrationQuery
      */
-    public function createHeidelpayCreditCardRegistrationQuery()
+    public function createHeidelpayCreditCardRegistrationQuery(): SpyPaymentHeidelpayCreditCardRegistrationQuery
     {
         return SpyPaymentHeidelpayCreditCardRegistrationQuery::create();
     }

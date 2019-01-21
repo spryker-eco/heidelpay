@@ -2,12 +2,13 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Payment;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Heidelpay\PhpPaymentApi\PaymentMethods\PayPalPaymentMethod;
 
 class PaypalPayment extends BasePayment implements PaypalPaymentInterface
@@ -17,7 +18,7 @@ class PaypalPayment extends BasePayment implements PaypalPaymentInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function authorize(HeidelpayRequestTransfer $authorizeRequestTransfer)
+    public function authorize(HeidelpayRequestTransfer $authorizeRequestTransfer): HeidelpayResponseTransfer
     {
         $paypalMethod = new PayPalPaymentMethod();
         $this->prepareRequest($authorizeRequestTransfer, $paypalMethod->getRequest());
@@ -30,7 +31,7 @@ class PaypalPayment extends BasePayment implements PaypalPaymentInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function capture(HeidelpayRequestTransfer $captureRequestTransfer)
+    public function capture(HeidelpayRequestTransfer $captureRequestTransfer): HeidelpayResponseTransfer
     {
         $paypalMethod = new PayPalPaymentMethod();
         $this->prepareRequest($captureRequestTransfer, $paypalMethod->getRequest());
@@ -44,7 +45,7 @@ class PaypalPayment extends BasePayment implements PaypalPaymentInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function debit(HeidelpayRequestTransfer $debitRequestTransfer)
+    public function debit(HeidelpayRequestTransfer $debitRequestTransfer): HeidelpayResponseTransfer
     {
         $paypalMethod = new PayPalPaymentMethod();
         $this->prepareRequest($debitRequestTransfer, $paypalMethod->getRequest());

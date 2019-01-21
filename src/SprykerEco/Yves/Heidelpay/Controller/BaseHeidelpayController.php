@@ -2,12 +2,13 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Yves\Heidelpay\Controller;
 
 use Spryker\Yves\Kernel\Controller\AbstractController;
+use SprykerEco\Yves\Heidelpay\HeidelpayConfigInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -21,7 +22,7 @@ class BaseHeidelpayController extends AbstractController
      *
      * @return array
      */
-    protected function getUrldecodedRequestBody(Request $request)
+    protected function getUrldecodedRequestBody(Request $request): array
     {
         $allRequestParameters = $request->request->all();
 
@@ -37,7 +38,7 @@ class BaseHeidelpayController extends AbstractController
     /**
      * @return \SprykerEco\Yves\Heidelpay\HeidelpayConfigInterface
      */
-    protected function getConfig()
+    protected function getConfig(): HeidelpayConfigInterface
     {
         return $this->getFactory()->getYvesConfig();
     }
@@ -49,7 +50,7 @@ class BaseHeidelpayController extends AbstractController
      *
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
-    protected function streamedResponse($callback = null, $status = 200, $headers = [])
+    protected function streamedResponse($callback = null, $status = 200, $headers = []): StreamedResponse
     {
         $streamedResponse = new StreamedResponse($callback, $status, $headers);
         $streamedResponse->send();

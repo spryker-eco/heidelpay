@@ -2,10 +2,12 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Yves\Heidelpay\Handler;
+
+use Generated\Shared\Transfer\HeidelpayErrorRedirectResponseTransfer;
 
 interface PaymentFailureHandlerInterface
 {
@@ -14,5 +16,5 @@ interface PaymentFailureHandlerInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayErrorRedirectResponseTransfer
      */
-    public function handlePaymentFailureByErrorCode($errorCode);
+    public function handlePaymentFailureByErrorCode($errorCode): HeidelpayErrorRedirectResponseTransfer;
 }

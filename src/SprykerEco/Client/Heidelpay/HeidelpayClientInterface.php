@@ -2,12 +2,17 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Client\Heidelpay;
 
+use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
+use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
+use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer;
+use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 
 interface HeidelpayClientInterface
@@ -24,7 +29,7 @@ interface HeidelpayClientInterface
      *
      * @return string
      */
-    public function translateErrorMessageByCode($errorCode);
+    public function translateErrorMessageByCode(string $errorCode): string;
 
     /**
      * Specification:
@@ -36,7 +41,7 @@ interface HeidelpayClientInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
      */
-    public function getAuthorizeTransactionLogForOrder($orderReference);
+    public function getAuthorizeTransactionLogForOrder(string $orderReference): HeidelpayTransactionLogTransfer;
 
     /**
      * Specification:
@@ -48,7 +53,7 @@ interface HeidelpayClientInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer
      */
-    public function getCreditCardPaymentOptions(QuoteTransfer $quoteTransfer);
+    public function getCreditCardPaymentOptions(QuoteTransfer $quoteTransfer): HeidelpayCreditCardPaymentOptionsTransfer;
 
     /**
      * Specification:
@@ -60,7 +65,7 @@ interface HeidelpayClientInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
-    public function processExternalPaymentResponse(array $externalResponse);
+    public function processExternalPaymentResponse(array $externalResponse): HeidelpayPaymentProcessingResponseTransfer;
 
     /**
      * Specification:
@@ -84,7 +89,7 @@ interface HeidelpayClientInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer
      */
-    public function saveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer);
+    public function saveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer): HeidelpayRegistrationSaveResponseTransfer;
 
     /**
      * Specification:
@@ -98,7 +103,7 @@ interface HeidelpayClientInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer|null
      */
-    public function findRegistrationByIdAndQuote($idRegistration, QuoteTransfer $quoteTransfer);
+    public function findRegistrationByIdAndQuote(int $idRegistration, QuoteTransfer $quoteTransfer): ?HeidelpayCreditCardRegistrationTransfer;
 
     /**
      * Specification:
@@ -110,7 +115,7 @@ interface HeidelpayClientInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer
      */
-    public function parseExternalResponse(array $externalResponse);
+    public function parseExternalResponse(array $externalResponse): HeidelpayRegistrationRequestTransfer;
 
     /**
      * Specification:
@@ -120,7 +125,7 @@ interface HeidelpayClientInterface
      *
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function getQuoteFromSession();
+    public function getQuoteFromSession(): QuoteTransfer;
 
     /**
      * Specification:

@@ -2,12 +2,13 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Type;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 
 interface PaymentWithCaptureInterface
 {
@@ -16,5 +17,5 @@ interface PaymentWithCaptureInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function capture(HeidelpayRequestTransfer $captureRequestTransfer);
+    public function capture(HeidelpayRequestTransfer $captureRequestTransfer): HeidelpayResponseTransfer;
 }

@@ -2,10 +2,12 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Client\Heidelpay\Dependency\Client;
+
+use Generated\Shared\Transfer\QuoteTransfer;
 
 class HeidelpayToQuoteBridge implements HeidelpayToQuoteInterface
 {
@@ -25,7 +27,7 @@ class HeidelpayToQuoteBridge implements HeidelpayToQuoteInterface
     /**
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function getQuote()
+    public function getQuote(): QuoteTransfer
     {
         return $this->quoteSession->getQuote();
     }

@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Yves\Heidelpay\Form\DataProvider;
@@ -18,7 +18,7 @@ use SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface;
 
 class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterface
 {
-    const PAYMENT_OPTION_TRANSLATION_PREFIX = 'heidelpay.payment.credit_card.';
+    public const PAYMENT_OPTION_TRANSLATION_PREFIX = 'heidelpay.payment.credit_card.';
     /**
      * @var \SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface
      */
@@ -34,21 +34,21 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
     }
 
     /**
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer|\Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return \Spryker\Shared\Kernel\Transfer\AbstractTransfer|\Generated\Shared\Transfer\QuoteTransfer
+     * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function getData(AbstractTransfer $quoteTransfer)
+    public function getData(AbstractTransfer $quoteTransfer): QuoteTransfer
     {
         return $quoteTransfer;
     }
 
     /**
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer|\Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return array
      */
-    public function getOptions(AbstractTransfer $quoteTransfer)
+    public function getOptions(AbstractTransfer $quoteTransfer): array
     {
         $this->initPaymentObject($quoteTransfer);
         $this->hydratePaymentOptionsToQuote($quoteTransfer);
@@ -68,7 +68,7 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
      *
      * @return void
      */
-    protected function initPaymentObject(QuoteTransfer $quoteTransfer)
+    protected function initPaymentObject(AbstractTransfer $quoteTransfer): void
     {
         if ($quoteTransfer->getPayment() === null) {
             $creditCardPaymentTransfer = (new PaymentTransfer())
@@ -83,7 +83,7 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
      *
      * @return void
      */
-    protected function hydratePaymentOptionsToQuote(QuoteTransfer $quoteTransfer)
+    protected function hydratePaymentOptionsToQuote(AbstractTransfer $quoteTransfer): void
     {
         $quoteTransfer->requirePayment();
         $this->paymentOptionsHydrator->hydrate($quoteTransfer);
@@ -94,7 +94,7 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
      *
      * @return void
      */
-    protected function selectPaymentOption(HeidelpayCreditCardPaymentTransfer $creditCardPaymentTransfer)
+    protected function selectPaymentOption(HeidelpayCreditCardPaymentTransfer $creditCardPaymentTransfer): void
     {
         $this->unsetNotAvailableSelection($creditCardPaymentTransfer);
 
@@ -110,7 +110,7 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
      *
      * @return void
      */
-    protected function unsetNotAvailableSelection(HeidelpayCreditCardPaymentTransfer $creditCardPaymentTransfer)
+    protected function unsetNotAvailableSelection(HeidelpayCreditCardPaymentTransfer $creditCardPaymentTransfer): void
     {
         $selectedPaymentOption = $creditCardPaymentTransfer->getSelectedPaymentOption();
 
@@ -130,7 +130,7 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
      *
      * @return void
      */
-    protected function setDefaultPaymentOption(HeidelpayCreditCardPaymentTransfer $creditCardPaymentTransfer)
+    protected function setDefaultPaymentOption(HeidelpayCreditCardPaymentTransfer $creditCardPaymentTransfer): void
     {
         $availableOptions = array_keys($this->fetchPaymentOptions($creditCardPaymentTransfer));
         $creditCardPaymentTransfer->setSelectedPaymentOption(array_shift($availableOptions));
@@ -141,7 +141,7 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
      *
      * @return array
      */
-    protected function fetchPaymentOptions(HeidelpayCreditCardPaymentTransfer $creditCardPaymentTransfer)
+    protected function fetchPaymentOptions(HeidelpayCreditCardPaymentTransfer $creditCardPaymentTransfer): array
     {
         $paymentOptions = [];
 

@@ -2,16 +2,16 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
 use Generated\Shared\Transfer\PaymentTransfer;
-
+use Orm\Zed\Sales\Persistence\SpySalesOrder;
+use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
-
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\SuccessfulResponseHeidelpayBusinessFactory;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusinessFactory;
 
@@ -28,7 +28,7 @@ class HeidelpayFacadeAuthorizePaymentTest extends HeidelpayPaymentTest
     /**
      * @return void
      */
-    public function testProcessSuccessfulExternalPaymentResponseForSofort()
+    public function testProcessSuccessfulExternalPaymentResponseForSofort(): void
     {
         $salesOrder = $this->createSuccessOrder();
 
@@ -48,7 +48,7 @@ class HeidelpayFacadeAuthorizePaymentTest extends HeidelpayPaymentTest
     /**
      * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
      */
-    public function createSuccessOrder()
+    public function createSuccessOrder(): SpySalesOrder
     {
         $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
         $orderTransfer = $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_SOFORT);
@@ -58,7 +58,7 @@ class HeidelpayFacadeAuthorizePaymentTest extends HeidelpayPaymentTest
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
      */
-    protected function createSuccessfulPaymentHeidelpayFactoryMock()
+    protected function createSuccessfulPaymentHeidelpayFactoryMock(): HeidelpayBusinessFactory
     {
         return new SuccessfulResponseHeidelpayBusinessFactory();
     }
@@ -66,7 +66,7 @@ class HeidelpayFacadeAuthorizePaymentTest extends HeidelpayPaymentTest
     /**
      * @return void
      */
-    public function testProcessUnsuccessfulExternalPaymentResponseForSofort()
+    public function testProcessUnsuccessfulExternalPaymentResponseForSofort(): void
     {
         $salesOrder = $this->createSuccessOrder();
 
@@ -86,7 +86,7 @@ class HeidelpayFacadeAuthorizePaymentTest extends HeidelpayPaymentTest
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
      */
-    protected function createUnsuccessfulPaymentHeidelpayFactoryMock()
+    protected function createUnsuccessfulPaymentHeidelpayFactoryMock(): HeidelpayBusinessFactory
     {
         return new UnsuccesfulResponseHeidelpayBusinessFactory();
     }

@@ -2,8 +2,9 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
+
 namespace SprykerEco\Zed\Heidelpay\Business\Mapper;
 
 use Generated\Shared\Transfer\AddressTransfer;
@@ -34,7 +35,7 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    public function map(OrderTransfer $orderTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer)
+    public function map(OrderTransfer $orderTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer): HeidelpayRequestTransfer
     {
         $heidelpayRequestTransfer = $this->mapCustomerAddress($orderTransfer, $heidelpayRequestTransfer);
         $heidelpayRequestTransfer = $this->mapOrderInformation($orderTransfer, $heidelpayRequestTransfer);
@@ -49,7 +50,7 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    protected function mapCustomerAddress(OrderTransfer $orderTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer)
+    protected function mapCustomerAddress(OrderTransfer $orderTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer): HeidelpayRequestTransfer
     {
         $heidelpayRequestTransfer->setCustomerAddress(
             (new HeidelpayCustomerAddressTransfer())
@@ -73,7 +74,7 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    protected function mapOrderInformation(OrderTransfer $orderTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer)
+    protected function mapOrderInformation(OrderTransfer $orderTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer): HeidelpayRequestTransfer
     {
         $heidelpayRequestTransfer->setCustomerPurchase(
             (new HeidelpayCustomerPurchaseTransfer())
@@ -89,7 +90,7 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
      *
      * @return string
      */
-    protected function getFullStreetName(AddressTransfer $shippingAddressTransfer)
+    protected function getFullStreetName(AddressTransfer $shippingAddressTransfer): string
     {
         return sprintf('%s %s', $shippingAddressTransfer->getAddress1(), $shippingAddressTransfer->getAddress2());
     }
@@ -99,7 +100,7 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
      *
      * @return float
      */
-    protected function getOrderGrandTotalInDecimal(OrderTransfer $orderTransfer)
+    protected function getOrderGrandTotalInDecimal(OrderTransfer $orderTransfer): float
     {
         $orderAmountInt = $orderTransfer->getTotals()->getGrandTotal();
         $orderAmountDecimal = $this->moneyFacade->convertIntegerToDecimal($orderAmountInt);
@@ -113,10 +114,12 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    protected function mapOrderPayment(OrderTransfer $orderTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer)
+    protected function mapOrderPayment(OrderTransfer $orderTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer): HeidelpayRequestTransfer
     {
         $heidelpayPayment = $orderTransfer->getHeidelpayPayment();
-        $heidelpayRequestTransfer->setIdPaymentRegistration($heidelpayPayment->getIdPaymentRegistration());
+        $heidelpayRequestTransfer
+            ->setIdBasket($heidelpayPayment->getIdBasket())
+            ->setIdPaymentRegistration($heidelpayPayment->getIdPaymentRegistration());
 
         return $heidelpayRequestTransfer;
     }

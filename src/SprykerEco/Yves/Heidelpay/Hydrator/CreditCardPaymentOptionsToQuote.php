@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Yves\Heidelpay\Hydrator;
@@ -32,7 +32,7 @@ class CreditCardPaymentOptionsToQuote implements CreditCardPaymentOptionsToQuote
      *
      * @return void
      */
-    public function hydrate(QuoteTransfer $quoteTransfer)
+    public function hydrate(QuoteTransfer $quoteTransfer): void
     {
         if (!$this->hasQuoteCreditCardPayment($quoteTransfer)) {
             $this->initCreditCardPayment($quoteTransfer);
@@ -44,9 +44,9 @@ class CreditCardPaymentOptionsToQuote implements CreditCardPaymentOptionsToQuote
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return boolean
+     * @return bool
      */
-    protected function hasQuoteCreditCardPayment(QuoteTransfer $quoteTransfer)
+    protected function hasQuoteCreditCardPayment(QuoteTransfer $quoteTransfer): bool
     {
         return $quoteTransfer->getPayment()->getHeidelpayCreditCardSecure() !== null;
     }
@@ -56,7 +56,7 @@ class CreditCardPaymentOptionsToQuote implements CreditCardPaymentOptionsToQuote
      *
      * @return void
      */
-    protected function hydrateCreditCardPaymentOptions(QuoteTransfer $quoteTransfer)
+    protected function hydrateCreditCardPaymentOptions(QuoteTransfer $quoteTransfer): void
     {
         $creditCardPaymentOptionsTransfer = $this->heidelpayClient->getCreditCardPaymentOptions($quoteTransfer);
 
@@ -69,7 +69,7 @@ class CreditCardPaymentOptionsToQuote implements CreditCardPaymentOptionsToQuote
      *
      * @return void
      */
-    protected function initCreditCardPayment(QuoteTransfer $quoteTransfer)
+    protected function initCreditCardPayment(QuoteTransfer $quoteTransfer): void
     {
         $creditCardPaymentTransfer = (new HeidelpayCreditCardPaymentTransfer())
             ->setPaymentOptions(new HeidelpayCreditCardPaymentOptionsTransfer());

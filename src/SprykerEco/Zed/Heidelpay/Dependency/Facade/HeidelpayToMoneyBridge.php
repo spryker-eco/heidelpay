@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Dependency\Facade;
@@ -27,7 +27,7 @@ class HeidelpayToMoneyBridge implements HeidelpayToMoneyInterface
      *
      * @return float
      */
-    public function convertIntegerToDecimal($value)
+    public function convertIntegerToDecimal(int $value): float
     {
         return $this->moneyFacade->convertIntegerToDecimal($value);
     }

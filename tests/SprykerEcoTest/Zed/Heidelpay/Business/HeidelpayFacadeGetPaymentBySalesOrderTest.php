@@ -2,14 +2,14 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
-
 use Generated\Shared\Transfer\PaymentTransfer;
+use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
 
 /**
@@ -25,7 +25,7 @@ class HeidelpayFacadeGetPaymentBySalesOrderTest extends HeidelpayPaymentTest
     /**
      * @return void
      */
-    public function testProcessExternalPaymentResponseForSofort()
+    public function testProcessExternalPaymentResponseForSofort(): void
     {
         $salesOrder = $this->createSofortSuccessOrder();
         $paymentTransfer = $this->heidelpayFacade->getPaymentByIdSalesOrder($salesOrder->getIdSalesOrder());
@@ -39,7 +39,7 @@ class HeidelpayFacadeGetPaymentBySalesOrderTest extends HeidelpayPaymentTest
     /**
      * @return \Orm\Zed\Sales\Persistence\SpySalesOrder $salesOrder
      */
-    public function createSofortSuccessOrder()
+    public function createSofortSuccessOrder(): SpySalesOrder
     {
         $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
         $orderTransfer = $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_SOFORT);
@@ -49,7 +49,7 @@ class HeidelpayFacadeGetPaymentBySalesOrderTest extends HeidelpayPaymentTest
     /**
      * @return void
      */
-    public function testProcessExternalPaymentResponseForSofortForFailedPayment()
+    public function testProcessExternalPaymentResponseForSofortForFailedPayment(): void
     {
         $paymentTransfer = $this->heidelpayFacade->getPaymentByIdSalesOrder(1000000000);
         $this->assertInstanceOf(HeidelpayPaymentTransfer::class, $paymentTransfer);

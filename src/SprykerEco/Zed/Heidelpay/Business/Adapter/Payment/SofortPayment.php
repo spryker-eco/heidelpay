@@ -2,12 +2,13 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Payment;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Heidelpay\PhpPaymentApi\PaymentMethods\SofortPaymentMethod;
 
 class SofortPayment extends BasePayment implements SofortPaymentInterface
@@ -17,7 +18,7 @@ class SofortPayment extends BasePayment implements SofortPaymentInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function authorize(HeidelpayRequestTransfer $authorizeRequestTransfer)
+    public function authorize(HeidelpayRequestTransfer $authorizeRequestTransfer): HeidelpayResponseTransfer
     {
         $sofortMethod = new SofortPaymentMethod();
         $this->prepareRequest($authorizeRequestTransfer, $sofortMethod->getRequest());

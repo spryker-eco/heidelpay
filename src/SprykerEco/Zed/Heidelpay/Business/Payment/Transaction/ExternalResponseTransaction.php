@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction;
@@ -38,7 +38,7 @@ class ExternalResponseTransaction implements ExternalResponseTransactionInterfac
     public function executeTransaction(
         HeidelpayExternalPaymentResponseTransfer $externalResponseTransfer,
         PaymentWithExternalResponseInterface $paymentAdapter
-    ) {
+    ): HeidelpayResponseTransfer {
         $heidelpayResponseTransfer = $paymentAdapter->processExternalResponse($externalResponseTransfer);
         $this->logTransaction($heidelpayResponseTransfer);
 
@@ -52,7 +52,7 @@ class ExternalResponseTransaction implements ExternalResponseTransactionInterfac
      */
     protected function logTransaction(
         HeidelpayResponseTransfer $externalResponseTransfer
-    ) {
+    ): void {
         $this->transactionLogger->logTransaction(
             HeidelpayConfig::TRANSACTION_TYPE_EXTERNAL_RESPONSE,
             (new HeidelpayRequestTransfer()),

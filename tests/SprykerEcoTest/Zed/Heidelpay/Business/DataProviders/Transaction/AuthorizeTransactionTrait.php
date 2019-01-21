@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Transaction;
@@ -22,7 +22,7 @@ trait AuthorizeTransactionTrait
      *
      * @return void
      */
-    public function createSuccessfulAuthorizeTransactionForOrder(SpySalesOrder $orderEntity)
+    public function createSuccessfulAuthorizeTransactionForOrder(SpySalesOrder $orderEntity): void
     {
         $authorizeTransaction = new SpyPaymentHeidelpayTransactionLog();
         $authorizeTransaction
@@ -53,7 +53,7 @@ trait AuthorizeTransactionTrait
      *
      * @return void
      */
-    public function createUnsuccessfulAuthorizeTransactionForOrder(SpySalesOrder $orderEntity)
+    public function createUnsuccessfulAuthorizeTransactionForOrder(SpySalesOrder $orderEntity): void
     {
         $authorizeTransaction = new SpyPaymentHeidelpayTransactionLog();
         $authorizeTransaction
@@ -88,7 +88,7 @@ trait AuthorizeTransactionTrait
      *
      * @return string
      */
-    protected function prepareJsonString($jsonString)
+    protected function prepareJsonString($jsonString): string
     {
         return preg_replace("~[\n \t]+~", '', $jsonString);
     }

@@ -2,10 +2,12 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Dependency\QueryContainer;
+
+use Orm\Zed\Sales\Persistence\SpySalesOrder;
 
 interface HeidelpayToSalesQueryContainerInterface
 {
@@ -14,5 +16,5 @@ interface HeidelpayToSalesQueryContainerInterface
      *
      * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
      */
-    public function getOrderByReference($orderReference);
+    public function getOrderByReference(string $orderReference): SpySalesOrder;
 }

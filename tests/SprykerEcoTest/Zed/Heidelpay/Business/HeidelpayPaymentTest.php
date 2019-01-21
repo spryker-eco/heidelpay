@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
@@ -39,7 +39,7 @@ class HeidelpayPaymentTest extends Test
     /**
      * @return void
      */
-    protected function _before()
+    protected function _before(): void
     {
         parent::_before();
 
@@ -59,7 +59,7 @@ class HeidelpayPaymentTest extends Test
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
      */
-    protected function createHeidelpayFactory()
+    protected function createHeidelpayFactory(): HeidelpayBusinessFactory
     {
         return new HeidelpayBusinessFactory();
     }
@@ -67,7 +67,7 @@ class HeidelpayPaymentTest extends Test
     /**
      * @return void
      */
-    protected function _after()
+    protected function _after(): void
     {
         $con = Propel::getConnection();
         $con->commit();
@@ -76,7 +76,7 @@ class HeidelpayPaymentTest extends Test
     /**
      * @return array
      */
-    protected function getConfigOptions()
+    protected function getConfigOptions(): array
     {
         return (new HeidelpayConfigurationBuilder())->getHeidelpayConfigurationOptions();
     }
@@ -87,10 +87,10 @@ class HeidelpayPaymentTest extends Test
      *
      * @return void
      */
-    protected function testExecutor($dataProviderFunctionName, $testFunctionName)
+    protected function testExecutor(string $dataProviderFunctionName, string $testFunctionName): void
     {
         $data = $this->$dataProviderFunctionName();
-        list($quoteTransfer, $checkoutResponseTransfer) = $data;
+        [$quoteTransfer, $checkoutResponseTransfer] = $data;
         $this->$testFunctionName($quoteTransfer, $checkoutResponseTransfer);
     }
 }

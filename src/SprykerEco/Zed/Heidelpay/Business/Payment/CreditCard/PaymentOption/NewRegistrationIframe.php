@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\PaymentOption;
@@ -48,7 +48,7 @@ class NewRegistrationIframe implements PaymentOptionInterface
     public function hydrateToPaymentOptions(
         QuoteTransfer $quoteTransfer,
         HeidelpayCreditCardPaymentOptionsTransfer $paymentOptionsTransfer
-    ) {
+    ): void {
         $registrationResponseTransfer = $this->registerQuote($quoteTransfer);
         $this->mapResponseToPaymentOptions($paymentOptionsTransfer, $registrationResponseTransfer);
     }
@@ -58,7 +58,7 @@ class NewRegistrationIframe implements PaymentOptionInterface
      *
      * @return bool
      */
-    public function isOptionAvailableForQuote(QuoteTransfer $quoteTransfer)
+    public function isOptionAvailableForQuote(QuoteTransfer $quoteTransfer): bool
     {
         return true;
     }
@@ -68,7 +68,7 @@ class NewRegistrationIframe implements PaymentOptionInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    protected function registerQuote(QuoteTransfer $quoteTransfer)
+    protected function registerQuote(QuoteTransfer $quoteTransfer): HeidelpayResponseTransfer
     {
         $registrationRequestTransfer = $this->adapterRequestBuilder->buildCreditCardRegistrationRequest($quoteTransfer);
         $registrationResponseTransfer = $this->creditCardPayment->register($registrationRequestTransfer);
@@ -85,7 +85,7 @@ class NewRegistrationIframe implements PaymentOptionInterface
     protected function mapResponseToPaymentOptions(
         HeidelpayCreditCardPaymentOptionsTransfer $paymentOptionsTransfer,
         HeidelpayResponseTransfer $registrationResponseTransfer
-    ) {
+    ): void {
         if ($registrationResponseTransfer->getIsError()) {
             return;
         }
@@ -101,7 +101,7 @@ class NewRegistrationIframe implements PaymentOptionInterface
      *
      * @return void
      */
-    protected function addNewRegistrationAsPaymentOption(HeidelpayCreditCardPaymentOptionsTransfer $paymentOptionsTransfer)
+    protected function addNewRegistrationAsPaymentOption(HeidelpayCreditCardPaymentOptionsTransfer $paymentOptionsTransfer): void
     {
         $optionsList = $paymentOptionsTransfer->getOptionsList();
 

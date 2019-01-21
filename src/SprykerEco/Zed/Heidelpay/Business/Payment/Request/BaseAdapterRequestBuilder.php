@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Request;
@@ -42,7 +42,7 @@ class BaseAdapterRequestBuilder
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    protected function hydrateAuthenticationInfo(HeidelpayRequestTransfer $heidelpayRequestTransfer)
+    protected function hydrateAuthenticationInfo(HeidelpayRequestTransfer $heidelpayRequestTransfer): HeidelpayRequestTransfer
     {
         $authenticationTransfer = (new HeidelpayAuthenticationTransfer())
             ->setUserLogin($this->config->getMerchantUserLogin())
@@ -60,7 +60,7 @@ class BaseAdapterRequestBuilder
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    protected function hydrateAsyncParameters(HeidelpayRequestTransfer $heidelpayRequestTransfer)
+    protected function hydrateAsyncParameters(HeidelpayRequestTransfer $heidelpayRequestTransfer): HeidelpayRequestTransfer
     {
         $asyncTransfer = (new HeidelpayAsyncTransfer())
             ->setLanguageCode($this->config->getAsyncLanguageCode())
@@ -76,7 +76,7 @@ class BaseAdapterRequestBuilder
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    protected function hydrateApplicationSecret(HeidelpayRequestTransfer $heidelpayRequestTransfer)
+    protected function hydrateApplicationSecret(HeidelpayRequestTransfer $heidelpayRequestTransfer): HeidelpayRequestTransfer
     {
         $heidelpayRequestTransfer->getCustomerPurchase()
             ->setSecret($this->config->getApplicationSecret());
@@ -90,7 +90,7 @@ class BaseAdapterRequestBuilder
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    protected function hydrateTransactionChannel(HeidelpayRequestTransfer $heidelpayRequestTransfer, $paymentMethod)
+    protected function hydrateTransactionChannel(HeidelpayRequestTransfer $heidelpayRequestTransfer, $paymentMethod): HeidelpayRequestTransfer
     {
         $transactionChannel = $this->config->getMerchantTransactionChannelByPaymentType($paymentMethod);
         $heidelpayRequestTransfer->getAuth()->setTransactionChannel($transactionChannel);
@@ -103,7 +103,7 @@ class BaseAdapterRequestBuilder
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    protected function hydrateCurrency(HeidelpayRequestTransfer $heidelpayRequestTransfer)
+    protected function hydrateCurrency(HeidelpayRequestTransfer $heidelpayRequestTransfer): HeidelpayRequestTransfer
     {
         $currencyCode = $this->currencyFacade->getCurrent()->getCode();
         $heidelpayRequestTransfer->getCustomerPurchase()
@@ -117,7 +117,7 @@ class BaseAdapterRequestBuilder
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    protected function hydrateRequestData(HeidelpayRequestTransfer $requestTransfer)
+    protected function hydrateRequestData(HeidelpayRequestTransfer $requestTransfer): HeidelpayRequestTransfer
     {
         $requestTransfer = $this->hydrateAuthenticationInfo($requestTransfer);
         $requestTransfer = $this->hydrateApplicationSecret($requestTransfer);

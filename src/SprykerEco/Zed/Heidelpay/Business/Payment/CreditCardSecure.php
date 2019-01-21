@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment;
@@ -47,7 +47,7 @@ class CreditCardSecure extends BaseHeidelpayPaymentMethod implements
      *
      * @return void
      */
-    public function postSaveOrder(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer)
+    public function postSaveOrder(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer): void
     {
         $authorizeTransactionLogTransfer = $this->findOrderAuthorizeTransactionLog(
             $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder()
@@ -72,7 +72,7 @@ class CreditCardSecure extends BaseHeidelpayPaymentMethod implements
      *
      * @return void
      */
-    public function addDataToPayment(SpyPaymentHeidelpay $paymentEntity, QuoteTransfer $quoteTransfer)
+    public function addDataToPayment(SpyPaymentHeidelpay $paymentEntity, QuoteTransfer $quoteTransfer): void
     {
         $registrationId = $this->getRegistrationIdFromQuote($quoteTransfer);
         $paymentEntity->setIdPaymentRegistration($registrationId);
@@ -83,7 +83,7 @@ class CreditCardSecure extends BaseHeidelpayPaymentMethod implements
      *
      * @return bool
      */
-    protected function hasCustomerRegisteredShipmentAddress(AddressTransfer $shippingAddress)
+    protected function hasCustomerRegisteredShipmentAddress(AddressTransfer $shippingAddress): bool
     {
         return $shippingAddress->getIdCustomerAddress() !== null;
     }
@@ -93,7 +93,7 @@ class CreditCardSecure extends BaseHeidelpayPaymentMethod implements
      *
      * @return void
      */
-    protected function updateCreditCardRegistrationWithAddressId(QuoteTransfer $quoteTransfer)
+    protected function updateCreditCardRegistrationWithAddressId(QuoteTransfer $quoteTransfer): void
     {
         $this->registrationWriter->updateRegistrationWithAddressIdFromQuote($quoteTransfer);
     }
@@ -103,7 +103,7 @@ class CreditCardSecure extends BaseHeidelpayPaymentMethod implements
      *
      * @return string
      */
-    protected function getRegistrationIdFromQuote(QuoteTransfer $quoteTransfer)
+    protected function getRegistrationIdFromQuote(QuoteTransfer $quoteTransfer): string
     {
         return $quoteTransfer
             ->getPayment()

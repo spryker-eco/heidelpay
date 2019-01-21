@@ -2,12 +2,13 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPayment;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentResponseTransferBuilderTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
@@ -21,7 +22,7 @@ class SuccessfulCreditCardCapturePaymentMock extends CreditCardPayment
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function register(HeidelpayRequestTransfer $captureRequestTransfer)
+    public function register(HeidelpayRequestTransfer $captureRequestTransfer): HeidelpayResponseTransfer
     {
         $response['payload'] = '{
                         "processing": {"result": "ACK"}, 
@@ -43,7 +44,7 @@ class SuccessfulCreditCardCapturePaymentMock extends CreditCardPayment
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function capture(HeidelpayRequestTransfer $captureRequestTransfer)
+    public function capture(HeidelpayRequestTransfer $captureRequestTransfer): HeidelpayResponseTransfer
     {
         $response['payload'] = '{
                         "processing": {"result": "ACK"}, 

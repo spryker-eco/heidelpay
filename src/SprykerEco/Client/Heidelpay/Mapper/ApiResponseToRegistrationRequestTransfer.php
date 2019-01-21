@@ -2,8 +2,9 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
+
 namespace SprykerEco\Client\Heidelpay\Mapper;
 
 use Generated\Shared\Transfer\HeidelpayCreditCardInfoTransfer;
@@ -19,7 +20,7 @@ class ApiResponseToRegistrationRequestTransfer implements ApiResponseToRegistrat
      *
      * @return void
      */
-    public function map(Response $apiResponseObject, HeidelpayRegistrationRequestTransfer $registrationRequestTransfer)
+    public function map(Response $apiResponseObject, HeidelpayRegistrationRequestTransfer $registrationRequestTransfer): void
     {
         $this->mapCreditCardInfo($apiResponseObject, $registrationRequestTransfer);
         $this->mapError($apiResponseObject, $registrationRequestTransfer);
@@ -42,7 +43,7 @@ class ApiResponseToRegistrationRequestTransfer implements ApiResponseToRegistrat
     public function hydrateErrorToRegistrationRequest(
         HeidelpayRegistrationRequestTransfer $registrationRequestTransfer,
         HeidelpayResponseErrorTransfer $errorTransfer
-    ) {
+    ): void {
         $registrationRequestTransfer
             ->setIsError(true)
             ->setError($errorTransfer);
@@ -54,7 +55,7 @@ class ApiResponseToRegistrationRequestTransfer implements ApiResponseToRegistrat
      *
      * @return void
      */
-    protected function mapError(Response $apiResponse, HeidelpayRegistrationRequestTransfer $responseTransfer)
+    protected function mapError(Response $apiResponse, HeidelpayRegistrationRequestTransfer $responseTransfer): void
     {
         if (!$apiResponse->isError()) {
             return;
@@ -74,7 +75,7 @@ class ApiResponseToRegistrationRequestTransfer implements ApiResponseToRegistrat
      *
      * @return void
      */
-    protected function mapCreditCardInfo(Response $apiResponseObject, HeidelpayRegistrationRequestTransfer $registrationRequestTransfer)
+    protected function mapCreditCardInfo(Response $apiResponseObject, HeidelpayRegistrationRequestTransfer $registrationRequestTransfer): void
     {
         $creditCardInfoTransfer = new HeidelpayCreditCardInfoTransfer();
         $accountInfo = $apiResponseObject->getAccount();

@@ -2,12 +2,13 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Payment;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Heidelpay\PhpPaymentApi\PaymentMethods\CreditCardPaymentMethod;
 
 class CreditCardPayment extends BasePayment implements
@@ -18,7 +19,7 @@ class CreditCardPayment extends BasePayment implements
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function register(HeidelpayRequestTransfer $registerRequestTransfer)
+    public function register(HeidelpayRequestTransfer $registerRequestTransfer): HeidelpayResponseTransfer
     {
         $creditCardMethod = new CreditCardPaymentMethod();
         $this->prepareRequest($registerRequestTransfer, $creditCardMethod->getRequest());
@@ -37,7 +38,7 @@ class CreditCardPayment extends BasePayment implements
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function authorize(HeidelpayRequestTransfer $authorizeRequestTransfer)
+    public function authorize(HeidelpayRequestTransfer $authorizeRequestTransfer): HeidelpayResponseTransfer
     {
         $creditCardMethod = new CreditCardPaymentMethod();
         $this->prepareRequest($authorizeRequestTransfer, $creditCardMethod->getRequest());
@@ -52,7 +53,7 @@ class CreditCardPayment extends BasePayment implements
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function capture(HeidelpayRequestTransfer $captureRequestTransfer)
+    public function capture(HeidelpayRequestTransfer $captureRequestTransfer): HeidelpayResponseTransfer
     {
         $creditCardMethod = new CreditCardPaymentMethod();
         $this->prepareRequest($captureRequestTransfer, $creditCardMethod->getRequest());

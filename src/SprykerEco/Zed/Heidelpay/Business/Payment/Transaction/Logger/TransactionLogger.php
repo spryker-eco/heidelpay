@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Logger;
@@ -43,10 +43,10 @@ class TransactionLogger implements TransactionLoggerInterface
      * @return void
      */
     public function logTransaction(
-        $transactionType,
+        string $transactionType,
         HeidelpayRequestTransfer $requestTransfer,
         HeidelpayResponseTransfer $responseTransfer
-    ) {
+    ): void {
         $transactionLog = new SpyPaymentHeidelpayTransactionLog();
         $this->addEncryptedRequestResponsePayload($transactionLog, $requestTransfer, $responseTransfer);
 
@@ -71,7 +71,7 @@ class TransactionLogger implements TransactionLoggerInterface
         SpyPaymentHeidelpayTransactionLog $transactionLog,
         HeidelpayRequestTransfer $requestTransfer,
         HeidelpayResponseTransfer $responseTransfer
-    ) {
+    ): void {
         $encryptedRequestPayload = $this->encrypter
             ->encryptData($this->encodeRequestTransfer($requestTransfer));
         $encryptedResponsePayload = $this->encrypter
@@ -87,7 +87,7 @@ class TransactionLogger implements TransactionLoggerInterface
      *
      * @return string
      */
-    protected function encodeRequestTransfer(HeidelpayRequestTransfer $requestTransfer)
+    protected function encodeRequestTransfer(HeidelpayRequestTransfer $requestTransfer): string
     {
         return $this->utilEncoding->encodeJson($requestTransfer->toArray());
     }

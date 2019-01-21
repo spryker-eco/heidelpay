@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Shared\Heidelpay;
@@ -14,9 +14,9 @@ class QuoteUniqueIdGenerator
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return mixed
+     * @return string
      */
-    public static function getHashByCustomerEmailAndTotals(QuoteTransfer $quoteTransfer)
+    public static function getHashByCustomerEmailAndTotals(QuoteTransfer $quoteTransfer): string
     {
         $quoteTransfer
             ->requireCustomer()

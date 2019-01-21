@@ -2,19 +2,21 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
 
+use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\AuthorizeTransactionInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\AuthorizeNotSupportedException;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface;
 
 class AuthorizeTransactionHandler implements AuthorizeTransactionHandlerInterface
 {
-    const ERROR_MESSAGE_AUTHORIZE_TRANSACTION_NOT_SUPPORTED =
+    public const ERROR_MESSAGE_AUTHORIZE_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call authorize transaction on payment method \'%s\' ' .
         'that does not support it';
     /**
@@ -52,7 +54,7 @@ class AuthorizeTransactionHandler implements AuthorizeTransactionHandlerInterfac
      *
      * @return void
      */
-    public function authorize(OrderTransfer $orderTransfer)
+    public function authorize(OrderTransfer $orderTransfer): void
     {
         $authorizeRequestTransfer = $this->buildAuthorizeRequest($orderTransfer);
         $paymentAdapter = $this->getPaymentMethodAdapter($orderTransfer);
@@ -64,7 +66,7 @@ class AuthorizeTransactionHandler implements AuthorizeTransactionHandlerInterfac
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    protected function buildAuthorizeRequest(OrderTransfer $orderTransfer)
+    protected function buildAuthorizeRequest(OrderTransfer $orderTransfer): HeidelpayRequestTransfer
     {
         $authorizeRequestTransfer = $this->heidelpayRequestBuilder->buildAuthorizeRequestFromOrder($orderTransfer);
 
@@ -78,7 +80,7 @@ class AuthorizeTransactionHandler implements AuthorizeTransactionHandlerInterfac
      *
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface
      */
-    protected function getPaymentMethodAdapter(OrderTransfer $orderTransfer)
+    protected function getPaymentMethodAdapter(OrderTransfer $orderTransfer): PaymentWithAuthorizeInterface
     {
         $paymentMethodCode = $this->getPaymentMethodCode($orderTransfer);
 
@@ -96,7 +98,7 @@ class AuthorizeTransactionHandler implements AuthorizeTransactionHandlerInterfac
      *
      * @return string
      */
-    protected function getPaymentMethodCode(OrderTransfer $orderTransfer)
+    protected function getPaymentMethodCode(OrderTransfer $orderTransfer): string
     {
         return $orderTransfer->getHeidelpayPayment()->getPaymentMethod();
     }

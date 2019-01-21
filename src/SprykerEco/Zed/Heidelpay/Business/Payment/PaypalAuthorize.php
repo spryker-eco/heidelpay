@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment;
@@ -19,7 +19,7 @@ class PaypalAuthorize extends BaseHeidelpayPaymentMethod implements PaymentWithP
      *
      * @return void
      */
-    public function postSaveOrder(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer)
+    public function postSaveOrder(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer): void
     {
         $redirectUrl = $this->getCheckoutRedirectUrlFromAuthorizeTransactionLog(
             $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder()

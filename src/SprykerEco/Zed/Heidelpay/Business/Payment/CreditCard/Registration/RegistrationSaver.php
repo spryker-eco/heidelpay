@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration;
@@ -32,7 +32,7 @@ class RegistrationSaver implements RegistrationSaverInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer
      */
-    public function saveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer)
+    public function saveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer): HeidelpayRegistrationSaveResponseTransfer
     {
         $spyCreditCardRegistration = $this->buildRegistrationEntityFromRequest($registrationRequestTransfer);
         $spyCreditCardRegistration->save();
@@ -47,7 +47,7 @@ class RegistrationSaver implements RegistrationSaverInterface
      */
     protected function buildRegistrationEntityFromRequest(
         HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
-    ) {
+    ): SpyPaymentHeidelpayCreditCardRegistration {
         $spyCreditCardRegistration = new SpyPaymentHeidelpayCreditCardRegistration();
 
         $spyCreditCardRegistration->fromArray(
@@ -68,7 +68,7 @@ class RegistrationSaver implements RegistrationSaverInterface
      */
     protected function buildRegistrationSaveResponse(
         SpyPaymentHeidelpayCreditCardRegistration $spyCreditCardRegistration
-    ) {
+    ): HeidelpayRegistrationSaveResponseTransfer {
         $registrationSaveResponse = new HeidelpayRegistrationSaveResponseTransfer();
         $registrationSaveResponse->setIdRegistration($spyCreditCardRegistration->getIdCreditCardRegistration());
 

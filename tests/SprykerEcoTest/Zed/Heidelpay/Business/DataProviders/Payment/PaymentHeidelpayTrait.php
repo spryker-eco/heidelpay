@@ -2,12 +2,13 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment;
 
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay;
+use Orm\Zed\Sales\Persistence\SpySalesOrder;
 
 trait PaymentHeidelpayTrait
 {
@@ -19,10 +20,10 @@ trait PaymentHeidelpayTrait
      * @return void
      */
     protected function createHeidelpayPaymentEntity(
-        $salesOrderEntity,
+        SpySalesOrder $salesOrderEntity,
         string $idPaymentReference,
         string $paymentMethod
-    ) {
+    ): void {
         $payment = new SpyPaymentHeidelpay();
         $payment->setFkSalesOrder($salesOrderEntity->getIdSalesOrder());
 

@@ -2,11 +2,14 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Persistence;
 
+use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistrationQuery;
+use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayQuery;
+use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery;
 use Spryker\Zed\Kernel\Persistence\QueryContainer\QueryContainerInterface;
 
 interface HeidelpayQueryContainerInterface extends QueryContainerInterface
@@ -18,7 +21,7 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayQuery
      */
-    public function queryPaymentByIdSalesOrder($idSalesOrder);
+    public function queryPaymentByIdSalesOrder(int $idSalesOrder): SpyPaymentHeidelpayQuery;
 
     /**
      * @api
@@ -27,7 +30,7 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery
      */
-    public function queryCaptureTransactionLog($idSalesOrder);
+    public function queryCaptureTransactionLog(int $idSalesOrder): SpyPaymentHeidelpayTransactionLogQuery;
 
     /**
      * @api
@@ -46,7 +49,7 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery
      */
-    public function queryTransactionByIdSalesOrderAndType($idSalesOrder, $transactionType);
+    public function queryTransactionByIdSalesOrderAndType(int $idSalesOrder, string $transactionType): SpyPaymentHeidelpayTransactionLogQuery;
 
     /**
      * @api
@@ -55,7 +58,7 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery
      */
-    public function queryExternalResponseTransactionLog($idSalesOrder);
+    public function queryExternalResponseTransactionLog(int $idSalesOrder): SpyPaymentHeidelpayTransactionLogQuery;
 
     /**
      * @api
@@ -64,7 +67,7 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistrationQuery
      */
-    public function queryCreditCardRegistrationByRegistrationNumber($registrationNumber);
+    public function queryCreditCardRegistrationByRegistrationNumber(string $registrationNumber): SpyPaymentHeidelpayCreditCardRegistrationQuery;
 
     /**
      * @api
@@ -73,7 +76,7 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistrationQuery
      */
-    public function queryLatestRegistrationByIdShippingAddress($idAddress);
+    public function queryLatestRegistrationByIdShippingAddress(int $idAddress): SpyPaymentHeidelpayCreditCardRegistrationQuery;
 
     /**
      * @api
@@ -83,5 +86,5 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistrationQuery
      */
-    public function queryRegistrationByIdAndQuoteHash($idRegistration, $quoteHash);
+    public function queryRegistrationByIdAndQuoteHash(int $idRegistration, string $quoteHash): SpyPaymentHeidelpayCreditCardRegistrationQuery;
 }

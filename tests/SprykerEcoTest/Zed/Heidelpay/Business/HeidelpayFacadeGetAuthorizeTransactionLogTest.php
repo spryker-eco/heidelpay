@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
@@ -11,6 +11,7 @@ use Generated\Shared\Transfer\HeidelpayAuthorizeTransactionLogRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseErrorTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
+use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulIdealAuthorizeTransaction;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithUnsuccessfulIdealAuthorizeTransaction;
@@ -28,7 +29,7 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
     /**
      * @return void
      */
-    public function testSuccessfulGetAuthorizeTransactionLog()
+    public function testSuccessfulGetAuthorizeTransactionLog(): void
     {
         $quoteTransfer = $this->createOrderWithSuccessfulIdealAuthorizeTransaction();
         $authorizeTransactionLogRequestTransfer = new HeidelpayAuthorizeTransactionLogRequestTransfer();
@@ -60,7 +61,7 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
     /**
      * @return void
      */
-    public function testUnsuccessfulGetAuthorizeTransactionLog()
+    public function testUnsuccessfulGetAuthorizeTransactionLog(): void
     {
         $quoteTransfer = $this->createOrderWithUnsuccessfulIdealAuthorizeTransaction();
         $authorizeTransactionLogRequestTransfer = new HeidelpayAuthorizeTransactionLogRequestTransfer();
@@ -93,9 +94,9 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
     }
 
     /**
-     * @return array
+     * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function createOrderWithSuccessfulIdealAuthorizeTransaction()
+    public function createOrderWithSuccessfulIdealAuthorizeTransaction(): QuoteTransfer
     {
         $orderWithPaypalAuthorize = new OrderWithSuccessfulIdealAuthorizeTransaction($this->createHeidelpayFactory());
         $order = $orderWithPaypalAuthorize->createOrderWithIdealAuthorizeTransaction();
@@ -104,9 +105,9 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
     }
 
     /**
-     * @return array
+     * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function createOrderWithUnsuccessfulIdealAuthorizeTransaction()
+    public function createOrderWithUnsuccessfulIdealAuthorizeTransaction(): QuoteTransfer
     {
         $orderWithPaypalAuthorize = new OrderWithUnsuccessfulIdealAuthorizeTransaction($this->createHeidelpayFactory());
         $order = $orderWithPaypalAuthorize->createOrderWithIdealAuthorizeTransaction();

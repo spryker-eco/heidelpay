@@ -2,11 +2,12 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment;
 
+use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay;
 use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
 
 class PaymentWriter implements PaymentWriterInterface
@@ -30,7 +31,7 @@ class PaymentWriter implements PaymentWriterInterface
      *
      * @return void
      */
-    public function updatePaymentReferenceByIdSalesOrder($paymentReference, $idSalesOrder)
+    public function updatePaymentReferenceByIdSalesOrder(string $paymentReference, int $idSalesOrder): void
     {
         $heidelpayPaymentEntity = $this->getPaymentEntityByIdSalesOrder($idSalesOrder);
 
@@ -44,7 +45,7 @@ class PaymentWriter implements PaymentWriterInterface
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay
      */
-    protected function getPaymentEntityByIdSalesOrder($idSalesOrder)
+    protected function getPaymentEntityByIdSalesOrder(int $idSalesOrder): SpyPaymentHeidelpay
     {
         $heidelpayPaymentEntity = $this->heidelpayQueryContainer
             ->queryPaymentByIdSalesOrder($idSalesOrder)

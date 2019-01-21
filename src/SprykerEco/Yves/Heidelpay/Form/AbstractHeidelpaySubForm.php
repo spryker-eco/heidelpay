@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Yves\Heidelpay\Form;
@@ -15,22 +15,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AbstractHeidelpaySubForm extends AbstractSubFormType implements SubFormInterface
 {
-    /**
-     * @const string
-     */
-    const PAYMENT_PROVIDER = HeidelpayConfig::PROVIDER_NAME;
-
-    /**
-     * @const string
-     */
-    const PAYMENT_METHOD = '';
+    public const PAYMENT_PROVIDER = HeidelpayConfig::PROVIDER_NAME;
+    public const PAYMENT_METHOD = '';
+    public const PAYMENT_METHOD_TEMPLATE_PATH = '';
 
     /**
      * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      *
      * @return void
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => HeidelpayPaymentTransfer::class,
@@ -44,7 +38,7 @@ class AbstractHeidelpaySubForm extends AbstractSubFormType implements SubFormInt
      *
      * @return string
      */
-    public function getPropertyPath()
+    public function getPropertyPath(): string
     {
         return static::PAYMENT_METHOD;
     }
@@ -55,7 +49,7 @@ class AbstractHeidelpaySubForm extends AbstractSubFormType implements SubFormInt
      *
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return static::PAYMENT_METHOD;
     }
@@ -65,8 +59,8 @@ class AbstractHeidelpaySubForm extends AbstractSubFormType implements SubFormInt
      *
      * @return string
      */
-    public function getTemplatePath()
+    public function getTemplatePath(): string
     {
-        return static::PAYMENT_PROVIDER . '/' . static::PAYMENT_METHOD;
+        return static::PAYMENT_PROVIDER . '/' . static::PAYMENT_METHOD_TEMPLATE_PATH;
     }
 }

@@ -2,19 +2,21 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
 
+use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\CaptureTransactionInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\CaptureNotSupportedException;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface;
 
 class CaptureTransactionHandler implements CaptureTransactionHandlerInterface
 {
-    const ERROR_MESSAGE_CAPTURE_TRANSACTION_NOT_SUPPORTED =
+    public const ERROR_MESSAGE_CAPTURE_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call capture transaction on payment method \'%s\' ' .
         'that does not support it';
 
@@ -53,7 +55,7 @@ class CaptureTransactionHandler implements CaptureTransactionHandlerInterface
      *
      * @return void
      */
-    public function capture(OrderTransfer $orderTransfer)
+    public function capture(OrderTransfer $orderTransfer): void
     {
         $captureRequestTransfer = $this->buildCaptureRequest($orderTransfer);
         $paymentAdapter = $this->getPaymentMethodAdapter($orderTransfer);
@@ -65,7 +67,7 @@ class CaptureTransactionHandler implements CaptureTransactionHandlerInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    protected function buildCaptureRequest(OrderTransfer $orderTransfer)
+    protected function buildCaptureRequest(OrderTransfer $orderTransfer): HeidelpayRequestTransfer
     {
         $captureRequestTransfer = $this->heidelpayRequestBuilder->buildCaptureRequestFromOrder($orderTransfer);
 
@@ -79,7 +81,7 @@ class CaptureTransactionHandler implements CaptureTransactionHandlerInterface
      *
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface
      */
-    protected function getPaymentMethodAdapter(OrderTransfer $orderTransfer)
+    protected function getPaymentMethodAdapter(OrderTransfer $orderTransfer): PaymentWithCaptureInterface
     {
         $paymentMethodCode = $this->getPaymentMethodCode($orderTransfer);
 
@@ -97,7 +99,7 @@ class CaptureTransactionHandler implements CaptureTransactionHandlerInterface
      *
      * @return string
      */
-    protected function getPaymentMethodCode(OrderTransfer $orderTransfer)
+    protected function getPaymentMethodCode(OrderTransfer $orderTransfer): string
     {
         return $orderTransfer->getHeidelpayPayment()->getPaymentMethod();
     }

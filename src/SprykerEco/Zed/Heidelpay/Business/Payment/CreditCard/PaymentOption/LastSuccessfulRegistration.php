@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\PaymentOption;
@@ -38,7 +38,7 @@ class LastSuccessfulRegistration implements PaymentOptionInterface
     public function hydrateToPaymentOptions(
         QuoteTransfer $quoteTransfer,
         HeidelpayCreditCardPaymentOptionsTransfer $paymentOptionsTransfer
-    ) {
+    ): void {
         $lastSuccessfulRegistrationTransfer = $this->getLastSuccessfulRegistrationForQuote($quoteTransfer);
 
         if ($lastSuccessfulRegistrationTransfer->getIdCreditCardRegistration() !== null) {
@@ -51,7 +51,7 @@ class LastSuccessfulRegistration implements PaymentOptionInterface
      *
      * @return bool
      */
-    public function isOptionAvailableForQuote(QuoteTransfer $quoteTransfer)
+    public function isOptionAvailableForQuote(QuoteTransfer $quoteTransfer): bool
     {
         return $this->isRegisteredShippingAddressUsed($quoteTransfer);
     }
@@ -59,9 +59,9 @@ class LastSuccessfulRegistration implements PaymentOptionInterface
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return null|\Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
      */
-    protected function getLastSuccessfulRegistrationForQuote(QuoteTransfer $quoteTransfer)
+    protected function getLastSuccessfulRegistrationForQuote(QuoteTransfer $quoteTransfer): HeidelpayCreditCardRegistrationTransfer
     {
         if ($this->hasQuoteValidLastRegistration($quoteTransfer)) {
             return $this->getLastSuccessfulRegistrationFromQuote($quoteTransfer);
@@ -79,7 +79,7 @@ class LastSuccessfulRegistration implements PaymentOptionInterface
     protected function mapRegistrationToPaymentOptions(
         HeidelpayCreditCardRegistrationTransfer $creditCardRegistrationTransfer,
         HeidelpayCreditCardPaymentOptionsTransfer $paymentOptionsTransfer
-    ) {
+    ): void {
 
         $this->addLastSuccessfulRegistrationAsPaymentOption($paymentOptionsTransfer);
 
@@ -94,7 +94,7 @@ class LastSuccessfulRegistration implements PaymentOptionInterface
      */
     protected function addLastSuccessfulRegistrationAsPaymentOption(
         HeidelpayCreditCardPaymentOptionsTransfer $paymentOptionsTransfer
-    ) {
+    ): void {
 
         $optionsList = $paymentOptionsTransfer->getOptionsList();
         $optionsList[] = (new HeidelpayPaymentOptionTransfer())
@@ -108,10 +108,9 @@ class LastSuccessfulRegistration implements PaymentOptionInterface
      *
      * @return bool
      */
-    protected function isRegisteredShippingAddressUsed(QuoteTransfer $quoteTransfer)
+    protected function isRegisteredShippingAddressUsed(QuoteTransfer $quoteTransfer): bool
     {
-        return
-            ($quoteTransfer->getShippingAddress() !== null) &&
+        return ($quoteTransfer->getShippingAddress() !== null) &&
             ($quoteTransfer->getShippingAddress()->getIdCustomerAddress() !== null) &&
             ($quoteTransfer->getShippingAddress()->getIdCustomerAddress() !== '');
     }
@@ -121,7 +120,7 @@ class LastSuccessfulRegistration implements PaymentOptionInterface
      *
      * @return bool
      */
-    protected function hasQuoteValidLastRegistration(QuoteTransfer $quoteTransfer)
+    protected function hasQuoteValidLastRegistration(QuoteTransfer $quoteTransfer): bool
     {
         $lastRegistrationTransfer = $this->getLastSuccessfulRegistrationFromQuote($quoteTransfer);
 
@@ -135,9 +134,9 @@ class LastSuccessfulRegistration implements PaymentOptionInterface
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return null|\Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer|null
      */
-    protected function getLastSuccessfulRegistrationFromQuote(QuoteTransfer $quoteTransfer)
+    protected function getLastSuccessfulRegistrationFromQuote(QuoteTransfer $quoteTransfer): ?HeidelpayCreditCardRegistrationTransfer
     {
         $lastRegistration = $quoteTransfer
             ->getPayment()
@@ -157,7 +156,7 @@ class LastSuccessfulRegistration implements PaymentOptionInterface
     protected function isQuoteShippingAddressChanged(
         QuoteTransfer $quoteTransfer,
         HeidelpayCreditCardRegistrationTransfer $lastRegistrationTransfer
-    ) {
+    ): bool {
         $customerShippingAddressId = $quoteTransfer->getShippingAddress()->getIdCustomerAddress();
         $lastRegistrationAddressId = $lastRegistrationTransfer->getIdCustomerAddress();
 

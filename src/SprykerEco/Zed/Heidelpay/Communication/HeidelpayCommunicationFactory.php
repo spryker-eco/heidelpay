@@ -2,12 +2,13 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Communication;
 
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
+use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesInterface;
 use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
 
 /**
@@ -21,7 +22,7 @@ class HeidelpayCommunicationFactory extends AbstractCommunicationFactory
      *
      * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
-    public function getSalesFacade()
+    public function getSalesFacade(): HeidelpayToSalesInterface
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::FACADE_SALES);
     }

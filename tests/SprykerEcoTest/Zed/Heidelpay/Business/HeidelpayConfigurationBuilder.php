@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
@@ -19,7 +19,7 @@ class HeidelpayConfigurationBuilder
     /**
      * @return array
      */
-    public function getHeidelpayConfigurationOptions()
+    public function getHeidelpayConfigurationOptions(): array
     {
         $config[HeidelpayConstants::CONFIG_ENCRYPTION_KEY] = 'encryption_key';
         $config[ApplicationConstants::HOST_YVES] = 'www.de.spryker.test';

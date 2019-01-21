@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment;
@@ -39,9 +39,9 @@ class BaseHeidelpayPaymentMethod
     /**
      * @param int $idSalesOrder
      *
-     * @return string|null
+     * @return string
      */
-    protected function getCheckoutRedirectUrlFromAuthorizeTransactionLog($idSalesOrder)
+    protected function getCheckoutRedirectUrlFromAuthorizeTransactionLog(int $idSalesOrder): string
     {
         $authorizeTransactionLogTransfer = $this->findOrderAuthorizeTransactionLog($idSalesOrder);
 
@@ -75,9 +75,9 @@ class BaseHeidelpayPaymentMethod
     /**
      * @param int $idSalesOrder
      *
-     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
      */
-    protected function findOrderAuthorizeTransactionLog($idSalesOrder)
+    protected function findOrderAuthorizeTransactionLog(int $idSalesOrder): HeidelpayTransactionLogTransfer
     {
         return $this->transactionLogManager->findOrderAuthorizeTransactionLogByIdSalesOrder($idSalesOrder);
     }
@@ -98,7 +98,7 @@ class BaseHeidelpayPaymentMethod
      *
      * @return void
      */
-    protected function setExternalRedirect($redirectUrl, CheckoutResponseTransfer $checkoutResponseTransfer)
+    protected function setExternalRedirect(string $redirectUrl, CheckoutResponseTransfer $checkoutResponseTransfer): void
     {
         $checkoutResponseTransfer->setIsExternalRedirect(true);
         $checkoutResponseTransfer->setRedirectUrl($redirectUrl);
@@ -109,7 +109,7 @@ class BaseHeidelpayPaymentMethod
      *
      * @return bool
      */
-    protected function isAuthorizeTransactionSentSuccessfully(HeidelpayTransactionLogTransfer $authorizeTransactionLogTransfer)
+    protected function isAuthorizeTransactionSentSuccessfully(HeidelpayTransactionLogTransfer $authorizeTransactionLogTransfer): bool
     {
         return $authorizeTransactionLogTransfer->getHeidelpayResponse()->getIsSuccess();
     }
@@ -119,7 +119,7 @@ class BaseHeidelpayPaymentMethod
      *
      * @return string
      */
-    protected function getAuthorizeRedirectUrl(HeidelpayTransactionLogTransfer $transactionLogTransfer)
+    protected function getAuthorizeRedirectUrl(HeidelpayTransactionLogTransfer $transactionLogTransfer): string
     {
         return $transactionLogTransfer->getHeidelpayResponse()->getPaymentFormUrl();
     }
@@ -129,7 +129,7 @@ class BaseHeidelpayPaymentMethod
      *
      * @return string
      */
-    protected function getAuthorizeFailedRedirectUrl(HeidelpayTransactionLogTransfer $transactionLogTransfer)
+    protected function getAuthorizeFailedRedirectUrl(HeidelpayTransactionLogTransfer $transactionLogTransfer): string
     {
         $errorCode = $transactionLogTransfer->getHeidelpayResponse()->getError()->getCode();
         $paymentFailedUrl = $this->config->getYvesCheckoutPaymentFailedUrl();

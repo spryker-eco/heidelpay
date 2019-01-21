@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Payment;
@@ -56,7 +56,7 @@ class BasePayment implements PaymentWithExternalResponseInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function processExternalResponse(HeidelpayExternalPaymentResponseTransfer $externalResponseTransfer)
+    public function processExternalResponse(HeidelpayExternalPaymentResponseTransfer $externalResponseTransfer): HeidelpayResponseTransfer
     {
         $apiResponseObject = new Response($externalResponseTransfer->getBody());
         return $this->verifyAndParseResponse($apiResponseObject);
@@ -68,7 +68,7 @@ class BasePayment implements PaymentWithExternalResponseInterface
      *
      * @return void
      */
-    protected function prepareRequest(HeidelpayRequestTransfer $requestTransfer, Request $apiRequest)
+    protected function prepareRequest(HeidelpayRequestTransfer $requestTransfer, Request $apiRequest): void
     {
         $this->requestMapper->map($requestTransfer, $apiRequest);
     }
@@ -78,7 +78,7 @@ class BasePayment implements PaymentWithExternalResponseInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    protected function verifyAndParseResponse(Response $apiResponseObject)
+    protected function verifyAndParseResponse(Response $apiResponseObject): HeidelpayResponseTransfer
     {
         $parsedResponseTransfer = $this->convertToHeidelpayResponse($apiResponseObject);
 
@@ -101,7 +101,7 @@ class BasePayment implements PaymentWithExternalResponseInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    protected function convertToHeidelpayResponse(Response $apiResponse)
+    protected function convertToHeidelpayResponse(Response $apiResponse): HeidelpayResponseTransfer
     {
         $responseTransfer = new HeidelpayResponseTransfer();
         $this->responseMapper->map($apiResponse, $responseTransfer);
@@ -112,7 +112,7 @@ class BasePayment implements PaymentWithExternalResponseInterface
     /**
      * @return string
      */
-    protected function getApplicationSecret()
+    protected function getApplicationSecret(): string
     {
         return $this->config->getApplicationSecret();
     }
@@ -122,7 +122,7 @@ class BasePayment implements PaymentWithExternalResponseInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseErrorTransfer
      */
-    protected function extractErrorTransferFromException(HashVerificationException $exception)
+    protected function extractErrorTransferFromException(HashVerificationException $exception): HeidelpayResponseErrorTransfer
     {
         $errorTransfer = new HeidelpayResponseErrorTransfer();
         $errorTransfer->setInternalMessage($exception->getMessage());

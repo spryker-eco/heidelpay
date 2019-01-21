@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Client\Heidelpay;
@@ -16,17 +16,17 @@ use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteBridge;
 
 class HeidelpayDependencyProvider extends AbstractDependencyProvider
 {
-    const CLIENT_LOCALE = 'client locale';
-    const CLIENT_SESSION = SessionClientServiceProvider::CLIENT_SESSION;
-    const CLIENT_ZED_REQUEST = ZedRequestClientServiceProvider::CLIENT_ZED_REQUEST;
-    const CLIENT_QUOTE = 'client quote';
+    public const CLIENT_LOCALE = 'client locale';
+    public const CLIENT_SESSION = SessionClientServiceProvider::CLIENT_SESSION;
+    public const CLIENT_ZED_REQUEST = ZedRequestClientServiceProvider::CLIENT_ZED_REQUEST;
+    public const CLIENT_QUOTE = 'client quote';
 
     /**
      * @param \Spryker\Client\Kernel\Container $container
      *
      * @return \Spryker\Client\Kernel\Container
      */
-    public function provideServiceLayerDependencies(Container $container)
+    public function provideServiceLayerDependencies(Container $container): Container
     {
         $container[static::CLIENT_LOCALE] = function (Container $container) {
             return new HeidelpayToLocaleBridge($container->getLocator()->locale()->client());

@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment;
@@ -18,7 +18,7 @@ trait PaymentResponseTransferBuilderTrait
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    protected function getSuccessfulHeidelpayTransfer(array $response)
+    protected function getSuccessfulHeidelpayTransfer(array $response): HeidelpayResponseTransfer
     {
         $responseTransfer = new HeidelpayResponseTransfer();
         $responseTransfer->setIsSuccess(true);
@@ -38,7 +38,7 @@ trait PaymentResponseTransferBuilderTrait
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    protected function getUnsuccessfulHeidelpayTransfer(array $response)
+    protected function getUnsuccessfulHeidelpayTransfer(array $response): HeidelpayResponseTransfer
     {
         $responseTransfer = new HeidelpayResponseTransfer();
         $responseTransfer->setIsSuccess(false);

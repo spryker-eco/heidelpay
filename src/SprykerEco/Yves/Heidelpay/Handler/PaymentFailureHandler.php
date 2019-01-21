@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Yves\Heidelpay\Handler;
@@ -40,7 +40,7 @@ class PaymentFailureHandler implements PaymentFailureHandlerInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayErrorRedirectResponseTransfer
      */
-    public function handlePaymentFailureByErrorCode($errorCode)
+    public function handlePaymentFailureByErrorCode($errorCode): HeidelpayErrorRedirectResponseTransfer
     {
         $translatedErrorMessage = $this->getCustomerMessageByErrorCode($errorCode);
 
@@ -52,7 +52,7 @@ class PaymentFailureHandler implements PaymentFailureHandlerInterface
      *
      * @return string
      */
-    protected function getCustomerMessageByErrorCode($errorCode)
+    protected function getCustomerMessageByErrorCode($errorCode): string
     {
         return $this->heidelpayClient->translateErrorMessageByCode($errorCode);
     }
@@ -62,7 +62,7 @@ class PaymentFailureHandler implements PaymentFailureHandlerInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayErrorRedirectResponseTransfer
      */
-    protected function buildRedirectResponse($translatedErrorMessage)
+    protected function buildRedirectResponse($translatedErrorMessage): HeidelpayErrorRedirectResponseTransfer
     {
         return (new HeidelpayErrorRedirectResponseTransfer())
             ->setRedirectUrl($this->config->getYvesCheckoutPaymentStepPath())

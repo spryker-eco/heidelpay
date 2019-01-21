@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration;
@@ -32,9 +32,9 @@ class RegistrationReader implements RegistrationReaderInterface
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return null|\Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
      */
-    public function getLastSuccessfulRegistrationForQuote(QuoteTransfer $quoteTransfer)
+    public function getLastSuccessfulRegistrationForQuote(QuoteTransfer $quoteTransfer): HeidelpayCreditCardRegistrationTransfer
     {
         $lastSuccessfulRegistration = $this->findLastSuccessfulRegistrationByQuote($quoteTransfer);
 
@@ -53,7 +53,7 @@ class RegistrationReader implements RegistrationReaderInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
      */
-    public function findCreditCardRegistrationByIdAndQuote($idRegistration, QuoteTransfer $quoteTransfer)
+    public function findCreditCardRegistrationByIdAndQuote(int $idRegistration, QuoteTransfer $quoteTransfer): HeidelpayCreditCardRegistrationTransfer
     {
         $quoteHash = $this->generateQuoteHash($quoteTransfer);
         $registrationEntity = $this->heidelpayQueryContainer
@@ -77,7 +77,7 @@ class RegistrationReader implements RegistrationReaderInterface
      *
      * @return string
      */
-    protected function generateQuoteHash(QuoteTransfer $quoteTransfer)
+    protected function generateQuoteHash(QuoteTransfer $quoteTransfer): string
     {
         return QuoteUniqueIdGenerator::getHashByCustomerEmailAndTotals($quoteTransfer);
     }
@@ -89,7 +89,7 @@ class RegistrationReader implements RegistrationReaderInterface
      */
     protected function getRegistrationTransferFromEntity(
         SpyPaymentHeidelpayCreditCardRegistration $lastSuccessfulRegistration
-    ) {
+    ): HeidelpayCreditCardRegistrationTransfer {
         $registrationTransfer = new HeidelpayCreditCardRegistrationTransfer();
         $creditCardInfo = (new HeidelpayCreditCardInfoTransfer())
             ->fromArray($lastSuccessfulRegistration->toArray(), true);
@@ -106,7 +106,7 @@ class RegistrationReader implements RegistrationReaderInterface
     /**
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
      */
-    protected function createEmptyRegistrationTransfer()
+    protected function createEmptyRegistrationTransfer(): HeidelpayCreditCardRegistrationTransfer
     {
         return new HeidelpayCreditCardRegistrationTransfer();
     }
@@ -116,7 +116,7 @@ class RegistrationReader implements RegistrationReaderInterface
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration|null
      */
-    protected function findLastSuccessfulRegistrationByQuote(QuoteTransfer $quoteTransfer)
+    protected function findLastSuccessfulRegistrationByQuote(QuoteTransfer $quoteTransfer): ?SpyPaymentHeidelpayCreditCardRegistration
     {
         $lastSuccessfulRegistration = $this->heidelpayQueryContainer
             ->queryLatestRegistrationByIdShippingAddress(

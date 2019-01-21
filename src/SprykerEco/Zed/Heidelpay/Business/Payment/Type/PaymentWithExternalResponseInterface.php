@@ -2,12 +2,13 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Type;
 
 use Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer;
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 
 interface PaymentWithExternalResponseInterface
 {
@@ -16,5 +17,5 @@ interface PaymentWithExternalResponseInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function processExternalResponse(HeidelpayExternalPaymentResponseTransfer $externalResponseTransfer);
+    public function processExternalResponse(HeidelpayExternalPaymentResponseTransfer $externalResponseTransfer): HeidelpayResponseTransfer;
 }

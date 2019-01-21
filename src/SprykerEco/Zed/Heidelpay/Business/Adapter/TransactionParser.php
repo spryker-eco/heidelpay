@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter;
@@ -42,7 +42,7 @@ class TransactionParser implements TransactionParserInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function getHeidelpayResponseTransfer(HeidelpayTransactionLogTransfer $transactionLogTransfer)
+    public function getHeidelpayResponseTransfer(HeidelpayTransactionLogTransfer $transactionLogTransfer): HeidelpayResponseTransfer
     {
         $apiResponseObject = $this->createApiResponse($transactionLogTransfer);
 
@@ -57,7 +57,7 @@ class TransactionParser implements TransactionParserInterface
      *
      * @return \Heidelpay\PhpPaymentApi\Response
      */
-    protected function createApiResponse(HeidelpayTransactionLogTransfer $transactionLogTransfer)
+    protected function createApiResponse(HeidelpayTransactionLogTransfer $transactionLogTransfer): Response
     {
         $responsePayload = $transactionLogTransfer->getResponsePayload();
         $apiResponseObject = new Response();

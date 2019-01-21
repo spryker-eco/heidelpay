@@ -2,8 +2,9 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
+
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
@@ -17,7 +18,7 @@ class RequestToHeidelpay implements RequestToHeidelpayInterface
      *
      * @return void
      */
-    public function map(HeidelpayRequestTransfer $requestTransfer, Request $heidelpayRequest)
+    public function map(HeidelpayRequestTransfer $requestTransfer, Request $heidelpayRequest): void
     {
         $heidelpayRequest->async(
             $requestTransfer->getAsync()->getLanguageCode(),
@@ -51,5 +52,8 @@ class RequestToHeidelpay implements RequestToHeidelpayInterface
             $requestTransfer->getCustomerPurchase()->getCurrencyCode(),
             $requestTransfer->getCustomerPurchase()->getSecret()
         );
+
+        $heidelpayRequest->getBasket()
+            ->setId($requestTransfer->getIdBasket());
     }
 }

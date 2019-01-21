@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Communication\Plugin\Checkout\Oms\Command;
@@ -21,13 +21,15 @@ use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
 class AuthorizePlugin extends AbstractPlugin implements CommandByOrderInterface
 {
     /**
+     * @api
+     *
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
      * @param \Spryker\Zed\Oms\Business\Util\ReadOnlyArrayObject $data
      *
      * @return array
      */
-    public function run(array $orderItems, SpySalesOrder $orderEntity, ReadOnlyArrayObject $data)
+    public function run(array $orderItems, SpySalesOrder $orderEntity, ReadOnlyArrayObject $data): array
     {
         $orderTransfer = $this->getOrderWithPaymentTransfer($orderEntity->getIdSalesOrder());
         $this->getFacade()->authorizePayment($orderTransfer);
@@ -40,7 +42,7 @@ class AuthorizePlugin extends AbstractPlugin implements CommandByOrderInterface
      *
      * @return \Generated\Shared\Transfer\OrderTransfer
      */
-    protected function getOrderWithPaymentTransfer($idSalesOrder)
+    protected function getOrderWithPaymentTransfer($idSalesOrder): OrderTransfer
     {
         $orderTransfer = $this->getFactory()
             ->getSalesFacade()
@@ -56,7 +58,7 @@ class AuthorizePlugin extends AbstractPlugin implements CommandByOrderInterface
      *
      * @return \Generated\Shared\Transfer\OrderTransfer
      */
-    protected function hydrateHeidelpayPayment(OrderTransfer $orderTransfer)
+    protected function hydrateHeidelpayPayment(OrderTransfer $orderTransfer): OrderTransfer
     {
         $paymentTransfer = $this->getFacade()->getPaymentByIdSalesOrder($orderTransfer->getIdSalesOrder());
         $orderTransfer->setHeidelpayPayment($paymentTransfer);

@@ -2,10 +2,13 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment;
+
+use Orm\Zed\Sales\Persistence\SpySalesOrder;
+use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 
 trait PaymentHeidelpayTransferBuilderTrait
 {
@@ -15,7 +18,7 @@ trait PaymentHeidelpayTransferBuilderTrait
      *
      * @return mixed
      */
-    protected function getPaymentTransfer($heidelpayFacade, $salesOrder)
+    protected function getPaymentTransfer(HeidelpayFacade $heidelpayFacade, SpySalesOrder $salesOrder)
     {
         $paymentTransfer = $heidelpayFacade->getPaymentByIdSalesOrder($salesOrder->getIdSalesOrder());
         $orderTransfer = $this->heidelpayToSales->getOrderByIdSalesOrder($salesOrder->getIdSalesOrder());

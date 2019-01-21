@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Communication\Plugin\Checkout\Oms\Condition;
@@ -27,7 +27,7 @@ class IsDebitCompletedPlugin extends AbstractPlugin implements ConditionInterfac
      *
      * @return bool
      */
-    public function check(SpySalesOrderItem $orderItem)
+    public function check(SpySalesOrderItem $orderItem): bool
     {
         return $this->hasCustomerCompletedDebit($orderItem->getFkSalesOrder());
     }
@@ -37,7 +37,7 @@ class IsDebitCompletedPlugin extends AbstractPlugin implements ConditionInterfac
      *
      * @return bool
      */
-    protected function hasCustomerCompletedDebit($idSalesOrder)
+    protected function hasCustomerCompletedDebit(int $idSalesOrder): bool
     {
         $externalTransactionLog = $this->getExternalTransactionLogEntry($idSalesOrder);
         if ($externalTransactionLog === null) {
@@ -52,7 +52,7 @@ class IsDebitCompletedPlugin extends AbstractPlugin implements ConditionInterfac
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog|null
      */
-    protected function getExternalTransactionLogEntry($idSalesOrder)
+    protected function getExternalTransactionLogEntry(int $idSalesOrder): ?SpyPaymentHeidelpayTransactionLog
     {
         $transactionLogQuery = $this->getQueryContainer()->queryExternalResponseTransactionLog($idSalesOrder);
         return $transactionLogQuery->findOne();
@@ -63,7 +63,7 @@ class IsDebitCompletedPlugin extends AbstractPlugin implements ConditionInterfac
      *
      * @return bool
      */
-    protected function isTransactionSuccessful(SpyPaymentHeidelpayTransactionLog $externalTransactionLog)
+    protected function isTransactionSuccessful(SpyPaymentHeidelpayTransactionLog $externalTransactionLog): bool
     {
         return $externalTransactionLog->getResponseCode() === HeidelpayConfig::EXTERNAL_RESPONSE_TRANSACTION_STATUS_OK;
     }

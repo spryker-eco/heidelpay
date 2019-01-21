@@ -2,16 +2,17 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
 use Generated\Shared\Transfer\PaymentTransfer;
+use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
+use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
-
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\HeidelpayBusinessFactoryMock;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\SuccessfulResponseHeidelpayBusinessFactory;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusinessFactory;
@@ -29,7 +30,7 @@ class HeidelpayFacadeCapturePaymentTest extends HeidelpayPaymentTest
     /**
      * @return void
      */
-    public function testProcessSuccessfulExternalPaymentResponseForCreditCardCapture()
+    public function testProcessSuccessfulExternalPaymentResponseForCreditCardCapture(): void
     {
         $salesOrder = $this->createOrder();
 
@@ -54,7 +55,7 @@ class HeidelpayFacadeCapturePaymentTest extends HeidelpayPaymentTest
     /**
      * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
      */
-    public function createOrder()
+    public function createOrder(): SpySalesOrder
     {
         $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
         $orderTransfer = $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_CREDIT_CARD_SECURE);
@@ -64,7 +65,7 @@ class HeidelpayFacadeCapturePaymentTest extends HeidelpayPaymentTest
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
      */
-    protected function createSuccessfulPaymentHeidelpayFactoryMock()
+    protected function createSuccessfulPaymentHeidelpayFactoryMock(): HeidelpayBusinessFactory
     {
         return new SuccessfulResponseHeidelpayBusinessFactory();
     }
@@ -72,7 +73,7 @@ class HeidelpayFacadeCapturePaymentTest extends HeidelpayPaymentTest
     /**
      * @return void
      */
-    public function testProcessUnsuccessfulExternalPaymentResponseForCreditCardCapture()
+    public function testProcessUnsuccessfulExternalPaymentResponseForCreditCardCapture(): void
     {
         $salesOrder = $this->createOrder();
 
@@ -97,7 +98,7 @@ class HeidelpayFacadeCapturePaymentTest extends HeidelpayPaymentTest
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
      */
-    protected function createUnsuccessfulPaymentHeidelpayFactoryMock()
+    protected function createUnsuccessfulPaymentHeidelpayFactoryMock(): HeidelpayBusinessFactory
     {
         return new UnsuccesfulResponseHeidelpayBusinessFactory();
     }
@@ -105,7 +106,7 @@ class HeidelpayFacadeCapturePaymentTest extends HeidelpayPaymentTest
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
      */
-    protected function createHeidelpayFactory()
+    protected function createHeidelpayFactory(): HeidelpayBusinessFactory
     {
         return new HeidelpayBusinessFactoryMock();
     }

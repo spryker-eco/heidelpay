@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders;
@@ -41,7 +41,7 @@ class OrderWithSuccessfulPaypalAuthorizeTransaction
     /**
      * @return array
      */
-    public function createOrderWithPaypalAuthorizeTransaction()
+    public function createOrderWithPaypalAuthorizeTransaction(): array
     {
         $customerJohnDoe = $this->createOrGetCustomerJohnDoe();
         $billingAddressJohnDoe = $shippingAddressJohnDoe = $this->createOrderAddressJohnDoe();
@@ -66,7 +66,7 @@ class OrderWithSuccessfulPaypalAuthorizeTransaction
      *
      * @return \Generated\Shared\Transfer\PaymentTransfer
      */
-    protected function buildPaymentTransfer(SpySalesOrder $orderEntity)
+    protected function buildPaymentTransfer(SpySalesOrder $orderEntity): PaymentTransfer
     {
         $heidelpayPaymentTransfer = new HeidelpayPaymentTransfer();
 
@@ -88,7 +88,7 @@ class OrderWithSuccessfulPaypalAuthorizeTransaction
      */
     private function createQuoteTransferWithPaypalAuthorizePayment(
         SpySalesOrder $orderEntity
-    ) {
+    ): QuoteTransfer {
         $paymentTransfer = $this->buildPaymentTransfer($orderEntity);
         $customerTransfer = $this->createCustomerJohnDoeGuestTransfer();
 
@@ -104,7 +104,7 @@ class OrderWithSuccessfulPaypalAuthorizeTransaction
      *
      * @return \Generated\Shared\Transfer\CheckoutResponseTransfer
      */
-    protected function createCheckoutResponseFromOrder(SpySalesOrder $orderEntity)
+    protected function createCheckoutResponseFromOrder(SpySalesOrder $orderEntity): CheckoutResponseTransfer
     {
         $checkoutResponseTransfer = new CheckoutResponseTransfer();
         $saveOrderTransfer = new SaveOrderTransfer();

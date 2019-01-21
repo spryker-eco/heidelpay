@@ -1,0 +1,13 @@
+{% extends model('template') %}
+
+{% define data = {
+    form: form
+} %}
+
+{% block body %}
+    <div class="payment-method">
+        {{ 'payment.heidelpay.pay_with_paypal_sofort' | trans }}
+        {{ form_errors(data.form.heidelpaySofort) }}
+        {{ form_widget(data.form.heidelpaySofort) }}
+    </div>
+{% endblock %}

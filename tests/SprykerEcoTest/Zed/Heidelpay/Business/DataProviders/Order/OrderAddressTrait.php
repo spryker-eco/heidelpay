@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order;
@@ -15,7 +15,7 @@ trait OrderAddressTrait
     /**
      * @return \Orm\Zed\Sales\Persistence\SpySalesOrderAddress
      */
-    public function createOrderAddressJohnDoe()
+    public function createOrderAddressJohnDoe(): SpySalesOrderAddress
     {
         return $this->createAddress('John', 'Doe');
     }
@@ -25,7 +25,7 @@ trait OrderAddressTrait
      *
      * @return \Orm\Zed\Sales\Persistence\SpySalesOrderAddress
      */
-    public function createOrderAddressByQoute($quoteTransfer)
+    public function createOrderAddressByQoute($quoteTransfer): SpySalesOrderAddress
     {
         return $this->createAddress(
             $quoteTransfer->getCustomer()->getFirstName(),
@@ -39,7 +39,7 @@ trait OrderAddressTrait
      *
      * @return \Orm\Zed\Sales\Persistence\SpySalesOrderAddress
      */
-    private function createAddress($firstName, $lastName)
+    private function createAddress(string $firstName, string $lastName): SpySalesOrderAddress
     {
         $country = SpyCountryQuery::create()->findOneByIso2Code('DE');
 

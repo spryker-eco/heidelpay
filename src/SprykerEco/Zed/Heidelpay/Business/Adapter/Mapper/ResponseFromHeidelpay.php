@@ -2,8 +2,9 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
+
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper;
 
 use ArrayObject;
@@ -19,21 +20,21 @@ use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceIn
 
 class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
 {
-    const RESPONSE_PARAMETER_GROUP_PROCESSING = 'processing';
-    const RESPONSE_PARAMETER_GROUP_ACCOUNT = 'account';
-    const RESPONSE_PARAMETER_GROUP_ADDRESS = 'address';
-    const RESPONSE_PARAMETER_GROUP_CONFIG = 'config';
-    const RESPONSE_PARAMETER_GROUP_CONTACT = 'contact';
-    const RESPONSE_PARAMETER_GROUP_CRITERION = 'criterion';
-    const RESPONSE_PARAMETER_GROUP_FRONTEND = 'frontend';
-    const RESPONSE_PARAMETER_GROUP_IDENTIFICATION = 'identification';
-    const RESPONSE_PARAMETER_GROUP_NAME = 'name';
-    const RESPONSE_PARAMETER_GROUP_PAYMENT = 'payment';
-    const RESPONSE_PARAMETER_GROUP_PRESENTATION = 'presentation';
-    const RESPONSE_PARAMETER_GROUP_REQUEST = 'request';
-    const RESPONSE_PARAMETER_GROUP_SECURITY = 'security';
-    const RESPONSE_PARAMETER_GROUP_TRANSACTION = 'transaction';
-    const RESPONSE_PARAMETER_GROUP_USER = 'user';
+    public const RESPONSE_PARAMETER_GROUP_PROCESSING = 'processing';
+    public const RESPONSE_PARAMETER_GROUP_ACCOUNT = 'account';
+    public const RESPONSE_PARAMETER_GROUP_ADDRESS = 'address';
+    public const RESPONSE_PARAMETER_GROUP_CONFIG = 'config';
+    public const RESPONSE_PARAMETER_GROUP_CONTACT = 'contact';
+    public const RESPONSE_PARAMETER_GROUP_CRITERION = 'criterion';
+    public const RESPONSE_PARAMETER_GROUP_FRONTEND = 'frontend';
+    public const RESPONSE_PARAMETER_GROUP_IDENTIFICATION = 'identification';
+    public const RESPONSE_PARAMETER_GROUP_NAME = 'name';
+    public const RESPONSE_PARAMETER_GROUP_PAYMENT = 'payment';
+    public const RESPONSE_PARAMETER_GROUP_PRESENTATION = 'presentation';
+    public const RESPONSE_PARAMETER_GROUP_REQUEST = 'request';
+    public const RESPONSE_PARAMETER_GROUP_SECURITY = 'security';
+    public const RESPONSE_PARAMETER_GROUP_TRANSACTION = 'transaction';
+    public const RESPONSE_PARAMETER_GROUP_USER = 'user';
 
     /**
      * @var \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceInterface
@@ -54,7 +55,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      *
      * @return void
      */
-    public function map(Response $apiResponse, HeidelpayResponseTransfer $responseTransfer)
+    public function map(Response $apiResponse, HeidelpayResponseTransfer $responseTransfer): void
     {
         $responseTransfer->setIsPending($apiResponse->isPending())
             ->setIsSuccess($apiResponse->isSuccess())
@@ -78,7 +79,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      *
      * @return void
      */
-    protected function mapError(Response $apiResponse, HeidelpayResponseTransfer $responseTransfer)
+    protected function mapError(Response $apiResponse, HeidelpayResponseTransfer $responseTransfer): void
     {
         if (!$apiResponse->isError()) {
             return;
@@ -100,7 +101,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      *
      * @return void
      */
-    protected function mapConfig(Response $apiResponse, HeidelpayResponseTransfer $responseTransfer)
+    protected function mapConfig(Response $apiResponse, HeidelpayResponseTransfer $responseTransfer): void
     {
         $responseConfig = $apiResponse->getConfig();
         $configTransfer = new HeidelpayResponseConfigTransfer();
@@ -117,7 +118,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      *
      * @return void
      */
-    protected function mapBanks(ConfigParameterGroup $config, HeidelpayResponseConfigTransfer $configTransfer)
+    protected function mapBanks(ConfigParameterGroup $config, HeidelpayResponseConfigTransfer $configTransfer): void
     {
         /** @var string[] $banks */
         $banks = $config->getBrands();
@@ -142,7 +143,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      *
      * @return void
      */
-    protected function mapBankCountries(ConfigParameterGroup $config, HeidelpayResponseConfigTransfer $configTransfer)
+    protected function mapBankCountries(ConfigParameterGroup $config, HeidelpayResponseConfigTransfer $configTransfer): void
     {
         /** @var string[] $bankCountries */
         $bankCountries = $config->getBankCountry();
@@ -167,7 +168,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      *
      * @return void
      */
-    protected function addResponseFullPayload(Response $apiResponse, HeidelpayResponseTransfer $responseTransfer)
+    protected function addResponseFullPayload(Response $apiResponse, HeidelpayResponseTransfer $responseTransfer): void
     {
         $responseTransfer->setPayload(
             $this->getJsonEncodedPayloadFromApiResponse($apiResponse)
@@ -179,7 +180,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      *
      * @return string
      */
-    protected function getJsonEncodedPayloadFromApiResponse(Response $apiResponse)
+    protected function getJsonEncodedPayloadFromApiResponse(Response $apiResponse): string
     {
         $payload = [
             static::RESPONSE_PARAMETER_GROUP_PROCESSING => get_object_vars($apiResponse->getProcessing()),
@@ -211,7 +212,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
     protected function mapPaymentFormUrl(
         Response $apiResponse,
         HeidelpayResponseTransfer $responseTransfer
-    ) {
+    ): void {
         try {
             /** @var string $paymentFormUrl */
             $paymentFormUrl = $apiResponse->getPaymentFormUrl();

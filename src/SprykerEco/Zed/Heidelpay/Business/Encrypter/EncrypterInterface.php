@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Encrypter;
@@ -14,12 +14,12 @@ interface EncrypterInterface
      *
      * @return string
      */
-    public function encryptData($data);
+    public function encryptData(string $data): string;
 
     /**
      * @param string $data
      *
-     * @return string|null
+     * @return string
      */
-    public function decryptData($data);
+    public function decryptData(string $data);
 }

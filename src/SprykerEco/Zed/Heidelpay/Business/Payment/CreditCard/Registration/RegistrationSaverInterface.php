@@ -2,12 +2,13 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration;
 
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer;
 
 interface RegistrationSaverInterface
 {
@@ -16,5 +17,5 @@ interface RegistrationSaverInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer
      */
-    public function saveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer);
+    public function saveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer): HeidelpayRegistrationSaveResponseTransfer;
 }

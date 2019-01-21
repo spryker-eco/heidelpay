@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Yves\Heidelpay\Controller;
@@ -20,7 +20,7 @@ class IdealController extends AbstractController
     /**
      * @return array
      */
-    public function authorizeAction()
+    public function authorizeAction(): array
     {
         $orderReference = $this->getOrderReferenceFromSession();
         $idealAuthorizeFormTransfer = $this->getAuthorizeFormTransferForOrder($orderReference);
@@ -35,7 +35,7 @@ class IdealController extends AbstractController
     /**
      * @return string
      */
-    protected function getOrderReferenceFromSession()
+    protected function getOrderReferenceFromSession(): string
     {
         return $this->getClient()
             ->getQuoteFromSession()
@@ -47,7 +47,7 @@ class IdealController extends AbstractController
      *
      * @return \Generated\Shared\Transfer\HeidelpayIdealAuthorizeFormTransfer
      */
-    protected function getAuthorizeFormTransferForOrder($orderReference)
+    protected function getAuthorizeFormTransferForOrder($orderReference): HeidelpayIdealAuthorizeFormTransfer
     {
         $authorizeTransactionLogTransfer = $this->getClient()
             ->getAuthorizeTransactionLogForOrder($orderReference);
@@ -68,7 +68,7 @@ class IdealController extends AbstractController
      *
      * @return void
      */
-    protected function mapTransactionLogToAuthorizeFormTransfer(HeidelpayTransactionLogTransfer $authorizeTransactionLogTransfer, HeidelpayIdealAuthorizeFormTransfer $idealAuthorizeFormTransfer)
+    protected function mapTransactionLogToAuthorizeFormTransfer(HeidelpayTransactionLogTransfer $authorizeTransactionLogTransfer, HeidelpayIdealAuthorizeFormTransfer $idealAuthorizeFormTransfer): void
     {
         $this->getFactory()
             ->createHeidelpayResponseToIdealAuthorizeFormMapper()

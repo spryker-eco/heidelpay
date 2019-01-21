@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Order;
@@ -29,7 +29,7 @@ class OrderReader implements OrderReaderInterface
      *
      * @return int
      */
-    public function getOrderIdByReference($orderReference)
+    public function getOrderIdByReference(string $orderReference): int
     {
         $orderEntity = $this->salesQueryContainer->getOrderByReference($orderReference);
 

@@ -2,8 +2,9 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
+
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper;
 
 use Heidelpay\PhpPaymentApi\Response;
@@ -30,7 +31,7 @@ class ResponsePayloadToApiResponse implements ResponsePayloadToApiResponseInterf
      *
      * @return void
      */
-    public function map($transactionPayload, Response $heidelpayResponse)
+    public function map($transactionPayload, Response $heidelpayResponse): void
     {
         $transactionPayloadArray = $this->getTransactionPayloadArray($transactionPayload);
 
@@ -46,7 +47,7 @@ class ResponsePayloadToApiResponse implements ResponsePayloadToApiResponseInterf
      *
      * @return void
      */
-    protected function mapRequestParameterGroup($parameterGroup, array $values, Response $heidelpayResponse)
+    protected function mapRequestParameterGroup($parameterGroup, array $values, Response $heidelpayResponse): void
     {
         $parameterGroupObject = $this->getRequestParameterObject($parameterGroup, $heidelpayResponse);
 
@@ -63,7 +64,7 @@ class ResponsePayloadToApiResponse implements ResponsePayloadToApiResponseInterf
      * @param string $parameterGroup
      * @param \Heidelpay\PhpPaymentApi\Response $heidelpayResponse
      *
-     * @return object|null
+     * @return mixed
      */
     protected function getRequestParameterObject($parameterGroup, Response $heidelpayResponse)
     {
@@ -83,7 +84,7 @@ class ResponsePayloadToApiResponse implements ResponsePayloadToApiResponseInterf
      *
      * @return void
      */
-    protected function setParameterGroupProperty($parameterGroupObject, $fieldName, $fieldValue)
+    protected function setParameterGroupProperty($parameterGroupObject, $fieldName, $fieldValue): void
     {
         if (property_exists($parameterGroupObject, $fieldName)) {
             $parameterGroupObject->$fieldName = $fieldValue;
@@ -95,7 +96,7 @@ class ResponsePayloadToApiResponse implements ResponsePayloadToApiResponseInterf
      *
      * @return array
      */
-    protected function getTransactionPayloadArray($transactionPayload)
+    protected function getTransactionPayloadArray($transactionPayload): array
     {
         return (array)$this->utilEncoding->decodeJson($transactionPayload, true);
     }

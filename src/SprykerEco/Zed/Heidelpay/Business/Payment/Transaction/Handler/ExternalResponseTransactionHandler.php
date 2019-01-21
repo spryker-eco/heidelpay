@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
@@ -14,10 +14,11 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriterInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\ExternalPaymentResponseBuilderInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\ExternalResponseNotSupportedException;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ExternalResponseTransactionInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface;
 
 class ExternalResponseTransactionHandler implements ExternalResponseTransactionHandlerInterface
 {
-    const ERROR_MESSAGE_EXTERNAL_RESPONSE_TRANSACTION_NOT_SUPPORTED =
+    public const ERROR_MESSAGE_EXTERNAL_RESPONSE_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call external response transaction on payment method \'%s\' ' .
         'that does not support it';
 
@@ -64,7 +65,7 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
-    public function processExternalPaymentResponse(array $externalResponseArray)
+    public function processExternalPaymentResponse(array $externalResponseArray): HeidelpayPaymentProcessingResponseTransfer
     {
         $externalResponseTransfer = $this->buildExternalResponseTransfer($externalResponseArray);
         $transactionResultTransfer = $this->executeTransaction($externalResponseTransfer);
@@ -78,7 +79,7 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
      *
      * @return void
      */
-    protected function updateIdPaymentReference(HeidelpayResponseTransfer $responseTransfer)
+    protected function updateIdPaymentReference(HeidelpayResponseTransfer $responseTransfer): void
     {
         $this->paymentWriter->updatePaymentReferenceByIdSalesOrder(
             $responseTransfer->getIdPaymentReference(),
@@ -91,7 +92,7 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
      *
      * @return \Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer
      */
-    protected function buildExternalResponseTransfer(array $externalResponseArray)
+    protected function buildExternalResponseTransfer(array $externalResponseArray): HeidelpayExternalPaymentResponseTransfer
     {
         $externalResponseTransfer = $this->externalPaymentResponseBuilder
             ->buildExternalResponseTransfer($externalResponseArray);
@@ -104,7 +105,7 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    protected function executeTransaction(HeidelpayExternalPaymentResponseTransfer $externalResponseTransfer)
+    protected function executeTransaction(HeidelpayExternalPaymentResponseTransfer $externalResponseTransfer): HeidelpayResponseTransfer
     {
         $paymentAdapter = $this->getPaymentMethodAdapter($externalResponseTransfer);
         $responseTransfer = $this->transaction->executeTransaction($externalResponseTransfer, $paymentAdapter);
@@ -119,7 +120,7 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
      *
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface
      */
-    protected function getPaymentMethodAdapter(HeidelpayExternalPaymentResponseTransfer $externalResponseTransfer)
+    protected function getPaymentMethodAdapter(HeidelpayExternalPaymentResponseTransfer $externalResponseTransfer): PaymentWithExternalResponseInterface
     {
         $paymentMethodCode = $externalResponseTransfer->getPaymentMethod();
 
@@ -137,7 +138,7 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
-    protected function buildPaymentProcessingResponse(HeidelpayResponseTransfer $transactionResultTransfer)
+    protected function buildPaymentProcessingResponse(HeidelpayResponseTransfer $transactionResultTransfer): HeidelpayPaymentProcessingResponseTransfer
     {
         $paymentProcessingResponseTransfer = (new HeidelpayPaymentProcessingResponseTransfer())
             ->setIsError(false);

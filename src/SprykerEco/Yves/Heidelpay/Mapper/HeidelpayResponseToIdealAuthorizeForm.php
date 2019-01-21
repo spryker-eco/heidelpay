@@ -2,8 +2,9 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
+
 namespace SprykerEco\Yves\Heidelpay\Mapper;
 
 use Generated\Shared\Transfer\HeidelpayIdealAuthorizeFormTransfer;
@@ -17,7 +18,7 @@ class HeidelpayResponseToIdealAuthorizeForm implements HeidelpayResponseToIdealA
      *
      * @return void
      */
-    public function map(HeidelpayResponseTransfer $responseTransfer, HeidelpayIdealAuthorizeFormTransfer $idealAuthoriseFormTransfer)
+    public function map(HeidelpayResponseTransfer $responseTransfer, HeidelpayIdealAuthorizeFormTransfer $idealAuthoriseFormTransfer): void
     {
         $idealAuthoriseFormTransfer
             ->setActionUrl(

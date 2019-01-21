@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Yves\Heidelpay\Form;
@@ -13,25 +13,28 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CreditCardSecureSubForm extends AbstractHeidelpaySubForm
 {
-    const PAYMENT_METHOD = HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE;
+    public const PAYMENT_METHOD = HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE;
 
-    const PAYMENT_OPTIONS = 'payment_options';
-    const PAYMENT_OPTION_EXISTING_REGISTRATION = HeidelpayConfig::PAYMENT_OPTION_EXISTING_REGISTRATION;
-    const PAYMENT_OPTION_NEW_REGISTRATION = HeidelpayConfig::PAYMENT_OPTION_NEW_REGISTRATION;
+    public const PAYMENT_OPTIONS = 'payment_options';
+    public const PAYMENT_OPTION_EXISTING_REGISTRATION = HeidelpayConfig::PAYMENT_OPTION_EXISTING_REGISTRATION;
+    public const PAYMENT_OPTION_NEW_REGISTRATION = HeidelpayConfig::PAYMENT_OPTION_NEW_REGISTRATION;
 
-    const FIELD_CREDIT_CARD_PAYMENT_OPTION = 'selected_payment_option';
-    const FIELD_CREDIT_CARD_REGISTRATION_ID = 'registration_id';
+    public const FIELD_CREDIT_CARD_PAYMENT_OPTION = 'selected_payment_option';
+    public const FIELD_CREDIT_CARD_REGISTRATION_ID = 'registration_id';
+
+    public const PAYMENT_METHOD_TEMPLATE_PATH = 'credit-card-secure';
 
     /**
      * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      *
      * @return void
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => HeidelpayCreditCardPaymentTransfer::class,
@@ -45,7 +48,7 @@ class CreditCardSecureSubForm extends AbstractHeidelpaySubForm
      *
      * @return void
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $this->addCreditCardPaymentOptions($builder, $options);
     }
@@ -56,7 +59,7 @@ class CreditCardSecureSubForm extends AbstractHeidelpaySubForm
      *
      * @return $this
      */
-    public function addCreditCardPaymentOptions(FormBuilderInterface $builder, array $options)
+    public function addCreditCardPaymentOptions(FormBuilderInterface $builder, array $options): self
     {
         $builder->add(
             static::FIELD_CREDIT_CARD_PAYMENT_OPTION,
@@ -82,7 +85,7 @@ class CreditCardSecureSubForm extends AbstractHeidelpaySubForm
      *
      * @return bool
      */
-    protected function hasExistingRegistrationOption(array $options)
+    protected function hasExistingRegistrationOption(array $options): bool
     {
         $paymentOptions = $options['select_options'][static::PAYMENT_OPTIONS];
 
@@ -92,7 +95,7 @@ class CreditCardSecureSubForm extends AbstractHeidelpaySubForm
     /**
      * @return \Symfony\Component\Validator\Constraint
      */
-    protected function createNotBlankConstraint()
+    protected function createNotBlankConstraint(): Constraint
     {
         return new NotBlank(['groups' => $this->getPropertyPath()]);
     }
