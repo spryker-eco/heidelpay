@@ -63,7 +63,7 @@ class GatewayController extends AbstractGatewayController
     {
         return $this->getFacade()->processExternalEasyCreditPaymentResponse($paymentRequestTransfer->getBody());
     }
-    
+
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
      *

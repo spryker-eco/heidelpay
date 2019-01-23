@@ -2,19 +2,19 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
 
 use Generated\Shared\Transfer\OrderTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\FinalizeTransactionInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\FinalizeNotSupportedException;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\FinalizeTransactionInterface;
 
 class FinalizeTransactionHandler implements FinalizeTransactionHandlerInterface
 {
-    const ERROR_MESSAGE_FINALIZE_TRANSACTION_NOT_SUPPORTED =
+    public const ERROR_MESSAGE_FINALIZE_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call finalize transaction on payment method \'%s\' ' .
         'that does not support it';
 

@@ -83,7 +83,8 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer|\Spryker\Shared\Kernel\Transfer\TransferInterface
      */
-    public function processExternalEasyCreditPaymentResponse(HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer) {
+    public function processExternalEasyCreditPaymentResponse(HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer)
+    {
         return $this->zedStub->call(
             static::ZED_GET_PROCESS_EXTERNAL_EASY_CREDIT_PAYMENT_RESPONSE,
             $externalPaymentRequestTransfer
@@ -129,7 +130,8 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|\Spryker\Shared\Kernel\Transfer\TransferInterface
      */
-    public function easycreditRequest(QuoteTransfer $quoteTransfer) {
+    public function easycreditRequest(QuoteTransfer $quoteTransfer)
+    {
         return $this->zedStub->call(
             static::ZED_EASYCREDIT_REQUEST,
             $quoteTransfer

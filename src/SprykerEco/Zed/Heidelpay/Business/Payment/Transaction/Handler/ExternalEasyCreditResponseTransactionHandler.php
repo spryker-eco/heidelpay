@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
@@ -13,7 +13,6 @@ use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriterInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\ExternalEasyCreditPaymentResponseBuilderInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ExternalResponseTransactionInterface;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ExternalEasResponseTransactionInterface;
 
 class ExternalEasyCreditResponseTransactionHandler implements ExternalEasyCreditResponseTransactionHandlerInterface
 {
@@ -100,8 +99,7 @@ class ExternalEasyCreditResponseTransactionHandler implements ExternalEasyCredit
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayResponseTransfer $transactionResultTransfer
-     *
-     * @param \Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer $externalResponseArray
+     * @param \Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer $externalResponseTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
@@ -111,7 +109,6 @@ class ExternalEasyCreditResponseTransactionHandler implements ExternalEasyCredit
     ) {
         $paymentProcessingResponseTransfer = (new HeidelpayPaymentProcessingResponseTransfer())
             ->setIsError(false);
-
 
         if ($transactionResultTransfer->getIsError()) {
             $paymentProcessingResponseTransfer

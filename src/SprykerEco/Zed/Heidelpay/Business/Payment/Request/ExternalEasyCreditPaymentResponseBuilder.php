@@ -2,7 +2,7 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Request;
@@ -12,7 +12,7 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReaderInterface;
 
 class ExternalEasyCreditPaymentResponseBuilder implements ExternalEasyCreditPaymentResponseBuilderInterface
 {
-    const REQUEST_PARAM_ORDER_ID = 'IDENTIFICATION_TRANSACTIONID';
+    public const REQUEST_PARAM_ORDER_ID = 'IDENTIFICATION_TRANSACTIONID';
 
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReaderInterface

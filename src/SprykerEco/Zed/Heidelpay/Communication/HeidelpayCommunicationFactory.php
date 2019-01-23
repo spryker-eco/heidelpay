@@ -14,13 +14,12 @@ use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
 /**
  * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface getQueryContainer()
  * @method \SprykerEco\Zed\Heidelpay\HeidelpayConfig getConfig()
+ * @method \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacadeInterface getFacade()
  */
 class HeidelpayCommunicationFactory extends AbstractCommunicationFactory
 {
     /**
      * @return mixed
-     *
-     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
     public function getSalesFacade(): HeidelpayToSalesInterface
     {

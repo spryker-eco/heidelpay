@@ -2,19 +2,19 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
 
 use Generated\Shared\Transfer\OrderTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ReservationTransactionInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\ReservationNotSupportedException;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ReservationTransactionInterface;
 
 class ReservationTransactionHandler implements ReservationTransactionHandlerInterface
 {
-    const ERROR_MESSAGE_RESERVATION_TRANSACTION_NOT_SUPPORTED =
+    public const ERROR_MESSAGE_RESERVATION_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call reservation transaction on payment method \'%s\' ' .
         'that does not support it';
 

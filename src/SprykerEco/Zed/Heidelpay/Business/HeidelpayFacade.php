@@ -99,7 +99,6 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
     public function authorizeOnRegistrationPayment(OrderTransfer $orderTransfer)
     {
@@ -115,7 +114,6 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
     public function initializePayment(QuoteTransfer $quoteTransfer)
     {
@@ -147,7 +145,6 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
     public function finalizePayment(OrderTransfer $orderTransfer)
     {
@@ -163,7 +160,6 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
     public function reservationPayment(OrderTransfer $orderTransfer)
     {

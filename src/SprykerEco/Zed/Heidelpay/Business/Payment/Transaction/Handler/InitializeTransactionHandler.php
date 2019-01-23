@@ -2,19 +2,19 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
 
 use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilderInterface;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\InitializeTransactionInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\InitializeNotSupportedException;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\InitializeTransactionInterface;
 
 class InitializeTransactionHandler implements InitializeTransactionHandlerInterface
 {
-    const ERROR_MESSAGE_INITIALIZE_TRANSACTION_NOT_SUPPORTED =
+    public const ERROR_MESSAGE_INITIALIZE_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call initialize transaction on payment method \'%s\' ' .
         'that does not support it';
 

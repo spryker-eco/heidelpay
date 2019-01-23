@@ -2,25 +2,21 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
 use Generated\Shared\Transfer\HeidelpayEasyCreditPaymentTransfer;
 use Generated\Shared\Transfer\PaymentTransfer;
-use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
-use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
-use Generated\Shared\Transfer\CustomerTransfer;
-use Generated\Shared\DataBuilder\QuoteBuilder;
-use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\TotalsTransfer;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Quote\QuoteMockTrait;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerTrait;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
+use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerAddressTrait;
+use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerTrait;
+use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
+use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Quote\QuoteMockTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\SuccessfulResponseHeidelpayBusinessFactory;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusinessFactory;
 

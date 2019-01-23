@@ -2,16 +2,14 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Yves\Heidelpay\Hydrator;
 
 use Generated\Shared\Transfer\QuoteTransfer;
-use SprykerEco\Client\Heidelpay\HeidelpayClientInterface;
-use SprykerEco\Yves\Heidelpay\Hydrator\EasyCreditResponseToQuoteHydratorInterface;
-use SprykerEco\Yves\Heidelpay\Handler\HeidelpayEasyCreditHandler;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
+use SprykerEco\Yves\Heidelpay\Handler\HeidelpayEasyCreditHandler;
 
 class EasyCreditResponseToQuoteHydrator implements EasyCreditResponseToQuoteHydratorInterface
 {
@@ -21,7 +19,7 @@ class EasyCreditResponseToQuoteHydrator implements EasyCreditResponseToQuoteHydr
     private $heidelpayEasyCreditHandler;
 
     /**
-     * @param \SprykerEco\Client\Heidelpay\HeidelpayClientInterface $heidelpayClient
+     * @param \SprykerEco\Yves\Heidelpay\Handler\HeidelpayEasyCreditHandler $heidelpayEasyCreditHandler
      */
     public function __construct(HeidelpayEasyCreditHandler $heidelpayEasyCreditHandler)
     {
@@ -29,6 +27,7 @@ class EasyCreditResponseToQuoteHydrator implements EasyCreditResponseToQuoteHydr
     }
 
     /**
+     * @param array $responseAsArray
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return void

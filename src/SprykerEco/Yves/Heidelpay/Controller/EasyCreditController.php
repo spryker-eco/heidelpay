@@ -2,15 +2,15 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Yves\Heidelpay\Controller;
 
+use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
+use Generated\Shared\Transfer\QuoteTransfer;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Generated\Shared\Transfer\QuoteTransfer;
-use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 
 /**
  * @method \SprykerEco\Yves\Heidelpay\HeidelpayFactory getFactory()
@@ -20,8 +20,6 @@ class EasyCreditController extends BaseHeidelpayController
 {
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      *
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
@@ -33,7 +31,7 @@ class EasyCreditController extends BaseHeidelpayController
 
         $quoteTransfer = $this->getClient()->getQuoteFromSession();
         //$requestAsArray = $this->getUrldecodedRequestBody($request);
-        $requestAsArray = array(
+        $requestAsArray = [
             'NAME_FAMILY' => 'Ratentyp',
             'CRITERION_SDK_NAME' => 'Heidelpay\\PhpPaymentApi',
             'IDENTIFICATION_TRANSACTIONID' => '70147edd16a09f7410f3e8e835eda21f3a2a30c1',
@@ -91,8 +89,8 @@ class EasyCreditController extends BaseHeidelpayController
             'TRANSACTION_CHANNEL' => '31HA07BC810DCA126FA83FA533886979',
             'FRONTEND_LANGUAGE' => 'DE',
             'PAYMENT_CODE' => 'HP.IN',
-            'CRITERION_EASYCREDIT_DEVICEIDENTTOKEN' => 'f48343e0-81bc-445c-8da4-d192d1ccb089'
-        );
+            'CRITERION_EASYCREDIT_DEVICEIDENTTOKEN' => 'f48343e0-81bc-445c-8da4-d192d1ccb089',
+        ];
 
         $processingResultTransfer = $this->processEasyCreditPaymentResponse(
             $this->getClient()->filterResponseParameters($requestAsArray)
@@ -156,7 +154,8 @@ class EasyCreditController extends BaseHeidelpayController
      *
      * @return void
      */
-    protected function hydrateEasyCreditResponseToQuote(array $requestAsArray, QuoteTransfer $quoteTransfer) {
+    protected function hydrateEasyCreditResponseToQuote(array $requestAsArray, QuoteTransfer $quoteTransfer)
+    {
         $this->getFactory()
             ->createEasyCreditResponseToQuoteHydrator()
             ->hydrateEasyCreditResponseToQuote($requestAsArray, $quoteTransfer);

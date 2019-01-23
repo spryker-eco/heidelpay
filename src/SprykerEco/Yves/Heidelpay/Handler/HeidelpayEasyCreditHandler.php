@@ -2,19 +2,17 @@
 
 /**
  * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Yves\Heidelpay\Handler;
 
-use Spryker\Client\Calculation\CalculationClientInterface;
 use Spryker\Client\Quote\QuoteClientInterface;
-use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 
 class HeidelpayEasyCreditHandler extends HeidelpayHandler
 {
-    const PAYMENT_PROVIDER = HeidelpayConfig::PROVIDER_NAME;
+    public const PAYMENT_PROVIDER = HeidelpayConfig::PROVIDER_NAME;
 
     /**
      * @var array
@@ -27,12 +25,10 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
     protected $quoteClient;
 
     /**
-     * @param array $heidelpayEasyCreditResponse
      * @param \Spryker\Client\Quote\QuoteClientInterface $quoteClient
      */
-    public function __construct(
-        QuoteClientInterface $quoteClient
-    ) {
+    public function __construct(QuoteClientInterface $quoteClient)
+    {
         $this->quoteClient = $quoteClient;
     }
 
@@ -47,6 +43,7 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
         $this->addCurrentRegistrationToQuote($quoteTransfer);
         $quoteTransfer = $this->calculationClient->recalculate($quoteTransfer);
         $this->quoteClient->setQuote($quoteTransfer);
+
         return $quoteTransfer;
     }
 }

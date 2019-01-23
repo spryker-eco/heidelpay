@@ -17,6 +17,7 @@ use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
  * @method \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacadeInterface getFacade()
  * @method \SprykerEco\Zed\Heidelpay\Communication\HeidelpayCommunicationFactory getFactory()
  * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface getQueryContainer()
+ * @method \SprykerEco\Zed\Heidelpay\HeidelpayConfig getConfig()
  */
 class DebitPlugin extends AbstractPlugin implements CommandByOrderInterface
 {
