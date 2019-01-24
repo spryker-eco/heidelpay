@@ -9,6 +9,7 @@ namespace SprykerEco\Yves\Heidelpay\Handler;
 
 use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
+use SprykerEco\Yves\Heidelpay\Hydrator\EasyCreditResponseToQuoteHydratorInterface;
 
 interface HeidelpayHandlerInterface
 {

@@ -22,6 +22,7 @@ class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterfac
         $easyCreditMethod = new EasyCreditPaymentMethod();
         $this->prepareRequest($authorizeRequestTransfer, $easyCreditMethod->getRequest());
         $easyCreditMethod->authorizeOnRegistration($authorizeRequestTransfer->getIdPaymentRegistration());
+
         return $this->verifyAndParseResponse($easyCreditMethod->getResponse());
     }
 
@@ -35,6 +36,7 @@ class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterfac
         $easyCreditMethod = new EasyCreditPaymentMethod();
         $this->prepareRequest($initializeRequestTransfer, $easyCreditMethod->getRequest());
         $easyCreditMethod->initialize();
+
         return $this->verifyAndParseResponse($easyCreditMethod->getResponse());
     }
 
@@ -48,6 +50,7 @@ class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterfac
         $easyCreditMethod = new EasyCreditPaymentMethod();
         $this->prepareRequest($reservationRequestTransfer, $easyCreditMethod->getRequest());
         $easyCreditMethod->reservation();
+
         return $this->verifyAndParseResponse($easyCreditMethod->getResponse());
     }
 
@@ -61,6 +64,7 @@ class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterfac
         $easyCreditMethod = new EasyCreditPaymentMethod();
         $this->prepareRequest($finalizeRequestTransfer, $easyCreditMethod->getRequest());
         $easyCreditMethod->finalize($finalizeRequestTransfer->getIdPaymentRegistration());
+
         return $this->verifyAndParseResponse($easyCreditMethod->getResponse());
     }
 }

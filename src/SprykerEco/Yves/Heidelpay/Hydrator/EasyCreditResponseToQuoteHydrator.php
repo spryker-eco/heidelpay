@@ -32,7 +32,7 @@ class EasyCreditResponseToQuoteHydrator implements EasyCreditResponseToQuoteHydr
      *
      * @return void
      */
-    public function hydrateEasyCreditResponseToQuote(array $responseAsArray, QuoteTransfer $quoteTransfer)
+    public function hydrateEasyCreditResponseToQuote(array $responseAsArray, QuoteTransfer $quoteTransfer): void
     {
         $paymentTransfer = $quoteTransfer->requirePayment()->getPayment();
         $paymentTransfer->setPaymentSelection(HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT);

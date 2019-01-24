@@ -54,7 +54,7 @@ class AdapterRequestFromQuoteBuilder extends BaseAdapterRequestBuilder implement
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    public function buildEasyCreditRequest(QuoteTransfer $quoteTransfer)
+    public function buildEasyCreditRequest(QuoteTransfer $quoteTransfer): HeidelpayRequestTransfer
     {
         return $responseTransfer = $this->buildBaseQuoteHeidelpayRequest($quoteTransfer);
     }

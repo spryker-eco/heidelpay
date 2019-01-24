@@ -14,7 +14,7 @@ class FailedEasyCreditPaymentExternalResponseWhithFailedProcessingResultBuilder 
     /**
      * @return string|null
      */
-    protected function getProcessingResult()
+    protected function getProcessingResult(): ?string
     {
         return null;
     }

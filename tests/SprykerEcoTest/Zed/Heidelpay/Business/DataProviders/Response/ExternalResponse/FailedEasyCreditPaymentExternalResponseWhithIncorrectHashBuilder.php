@@ -17,7 +17,7 @@ class FailedEasyCreditPaymentExternalResponseWhithIncorrectHashBuilder extends E
      *
      * @return string
      */
-    protected function getCriterionSecret($identificationTransactionId, $secret)
+    protected function getCriterionSecret(int $identificationTransactionId, string $secret): string
     {
         return 'failed-secret-value';
     }
