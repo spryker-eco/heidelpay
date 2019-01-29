@@ -9,6 +9,7 @@ namespace SprykerEco\Yves\Heidelpay\Handler;
 
 use Spryker\Client\Quote\QuoteClientInterface;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
+use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
 
 class HeidelpayEasyCreditHandler extends HeidelpayHandler
 {
@@ -27,7 +28,7 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
     /**
      * @param \Spryker\Client\Quote\QuoteClientInterface $quoteClient
      */
-    public function __construct(QuoteClientInterface $quoteClient)
+    public function __construct(HeidelpayToQuoteClientInterface $quoteClient)
     {
         $this->quoteClient = $quoteClient;
     }

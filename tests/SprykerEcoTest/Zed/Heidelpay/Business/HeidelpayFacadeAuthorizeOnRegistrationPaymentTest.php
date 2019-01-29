@@ -32,7 +32,7 @@ class HeidelpayFacadeAuthorizeOnRegistrationPaymentTest extends HeidelpayPayment
 
         $heidelpayFacade = (new HeidelpayFacade())->setFactory($this->createSuccessfulPaymentHeidelpayFactoryMock());
         $orderTransfer = $this->getPaymentTransfer($heidelpayFacade, $salesOrder);
-        $this->heidelpayFacade->authorizeOnRegistrationPayment($orderTransfer);
+        $heidelpayFacade->authorizeOnRegistrationPayment($orderTransfer);
 
         $transaction = $this->createHeidelpayFactory()->createTransactionLogReader()
             ->findOrderAuthorizeOnRegistrationTransactionLogByIdSalesOrder($salesOrder->getIdSalesOrder());
@@ -47,6 +47,7 @@ class HeidelpayFacadeAuthorizeOnRegistrationPaymentTest extends HeidelpayPayment
     {
         $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
         $orderTransfer = $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_EASY_CREDIT);
+
         return $orderTransfer;
     }
 
