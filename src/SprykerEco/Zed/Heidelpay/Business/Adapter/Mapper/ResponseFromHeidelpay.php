@@ -61,7 +61,6 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
             ->setIsSuccess($apiResponse->isSuccess())
             ->setIdSalesOrder((int)$apiResponse->getIdentification()->getTransactionId())
             ->setIsError($apiResponse->isError())
-            ->setIdPaymentReference($apiResponse->getPaymentReferenceId())
             ->setProcessingCode($apiResponse->getProcessing()->code)
             ->setIdTransactionUnique($apiResponse->getIdentification()->getUniqueId())
             ->setResultCode($apiResponse->getProcessing()->getResult());

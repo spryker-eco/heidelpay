@@ -138,4 +138,16 @@ interface HeidelpayClientInterface
      * @return array
      */
     public function filterResponseParameters(array $responseArray);
+
+    /**
+     * Specification:
+     *  - Initialize payment
+     *
+     * @api
+     *
+     * @param array $responseArray
+     *
+     * @return array
+     */
+    public function heidelpayEasycreditRequest(QuoteTransfer $quoteTransfer);
 }

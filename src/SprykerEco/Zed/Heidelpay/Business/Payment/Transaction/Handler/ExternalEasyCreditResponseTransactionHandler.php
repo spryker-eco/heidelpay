@@ -92,7 +92,10 @@ class ExternalEasyCreditResponseTransactionHandler implements ExternalEasyCredit
      */
     protected function executeTransaction(HeidelpayExternalPaymentResponseTransfer $externalResponseTransfer)
     {
-        $responseTransfer = $this->transaction->executeTransaction($externalResponseTransfer, $this->paymentMethodAdapterCollection[self::HEIDELPAY_EASY_CREDIT_PAYMENT_METHOD]);
+        $responseTransfer = $this->transaction->executeTransaction(
+            $externalResponseTransfer,
+            $this->paymentMethodAdapterCollection[self::HEIDELPAY_EASY_CREDIT_PAYMENT_METHOD]
+        );
 
         return $responseTransfer;
     }

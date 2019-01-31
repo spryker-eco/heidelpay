@@ -57,6 +57,7 @@ class InitializeTransactionHandler implements InitializeTransactionHandlerInterf
     {
         $initializeRequestTransfer = $this->buildInitializeRequest($quoteTransfer);
         $paymentAdapter = $this->getPaymentMethodAdapter($quoteTransfer);
+
         return $this->transaction->executeTransaction($initializeRequestTransfer, $paymentAdapter);
     }
 

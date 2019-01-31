@@ -119,7 +119,8 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
         $heidelpayPayment = $orderTransfer->getHeidelpayPayment();
         $heidelpayRequestTransfer
             ->setIdBasket($heidelpayPayment->getIdBasket())
-            ->setIdPaymentRegistration($heidelpayPayment->getIdPaymentRegistration());
+            ->setIdPaymentRegistration($heidelpayPayment->getIdPaymentRegistration())
+            ->setIdPaymentReference($heidelpayPayment->getIdPaymentReference());
 
         return $heidelpayRequestTransfer;
     }

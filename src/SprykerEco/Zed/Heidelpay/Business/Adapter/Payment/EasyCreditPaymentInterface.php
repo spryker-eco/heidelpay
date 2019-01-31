@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Payment;
 
+use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeOnRegistrationInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithFinalizeInterface;
@@ -20,4 +21,10 @@ interface EasyCreditPaymentInterface extends
     PaymentWithAuthorizeOnRegistrationInterface,
     PaymentWithFinalizeInterface
 {
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $initializeRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function reservation(HeidelpayRequestTransfer $reservationRequestTransfer);
 }

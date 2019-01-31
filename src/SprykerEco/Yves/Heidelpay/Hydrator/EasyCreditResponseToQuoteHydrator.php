@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Yves\Heidelpay\Hydrator;
 
+use Generated\Shared\Transfer\ExpenseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Yves\Heidelpay\Handler\HeidelpayEasyCreditHandler;
@@ -40,11 +41,24 @@ class EasyCreditResponseToQuoteHydrator implements EasyCreditResponseToQuoteHydr
         $paymentTransfer
             ->requireHeidelpayEasyCredit()
             ->getHeidelpayEasyCredit()
-            ->setAmortisationText($responseAsArray['CRITERION_EASYCREDIT_AMORTISATIONTEXT'])
-            ->setaccruingInterest($responseAsArray['CRITERION_EASYCREDIT_ACCRUINGINTEREST'])
-            ->setTotalAmount($responseAsArray['CRITERION_EASYCREDIT_TOTALAMOUNT']);
+            ->setIdPaymentReference($responseAsArray['IDENTIFICATION.UNIQUEID'])
+            ->setAmortisationText($responseAsArray['CRITERION.EASYCREDIT_AMORTISATIONTEXT'])
+            ->setAccruingInterest($responseAsArray['CRITERION.EASYCREDIT_ACCRUINGINTEREST'])
+            ->setTotalAmount($responseAsArray['CRITERION.EASYCREDIT_TOTALAMOUNT']);
 
         $quoteTransfer->setPayment($paymentTransfer);
+        $easyCreditExpensePrice = $responseAsArray['CRITERION.EASYCREDIT_MONTHLYRATEAMOUNT'];
+        $easyCreditExpenseTransfer = (new ExpenseTransfer())
+            ->setName('EasyCredit')
+            ->setType('EXPENSE_TYPE')
+            ->setUnitPrice($easyCreditExpensePrice)
+            ->setSumPrice($easyCreditExpensePrice)
+            ->setUnitPriceToPayAggregation($easyCreditExpensePrice)
+            ->setSumPriceToPayAggregation($easyCreditExpensePrice)
+            ->setUnitNetPrice($easyCreditExpensePrice)
+            ->setSumNetPrice($easyCreditExpensePrice);
+
+        $quoteTransfer->addExpense($easyCreditExpenseTransfer);
 
         $this->heidelpayEasyCreditHandler->addPaymentToQuote($quoteTransfer);
     }

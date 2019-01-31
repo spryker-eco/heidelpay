@@ -9,22 +9,34 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment;
 
 use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
+use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface;
 
-class EasyCredit extends BaseHeidelpayPaymentMethod implements PaymentWithPostSaveOrderInterface
+class EasyCredit extends BaseHeidelpayPaymentMethod implements PaymentWithPreSavePaymentInterface
 {
     /**
+     * @param \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay $paymentEntity
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
      *
      * @return void
      */
-    public function postSaveOrder(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer): void
+    public function addDataToPayment(SpyPaymentHeidelpay $paymentEntity, QuoteTransfer $quoteTransfer): void
     {
-        $redirectUrl = $this->getCheckoutRedirectUrlFromAuthorizeOnRegistrationTransactionLog(
-            $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder()
-        );
+        $paymentReference = $this->getPaymentReferenceFromQuote($quoteTransfer);
+        $paymentEntity->setIdPaymentReference($paymentReference);
+    }
 
-        $this->setExternalRedirect($redirectUrl, $checkoutResponseTransfer);
+    /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return string
+     */
+    protected function getPaymentReferenceFromQuote(QuoteTransfer $quoteTransfer): string
+    {
+        return $quoteTransfer
+            ->getPayment()
+            ->getHeidelpayEasyCredit()
+            ->getIdPaymentReference();
     }
 }

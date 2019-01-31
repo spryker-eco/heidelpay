@@ -16,19 +16,6 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithInitializeInterfac
 class InitializeTransaction implements InitializeTransactionInterface
 {
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Logger\TransactionLoggerInterface
-     */
-    protected $transactionLogger;
-
-    /**
-     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Logger\TransactionLoggerInterface $transactionLogger
-     */
-    public function __construct(TransactionLoggerInterface $transactionLogger)
-    {
-        $this->transactionLogger = $transactionLogger;
-    }
-
-    /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $initializeRequestTransfer
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithInitializeInterface $paymentAdapter
      *
@@ -39,25 +26,7 @@ class InitializeTransaction implements InitializeTransactionInterface
         PaymentWithInitializeInterface $paymentAdapter
     ) {
         $initializeResponseTransfer = $paymentAdapter->initialize($initializeRequestTransfer);
-        $this->logTransaction($initializeRequestTransfer, $initializeResponseTransfer);
 
         return $initializeResponseTransfer;
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $initializeRequestTransfer
-     * @param \Generated\Shared\Transfer\HeidelpayResponseTransfer $initializeResponseTransfer
-     *
-     * @return void
-     */
-    protected function logTransaction(
-        HeidelpayRequestTransfer $initializeRequestTransfer,
-        HeidelpayResponseTransfer $initializeResponseTransfer
-    ) {
-        $this->transactionLogger->logTransaction(
-            HeidelpayConfig::TRANSACTION_TYPE_INITIALIZE,
-            $initializeRequestTransfer,
-            $initializeResponseTransfer
-        );
     }
 }
