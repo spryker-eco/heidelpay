@@ -35,7 +35,7 @@
 
         <events>
             <event name="send reservation request" onEnter="true" command="Heidelpay/Reservation" />
-            <event name="reservation payment" manual="true" />
+            <event name="reservation payment" onEnter="true" />
         </events>
     </process>
 </statemachine>

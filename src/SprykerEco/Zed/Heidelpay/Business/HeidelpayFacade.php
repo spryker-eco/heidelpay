@@ -72,7 +72,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     public function processExternalEasyCreditPaymentResponse(array $externalResponse)
     {
         return $this->getFactory()
-            ->createExternalEasyCreditResponseTransactionHandler()
+            ->createEasyCreditInitializeExternalResponseTransactionHandler()
             ->processExternalEasyCreditPaymentResponse($externalResponse);
     }
 

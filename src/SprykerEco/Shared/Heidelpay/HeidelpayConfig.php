@@ -33,5 +33,5 @@ interface HeidelpayConfig
     public const EXTERNAL_RESPONSE_TRANSACTION_STATUS_OK = 'ACK';
     public const CAPTURE_TRANSACTION_STATUS_OK = 'ACK';
     public const RESERVATION_TRANSACTION_STATUS_OK = 'ACK';
-    public const FINALIZE_TRANSACTION_STATUS_OK = 'NOK';
+    public const FINALIZE_TRANSACTION_STATUS_OK = 'OK';
 }

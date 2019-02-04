@@ -63,7 +63,7 @@ class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterfac
     {
         $easyCreditMethod = new EasyCreditPaymentMethod();
         $this->prepareRequest($finalizeRequestTransfer, $easyCreditMethod->getRequest());
-        $easyCreditMethod->finalize($finalizeRequestTransfer->getIdPaymentRegistration());
+        $easyCreditMethod->finalize($finalizeRequestTransfer->getIdPaymentReference());
 
         return $this->verifyAndParseResponse($easyCreditMethod->getResponse());
     }

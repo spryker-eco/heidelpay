@@ -57,6 +57,7 @@ class FinalizeTransactionHandler implements FinalizeTransactionHandlerInterface
     {
         $finalizeRequestTransfer = $this->buildFinalizeRequest($orderTransfer);
         $paymentAdapter = $this->getPaymentMethodAdapter($orderTransfer);
+
         return $this->transaction->executeTransaction($finalizeRequestTransfer, $paymentAdapter);
     }
 

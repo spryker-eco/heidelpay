@@ -61,7 +61,7 @@ class HeidelpayQueryContainer extends AbstractQueryContainer implements Heidelpa
         return $this->getFactory()
             ->createPaymentHeidelpayTransactionLogQuery()
             ->filterByFkSalesOrder($idSalesOrder)
-            ->filterByTransactionType(HeidelpayConfig::TRANSACTION_TYPE_AUTHORIZE_ON_REGISTRATION);
+            ->filterByTransactionType(HeidelpayConfig::TRANSACTION_TYPE_RESERVATION);
     }
 
     /**

@@ -64,6 +64,7 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\CaptureTransactionInte
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\DebitTransaction;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\DebitTransactionInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\EasyCreditExternalResponseTransaction;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\EasyCreditInitializeExternalResponseTransaction;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ExternalResponseTransaction;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ExternalResponseTransactionInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\FinalizeTransaction;
@@ -200,10 +201,10 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\ExternalEasyCreditResponseTransactionHandlerInterface
      */
-    public function createExternalEasyCreditResponseTransactionHandler()
+    public function createEasyCreditInitializeExternalResponseTransactionHandler()
     {
         return new ExternalEasyCreditResponseTransactionHandler(
-            $this->createExternalResponseTransaction(),
+            $this->createEasyCreditInitializeExternalResponseTransaction(),
             $this->getExternalResponsePaymentMethodAdapterCollection(),
             $this->createExternalEasyCreditPaymentResponseBuilder(),
             $this->createPaymentWriter()
@@ -573,7 +574,6 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
             HeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT => $this->createPaymentMethodPaypalDebit(),
             HeidelpayConfig::PAYMENT_METHOD_IDEAL => $this->createPaymentMethodIdeal(),
             HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE => $this->createPaymentMethodCreditCardSecure(),
-            HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT => $this->createPaymentMethodEasyCredit(),
         ];
     }
 
@@ -678,9 +678,19 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ExternalResponseTransactionInterface
      */
-    public function createEasyCreditExternalResponseTransaction(): EasyCreditExternalResponseTransaction
+    public function createEasyCreditInitializeExternalResponseTransaction(): ExternalResponseTransactionInterface
     {
-        return new EasyCreditExternalResponseTransaction(
+        return new EasyCreditInitializeExternalResponseTransaction(
+            $this->createTransactionLogger()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ExternalResponseTransactionInterface
+     */
+    public function createEasyCreditInitializeResponseToQuoteHydrator(): EasyCreditExternalResponseTransaction
+    {
+        return new EasyCreditInitializeExternalResponseTransaction(
             $this->createTransactionLogger()
         );
     }
