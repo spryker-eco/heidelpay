@@ -89,9 +89,9 @@ class GatewayController extends AbstractGatewayController
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return mixed
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function easycreditInitializePaymentAction(QuoteTransfer $quoteTransfer)
+    public function easycreditInitializePaymentAction(QuoteTransfer $quoteTransfer): HeidelpayResponseTransfer
     {
         return $this->getFacade()->initializePayment($quoteTransfer);
     }

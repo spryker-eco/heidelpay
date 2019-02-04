@@ -22,7 +22,7 @@ interface EasyCreditPaymentInterface extends
     PaymentWithFinalizeInterface
 {
     /**
-     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $initializeRequestTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $reservationRequestTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */

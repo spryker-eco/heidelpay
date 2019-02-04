@@ -36,9 +36,9 @@ use SprykerEco\Yves\Heidelpay\Handler\PaymentFailureHandlerInterface;
 use SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuote;
 use SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface;
 use SprykerEco\Yves\Heidelpay\Hydrator\EasyCreditResponseToQuoteHydrator;
+use SprykerEco\Yves\Heidelpay\Hydrator\EasyCreditResponseToQuoteHydratorInterface;
 use SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeForm;
 use SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeFormInterface;
-use SprykerEco\Yves\Heidelpay\Hydrator\EasyCreditResponseToQuoteHydratorInterface;
 
 /**
  * @method \SprykerEco\Yves\Heidelpay\HeidelpayConfig getConfig()

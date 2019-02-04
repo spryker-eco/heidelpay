@@ -8,10 +8,7 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction;
 
 use Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer;
-use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
-use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Logger\TransactionLoggerInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface;
 
 class EasyCreditInitializeExternalResponseTransaction implements ExternalResponseTransactionInterface

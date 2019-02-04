@@ -7,7 +7,6 @@
 
 namespace SprykerEco\Yves\Heidelpay\Handler;
 
-use Spryker\Client\Quote\QuoteClientInterface;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
 

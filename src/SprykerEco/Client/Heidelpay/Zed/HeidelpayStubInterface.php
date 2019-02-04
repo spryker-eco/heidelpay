@@ -63,5 +63,10 @@ interface HeidelpayStubInterface
      */
     public function saveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer): HeidelpayRegistrationSaveResponseTransfer;
 
-    public function easycreditRequest(QuoteTransfer $quoteTransfer);
+    /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Spryker\Shared\Kernel\Transfer\TransferInterface
+     */
+    public function easycreditRequest(QuoteTransfer $quoteTransfer): TransferInterface;
 }

@@ -12,6 +12,7 @@ use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer;
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 
@@ -141,13 +142,13 @@ interface HeidelpayClientInterface
 
     /**
      * Specification:
-     *  - Initialize payment
+     *  - Send payment Initialization request (HP.INI)
      *
      * @api
      *
-     * @param array $responseArray
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return array
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function heidelpayEasycreditRequest(QuoteTransfer $quoteTransfer);
+    public function heidelpayEasycreditRequest(QuoteTransfer $quoteTransfer): HeidelpayResponseTransfer;
 }

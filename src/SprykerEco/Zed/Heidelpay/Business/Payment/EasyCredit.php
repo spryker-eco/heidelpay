@@ -7,10 +7,8 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment;
 
-use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface;
 
 class EasyCredit extends BaseHeidelpayPaymentMethod implements PaymentWithPreSavePaymentInterface

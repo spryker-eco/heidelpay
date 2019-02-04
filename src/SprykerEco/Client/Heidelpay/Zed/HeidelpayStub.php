@@ -15,6 +15,7 @@ use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer;
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Client\ZedRequest\Stub\ZedRequestStub;
@@ -128,9 +129,9 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|\Spryker\Shared\Kernel\Transfer\TransferInterface
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function easycreditRequest(QuoteTransfer $quoteTransfer)
+    public function easycreditRequest(QuoteTransfer $quoteTransfer): HeidelpayResponseTransfer
     {
         return $this->zedStub->call(
             static::ZED_EASYCREDIT_REQUEST,
