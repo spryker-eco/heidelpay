@@ -42,7 +42,7 @@ class SuccessfulResponseAdapterFactory extends AdapterFactory
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface[]
      */
-    public function getInitializePaymentMethodAdapterCollection()
+    public function getInitializePaymentMethodAdapterCollection(): array
     {
         return [
             HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT => $this->createEasyCreditPaymentMethodAdapter(),

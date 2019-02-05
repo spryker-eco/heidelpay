@@ -9,17 +9,17 @@ namespace SprykerEco\Yves\Heidelpay\Form\DataProvider;
 
 use Generated\Shared\Transfer\HeidelpayEasyCreditPaymentTransfer;
 use Generated\Shared\Transfer\PaymentTransfer;
-use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
+use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface;
 
 class EasyCreditDataProvider implements StepEngineFormDataProviderInterface
 {
     /**
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer|\Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return \Spryker\Shared\Kernel\Transfer\AbstractTransfer|\Generated\Shared\Transfer\QuoteTransfer
+     * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function getData(AbstractTransfer $quoteTransfer)
+    public function getData(QuoteTransfer $quoteTransfer)
     {
         if ($quoteTransfer->getPayment() === null) {
             $paymentTransfer = new PaymentTransfer();
@@ -31,11 +31,11 @@ class EasyCreditDataProvider implements StepEngineFormDataProviderInterface
     }
 
     /**
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer|\Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return array
      */
-    public function getOptions(AbstractTransfer $quoteTransfer)
+    public function getOptions(QuoteTransfer $quoteTransfer)
     {
         return [];
     }

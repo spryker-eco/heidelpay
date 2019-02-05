@@ -114,7 +114,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\AuthorizeOnRegistrationTransactionHandlerInterface
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\AuthorizeOnRegistrationTransactionHandlerInterface
      */
     public function createAuthorizeOnRegistrationTransactionHandler()
     {
@@ -680,19 +680,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
      */
     public function createEasyCreditInitializeExternalResponseTransaction(): ExternalResponseTransactionInterface
     {
-        return new EasyCreditInitializeExternalResponseTransaction(
-            $this->createTransactionLogger()
-        );
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ExternalResponseTransactionInterface
-     */
-    public function createEasyCreditInitializeResponseToQuoteHydrator(): EasyCreditExternalResponseTransaction
-    {
-        return new EasyCreditInitializeExternalResponseTransaction(
-            $this->createTransactionLogger()
-        );
+        return new EasyCreditInitializeExternalResponseTransaction();
     }
 
     /**

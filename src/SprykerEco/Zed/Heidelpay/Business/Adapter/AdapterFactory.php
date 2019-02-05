@@ -56,7 +56,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeOnRegistrationInterface[]
      */
-    public function getAuthorizeOnRegistrationPaymentMethodAdapterCollection()
+    public function getAuthorizeOnRegistrationPaymentMethodAdapterCollection(): array
     {
         return [
             HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT => $this->createEasyCreditPaymentMethodAdapter(),
@@ -66,7 +66,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithInitializeInterface[]
      */
-    public function getInitializePaymentMethodAdapterCollection()
+    public function getInitializePaymentMethodAdapterCollection(): array
     {
         return [
             HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT => $this->createEasyCreditPaymentMethodAdapter(),
@@ -74,9 +74,9 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithReservationInterfaceInterface[]
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithReservationInterface[]
      */
-    public function getReservationPaymentMethodAdapterCollection()
+    public function getReservationPaymentMethodAdapterCollection(): array
     {
         return [
             HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT => $this->createEasyCreditPaymentMethodAdapter(),
@@ -84,9 +84,9 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithFinalizeInterfaceInterface[]
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithFinalizeInterface[]
      */
-    public function getFinalizePaymentMethodAdapterCollection()
+    public function getFinalizePaymentMethodAdapterCollection(): array
     {
         return [
             HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT => $this->createEasyCreditPaymentMethodAdapter(),

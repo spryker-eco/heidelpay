@@ -7,7 +7,9 @@
 
 namespace SprykerEco\Yves\Heidelpay\Handler;
 
+use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
+use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
 
 class HeidelpayEasyCreditHandler extends HeidelpayHandler
@@ -15,32 +17,37 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
     public const PAYMENT_PROVIDER = HeidelpayConfig::PROVIDER_NAME;
 
     /**
-     * @var array
+     * @var \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface
      */
-    protected $heidelpayEasyCreditResponse;
+    protected $calculationClient;
 
     /**
-     * @var \Spryker\Client\Quote\QuoteClientInterface
+     * @var \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface
      */
     protected $quoteClient;
 
     /**
-     * @param \Spryker\Client\Quote\QuoteClientInterface $quoteClient
+     * @param \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface $calculationClient
+     * @param \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface $quoteClient
      */
-    public function __construct(HeidelpayToQuoteClientInterface $quoteClient)
+    public function __construct(
+        HeidelpayToCalculationClientInterface $calculationClient,
+        HeidelpayToQuoteClientInterface $quoteClient
+    )
     {
+        $this->calculationClient = $calculationClient;
         $this->quoteClient = $quoteClient;
     }
 
     /**
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer|\Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return \Spryker\Shared\Kernel\Transfer\AbstractTransfer
+     * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function addEasyCreditResponseToQuote(QuoteTransfer $quoteTransfer)
+    public function addPaymentToQuote(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         $quoteTransfer = parent::addPaymentToQuote($quoteTransfer);
-        $this->addCurrentRegistrationToQuote($quoteTransfer);
+
         $quoteTransfer = $this->calculationClient->recalculate($quoteTransfer);
         $this->quoteClient->setQuote($quoteTransfer);
 

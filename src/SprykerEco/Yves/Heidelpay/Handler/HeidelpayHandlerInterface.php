@@ -17,5 +17,5 @@ interface HeidelpayHandlerInterface
      *
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function addPaymentToQuote(AbstractTransfer $quoteTransfer): QuoteTransfer;
+    public function addPaymentToQuote(QuoteTransfer $quoteTransfer): QuoteTransfer;
 }

@@ -8,7 +8,6 @@
 namespace SprykerEco\Yves\Heidelpay\Handler;
 
 use Generated\Shared\Transfer\QuoteTransfer;
-use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 
 class HeidelpayHandler implements HeidelpayHandlerInterface
@@ -33,7 +32,7 @@ class HeidelpayHandler implements HeidelpayHandlerInterface
      *
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function addPaymentToQuote(AbstractTransfer $quoteTransfer): QuoteTransfer
+    public function addPaymentToQuote(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         $paymentSelection = $quoteTransfer->getPayment()->getPaymentSelection();
         $quoteTransfer->getPayment()

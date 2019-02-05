@@ -70,6 +70,7 @@ class HeidelpayFactory extends AbstractFactory
     public function createHeidelpayEasyCreditHandler()
     {
         return new HeidelpayEasyCreditHandler(
+            $this->getCalculationClient(),
             $this->getQuoteClient()
         );
     }
