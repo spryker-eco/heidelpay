@@ -38,7 +38,7 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
      *
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function getData(QuoteTransfer $quoteTransfer): QuoteTransfer
+    public function getData(AbstractTransfer $quoteTransfer): QuoteTransfer
     {
         return $quoteTransfer;
     }
@@ -48,7 +48,7 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
      *
      * @return array
      */
-    public function getOptions(QuoteTransfer $quoteTransfer): array
+    public function getOptions(AbstractTransfer $quoteTransfer): array
     {
         $this->initPaymentObject($quoteTransfer);
         $this->hydratePaymentOptionsToQuote($quoteTransfer);

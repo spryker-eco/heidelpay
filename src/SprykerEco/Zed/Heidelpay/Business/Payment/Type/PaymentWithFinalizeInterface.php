@@ -8,6 +8,7 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Type;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 
 interface PaymentWithFinalizeInterface
 {
@@ -16,5 +17,5 @@ interface PaymentWithFinalizeInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function finalize(HeidelpayRequestTransfer $finalizeRequestTransfer);
+    public function finalize(HeidelpayRequestTransfer $finalizeRequestTransfer): HeidelpayResponseTransfer;
 }

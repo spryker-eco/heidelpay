@@ -63,7 +63,6 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\CaptureTransaction;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\CaptureTransactionInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\DebitTransaction;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\DebitTransactionInterface;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\EasyCreditExternalResponseTransaction;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\EasyCreditInitializeExternalResponseTransaction;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ExternalResponseTransaction;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ExternalResponseTransactionInterface;
@@ -150,7 +149,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\DebitTransactionHandlerInterface
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\FinalizeTransactionHandlerInterface
      */
     public function createFinalizeTransactionHandler()
     {
@@ -162,7 +161,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\DebitTransactionHandlerInterface
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\ReservationTransactionHandlerInterface
      */
     public function createReservationTransactionHandler()
     {

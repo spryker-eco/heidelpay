@@ -8,6 +8,7 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Payment;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Heidelpay\PhpPaymentApi\PaymentMethods\EasyCreditPaymentMethod;
 
 class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterface
@@ -31,7 +32,7 @@ class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterfac
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function initialize(HeidelpayRequestTransfer $initializeRequestTransfer)
+    public function initialize(HeidelpayRequestTransfer $initializeRequestTransfer): HeidelpayResponseTransfer
     {
         $easyCreditMethod = new EasyCreditPaymentMethod();
         $this->prepareRequest($initializeRequestTransfer, $easyCreditMethod->getRequest());
@@ -48,7 +49,14 @@ class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterfac
     public function reservation(HeidelpayRequestTransfer $reservationRequestTransfer)
     {
         $easyCreditMethod = new EasyCreditPaymentMethod();
-        $this->prepareRequest($reservationRequestTransfer, $easyCreditMethod->getRequest());
+/////////////
+        $request = $easyCreditMethod->getRequest();
+        $request->getFrontend()->setEnabled('FALSE');
+        $async = $reservationRequestTransfer->getAsync();
+        $async->setResponseUrl(null);
+        $reservationRequestTransfer->setAsync($async);
+/////////////
+        $this->prepareRequest($reservationRequestTransfer, $request);
         $easyCreditMethod->authorizeOnRegistration($reservationRequestTransfer->getIdPaymentReference());
 
         return $this->verifyAndParseResponse($easyCreditMethod->getResponse());
@@ -59,11 +67,11 @@ class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterfac
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function finalize(HeidelpayRequestTransfer $finalizeRequestTransfer)
+    public function finalize(HeidelpayRequestTransfer $finalizeRequestTransfer): HeidelpayResponseTransfer
     {
         $easyCreditMethod = new EasyCreditPaymentMethod();
         $this->prepareRequest($finalizeRequestTransfer, $easyCreditMethod->getRequest());
-        $easyCreditMethod->finalize($finalizeRequestTransfer->getIdPaymentReference());
+        $easyCreditMethod->finalize('31HA07BC814A66978BC90CB3EF663058');
 
         return $this->verifyAndParseResponse($easyCreditMethod->getResponse());
     }

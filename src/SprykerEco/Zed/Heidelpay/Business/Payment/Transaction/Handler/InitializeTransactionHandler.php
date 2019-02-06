@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
 
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilderInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\InitializeNotSupportedException;
@@ -51,9 +52,9 @@ class InitializeTransactionHandler implements InitializeTransactionHandlerInterf
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return void
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function initialize(QuoteTransfer $quoteTransfer)
+    public function initialize(QuoteTransfer $quoteTransfer): HeidelpayResponseTransfer
     {
         $initializeRequestTransfer = $this->buildInitializeRequest($quoteTransfer);
         $paymentAdapter = $this->getPaymentMethodAdapter($quoteTransfer);

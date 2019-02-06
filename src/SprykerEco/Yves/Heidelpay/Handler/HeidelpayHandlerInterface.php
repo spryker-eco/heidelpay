@@ -8,7 +8,6 @@
 namespace SprykerEco\Yves\Heidelpay\Handler;
 
 use Generated\Shared\Transfer\QuoteTransfer;
-use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 
 interface HeidelpayHandlerInterface
 {

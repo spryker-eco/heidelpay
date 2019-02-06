@@ -68,7 +68,7 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    public function buildReservationRequestFromOrder(OrderTransfer $orderTransfer)
+    public function buildReservationRequestFromOrder(OrderTransfer $orderTransfer): HeidelpayRequestTransfer
     {
         return $this->buildBaseOrderHeidelpayRequest($orderTransfer);
     }
@@ -78,7 +78,7 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    public function buildAuthorizeOnRegistrationRequestFromOrder(OrderTransfer $orderTransfer)
+    public function buildAuthorizeOnRegistrationRequestFromOrder(OrderTransfer $orderTransfer): HeidelpayRequestTransfer
     {
         $requestTransfer = $this->buildBaseOrderHeidelpayRequest($orderTransfer);
         $requestTransfer->setIdPaymentReference($orderTransfer->getHeidelpayPayment()->getIdPaymentReference());
@@ -91,7 +91,7 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    public function buildFinalizeRequestFromOrder(OrderTransfer $orderTransfer)
+    public function buildFinalizeRequestFromOrder(OrderTransfer $orderTransfer): HeidelpayRequestTransfer
     {
         $requestTransfer = $this->buildBaseOrderHeidelpayRequest($orderTransfer);
         $requestTransfer->setIdPaymentReference($orderTransfer->getHeidelpayPayment()->getIdPaymentReference());
@@ -137,8 +137,10 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    protected function hydrateOrder(HeidelpayRequestTransfer $heidelpayRequestTransfer, OrderTransfer $orderTransfer): HeidelpayRequestTransfer
-    {
+    protected function hydrateOrder(
+        HeidelpayRequestTransfer $heidelpayRequestTransfer,
+        OrderTransfer $orderTransfer
+    ): HeidelpayRequestTransfer {
         return $this->orderToHeidelpayMapper
             ->map($orderTransfer, $heidelpayRequestTransfer);
     }

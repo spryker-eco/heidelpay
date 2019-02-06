@@ -8,6 +8,7 @@
 namespace SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\EasyCreditPayment;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentResponseTransferBuilderTrait;
 
@@ -46,7 +47,7 @@ class SuccessfulEasyCreditPaymentMock extends EasyCreditPayment
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function initialize(HeidelpayRequestTransfer $authorizeRequestTransfer)
+    public function initialize(HeidelpayRequestTransfer $authorizeRequestTransfer): HeidelpayResponseTransfer
     {
         $response['payload'] = '{
                         "processing": {"result": "ACK"}, 

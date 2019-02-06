@@ -20,7 +20,7 @@ class PaypalDebitDataProvider implements StepEngineFormDataProviderInterface
      *
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function getData(QuoteTransfer $quoteTransfer): QuoteTransfer
+    public function getData(AbstractTransfer $quoteTransfer): QuoteTransfer
     {
         if ($quoteTransfer->getPayment() === null) {
             $paymentTransfer = new PaymentTransfer();
@@ -36,7 +36,7 @@ class PaypalDebitDataProvider implements StepEngineFormDataProviderInterface
      *
      * @return array
      */
-    public function getOptions(QuoteTransfer $quoteTransfer): array
+    public function getOptions(AbstractTransfer $quoteTransfer): array
     {
         return [];
     }

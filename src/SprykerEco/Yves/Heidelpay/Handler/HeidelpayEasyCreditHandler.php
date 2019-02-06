@@ -33,8 +33,7 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
     public function __construct(
         HeidelpayToCalculationClientInterface $calculationClient,
         HeidelpayToQuoteClientInterface $quoteClient
-    )
-    {
+    ) {
         $this->calculationClient = $calculationClient;
         $this->quoteClient = $quoteClient;
     }
