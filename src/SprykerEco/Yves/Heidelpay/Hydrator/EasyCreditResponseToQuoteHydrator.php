@@ -7,13 +7,15 @@
 
 namespace SprykerEco\Yves\Heidelpay\Hydrator;
 
-use Generated\Shared\Transfer\ExpenseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Yves\Heidelpay\Handler\HeidelpayEasyCreditHandler;
+use SprykerEco\Yves\Heidelpay\Hydrator\Exception\EasyCreditResponseToQuoteHydratorException;
 
 class EasyCreditResponseToQuoteHydrator implements EasyCreditResponseToQuoteHydratorInterface
 {
+    public const PRICE_PRECISION = 100;
+
     /**
      * @var \SprykerEco\Yves\Heidelpay\Handler\HeidelpayEasyCreditHandler
      */
@@ -43,23 +45,34 @@ class EasyCreditResponseToQuoteHydrator implements EasyCreditResponseToQuoteHydr
             ->getHeidelpayEasyCredit()
             ->setIdPaymentReference($responseAsArray['IDENTIFICATION.UNIQUEID'])
             ->setAmortisationText($responseAsArray['CRITERION.EASYCREDIT_AMORTISATIONTEXT'])
-            ->setAccruingInterest($responseAsArray['CRITERION.EASYCREDIT_ACCRUINGINTEREST'])
-            ->setTotalAmount($responseAsArray['CRITERION.EASYCREDIT_TOTALAMOUNT']);
+            ->setAccruingInterest(
+                $this->convertDecimalToInteger($responseAsArray['CRITERION.EASYCREDIT_ACCRUINGINTEREST'])
+            )
+            ->setTotalAmount(
+                $this->convertDecimalToInteger($responseAsArray['CRITERION.EASYCREDIT_TOTALAMOUNT'])
+            );
 
         $quoteTransfer->setPayment($paymentTransfer);
-        $easyCreditExpensePrice = $responseAsArray['CRITERION.EASYCREDIT_MONTHLYRATEAMOUNT'];
-        $easyCreditExpenseTransfer = (new ExpenseTransfer())
-            ->setName('EasyCredit')
-            ->setType('EXPENSE_TYPE')
-            ->setUnitPrice($easyCreditExpensePrice)
-            ->setSumPrice($easyCreditExpensePrice)
-            ->setUnitPriceToPayAggregation($easyCreditExpensePrice)
-            ->setSumPriceToPayAggregation($easyCreditExpensePrice)
-            ->setUnitNetPrice($easyCreditExpensePrice)
-            ->setSumNetPrice($easyCreditExpensePrice);
-
-        $quoteTransfer->addExpense($easyCreditExpenseTransfer);
 
         $this->heidelpayEasyCreditHandler->addPaymentToQuote($quoteTransfer);
+    }
+
+    /**
+     * @param float $value
+     *
+     * @throws \SprykerEco\Yves\Heidelpay\Hydrator\Exception\EasyCreditResponseToQuoteHydratorException
+     *
+     * @return int
+     */
+    protected function convertDecimalToInteger(float $value): int
+    {
+        if (!is_float($value)) {
+            throw new EasyCreditResponseToQuoteHydratorException(sprintf(
+                'Only float values allowed for conversion to int. Current type is "%s"',
+                gettype($value)
+            ));
+        }
+
+        return (int)round($value * static::PRICE_PRECISION);
     }
 }
