@@ -9,7 +9,7 @@ namespace SprykerEco\Zed\Heidelpay\Dependency\Facade;
 
 use Generated\Shared\Transfer\OrderTransfer;
 
-interface HeidelpayToSalesInterface
+interface HeidelpayToSalesFacadeInterface
 {
     /**
      * @param int $idSalesOrder

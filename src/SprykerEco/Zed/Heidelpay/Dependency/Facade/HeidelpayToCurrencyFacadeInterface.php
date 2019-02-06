@@ -9,7 +9,7 @@ namespace SprykerEco\Zed\Heidelpay\Dependency\Facade;
 
 use Generated\Shared\Transfer\CurrencyTransfer;
 
-interface HeidelpayToCurrencyInterface
+interface HeidelpayToCurrencyFacadeInterface
 {
     /**
      * @return \Generated\Shared\Transfer\CurrencyTransfer

@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Client\Heidelpay\Dependency\Client;
 
-class HeidelpayToLocaleBridge implements HeidelpayToLocaleInterface
+class HeidelpayToLocaleClient implements HeidelpayToLocaleClientInterface
 {
     /**
      * @var \Spryker\Client\Locale\LocaleClientInterface

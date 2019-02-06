@@ -11,7 +11,7 @@ use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Mapper\OrderToHeidelpayRequestInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReaderInterface;
-use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface;
+use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyFacadeInterface;
 use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implements AdapterRequestFromOrderBuilderInterface
@@ -28,13 +28,13 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Mapper\OrderToHeidelpayRequestInterface $orderToHeidelpayMapper
-     * @param \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface $currencyFacade
+     * @param \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyFacadeInterface $currencyFacade
      * @param \SprykerEco\Zed\Heidelpay\HeidelpayConfig $config
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReaderInterface $paymentReader
      */
     public function __construct(
         OrderToHeidelpayRequestInterface $orderToHeidelpayMapper,
-        HeidelpayToCurrencyInterface $currencyFacade,
+        HeidelpayToCurrencyFacadeInterface $currencyFacade,
         HeidelpayConfig $config,
         PaymentReaderInterface $paymentReader
     ) {

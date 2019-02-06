@@ -8,7 +8,7 @@
 namespace SprykerEco\Zed\Heidelpay\Communication;
 
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
-use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesInterface;
+use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesFacadeInterface;
 use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
 
 /**
@@ -19,9 +19,9 @@ use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
 class HeidelpayCommunicationFactory extends AbstractCommunicationFactory
 {
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesInterface
+     * @return \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesFacadeInterface
      */
-    public function getSalesFacade(): HeidelpayToSalesInterface
+    public function getSalesFacade(): HeidelpayToSalesFacadeInterface
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::FACADE_SALES);
     }

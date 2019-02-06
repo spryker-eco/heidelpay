@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Client\Heidelpay\Dependency\Client;
 
-interface HeidelpayToLocaleInterface
+interface HeidelpayToLocaleClientInterface
 {
     /**
      * @return string

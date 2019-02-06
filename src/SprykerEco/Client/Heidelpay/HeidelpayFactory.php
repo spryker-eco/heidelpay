@@ -10,8 +10,8 @@ namespace SprykerEco\Client\Heidelpay;
 use Spryker\Client\Kernel\AbstractFactory;
 use Spryker\Client\Session\SessionClientFactoryTrait;
 use Spryker\Client\ZedRequest\ZedRequestClientFactoryTrait;
-use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToLocaleInterface;
-use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteInterface;
+use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToLocaleClientInterface;
+use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteSessionClientInterface;
 use SprykerEco\Client\Heidelpay\Mapper\ApiResponseToRegistrationRequestTransfer;
 use SprykerEco\Client\Heidelpay\Mapper\ApiResponseToRegistrationResponseTransferInterface;
 use SprykerEco\Client\Heidelpay\Sdk\CreditCardRegistrationResponseParser;
@@ -38,17 +38,17 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToLocaleInterface
+     * @return \SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToLocaleClientInterface
      */
-    public function getLocaleClient(): HeidelpayToLocaleInterface
+    public function getLocaleClient(): HeidelpayToLocaleClientInterface
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::CLIENT_LOCALE);
     }
 
     /**
-     * @return \SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteInterface
+     * @return \SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteSessionClientInterface
      */
-    public function getQuoteClient(): HeidelpayToQuoteInterface
+    public function getQuoteClient(): HeidelpayToQuoteSessionClientInterface
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::CLIENT_QUOTE);
     }

@@ -27,7 +27,7 @@ class HeidelpayToMoneyBridge implements HeidelpayToMoneyInterface
      *
      * @return float
      */
-    public function convertIntegerToDecimal(int $value): float
+    public function convertIntegerToDecimal($value)
     {
         return $this->moneyFacade->convertIntegerToDecimal($value);
     }

@@ -11,7 +11,7 @@ use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig as SharedHeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\Mapper\QuoteToHeidelpayRequestInterface;
-use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface;
+use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyFacadeInterface;
 use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class AdapterRequestFromQuoteBuilder extends BaseAdapterRequestBuilder implements AdapterRequestFromQuoteBuilderInterface
@@ -23,12 +23,12 @@ class AdapterRequestFromQuoteBuilder extends BaseAdapterRequestBuilder implement
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Mapper\QuoteToHeidelpayRequestInterface $quoteToHeidelpayMapper
-     * @param \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface $currencyFacade
+     * @param \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyFacadeInterface $currencyFacade
      * @param \SprykerEco\Zed\Heidelpay\HeidelpayConfig $config
      */
     public function __construct(
         QuoteToHeidelpayRequestInterface $quoteToHeidelpayMapper,
-        HeidelpayToCurrencyInterface $currencyFacade,
+        HeidelpayToCurrencyFacadeInterface $currencyFacade,
         HeidelpayConfig $config
     ) {
         parent::__construct($currencyFacade, $config);
