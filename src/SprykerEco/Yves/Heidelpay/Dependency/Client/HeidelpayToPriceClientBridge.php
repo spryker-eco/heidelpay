@@ -23,10 +23,6 @@ class HeidelpayToPriceClientBridge implements HeidelpayToPriceClientInterface
     }
 
     /**
-     * @api
-     *
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
     public function getNetPriceModeIdentifier()

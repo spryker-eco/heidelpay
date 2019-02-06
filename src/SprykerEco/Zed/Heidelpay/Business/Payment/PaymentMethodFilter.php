@@ -11,7 +11,7 @@ use ArrayObject;
 use Generated\Shared\Transfer\PaymentMethodsTransfer;
 use Generated\Shared\Transfer\PaymentMethodTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
-use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface;
+use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyFacadeInterface;
 use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class PaymentMethodFilter implements PaymentMethodFilterInterface
@@ -30,17 +30,17 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
     protected $config;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface
+     * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyFacadeInterface
      */
     protected $moneyFacade;
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\HeidelpayConfig $config
-     * @param \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface $moneyFacade
+     * @param \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyFacadeInterface $moneyFacade
      */
     public function __construct(
         HeidelpayConfig $config,
-        HeidelpayToMoneyInterface $moneyFacade
+        HeidelpayToMoneyFacadeInterface $moneyFacade
     ) {
         $this->config = $config;
         $this->moneyFacade = $moneyFacade;

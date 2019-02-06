@@ -14,7 +14,6 @@ use SprykerEco\Client\Heidelpay\HeidelpayClientInterface;
 use SprykerEco\Yves\Heidelpay\CreditCard\RegistrationToQuoteHydrator;
 use SprykerEco\Yves\Heidelpay\CreditCard\RegistrationToQuoteHydratorInterface;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface;
-use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToPriceClientBridge;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
 use SprykerEco\Yves\Heidelpay\Form\CreditCardSecureSubForm;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\CreditCardSecureDataProvider;
@@ -205,7 +204,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface
      */
-    public function getPriceClient(): HeidelpayToPriceClientBridge
+    public function getPriceClient(): HeidelpayToCalculationClientInterface
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::CLIENT_PRICE);
     }

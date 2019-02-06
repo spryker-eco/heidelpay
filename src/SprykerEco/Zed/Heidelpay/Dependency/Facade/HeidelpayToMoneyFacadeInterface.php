@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Zed\Heidelpay\Dependency\Facade;
 
-interface HeidelpayToMoneyInterface
+interface HeidelpayToMoneyFacadeInterface
 {
     /**
      * @param int $value

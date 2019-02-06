@@ -88,7 +88,7 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\TransactionLogReader;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\TransactionLogReaderInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyFacadeInterface;
-use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface;
+use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyFacadeInterface;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesFacadeInterface;
 use SprykerEco\Zed\Heidelpay\Dependency\QueryContainer\HeidelpayToSalesQueryContainerInterface;
 use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceInterface;
@@ -727,9 +727,9 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface
+     * @return \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyFacadeInterface
      */
-    public function getMoneyFacade(): HeidelpayToMoneyInterface
+    public function getMoneyFacade(): HeidelpayToMoneyFacadeInterface
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::FACADE_MONEY);
     }

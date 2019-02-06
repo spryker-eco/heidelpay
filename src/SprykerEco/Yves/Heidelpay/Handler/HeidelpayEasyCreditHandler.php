@@ -74,7 +74,7 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
     }
 
     /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $paymentTransfer
+     * @param \Generated\Shared\Transfer\PaymentTransfer $paymentTransfer
      * @param string|null $priceMode
      *
      * @return \Generated\Shared\Transfer\ExpenseTransfer;

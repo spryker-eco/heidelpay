@@ -32,7 +32,7 @@ class HeidelpayPaymentTest extends Test
     protected $heidelpayFactory;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesBridge
+     * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesFacade
      */
     protected $heidelpayToSales;
 

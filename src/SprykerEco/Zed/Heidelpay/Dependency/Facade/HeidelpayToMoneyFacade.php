@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Zed\Heidelpay\Dependency\Facade;
 
-class HeidelpayToMoneyBridge implements HeidelpayToMoneyInterface
+class HeidelpayToMoneyFacade implements HeidelpayToMoneyFacadeInterface
 {
     /**
      * @var \Spryker\Zed\Money\Business\MoneyFacadeInterface

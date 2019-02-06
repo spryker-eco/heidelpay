@@ -12,19 +12,19 @@ use Generated\Shared\Transfer\HeidelpayCustomerAddressTransfer;
 use Generated\Shared\Transfer\HeidelpayCustomerPurchaseTransfer;
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
-use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface;
+use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyFacadeInterface;
 
 class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
 {
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface
+     * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyFacadeInterface
      */
     protected $moneyFacade;
 
     /**
-     * @param \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyInterface $moneyFacade
+     * @param \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyFacadeInterface $moneyFacade
      */
-    public function __construct(HeidelpayToMoneyInterface $moneyFacade)
+    public function __construct(HeidelpayToMoneyFacadeInterface $moneyFacade)
     {
         $this->moneyFacade = $moneyFacade;
     }
