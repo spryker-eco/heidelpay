@@ -49,13 +49,9 @@ class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterfac
     public function reservation(HeidelpayRequestTransfer $reservationRequestTransfer)
     {
         $easyCreditMethod = new EasyCreditPaymentMethod();
-/////////////
-        $request = $easyCreditMethod->getRequest();
-        $request->getFrontend()->setEnabled('FALSE');
-        $async = $reservationRequestTransfer->getAsync();
-        $async->setResponseUrl(null);
-        $reservationRequestTransfer->setAsync($async);
-/////////////
+
+        $this->setFrontendDisabled($easyCreditMethod, $reservationRequestTransfer);
+
         $this->prepareRequest($reservationRequestTransfer, $request);
         $easyCreditMethod->authorizeOnRegistration($reservationRequestTransfer->getIdPaymentReference());
 
@@ -74,5 +70,22 @@ class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterfac
         $easyCreditMethod->finalize('31HA07BC814A66978BC90CB3EF663058');
 
         return $this->verifyAndParseResponse($easyCreditMethod->getResponse());
+    }
+
+    /**
+     * @param \Heidelpay\PhpPaymentApi\PaymentMethods\EasyCreditPaymentMethod $easyCreditMethod
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $reservationRequestTransfer
+     *
+     * @return void
+     */
+    protected function setFrontendDisabled(
+        EasyCreditPaymentMethod $easyCreditMethod,
+        HeidelpayRequestTransfer $reservationRequestTransfer
+    ): void {
+        $request = $easyCreditMethod->getRequest();
+        $request->getFrontend()->setEnabled('FALSE');
+        $async = $reservationRequestTransfer->getAsync();
+        $async->setResponseUrl(null);
+        $reservationRequestTransfer->setAsync($async);
     }
 }
