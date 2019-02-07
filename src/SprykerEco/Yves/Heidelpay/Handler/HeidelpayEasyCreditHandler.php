@@ -13,7 +13,7 @@ use Generated\Shared\Transfer\PaymentTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface;
-use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToPriceClientBridge;
+use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToPriceClient;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
 
 class HeidelpayEasyCreditHandler extends HeidelpayHandler
@@ -33,18 +33,18 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
     protected $quoteClient;
 
     /**
-     * @var \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToPriceClientBridge
+     * @var \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToPriceClient
      */
     protected $priceClient;
 
     /**
      * @param \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface $calculationClient
-     * @param \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToPriceClientBridge $priceClient
+     * @param \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToPriceClient $priceClient
      * @param \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface $quoteClient
      */
     public function __construct(
         HeidelpayToCalculationClientInterface $calculationClient,
-        HeidelpayToPriceClientBridge $priceClient,
+        HeidelpayToPriceClient $priceClient,
         HeidelpayToQuoteClientInterface $quoteClient
     ) {
         $this->calculationClient = $calculationClient;

@@ -9,9 +9,9 @@ namespace SprykerEco\Yves\Heidelpay;
 
 use Spryker\Yves\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Yves\Kernel\Container;
-use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientBridge;
-use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToPriceClientBridge;
-use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientBridge;
+use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClient;
+use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToPriceClient;
+use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClient;
 
 class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
 {
@@ -58,7 +58,7 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
     protected function addQuoteClient(Container $container): Container
     {
         $container[static::CLIENT_QUOTE] = function (Container $container) {
-            return new HeidelpayToQuoteClientBridge($container->getLocator()->quote()->client());
+            return new HeidelpayToQuoteClient($container->getLocator()->quote()->client());
         };
 
         return $container;
@@ -72,7 +72,7 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
     protected function addCalculationClient(Container $container): Container
     {
         $container[static::CLIENT_CALCULATION] = function (Container $container) {
-            return new HeidelpayToCalculationClientBridge($container->getLocator()->calculation()->client());
+            return new HeidelpayToCalculationClient($container->getLocator()->calculation()->client());
         };
 
         return $container;
@@ -86,7 +86,7 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
     protected function addPriceClient(Container $container): Container
     {
         $container[static::CLIENT_PRICE] = function (Container $container) {
-            return new HeidelpayToPriceClientBridge($container->getLocator()->price()->client());
+            return new HeidelpayToPriceClient($container->getLocator()->price()->client());
         };
 
         return $container;

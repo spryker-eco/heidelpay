@@ -58,6 +58,10 @@ class ReservationTransactionHandler implements ReservationTransactionHandlerInte
         $reservationRequestTransfer = $this->buildReservationRequest($orderTransfer);
         $paymentAdapter = $this->getPaymentMethodAdapter($orderTransfer);
         $this->transaction->executeTransaction($reservationRequestTransfer, $paymentAdapter);
+
+        $orderTransfer->getHeidelpayPayment()->setIdPaymentReference(
+            $reservationRequestTransfer->getIdPaymentReference()
+        );
     }
 
     /**

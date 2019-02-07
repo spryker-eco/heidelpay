@@ -81,7 +81,9 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
     public function buildAuthorizeOnRegistrationRequestFromOrder(OrderTransfer $orderTransfer): HeidelpayRequestTransfer
     {
         $requestTransfer = $this->buildBaseOrderHeidelpayRequest($orderTransfer);
-        $requestTransfer->setIdPaymentReference($orderTransfer->getHeidelpayPayment()->getIdPaymentReference());
+        $requestTransfer->setIdPaymentReference(
+            $orderTransfer->getHeidelpayPayment()->getIdPaymentReference()
+        );
 
         return $requestTransfer;
     }
@@ -94,7 +96,9 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
     public function buildFinalizeRequestFromOrder(OrderTransfer $orderTransfer): HeidelpayRequestTransfer
     {
         $requestTransfer = $this->buildBaseOrderHeidelpayRequest($orderTransfer);
-        $requestTransfer->setIdPaymentReference($orderTransfer->getHeidelpayPayment()->getIdPaymentReference());
+        $requestTransfer->setIdPaymentReference(
+            $orderTransfer->getHeidelpayPayment()->getIdPaymentReference()
+        );
 
         return $requestTransfer;
     }
