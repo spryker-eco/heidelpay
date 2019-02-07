@@ -49,7 +49,6 @@ class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterfac
     public function reservation(HeidelpayRequestTransfer $reservationRequestTransfer)
     {
         $easyCreditMethod = new EasyCreditPaymentMethod();
-
         $this->setFrontendDisabled($easyCreditMethod, $reservationRequestTransfer);
 
         $this->prepareRequest($reservationRequestTransfer, $request);
@@ -67,7 +66,7 @@ class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterfac
     {
         $easyCreditMethod = new EasyCreditPaymentMethod();
         $this->prepareRequest($finalizeRequestTransfer, $easyCreditMethod->getRequest());
-        $easyCreditMethod->finalize('31HA07BC814A66978BC90CB3EF663058');
+        $easyCreditMethod->finalize($finalizeRequestTransfer->getIdPaymentReference());
 
         return $this->verifyAndParseResponse($easyCreditMethod->getResponse());
     }
