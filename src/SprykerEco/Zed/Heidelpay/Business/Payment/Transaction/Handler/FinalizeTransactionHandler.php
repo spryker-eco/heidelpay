@@ -11,6 +11,7 @@ use Generated\Shared\Transfer\OrderTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\FinalizeNotSupportedException;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\FinalizeTransactionInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriter;
 
 class FinalizeTransactionHandler implements FinalizeTransactionHandlerInterface
 {
@@ -34,18 +35,26 @@ class FinalizeTransactionHandler implements FinalizeTransactionHandlerInterface
     protected $heidelpayRequestBuilder;
 
     /**
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriter
+     */
+    protected $paymentWriter;
+
+    /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\FinalizeTransactionInterface $transaction
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithFinalizeInterface[] $paymentMethodAdapterCollection
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriter $paymentWriter
      */
     public function __construct(
         FinalizeTransactionInterface $transaction,
         array $paymentMethodAdapterCollection,
-        AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder
+        AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder,
+        PaymentWriter $paymentWriter
     ) {
         $this->transaction = $transaction;
         $this->paymentMethodAdapterCollection = $paymentMethodAdapterCollection;
         $this->heidelpayRequestBuilder = $heidelpayRequestBuilder;
+        $this->paymentWriter = $paymentWriter;
     }
 
     /**
@@ -58,7 +67,19 @@ class FinalizeTransactionHandler implements FinalizeTransactionHandlerInterface
         $finalizeRequestTransfer = $this->buildFinalizeRequest($orderTransfer);
         $paymentAdapter = $this->getPaymentMethodAdapter($orderTransfer);
 
-        return $this->transaction->executeTransaction($finalizeRequestTransfer, $paymentAdapter);
+        $finalizeResponseTransfer = $this->transaction->executeTransaction($finalizeRequestTransfer, $paymentAdapter);
+
+        if ($finalizeResponseTransfer->getIdTransactionUnique() === null) {
+            return;
+        }
+
+        $this->paymentWriter->updatePaymentReferenceByIdSalesOrder(
+            $finalizeResponseTransfer->getIdTransactionUnique(),
+            $orderTransfer->getIdSalesOrder()
+        );
+        $orderTransfer->getHeidelpayPayment()->setIdPaymentReference(
+            $finalizeResponseTransfer->getIdTransactionUnique()
+        );
     }
 
     /**

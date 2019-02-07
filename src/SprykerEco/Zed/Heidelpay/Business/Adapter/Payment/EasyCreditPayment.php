@@ -10,6 +10,7 @@ namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Payment;
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Heidelpay\PhpPaymentApi\PaymentMethods\EasyCreditPaymentMethod;
+use Heidelpay\PhpPaymentApi\Request;
 
 class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterface
 {
@@ -49,7 +50,8 @@ class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterfac
     public function reservation(HeidelpayRequestTransfer $reservationRequestTransfer)
     {
         $easyCreditMethod = new EasyCreditPaymentMethod();
-        $this->setFrontendDisabled($easyCreditMethod, $reservationRequestTransfer);
+        $request = $easyCreditMethod->getRequest();
+        $this->setFrontendDisabled($request, $reservationRequestTransfer);
 
         $this->prepareRequest($reservationRequestTransfer, $request);
         $easyCreditMethod->authorizeOnRegistration($reservationRequestTransfer->getIdPaymentReference());
@@ -72,16 +74,15 @@ class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterfac
     }
 
     /**
-     * @param \Heidelpay\PhpPaymentApi\PaymentMethods\EasyCreditPaymentMethod $easyCreditMethod
+     * @param \Heidelpay\PhpPaymentApi\Request $request
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $reservationRequestTransfer
      *
      * @return void
      */
     protected function setFrontendDisabled(
-        EasyCreditPaymentMethod $easyCreditMethod,
+        Request $request,
         HeidelpayRequestTransfer $reservationRequestTransfer
     ): void {
-        $request = $easyCreditMethod->getRequest();
         $request->getFrontend()->setEnabled('FALSE');
         $async = $reservationRequestTransfer->getAsync();
         $async->setResponseUrl(null);

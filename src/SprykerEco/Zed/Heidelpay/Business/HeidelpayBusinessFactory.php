@@ -156,7 +156,8 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
         return new FinalizeTransactionHandler(
             $this->createFinalizeTransaction(),
             $this->getFinalizePaymentMethodAdapterCollection(),
-            $this->createAdapterRequestFromOrderBuilder()
+            $this->createAdapterRequestFromOrderBuilder(),
+            $this->createPaymentWriter()
         );
     }
 
@@ -168,7 +169,8 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
         return new ReservationTransactionHandler(
             $this->createReservationTransaction(),
             $this->getReservationPaymentMethodAdapterCollection(),
-            $this->createAdapterRequestFromOrderBuilder()
+            $this->createAdapterRequestFromOrderBuilder(),
+            $this->createPaymentWriter()
         );
     }
 

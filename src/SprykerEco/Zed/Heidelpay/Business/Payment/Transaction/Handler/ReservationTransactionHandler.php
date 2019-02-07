@@ -8,6 +8,7 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
 
 use Generated\Shared\Transfer\OrderTransfer;
+use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriter;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\ReservationNotSupportedException;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ReservationTransactionInterface;
@@ -34,18 +35,26 @@ class ReservationTransactionHandler implements ReservationTransactionHandlerInte
     protected $heidelpayRequestBuilder;
 
     /**
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriter
+     */
+    protected $paymentWriter;
+
+    /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ReservationTransactionInterface $transaction
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithReservationInterface[] $paymentMethodAdapterCollection
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriter $paymentWriter
      */
     public function __construct(
         ReservationTransactionInterface $transaction,
         array $paymentMethodAdapterCollection,
-        AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder
+        AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder,
+        PaymentWriter $paymentWriter
     ) {
         $this->transaction = $transaction;
         $this->paymentMethodAdapterCollection = $paymentMethodAdapterCollection;
         $this->heidelpayRequestBuilder = $heidelpayRequestBuilder;
+        $this->paymentWriter = $paymentWriter;
     }
 
     /**
@@ -57,10 +66,22 @@ class ReservationTransactionHandler implements ReservationTransactionHandlerInte
     {
         $reservationRequestTransfer = $this->buildReservationRequest($orderTransfer);
         $paymentAdapter = $this->getPaymentMethodAdapter($orderTransfer);
-        $this->transaction->executeTransaction($reservationRequestTransfer, $paymentAdapter);
 
+        $reservationResponseTransfer = $this->transaction->executeTransaction(
+            $reservationRequestTransfer,
+            $paymentAdapter
+        );
+
+        if ($reservationResponseTransfer->getIdTransactionUnique() === null) {
+            return;
+        }
+
+        $this->paymentWriter->updatePaymentReferenceByIdSalesOrder(
+            $reservationResponseTransfer->getIdTransactionUnique(),
+            $orderTransfer->getIdSalesOrder()
+        );
         $orderTransfer->getHeidelpayPayment()->setIdPaymentReference(
-            $reservationRequestTransfer->getIdPaymentReference()
+            $reservationResponseTransfer->getIdTransactionUnique()
         );
     }
 
