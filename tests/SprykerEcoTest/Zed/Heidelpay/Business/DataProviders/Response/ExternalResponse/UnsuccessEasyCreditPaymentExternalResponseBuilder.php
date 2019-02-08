@@ -7,22 +7,14 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse;
 
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConstants;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponseBuilder;
+use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\HeidelpayEasyCreditResponseTrait;
 
-class FailedSofortPaymentExternalResponseWhithFailedProcessingResultBuilder extends ExternalResponseBuilder
+class UnsuccessEasyCreditPaymentExternalResponseBuilder extends ExternalResponseBuilder
 {
-    /**
-     * @return string|null
-     */
-    protected function getProcessingResult(): ?string
-    {
-        return null;
-    }
+    use HeidelpayEasyCreditResponseTrait;
 
-    /**
-     * @param string $paymentMethod
-     * @return array
-     */
     public function createHeidelpayResponse(string $paymentMethod): array
     {
         $customerJohnDoe = $this->createOrGetCustomerJohnDoe();
@@ -62,11 +54,24 @@ class FailedSofortPaymentExternalResponseWhithFailedProcessingResultBuilder exte
 
         $responseParam[static::PAYMENT_BRAND] = $this->getPaymentBrand($paymentMethod);
         $responseParam[static::PAYMENT_METHOD] = $this->getClassName($paymentMethod);
+        $responseParam[static::PROCESSING_RETURN] = $this->getProcessingReturn();
 
-        $responseParam[static::PROCESSING_RESULT] = $this->getProcessingResult();
+        $responseParam[static::PROCESSING_RESULT] = HeidelpayTestConstants::HEIDELPAY_UNSUCCESS_RESPONSE;
+        $responseParam[static::PAYMENT_CODE] = self::PAYMENT_CODE_HP_INI;
+        $responseParam[static::PROCESSING_STATUS_CODE] = '90';
+        $responseParam[static::PROCESSING_REASON_CODE] = '00';
 
         $response = $this->getHeidelpayResponseTemplate($responseParam);
 
         return $response;
     }
+
+    /**
+     * @return string|null
+     */
+    protected function getProcessingReturn(): string
+    {
+        return 'The response object seems to be empty or it is not a valid heidelpay response!';
+    }
+
 }

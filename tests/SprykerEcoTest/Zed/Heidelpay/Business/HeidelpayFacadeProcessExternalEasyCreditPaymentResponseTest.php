@@ -13,6 +13,7 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalRespons
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\FailedEasyCreditPaymentExternalResponseWhithIncorrectHashBuilder;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\FailedEasyCreditPaymentExternalResponseWhithIncorrectTransactionIdBuilder;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\SuccessEasyCreditPaymentExternalResponseBuilder;
+use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\UnsuccessEasyCreditPaymentExternalResponseBuilder;
 
 /**
  * @group Functional
@@ -39,17 +40,6 @@ class HeidelpayFacadeProcessExternalEasyCreditPaymentResponseTest extends Heidel
     }
 
     /**
-     * @return array
-     */
-    public function createSuccessEasyCreditPaymentExternalResponse()
-    {
-        $orderBuilder = new SuccessEasyCreditPaymentExternalResponseBuilder($this->createHeidelpayFactory());
-        $heidelpayResponse = $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_EASY_CREDIT);
-
-        return $heidelpayResponse;
-    }
-
-    /**
      * @return void
      */
     public function testProcessExternalPaymentFailedEasyCreditResponseWhichUnsuccessful()
@@ -62,7 +52,21 @@ class HeidelpayFacadeProcessExternalEasyCreditPaymentResponseTest extends Heidel
 
         $this->assertInstanceOf(HeidelpayPaymentProcessingResponseTransfer::class, $response);
         $this->assertTrue($response->getIsError());
-        $this->assertEquals('The response object seems to be empty or it is not a valid heidelpay response!', $response->getError()->getInternalMessage());
+        $this->assertEquals(
+            'The response object seems to be empty or it is not a valid heidelpay response!',
+            $response->getError()->getInternalMessage()
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function createSuccessEasyCreditPaymentExternalResponse()
+    {
+        $orderBuilder = new SuccessEasyCreditPaymentExternalResponseBuilder($this->createHeidelpayFactory());
+        $heidelpayResponse = $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_EASY_CREDIT);
+
+        return $heidelpayResponse;
     }
 
     /**
@@ -70,61 +74,7 @@ class HeidelpayFacadeProcessExternalEasyCreditPaymentResponseTest extends Heidel
      */
     public function createFailedEasyCreditPaymentExternalResponseThatIsUnsuccessful()
     {
-        $orderBuilder = new FailedEasyCreditPaymentExternalResponseWhithFailedProcessingResultBuilder($this->createHeidelpayFactory());
-        $heidelpayResponse = $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_EASY_CREDIT);
-
-        return $heidelpayResponse;
-    }
-
-    /**
-     * @return void
-     */
-    public function testProcessExternalPaymentFailedxEasyCreditResponseWhithIncorrectHash()
-    {
-        $heidelpayResponse = $this->createFailedEasyCreditPaymentExternalResponseWhithIncorrectHash();
-
-        $response = $this->heidelpayFacade->processExternalPaymentResponse(
-            $heidelpayResponse
-        );
-
-        $this->assertInstanceOf(HeidelpayPaymentProcessingResponseTransfer::class, $response);
-        $this->assertTrue($response->getIsError());
-        $this->assertEquals('Hashes do not match. This could be some kind of manipulation or misconfiguration!', $response->getError()->getInternalMessage());
-    }
-
-    /**
-     * @return array
-     */
-    public function createFailedEasyCreditPaymentExternalResponseWhithIncorrectHash()
-    {
-        $orderBuilder = new FailedEasyCreditPaymentExternalResponseWhithIncorrectHashBuilder($this->createHeidelpayFactory());
-        $heidelpayResponse = $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_EASY_CREDIT);
-
-        return $heidelpayResponse;
-    }
-
-    /**
-     * @return void
-     */
-    public function testProcessExternalPaymentFailedEasyCreditResponseWithIncorrectHeidelpayTransactionId()
-    {
-        $heidelpayResponse = $this->createFailedEasyCreditPaymentExternalResponseWhithIncorrectHash();
-
-        $response = $this->heidelpayFacade->processExternalPaymentResponse(
-            $heidelpayResponse
-        );
-
-        $this->assertInstanceOf(HeidelpayPaymentProcessingResponseTransfer::class, $response);
-        $this->assertTrue($response->getIsError());
-        $this->assertEquals('Hashes do not match. This could be some kind of manipulation or misconfiguration!', $response->getError()->getInternalMessage());
-    }
-
-    /**
-     * @return array
-     */
-    public function createFailedEasyCreditPaymentExternalResponseWithIncorrectHeidelpayTransactionId()
-    {
-        $orderBuilder = new FailedEasyCreditPaymentExternalResponseWhithIncorrectTransactionIdBuilder($this->createHeidelpayFactory());
+        $orderBuilder = new UnsuccessEasyCreditPaymentExternalResponseBuilder($this->createHeidelpayFactory());
         $heidelpayResponse = $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_EASY_CREDIT);
 
         return $heidelpayResponse;

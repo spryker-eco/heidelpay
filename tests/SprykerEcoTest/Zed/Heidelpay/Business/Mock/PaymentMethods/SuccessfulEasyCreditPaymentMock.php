@@ -63,4 +63,48 @@ class SuccessfulEasyCreditPaymentMock extends EasyCreditPayment
 
         return $responseTransfer;
     }
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $authorizeRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function finalize(HeidelpayRequestTransfer $authorizeRequestTransfer): HeidelpayResponseTransfer
+    {
+        $response['payload'] = '{
+                        "processing": {"result": "ACK"}, 
+                        "payment": {"code": "HP.FI"}                         
+                    }';
+
+        $response['processingCode'] = 'HP.FI.90.00';
+
+        $response['idTransactionUnique'] = 'some unique transaction';
+        $response['idSalesOrder'] = 1000;
+
+        $responseTransfer = $this->getSuccessfulHeidelpayTransfer($response);
+
+        return $responseTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $authorizeRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function reservation(HeidelpayRequestTransfer $authorizeRequestTransfer): HeidelpayResponseTransfer
+    {
+        $response['payload'] = '{
+                        "processing": {"result": "ACK"}, 
+                        "payment": {"code": "HP.PI"}                         
+                    }';
+
+        $response['processingCode'] = 'HP.PI.90.00';
+
+        $response['idTransactionUnique'] = 'some unique transaction';
+        $response['idSalesOrder'] = 1000;
+
+        $responseTransfer = $this->getSuccessfulHeidelpayTransfer($response);
+
+        return $responseTransfer;
+    }
 }

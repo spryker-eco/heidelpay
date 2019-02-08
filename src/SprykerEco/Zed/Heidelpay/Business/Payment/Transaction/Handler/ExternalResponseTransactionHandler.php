@@ -81,6 +81,10 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
      */
     protected function updateIdPaymentReference(HeidelpayResponseTransfer $responseTransfer): void
     {
+        if ($responseTransfer->getIdPaymentReference() === null) {
+            return;
+        }
+
         $this->paymentWriter->updatePaymentReferenceByIdSalesOrder(
             $responseTransfer->getIdPaymentReference(),
             $responseTransfer->getIdSalesOrder()

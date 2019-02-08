@@ -40,17 +40,6 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends HeidelpayPayment
     }
 
     /**
-     * @return array
-     */
-    public function createSuccessSofortPaymentExternalResponse(): array
-    {
-        $orderBuilder = new SuccessSofortPaymentExternalResponseBuilder($this->createHeidelpayFactory());
-        $heidelpayResponse = $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_SOFORT);
-
-        return $heidelpayResponse;
-    }
-
-    /**
      * @return void
      */
     public function testProcessExternalPaymentFailedSofortResponseWhichUnsuccessful(): void
@@ -69,63 +58,20 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends HeidelpayPayment
     /**
      * @return array
      */
+    public function createSuccessSofortPaymentExternalResponse(): array
+    {
+        $orderBuilder = new SuccessSofortPaymentExternalResponseBuilder($this->createHeidelpayFactory());
+        $heidelpayResponse = $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_SOFORT);
+
+        return $heidelpayResponse;
+    }
+
+    /**
+     * @return array
+     */
     public function createFailedSofortPaymentExternalResponseThatIsUnsuccessful(): array
     {
         $orderBuilder = new FailedSofortPaymentExternalResponseWhithFailedProcessingResultBuilder($this->createHeidelpayFactory());
-        $heidelpayResponse = $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_SOFORT);
-
-        return $heidelpayResponse;
-    }
-
-    /**
-     * @return void
-     */
-    public function testProcessExternalPaymentFailedSofortResponseWhithIncorrectHash(): void
-    {
-        $heidelpayResponse = $this->createFailedSofortPaymentExternalResponseWhithIncorrectHash();
-
-        $response = $this->heidelpayFacade->processExternalPaymentResponse(
-            $heidelpayResponse
-        );
-
-        $this->assertInstanceOf(HeidelpayPaymentProcessingResponseTransfer::class, $response);
-        $this->assertTrue($response->getIsError());
-        $this->assertEquals('Hashes do not match. This could be some kind of manipulation or misconfiguration!', $response->getError()->getInternalMessage());
-    }
-
-    /**
-     * @return array
-     */
-    public function createFailedSofortPaymentExternalResponseWhithIncorrectHash(): array
-    {
-        $orderBuilder = new FailedSofortPaymentExternalResponseWhithIncorrectHashBuilder($this->createHeidelpayFactory());
-        $heidelpayResponse = $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_SOFORT);
-
-        return $heidelpayResponse;
-    }
-
-    /**
-     * @return void
-     */
-    public function testProcessExternalPaymentFailedSofortResponseWithIncorrectHeidelpayTransactionId(): void
-    {
-        $heidelpayResponse = $this->createFailedSofortPaymentExternalResponseWhithIncorrectHash();
-        $response = $this->heidelpayFacade->processExternalPaymentResponse($heidelpayResponse);
-
-        $this->assertInstanceOf(HeidelpayPaymentProcessingResponseTransfer::class, $response);
-        $this->assertTrue($response->getIsError());
-        $this->assertEquals(
-            'Hashes do not match. This could be some kind of manipulation or misconfiguration!',
-            $response->getError()->getInternalMessage()
-        );
-    }
-
-    /**
-     * @return array
-     */
-    public function createFailedSofortPaymentExternalResponseWithIncorrectHeidelpayTransactionId(): array
-    {
-        $orderBuilder = new FailedSofortPaymentExternalResponseWhithIncorrectTransactionIdBuilder($this->createHeidelpayFactory());
         $heidelpayResponse = $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_SOFORT);
 
         return $heidelpayResponse;

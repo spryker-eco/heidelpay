@@ -106,4 +106,16 @@ class SuccessfulResponseAdapterFactory extends AdapterFactory
             $this->getHeidelpayConfig()
         );
     }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\EasyCreditPaymentInterface
+     */
+    public function createEasyCreditInitializePaymentMethodAdapter()
+    {
+        return new SuccessfulEasyCreditPaymentMock(
+            $this->createRequestToHeidelpayMapper(),
+            $this->createResponseFromHeidelpayMapper(),
+            $this->getHeidelpayConfig()
+        );
+    }
 }
