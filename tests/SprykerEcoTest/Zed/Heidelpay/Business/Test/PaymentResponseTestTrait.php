@@ -18,6 +18,28 @@ trait PaymentResponseTestTrait
      *
      * @return void
      */
+    protected function testSuccessfulIntializeHeidelpayPaymentResponse(HeidelpayResponseTransfer $responseTransfer): void
+    {
+        $this->assertNotNull($responseTransfer->getIdTransactionUnique());
+        $this->assertTrue($responseTransfer->getIsSuccess());
+        $this->assertNotNull($responseTransfer->getCustomerRedirectUrl());
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer $transaction
+     *
+     * @return void
+     */
+    protected function testUnsuccessfulIntializeHeidelpayPaymentResponse(HeidelpayResponseTransfer $responseTransfer): void
+    {
+        $this->assertFalse($responseTransfer->getIsSuccess());
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer $transaction
+     *
+     * @return void
+     */
     protected function testSuccessfulHeidelpayPaymentResponse(HeidelpayTransactionLogTransfer $transaction): void
     {
         $this->assertNotNull($transaction->getHeidelpayResponse());

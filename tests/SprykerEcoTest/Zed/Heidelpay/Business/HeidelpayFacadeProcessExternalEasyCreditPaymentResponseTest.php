@@ -30,10 +30,9 @@ class HeidelpayFacadeProcessExternalEasyCreditPaymentResponseTest extends Heidel
     public function testProcessExternalPaymentSuccessEasyCreditPaymentResponse()
     {
         $heidelpayResponse = $this->createSuccessEasyCreditPaymentExternalResponse();
-
-        $response = $this->heidelpayFacade->processExternalPaymentResponse(
-            $heidelpayResponse
-        );
+        $response = $this
+            ->heidelpayFacade
+            ->processExternalPaymentResponse($heidelpayResponse);
 
         $this->assertInstanceOf(HeidelpayPaymentProcessingResponseTransfer::class, $response);
         $this->assertFalse($response->getIsError());

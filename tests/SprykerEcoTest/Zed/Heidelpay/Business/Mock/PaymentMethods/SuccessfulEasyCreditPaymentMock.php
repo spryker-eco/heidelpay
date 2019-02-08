@@ -29,10 +29,10 @@ class SuccessfulEasyCreditPaymentMock extends EasyCreditPayment
     {
         $response['payload'] = '{
                         "processing": {"result": "ACK"}, 
-                        "payment": {"code": "OT.RC"}                         
+                        "payment": {"code": "HP.PA"}                         
                     }';
 
-        $response['processingCode'] = 'OT.RC.90.00';
+        $response['processingCode'] = 'HP.PA.90.00';
 
         $response['idTransactionUnique'] = 'some unique transaction';
         $response['idSalesOrder'] = $authorizeRequestTransfer->getCustomerPurchase()->getIdOrder();
@@ -51,10 +51,10 @@ class SuccessfulEasyCreditPaymentMock extends EasyCreditPayment
     {
         $response['payload'] = '{
                         "processing": {"result": "ACK"}, 
-                        "payment": {"code": "OT.RC"}                         
+                        "payment": {"code": "HP.IN"}                         
                     }';
 
-        $response['processingCode'] = 'OT.RC.90.00';
+        $response['processingCode'] = 'HP.IN.90.00';
 
         $response['idTransactionUnique'] = 'some unique transaction';
         $response['idSalesOrder'] = 1000;

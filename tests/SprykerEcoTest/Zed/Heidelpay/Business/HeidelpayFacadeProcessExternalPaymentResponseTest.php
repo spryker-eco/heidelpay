@@ -110,14 +110,14 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends HeidelpayPayment
     public function testProcessExternalPaymentFailedSofortResponseWithIncorrectHeidelpayTransactionId(): void
     {
         $heidelpayResponse = $this->createFailedSofortPaymentExternalResponseWhithIncorrectHash();
-
-        $response = $this->heidelpayFacade->processExternalPaymentResponse(
-            $heidelpayResponse
-        );
+        $response = $this->heidelpayFacade->processExternalPaymentResponse($heidelpayResponse);
 
         $this->assertInstanceOf(HeidelpayPaymentProcessingResponseTransfer::class, $response);
         $this->assertTrue($response->getIsError());
-        $this->assertEquals('Hashes do not match. This could be some kind of manipulation or misconfiguration!', $response->getError()->getInternalMessage());
+        $this->assertEquals(
+            'Hashes do not match. This could be some kind of manipulation or misconfiguration!',
+            $response->getError()->getInternalMessage()
+        );
     }
 
     /**

@@ -23,6 +23,7 @@ trait HeidelpayResponseTrait
         'IDENTIFICATION_TRANSACTIONID' => $responseParam[static::TRANSACRTION_ID],
         'ACCOUNT_BIC' => "SFRTDE20XXX",
         'IDENTIFICATION_REFERENCEID' => "31HA07BC8169E064899027EF30B26E04",
+        'IDENTIFICATION_UNIQUEID' => $responseParam[static::IDENTIFICATION_UNIQUEID],
         'ADDRESS_COUNTRY' => "DE",
         'ADDRESS_STREET' => "Any st 23",
         'FRONTEND_ENABLED' => "TRUE",

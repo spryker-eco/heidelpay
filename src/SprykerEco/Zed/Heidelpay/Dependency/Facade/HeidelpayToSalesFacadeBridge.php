@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Zed\Heidelpay\Dependency\Facade;
 
-class HeidelpayToSalesFacade implements HeidelpayToSalesFacadeInterface
+class HeidelpayToSalesFacadeBridge implements HeidelpayToSalesFacadeInterface
 {
     /**
      * @var \Spryker\Zed\Sales\Business\SalesFacadeInterface

@@ -41,12 +41,9 @@ class HeidelpayFacadeInitializePaymentTest extends HeidelpayPaymentTest
         $quoteTransfer = $this->createQuoteWithPaymentTransfer($salesOrder);
 
         $heidelpayFacade = (new HeidelpayFacade())->setFactory($this->createSuccessfulPaymentHeidelpayFactoryMock());
-        $heidelpayFacade->initializePayment($quoteTransfer);
+        $responseTransfer = $heidelpayFacade->initializePayment($quoteTransfer);
 
-        $transaction = $this->createHeidelpayFactory()->createTransactionLogReader()
-            ->findQuoteInitializeTransactionLogByIdSalesOrder(1000);
-
-        $this->testSuccessfulHeidelpayPaymentResponse($transaction);
+        $this->testSuccessfulIntializeHeidelpayPaymentResponse($responseTransfer);
     }
 
     /**
@@ -105,12 +102,9 @@ class HeidelpayFacadeInitializePaymentTest extends HeidelpayPaymentTest
         $quoteTransfer = $this->createQuoteWithPaymentTransfer($salesOrder);
 
         $heidelpayFacade = (new HeidelpayFacade())->setFactory($this->createUnsuccessfulPaymentHeidelpayFactoryMock());
-        $heidelpayFacade->initializePayment($quoteTransfer);
+        $responseTransfer = $heidelpayFacade->initializePayment($quoteTransfer);
 
-        $transaction = $this->createHeidelpayFactory()->createTransactionLogReader()
-            ->findQuoteInitializeTransactionLogByIdSalesOrder(1000);
-
-        $this->testUnsuccessfulHeidelpayPaymentResponse($transaction);
+        $this->testUnsuccessfulIntializeHeidelpayPaymentResponse($responseTransfer);
     }
 
     /**

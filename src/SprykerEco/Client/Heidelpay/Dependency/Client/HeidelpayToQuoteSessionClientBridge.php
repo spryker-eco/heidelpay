@@ -9,7 +9,7 @@ namespace SprykerEco\Client\Heidelpay\Dependency\Client;
 
 use Generated\Shared\Transfer\QuoteTransfer;
 
-class HeidelpayToQuoteSessionClient implements HeidelpayToQuoteSessionClientInterface
+class HeidelpayToQuoteSessionClientBridge implements HeidelpayToQuoteSessionClientInterface
 {
     /**
      * @var \Spryker\Client\Quote\Session\QuoteSessionInterface

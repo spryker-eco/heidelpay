@@ -36,6 +36,7 @@ class ExternalResponseBuilder
     public const USER_LOGIN = 'USER_LOGIN';
     public const USER_PWD = 'USER_PWD';
     public const TRANSACRTION_ID = 'TRANSACRTION_ID';
+    public const IDENTIFICATION_UNIQUEID = 'IDENTIFICATION_UNIQUEID';
 
     public const CRITERION_SDK_NAME = 'HEIDELPAY:CRITERION_SDK_NAME';
     public const CRITERION_SDK_VALUE = "Heidelpay\PhpPaymentApi";
@@ -93,6 +94,8 @@ class ExternalResponseBuilder
         $responseParam[static::AMOUNT] = $orderEntity->getLastOrderTotals()->getGrandTotal();
 
         $responseParam[static::TRANSACRTION_ID] = $this->getTransationId($orderEntity);
+        $responseParam[static::IDENTIFICATION_UNIQUEID] = $this->getIdentificationUniqueId($orderEntity);
+
         $responseParam[static::TRANSACRTION_CHANNEL] = $config->getMerchantTransactionChannelByPaymentType($paymentMethod);
         $responseParam[static::SECURITY_SENDER] = $config->getMerchantSecuritySender();
         $responseParam[static::USER_LOGIN] = $config->getMerchantUserLogin();
@@ -169,6 +172,16 @@ class ExternalResponseBuilder
     protected function getTransationId(SpySalesOrder $orderEntity): int
     {
         return $orderEntity->getIdSalesOrder();
+    }
+
+    /**
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
+     *
+     * @return string
+     */
+    protected function getIdentificationUniqueId(SpySalesOrder $orderEntity): string
+    {
+        return '31HA07BC814A66978BC90CB3EF663058';
     }
 
     /**

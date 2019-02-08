@@ -9,9 +9,9 @@ namespace SprykerEco\Zed\Heidelpay;
 
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
-use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyFacade;
-use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyFacade;
-use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesFacade;
+use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyFacadeBridge;
+use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyFacadeBridge;
+use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesFacadeBridge;
 use SprykerEco\Zed\Heidelpay\Dependency\QueryContainer\HeidelpayToSalesQueryContainerBridge;
 use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceBridge;
 
@@ -33,15 +33,15 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
     public function provideBusinessLayerDependencies(Container $container): Container
     {
         $container[static::FACADE_CURRENCY] = function (Container $container) {
-            return new HeidelpayToCurrencyFacade($container->getLocator()->currency()->facade());
+            return new HeidelpayToCurrencyFacadeBridge($container->getLocator()->currency()->facade());
         };
 
         $container[static::FACADE_MONEY] = function (Container $container) {
-            return new HeidelpayToMoneyFacade($container->getLocator()->money()->facade());
+            return new HeidelpayToMoneyFacadeBridge($container->getLocator()->money()->facade());
         };
 
         $container[self::FACADE_SALES] = function (Container $container) {
-            return new HeidelpayToSalesFacade($container->getLocator()->sales()->facade());
+            return new HeidelpayToSalesFacadeBridge($container->getLocator()->sales()->facade());
         };
 
         $container[self::QUERY_CONTAINER_SALES] = function (Container $container) {
@@ -63,7 +63,7 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
     public function provideCommunicationLayerDependencies(Container $container): Container
     {
         $container[self::FACADE_SALES] = function (Container $container) {
-            return new HeidelpayToSalesFacade($container->getLocator()->sales()->facade());
+            return new HeidelpayToSalesFacadeBridge($container->getLocator()->sales()->facade());
         };
 
         return $container;
