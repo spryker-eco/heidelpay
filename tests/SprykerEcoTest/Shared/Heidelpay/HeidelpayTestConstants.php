@@ -5,9 +5,9 @@
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
-namespace SprykerEcoTest\Zed\Heidelpay\Business;
+namespace SprykerEcoTest\Shared\Heidelpay;
 
-class HeidelpayTestConstants
+interface HeidelpayTestConstants
 {
     public const CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL = 'http://url-to-redirect-customer.com';
     public const HEIDELPAY_SUCCESS_RESPONSE = 'ACK';

@@ -16,5 +16,5 @@ interface HeidelpayToSalesQueryContainerInterface
      *
      * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
      */
-    public function getOrderByReference(string $orderReference): SpySalesOrder;
+    public function getOrderByReference(string $orderReference);
 }

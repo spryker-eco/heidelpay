@@ -20,6 +20,7 @@ use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration;
 use Propel\Runtime\Propel;
 use SprykerEco\Shared\Heidelpay\QuoteUniqueIdGenerator;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConstants;
 
 /**
  * @group Functional

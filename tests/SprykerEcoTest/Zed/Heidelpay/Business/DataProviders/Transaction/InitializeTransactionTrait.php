@@ -10,7 +10,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Transaction;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Encoder\EncoderTrait;
-use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConstants;
 
 trait InitializeTransactionTrait
 {

@@ -16,7 +16,7 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\NewOrderWithOneIte
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\Action\HeidelpayResponseTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentHeidelpayTrait;
-use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConstants;
 
 class ExternalResponseBuilder
 {

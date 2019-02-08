@@ -10,6 +10,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business;
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
 use Generated\Shared\Transfer\PaymentTransfer;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConstants;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
 
 /**

@@ -9,7 +9,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\CreditCard;
 
 use Generated\Shared\Transfer\QuoteTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration;
-use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConstants;
 
 class CreditCardBuilder
 {
@@ -31,6 +31,7 @@ class CreditCardBuilder
             ->setQuoteHash(HeidelpayTestConstants::CARD_QUOTE_HASH)
             ->setAccountHolder($this->getAccountHolder($quoteTransfer));
         $cardRegistrationEntity->save();
+
         return $cardRegistrationEntity;
     }
 

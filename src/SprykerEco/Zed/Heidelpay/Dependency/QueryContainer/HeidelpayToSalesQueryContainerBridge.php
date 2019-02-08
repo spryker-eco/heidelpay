@@ -29,7 +29,7 @@ class HeidelpayToSalesQueryContainerBridge implements HeidelpayToSalesQueryConta
      *
      * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
      */
-    public function getOrderByReference(string $orderReference): SpySalesOrder
+    public function getOrderByReference(string $orderReference)
     {
         return $this->salesQueryContainer->querySalesOrder()
             ->findOneByOrderReference($orderReference);

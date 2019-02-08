@@ -9,7 +9,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\Test;
 
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
-use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConstants;
 
 trait PaymentResponseTestTrait
 {
