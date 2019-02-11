@@ -110,7 +110,13 @@ abstract class ExternalResponseBuilder
      */
     protected function getPaymentMethod(string $paymentMethod): string
     {
-        return mb_strtolower(preg_replace('~' . HeidelpayConfig::PROVIDER_NAME . '~', '', $paymentMethod));
+        $paymentMethod = preg_replace(
+            '~' . HeidelpayConfig::PROVIDER_NAME . '~',
+            '',
+            $paymentMethod
+        );
+
+        return ucfirst($paymentMethod);
     }
 
     /**

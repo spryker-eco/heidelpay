@@ -69,6 +69,7 @@ class HeidelpayConfigurationBuilder
             HeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE => 'HeidelpayPaypalAuthorize01',
             HeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT => 'HeidelpayPaypalDebit01',
             HeidelpayConfig::PAYMENT_METHOD_IDEAL => 'HeidelpayIdeal01',
+            HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT => 'HeidelpayEasyCredit01',
         ];
 
         return $config;
