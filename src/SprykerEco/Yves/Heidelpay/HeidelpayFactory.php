@@ -203,7 +203,7 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface
+     * @return \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToPriceClientInterface
      */
     public function getPriceClient(): HeidelpayToPriceClientInterface
     {

@@ -26,8 +26,64 @@ class HeidelpayFacadeFinalizePaymentTest extends HeidelpayPaymentTest
     /**
      * @return void
      */
-    public function testToDo(): void
+    public function testProcessSuccessFinalizePayment()
     {
-        $this->assertTrue(false);
+        $salesOrder = $this->createSuccessOrder();
+
+        $heidelpayFacade = (new HeidelpayFacade())->setFactory($this->createSuccessfulPaymentHeidelpayFactoryMock());
+        $orderTransfer = $this->getPaymentTransfer($heidelpayFacade, $salesOrder);
+        $heidelpayFacade->finalizePayment($orderTransfer);
+
+        $transaction = $this->createHeidelpayFactory()
+            ->createTransactionLogReader()
+            ->findQuoteFinalizeTransactionLogByIdSalesOrder($salesOrder->getIdSalesOrder());
+
+        $this->testSuccessfulHeidelpayPaymentResponse($transaction);
+    }
+
+    /**
+     * @return void
+     */
+    public function testProcessUnsuccessfulFinalizePayment()
+    {
+        $salesOrder = $this->createSuccessOrder();
+
+        $heidelpayFacade = (new HeidelpayFacade())->setFactory($this->createUnsuccessfulPaymentHeidelpayFactoryMock());
+        $orderTransfer = $this->getPaymentTransfer($heidelpayFacade, $salesOrder);
+        $heidelpayFacade->finalizePayment($orderTransfer);
+
+        $transaction = $this->createHeidelpayFactory()
+            ->createTransactionLogReader()
+            ->findQuoteFinalizeTransactionLogByIdSalesOrder($salesOrder->getIdSalesOrder());
+
+        $this->testUnsuccessfulHeidelpayPaymentResponse($transaction);
+    }
+
+
+    /**
+     * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
+     */
+    public function createSuccessOrder()
+    {
+        $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
+        $orderTransfer = $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_EASY_CREDIT);
+
+        return $orderTransfer;
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
+     */
+    protected function createSuccessfulPaymentHeidelpayFactoryMock()
+    {
+        return new SuccessfulResponseHeidelpayBusinessFactory();
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
+     */
+    protected function createUnsuccessfulPaymentHeidelpayFactoryMock()
+    {
+        return new UnsuccesfulResponseHeidelpayBusinessFactory();
     }
 }

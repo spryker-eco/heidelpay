@@ -133,7 +133,7 @@ abstract class ExternalResponseBuilder
     }
 
     /**
-     * @return string|null
+     * @return string
      */
     protected function getProcessingReturn(): string
     {

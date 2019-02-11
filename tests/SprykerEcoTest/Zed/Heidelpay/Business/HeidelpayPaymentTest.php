@@ -22,6 +22,11 @@ class HeidelpayPaymentTest extends Test
     use PaymentHeidelpayTransferBuilderTrait, PaymentResponseTestTrait;
 
     /**
+     * @var \SprykerEcoTest\Zed\Heidelpay\HeidelpayZedTester
+     */
+    protected $tester;
+
+    /**
      * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade
      */
     protected $heidelpayFacade;

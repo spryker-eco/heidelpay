@@ -7,8 +7,6 @@
 
 namespace SprykerEco\Zed\Heidelpay\Dependency\QueryContainer;
 
-use Orm\Zed\Sales\Persistence\SpySalesOrder;
-
 interface HeidelpayToSalesQueryContainerInterface
 {
     /**

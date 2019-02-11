@@ -30,7 +30,9 @@ use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusin
  */
 class HeidelpayFacadeInitializePaymentTest extends HeidelpayPaymentTest
 {
-    use QuoteMockTrait, CustomerAddressTrait, CustomerTrait;
+    use QuoteMockTrait,
+        CustomerAddressTrait,
+        CustomerTrait;
 
     /**
      * @return void

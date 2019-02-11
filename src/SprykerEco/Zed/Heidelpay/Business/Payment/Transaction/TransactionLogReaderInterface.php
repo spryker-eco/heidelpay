@@ -59,4 +59,18 @@ interface TransactionLogReaderInterface
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
      */
     public function findQuoteInitializeTransactionLogByOrderReference($orderReference);
+
+    /**
+     * @param int $idSalesOrder
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     */
+    public function findQuoteReservationTransactionLogByIdSalesOrder($idSalesOrder);
+
+    /**
+     * @param int $idSalesOrder
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     */
+    public function findQuoteFinalizeTransactionLogByIdSalesOrder($idSalesOrder);
 }

@@ -19,15 +19,71 @@ use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusin
  * @group Zed
  * @group Heidelpay
  * @group Business
- * @group HeidelpayFacadeAuthorizeOnRegistrationPaymentTest
+ * @group HeidelpayFacadeReservationPaymentTest
  */
 class HeidelpayFacadeReservationPaymentTest extends HeidelpayPaymentTest
 {
     /**
      * @return void
      */
-    public function testToDo(): void
+    public function testProcessSuccessReservationPayment()
     {
-        $this->assertTrue(false);
+        $salesOrder = $this->createSuccessOrder();
+
+        $heidelpayFacade = (new HeidelpayFacade())->setFactory($this->createSuccessfulPaymentHeidelpayFactoryMock());
+        $orderTransfer = $this->getPaymentTransfer($heidelpayFacade, $salesOrder);
+        $heidelpayFacade->reservationPayment($orderTransfer);
+
+        $transaction = $this->createHeidelpayFactory()
+            ->createTransactionLogReader()
+            ->findQuoteReservationTransactionLogByIdSalesOrder($salesOrder->getIdSalesOrder());
+
+        $this->testSuccessfulHeidelpayPaymentResponse($transaction);
+    }
+
+    /**
+     * @return void
+     */
+    public function testProcessUnsuccessfulReservationPayment()
+    {
+        $salesOrder = $this->createSuccessOrder();
+
+        $heidelpayFacade = (new HeidelpayFacade())->setFactory($this->createUnsuccessfulPaymentHeidelpayFactoryMock());
+        $orderTransfer = $this->getPaymentTransfer($heidelpayFacade, $salesOrder);
+        $heidelpayFacade->reservationPayment($orderTransfer);
+
+        $transaction = $this->createHeidelpayFactory()
+            ->createTransactionLogReader()
+            ->findQuoteReservationTransactionLogByIdSalesOrder($salesOrder->getIdSalesOrder());
+
+        $this->testUnsuccessfulHeidelpayPaymentResponse($transaction);
+    }
+
+
+    /**
+     * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
+     */
+    public function createSuccessOrder()
+    {
+        $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
+        $orderTransfer = $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_EASY_CREDIT);
+
+        return $orderTransfer;
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
+     */
+    protected function createSuccessfulPaymentHeidelpayFactoryMock()
+    {
+        return new SuccessfulResponseHeidelpayBusinessFactory();
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
+     */
+    protected function createUnsuccessfulPaymentHeidelpayFactoryMock()
+    {
+        return new UnsuccesfulResponseHeidelpayBusinessFactory();
     }
 }

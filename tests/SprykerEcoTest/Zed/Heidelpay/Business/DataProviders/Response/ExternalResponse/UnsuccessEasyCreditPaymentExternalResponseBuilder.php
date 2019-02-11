@@ -67,7 +67,7 @@ class UnsuccessEasyCreditPaymentExternalResponseBuilder extends ExternalResponse
     }
 
     /**
-     * @return string|null
+     * @return string
      */
     protected function getProcessingReturn(): string
     {

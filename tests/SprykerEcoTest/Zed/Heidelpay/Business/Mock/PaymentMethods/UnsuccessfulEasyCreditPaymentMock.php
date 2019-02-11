@@ -24,12 +24,11 @@ class UnsuccessfulEasyCreditPaymentMock extends EasyCreditPayment
     public function authorizeOnRegistration(HeidelpayRequestTransfer $authorizeRequestTransfer)
     {
         $response['payload'] = '{
-                        "processing": {"result": "NOK"}, 
-                        "payment": {"code": "HP.PI"}                         
+                        "processing": {"result": "NOK"},
+                        "payment": {"code": "HP.PI"} 
                     }';
 
         $response['processingCode'] = 'HP.PI.90.00';
-
         $response['idTransactionUnique'] = 'some unique transaction';
         $response['idSalesOrder'] = $authorizeRequestTransfer->getCustomerPurchase()->getIdOrder();
 
@@ -43,17 +42,16 @@ class UnsuccessfulEasyCreditPaymentMock extends EasyCreditPayment
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function initialize(HeidelpayRequestTransfer $authorizeRequestTransfer): HeidelpayResponseTransfer
+    public function initialize(HeidelpayRequestTransfer $initializeRequestTransfer): HeidelpayResponseTransfer
     {
         $response['payload'] = '{
-                        "processing": {"result": "NOK"}, 
-                        "payment": {"code": "HP.INI"}                         
+                        "processing": {"result": "NOK"},
+                        "payment": {"code": "HP.INI"}
                     }';
 
-        $response['processingCode'] = 'HP.INI.90.00';
-
+        $response['processingCode'] = 'HP.INI.90.44';
         $response['idTransactionUnique'] = 'some unique transaction';
-        $response['idSalesOrder'] = 1000;
+        $response['idSalesOrder'] = $initializeRequestTransfer->getCustomerPurchase()->getIdOrder();
 
         $responseTransfer = $this->getUnsuccessfulHeidelpayTransfer($response);
 
@@ -61,21 +59,20 @@ class UnsuccessfulEasyCreditPaymentMock extends EasyCreditPayment
     }
 
     /**
-     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $authorizeRequestTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $finalizeRequestTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function finalize(HeidelpayRequestTransfer $authorizeRequestTransfer): HeidelpayResponseTransfer
+    public function finalize(HeidelpayRequestTransfer $finalizeRequestTransfer): HeidelpayResponseTransfer
     {
         $response['payload'] = '{
-                        "processing": {"result": "NOK"}, 
-                        "payment": {"code": "HP.FI"}                         
+                        "processing": {"result": "NOK"},
+                        "payment": {"code": "HP.FI"}
                     }';
 
         $response['processingCode'] = 'HP.FI.60.95';
-
         $response['idTransactionUnique'] = 'some unique transaction';
-        $response['idSalesOrder'] = 1000;
+        $response['idSalesOrder'] = $finalizeRequestTransfer->getCustomerPurchase()->getIdOrder();
 
         $responseTransfer = $this->getSuccessfulHeidelpayTransfer($response);
 
@@ -83,21 +80,20 @@ class UnsuccessfulEasyCreditPaymentMock extends EasyCreditPayment
     }
 
     /**
-     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $authorizeRequestTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $reservationRequestTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function reservation(HeidelpayRequestTransfer $authorizeRequestTransfer): HeidelpayResponseTransfer
+    public function reservation(HeidelpayRequestTransfer $reservationRequestTransfer): HeidelpayResponseTransfer
     {
         $response['payload'] = '{
                         "processing": {"result": "NOK"}, 
-                        "payment": {"code": "HP.PI"}                         
+                        "payment": {"code": "HP.PI"}
                     }';
 
-        $response['processingCode'] = 'HP.PI.90.00';
-
+        $response['processingCode'] = 'HP.PI.90.65';
         $response['idTransactionUnique'] = 'some unique transaction';
-        $response['idSalesOrder'] = 1000;
+        $response['idSalesOrder'] = $reservationRequestTransfer->getCustomerPurchase()->getIdOrder();
 
         $responseTransfer = $this->getSuccessfulHeidelpayTransfer($response);
 

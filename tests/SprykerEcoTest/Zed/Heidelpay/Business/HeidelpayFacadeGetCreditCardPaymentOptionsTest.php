@@ -38,7 +38,10 @@ use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusin
 class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTest
 {
     public const CUSTOMER_ADDRESS_ID = 100000000;
-    use QuoteMockTrait, CustomerAddressTrait, CustomerTrait;
+
+    use QuoteMockTrait,
+        CustomerAddressTrait,
+        CustomerTrait;
 
     /**
      * @return void
