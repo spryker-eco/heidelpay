@@ -15,10 +15,10 @@ use Spryker\Zed\Oms\OmsConfig;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 
-// ---------- EasyCredit payment method displaying creterias
+// ---------- EasyCredit payment method displaying criteria
 $config[HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_REJECTED_DELIVERY_ADDRESS] = 'Packstation';
 $config[HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_GRAND_TOTAL_LESS_THAN] = 200;
-$config[HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_GRAND_TOTAL_MORE_THAN] = 3000;
+$config[HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_GRAND_TOTAL_MORE_THAN] = 5000;
 
 // ---------- Merchant config values, got from Heidelpay
 $config[HeidelpayConstants::CONFIG_HEIDELPAY_SECURITY_SENDER] = '';

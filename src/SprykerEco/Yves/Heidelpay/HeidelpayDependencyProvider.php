@@ -19,7 +19,7 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
     public const CLIENT_QUOTE = 'quote client';
     public const CLIENT_CALCULATION = 'calculation client';
     public const CLIENT_PRICE = 'price client';
-    public const PLUGIN_PRICE = 'price client';
+    public const PLUGIN_MONEY = 'price plugin';
 
     /**
      * @param \Spryker\Yves\Kernel\Container $container

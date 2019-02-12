@@ -25,6 +25,9 @@ class HeidelpayConfigurationBuilder
         $config[ApplicationConstants::HOST_YVES] = 'www.de.spryker.test';
         $YVES_HOST_PROTOCOL = 'http';
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_PAYMENT_RESPONSE_URL] = $YVES_HOST_PROTOCOL . '://' . $config[ApplicationConstants::HOST_YVES] . '/heidelpay/payment';
+        $config[HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_REJECTED_DELIVERY_ADDRESS] = 'Packstation';
+        $config[HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_GRAND_TOTAL_LESS_THAN] = 200;
+        $config[HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_GRAND_TOTAL_MORE_THAN] = 5000;
 
         $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_SUCCESS_URL] = $config[ApplicationConstants::HOST_YVES] . '/checkout/success';
         $config[HeidelpayConstants::CONFIG_YVES_URL] = $config[ApplicationConstants::HOST_YVES];
@@ -34,7 +37,7 @@ class HeidelpayConfigurationBuilder
         $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_SUMMARY_STEP_URL] = $config[ApplicationConstants::HOST_YVES] . '/checkout/summary';
         $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_ASYNC_RESPONSE_URL] = $config[ApplicationConstants::HOST_YVES] . '/heidelpay/cc-register-response';
         $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_REGISTRATION_SUCCESS_URL] = $config[ApplicationConstants::HOST_YVES] . '/heidelpay/cc-register-success?id_registration=%s';
-
+§
         // Merchant config values, got from Heidelpay
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_SECURITY_SENDER] = '31HA07BC8142C5A171745D00AD63D182';
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_USER_LOGIN] = '31ha07bc8142c5a171744e5aef11ffd3';
