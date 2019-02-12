@@ -7,7 +7,7 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse;
 
-use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConstants;
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponseBuilder;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\HeidelpayEasyCreditResponseTrait;
 
@@ -56,7 +56,7 @@ class UnsuccessEasyCreditPaymentExternalResponseBuilder extends ExternalResponse
         $responseParam[static::PAYMENT_METHOD] = $this->getClassName($paymentMethod);
         $responseParam[static::PROCESSING_RETURN] = $this->getProcessingReturn();
 
-        $responseParam[static::PROCESSING_RESULT] = HeidelpayTestConstants::HEIDELPAY_UNSUCCESS_RESPONSE;
+        $responseParam[static::PROCESSING_RESULT] = HeidelpayTestConfig::HEIDELPAY_UNSUCCESS_RESPONSE;
         $responseParam[static::PAYMENT_CODE] = self::PAYMENT_CODE_HP_INI;
         $responseParam[static::PROCESSING_STATUS_CODE] = '90';
         $responseParam[static::PROCESSING_REASON_CODE] = '00';

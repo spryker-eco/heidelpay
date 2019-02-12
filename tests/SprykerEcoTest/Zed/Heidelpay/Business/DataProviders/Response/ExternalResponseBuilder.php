@@ -16,7 +16,7 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\NewOrderWithOneIte
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\HeidelpayResponseTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentHeidelpayTrait;
-use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConstants;
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
 
 abstract class ExternalResponseBuilder
 {
@@ -135,7 +135,7 @@ abstract class ExternalResponseBuilder
      */
     protected function getProcessingResult(): ?string
     {
-        return HeidelpayTestConstants::HEIDELPAY_SUCCESS_RESPONSE;
+        return HeidelpayTestConfig::HEIDELPAY_SUCCESS_RESPONSE;
     }
 
     /**

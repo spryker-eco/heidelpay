@@ -7,7 +7,7 @@
 
 namespace SprykerEcoTest\Shared\Heidelpay;
 
-interface HeidelpayTestConstants
+interface HeidelpayTestConfig
 {
     public const CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL = 'http://url-to-redirect-customer.com';
     public const HEIDELPAY_SUCCESS_RESPONSE = 'ACK';

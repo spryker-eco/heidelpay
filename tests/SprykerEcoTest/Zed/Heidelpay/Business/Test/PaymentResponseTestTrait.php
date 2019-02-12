@@ -9,7 +9,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\Test;
 
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
-use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConstants;
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
 
 trait PaymentResponseTestTrait
 {
@@ -47,7 +47,7 @@ trait PaymentResponseTestTrait
         $this->assertFalse($transaction->getHeidelpayResponse()->getIsError());
         $this->assertTrue($transaction->getHeidelpayResponse()->getIsSuccess());
         $this->assertEquals(
-            HeidelpayTestConstants::HEIDELPAY_SUCCESS_RESPONSE,
+            HeidelpayTestConfig::HEIDELPAY_SUCCESS_RESPONSE,
             $transaction->getHeidelpayResponse()->getResultCode()
         );
     }

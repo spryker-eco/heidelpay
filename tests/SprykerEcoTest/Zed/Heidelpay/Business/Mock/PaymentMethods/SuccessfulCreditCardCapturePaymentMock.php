@@ -11,7 +11,7 @@ use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPayment;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentResponseTransferBuilderTrait;
-use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConstants;
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
 
 class SuccessfulCreditCardCapturePaymentMock extends CreditCardPayment
 {
@@ -35,7 +35,7 @@ class SuccessfulCreditCardCapturePaymentMock extends CreditCardPayment
         $response['idSalesOrder'] = $captureRequestTransfer->getCustomerPurchase()->getIdOrder();
         $responseTransfer = $this->getSuccessfulHeidelpayTransfer($response);
         $responseTransfer->setResultCode('ACK');
-        $responseTransfer->setPaymentFormUrl(HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL);
+        $responseTransfer->setPaymentFormUrl(HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL);
         return $responseTransfer;
     }
 

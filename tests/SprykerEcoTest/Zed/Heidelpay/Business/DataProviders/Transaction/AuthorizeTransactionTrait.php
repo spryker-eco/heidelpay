@@ -11,7 +11,7 @@ use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Encoder\EncoderTrait;
-use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConstants;
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
 
 trait AuthorizeTransactionTrait
 {
@@ -29,8 +29,8 @@ trait AuthorizeTransactionTrait
             ->setFkSalesOrder($orderEntity->getIdSalesOrder())
             ->setIdTransactionUnique('some unique id')
             ->setTransactionType(HeidelpayConfig::TRANSACTION_TYPE_AUTHORIZE)
-            ->setResponseCode(HeidelpayTestConstants::HEIDELPAY_SUCCESS_RESPONSE)
-            ->setRedirectUrl(HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL)
+            ->setResponseCode(HeidelpayTestConfig::HEIDELPAY_SUCCESS_RESPONSE)
+            ->setRedirectUrl(HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL)
             ->setRequestPayload('{}')
             ->setResponsePayload(
                 $this->encryptData(
@@ -39,7 +39,7 @@ trait AuthorizeTransactionTrait
                             "processing": {"result": "ACK"}, 
                             "payment": {"code": "CC.PA"}, 
                             "identification": {"transactionid": "' . $orderEntity->getIdSalesOrder() . '"},
-                            "frontend": {"payment_frame_url": "' . HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"} 
+                            "frontend": {"payment_frame_url": "' . HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"} 
                         }'
                     )
                 )
@@ -60,8 +60,8 @@ trait AuthorizeTransactionTrait
             ->setFkSalesOrder($orderEntity->getIdSalesOrder())
             ->setIdTransactionUnique('some unique id')
             ->setTransactionType(HeidelpayConfig::TRANSACTION_TYPE_AUTHORIZE)
-            ->setResponseCode(HeidelpayTestConstants::HEIDELPAY_UNSUCCESS_RESPONSE)
-            ->setRedirectUrl(HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL)
+            ->setResponseCode(HeidelpayTestConfig::HEIDELPAY_UNSUCCESS_RESPONSE)
+            ->setRedirectUrl(HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL)
             ->setRequestPayload('{}')
             ->setResponsePayload(
                 $this->encryptData(
@@ -74,7 +74,7 @@ trait AuthorizeTransactionTrait
                             }, 
                             "payment": {"code": "CC.PA"}, 
                             "identification": {"transactionid": "' . $orderEntity->getIdSalesOrder() . '"},
-                            "frontend": {"payment_frame_url": "' . HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"} 
+                            "frontend": {"payment_frame_url": "' . HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"} 
                         }'
                     )
                 )

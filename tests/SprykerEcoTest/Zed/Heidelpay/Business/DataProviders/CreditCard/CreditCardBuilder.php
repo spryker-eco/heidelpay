@@ -9,7 +9,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\CreditCard;
 
 use Generated\Shared\Transfer\QuoteTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration;
-use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConstants;
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
 
 class CreditCardBuilder
 {
@@ -23,12 +23,12 @@ class CreditCardBuilder
         $cardRegistrationEntity = new SpyPaymentHeidelpayCreditCardRegistration();
         $cardRegistrationEntity
             ->setFkCustomerAddress($quoteTransfer->getShippingAddress()->getIdCustomerAddress())
-            ->setRegistrationNumber(HeidelpayTestConstants::REGISTRATION_NUMBER)
-            ->setAccountBrand(HeidelpayTestConstants::CARD_BRAND)
+            ->setRegistrationNumber(HeidelpayTestConfig::REGISTRATION_NUMBER)
+            ->setAccountBrand(HeidelpayTestConfig::CARD_BRAND)
             ->setAccountExpiryMonth(1)
             ->setAccountExpiryYear(2030)
-            ->setAccountNumber(HeidelpayTestConstants::CARD_ACCOUNT_NUMBER)
-            ->setQuoteHash(HeidelpayTestConstants::CARD_QUOTE_HASH)
+            ->setAccountNumber(HeidelpayTestConfig::CARD_ACCOUNT_NUMBER)
+            ->setQuoteHash(HeidelpayTestConfig::CARD_QUOTE_HASH)
             ->setAccountHolder($this->getAccountHolder($quoteTransfer));
         $cardRegistrationEntity->save();
 

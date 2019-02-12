@@ -9,24 +9,31 @@ namespace SprykerEco\Yves\Heidelpay\Hydrator;
 
 use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
+use SprykerEco\Yves\Heidelpay\Dependency\Plugin\HeidelpayToMoneyPluginInterface;
 use SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface;
-use SprykerEco\Yves\Heidelpay\Hydrator\Exception\EasyCreditResponseToQuoteHydratorException;
 
 class EasyCreditResponseToQuoteHydrator implements EasyCreditResponseToQuoteHydratorInterface
 {
-    protected const PRICE_PRECISION = 100;
-
     /**
      * @var \SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface
      */
     protected $heidelpayEasyCreditHandler;
 
     /**
-     * @param \SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface $heidelpayEasyCreditHandler
+     * @var \SprykerEco\Yves\Heidelpay\Dependency\Plugin\HeidelpayToMoneyPluginInterface
      */
-    public function __construct(HeidelpayHandlerInterface $heidelpayEasyCreditHandler)
-    {
+    protected $moneyPlugin;
+
+    /**
+     * @param \SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface $heidelpayEasyCreditHandler
+     * @param \SprykerEco\Yves\Heidelpay\Dependency\Plugin\HeidelpayToMoneyPluginInterface $moneyPlugin
+     */
+    public function __construct(
+        HeidelpayHandlerInterface $heidelpayEasyCreditHandler,
+        HeidelpayToMoneyPluginInterface $moneyPlugin
+    ) {
         $this->heidelpayEasyCreditHandler = $heidelpayEasyCreditHandler;
+        $this->moneyPlugin = $moneyPlugin;
     }
 
     /**
@@ -46,33 +53,14 @@ class EasyCreditResponseToQuoteHydrator implements EasyCreditResponseToQuoteHydr
             ->setIdPaymentReference($responseAsArray['IDENTIFICATION.UNIQUEID'])
             ->setAmortisationText($responseAsArray['CRITERION.EASYCREDIT_AMORTISATIONTEXT'])
             ->setAccruingInterest(
-                $this->convertDecimalToInteger($responseAsArray['CRITERION.EASYCREDIT_ACCRUINGINTEREST'])
+                $this->moneyPlugin->convertDecimalToInteger((float)$responseAsArray['CRITERION.EASYCREDIT_ACCRUINGINTEREST'])
             )
             ->setTotalAmount(
-                $this->convertDecimalToInteger($responseAsArray['CRITERION.EASYCREDIT_TOTALAMOUNT'])
+                $this->moneyPlugin->convertDecimalToInteger((float)$responseAsArray['CRITERION.EASYCREDIT_TOTALAMOUNT'])
             );
 
         $quoteTransfer->setPayment($paymentTransfer);
 
         $this->heidelpayEasyCreditHandler->addPaymentToQuote($quoteTransfer);
-    }
-
-    /**
-     * @param float $value
-     *
-     * @throws \SprykerEco\Yves\Heidelpay\Hydrator\Exception\EasyCreditResponseToQuoteHydratorException
-     *
-     * @return int
-     */
-    protected function convertDecimalToInteger(float $value): int
-    {
-        if (!is_float($value)) {
-            throw new EasyCreditResponseToQuoteHydratorException(sprintf(
-                'Only float values allowed for conversion to int. Current type is "%s"',
-                gettype($value)
-            ));
-        }
-
-        return (int)round($value * static::PRICE_PRECISION);
     }
 }

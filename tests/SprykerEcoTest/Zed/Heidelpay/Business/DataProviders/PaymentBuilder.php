@@ -13,7 +13,7 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\NewOrderWithOneItemTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentHeidelpayTrait;
-use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConstants;
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
 
 class PaymentBuilder
 {
@@ -50,7 +50,7 @@ class PaymentBuilder
 
         $this->createHeidelpayPaymentEntity(
             $orderEntity,
-            HeidelpayTestConstants::HEIDELPAY_REFERENCE,
+            HeidelpayTestConfig::HEIDELPAY_REFERENCE,
             $paymentMethod
         );
 
