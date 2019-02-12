@@ -10,6 +10,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\Mock;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\AdapterFactory;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\EasyCreditPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\PaypalPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\SofortPaymentInterface;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods\UnsuccessfulCreditCardCapturePaymentMock;
@@ -108,7 +109,7 @@ class UnsuccessfulResponseAdapterFactory extends AdapterFactory
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\EasyCreditPaymentInterface
      */
-    public function createEasyCreditPaymentMethodAdapter()
+    public function createEasyCreditPaymentMethodAdapter(): EasyCreditPaymentInterface
     {
         return new UnsuccessfulEasyCreditPaymentMock(
             $this->createRequestToHeidelpayMapper(),

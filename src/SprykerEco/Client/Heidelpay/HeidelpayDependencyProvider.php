@@ -28,6 +28,8 @@ class HeidelpayDependencyProvider extends AbstractDependencyProvider
      */
     public function provideServiceLayerDependencies(Container $container): Container
     {
+        $container = parent::provideServiceLayerDependencies($container);
+
         $container[static::CLIENT_LOCALE] = function (Container $container) {
             return new HeidelpayToLocaleClientBridge($container->getLocator()->locale()->client());
         };

@@ -18,12 +18,6 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
 {
     protected const HEIDELPAY_EASY_CREDIT_PAYMENT_METHOD = 'heidelpayEasyCredit';
 
-    protected const PACKSTATION = 'Packstation';
-
-    protected const GRAND_TOTAL_LESS_THAN = 200;
-
-    protected const GRAND_TOTAL_MORE_THAN = 3000;
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\HeidelpayConfig
      */
@@ -90,7 +84,12 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
      */
     protected function isTotalOutOfRange(float $grandTotal): bool
     {
-        return $grandTotal < static::GRAND_TOTAL_LESS_THAN || $grandTotal > static::GRAND_TOTAL_MORE_THAN;
+        $isOutOfRange = (
+            $grandTotal < $this->config->getEasycreditCriteriaGrandTotalLessThan()
+            || $grandTotal > $this->config->getEasycreditCriteriaGrandTotalMoreThan()
+        );
+
+        return $isOutOfRange;
     }
 
     /**
@@ -100,7 +99,17 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
      */
     protected function isAddressCorrect(QuoteTransfer $quoteTransfer): bool
     {
-        return strpos($quoteTransfer->getShippingAddress()->getAddress1(), static::PACKSTATION) === false
-            && strpos($quoteTransfer->getBillingAddress()->getAddress1(), static::PACKSTATION) === false;
+        $isRejectedShippingAddress = strpos(
+            $quoteTransfer->getShippingAddress()->getAddress1(),
+            $this->config->getEasycreditCriteriaRejectedDeliveryAddress()
+        );
+        $isRejectedBillingAddress = strpos(
+            $quoteTransfer->getBillingAddress()->getAddress1(),
+            $this->config->getEasycreditCriteriaRejectedDeliveryAddress()
+        );
+
+        $isAddressCorrect = $isRejectedShippingAddress === false && $isRejectedBillingAddress === false;
+
+        return $isAddressCorrect;
     }
 }

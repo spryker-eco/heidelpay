@@ -137,6 +137,30 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @return string
+     */
+    public function getEasycreditCriteriaRejectedDeliveryAddress(): string
+    {
+        return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_REJECTED_DELIVERY_ADDRESS);
+    }
+
+    /**
+     * @return float
+     */
+    public function getEasycreditCriteriaGrandTotalMoreThan(): float
+    {
+        return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_GRAND_TOTAL_MORE_THAN);
+    }
+
+    /**
+     * @return float
+     */
+    public function getEasycreditCriteriaGrandTotalLessThan(): float
+    {
+        return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_GRAND_TOTAL_LESS_THAN);
+    }
+
+    /**
      * @return bool
      */
     public function getIsSplitPaymentEnabledKey(): bool

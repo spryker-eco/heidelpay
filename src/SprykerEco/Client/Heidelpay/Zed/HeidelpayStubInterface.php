@@ -39,14 +39,18 @@ interface HeidelpayStubInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
-    public function processExternalPaymentResponse(HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer): HeidelpayPaymentProcessingResponseTransfer;
+    public function processExternalPaymentResponse(
+        HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer
+    ): HeidelpayPaymentProcessingResponseTransfer;
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer|\Spryker\Shared\Kernel\Transfer\TransferInterface
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
-    public function processExternalEasyCreditPaymentResponse(HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer);
+    public function processExternalEasyCreditPaymentResponse(
+        HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer
+    ): HeidelpayPaymentProcessingResponseTransfer;
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
@@ -62,7 +66,9 @@ interface HeidelpayStubInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer
      */
-    public function saveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer): HeidelpayRegistrationSaveResponseTransfer;
+    public function saveCreditCardRegistration(
+        HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
+    ): HeidelpayRegistrationSaveResponseTransfer;
 
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer

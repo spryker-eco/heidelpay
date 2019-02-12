@@ -9,7 +9,7 @@ namespace SprykerEco\Yves\Heidelpay\Dependency\Client;
 
 use Generated\Shared\Transfer\QuoteTransfer;
 
-class HeidelpayToCalculationClient implements HeidelpayToCalculationClientInterface
+class HeidelpayToCalculationClientBridge implements HeidelpayToCalculationClientInterface
 {
     /**
      * @var \Spryker\Client\Calculation\CalculationClientInterface

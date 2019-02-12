@@ -21,5 +21,5 @@ interface RegistrationToQuoteHydratorInterface
     public function hydrateCreditCardRegistrationToQuote(
         HeidelpayCreditCardRegistrationTransfer $registrationTransfer,
         QuoteTransfer $quoteTransfer
-    );
+    ): void;
 }

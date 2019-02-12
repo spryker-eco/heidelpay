@@ -25,7 +25,7 @@ class HeidelpayToLocaleClientBridge implements HeidelpayToLocaleClientInterface
     /**
      * @return string
      */
-    public function getCurrentLocale(): string
+    public function getCurrentLocale()
     {
         return $this->localeClient->getCurrentLocale();
     }

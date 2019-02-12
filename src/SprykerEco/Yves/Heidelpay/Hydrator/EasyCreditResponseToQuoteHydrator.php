@@ -9,22 +9,22 @@ namespace SprykerEco\Yves\Heidelpay\Hydrator;
 
 use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
-use SprykerEco\Yves\Heidelpay\Handler\HeidelpayEasyCreditHandler;
+use SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface;
 use SprykerEco\Yves\Heidelpay\Hydrator\Exception\EasyCreditResponseToQuoteHydratorException;
 
 class EasyCreditResponseToQuoteHydrator implements EasyCreditResponseToQuoteHydratorInterface
 {
-    public const PRICE_PRECISION = 100;
+    protected const PRICE_PRECISION = 100;
 
     /**
-     * @var \SprykerEco\Yves\Heidelpay\Handler\HeidelpayEasyCreditHandler
+     * @var \SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface
      */
-    private $heidelpayEasyCreditHandler;
+    protected $heidelpayEasyCreditHandler;
 
     /**
-     * @param \SprykerEco\Yves\Heidelpay\Handler\HeidelpayEasyCreditHandler $heidelpayEasyCreditHandler
+     * @param \SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface $heidelpayEasyCreditHandler
      */
-    public function __construct(HeidelpayEasyCreditHandler $heidelpayEasyCreditHandler)
+    public function __construct(HeidelpayHandlerInterface $heidelpayEasyCreditHandler)
     {
         $this->heidelpayEasyCreditHandler = $heidelpayEasyCreditHandler;
     }

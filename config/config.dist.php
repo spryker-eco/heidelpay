@@ -15,20 +15,23 @@ use Spryker\Zed\Oms\OmsConfig;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 
-// Heidelpay configuration
+// ---------- EasyCredit payment method displaying creterias
+$config[HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_REJECTED_DELIVERY_ADDRESS] = 'Packstation';
+$config[HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_GRAND_TOTAL_LESS_THAN] = 200;
+$config[HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_GRAND_TOTAL_MORE_THAN] = 3000;
 
-// Merchant config values, got from Heidelpay
+// ---------- Merchant config values, got from Heidelpay
 $config[HeidelpayConstants::CONFIG_HEIDELPAY_SECURITY_SENDER] = '';
 $config[HeidelpayConstants::CONFIG_HEIDELPAY_USER_LOGIN] = '';
 $config[HeidelpayConstants::CONFIG_HEIDELPAY_USER_PASSWORD] = '';
 
-// List of transaction channels depends on the amount of active payment methods
+// ---------- List of transaction channels depends on the amount of active payment methods
 $config[HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_CC_3D_SECURE] = '';
 $config[HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_PAYPAL] = '';
 $config[HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_IDEAL] = '';
 $config[HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_SOFORT] = '';
 
-// Shop configuration values
+// ---------- Shop configuration values
 $config[HeidelpayConstants::CONFIG_HEIDELPAY_APPLICATION_SECRET] = '';
 $config[HeidelpayConstants::CONFIG_HEIDELPAY_SANDBOX_REQUEST] = false;
 
@@ -45,10 +48,10 @@ $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_REGISTRATION_SUCCESS_URL] = 'ht
 $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_PAYMENT_FRAME_CUSTOM_CSS_URL] = '';
 $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_PAYMENT_FRAME_PREVENT_ASYNC_REDIRECT] = "FALSE";
 
-//Payload encryption key
+// ---------- Payload encryption key
 $config[HeidelpayConstants::CONFIG_ENCRYPTION_KEY] = '';
 
-//Split payment mode
+// ---------- Split payment mode
 $config[HeidelpayConstants::CONFIG_IS_SPLIT_PAYMENT_ENABLED_KEY] = false;
 
 $config[OmsConstants::PROCESS_LOCATION] = [

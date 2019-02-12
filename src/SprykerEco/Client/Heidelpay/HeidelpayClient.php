@@ -131,8 +131,9 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
-    public function processExternalEasyCreditPaymentResponse(array $externalResponse)
-    {
+    public function processExternalEasyCreditPaymentResponse(
+        array $externalResponse
+    ): HeidelpayPaymentProcessingResponseTransfer {
         $externalResponseTransfer = $this->buildTransferFromExternalResponseArray($externalResponse);
 
         return $this->getFactory()
@@ -149,8 +150,9 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer
      */
-    public function saveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer): HeidelpayRegistrationSaveResponseTransfer
-    {
+    public function saveCreditCardRegistration(
+        HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
+    ): HeidelpayRegistrationSaveResponseTransfer {
         return $this->getFactory()
             ->createZedStub()
             ->saveCreditCardRegistration($registrationRequestTransfer);
@@ -166,8 +168,10 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer|null
      */
-    public function findRegistrationByIdAndQuote(int $idRegistration, QuoteTransfer $quoteTransfer): ?HeidelpayCreditCardRegistrationTransfer
-    {
+    public function findRegistrationByIdAndQuote(
+        int $idRegistration,
+        QuoteTransfer $quoteTransfer
+    ): ?HeidelpayCreditCardRegistrationTransfer {
         $findRegistrationRequestTransfer = $this->buildFindRegistrationRequestTransfer($idRegistration, $quoteTransfer);
 
         return $this->getFactory()
@@ -222,8 +226,9 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer
      */
-    protected function buildTransferFromExternalResponseArray(array $externalResponse): HeidelpayExternalPaymentRequestTransfer
-    {
+    protected function buildTransferFromExternalResponseArray(
+        array $externalResponse
+    ): HeidelpayExternalPaymentRequestTransfer {
         return (new HeidelpayExternalPaymentRequestTransfer())
             ->setBody($externalResponse);
     }
@@ -234,8 +239,10 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer
      */
-    protected function buildFindRegistrationRequestTransfer(int $idRegistration, QuoteTransfer $quoteTransfer): HeidelpayRegistrationByIdAndQuoteRequestTransfer
-    {
+    protected function buildFindRegistrationRequestTransfer(
+        int $idRegistration,
+        QuoteTransfer $quoteTransfer
+    ): HeidelpayRegistrationByIdAndQuoteRequestTransfer {
         return (new HeidelpayRegistrationByIdAndQuoteRequestTransfer())
             ->setIdRegistration($idRegistration)
             ->setQuote($quoteTransfer);

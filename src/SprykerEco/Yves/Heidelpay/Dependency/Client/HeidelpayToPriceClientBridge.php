@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Yves\Heidelpay\Dependency\Client;
 
-class HeidelpayToPriceClient implements HeidelpayToPriceClientInterface
+class HeidelpayToPriceClientBridge implements HeidelpayToPriceClientInterface
 {
     /**
      * @var \Spryker\Client\Price\PriceClientInterface

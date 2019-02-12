@@ -36,7 +36,7 @@ class RegistrationToQuoteHydrator implements RegistrationToQuoteHydratorInterfac
     public function hydrateCreditCardRegistrationToQuote(
         HeidelpayCreditCardRegistrationTransfer $registrationTransfer,
         QuoteTransfer $quoteTransfer
-    ) {
+    ): void {
 
         $paymentTransfer = $quoteTransfer->requirePayment()->getPayment();
         $paymentTransfer->setPaymentSelection(HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE);

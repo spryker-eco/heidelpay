@@ -68,7 +68,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface
      */
-    public function createHeidelpayEasyCreditHandler()
+    public function createHeidelpayEasyCreditHandler(): HeidelpayHandlerInterface
     {
         return new HeidelpayEasyCreditHandler(
             $this->getCalculationClient(),
@@ -115,7 +115,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
      */
-    public function createEasyCreditForm()
+    public function createEasyCreditForm(): SubFormInterface
     {
         return new EasyCreditSubForm();
     }
@@ -181,7 +181,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface
      */
-    public function createEasyCreditFormDataProvider()
+    public function createEasyCreditFormDataProvider(): StepEngineFormDataProviderInterface
     {
         return new EasyCreditDataProvider();
     }

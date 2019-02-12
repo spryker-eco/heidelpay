@@ -21,7 +21,7 @@ class EasyCreditController extends BaseHeidelpayController
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function easyCreditPaymentAction(Request $request)
     {
@@ -37,9 +37,10 @@ class EasyCreditController extends BaseHeidelpayController
         );
 
         $this->hydrateEasyCreditResponseToQuote($requestAsArray, $quoteTransfer);
-        $redirectUrl = $this->getCustomerRedirectUrl($processingResultTransfer);
 
-        return new RedirectResponse($redirectUrl);
+        return $this->redirectResponseExternal(
+            $this->getCustomerRedirectUrl($processingResultTransfer)
+        );
     }
 
     /**

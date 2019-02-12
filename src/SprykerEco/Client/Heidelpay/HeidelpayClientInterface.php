@@ -34,7 +34,7 @@ interface HeidelpayClientInterface
 
     /**
      * Specification:
-     *  - Fetches from Zed transaction log for a given order by it's reference
+     *  - Fetches from Zed transaction log for a given order by it's reference.
      *
      * @api
      *
@@ -46,7 +46,7 @@ interface HeidelpayClientInterface
 
     /**
      * Specification:
-     *  - For a given quote, requests from Zed list of allowed payment options for credit card payment method
+     *  - For a given quote, requests from Zed list of allowed payment options for credit card payment method.
      *
      * @api
      *
@@ -58,7 +58,7 @@ interface HeidelpayClientInterface
 
     /**
      * Specification:
-     *  - Sends external response from payment provider (POST request) to Zed for processing
+     *  - Sends external response from payment provider (POST request) to Zed for processing.
      *
      * @api
      *
@@ -70,7 +70,7 @@ interface HeidelpayClientInterface
 
     /**
      * Specification:
-     *  - Sends external response from payment provider (POST request) to Zed for processing. Specific for Easy Credit
+     *  - Sends external response from payment provider (POST request) to Zed for processing. Specific for Easy Credit.
      *
      * @api
      *
@@ -78,11 +78,13 @@ interface HeidelpayClientInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
-    public function processExternalEasyCreditPaymentResponse(array $externalResponse);
+    public function processExternalEasyCreditPaymentResponse(
+        array $externalResponse
+    ): HeidelpayPaymentProcessingResponseTransfer;
 
     /**
      * Specification:
-     *  - Sends credit card registration request to Zed for saving
+     *  - Sends credit card registration request to Zed for saving.
      *
      * @api
      *
@@ -90,12 +92,14 @@ interface HeidelpayClientInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer
      */
-    public function saveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer): HeidelpayRegistrationSaveResponseTransfer;
+    public function saveCreditCardRegistration(
+        HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
+    ): HeidelpayRegistrationSaveResponseTransfer;
 
     /**
      * Specification:
      *  - tries to find credit card registration by registration id and customer quote to reassure,
-     *  that credit card registration really belongs to current customer
+     *  that credit card registration really belongs to current customer.
      *
      * @api
      *
@@ -104,11 +108,14 @@ interface HeidelpayClientInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer|null
      */
-    public function findRegistrationByIdAndQuote(int $idRegistration, QuoteTransfer $quoteTransfer): ?HeidelpayCreditCardRegistrationTransfer;
+    public function findRegistrationByIdAndQuote(
+        int $idRegistration,
+        QuoteTransfer $quoteTransfer
+    ): ?HeidelpayCreditCardRegistrationTransfer;
 
     /**
      * Specification:
-     *  - Parses the external Heidelpay array response, transforming it to the transfer object
+     *  - Parses the external Heidelpay array response, transforming it to the transfer object.
      *
      * @api
      *
@@ -120,7 +127,7 @@ interface HeidelpayClientInterface
 
     /**
      * Specification:
-     *  - Retrieve quote from current customer session
+     *  - Retrieve quote from current customer session.
      *
      * @api
      *
@@ -138,11 +145,11 @@ interface HeidelpayClientInterface
      *
      * @return array
      */
-    public function filterResponseParameters(array $responseArray);
+    public function filterResponseParameters(array $responseArray): array;
 
     /**
      * Specification:
-     *  - Send payment Initialization request (HP.INI)
+     *  - Send payment Initialization request (HP.INI).
      *
      * @api
      *

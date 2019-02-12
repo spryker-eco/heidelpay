@@ -13,14 +13,14 @@ use Generated\Shared\Transfer\PaymentTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface;
-use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToPriceClient;
+use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToPriceClientInterface;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
 
 class HeidelpayEasyCreditHandler extends HeidelpayHandler
 {
     public const PAYMENT_PROVIDER = HeidelpayConfig::PROVIDER_NAME;
-    public const EASYCREDIT_EXPENSE_TYPE = 'EASYCREDIT_EXPENSE_TYPE';
-    public const EASYCREDIT_EXPENSE_NAME = 'EasyCredit';
+    protected const EASYCREDIT_EXPENSE_TYPE = 'EASYCREDIT_EXPENSE_TYPE';
+    protected const EASYCREDIT_EXPENSE_NAME = 'EasyCredit';
 
     /**
      * @var \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface
@@ -33,18 +33,18 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
     protected $quoteClient;
 
     /**
-     * @var \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToPriceClient
+     * @var \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToPriceClientInterface
      */
     protected $priceClient;
 
     /**
      * @param \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface $calculationClient
-     * @param \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToPriceClient $priceClient
+     * @param \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToPriceClientInterface $priceClient
      * @param \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface $quoteClient
      */
     public function __construct(
         HeidelpayToCalculationClientInterface $calculationClient,
-        HeidelpayToPriceClient $priceClient,
+        HeidelpayToPriceClientInterface $priceClient,
         HeidelpayToQuoteClientInterface $quoteClient
     ) {
         $this->calculationClient = $calculationClient;
@@ -65,7 +65,7 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
             $paymentTransfer,
             $quoteTransfer->getPriceMode()
         );
-        $this->replaceShipmentExpenseInQuote($quoteTransfer, $accruingInterestExpenseTransfer);
+        $this->replaceAccruingInterestExpenseTransfer($quoteTransfer, $accruingInterestExpenseTransfer);
 
         $quoteTransfer = $this->calculationClient->recalculate($quoteTransfer);
         $this->quoteClient->setQuote($quoteTransfer);
@@ -87,8 +87,8 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
 
         $expenseTransfer = $this
             ->createExpenseTransfer()
-            ->setName(self::EASYCREDIT_EXPENSE_NAME)
-            ->setType(self::EASYCREDIT_EXPENSE_TYPE)
+            ->setName(static::EASYCREDIT_EXPENSE_NAME)
+            ->setType(static::EASYCREDIT_EXPENSE_TYPE)
             ->setQuantity(1)
             ->setSumTaxAmount(0);
 
@@ -108,7 +108,7 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
      *
      * @return void
      */
-    protected function setPrice(ExpenseTransfer $shipmentExpenseTransfer, $price, $priceMode)
+    protected function setPrice(ExpenseTransfer $shipmentExpenseTransfer, $price, $priceMode): void
     {
         if ($priceMode === $this->priceClient->getNetPriceModeIdentifier()) {
             $shipmentExpenseTransfer->setUnitGrossPrice(0);
@@ -123,16 +123,20 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
     }
 
     /**
+     * Make sure we add accruing interest expense only once.
+     *
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\ExpenseTransfer $expenseTransfer
      *
      * @return void
      */
-    protected function replaceShipmentExpenseInQuote(QuoteTransfer $quoteTransfer, ExpenseTransfer $expenseTransfer)
-    {
+    protected function replaceAccruingInterestExpenseTransfer(
+        QuoteTransfer $quoteTransfer,
+        ExpenseTransfer $expenseTransfer
+    ): void {
         $otherExpenseCollection = new ArrayObject();
         foreach ($quoteTransfer->getExpenses() as $expense) {
-            if ($expense->getType() !== self::EASYCREDIT_EXPENSE_TYPE) {
+            if ($expense->getType() !== static::EASYCREDIT_EXPENSE_TYPE) {
                 $otherExpenseCollection->append($expense);
             }
         }
@@ -144,7 +148,7 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
     /**
      * @return \Generated\Shared\Transfer\ExpenseTransfer
      */
-    protected function createExpenseTransfer()
+    protected function createExpenseTransfer(): ExpenseTransfer
     {
         return new ExpenseTransfer();
     }

@@ -24,6 +24,7 @@ use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponsePayloadToApiRespons
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPayment;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\EasyCreditPayment;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\EasyCreditPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\IdealPayment;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\IdealPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\PaypalPayment;
@@ -169,7 +170,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\EasyCreditPaymentInterface
      */
-    public function createEasyCreditPaymentMethodAdapter()
+    public function createEasyCreditPaymentMethodAdapter(): EasyCreditPaymentInterface
     {
         return new EasyCreditPayment(
             $this->createRequestToHeidelpayMapper(),
