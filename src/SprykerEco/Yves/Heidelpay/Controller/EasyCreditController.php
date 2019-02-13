@@ -9,6 +9,7 @@ namespace SprykerEco\Yves\Heidelpay\Controller;
 
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
