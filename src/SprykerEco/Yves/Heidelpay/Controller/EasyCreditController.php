@@ -7,11 +7,14 @@
 
 namespace SprykerEco\Yves\Heidelpay\Controller;
 
+use ArrayObject;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Service\UtilText\Model\Url\Url;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @method \SprykerEco\Yves\Heidelpay\HeidelpayFactory getFactory()
@@ -22,35 +25,31 @@ class EasyCreditController extends BaseHeidelpayController
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function easyCreditPaymentAction(Request $request)
+    public function easyCreditPaymentAction(Request $request): Response
     {
         if (!$request->isMethod(Request::METHOD_POST)) {
-            return new Response('', 400);
+            throw new NotFoundHttpException();
         }
 
-        $paymentParameters = $this->getUrldecodedRequestBody($request);
+        $responseArray = $this->getUrldecodedRequestBody($request);
         $processingResultTransfer = $this->processEasyCreditPaymentResponse(
-            $this->getClient()->filterResponseParameters($paymentParameters)
+            $this->getClient()->filterResponseParameters($responseArray)
         );
 
         if ($processingResultTransfer->getIsError()) {
-            echo $this->getFailurePageUrl($processingResultTransfer);
-            exit();
+            return new Response($this->getFailurePageUrl($processingResultTransfer));
         }
-
-        $paymentInitializeParameters = $this->getFactory()
-            ->createEasyCreditResponseToGetParametersMapper()
-            ->getMapped($paymentParameters, []);
 
         $redirectUrl = Url::generate(
             $this->getInitializePaymentUrl(),
-            $paymentInitializeParameters
+            $this->getPaymentParametersFromEasyCreditResponseParameters($responseArray)
         )->build();
 
-        echo $redirectUrl;
-        exit();
+        return new Response($redirectUrl);
     }
 
     /**
@@ -58,7 +57,7 @@ class EasyCreditController extends BaseHeidelpayController
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function easyCreditInitializePaymentAction(Request $request)
+    public function easyCreditInitializePaymentAction(Request $request): RedirectResponse
     {
         $quoteTransfer = $this->getClient()->getQuoteFromSession();
         $paymentParameters = $request->query->all();
@@ -67,9 +66,24 @@ class EasyCreditController extends BaseHeidelpayController
             ->createEasyCreditResponseToQuoteHydrator()
             ->hydrateEasyCreditResponseToQuote($paymentParameters, $quoteTransfer);
 
-        return $this->redirectResponseInternal(
+        return $this->redirectResponseExternal(
             $this->getSummaryPageUrl()
         );
+    }
+
+    /**
+     * @param array $requestParameters
+     *
+     * @return array
+     */
+    protected function getPaymentParametersFromEasyCreditResponseParameters(array $requestParameters): array
+    {
+        $paymentParameters = new ArrayObject();
+        $this->getFactory()
+            ->createEasyCreditResponseToGetParametersMapper()
+            ->map($requestParameters, $paymentParameters);
+
+        return $paymentParameters->getArrayCopy();
     }
 
     /**
@@ -78,7 +92,7 @@ class EasyCreditController extends BaseHeidelpayController
      *
      * @return void
      */
-    protected function hydrateEasyCreditResponseToQuote(array $requestAsArray, QuoteTransfer $quoteTransfer)
+    protected function hydrateEasyCreditResponseToQuote(array $requestAsArray, QuoteTransfer $quoteTransfer): void
     {
         $this->getFactory()
             ->createEasyCreditResponseToQuoteHydrator()
@@ -90,7 +104,7 @@ class EasyCreditController extends BaseHeidelpayController
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
-    protected function processEasyCreditPaymentResponse(array $requestArray)
+    protected function processEasyCreditPaymentResponse(array $requestArray): HeidelpayPaymentProcessingResponseTransfer
     {
         return $this
             ->getClient()

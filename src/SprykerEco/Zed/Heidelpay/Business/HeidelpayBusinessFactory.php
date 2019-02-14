@@ -52,6 +52,8 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBui
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilder;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilderInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Request\EasyCreditAdapterRequestFromOrderBuilder;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Request\EasyCreditAdapterRequestFromQuoteBuilder;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\ExternalEasyCreditPaymentResponseBuilder;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\ExternalPaymentResponseBuilder;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\ExternalPaymentResponseBuilderInterface;
@@ -132,7 +134,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
         return new InitializeTransactionHandler(
             $this->createInitializeTransaction(),
             $this->getInitializePaymentMethodAdapterCollection(),
-            $this->createAdapterRequestFromQuoteBuilder()
+            $this->createEasyCreditAdapterRequestFromQuoteBuilder()
         );
     }
 
@@ -156,7 +158,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
         return new FinalizeTransactionHandler(
             $this->createFinalizeTransaction(),
             $this->getFinalizePaymentMethodAdapterCollection(),
-            $this->createAdapterRequestFromOrderBuilder(),
+            $this->createEasyCreditAdapterRequestFromOrderBuilder(),
             $this->createPaymentWriter()
         );
     }
@@ -465,11 +467,36 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface
+     */
+    public function createEasyCreditAdapterRequestFromOrderBuilder(): AdapterRequestFromOrderBuilderInterface
+    {
+        return new EasyCreditAdapterRequestFromOrderBuilder(
+            $this->createOrderToHeidelpayRequestMapper(),
+            $this->getCurrencyFacade(),
+            $this->getConfig(),
+            $this->createPaymentReader()
+        );
+    }
+
+    /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilderInterface
      */
     public function createAdapterRequestFromQuoteBuilder(): AdapterRequestFromQuoteBuilderInterface
     {
         return new AdapterRequestFromQuoteBuilder(
+            $this->createQuoteToHeidelpayRequestMapper(),
+            $this->getCurrencyFacade(),
+            $this->getConfig()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilderInterface
+     */
+    public function createEasyCreditAdapterRequestFromQuoteBuilder(): AdapterRequestFromQuoteBuilderInterface
+    {
+        return new EasyCreditAdapterRequestFromQuoteBuilder(
             $this->createQuoteToHeidelpayRequestMapper(),
             $this->getCurrencyFacade(),
             $this->getConfig()

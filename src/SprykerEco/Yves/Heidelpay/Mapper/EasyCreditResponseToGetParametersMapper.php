@@ -7,23 +7,24 @@
 
 namespace SprykerEco\Yves\Heidelpay\Mapper;
 
+use ArrayObject;
+
 class EasyCreditResponseToGetParametersMapper implements EasyCreditResponseToGetParametersMapperInterface
 {
     /**
      * @param array $responseAsArray
-     * @param array $getParameters
+     * @param \ArrayObject $getParameters
      *
-     * @return array
+     * @return void
      */
-    public function getMapped(array $responseAsArray, array $getParameters): array
+    public function map(array $responseAsArray, ArrayObject $getParameters): void
     {
-        $result = [
-            'IDENTIFICATION_UNIQUEID' => $responseAsArray['IDENTIFICATION_UNIQUEID'],
-            'CRITERION_EASYCREDIT_TOTALAMOUNT' => $responseAsArray['CRITERION_EASYCREDIT_TOTALAMOUNT'],
-            'CRITERION_EASYCREDIT_AMORTISATIONTEXT' => $responseAsArray['CRITERION_EASYCREDIT_AMORTISATIONTEXT'],
-            'CRITERION_EASYCREDIT_ACCRUINGINTEREST' => $responseAsArray['CRITERION_EASYCREDIT_ACCRUINGINTEREST'],
-        ];
+        $newList = $getParameters->getArrayCopy();
+        $newList['IDENTIFICATION_UNIQUEID'] = $responseAsArray['IDENTIFICATION_UNIQUEID'];
+        $newList['CRITERION_EASYCREDIT_TOTALAMOUNT'] = $responseAsArray['CRITERION_EASYCREDIT_TOTALAMOUNT'];
+        $newList['CRITERION_EASYCREDIT_AMORTISATIONTEXT'] = $responseAsArray['CRITERION_EASYCREDIT_AMORTISATIONTEXT'];
+        $newList['CRITERION_EASYCREDIT_ACCRUINGINTEREST'] = $responseAsArray['CRITERION_EASYCREDIT_ACCRUINGINTEREST'];
 
-        return $result;
+        $getParameters->exchangeArray($newList);
     }
 }

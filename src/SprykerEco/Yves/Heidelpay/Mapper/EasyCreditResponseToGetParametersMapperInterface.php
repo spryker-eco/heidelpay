@@ -7,13 +7,15 @@
 
 namespace SprykerEco\Yves\Heidelpay\Mapper;
 
+use ArrayObject;
+
 interface EasyCreditResponseToGetParametersMapperInterface
 {
     /**
      * @param array $responseAsArray
-     * @param array $getParameters
+     * @param \ArrayObject $getParameters
      *
-     * @return array
+     * @return void
      */
-    public function getMapped(array $responseAsArray, array $getParameters): array;
+    public function map(array $responseAsArray, ArrayObject $getParameters): void;
 }
