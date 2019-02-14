@@ -37,7 +37,6 @@ class EasyCreditController extends BaseHeidelpayController
 
         if ($processingResultTransfer->getIsError()) {
             echo $this->getFailurePageUrl($processingResultTransfer);
-
             exit();
         }
 
@@ -50,7 +49,7 @@ class EasyCreditController extends BaseHeidelpayController
             $paymentInitializeParameters
         )->buildEscaped();
 
-        echo $redirectUr;
+        echo $redirectUrl;
         exit();
     }
 

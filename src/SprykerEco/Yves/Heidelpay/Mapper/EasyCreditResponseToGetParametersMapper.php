@@ -18,10 +18,10 @@ class EasyCreditResponseToGetParametersMapper implements EasyCreditResponseToGet
     public function getMapped(array $responseAsArray, array $getParameters): array
     {
         $result = [
-            'IDENTIFICATION.UNIQUEID' => $responseAsArray['IDENTIFICATION.UNIQUEID'],
-            'CRITERION.EASYCREDIT_TOTALAMOUNT' => $responseAsArray['CRITERION.EASYCREDIT_TOTALAMOUNT'],
-            'CRITERION.EASYCREDIT_AMORTISATIONTEXT' => $responseAsArray['CRITERION.EASYCREDIT_AMORTISATIONTEXT'],
-            'CRITERION.EASYCREDIT_ACCRUINGINTEREST' => $responseAsArray['CRITERION.EASYCREDIT_ACCRUINGINTEREST'],
+            'IDENTIFICATION_UNIQUEID' => $responseAsArray['IDENTIFICATION_UNIQUEID'],
+            'CRITERION_EASYCREDIT_TOTALAMOUNT' => $responseAsArray['CRITERION_EASYCREDIT_TOTALAMOUNT'],
+            'CRITERION_EASYCREDIT_AMORTISATIONTEXT' => $responseAsArray['CRITERION_EASYCREDIT_AMORTISATIONTEXT'],
+            'CRITERION_EASYCREDIT_ACCRUINGINTEREST' => $responseAsArray['CRITERION_EASYCREDIT_ACCRUINGINTEREST'],
         ];
 
         return $result;
