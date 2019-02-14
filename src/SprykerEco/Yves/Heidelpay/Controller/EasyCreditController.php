@@ -47,7 +47,7 @@ class EasyCreditController extends BaseHeidelpayController
         $redirectUrl = Url::generate(
             $this->getInitializePaymentUrl(),
             $paymentInitializeParameters
-        )->buildEscaped();
+        )->build();
 
         echo $redirectUrl;
         exit();
