@@ -27,6 +27,11 @@ interface HeidelpayConfigInterface
     /**
      * @return string
      */
+    public function getYvesInitializePaymentUrl(): string;
+
+    /**
+     * @return string
+     */
     public function getYvesCheckoutSuccessUrl(): string;
 
     /**

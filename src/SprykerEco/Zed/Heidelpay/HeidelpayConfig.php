@@ -83,6 +83,14 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     /**
      * @return string
      */
+    public function getEasyCreditPaymentResponseUrl(): string
+    {
+        return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_PAYMENT_RESPONSE_URL);
+    }
+
+    /**
+     * @return string
+     */
     public function getYvesCheckoutPaymentFailedUrl(): string
     {
         return $this->get(HeidelpayConstants::CONFIG_YVES_CHECKOUT_PAYMENT_FAILED_URL);
