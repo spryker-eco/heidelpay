@@ -50,7 +50,8 @@ class EasyCreditController extends BaseHeidelpayController
             $paymentInitializeParameters
         )->buildEscaped();
 
-        return new Response($redirectUrl);
+        echo $redirectUr;
+        exit();
     }
 
     /**
