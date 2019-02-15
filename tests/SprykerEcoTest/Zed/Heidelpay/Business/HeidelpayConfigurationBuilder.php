@@ -21,13 +21,14 @@ class HeidelpayConfigurationBuilder
      */
     public function getHeidelpayConfigurationOptions(): array
     {
-        $config[ApplicationConstants::BASE_URL_YVES] = sprintf(
-            'http://%s',
-            $config[ApplicationConstants::HOST_YVES]
-        );
         $config[HeidelpayConstants::CONFIG_ENCRYPTION_KEY] = 'encryption_key';
         $config[ApplicationConstants::HOST_YVES] = 'www.de.spryker.test';
         $YVES_HOST_PROTOCOL = 'http';
+        $config[ApplicationConstants::BASE_URL_YVES] = sprintf(
+            '%s://%s',
+            $YVES_HOST_PROTOCOL,
+            $config[ApplicationConstants::HOST_YVES]
+        );
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_PAYMENT_RESPONSE_URL] = $YVES_HOST_PROTOCOL . '://' . $config[ApplicationConstants::HOST_YVES] . '/heidelpay/payment';
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_REJECTED_DELIVERY_ADDRESS] = 'Packstation';
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_GRAND_TOTAL_LESS_THAN] = 200;
