@@ -97,11 +97,11 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function heidelpayEasycreditRequest(QuoteTransfer $quoteTransfer): HeidelpayResponseTransfer
+    public function sendHeidelpayEasycreditInitializeRequest(QuoteTransfer $quoteTransfer): HeidelpayResponseTransfer
     {
         return $this->getFactory()
             ->createZedStub()
-            ->easycreditRequest($quoteTransfer);
+            ->sendEasycreditInitializeRequest($quoteTransfer);
     }
 
     /**

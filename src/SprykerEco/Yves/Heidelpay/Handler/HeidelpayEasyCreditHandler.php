@@ -21,6 +21,8 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
     public const PAYMENT_PROVIDER = HeidelpayConfig::PROVIDER_NAME;
     protected const EASYCREDIT_EXPENSE_TYPE = 'EASYCREDIT_EXPENSE_TYPE';
     protected const EASYCREDIT_EXPENSE_NAME = 'EasyCredit';
+    protected const EASYCREDIT_EXPENSE_QUANTITY = 'EasyCredit';
+    protected const EASYCREDIT_TAX_AMOUNT = 'EasyCredit';
 
     /**
      * @var \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface
@@ -65,8 +67,7 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
             $paymentTransfer,
             $quoteTransfer->getPriceMode()
         );
-        $this->replaceAccruingInterestExpenseTransfer($quoteTransfer, $accruingInterestExpenseTransfer);
-
+        $quoteTransfer = $this->replaceAccruingInterestExpenseTransfer($quoteTransfer, $accruingInterestExpenseTransfer);
         $quoteTransfer = $this->calculationClient->recalculate($quoteTransfer);
         $this->quoteClient->setQuote($quoteTransfer);
 
@@ -79,7 +80,7 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
      *
      * @return \Generated\Shared\Transfer\ExpenseTransfer;
      */
-    protected function createAccruingInterestExpense(PaymentTransfer $paymentTransfer, $priceMode): ExpenseTransfer
+    protected function createAccruingInterestExpense(PaymentTransfer $paymentTransfer, ?string $priceMode): ExpenseTransfer
     {
         $easyCreditExpensePrice = $paymentTransfer
             ->getHeidelpayEasyCredit()
@@ -92,7 +93,7 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
             ->setQuantity(1)
             ->setSumTaxAmount(0);
 
-        $this->setPrice(
+        $expenseTransfer = $this->setAccruingInterestExpensePrice(
             $expenseTransfer,
             $easyCreditExpensePrice,
             $priceMode
@@ -102,24 +103,29 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
     }
 
     /**
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $shipmentExpenseTransfer
+     * @param \Generated\Shared\Transfer\ExpenseTransfer $accruingInterestExpenseTransfer
      * @param int $price
      * @param string $priceMode
      *
-     * @return void
+     * @return \Generated\Shared\Transfer\ExpenseTransfer
      */
-    protected function setPrice(ExpenseTransfer $shipmentExpenseTransfer, $price, $priceMode): void
-    {
+    protected function setAccruingInterestExpensePrice(
+        ExpenseTransfer $accruingInterestExpenseTransfer,
+        int $price,
+        string $priceMode
+    ): ExpenseTransfer {
         if ($priceMode === $this->priceClient->getNetPriceModeIdentifier()) {
-            $shipmentExpenseTransfer->setUnitGrossPrice(0);
-            $shipmentExpenseTransfer->setSumGrossPrice(0);
-            $shipmentExpenseTransfer->setUnitNetPrice($price);
+            $accruingInterestExpenseTransfer->setUnitGrossPrice(0);
+            $accruingInterestExpenseTransfer->setSumGrossPrice(0);
+            $accruingInterestExpenseTransfer->setUnitNetPrice($price);
             return;
         }
 
-        $shipmentExpenseTransfer->setUnitNetPrice(0);
-        $shipmentExpenseTransfer->setSumNetPrice(0);
-        $shipmentExpenseTransfer->setUnitGrossPrice($price);
+        $accruingInterestExpenseTransfer->setUnitNetPrice(0);
+        $accruingInterestExpenseTransfer->setSumNetPrice(0);
+        $accruingInterestExpenseTransfer->setUnitGrossPrice($price);
+
+        return $accruingInterestExpenseTransfer;
     }
 
     /**
@@ -128,7 +134,7 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\ExpenseTransfer $expenseTransfer
      *
-     * @return void
+     * @return \Generated\Shared\Transfer\QuoteTransfer
      */
     protected function replaceAccruingInterestExpenseTransfer(
         QuoteTransfer $quoteTransfer,
@@ -143,6 +149,8 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
 
         $quoteTransfer->setExpenses($otherExpenseCollection);
         $quoteTransfer->addExpense($expenseTransfer);
+
+        return $quoteTransfer;
     }
 
     /**

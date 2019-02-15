@@ -27,7 +27,7 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
     protected const ZED_GET_PROCESS_EXTERNAL_PAYMENT_RESPONSE = '/heidelpay/gateway/process-external-payment-response';
     protected const ZED_GET_SAVE_CREDIT_CARD_REGISTRATION = '/heidelpay/gateway/save-credit-card-registration';
     protected const ZED_GET_FIND_CREDIT_CARD_REGISTRATION = '/heidelpay/gateway/find-credit-card-registration';
-    protected const ZED_EASYCREDIT_REQUEST = '/heidelpay/gateway/easycredit-initialize-payment';
+    protected const ZED_SEND_EASYCREDIT_INITIALIZE_REQUEST = '/heidelpay/gateway/easycredit-initialize-payment';
     protected const ZED_GET_AUTHORIZE_ON_REGISTRATION_TRANSACTION_LOG = '/heidelpay/gateway/get-authorize-on-registration-transaction-log';
     protected const ZED_GET_PROCESS_EXTERNAL_EASY_CREDIT_PAYMENT_RESPONSE = '/heidelpay/gateway/process-external-easy-credit-payment-response';
 
@@ -133,10 +133,10 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function easycreditRequest(QuoteTransfer $quoteTransfer): HeidelpayResponseTransfer
+    public function sendEasycreditInitializeRequest(QuoteTransfer $quoteTransfer): HeidelpayResponseTransfer
     {
         return $this->zedStub->call(
-            static::ZED_EASYCREDIT_REQUEST,
+            static::ZED_SEND_EASYCREDIT_INITIALIZE_REQUEST,
             $quoteTransfer
         );
     }

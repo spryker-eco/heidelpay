@@ -157,5 +157,5 @@ interface HeidelpayClientInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function heidelpayEasycreditRequest(QuoteTransfer $quoteTransfer): HeidelpayResponseTransfer;
+    public function sendHeidelpayEasycreditInitializeRequest(QuoteTransfer $quoteTransfer): HeidelpayResponseTransfer;
 }

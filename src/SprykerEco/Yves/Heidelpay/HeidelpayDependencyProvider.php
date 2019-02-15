@@ -17,11 +17,11 @@ use SprykerEco\Yves\Heidelpay\Dependency\Plugin\HeidelpayToMoneyPluginBridge;
 
 class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
 {
-    public const CLIENT_HEIDELPAY = 'heidelpay client';
-    public const CLIENT_QUOTE = 'quote client';
-    public const CLIENT_CALCULATION = 'calculation client';
-    public const CLIENT_PRICE = 'price client';
-    public const PLUGIN_MONEY = 'money plugin';
+    public const CLIENT_HEIDELPAY = 'CLIENT_HEIDELPAY';
+    public const CLIENT_QUOTE = 'CLIENT_QUOTE';
+    public const CLIENT_CALCULATION = 'CLIENT_CALCULATION';
+    public const CLIENT_PRICE = 'CLIENT_PRICE';
+    public const PLUGIN_MONEY = 'PLUGIN_MONEY';
 
     /**
      * @param \Spryker\Yves\Kernel\Container $container

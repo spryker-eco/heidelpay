@@ -75,5 +75,5 @@ interface HeidelpayStubInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function easycreditRequest(QuoteTransfer $quoteTransfer): HeidelpayResponseTransfer;
+    public function sendEasycreditInitializeRequest(QuoteTransfer $quoteTransfer): HeidelpayResponseTransfer;
 }
