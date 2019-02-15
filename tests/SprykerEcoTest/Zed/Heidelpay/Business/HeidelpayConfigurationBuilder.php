@@ -21,6 +21,10 @@ class HeidelpayConfigurationBuilder
      */
     public function getHeidelpayConfigurationOptions(): array
     {
+        $config[ApplicationConstants::BASE_URL_YVES] = sprintf(
+            'http://%s',
+            $config[ApplicationConstants::HOST_YVES]
+        );
         $config[HeidelpayConstants::CONFIG_ENCRYPTION_KEY] = 'encryption_key';
         $config[ApplicationConstants::HOST_YVES] = 'www.de.spryker.test';
         $YVES_HOST_PROTOCOL = 'http';
