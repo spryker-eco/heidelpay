@@ -37,7 +37,7 @@ class FinalizeTransaction implements FinalizeTransactionInterface
     public function executeTransaction(
         HeidelpayRequestTransfer $finalizeRequestTransfer,
         PaymentWithFinalizeInterface $paymentAdapter
-    ) {
+    ): HeidelpayResponseTransfer {
         $finalizeResponseTransfer = $paymentAdapter->finalize($finalizeRequestTransfer);
         $this->logTransaction($finalizeRequestTransfer, $finalizeResponseTransfer);
 
@@ -53,7 +53,7 @@ class FinalizeTransaction implements FinalizeTransactionInterface
     protected function logTransaction(
         HeidelpayRequestTransfer $finalizeRequestTransfer,
         HeidelpayResponseTransfer $finalizeResponseTransfer
-    ) {
+    ): void {
         $this->transactionLogger->logTransaction(
             HeidelpayConfig::TRANSACTION_TYPE_FINALIZE,
             $finalizeRequestTransfer,
