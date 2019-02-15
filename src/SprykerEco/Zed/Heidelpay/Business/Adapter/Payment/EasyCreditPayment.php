@@ -47,7 +47,7 @@ class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterfac
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function reservation(HeidelpayRequestTransfer $reservationRequestTransfer)
+    public function reservation(HeidelpayRequestTransfer $reservationRequestTransfer): HeidelpayResponseTransfer
     {
         $easyCreditMethod = new EasyCreditPaymentMethod();
         $request = $easyCreditMethod->getRequest();

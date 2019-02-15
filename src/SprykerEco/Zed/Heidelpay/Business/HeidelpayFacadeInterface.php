@@ -38,7 +38,8 @@ interface HeidelpayFacadeInterface
     public function postSaveHook(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer): CheckoutResponseTransfer;
 
     /**
-     * {@inheritdoc}
+     * Specification:
+     *  - TBD
      *
      * @api
      *
@@ -49,7 +50,8 @@ interface HeidelpayFacadeInterface
     public function processExternalEasyCreditPaymentResponse(array $externalResponse);
 
     /**
-     * {@inheritdoc}
+     * Specification:
+     *  - TBD
      *
      * @api
      *
@@ -60,7 +62,8 @@ interface HeidelpayFacadeInterface
     public function authorizeOnRegistrationPayment(OrderTransfer $orderTransfer);
 
     /**
-     * {@inheritdoc}
+     * Specification:
+     *  - TBD
      *
      * @api
      *
@@ -71,7 +74,8 @@ interface HeidelpayFacadeInterface
     public function finalizePayment(OrderTransfer $orderTransfer);
 
     /**
-     * {@inheritdoc}
+     * Specification:
+     *  - TBD
      *
      * @api
      *
@@ -95,7 +99,8 @@ interface HeidelpayFacadeInterface
     public function processExternalPaymentResponse(array $externalResponse): HeidelpayPaymentProcessingResponseTransfer;
 
     /**
-     * {@inheritdoc}
+     * Specification:
+     *  - Send Initialization Request (HP.INI) to EasyCredit.
      *
      * @api
      *
@@ -194,7 +199,8 @@ interface HeidelpayFacadeInterface
     public function getCreditCardPaymentOptions(QuoteTransfer $quoteTransfer): HeidelpayCreditCardPaymentOptionsTransfer;
 
     /**
-     * {@inheritdoc}
+     * Specification:
+     *  - TBD
      *
      * @api
      *
@@ -205,7 +211,8 @@ interface HeidelpayFacadeInterface
     public function saveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer): HeidelpayRegistrationSaveResponseTransfer;
 
     /**
-     * {@inheritdoc}
+     * Specification:
+     *  - TBD
      *
      * @api
      *
@@ -216,7 +223,8 @@ interface HeidelpayFacadeInterface
     public function findCreditCardRegistrationByIdAndQuote(HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer): HeidelpayCreditCardRegistrationTransfer;
 
     /**
-     * {@inheritdoc}
+     * Specification:
+     *  - TBD
      *
      * @api
      *

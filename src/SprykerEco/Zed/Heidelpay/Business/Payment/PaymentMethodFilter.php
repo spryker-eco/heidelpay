@@ -108,8 +108,6 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
             $this->config->getEasycreditCriteriaRejectedDeliveryAddress()
         );
 
-        $isAddressCorrect = $isRejectedShippingAddress === false && $isRejectedBillingAddress === false;
-
-        return $isAddressCorrect;
+        return ($isRejectedShippingAddress === false && $isRejectedBillingAddress === false);
     }
 }
