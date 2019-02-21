@@ -1,6 +1,6 @@
 {
   "name": "spryker-eco/heidelpay",
-  "description": "Heidelpay bundle",
+  "description": "Heidelpay module",
   "license": "MIT",
   "require": {
     "heidelpay/php-payment-api": "^1.5.0",
