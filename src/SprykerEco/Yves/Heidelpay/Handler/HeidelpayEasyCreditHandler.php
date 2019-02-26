@@ -118,7 +118,8 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
             $accruingInterestExpenseTransfer->setUnitGrossPrice(0);
             $accruingInterestExpenseTransfer->setSumGrossPrice(0);
             $accruingInterestExpenseTransfer->setUnitNetPrice($price);
-            return;
+
+            return $accruingInterestExpenseTransfer;
         }
 
         $accruingInterestExpenseTransfer->setUnitNetPrice(0);
@@ -139,7 +140,7 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
     protected function replaceAccruingInterestExpenseTransfer(
         QuoteTransfer $quoteTransfer,
         ExpenseTransfer $expenseTransfer
-    ): void {
+    ): QuoteTransfer {
         $otherExpenseCollection = new ArrayObject();
         foreach ($quoteTransfer->getExpenses() as $expense) {
             if ($expense->getType() !== static::EASYCREDIT_EXPENSE_TYPE) {
