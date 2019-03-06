@@ -1,13 +1,9 @@
 # Heidelpay Module
 
-heidelpay integration for your spryker project.
-
-## Currently supported payment methods:
-
-* credit card
-* PayPal
-* Sofort
-* iDeal
+[![Build Status](https://travis-ci.org/spryker-eco/heidelpay.svg?branch=master)](https://travis-ci.org/spryker-eco/heidelpay)
+[![License](https://img.shields.io/github/license/spryker-eco/heidelpay.svg?b=master)](https://github.com/spryker-eco/heidelpay)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/badges/build.png?b=master)](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/build-status/master)
 
 ## Installation
 
@@ -17,10 +13,4 @@ composer require spryker-eco/heidelpay
 
 ## Documentation
 
-[Documentation](https://academy.spryker.com/developing_with_spryker/industry_partner_integration/heidelpay/integration_payment_heidelpay.html?Highlight=heidelpay)
-
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/?branch=master)
-
-[![Code Coverage](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/?branch=master)
-
-[![Build Status](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/badges/build.png?b=master)](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/build-status/master)
+[Documentation](https://documentation.spryker.com/industry_partners/payment/heidelpay/heidelpay.htm)
