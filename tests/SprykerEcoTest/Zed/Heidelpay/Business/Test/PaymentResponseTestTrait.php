@@ -11,10 +11,6 @@ use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
 
-/**
- * MIT License
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
- */
 trait PaymentResponseTestTrait
 {
     /**

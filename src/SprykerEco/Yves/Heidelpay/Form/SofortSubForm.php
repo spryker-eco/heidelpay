@@ -12,4 +12,5 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 class SofortSubForm extends AbstractHeidelpaySubForm
 {
     public const PAYMENT_METHOD = HeidelpayConfig::PAYMENT_METHOD_SOFORT;
+    public const PAYMENT_METHOD_TEMPLATE_PATH = 'sofort';
 }

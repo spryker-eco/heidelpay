@@ -16,15 +16,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AbstractHeidelpaySubForm extends AbstractSubFormType implements SubFormInterface, SubFormProviderNameInterface
 {
-    /**
-     * @const string
-     */
     public const PAYMENT_PROVIDER = HeidelpayConfig::PROVIDER_NAME;
-
-    /**
-     * @const string
-     */
     public const PAYMENT_METHOD = '';
+    public const PAYMENT_METHOD_TEMPLATE_PATH = '';
 
     /**
      * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
@@ -68,7 +62,7 @@ class AbstractHeidelpaySubForm extends AbstractSubFormType implements SubFormInt
      */
     public function getTemplatePath(): string
     {
-        return static::PAYMENT_PROVIDER . '/' . static::PAYMENT_METHOD;
+        return static::PAYMENT_PROVIDER . '/' . static::PAYMENT_METHOD_TEMPLATE_PATH;
     }
 
     /**
