@@ -27,7 +27,7 @@ class EasyCreditSubForm extends AbstractHeidelpaySubForm
     public const VARS_KEY_LOGO_URL = 'logo_url';
     public const VARS_KEY_INFO_LINK = 'info_link';
 
-    protected const FIELD_EASY_CREDIT_POLICY_AGREEMENT = 'privacy_policy_status';
+    protected const FIELD_EASY_CREDIT_POLICY_AGREEMENT = 'isPolicyAgreementChecked';
 
 
     /**

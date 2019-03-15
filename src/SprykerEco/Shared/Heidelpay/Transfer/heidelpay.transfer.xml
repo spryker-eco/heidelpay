@@ -20,7 +20,7 @@
         <property name="amortisationText" type="string" />
         <property name="accruingInterest" type="float" />
         <property name="totalAmount" type="float" />
-        <property name="privacyPolicyStatus" type="bool" />
+        <property name="isPolicyAgreementChecked" type="bool" />
     </transfer>
 
     <transfer name="HeidelpayCreditCardPayment">

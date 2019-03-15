@@ -8,7 +8,6 @@
 namespace SprykerEco\Yves\Heidelpay\Form;
 
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentTransfer;
-use Generated\Shared\Transfer\PaymentTransfer;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
