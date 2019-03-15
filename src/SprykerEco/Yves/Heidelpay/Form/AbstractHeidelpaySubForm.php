@@ -72,4 +72,12 @@ class AbstractHeidelpaySubForm extends AbstractSubFormType implements SubFormInt
     {
         return static::PAYMENT_PROVIDER . '/' . static::PAYMENT_METHOD_TEMPLATE_PATH;
     }
+
+    /**
+     * @return string
+     */
+    public function getProviderName()
+    {
+        return static::PAYMENT_PROVIDER;
+    }
 }

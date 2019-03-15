@@ -61,6 +61,8 @@ class Basket implements BasketInterface
         $this->requestMapper->map($heidelpayBasketRequestTransfer, $heidelpayBasket);
 
         $request = new Request($authentication, $heidelpayBasket);
+        $request->setIsSandboxMode($this->config->getMerchantSandboxMode());
+
         $response = $request->addNewBasket();
 
         $heidelpayBasketResponseTransfer = new HeidelpayBasketResponseTransfer();
