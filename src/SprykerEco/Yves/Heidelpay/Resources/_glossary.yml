@@ -30,6 +30,10 @@ payment.heidelpay.credit_card.validity:
   translations:
     en_US: 'Valid until'
     de_DE: 'Valid until'
+payment.heidelpay.pay_with_easy_credit_info_link:
+  translations:
+    en_US: 'What is installment purchase by easyCredit?'
+    de_DE: 'Was ist Ratenkauf by easyCredit?'
 payment.heidelpay.pay_with_ideal:
   translations:
     en_US: 'Pay simple and secure with iDeal'

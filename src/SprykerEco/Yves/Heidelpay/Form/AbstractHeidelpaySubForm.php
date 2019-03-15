@@ -10,14 +10,23 @@ namespace SprykerEco\Yves\Heidelpay\Form;
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
 use Spryker\Yves\StepEngine\Dependency\Form\AbstractSubFormType;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
+use Spryker\Yves\StepEngine\Dependency\Form\SubFormProviderNameInterface;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AbstractHeidelpaySubForm extends AbstractSubFormType implements SubFormInterface
+class AbstractHeidelpaySubForm extends AbstractSubFormType implements SubFormInterface, SubFormProviderNameInterface
 {
     public const PAYMENT_PROVIDER = HeidelpayConfig::PROVIDER_NAME;
     public const PAYMENT_METHOD = '';
     public const PAYMENT_METHOD_TEMPLATE_PATH = '';
+
+    /**
+     * @return string
+     */
+    public function getProviderName(): string
+    {
+        return HeidelpayConfig::PROVIDER_NAME;
+    }
 
     /**
      * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
