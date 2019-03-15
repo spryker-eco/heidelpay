@@ -1,3 +1,7 @@
+checkout.payment.provider.heidelpay:
+  translations:
+    en_US: 'Heidelpay'
+    de_DE: 'Heidelpay'
 heidelpay.payment.credit_card.existing-registration:
   translations:
     en_US: 'Use existing registration'
