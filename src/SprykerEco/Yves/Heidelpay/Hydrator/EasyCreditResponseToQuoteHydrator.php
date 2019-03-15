@@ -52,6 +52,7 @@ class EasyCreditResponseToQuoteHydrator implements EasyCreditResponseToQuoteHydr
             ->getHeidelpayEasyCredit()
             ->setIdPaymentReference($responseAsArray['IDENTIFICATION_UNIQUEID'])
             ->setAmortisationText($responseAsArray['CRITERION_EASYCREDIT_AMORTISATIONTEXT'])
+            ->setPreContractionInformationUrl($responseAsArray['CRITERION_EASYCREDIT_PRECONTRACTINFORMATIONURL'])
             ->setAccruingInterest(
                 $this->moneyPlugin->convertDecimalToInteger((float)$responseAsArray['CRITERION_EASYCREDIT_ACCRUINGINTEREST'])
             )
