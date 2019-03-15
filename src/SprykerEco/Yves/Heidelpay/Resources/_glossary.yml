@@ -1,7 +1,7 @@
 heidelpay.payment.easy_credit.pre_contraction_info_link_text:
   translations:
-    en_US: 'Pre contraction information'
-    de_DE: 'Vor Vertragsinformationen'
+    en_US: 'Precontractual information'
+    de_DE: 'Vorvertragliche Informationen'
 heidelpay.payment.credit_card.existing-registration:
   translations:
     en_US: 'Use existing registration'
