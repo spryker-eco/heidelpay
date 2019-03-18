@@ -21,14 +21,6 @@ class AbstractHeidelpaySubForm extends AbstractSubFormType implements SubFormInt
     public const PAYMENT_METHOD_TEMPLATE_PATH = '';
 
     /**
-     * @return string
-     */
-    public function getProviderName(): string
-    {
-        return HeidelpayConfig::PROVIDER_NAME;
-    }
-
-    /**
      * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      *
      * @return void

@@ -65,7 +65,7 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
      */
     public function getEasyCreditLogoUrl(): string
     {
-        return $this->get(HeidelpayConstants::EASY_CREDIT_LOGO_URL);
+        return $this->get(HeidelpayConstants::CONFIG_EASY_CREDIT_LOGO_URL);
     }
 
     /**
@@ -73,6 +73,6 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
      */
     public function getEasyCreditInfoLink(): string
     {
-        return $this->get(HeidelpayConstants::EASY_CREDIT_INFO_LINK);
+        return $this->get(HeidelpayConstants::CONFIG_EASY_CREDIT_INFO_LINK);
     }
 }
