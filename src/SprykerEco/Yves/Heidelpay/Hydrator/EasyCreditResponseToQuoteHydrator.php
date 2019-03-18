@@ -19,6 +19,7 @@ class EasyCreditResponseToQuoteHydrator implements EasyCreditResponseToQuoteHydr
     protected const EASYCREDIT_PRECONTRACT_INFORMATION_URL = 'CRITERION_EASYCREDIT_PRECONTRACTINFORMATIONURL';
     protected const EASYCREDIT_ACCRUING_INTEREST = 'CRITERION_EASYCREDIT_ACCRUINGINTEREST';
     protected const EASYCREDIT_TOTAL_AMOUNT = 'CRITERION_EASYCREDIT_TOTALAMOUNT';
+    protected const EASYCREDIT_TOTAL_ORDER_AMOUNT = 'CRITERION_EASYCREDIT_TOTALORDERAMOUNT';
 
     /**
      * @var \SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface
@@ -64,6 +65,9 @@ class EasyCreditResponseToQuoteHydrator implements EasyCreditResponseToQuoteHydr
             )
             ->setTotalAmount(
                 $this->moneyPlugin->convertDecimalToInteger((float)$responseAsArray[static::EASYCREDIT_TOTAL_AMOUNT])
+            )
+            ->setTotalOrderAmount(
+                $this->moneyPlugin->convertDecimalToInteger((float)$responseAsArray[static::EASYCREDIT_TOTAL_ORDER_AMOUNT])
             );
 
         $quoteTransfer->setPayment($paymentTransfer);
