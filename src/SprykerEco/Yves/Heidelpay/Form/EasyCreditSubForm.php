@@ -8,7 +8,6 @@
 namespace SprykerEco\Yves\Heidelpay\Form;
 
 use Generated\Shared\Transfer\HeidelpayEasyCreditPaymentTransfer;
-use Generated\Shared\Transfer\PaymentTransfer;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -28,7 +27,6 @@ class EasyCreditSubForm extends AbstractHeidelpaySubForm
     public const VARS_KEY_INFO_LINK = 'info_link';
 
     protected const FIELD_EASY_CREDIT_POLICY_AGREEMENT = 'isPolicyAgreementChecked';
-
 
     /**
      * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver

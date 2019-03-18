@@ -15,6 +15,11 @@ class UnsuccessEasyCreditPaymentExternalResponseBuilder extends ExternalResponse
 {
     use HeidelpayEasyCreditResponseTrait;
 
+    /**
+     * @param string $paymentMethod
+     *
+     * @return array
+     */
     public function createHeidelpayResponse(string $paymentMethod): array
     {
         $customerJohnDoe = $this->createOrGetCustomerJohnDoe();
@@ -73,5 +78,4 @@ class UnsuccessEasyCreditPaymentExternalResponseBuilder extends ExternalResponse
     {
         return 'The response object seems to be empty or it is not a valid heidelpay response!';
     }
-
 }

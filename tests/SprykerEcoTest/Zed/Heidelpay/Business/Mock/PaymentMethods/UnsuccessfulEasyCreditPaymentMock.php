@@ -38,7 +38,7 @@ class UnsuccessfulEasyCreditPaymentMock extends EasyCreditPayment
     }
 
     /**
-     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $authorizeRequestTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $initializeRequestTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */

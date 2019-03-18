@@ -15,6 +15,11 @@ class SuccessEasyCreditPaymentExternalResponseBuilder extends ExternalResponseBu
 {
     use HeidelpayEasyCreditResponseTrait;
 
+    /**
+     * @param string $paymentMethod
+     *
+     * @return array
+     */
     public function createHeidelpayResponse(string $paymentMethod): array
     {
         $customerJohnDoe = $this->createOrGetCustomerJohnDoe();

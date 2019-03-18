@@ -59,7 +59,6 @@ class HeidelpayFacadeReservationPaymentTest extends HeidelpayPaymentTest
         $this->testUnsuccessfulHeidelpayPaymentResponse($transaction);
     }
 
-
     /**
      * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
      */

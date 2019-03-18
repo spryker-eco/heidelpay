@@ -14,7 +14,7 @@ use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
 trait PaymentResponseTestTrait
 {
     /**
-     * @param \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer $transaction
+     * @param \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer $responseTransfer
      *
      * @return void
      */
@@ -26,7 +26,7 @@ trait PaymentResponseTestTrait
     }
 
     /**
-     * @param \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer $transaction
+     * @param \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer $responseTransfer
      *
      * @return void
      */

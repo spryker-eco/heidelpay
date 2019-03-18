@@ -9,11 +9,11 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders;
 
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\NewOrderWithOneItemTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentHeidelpayTrait;
-use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
 
 class PaymentBuilder
 {

@@ -13,6 +13,7 @@ class SuccessSofortPaymentExternalResponseBuilder extends ExternalResponseBuilde
 {
     /**
      * @param string $paymentMethod
+     *
      * @return array
      */
     public function createHeidelpayResponse(string $paymentMethod): array

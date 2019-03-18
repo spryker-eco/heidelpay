@@ -8,8 +8,8 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithFinalizeInterface;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithFinalizeInterface;
 
 interface FinalizeTransactionInterface
 {
