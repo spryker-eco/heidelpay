@@ -23,7 +23,7 @@ class HeidelpayToPriceClientBridge implements HeidelpayToPriceClientInterface
     }
 
     /**
-     * @return \Generated\Shared\Transfer\QuoteTransfer
+     * @return string
      */
     public function getNetPriceModeIdentifier()
     {
