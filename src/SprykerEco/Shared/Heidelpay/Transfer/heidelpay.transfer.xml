@@ -18,6 +18,7 @@
         <property name="paymentMethod" type="string" />
         <property name="idPaymentReference" type="string" />
         <property name="amortisationText" type="string" />
+        <property name="preContractionInformationUrl" type="string" />
         <property name="accruingInterest" type="float" />
         <property name="totalAmount" type="float" />
         <property name="isPolicyAgreementChecked" type="bool" />

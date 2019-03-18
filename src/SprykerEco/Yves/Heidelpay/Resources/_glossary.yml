@@ -1,3 +1,7 @@
+heidelpay.payment.easy_credit.pre_contraction_info_link_text:
+  translations:
+    en_US: 'Precontractual information'
+    de_DE: 'Vorvertragliche Informationen'
 checkout.payment.provider.heidelpay:
   translations:
     en_US: 'Heidelpay'
