@@ -11,9 +11,24 @@ use Generated\Shared\Transfer\HeidelpayEasyCreditPaymentTransfer;
 use Generated\Shared\Transfer\PaymentTransfer;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface;
+use SprykerEco\Yves\Heidelpay\Form\EasyCreditSubForm;
+use SprykerEco\Yves\Heidelpay\HeidelpayConfig;
 
 class EasyCreditDataProvider implements StepEngineFormDataProviderInterface
 {
+    /**
+     * @var \SprykerEco\Yves\Heidelpay\HeidelpayConfig
+     */
+    protected $heidelPayConfig;
+
+    /**
+     * @param \SprykerEco\Yves\Heidelpay\HeidelpayConfig $heidelPayConfig
+     */
+    public function __construct(HeidelpayConfig $heidelPayConfig)
+    {
+        $this->heidelPayConfig = $heidelPayConfig;
+    }
+
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
@@ -37,6 +52,14 @@ class EasyCreditDataProvider implements StepEngineFormDataProviderInterface
      */
     public function getOptions(AbstractTransfer $quoteTransfer)
     {
-        return [];
+        if ($quoteTransfer->getHeidelpayPayment()) {
+            $legalText = $quoteTransfer->getHeidelpayPayment()->getLegalText();
+        }
+
+        return [
+            EasyCreditSubForm::VARS_KEY_LEGAL_TEXT => $legalText ?? '',
+            EasyCreditSubForm::VARS_KEY_LOGO_URL => $this->heidelPayConfig->getEasyCreditLogoUrl(),
+            EasyCreditSubForm::VARS_KEY_INFO_LINK => $this->heidelPayConfig->getEasyCreditInfoLink(),
+        ];
     }
 }

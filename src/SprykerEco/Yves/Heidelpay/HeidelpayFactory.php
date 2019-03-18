@@ -186,7 +186,7 @@ class HeidelpayFactory extends AbstractFactory
      */
     public function createEasyCreditFormDataProvider(): StepEngineFormDataProviderInterface
     {
-        return new EasyCreditDataProvider();
+        return new EasyCreditDataProvider($this->getConfig());
     }
 
     /**
