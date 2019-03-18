@@ -10,7 +10,7 @@ namespace SprykerEco\Yves\Heidelpay\Dependency\Client;
 interface HeidelpayToPriceClientInterface
 {
     /**
-     * @return \Generated\Shared\Transfer\QuoteTransfer
+     * @return string
      */
     public function getNetPriceModeIdentifier();
 }

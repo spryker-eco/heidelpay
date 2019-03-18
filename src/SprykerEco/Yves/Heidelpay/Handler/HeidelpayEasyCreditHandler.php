@@ -82,7 +82,7 @@ class HeidelpayEasyCreditHandler extends HeidelpayHandler
      */
     protected function createAccruingInterestExpense(PaymentTransfer $paymentTransfer, ?string $priceMode): ExpenseTransfer
     {
-        $easyCreditExpensePrice = $paymentTransfer
+        $easyCreditExpensePrice = (int)$paymentTransfer
             ->getHeidelpayEasyCredit()
             ->getAccruingInterest();
 
