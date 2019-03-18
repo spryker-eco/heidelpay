@@ -14,6 +14,12 @@ use SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface;
 
 class EasyCreditResponseToQuoteHydrator implements EasyCreditResponseToQuoteHydratorInterface
 {
+    protected const EASYCREDIT_IDENTIFICATION_UNIQUE_ID = 'IDENTIFICATION_UNIQUEID';
+    protected const EASYCREDIT_AMORTISATION_TEXT = 'CRITERION_EASYCREDIT_AMORTISATIONTEXT';
+    protected const EASYCREDIT_PRECONTRACT_INFORMATION_URL = 'CRITERION_EASYCREDIT_PRECONTRACTINFORMATIONURL';
+    protected const EASYCREDIT_ACCRUING_INTEREST = 'CRITERION_EASYCREDIT_ACCRUINGINTEREST';
+    protected const EASYCREDIT_TOTAL_AMOUNT = 'CRITERION_EASYCREDIT_TOTALAMOUNT';
+
     /**
      * @var \SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface
      */
@@ -50,14 +56,14 @@ class EasyCreditResponseToQuoteHydrator implements EasyCreditResponseToQuoteHydr
         $paymentTransfer
             ->requireHeidelpayEasyCredit()
             ->getHeidelpayEasyCredit()
-            ->setIdPaymentReference($responseAsArray['IDENTIFICATION_UNIQUEID'])
-            ->setAmortisationText($responseAsArray['CRITERION_EASYCREDIT_AMORTISATIONTEXT'])
-            ->setPreContractionInformationUrl($responseAsArray['CRITERION_EASYCREDIT_PRECONTRACTINFORMATIONURL'])
+            ->setIdPaymentReference($responseAsArray[static::EASYCREDIT_IDENTIFICATION_UNIQUE_ID])
+            ->setAmortisationText($responseAsArray[static::EASYCREDIT_AMORTISATION_TEXT])
+            ->setPreContractionInformationUrl($responseAsArray[static::EASYCREDIT_PRECONTRACT_INFORMATION_URL])
             ->setAccruingInterest(
-                $this->moneyPlugin->convertDecimalToInteger((float)$responseAsArray['CRITERION_EASYCREDIT_ACCRUINGINTEREST'])
+                $this->moneyPlugin->convertDecimalToInteger((float)$responseAsArray[static::EASYCREDIT_ACCRUING_INTEREST])
             )
             ->setTotalAmount(
-                $this->moneyPlugin->convertDecimalToInteger((float)$responseAsArray['CRITERION_EASYCREDIT_TOTALAMOUNT'])
+                $this->moneyPlugin->convertDecimalToInteger((float)$responseAsArray[static::EASYCREDIT_TOTAL_AMOUNT])
             );
 
         $quoteTransfer->setPayment($paymentTransfer);
