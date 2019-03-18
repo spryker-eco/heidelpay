@@ -63,7 +63,8 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
             ->setIsError($apiResponse->isError())
             ->setProcessingCode($apiResponse->getProcessing()->code)
             ->setIdTransactionUnique($apiResponse->getIdentification()->getUniqueId())
-            ->setResultCode($apiResponse->getProcessing()->getResult());
+            ->setResultCode($apiResponse->getProcessing()->getResult())
+            ->setLegalText($apiResponse->getConfig()->getOptinText());
 
         $this->mapPaymentFormUrl($apiResponse, $responseTransfer);
         $this->mapError($apiResponse, $responseTransfer);

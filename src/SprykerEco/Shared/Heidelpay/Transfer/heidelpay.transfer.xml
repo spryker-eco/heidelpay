@@ -9,6 +9,8 @@
         <property name="idPaymentReference" type="string" />
         <property name="idPaymentRegistration" type="string" />
         <property name="idBasket" type="string" />
+        <property name="legalText" type="string" />
+        <property name="externalRedirectUrl" type="string" />
     </transfer>
 
     <transfer name="HeidelpayEasyCreditPayment">
@@ -18,6 +20,7 @@
         <property name="amortisationText" type="string" />
         <property name="accruingInterest" type="float" />
         <property name="totalAmount" type="float" />
+        <property name="isPolicyAgreementChecked" type="bool" />
     </transfer>
 
     <transfer name="HeidelpayCreditCardPayment">
@@ -152,6 +155,7 @@
         <property name="payload" type="string"/>
         <property name="resultCode" type="string"/>
         <property name="customerRedirectUrl" type="string"/>
+        <property name="legalText" type="string"/>
         <property name="config" type="HeidelpayResponseConfig"/>
     </transfer>
 
