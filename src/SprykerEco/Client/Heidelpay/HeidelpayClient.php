@@ -59,6 +59,8 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     }
 
     /**
+     * @deprecated Use `getQuote()` instead.
+     *
      * {@inheritdoc}
      *
      * @api
@@ -66,6 +68,20 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
     public function getQuoteFromSession(): QuoteTransfer
+    {
+        return $this->getFactory()
+            ->getQuoteClient()
+            ->getQuote();
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @return \Generated\Shared\Transfer\QuoteTransfer
+     */
+    public function getQuote(): QuoteTransfer
     {
         return $this->getFactory()
             ->getQuoteClient()

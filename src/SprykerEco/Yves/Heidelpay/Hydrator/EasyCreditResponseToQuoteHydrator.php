@@ -8,8 +8,8 @@
 namespace SprykerEco\Yves\Heidelpay\Hydrator;
 
 use Generated\Shared\Transfer\QuoteTransfer;
+use Spryker\Shared\Money\Dependency\Plugin\MoneyPluginInterface;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
-use SprykerEco\Yves\Heidelpay\Dependency\Plugin\HeidelpayToMoneyPluginInterface;
 use SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface;
 
 class EasyCreditResponseToQuoteHydrator implements EasyCreditResponseToQuoteHydratorInterface
@@ -27,17 +27,17 @@ class EasyCreditResponseToQuoteHydrator implements EasyCreditResponseToQuoteHydr
     protected $heidelpayEasyCreditHandler;
 
     /**
-     * @var \SprykerEco\Yves\Heidelpay\Dependency\Plugin\HeidelpayToMoneyPluginInterface
+     * @var \Spryker\Shared\Money\Dependency\Plugin\MoneyPluginInterface
      */
     protected $moneyPlugin;
 
     /**
      * @param \SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface $heidelpayEasyCreditHandler
-     * @param \SprykerEco\Yves\Heidelpay\Dependency\Plugin\HeidelpayToMoneyPluginInterface $moneyPlugin
+     * @param \Spryker\Shared\Money\Dependency\Plugin\MoneyPluginInterface $moneyPlugin
      */
     public function __construct(
         HeidelpayHandlerInterface $heidelpayEasyCreditHandler,
-        HeidelpayToMoneyPluginInterface $moneyPlugin
+        MoneyPluginInterface $moneyPlugin
     ) {
         $this->heidelpayEasyCreditHandler = $heidelpayEasyCreditHandler;
         $this->moneyPlugin = $moneyPlugin;

@@ -44,10 +44,7 @@ class EasyCreditController extends BaseHeidelpayController
             return new Response($this->getFailurePageUrl($processingResultTransfer));
         }
 
-        $redirectUrl = Url::generate(
-            $this->getInitializePaymentUrl(),
-            $this->getPaymentParametersFromEasyCreditResponseParameters($responseArray)
-        )->build();
+        $redirectUrl = $this->generateEasyCreditRedirectUrl($responseArray);
 
         return new Response($redirectUrl);
     }
@@ -59,7 +56,7 @@ class EasyCreditController extends BaseHeidelpayController
      */
     public function easyCreditInitializePaymentAction(Request $request): RedirectResponse
     {
-        $quoteTransfer = $this->getClient()->getQuoteFromSession();
+        $quoteTransfer = $this->getClient()->getQuote();
         $paymentParameters = $request->query->all();
 
         $this->getFactory()
@@ -138,5 +135,18 @@ class EasyCreditController extends BaseHeidelpayController
             $this->getConfig()->getYvesCheckoutPaymentFailedUrl(),
             $processingResultTransfer->getError()->getCode()
         );
+    }
+
+    /**
+     * @param array $responseArray
+     *
+     * @return string
+     */
+    protected function generateEasyCreditRedirectUrl(array $responseArray): string
+    {
+        return Url::generate(
+            $this->getInitializePaymentUrl(),
+            $this->getPaymentParametersFromEasyCreditResponseParameters($responseArray)
+        )->build();
     }
 }

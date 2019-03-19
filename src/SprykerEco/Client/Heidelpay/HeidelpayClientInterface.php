@@ -131,9 +131,21 @@ interface HeidelpayClientInterface
      *
      * @api
      *
+     * @deprecated Use `getQuote()` instead.
+     *
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
     public function getQuoteFromSession(): QuoteTransfer;
+
+    /**
+     * Specification:
+     *  - Retrieves customer quote according to strategy.
+     *
+     * @api
+     *
+     * @return \Generated\Shared\Transfer\QuoteTransfer
+     */
+    public function getQuote(): QuoteTransfer;
 
     /**
      * Specification:

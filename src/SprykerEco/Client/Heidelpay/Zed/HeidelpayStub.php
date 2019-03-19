@@ -38,13 +38,13 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
      */
     public function getAuthorizeTransactionLogByOrderReference(string $orderReference): HeidelpayTransactionLogTransfer
     {
-        /** @var \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer $responseTransfer */
-        $responseTransfer = $this->zedStub->call(
+        /** @var \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer $heidelpayTransactionLogTransfer */
+        $heidelpayTransactionLogTransfer = $this->zedStub->call(
             static::ZED_GET_AUTHORIZE_TRANSACTION_LOG,
             $this->createAuthorizeTransactionLogRequestByOrderReference($orderReference)
         );
 
-        return $responseTransfer;
+        return $heidelpayTransactionLogTransfer;
     }
 
     /**
@@ -54,13 +54,13 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
      */
     public function getCreditCardPaymentOptions(QuoteTransfer $quoteTransfer): HeidelpayCreditCardPaymentOptionsTransfer
     {
-        /** @var \Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer $responseTransfer */
-        $responseTransfer = $this->zedStub->call(
+        /** @var \Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer $heidelpayCreditCardPaymentOptionsTransfer */
+        $heidelpayCreditCardPaymentOptionsTransfer = $this->zedStub->call(
             static::ZED_GET_CREDIT_CARD_PAYMENT_OPTIONS,
             $quoteTransfer
         );
 
-        return $responseTransfer;
+        return $heidelpayCreditCardPaymentOptionsTransfer;
     }
 
     /**
@@ -71,13 +71,13 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
     public function processExternalPaymentResponse(
         HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer
     ): HeidelpayPaymentProcessingResponseTransfer {
-        /** @var \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer $responseTransfer */
-        $responseTransfer = $this->zedStub->call(
+        /** @var \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer $heidelpayPaymentProcessingResponseTransfer */
+        $heidelpayPaymentProcessingResponseTransfer = $this->zedStub->call(
             static::ZED_GET_PROCESS_EXTERNAL_PAYMENT_RESPONSE,
             $externalPaymentRequestTransfer
         );
 
-        return $responseTransfer;
+        return $heidelpayPaymentProcessingResponseTransfer;
     }
 
     /**
@@ -88,13 +88,13 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
     public function processExternalEasyCreditPaymentResponse(
         HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer
     ): HeidelpayPaymentProcessingResponseTransfer {
-        /** @var \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer $responseTransfer */
-        $responseTransfer = $this->zedStub->call(
+        /** @var \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer $heidelpayPaymentProcessingResponseTransfer */
+        $heidelpayPaymentProcessingResponseTransfer = $this->zedStub->call(
             static::ZED_GET_PROCESS_EXTERNAL_EASY_CREDIT_PAYMENT_RESPONSE,
             $externalPaymentRequestTransfer
         );
 
-        return $responseTransfer;
+        return $heidelpayPaymentProcessingResponseTransfer;
     }
 
     /**
@@ -105,13 +105,13 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
     public function saveCreditCardRegistration(
         HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
     ): HeidelpayRegistrationSaveResponseTransfer {
-        /** @var \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer $responseTransfer */
-        $responseTransfer = $this->zedStub->call(
+        /** @var \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer $heidelpayRegistrationSaveResponseTransfer */
+        $heidelpayRegistrationSaveResponseTransfer = $this->zedStub->call(
             static::ZED_GET_SAVE_CREDIT_CARD_REGISTRATION,
             $registrationRequestTransfer
         );
 
-        return $responseTransfer;
+        return $heidelpayRegistrationSaveResponseTransfer;
     }
 
     /**
@@ -122,13 +122,13 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
     public function findCreditCardRegistrationByIdAndQuote(
         HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
     ): ?HeidelpayCreditCardRegistrationTransfer {
-        /** @var \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer $responseTransfer */
-        $responseTransfer = $this->zedStub->call(
+        /** @var \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer $heidelpayCreditCardRegistrationTransfer */
+        $heidelpayCreditCardRegistrationTransfer = $this->zedStub->call(
             static::ZED_GET_FIND_CREDIT_CARD_REGISTRATION,
             $findRegistrationRequestTransfer
         );
 
-        return $responseTransfer;
+        return $heidelpayCreditCardRegistrationTransfer;
     }
 
     /**
@@ -138,13 +138,13 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
      */
     public function sendEasycreditInitializeRequest(QuoteTransfer $quoteTransfer): HeidelpayResponseTransfer
     {
-        /** @var \Generated\Shared\Transfer\HeidelpayResponseTransfer $responseTransfer */
-        $responseTransfer = $this->zedStub->call(
+        /** @var \Generated\Shared\Transfer\HeidelpayResponseTransfer $heidelpayResponseTransfer */
+        $heidelpayResponseTransfer = $this->zedStub->call(
             static::ZED_SEND_EASYCREDIT_INITIALIZE_REQUEST,
             $quoteTransfer
         );
 
-        return $responseTransfer;
+        return $heidelpayResponseTransfer;
     }
 
     /**

@@ -9,19 +9,19 @@ namespace SprykerEco\Client\Heidelpay\Dependency\Client;
 
 use Generated\Shared\Transfer\QuoteTransfer;
 
-class HeidelpayToQuoteSessionClientBridge implements HeidelpayToQuoteSessionClientInterface
+class HeidelpayToQuoteClientBridge implements HeidelpayToQuoteClientInterface
 {
     /**
-     * @var \Spryker\Client\Quote\Session\QuoteSessionInterface
+     * @var \Spryker\Client\Quote\QuoteClientInterface $quoteClient
      */
-    protected $quoteSession;
+    protected $quoteClient;
 
     /**
-     * @param \Spryker\Client\Quote\Session\QuoteSessionInterface $quoteSession
+     * @param \Spryker\Client\Quote\QuoteClientInterface $quoteClient
      */
-    public function __construct($quoteSession)
+    public function __construct($quoteClient)
     {
-        $this->quoteSession = $quoteSession;
+        $this->quoteClient = $quoteClient;
     }
 
     /**
@@ -29,6 +29,6 @@ class HeidelpayToQuoteSessionClientBridge implements HeidelpayToQuoteSessionClie
      */
     public function getQuote(): QuoteTransfer
     {
-        return $this->quoteSession->getQuote();
+        return $this->quoteClient->getQuote();
     }
 }
