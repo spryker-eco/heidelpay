@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Yves\Heidelpay;
 
+use Spryker\Shared\Money\Dependency\Plugin\MoneyPluginInterface;
 use Spryker\Yves\Kernel\AbstractFactory;
 use Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
@@ -16,7 +17,6 @@ use SprykerEco\Yves\Heidelpay\CreditCard\RegistrationToQuoteHydratorInterface;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToPriceClientInterface;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
-use SprykerEco\Yves\Heidelpay\Dependency\Plugin\HeidelpayToMoneyPluginInterface;
 use SprykerEco\Yves\Heidelpay\Form\CreditCardSecureSubForm;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\CreditCardSecureDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\EasyCreditDataProvider;
@@ -214,9 +214,9 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \SprykerEco\Yves\Heidelpay\Dependency\Plugin\HeidelpayToMoneyPluginInterface
+     * @return \Spryker\Shared\Money\Dependency\Plugin\MoneyPluginInterface
      */
-    public function getMoneyClient(): HeidelpayToMoneyPluginInterface
+    public function getMoneyClient(): MoneyPluginInterface
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::PLUGIN_MONEY);
     }

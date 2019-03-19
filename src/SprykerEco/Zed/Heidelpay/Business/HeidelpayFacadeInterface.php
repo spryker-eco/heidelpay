@@ -39,7 +39,8 @@ interface HeidelpayFacadeInterface
 
     /**
      * Specification:
-     *  - TBD
+     *  - Builds external response transfer based on body from $externalResponse array.
+     *  - Executes EasyCreditInitializeExternalResponseTransaction on $externalResponseTransfer.
      *
      * @api
      *
@@ -51,7 +52,8 @@ interface HeidelpayFacadeInterface
 
     /**
      * Specification:
-     *  - TBD
+     *  - Builds authorization request transfer.
+     *  - Executes registration transaction.
      *
      * @api
      *
@@ -63,7 +65,9 @@ interface HeidelpayFacadeInterface
 
     /**
      * Specification:
-     *  - TBD
+     *  - Builds finalize request based on $orderTransfer.
+     *  - Executes finalize transaction.
+     *  - Updates payment reference by sales order id.
      *
      * @api
      *
@@ -75,7 +79,9 @@ interface HeidelpayFacadeInterface
 
     /**
      * Specification:
-     *  - TBD
+     *  - Builds reservation request based on $orderTransfer.
+     *  - Executes reservation transaction.
+     *  - Updates payment reference by sales order id.
      *
      * @api
      *
@@ -200,7 +206,7 @@ interface HeidelpayFacadeInterface
 
     /**
      * Specification:
-     *  - TBD
+     *  - Builds registration entity from $registrationRequestTransfer and save it.
      *
      * @api
      *
@@ -212,7 +218,7 @@ interface HeidelpayFacadeInterface
 
     /**
      * Specification:
-     *  - TBD
+     *  - Fetches credit cart registration transfer by id registration and quote hash.
      *
      * @api
      *
@@ -224,7 +230,7 @@ interface HeidelpayFacadeInterface
 
     /**
      * Specification:
-     *  - TBD
+     *  - Filters payment methods: checks if method is Heidelpay`s EasyCredit, if grand total is under limit, if address data is valid.
      *
      * @api
      *

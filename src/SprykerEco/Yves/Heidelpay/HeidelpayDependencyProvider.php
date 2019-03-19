@@ -13,7 +13,6 @@ use Spryker\Yves\Kernel\Container;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientBridge;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToPriceClientBridge;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientBridge;
-use SprykerEco\Yves\Heidelpay\Dependency\Plugin\HeidelpayToMoneyPluginBridge;
 
 class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
 {
@@ -104,7 +103,7 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
     protected function addMoneyPlugin(Container $container): Container
     {
         $container[static::PLUGIN_MONEY] = function () {
-            return new HeidelpayToMoneyPluginBridge(new MoneyPlugin());
+            return new MoneyPlugin();
         };
 
         return $container;
