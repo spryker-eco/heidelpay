@@ -12,7 +12,7 @@ use Spryker\Client\Kernel\Container;
 use Spryker\Client\Session\ServiceProvider\SessionClientServiceProvider;
 use Spryker\Client\ZedRequest\ServiceProvider\ZedRequestClientServiceProvider;
 use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToLocaleClientBridge;
-use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteSessionClientBridge;
+use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteClientBridge;
 
 class HeidelpayDependencyProvider extends AbstractDependencyProvider
 {
@@ -35,7 +35,7 @@ class HeidelpayDependencyProvider extends AbstractDependencyProvider
         };
 
         $container[static::CLIENT_QUOTE] = function (Container $container) {
-            return new HeidelpayToQuoteSessionClientBridge($container->getLocator()->quote()->client());
+            return new HeidelpayToQuoteClientBridge($container->getLocator()->quote()->client());
         };
 
         $container[static::CLIENT_ZED_REQUEST] = function (Container $container) {

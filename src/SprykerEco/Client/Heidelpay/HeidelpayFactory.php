@@ -11,7 +11,7 @@ use Spryker\Client\Kernel\AbstractFactory;
 use Spryker\Client\Session\SessionClientFactoryTrait;
 use Spryker\Client\ZedRequest\ZedRequestClientFactoryTrait;
 use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToLocaleClientInterface;
-use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteSessionClientInterface;
+use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
 use SprykerEco\Client\Heidelpay\Mapper\ApiResponseToRegistrationRequestTransfer;
 use SprykerEco\Client\Heidelpay\Mapper\ApiResponseToRegistrationResponseTransferInterface;
 use SprykerEco\Client\Heidelpay\Sdk\CreditCardRegistrationResponseParser;
@@ -46,9 +46,9 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteSessionClientInterface
+     * @return \SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface
      */
-    public function getQuoteClient(): HeidelpayToQuoteSessionClientInterface
+    public function getQuoteClient(): HeidelpayToQuoteClientInterface
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::CLIENT_QUOTE);
     }
