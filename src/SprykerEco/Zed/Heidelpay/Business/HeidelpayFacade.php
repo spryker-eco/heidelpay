@@ -162,11 +162,11 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
      */
-    public function reservationPayment(OrderTransfer $orderTransfer)
+    public function executePaymentReservation(OrderTransfer $orderTransfer)
     {
         $this->getFactory()
             ->createReservationTransactionHandler()
-            ->reservation($orderTransfer);
+            ->executeReservation($orderTransfer);
     }
 
     /**

@@ -89,7 +89,7 @@ interface HeidelpayFacadeInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function reservationPayment(OrderTransfer $orderTransfer);
+    public function executePaymentReservation(OrderTransfer $orderTransfer);
 
     /**
      * Specification:

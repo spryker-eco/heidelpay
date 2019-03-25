@@ -16,5 +16,5 @@ interface ReservationTransactionHandlerInterface
      *
      * @return void
      */
-    public function reservation(OrderTransfer $orderTransfer);
+    public function executeReservation(OrderTransfer $orderTransfer);
 }

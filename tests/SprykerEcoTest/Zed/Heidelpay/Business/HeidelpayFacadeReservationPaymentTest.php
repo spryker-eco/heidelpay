@@ -32,7 +32,7 @@ class HeidelpayFacadeReservationPaymentTest extends HeidelpayPaymentTest
 
         $heidelpayFacade = (new HeidelpayFacade())->setFactory($this->createSuccessfulPaymentHeidelpayFactoryMock());
         $orderTransfer = $this->getPaymentTransfer($heidelpayFacade, $salesOrder);
-        $heidelpayFacade->reservationPayment($orderTransfer);
+        $heidelpayFacade->executePaymentReservation($orderTransfer);
 
         $transaction = $this->createHeidelpayFactory()
             ->createTransactionLogReader()
@@ -50,7 +50,7 @@ class HeidelpayFacadeReservationPaymentTest extends HeidelpayPaymentTest
 
         $heidelpayFacade = (new HeidelpayFacade())->setFactory($this->createUnsuccessfulPaymentHeidelpayFactoryMock());
         $orderTransfer = $this->getPaymentTransfer($heidelpayFacade, $salesOrder);
-        $heidelpayFacade->reservationPayment($orderTransfer);
+        $heidelpayFacade->executePaymentReservation($orderTransfer);
 
         $transaction = $this->createHeidelpayFactory()
             ->createTransactionLogReader()

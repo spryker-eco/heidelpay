@@ -62,7 +62,7 @@ class ReservationTransactionHandler implements ReservationTransactionHandlerInte
      *
      * @return void
      */
-    public function reservation(OrderTransfer $orderTransfer)
+    public function executeReservation(OrderTransfer $orderTransfer)
     {
         $reservationRequestTransfer = $this->buildReservationRequest($orderTransfer);
         $paymentAdapter = $this->getPaymentMethodAdapter($orderTransfer);

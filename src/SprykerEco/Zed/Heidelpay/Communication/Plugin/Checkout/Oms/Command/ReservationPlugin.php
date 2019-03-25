@@ -33,7 +33,7 @@ class ReservationPlugin extends AbstractPlugin implements CommandByOrderInterfac
     public function run(array $orderItems, SpySalesOrder $orderEntity, ReadOnlyArrayObject $data)
     {
         $orderTransfer = $this->getOrderWithPaymentTransfer($orderEntity->getIdSalesOrder());
-        $this->getFacade()->reservationPayment($orderTransfer);
+        $this->getFacade()->executePaymentReservation($orderTransfer);
 
         return [];
     }
