@@ -19,6 +19,16 @@ class EasyCreditResponseToGetParametersMapper implements EasyCreditResponseToGet
      */
     public function map(array $responseAsArray, ArrayObject $getParameters): void
     {
-        $getParameters->exchangeArray($getParameters->getArrayCopy());
+        $newList = $getParameters->getArrayCopy();
+        $newList['IDENTIFICATION_UNIQUEID'] = $responseAsArray['IDENTIFICATION_UNIQUEID'];
+        $newList['CRITERION_EASYCREDIT_TOTALAMOUNT'] = $responseAsArray['CRITERION_EASYCREDIT_TOTALAMOUNT'];
+        $newList['CRITERION_EASYCREDIT_AMORTISATIONTEXT'] = $responseAsArray['CRITERION_EASYCREDIT_AMORTISATIONTEXT'];
+        $newList['CRITERION_EASYCREDIT_ACCRUINGINTEREST'] = $responseAsArray['CRITERION_EASYCREDIT_ACCRUINGINTEREST'];
+        $newList['CRITERION_EASYCREDIT_TOTALORDERAMOUNT'] = $responseAsArray['CRITERION_EASYCREDIT_TOTALORDERAMOUNT'];
+        $newList['CRITERION_EASYCREDIT_ACCRUINGINTEREST'] = $responseAsArray['CRITERION_EASYCREDIT_ACCRUINGINTEREST'];
+        $newList['CRITERION_EASYCREDIT_TOTALAMOUNT'] = $responseAsArray['CRITERION_EASYCREDIT_TOTALAMOUNT'];
+        $newList['CRITERION_EASYCREDIT_PRECONTRACTINFORMATIONURL'] = $responseAsArray['CRITERION_EASYCREDIT_PRECONTRACTINFORMATIONURL'];
+
+        $getParameters->exchangeArray($newList);
     }
 }
