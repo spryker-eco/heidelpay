@@ -65,7 +65,7 @@
         <property name="isCustomerGuest" type="bool"/>
         <property name="customerOrdersCount" type="int"/>
         <property name="customerSince" type="string"/>
-        <property name="customerId" type="string"/>
+        <property name="customerId" type="int"/>
     </transfer>
 
     <transfer name="HeidelpayTransactionLog">

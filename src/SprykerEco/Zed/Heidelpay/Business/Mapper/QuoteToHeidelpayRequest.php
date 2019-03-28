@@ -84,8 +84,7 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
                 ->setIdOrder($this->generateQuoteId($quoteTransfer))
         );
 
-        $customerRegistrationDate = $this
-            ->findCustomerRegistrationDate($quoteTransfer->getCustomer());
+        $customerRegistrationDate = $this->findCustomerRegistrationDate($quoteTransfer->getCustomer());
 
         $heidelpayRequestTransfer->setRiskInformation(
             (new HeidelpayRiskInformationTransfer())

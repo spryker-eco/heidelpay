@@ -17,11 +17,6 @@ use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 class EasyCreditAdapterRequestFromOrderBuilder extends AdapterRequestFromOrderBuilder
 {
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesFacadeInterface
-     */
-    protected $salesFacade;
-
-    /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Mapper\OrderToHeidelpayRequestInterface $orderToHeidelpayMapper
      * @param \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyFacadeInterface $currencyFacade
      * @param \SprykerEco\Zed\Heidelpay\HeidelpayConfig $config
