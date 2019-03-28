@@ -14,7 +14,7 @@ coverage:
 
 suites:
     Zed:
-        path: .
+        path: Business
         class_name: HeidelpayZedTester
         modules:
             enabled:

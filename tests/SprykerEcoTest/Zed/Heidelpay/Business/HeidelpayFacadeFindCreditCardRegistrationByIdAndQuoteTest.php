@@ -19,6 +19,7 @@ use Orm\Zed\Heidelpay\Persistence\Base\SpyPaymentHeidelpayCreditCardRegistration
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration;
 use Propel\Runtime\Propel;
 use SprykerEco\Shared\Heidelpay\QuoteUniqueIdGenerator;
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
 
 /**
@@ -52,7 +53,7 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Heidelpa
         $this->assertInstanceOf(HeidelpayCreditCardInfoTransfer::class, $response->getCreditCardInfo());
 
         $this->assertEquals($response->getCreditCardInfo()->getAccountHolder(), $this->getAccountHolder($quote));
-        $this->assertEquals($response->getCreditCardInfo()->getAccountBrand(), HeidelpayTestConstants::CARD_BRAND);
+        $this->assertEquals($response->getCreditCardInfo()->getAccountBrand(), HeidelpayTestConfig::CARD_BRAND);
     }
 
     /**
@@ -64,7 +65,7 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Heidelpa
         $transfer = new HeidelpayRegistrationByIdAndQuoteRequestTransfer();
         $transfer->setQuote($quote);
         $creditCardRegistrationEntity = $this->createCardRegistrationTransfer($quote);
-        $creditCardRegistrationEntity->setQuoteHash(HeidelpayTestConstants::CARD_QUOTE_HASH);
+        $creditCardRegistrationEntity->setQuoteHash(HeidelpayTestConfig::CARD_QUOTE_HASH);
         $creditCardRegistrationEntity->save();
         $transfer->setIdRegistration($creditCardRegistrationEntity->getIdCreditCardRegistration());
 
@@ -105,12 +106,12 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Heidelpa
         $creditCardRegistrationEntity = new SpyPaymentHeidelpayCreditCardRegistration();
         $quoteHash = QuoteUniqueIdGenerator::getHashByCustomerEmailAndTotals($quoteTransfer);
 
-        $creditCardRegistrationEntity->setAccountBrand(HeidelpayTestConstants::CARD_BRAND)
-            ->setRegistrationNumber(HeidelpayTestConstants::REGISTRATION_NUMBER)
+        $creditCardRegistrationEntity->setAccountBrand(HeidelpayTestConfig::CARD_BRAND)
+            ->setRegistrationNumber(HeidelpayTestConfig::REGISTRATION_NUMBER)
         ->setAccountHolder($this->getAccountHolder($quoteTransfer))
         ->setAccountExpiryMonth(1)
         ->setAccountExpiryYear(2030)
-        ->setAccountNumber(HeidelpayTestConstants::CARD_ACCOUNT_NUMBER)
+        ->setAccountNumber(HeidelpayTestConfig::CARD_ACCOUNT_NUMBER)
         ->setFkCustomerAddress($quoteTransfer->getBillingAddress()->getIdCustomerAddress())
 
         ->setQuoteHash($quoteHash);
@@ -141,7 +142,7 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Heidelpa
     protected function _after(): void
     {
         $query = SpyPaymentHeidelpayCreditCardRegistrationQuery::create()
-            ->findByQuoteHash(HeidelpayTestConstants::CARD_QUOTE_HASH);
+            ->findByQuoteHash(HeidelpayTestConfig::CARD_QUOTE_HASH);
         $query->delete();
         $con = Propel::getConnection();
         $con->commit();

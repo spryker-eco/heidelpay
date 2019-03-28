@@ -23,6 +23,7 @@ trait PaymentHeidelpayTransferBuilderTrait
         $paymentTransfer = $heidelpayFacade->getPaymentByIdSalesOrder($salesOrder->getIdSalesOrder());
         $orderTransfer = $this->heidelpayToSales->getOrderByIdSalesOrder($salesOrder->getIdSalesOrder());
         $orderTransfer->setHeidelpayPayment($paymentTransfer);
+
         return $orderTransfer;
     }
 }

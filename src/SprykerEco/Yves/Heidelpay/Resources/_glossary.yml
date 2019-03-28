@@ -1,3 +1,23 @@
+heidelpay.payment.easy_credit.pre_contraction_info_link_text:
+  translations:
+    en_US: 'Precontractual information'
+    de_DE: 'Vorvertragliche Informationen'
+heidelpay.payment.easy_credit.order_total:
+  translations:
+    en_US: 'Order total:'
+    de_DE: 'Gesamtbestellmenge:'
+heidelpay.payment.easy_credit.interest:
+  translations:
+    en_US: 'Interest:'
+    de_DE: 'Interesse:'
+heidelpay.payment.easy_credit.total_inc_interest:
+  translations:
+    en_US: 'Total inc. interest:'
+    de_DE: 'Gesamt inkl. Zinsen:'
+checkout.payment.provider.heidelpay:
+  translations:
+    en_US: 'Heidelpay'
+    de_DE: 'Heidelpay'
 heidelpay.payment.credit_card.existing-registration:
   translations:
     en_US: 'Use existing registration'
@@ -30,6 +50,10 @@ payment.heidelpay.credit_card.validity:
   translations:
     en_US: 'Valid until'
     de_DE: 'Valid until'
+payment.heidelpay.pay_with_easy_credit_info_link:
+  translations:
+    en_US: 'What is installment purchase by easyCredit?'
+    de_DE: 'Was ist Ratenkauf by easyCredit?'
 payment.heidelpay.pay_with_ideal:
   translations:
     en_US: 'Pay simple and secure with iDeal'

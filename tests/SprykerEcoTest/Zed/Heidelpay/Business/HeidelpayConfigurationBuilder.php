@@ -24,7 +24,15 @@ class HeidelpayConfigurationBuilder
         $config[HeidelpayConstants::CONFIG_ENCRYPTION_KEY] = 'encryption_key';
         $config[ApplicationConstants::HOST_YVES] = 'www.de.spryker.test';
         $YVES_HOST_PROTOCOL = 'http';
+        $config[ApplicationConstants::BASE_URL_YVES] = sprintf(
+            '%s://%s',
+            $YVES_HOST_PROTOCOL,
+            $config[ApplicationConstants::HOST_YVES]
+        );
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_PAYMENT_RESPONSE_URL] = $YVES_HOST_PROTOCOL . '://' . $config[ApplicationConstants::HOST_YVES] . '/heidelpay/payment';
+        $config[HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_REJECTED_DELIVERY_ADDRESS] = 'Packstation';
+        $config[HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_GRAND_TOTAL_LESS_THAN] = 200;
+        $config[HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_GRAND_TOTAL_MORE_THAN] = 5000;
 
         $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_SUCCESS_URL] = $config[ApplicationConstants::HOST_YVES] . '/checkout/success';
         $config[HeidelpayConstants::CONFIG_YVES_URL] = $config[ApplicationConstants::HOST_YVES];
@@ -43,11 +51,14 @@ class HeidelpayConfigurationBuilder
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_PAYPAL] = '31HA07BC8142C5A171749A60D979B6E4';
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_IDEAL] = '31HA07BC8142C5A171744B56E61281E5';
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_SOFORT] = '31HA07BC8142C5A171749CDAA43365D2';
+        $config[HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_EASY_CREDIT] = '31HA07BC810DCA126FA83FA533886979';
         // Shop configuration values
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_APPLICATION_SECRET] = 'debug_secret';
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_SANDBOX_REQUEST] = true;
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_LANGUAGE_CODE] = 'DE';
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_PAYMENT_RESPONSE_URL] = 'https://' . $config[ApplicationConstants::HOST_YVES] . '/heidelpay/payment';
+        $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_EASYCREDIT_INITIALIZE_PAYMENT_URL] = $config[ApplicationConstants::BASE_URL_YVES] . '/heidelpay/easyCreditInitializePayment';
+        $config[HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_PAYMENT_RESPONSE_URL] = $config[ApplicationConstants::BASE_URL_YVES] . '/heidelpay/easyCreditPayment';
         $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_SUCCESS_URL] = 'http://' . $config[ApplicationConstants::HOST_YVES] . '/checkout/success';
         $config[HeidelpayConstants::CONFIG_YVES_URL] = 'http://' . $config[ApplicationConstants::HOST_YVES];
         $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_PAYMENT_FAILED_URL] = 'http://' . $config[ApplicationConstants::HOST_YVES] . '/heidelpay/payment-failed?error_code=%s';
@@ -68,6 +79,7 @@ class HeidelpayConfigurationBuilder
             HeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE => 'HeidelpayPaypalAuthorize01',
             HeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT => 'HeidelpayPaypalDebit01',
             HeidelpayConfig::PAYMENT_METHOD_IDEAL => 'HeidelpayIdeal01',
+            HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT => 'HeidelpayEasyCredit01',
         ];
 
         return $config;

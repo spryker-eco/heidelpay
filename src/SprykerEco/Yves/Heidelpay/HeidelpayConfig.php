@@ -39,6 +39,14 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     /**
      * @return string
      */
+    public function getYvesInitializePaymentUrl(): string
+    {
+        return $this->get(HeidelpayConstants::CONFIG_YVES_CHECKOUT_EASYCREDIT_INITIALIZE_PAYMENT_URL);
+    }
+
+    /**
+     * @return string
+     */
     public function getYvesCheckoutSuccessUrl(): string
     {
         return $this->get(HeidelpayConstants::CONFIG_YVES_CHECKOUT_SUCCESS_URL);
@@ -50,5 +58,21 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     public function getYvesRegistrationSuccessUrl(): string
     {
         return $this->get(HeidelpayConstants::CONFIG_YVES_CHECKOUT_REGISTRATION_SUCCESS_URL);
+    }
+
+    /**
+     * @return string
+     */
+    public function getEasyCreditLogoUrl(): string
+    {
+        return $this->get(HeidelpayConstants::CONFIG_EASY_CREDIT_LOGO_URL);
+    }
+
+    /**
+     * @return string
+     */
+    public function getEasyCreditInfoLink(): string
+    {
+        return $this->get(HeidelpayConstants::CONFIG_EASY_CREDIT_INFO_LINK);
     }
 }

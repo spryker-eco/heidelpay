@@ -17,6 +17,7 @@ use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
+use Generated\Shared\Transfer\PaymentMethodsTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\SaveOrderTransfer;
 
@@ -38,6 +39,60 @@ interface HeidelpayFacadeInterface
 
     /**
      * Specification:
+     *  - Builds external response transfer based on body from $externalResponse array.
+     *  - Executes EasyCreditInitializeExternalResponseTransaction on $externalResponseTransfer.
+     *
+     * @api
+     *
+     * @param array $externalResponse
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
+     */
+    public function processExternalEasyCreditPaymentResponse(array $externalResponse);
+
+    /**
+     * Specification:
+     *  - Builds authorization request transfer.
+     *  - Executes registration transaction.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function authorizeOnRegistrationPayment(OrderTransfer $orderTransfer);
+
+    /**
+     * Specification:
+     *  - Builds finalize request based on $orderTransfer.
+     *  - Executes finalize transaction.
+     *  - Updates payment reference by sales order id.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function finalizePayment(OrderTransfer $orderTransfer);
+
+    /**
+     * Specification:
+     *  - Builds reservation request based on $orderTransfer.
+     *  - Executes reservation transaction.
+     *  - Updates payment reference by sales order id.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function executePaymentReservation(OrderTransfer $orderTransfer);
+
+    /**
+     * Specification:
      *  - Prepares the request for ExternalResponseTransaction
      *  - Executes ExternalResponseTransaction and returns the results
      *
@@ -48,6 +103,18 @@ interface HeidelpayFacadeInterface
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
     public function processExternalPaymentResponse(array $externalResponse): HeidelpayPaymentProcessingResponseTransfer;
+
+    /**
+     * Specification:
+     *  - Send Initialization Request (HP.INI) to EasyCredit.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function initializePayment(QuoteTransfer $quoteTransfer);
 
     /**
      * Specification:
@@ -138,7 +205,8 @@ interface HeidelpayFacadeInterface
     public function getCreditCardPaymentOptions(QuoteTransfer $quoteTransfer): HeidelpayCreditCardPaymentOptionsTransfer;
 
     /**
-     * {@inheritdoc}
+     * Specification:
+     *  - Builds registration entity from $registrationRequestTransfer and save it.
      *
      * @api
      *
@@ -149,7 +217,8 @@ interface HeidelpayFacadeInterface
     public function saveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer): HeidelpayRegistrationSaveResponseTransfer;
 
     /**
-     * {@inheritdoc}
+     * Specification:
+     *  - Fetches credit cart registration transfer by id registration and quote hash.
      *
      * @api
      *
@@ -158,4 +227,17 @@ interface HeidelpayFacadeInterface
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
      */
     public function findCreditCardRegistrationByIdAndQuote(HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer): HeidelpayCreditCardRegistrationTransfer;
+
+    /**
+     * Specification:
+     *  - Filters payment methods: checks if method is Heidelpay`s EasyCredit, if grand total is under limit, if address data is valid.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\PaymentMethodsTransfer $paymentMethodsTransfer
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\PaymentMethodsTransfer
+     */
+    public function filterPaymentMethods(PaymentMethodsTransfer $paymentMethodsTransfer, QuoteTransfer $quoteTransfer);
 }

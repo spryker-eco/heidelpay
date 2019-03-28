@@ -31,4 +31,46 @@ interface TransactionLogReaderInterface
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
      */
     public function findOrderDebitTransactionLog(int $orderReference): ?HeidelpayTransactionLogTransfer;
+
+    /**
+     * @param int $idSalesOrder
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     */
+    public function findOrderAuthorizeOnRegistrationTransactionLogByIdSalesOrder($idSalesOrder);
+
+    /**
+     * @param int $idSalesOrder
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     */
+    public function findQuoteInitializeTransactionLogByIdSalesOrder($idSalesOrder);
+
+    /**
+     * @param string $orderReference
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     */
+    public function findOrderAuthorizeOnRegistrationTransactionLogByOrderReference($orderReference);
+
+    /**
+     * @param string $orderReference
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     */
+    public function findQuoteInitializeTransactionLogByOrderReference($orderReference);
+
+    /**
+     * @param int $idSalesOrder
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     */
+    public function findQuoteReservationTransactionLogByIdSalesOrder($idSalesOrder);
+
+    /**
+     * @param int $idSalesOrder
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     */
+    public function findQuoteFinalizeTransactionLogByIdSalesOrder($idSalesOrder);
 }

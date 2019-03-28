@@ -9,6 +9,20 @@
         <property name="idPaymentReference" type="string" />
         <property name="idPaymentRegistration" type="string" />
         <property name="idBasket" type="string" />
+        <property name="legalText" type="string" />
+        <property name="externalRedirectUrl" type="string" />
+    </transfer>
+
+    <transfer name="HeidelpayEasyCreditPayment">
+        <property name="fkSalesOrder" type="int" />
+        <property name="paymentMethod" type="string" />
+        <property name="idPaymentReference" type="string" />
+        <property name="amortisationText" type="string" />
+        <property name="preContractionInformationUrl" type="string" />
+        <property name="accruingInterest" type="float" />
+        <property name="totalAmount" type="float" />
+        <property name="totalOrderAmount" type="float" />
+        <property name="isPolicyAgreementChecked" type="bool" />
     </transfer>
 
     <transfer name="HeidelpayCreditCardPayment">
@@ -143,6 +157,7 @@
         <property name="payload" type="string"/>
         <property name="resultCode" type="string"/>
         <property name="customerRedirectUrl" type="string"/>
+        <property name="legalText" type="string"/>
         <property name="config" type="HeidelpayResponseConfig"/>
     </transfer>
 
@@ -205,6 +220,7 @@
     <transfer name="Payment">
         <property name="heidelpaySofort" type="HeidelpayPayment"/>
         <property name="heidelpayIdeal" type="HeidelpayPayment"/>
+        <property name="heidelpayEasyCredit" type="HeidelpayEasyCreditPayment"/>
         <property name="HeidelpayPaypalAuthorize" type="HeidelpayPayment"/>
         <property name="HeidelpayPaypalDebit" type="HeidelpayPayment"/>
         <property name="HeidelpayCreditCardSecure" type="HeidelpayCreditCardPayment"/>

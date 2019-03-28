@@ -55,12 +55,14 @@ class HeidelpayCreditCardHandler extends HeidelpayHandler
      *
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function addPaymentToQuote(AbstractTransfer $quoteTransfer): QuoteTransfer
+    public function addPaymentToQuote(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         $quoteTransfer = parent::addPaymentToQuote($quoteTransfer);
+
         $this->addCurrentRegistrationToQuote($quoteTransfer);
         $quoteTransfer = $this->calculationClient->recalculate($quoteTransfer);
         $this->quoteClient->setQuote($quoteTransfer);
+
         return $quoteTransfer;
     }
 

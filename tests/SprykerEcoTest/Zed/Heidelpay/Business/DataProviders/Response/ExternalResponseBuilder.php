@@ -11,14 +11,13 @@ use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use ReflectionObject;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\NewOrderWithOneItemTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\Action\HeidelpayResponseTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentHeidelpayTrait;
-use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
 
-class ExternalResponseBuilder
+abstract class ExternalResponseBuilder
 {
     public const EMAIL = 'email';
     public const RESPONSE_URL = 'responseUrl';
@@ -28,26 +27,40 @@ class ExternalResponseBuilder
     public const FULL_NAME = 'fullName';
     public const PAYMENT_METHOD = 'paymentMethod';
     public const CUSTOMER_NAME = 'customerName';
-    public const CUSTOMER_LAST_NAME = 'lastName';
     public const CUSTOMER_FULL_NAME = 'fullName';
-
     public const TRANSACRTION_CHANNEL = 'transactionChannel';
+
     public const SECURITY_SENDER = 'SECURITY_SENDER';
     public const USER_LOGIN = 'USER_LOGIN';
     public const USER_PWD = 'USER_PWD';
     public const TRANSACRTION_ID = 'TRANSACRTION_ID';
+    public const IDENTIFICATION_UNIQUEID = 'IDENTIFICATION_UNIQUEID';
+    public const PROCESSING_RESULT = 'PROCESSING_RESULT';
+    public const PROCESSING_RETURN = 'PROCESSING_RETURN';
+    public const PAYMENT_CODE = 'PAYMENT_CODE';
+    public const PROCESSING_CODE = 'PROCESSING_CODE';
+    public const PROCESSING_STATUS_CODE = 'PROCESSING_STATUS_CODE';
+    public const PROCESSING_REASON_CODE = 'PROCESSING_REASON_CODE';
 
     public const CRITERION_SDK_NAME = 'HEIDELPAY:CRITERION_SDK_NAME';
-    public const CRITERION_SDK_VALUE = "Heidelpay\PhpPaymentApi";
+    public const CRITERION_SDK_VALUE = "Heidelpay\\PhpPaymentApi";
 
     public const BRAND_PROPERTY_NAME = 'brand';
     public const CRITERION_SECRET = 'HEIDELPAY:CRITERION_SECRET';
 
     public const PAYMENT_METHOD_CLASS_NAME = 'PaymentMethod';
-    public const PROCESSING_RESULT = 'HEIDELPAY:PROCESSING_RESULT';
 
     public const SHA_512_ENCODE_ALGO = 'sha512';
-    use HeidelpayResponseTrait, CustomerTrait, OrderAddressTrait, NewOrderWithOneItemTrait, PaymentHeidelpayTrait;
+
+    public const PAYMENT_CODE_HP_INI = 'HP.INI';
+    public const PAYMENT_CODE_HP_PI = 'HP.PI';
+    public const PAYMENT_CODE_HP_FI = 'HP.FI';
+
+    use HeidelpayResponseTrait,
+        CustomerTrait,
+        OrderAddressTrait,
+        NewOrderWithOneItemTrait,
+        PaymentHeidelpayTrait;
 
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
@@ -67,50 +80,7 @@ class ExternalResponseBuilder
      *
      * @return array
      */
-    public function createHeidelpayResponse(string $paymentMethod): array
-    {
-        $customerJohnDoe = $this->createOrGetCustomerJohnDoe();
-        $billingAddressJohnDoe = $shippingAddressJohnDoe = $this->createOrderAddressJohnDoe();
-
-        $orderEntity = $this->createOrderEntityWithItems(
-            $customerJohnDoe,
-            $billingAddressJohnDoe,
-            $shippingAddressJohnDoe
-        );
-
-        $this->createHeidelpayPaymentEntity(
-            $orderEntity,
-            '',
-            $paymentMethod
-        );
-
-        $config = $this->factory->getConfig();
-        $responseParam[static::EMAIL] = $customerJohnDoe->getEmail();
-        $responseParam[static::RESPONSE_URL] = $config->getZedResponseUrl();
-        $responseParam[static::CUSTOMER_NAME] = $customerJohnDoe->getFirstName();
-        $responseParam[static::CUSTOMER_FULL_NAME] = $customerJohnDoe->getFirstName();
-
-        $responseParam[static::AMOUNT] = $orderEntity->getLastOrderTotals()->getGrandTotal();
-
-        $responseParam[static::TRANSACRTION_ID] = $this->getTransationId($orderEntity);
-        $responseParam[static::TRANSACRTION_CHANNEL] = $config->getMerchantTransactionChannelByPaymentType($paymentMethod);
-        $responseParam[static::SECURITY_SENDER] = $config->getMerchantSecuritySender();
-        $responseParam[static::USER_LOGIN] = $config->getMerchantUserLogin();
-        $responseParam[static::USER_PWD] = $config->getMerchantUserPassword();
-
-        $responseParam[static::CRITERION_SDK_NAME] = static::CRITERION_SDK_VALUE;
-
-        $responseParam[static::CRITERION_SECRET] = $this->getCriterionSecret($this->getTransationId($orderEntity), $config->getApplicationSecret());
-
-        $responseParam[static::PAYMENT_BRAND] = $this->getPaymentBrand($paymentMethod);
-        $responseParam[static::PAYMENT_METHOD] = $this->getClassName($paymentMethod);
-
-        $responseParam[static::PROCESSING_RESULT] = $this->getProcessingResult();
-
-        $response = $this->getHeidelpayResponseTemplate($responseParam);
-
-        return $response;
-    }
+    abstract public function createHeidelpayResponse(string $paymentMethod): array;
 
     /**
      * @param string $paymentMethod
@@ -139,7 +109,13 @@ class ExternalResponseBuilder
      */
     protected function getPaymentMethod(string $paymentMethod): string
     {
-        return mb_strtolower(preg_replace('~' . HeidelpayConfig::PROVIDER_NAME . '~', '', $paymentMethod));
+        $paymentMethod = preg_replace(
+            '~' . HeidelpayConfig::PROVIDER_NAME . '~',
+            '',
+            $paymentMethod
+        );
+
+        return ucfirst($paymentMethod);
     }
 
     /**
@@ -158,7 +134,15 @@ class ExternalResponseBuilder
      */
     protected function getProcessingResult(): ?string
     {
-        return HeidelpayTestConstants::HEIDELPAY_SUCCESS_RESPONSE;
+        return HeidelpayTestConfig::HEIDELPAY_SUCCESS_RESPONSE;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getProcessingReturn(): string
+    {
+        return "Request successfully processed in 'Merchant in Connector Test Mode'";
     }
 
     /**
@@ -169,6 +153,16 @@ class ExternalResponseBuilder
     protected function getTransationId(SpySalesOrder $orderEntity): int
     {
         return $orderEntity->getIdSalesOrder();
+    }
+
+    /**
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
+     *
+     * @return string
+     */
+    protected function getIdentificationUniqueId(SpySalesOrder $orderEntity): string
+    {
+        return '31HA07BC814A66978BC90CB3EF663058';
     }
 
     /**

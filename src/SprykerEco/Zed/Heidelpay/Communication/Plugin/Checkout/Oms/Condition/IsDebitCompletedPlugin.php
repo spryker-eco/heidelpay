@@ -17,6 +17,7 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
  * @method \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacadeInterface getFacade()
  * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface getQueryContainer()
  * @method \SprykerEco\Zed\Heidelpay\Communication\HeidelpayCommunicationFactory getFactory()
+ * @method \SprykerEco\Zed\Heidelpay\HeidelpayConfig getConfig()
  */
 class IsDebitCompletedPlugin extends AbstractPlugin implements ConditionInterface
 {

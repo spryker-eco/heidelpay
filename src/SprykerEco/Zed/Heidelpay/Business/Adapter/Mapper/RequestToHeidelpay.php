@@ -53,7 +53,6 @@ class RequestToHeidelpay implements RequestToHeidelpayInterface
             $requestTransfer->getCustomerPurchase()->getSecret()
         );
 
-        $heidelpayRequest->getBasket()
-            ->setId($requestTransfer->getIdBasket());
+        $heidelpayRequest->getBasket()->setId($requestTransfer->getIdBasket());
     }
 }

@@ -12,7 +12,7 @@ use Propel\Runtime\Propel;
 use Spryker\Zed\Sales\Business\SalesFacade;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
-use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesBridge;
+use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesFacadeBridge;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentHeidelpayTransferBuilderTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\Test\PaymentResponseTestTrait;
 use SprykerTest\Shared\Testify\Helper\ConfigHelper;
@@ -20,6 +20,11 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
 class HeidelpayPaymentTest extends Test
 {
     use PaymentHeidelpayTransferBuilderTrait, PaymentResponseTestTrait;
+
+    /**
+     * @var \SprykerEcoTest\Zed\Heidelpay\HeidelpayZedTester
+     */
+    protected $tester;
 
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade
@@ -32,7 +37,7 @@ class HeidelpayPaymentTest extends Test
     protected $heidelpayFactory;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesBridge
+     * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesFacadeBridge
      */
     protected $heidelpayToSales;
 
@@ -43,7 +48,7 @@ class HeidelpayPaymentTest extends Test
     {
         parent::_before();
 
-        $this->heidelpayToSales = new HeidelpayToSalesBridge(new SalesFacade());
+        $this->heidelpayToSales = new HeidelpayToSalesFacadeBridge(new SalesFacade());
 
         $this->heidelpayFacade = (new HeidelpayFacade())
             ->setFactory($this->createHeidelpayFactory());

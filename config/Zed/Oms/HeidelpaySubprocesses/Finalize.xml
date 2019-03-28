@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<statemachine
+        xmlns="spryker:oms-01"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
+
+    <process name="Finalize">
+        <states>
+            <state name="ready for finalize"/>
+            <state name="finalize request sent"/>
+            <state name="finalize succeeded"/>
+            <state name="invalid"/>
+        </states>
+
+        <transitions>
+            <!-- pre-finalize -->
+            <transition happy="true">
+                <source>ready for finalize</source>
+                <target>finalize request sent</target>
+                <event>send finalize request</event>
+            </transition>
+
+            <transition happy="true" condition="Heidelpay/IsFinalizeCompleted">
+                <source>finalize request sent</source>
+                <target>finalize succeeded</target>
+                <event>finalize payment</event>
+            </transition>
+
+            <transition>
+                <source>finalize request sent</source>
+                <target>invalid</target>
+                <event>finalize payment</event>
+            </transition>
+        </transitions>
+
+        <events>
+            <event name="send finalize request" onEnter="true" command="Heidelpay/Finalize" />
+            <event name="finalize payment" manual="true" />
+        </events>
+    </process>
+</statemachine>

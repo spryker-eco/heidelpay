@@ -12,6 +12,7 @@ use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer;
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 
@@ -33,7 +34,7 @@ interface HeidelpayClientInterface
 
     /**
      * Specification:
-     *  - Fetches from Zed transaction log for a given order by it's reference
+     *  - Fetches from Zed transaction log for a given order by it's reference.
      *
      * @api
      *
@@ -45,7 +46,7 @@ interface HeidelpayClientInterface
 
     /**
      * Specification:
-     *  - For a given quote, requests from Zed list of allowed payment options for credit card payment method
+     *  - For a given quote, requests from Zed list of allowed payment options for credit card payment method.
      *
      * @api
      *
@@ -57,7 +58,7 @@ interface HeidelpayClientInterface
 
     /**
      * Specification:
-     *  - Sends external response from payment provider (POST request) to Zed for processing
+     *  - Sends external response from payment provider (POST request) to Zed for processing.
      *
      * @api
      *
@@ -69,7 +70,21 @@ interface HeidelpayClientInterface
 
     /**
      * Specification:
-     *  - Sends credit card registration request to Zed for saving
+     *  - Sends external response from payment provider (POST request) to Zed for processing. Specific for Easy Credit.
+     *
+     * @api
+     *
+     * @param array $externalResponse
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
+     */
+    public function processExternalEasyCreditPaymentResponse(
+        array $externalResponse
+    ): HeidelpayPaymentProcessingResponseTransfer;
+
+    /**
+     * Specification:
+     *  - Sends credit card registration request to Zed for saving.
      *
      * @api
      *
@@ -77,12 +92,14 @@ interface HeidelpayClientInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer
      */
-    public function saveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer): HeidelpayRegistrationSaveResponseTransfer;
+    public function saveCreditCardRegistration(
+        HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
+    ): HeidelpayRegistrationSaveResponseTransfer;
 
     /**
      * Specification:
      *  - tries to find credit card registration by registration id and customer quote to reassure,
-     *  that credit card registration really belongs to current customer
+     *  that credit card registration really belongs to current customer.
      *
      * @api
      *
@@ -91,11 +108,14 @@ interface HeidelpayClientInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer|null
      */
-    public function findRegistrationByIdAndQuote(int $idRegistration, QuoteTransfer $quoteTransfer): ?HeidelpayCreditCardRegistrationTransfer;
+    public function findRegistrationByIdAndQuote(
+        int $idRegistration,
+        QuoteTransfer $quoteTransfer
+    ): ?HeidelpayCreditCardRegistrationTransfer;
 
     /**
      * Specification:
-     *  - Parses the external Heidelpay array response, transforming it to the transfer object
+     *  - Parses the external Heidelpay array response, transforming it to the transfer object.
      *
      * @api
      *
@@ -107,13 +127,25 @@ interface HeidelpayClientInterface
 
     /**
      * Specification:
-     *  - Retrieve quote from current customer session
+     *  - Retrieve quote from current customer session.
+     *
+     * @api
+     *
+     * @deprecated Use `getQuote()` instead.
+     *
+     * @return \Generated\Shared\Transfer\QuoteTransfer
+     */
+    public function getQuoteFromSession(): QuoteTransfer;
+
+    /**
+     * Specification:
+     *  - Retrieves customer quote according to strategy.
      *
      * @api
      *
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function getQuoteFromSession(): QuoteTransfer;
+    public function getQuote(): QuoteTransfer;
 
     /**
      * Specification:
@@ -125,5 +157,17 @@ interface HeidelpayClientInterface
      *
      * @return array
      */
-    public function filterResponseParameters(array $responseArray);
+    public function filterResponseParameters(array $responseArray): array;
+
+    /**
+     * Specification:
+     *  - Send payment Initialization request (HP.INI).
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function sendHeidelpayEasycreditInitializeRequest(QuoteTransfer $quoteTransfer): HeidelpayResponseTransfer;
 }
