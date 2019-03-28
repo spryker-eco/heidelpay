@@ -8,9 +8,11 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Mapper;
 
 use Generated\Shared\Transfer\AddressTransfer;
+use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\HeidelpayCustomerAddressTransfer;
 use Generated\Shared\Transfer\HeidelpayCustomerPurchaseTransfer;
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayRiskInformationTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Shared\Heidelpay\QuoteUniqueIdGenerator;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyFacadeInterface;
@@ -82,7 +84,42 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
                 ->setIdOrder($this->generateQuoteId($quoteTransfer))
         );
 
+        $customerRegistrationDate = $this
+            ->findCustomerRegistrationDate($quoteTransfer->getCustomer());
+
+        $heidelpayRequestTransfer->setRiskInformation(
+            (new HeidelpayRiskInformationTransfer())
+                ->setIsCustomerGuest((bool)$quoteTransfer->getCustomer()->getIsGuest())
+                ->setCustomerSince($customerRegistrationDate)
+                ->setCustomerId($quoteTransfer->getCustomer()->getIdCustomer())
+        );
+
         return $heidelpayRequestTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
+     *
+     * @return string|null
+     */
+    protected function findCustomerRegistrationDate(CustomerTransfer $customerTransfer): ?string
+    {
+        $createdAtDate = $customerTransfer->getCreatedAt();
+        $createdAtDateFormatted = $createdAtDate ? $this->formatDate($createdAtDate) : $createdAtDate;
+
+        return $createdAtDateFormatted;
+    }
+
+    /**
+     * @param string $date
+     *
+     * @return string
+     */
+    protected function formatDate(string $date): string
+    {
+        $dateArray = explode(' ', $date);
+
+        return $dateArray[0] ? $dateArray[0] : $date;
     }
 
     /**
