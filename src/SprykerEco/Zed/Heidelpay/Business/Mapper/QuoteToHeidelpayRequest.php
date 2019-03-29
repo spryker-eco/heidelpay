@@ -118,7 +118,7 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
     {
         $dateArray = explode(' ', $date);
 
-        return $dateArray[0] ? $dateArray[0] : $date;
+        return $dateArray[0] ?? $date;
     }
 
     /**
