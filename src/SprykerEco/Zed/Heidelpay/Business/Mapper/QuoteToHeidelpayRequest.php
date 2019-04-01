@@ -104,6 +104,8 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
                 ->setCustomerSince($customerRegistrationDate)
                 ->setCustomerId($quoteTransfer->getCustomer()->getIdCustomer())
         );
+
+        return $heidelpayRequestTransfer;
     }
 
     /**
