@@ -36,7 +36,7 @@ class HeidelpayToSalesFacadeBridge implements HeidelpayToSalesFacadeInterface
 
     /**
      * @param \Generated\Shared\Transfer\OrderListTransfer $orderListTransfer
-     * @param $idCustomer
+     * @param int $idCustomer
      *
      * @return \Generated\Shared\Transfer\OrderListTransfer
      */

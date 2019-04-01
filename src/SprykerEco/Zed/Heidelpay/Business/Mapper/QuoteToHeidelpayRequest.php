@@ -42,6 +42,7 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
     {
         $heidelpayRequestTransfer = $this->mapCustomerAddress($quoteTransfer, $heidelpayRequestTransfer);
         $heidelpayRequestTransfer = $this->mapQuoteInformation($quoteTransfer, $heidelpayRequestTransfer);
+        $heidelpayRequestTransfer = $this->mapCustoemrInformation($quoteTransfer, $heidelpayRequestTransfer);
 
         return $heidelpayRequestTransfer;
     }
@@ -84,6 +85,17 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
                 ->setIdOrder($this->generateQuoteId($quoteTransfer))
         );
 
+        return $heidelpayRequestTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $heidelpayRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
+     */
+    protected function mapCustoemrInformation(QuoteTransfer $quoteTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer): HeidelpayRequestTransfer
+    {
         $customerRegistrationDate = $this->findCustomerRegistrationDate($quoteTransfer->getCustomer());
 
         $heidelpayRequestTransfer->setRiskInformation(
@@ -92,8 +104,6 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
                 ->setCustomerSince($customerRegistrationDate)
                 ->setCustomerId($quoteTransfer->getCustomer()->getIdCustomer())
         );
-
-        return $heidelpayRequestTransfer;
     }
 
     /**
@@ -116,9 +126,9 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
      */
     protected function formatDate(string $date): string
     {
-        $dateArray = explode(' ', $date);
+        $dateTime = new DateTime($date);
 
-        return $dateArray[0] ?? $date;
+        return $dateTime->format('Y-m-d');
     }
 
     /**
