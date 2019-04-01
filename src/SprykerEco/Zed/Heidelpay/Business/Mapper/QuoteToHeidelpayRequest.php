@@ -43,7 +43,7 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
     {
         $heidelpayRequestTransfer = $this->mapCustomerAddress($quoteTransfer, $heidelpayRequestTransfer);
         $heidelpayRequestTransfer = $this->mapQuoteInformation($quoteTransfer, $heidelpayRequestTransfer);
-        $heidelpayRequestTransfer = $this->mapCustoemrInformation($quoteTransfer, $heidelpayRequestTransfer);
+        $heidelpayRequestTransfer = $this->mapCustomerInformation($quoteTransfer, $heidelpayRequestTransfer);
 
         return $heidelpayRequestTransfer;
     }
@@ -95,7 +95,7 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    protected function mapCustoemrInformation(QuoteTransfer $quoteTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer): HeidelpayRequestTransfer
+    protected function mapCustomerInformation(QuoteTransfer $quoteTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer): HeidelpayRequestTransfer
     {
         $customerRegistrationDate = $this->findCustomerRegistrationDate($quoteTransfer->getCustomer());
 
