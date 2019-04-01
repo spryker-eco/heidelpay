@@ -126,9 +126,7 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
      */
     protected function formatDate(string $date): string
     {
-        $dateTime = new DateTime($date);
-
-        return $dateTime->format('Y-m-d');
+        return (new DateTime($date))->format('Y-m-d');
     }
 
     /**
