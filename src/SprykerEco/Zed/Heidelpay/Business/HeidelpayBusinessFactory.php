@@ -499,7 +499,8 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
         return new EasyCreditAdapterRequestFromQuoteBuilder(
             $this->createQuoteToHeidelpayRequestMapper(),
             $this->getCurrencyFacade(),
-            $this->getConfig()
+            $this->getConfig(),
+            $this->getSalesFacade()
         );
     }
 

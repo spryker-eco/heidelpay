@@ -7,10 +7,13 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Mapper;
 
+use DateTime;
 use Generated\Shared\Transfer\AddressTransfer;
+use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\HeidelpayCustomerAddressTransfer;
 use Generated\Shared\Transfer\HeidelpayCustomerPurchaseTransfer;
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayRiskInformationTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Shared\Heidelpay\QuoteUniqueIdGenerator;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyFacadeInterface;
@@ -40,6 +43,7 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
     {
         $heidelpayRequestTransfer = $this->mapCustomerAddress($quoteTransfer, $heidelpayRequestTransfer);
         $heidelpayRequestTransfer = $this->mapQuoteInformation($quoteTransfer, $heidelpayRequestTransfer);
+        $heidelpayRequestTransfer = $this->mapCustomerInformation($quoteTransfer, $heidelpayRequestTransfer);
 
         return $heidelpayRequestTransfer;
     }
@@ -83,6 +87,49 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
         );
 
         return $heidelpayRequestTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $heidelpayRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
+     */
+    protected function mapCustomerInformation(QuoteTransfer $quoteTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer): HeidelpayRequestTransfer
+    {
+        $customerRegistrationDate = $this->findCustomerRegistrationDate($quoteTransfer->getCustomer());
+
+        $heidelpayRequestTransfer->setRiskInformation(
+            (new HeidelpayRiskInformationTransfer())
+                ->setIsCustomerGuest((bool)$quoteTransfer->getCustomer()->getIsGuest())
+                ->setCustomerSince($customerRegistrationDate)
+                ->setCustomerId($quoteTransfer->getCustomer()->getIdCustomer())
+        );
+
+        return $heidelpayRequestTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
+     *
+     * @return string|null
+     */
+    protected function findCustomerRegistrationDate(CustomerTransfer $customerTransfer): ?string
+    {
+        $createdAtDate = $customerTransfer->getCreatedAt();
+        $createdAtDateFormatted = $createdAtDate ? $this->formatDate($createdAtDate) : $createdAtDate;
+
+        return $createdAtDateFormatted;
+    }
+
+    /**
+     * @param string $date
+     *
+     * @return string
+     */
+    protected function formatDate(string $date): string
+    {
+        return (new DateTime($date))->format('Y-m-d');
     }
 
     /**

@@ -61,6 +61,13 @@
         <property name="responseUrl" type="string"/>
     </transfer>
 
+    <transfer name="HeidelpayRiskInformation">
+        <property name="isCustomerGuest" type="bool"/>
+        <property name="customerOrdersCount" type="int"/>
+        <property name="customerSince" type="string"/>
+        <property name="customerId" type="int"/>
+    </transfer>
+
     <transfer name="HeidelpayTransactionLog">
         <property name="heidelpayResponse" type="HeidelpayResponse"/>
         <property name="responsePayload" type="string"/>
@@ -91,6 +98,7 @@
         <property name="async" type="HeidelpayAsync" />
         <property name="customerAddress" type="HeidelpayCustomerAddress" />
         <property name="customerPurchase" type="HeidelpayCustomerPurchase" />
+        <property name="riskInformation" type="HeidelpayRiskInformation" />
         <property name="idPaymentReference" type="string" />
         <property name="idPaymentRegistration" type="string" />
         <property name="idBasket" type="string"/>
