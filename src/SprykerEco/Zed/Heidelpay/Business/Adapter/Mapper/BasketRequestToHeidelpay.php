@@ -113,7 +113,7 @@ class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
                 ->setQuantity($expenseTransfer->getQuantity())
                 ->setVat($expenseTransfer->getTaxRate())
                 ->setAmountPerUnit($expenseTransfer->getUnitPriceToPayAggregation())
-                ->setAmountNet($expenseTransfer->getSumPriceToPayAggregation() - $expenseTransfer->getSumDiscountAmountAggregation())
+                ->setAmountNet(max($expenseTransfer->getSumPriceToPayAggregation() - $expenseTransfer->getSumDiscountAmountAggregation(), 0))
                 ->setAmountGross($expenseTransfer->getSumPriceToPayAggregation())
                 ->setAmountVat($expenseTransfer->getSumTaxAmount())
                 ->setAmountDiscount($expenseTransfer->getSumDiscountAmountAggregation());
