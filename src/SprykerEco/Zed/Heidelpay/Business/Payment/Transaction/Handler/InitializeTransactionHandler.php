@@ -9,6 +9,7 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
 
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
+use SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreatorInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilderInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\InitializeNotSupportedException;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\InitializeTransactionInterface;
@@ -35,18 +36,26 @@ class InitializeTransactionHandler implements InitializeTransactionHandlerInterf
     protected $heidelpayRequestBuilder;
 
     /**
+     * @var \SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreatorInterface
+     */
+    protected $basketCreator;
+
+    /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\InitializeTransactionInterface $transaction
-     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithInitializeInterface[] $paymentMethodAdapterCollection
+     * @param array $paymentMethodAdapterCollection
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilderInterface $heidelpayRequestBuilder
+     * @param \SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreatorInterface $basketCreator
      */
     public function __construct(
         InitializeTransactionInterface $transaction,
         array $paymentMethodAdapterCollection,
-        AdapterRequestFromQuoteBuilderInterface $heidelpayRequestBuilder
+        AdapterRequestFromQuoteBuilderInterface $heidelpayRequestBuilder,
+        BasketCreatorInterface $basketCreator
     ) {
         $this->transaction = $transaction;
         $this->paymentMethodAdapterCollection = $paymentMethodAdapterCollection;
         $this->heidelpayRequestBuilder = $heidelpayRequestBuilder;
+        $this->basketCreator = $basketCreator;
     }
 
     /**
@@ -70,6 +79,8 @@ class InitializeTransactionHandler implements InitializeTransactionHandlerInterf
     protected function buildInitializeRequest(QuoteTransfer $quoteTransfer)
     {
         $initializeRequestTransfer = $this->heidelpayRequestBuilder->buildEasyCreditRequest($quoteTransfer);
+        $heidelpayBasketResponseTransfer = $this->basketCreator->createBasket($quoteTransfer);
+        $initializeRequestTransfer->setIdBasket($heidelpayBasketResponseTransfer->getIdBasket());
 
         return $initializeRequestTransfer;
     }

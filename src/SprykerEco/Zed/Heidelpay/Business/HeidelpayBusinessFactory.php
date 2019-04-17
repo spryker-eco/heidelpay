@@ -134,7 +134,8 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
         return new InitializeTransactionHandler(
             $this->createInitializeTransaction(),
             $this->getInitializePaymentMethodAdapterCollection(),
-            $this->createEasyCreditAdapterRequestFromQuoteBuilder()
+            $this->createEasyCreditAdapterRequestFromQuoteBuilder(),
+            $this->createBasketHanlder()
         );
     }
 
