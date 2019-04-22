@@ -1,9 +1,7 @@
 {% extends model('template') %}
 
 {% define data = {
-    form: form,
-    parentFormId: parentFormId,
-    togglerName: togglerName
+    form: form
 } %}
 
 {% block body %}
@@ -28,9 +26,7 @@
                             {% include molecule(paymentOption.vars.value, 'Heidelpay') with {
                                 data: {
                                     paymentOption: paymentOption,
-                                    paymentMethod: data.form.vars.value.payment.heidelpayCreditCardSecure,
-                                    parentFormId: data.parentFormId,
-                                    togglerName: data.togglerName
+                                    paymentMethod: data.form.vars.value.payment.heidelpayCreditCardSecure
                                 }
                             } only %}
                         </div>

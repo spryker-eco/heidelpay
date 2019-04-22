@@ -1,28 +1,33 @@
 import Component from 'ShopUi/models/component';
 
 interface IFormElements extends HTMLFormElement{
-    input?: HTMLInputElement,
-    select?: HTMLSelectElement,
-    textarea?: HTMLTextAreaElement
+    input?: HTMLInputElement;
+    select?: HTMLSelectElement;
+    textarea?: HTMLTextAreaElement;
 }
 
 export default class RegistrationNew extends Component {
     protected paymentIframe: HTMLIFrameElement;
     protected paymentIframeSrc: string;
-    protected paymentStepForm: HTMLFormElement;
-    protected paymentStepFormElements: Array<IFormElements>;
-    protected paymentFormSelections: Array<HTMLInputElement>;
+    protected paymentForm: HTMLFormElement;
+    protected paymentStepFormElements: IFormElements[];
+    protected paymentMethodToggler: HTMLInputElement;
+    protected paymentFormTogglers: HTMLInputElement[];
+    protected creditCardPaymentToggler: HTMLInputElement;
     protected paymentName: string = 'heidelpayCreditCardSecure';
-    protected creditCardPaymentOptionSelectors: Array<HTMLInputElement>;
+    protected paymentOptionsTogglers: HTMLInputElement[];
     protected serializeData: object;
+
 
     protected readyCallback(): void {
         this.paymentIframe = <HTMLIFrameElement>this.querySelector(`#${this.jsName}`);
         this.paymentIframeSrc = this.getDomainFromUrl;
-        this.paymentStepForm = <HTMLFormElement>document.getElementById(this.parentFormId);
-        this.paymentStepFormElements = <IFormElements[]>Array.from(this.paymentStepForm.querySelectorAll('input, select, textarea'));
-        this.creditCardPaymentOptionSelectors = <HTMLInputElement[]>Array.from(this.paymentStepForm.querySelectorAll(`input[name="${this.paymentInputName}"`));
-        this.paymentFormSelections = <HTMLInputElement[]>Array.from(this.paymentStepForm.querySelectorAll(`input[name="${this.paymentTogglerName}"]`));
+        this.paymentForm = <HTMLFormElement>document.querySelector(this.paymentFormSelector);
+        this.paymentStepFormElements = <IFormElements[]>Array.from(this.paymentForm.querySelectorAll('input, select, textarea'));
+        this.paymentOptionsTogglers = <HTMLInputElement[]>Array.from(this.paymentForm.querySelectorAll(`input[name="${this.paymentOptionInputName}"`));
+        this.creditCardPaymentToggler = <HTMLInputElement>this.paymentOptionsTogglers.find(toggler => toggler.value === this.name);
+        this.paymentFormTogglers = <HTMLInputElement[]>Array.from(this.paymentForm.querySelectorAll(this.paymentTogglerSelector));
+        this.paymentMethodToggler = <HTMLInputElement>this.paymentFormTogglers.find(toggler => toggler.value === this.paymentName);
         this.mapEvents();
     }
 
@@ -37,16 +42,11 @@ export default class RegistrationNew extends Component {
     }
 
     protected isCreditCardNewRegistrationActive(): boolean {
-        const paymentMethodSelected = this.paymentFormSelections.find(formSelection => formSelection.checked);
-        const creditCardTypeSelected = this.creditCardPaymentOptionSelectors.find(creditCardSelector => creditCardSelector.checked);
-        return (paymentMethodSelected &&
-                creditCardTypeSelected &&
-                paymentMethodSelected.value === this.paymentName &&
-                creditCardTypeSelected.value === this.name) ? true : false;
+        return this.paymentMethodToggler.checked && this.creditCardPaymentToggler.checked;
     }
 
     protected mapEvents(): void {
-        this.paymentStepForm.addEventListener('submit', event => {
+        this.paymentForm.addEventListener('submit', event => {
             if(this.isCreditCardNewRegistrationActive()) {
                 const serializeForm = JSON.stringify(this.serializeIframeForm());
 
@@ -56,16 +56,16 @@ export default class RegistrationNew extends Component {
         });
     }
 
-    get parentFormId(): string {
-        return this.getAttribute('parent-form-id');
+    get paymentFormSelector(): string {
+        return this.getAttribute('payment-form-selector');
     }
     
-    get paymentInputName(): string {
-        return this.getAttribute('payment-input-name');
+    get paymentOptionInputName(): string {
+        return this.getAttribute('payment-option-input-name');
     }
     
-    get paymentTogglerName(): string {
-        return this.getAttribute('payment-toggler-name');
+    get paymentTogglerSelector(): string {
+        return this.getAttribute('payment-toggler-selector');
     }
 
     get getDomainFromUrl(): string {
