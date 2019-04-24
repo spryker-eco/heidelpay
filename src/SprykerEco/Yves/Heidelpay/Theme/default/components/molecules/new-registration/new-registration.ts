@@ -1,6 +1,6 @@
 import Component from 'ShopUi/models/component';
 
-interface IFormElements extends HTMLFormElement{
+interface IFormElement extends HTMLFormElement {
     input?: HTMLInputElement;
     select?: HTMLSelectElement;
     textarea?: HTMLTextAreaElement;
@@ -10,7 +10,7 @@ export default class RegistrationNew extends Component {
     protected paymentIframe: HTMLIFrameElement;
     protected paymentIframeSrc: string;
     protected paymentForm: HTMLFormElement;
-    protected paymentStepFormElements: IFormElements[];
+    protected paymentStepFormElements: IFormElement[];
     protected paymentMethodToggler: HTMLInputElement;
     protected paymentFormTogglers: HTMLInputElement[];
     protected creditCardPaymentToggler: HTMLInputElement;
@@ -23,7 +23,7 @@ export default class RegistrationNew extends Component {
         this.paymentIframe = <HTMLIFrameElement>this.querySelector(`#${this.jsName}`);
         this.paymentIframeSrc = this.getDomainFromUrl;
         this.paymentForm = <HTMLFormElement>document.querySelector(this.paymentFormSelector);
-        this.paymentStepFormElements = <IFormElements[]>Array.from(this.paymentForm.querySelectorAll('input, select, textarea'));
+        this.paymentStepFormElements = <IFormElement[]>Array.from(this.paymentForm.querySelectorAll('input, select, textarea'));
         this.paymentOptionsTogglers = <HTMLInputElement[]>Array.from(this.paymentForm.querySelectorAll(`input[name="${this.paymentOptionInputName}"`));
         this.creditCardPaymentToggler = <HTMLInputElement>this.paymentOptionsTogglers.find(toggler => toggler.value === this.name);
         this.paymentFormTogglers = <HTMLInputElement[]>Array.from(this.paymentForm.querySelectorAll(this.paymentTogglerSelector));
