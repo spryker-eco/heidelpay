@@ -15,7 +15,6 @@ use SprykerEco\Client\Heidelpay\HeidelpayClientInterface;
 use SprykerEco\Yves\Heidelpay\CreditCard\RegistrationToQuoteHydrator;
 use SprykerEco\Yves\Heidelpay\CreditCard\RegistrationToQuoteHydratorInterface;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface;
-use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToPriceClientInterface;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
 use SprykerEco\Yves\Heidelpay\Form\CreditCardSecureSubForm;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\CreditCardSecureDataProvider;
@@ -30,7 +29,6 @@ use SprykerEco\Yves\Heidelpay\Form\PaypalAuthorizeSubForm;
 use SprykerEco\Yves\Heidelpay\Form\PaypalDebitSubForm;
 use SprykerEco\Yves\Heidelpay\Form\SofortSubForm;
 use SprykerEco\Yves\Heidelpay\Handler\HeidelpayCreditCardHandler;
-use SprykerEco\Yves\Heidelpay\Handler\HeidelpayEasyCreditHandler;
 use SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandler;
 use SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface;
 use SprykerEco\Yves\Heidelpay\Handler\PaymentFailureHandler;
@@ -64,18 +62,6 @@ class HeidelpayFactory extends AbstractFactory
     {
         return new HeidelpayCreditCardHandler(
             $this->getCalculationClient(),
-            $this->getQuoteClient()
-        );
-    }
-
-    /**
-     * @return \SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface
-     */
-    public function createHeidelpayEasyCreditHandler(): HeidelpayHandlerInterface
-    {
-        return new HeidelpayEasyCreditHandler(
-            $this->getCalculationClient(),
-            $this->getPriceClient(),
             $this->getQuoteClient()
         );
     }
@@ -206,14 +192,6 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToPriceClientInterface
-     */
-    public function getPriceClient(): HeidelpayToPriceClientInterface
-    {
-        return $this->getProvidedDependency(HeidelpayDependencyProvider::CLIENT_PRICE);
-    }
-
-    /**
      * @return \Spryker\Shared\Money\Dependency\Plugin\MoneyPluginInterface
      */
     public function getMoneyClient(): MoneyPluginInterface
@@ -252,10 +230,7 @@ class HeidelpayFactory extends AbstractFactory
      */
     public function createEasyCreditResponseToQuoteHydrator(): EasyCreditResponseToQuoteHydratorInterface
     {
-        return new EasyCreditResponseToQuoteHydrator(
-            $this->createHeidelpayEasyCreditHandler(),
-            $this->getMoneyClient()
-        );
+        return new EasyCreditResponseToQuoteHydrator($this->getMoneyClient());
     }
 
     /**

@@ -8,6 +8,7 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Order;
 
 use Generated\Shared\Transfer\ItemTransfer;
+use Generated\Shared\Transfer\PaymentTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\SaveOrderTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay;
@@ -65,6 +66,10 @@ class Saver implements SaverInterface
 
         $paymentEntity = $this->buildPaymentEntity($quoteTransfer, $saveOrderTransfer);
         $this->addBasketInformation($quoteTransfer, $paymentEntity);
+
+        if ($quoteTransfer->getPayment()->getPaymentSelection() === PaymentTransfer::HEIDELPAY_EASY_CREDIT) {
+            $paymentEntity = $this->addEasyCreditFee($quoteTransfer, $paymentEntity);
+        }
 
         $paymentEntity->save();
 
@@ -151,5 +156,20 @@ class Saver implements SaverInterface
             ->createBasket($quoteTransfer);
 
         $paymentEntity->setIdBasket($heidelpayBasketResponseTransfer->getIdBasket());
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay $paymentEntity
+     *
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay
+     */
+    protected function addEasyCreditFee(QuoteTransfer $quoteTransfer, SpyPaymentHeidelpay $paymentEntity): SpyPaymentHeidelpay
+    {
+        $paymentEntity->setEasyCreditFee(
+            (int)$quoteTransfer->getPayment()->getHeidelpayEasyCredit()->getAccruingInterest()
+        );
+
+        return $paymentEntity;
     }
 }
