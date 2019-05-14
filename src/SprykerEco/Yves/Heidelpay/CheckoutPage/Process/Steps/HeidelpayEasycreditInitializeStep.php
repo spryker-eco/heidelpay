@@ -64,15 +64,6 @@ class HeidelpayEasycreditInitializeStep extends AbstractBaseStep
      */
     public function execute(Request $request, AbstractTransfer $quoteTransfer)
     {
-        $heidelpayPaymentTransfer = $quoteTransfer->getHeidelpayPayment();
-
-        if ($heidelpayPaymentTransfer !== null
-            && $heidelpayPaymentTransfer->getLegalText() !== null
-            && $heidelpayPaymentTransfer->getExternalRedirectUrl() !== null
-        ) {
-            return $quoteTransfer;
-        }
-
         $easyCreditInitializeResponse = $this->getEasyCreditInitializeResponse($quoteTransfer);
 
         if ($easyCreditInitializeResponse->getIsSuccess() === true) {
