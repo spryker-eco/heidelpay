@@ -11,8 +11,6 @@ interface HeidelpayConfig
 {
     public const PROVIDER_NAME = 'heidelpay';
 
-    public const HEIDELPAY_EASY_CREDIT_PAYMENT_METHOD = 'heidelpayEasyCredit';
-
     public const PAYMENT_METHOD_SOFORT = self::PROVIDER_NAME . 'Sofort';
     public const PAYMENT_METHOD_CREDIT_CARD_SECURE = self::PROVIDER_NAME . 'CreditCardSecure';
     public const PAYMENT_METHOD_PAYPAL_AUTHORIZE = self::PROVIDER_NAME . 'PaypalAuthorize';

@@ -61,7 +61,7 @@ class EasyCreditController extends BaseHeidelpayController
 
         $this->getFactory()
             ->createEasyCreditResponseToQuoteHydrator()
-            ->hydrateEasyCreditResponseToQuote($paymentParameters, $quoteTransfer);
+            ->hydrateQuoteTransferWithEasyCreditResponse($paymentParameters, $quoteTransfer);
 
         return $this->redirectResponseExternal(
             $this->getSummaryPageUrl()
@@ -93,7 +93,7 @@ class EasyCreditController extends BaseHeidelpayController
     {
         $this->getFactory()
             ->createEasyCreditResponseToQuoteHydrator()
-            ->hydrateEasyCreditResponseToQuote($requestAsArray, $quoteTransfer);
+            ->hydrateQuoteTransferWithEasyCreditResponse($requestAsArray, $quoteTransfer);
     }
 
     /**

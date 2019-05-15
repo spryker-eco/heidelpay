@@ -38,7 +38,7 @@ class ReservationTransaction implements ReservationTransactionInterface
         HeidelpayRequestTransfer $reservationRequestTransfer,
         PaymentWithReservationInterface $paymentAdapter
     ) {
-        $reservationResponseTransfer = $paymentAdapter->reservation($reservationRequestTransfer);
+        $reservationResponseTransfer = $paymentAdapter->reserve($reservationRequestTransfer);
         $this->logTransaction($reservationRequestTransfer, $reservationResponseTransfer);
 
         return $reservationResponseTransfer;

@@ -11,13 +11,12 @@ use ArrayObject;
 use Generated\Shared\Transfer\PaymentMethodsTransfer;
 use Generated\Shared\Transfer\PaymentMethodTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig as SharedHeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyFacadeInterface;
 use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class PaymentMethodFilter implements PaymentMethodFilterInterface
 {
-    protected const HEIDELPAY_EASY_CREDIT_PAYMENT_METHOD = 'heidelpayEasyCredit';
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\HeidelpayConfig
      */
@@ -74,7 +73,7 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
      */
     protected function isPaymentMethodHeidelpayEasyCredit(PaymentMethodTransfer $paymentMethodTransfer): bool
     {
-        return $paymentMethodTransfer->getMethodName() === static::HEIDELPAY_EASY_CREDIT_PAYMENT_METHOD;
+        return $paymentMethodTransfer->getMethodName() === SharedHeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT;
     }
 
     /**

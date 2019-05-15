@@ -84,7 +84,7 @@ class UnsuccessfulEasyCreditPaymentMock extends EasyCreditPayment
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function reservation(HeidelpayRequestTransfer $reservationRequestTransfer): HeidelpayResponseTransfer
+    public function reserve(HeidelpayRequestTransfer $reservationRequestTransfer): HeidelpayResponseTransfer
     {
         $response['payload'] = '{
                         "processing": {"result": "NOK"}, 

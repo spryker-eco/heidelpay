@@ -12,8 +12,6 @@ use Spryker\Yves\Kernel\AbstractFactory;
 use Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
 use SprykerEco\Client\Heidelpay\HeidelpayClientInterface;
-use SprykerEco\Yves\Heidelpay\CreditCard\RegistrationToQuoteHydrator;
-use SprykerEco\Yves\Heidelpay\CreditCard\RegistrationToQuoteHydratorInterface;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
 use SprykerEco\Yves\Heidelpay\Form\CreditCardSecureSubForm;
@@ -37,6 +35,8 @@ use SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuote;
 use SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface;
 use SprykerEco\Yves\Heidelpay\Hydrator\EasyCreditResponseToQuoteHydrator;
 use SprykerEco\Yves\Heidelpay\Hydrator\EasyCreditResponseToQuoteHydratorInterface;
+use SprykerEco\Yves\Heidelpay\Hydrator\RegistrationToQuoteHydrator;
+use SprykerEco\Yves\Heidelpay\Hydrator\RegistrationToQuoteHydratorInterface;
 use SprykerEco\Yves\Heidelpay\Mapper\EasyCreditResponseToGetParametersMapper;
 use SprykerEco\Yves\Heidelpay\Mapper\EasyCreditResponseToGetParametersMapperInterface;
 use SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeForm;
@@ -216,7 +216,7 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \SprykerEco\Yves\Heidelpay\CreditCard\RegistrationToQuoteHydratorInterface
+     * @return \SprykerEco\Yves\Heidelpay\Hydrator\RegistrationToQuoteHydratorInterface
      */
     public function createCreditCardRegistrationToQuoteHydrator(): RegistrationToQuoteHydratorInterface
     {

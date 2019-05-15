@@ -17,5 +17,5 @@ interface EasyCreditResponseToQuoteHydratorInterface
      *
      * @return void
      */
-    public function hydrateEasyCreditResponseToQuote(array $responseAsArray, QuoteTransfer $quoteTransfer): void;
+    public function hydrateQuoteTransferWithEasyCreditResponse(array $responseAsArray, QuoteTransfer $quoteTransfer): void;
 }

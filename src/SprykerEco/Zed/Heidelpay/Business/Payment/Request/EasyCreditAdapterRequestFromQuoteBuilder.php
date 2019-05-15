@@ -7,7 +7,6 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Request;
 
-use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\HeidelpayAsyncTransfer;
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\OrderListTransfer;
@@ -34,7 +33,6 @@ class EasyCreditAdapterRequestFromQuoteBuilder extends AdapterRequestFromQuoteBu
         HeidelpayToCurrencyFacadeInterface $currencyFacade,
         HeidelpayConfig $config,
         HeidelpayToSalesFacadeInterface $salesFacade
-
     ) {
         parent::__construct($quoteToHeidelpayMapper, $currencyFacade, $config);
         $this->salesFacade = $salesFacade;

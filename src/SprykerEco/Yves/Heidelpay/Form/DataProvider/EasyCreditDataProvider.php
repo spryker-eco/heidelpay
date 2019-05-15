@@ -37,10 +37,14 @@ class EasyCreditDataProvider implements StepEngineFormDataProviderInterface
     public function getData(AbstractTransfer $quoteTransfer)
     {
         if ($quoteTransfer->getPayment() === null) {
-            $paymentTransfer = new PaymentTransfer();
-            $paymentTransfer->setHeidelpayEasyCredit(new HeidelpayEasyCreditPaymentTransfer());
-            $quoteTransfer->setPayment($paymentTransfer);
+            $quoteTransfer->setPayment(new PaymentTransfer());
         }
+
+        if ($quoteTransfer->getPayment()->getHeidelpayEasyCredit() !== null) {
+            return $quoteTransfer;
+        }
+
+        $quoteTransfer->getPayment()->setHeidelpayEasyCredit(new HeidelpayEasyCreditPaymentTransfer());
 
         return $quoteTransfer;
     }

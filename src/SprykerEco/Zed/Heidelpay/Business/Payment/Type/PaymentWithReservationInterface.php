@@ -16,5 +16,5 @@ interface PaymentWithReservationInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function reservation(HeidelpayRequestTransfer $reservationRequestTransfer);
+    public function reserve(HeidelpayRequestTransfer $reservationRequestTransfer);
 }

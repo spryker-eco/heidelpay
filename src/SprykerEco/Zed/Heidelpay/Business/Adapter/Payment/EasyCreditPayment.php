@@ -14,6 +14,8 @@ use Heidelpay\PhpPaymentApi\Request;
 
 class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterface
 {
+    protected const FRONTEND_DISABLED_VALUE = 'FALSE';
+
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $authorizeRequestTransfer
      *
@@ -47,7 +49,7 @@ class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterfac
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function reservation(HeidelpayRequestTransfer $reservationRequestTransfer): HeidelpayResponseTransfer
+    public function reserve(HeidelpayRequestTransfer $reservationRequestTransfer): HeidelpayResponseTransfer
     {
         $easyCreditMethod = new EasyCreditPaymentMethod();
         $request = $easyCreditMethod->getRequest();
@@ -83,7 +85,7 @@ class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterfac
         Request $request,
         HeidelpayRequestTransfer $reservationRequestTransfer
     ): void {
-        $request->getFrontend()->setEnabled('FALSE');
+        $request->getFrontend()->setEnabled(static::FRONTEND_DISABLED_VALUE);
         $async = $reservationRequestTransfer->getAsync();
         $async->setResponseUrl(null);
         $reservationRequestTransfer->setAsync($async);
