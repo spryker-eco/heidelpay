@@ -35,7 +35,7 @@ class HeidelpayFacadeAuthorizePaymentTest extends HeidelpayPaymentTest
         $heidelpayFacade = (new HeidelpayFacade())
             ->setFactory($this->createSuccessfulPaymentHeidelpayFactoryMock());
 
-        $orderTransfer = $this->getPaymentTransfer($heidelpayFacade, $salesOrder);
+        $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrder);
 
         $heidelpayFacade->authorizePayment($orderTransfer);
 
@@ -73,7 +73,7 @@ class HeidelpayFacadeAuthorizePaymentTest extends HeidelpayPaymentTest
         $heidelpayFacade = (new HeidelpayFacade())
             ->setFactory($this->createUnsuccessfulPaymentHeidelpayFactoryMock());
 
-        $orderTransfer = $this->getPaymentTransfer($heidelpayFacade, $salesOrder);
+        $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrder);
 
         $heidelpayFacade->authorizePayment($orderTransfer);
 

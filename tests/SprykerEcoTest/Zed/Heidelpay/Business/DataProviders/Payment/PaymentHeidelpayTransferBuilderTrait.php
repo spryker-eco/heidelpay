@@ -7,6 +7,8 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment;
 
+use Generated\Shared\Transfer\CustomerTransfer;
+use Generated\Shared\Transfer\OrderTransfer;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 
@@ -18,11 +20,12 @@ trait PaymentHeidelpayTransferBuilderTrait
      *
      * @return mixed
      */
-    protected function getPaymentTransfer(HeidelpayFacade $heidelpayFacade, SpySalesOrder $salesOrder)
+    protected function getOrderTransfer(HeidelpayFacade $heidelpayFacade, SpySalesOrder $salesOrder): OrderTransfer
     {
         $paymentTransfer = $heidelpayFacade->getPaymentByIdSalesOrder($salesOrder->getIdSalesOrder());
         $orderTransfer = $this->heidelpayToSales->getOrderByIdSalesOrder($salesOrder->getIdSalesOrder());
         $orderTransfer->setHeidelpayPayment($paymentTransfer);
+        $orderTransfer->setCustomer(new CustomerTransfer());
 
         return $orderTransfer;
     }

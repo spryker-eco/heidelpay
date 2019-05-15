@@ -9,6 +9,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
 use Generated\Shared\Transfer\HeidelpayEasyCreditPaymentTransfer;
 use Generated\Shared\Transfer\PaymentTransfer;
+use Generated\Shared\Transfer\TaxTotalTransfer;
 use Generated\Shared\Transfer\TotalsTransfer;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
@@ -75,6 +76,10 @@ class HeidelpayFacadeInitializePaymentTest extends HeidelpayPaymentTest
         $quoteTransfer->setTotals(
             (new TotalsTransfer())
                 ->setGrandTotal(10000)
+                ->setTaxTotal(
+                    (new TaxTotalTransfer())
+                        ->setAmount(1000)
+                )
         );
 
         $quoteTransfer->setPayment($paymentTransfer);
