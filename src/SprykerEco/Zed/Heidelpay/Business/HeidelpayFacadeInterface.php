@@ -12,9 +12,11 @@ use Generated\Shared\Transfer\HeidelpayAuthorizeTransactionLogRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
+use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer;
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
 use Generated\Shared\Transfer\PaymentMethodsTransfer;
@@ -48,7 +50,7 @@ interface HeidelpayFacadeInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
-    public function processExternalEasyCreditPaymentResponse(array $externalResponse);
+    public function processExternalEasyCreditPaymentResponse(array $externalResponse): HeidelpayPaymentProcessingResponseTransfer;
 
     /**
      * Specification:
@@ -61,7 +63,7 @@ interface HeidelpayFacadeInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function authorizeOnRegistrationPayment(OrderTransfer $orderTransfer);
+    public function authorizeOnRegistrationPayment(OrderTransfer $orderTransfer): HeidelpayResponseTransfer;
 
     /**
      * Specification:
@@ -73,9 +75,9 @@ interface HeidelpayFacadeInterface
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     * @return void
      */
-    public function finalizePayment(OrderTransfer $orderTransfer);
+    public function finalizePayment(OrderTransfer $orderTransfer): void;
 
     /**
      * Specification:
@@ -87,9 +89,9 @@ interface HeidelpayFacadeInterface
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     * @return void
      */
-    public function executePaymentReservation(OrderTransfer $orderTransfer);
+    public function executePaymentReservation(OrderTransfer $orderTransfer): void;
 
     /**
      * Specification:
@@ -114,7 +116,7 @@ interface HeidelpayFacadeInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function initializePayment(QuoteTransfer $quoteTransfer);
+    public function initializePayment(QuoteTransfer $quoteTransfer): HeidelpayResponseTransfer;
 
     /**
      * Specification:
@@ -178,7 +180,7 @@ interface HeidelpayFacadeInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentTransfer
      */
-    public function getPaymentByIdSalesOrder(int $idSalesOrder);
+    public function getPaymentByIdSalesOrder(int $idSalesOrder): HeidelpayPaymentTransfer;
 
     /**
      * Specification:
@@ -239,5 +241,5 @@ interface HeidelpayFacadeInterface
      *
      * @return \Generated\Shared\Transfer\PaymentMethodsTransfer
      */
-    public function filterPaymentMethods(PaymentMethodsTransfer $paymentMethodsTransfer, QuoteTransfer $quoteTransfer);
+    public function filterPaymentMethods(PaymentMethodsTransfer $paymentMethodsTransfer, QuoteTransfer $quoteTransfer): PaymentMethodsTransfer;
 }

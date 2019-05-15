@@ -8,7 +8,7 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
 
 use Generated\Shared\Transfer\OrderTransfer;
-use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriter;
+use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriterInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\FinalizeNotSupportedException;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\FinalizeTransactionInterface;
@@ -35,21 +35,21 @@ class FinalizeTransactionHandler implements FinalizeTransactionHandlerInterface
     protected $heidelpayRequestBuilder;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriter
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriterInterface
      */
     protected $paymentWriter;
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\FinalizeTransactionInterface $transaction
-     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithFinalizeInterface[] $paymentMethodAdapterCollection
+     * @param array $paymentMethodAdapterCollection
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder
-     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriter $paymentWriter
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriterInterface $paymentWriter
      */
     public function __construct(
         FinalizeTransactionInterface $transaction,
         array $paymentMethodAdapterCollection,
         AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder,
-        PaymentWriter $paymentWriter
+        PaymentWriterInterface $paymentWriter
     ) {
         $this->transaction = $transaction;
         $this->paymentMethodAdapterCollection = $paymentMethodAdapterCollection;

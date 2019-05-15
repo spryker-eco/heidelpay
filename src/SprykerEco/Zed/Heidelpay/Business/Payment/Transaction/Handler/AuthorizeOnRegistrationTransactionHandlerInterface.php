@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
 
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
 
 interface AuthorizeOnRegistrationTransactionHandlerInterface
@@ -14,7 +15,7 @@ interface AuthorizeOnRegistrationTransactionHandlerInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
-     * @return void
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function authorizeOnRegistration(OrderTransfer $orderTransfer);
+    public function authorizeOnRegistration(OrderTransfer $orderTransfer): HeidelpayResponseTransfer;
 }
