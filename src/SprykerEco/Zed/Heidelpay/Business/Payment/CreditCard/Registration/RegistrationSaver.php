@@ -17,7 +17,7 @@ class RegistrationSaver implements RegistrationSaverInterface
     /**
      * @var \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface
      */
-    private $heidelpayQueryContainer;
+    protected $heidelpayQueryContainer;
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface $heidelpayQueryContainer
