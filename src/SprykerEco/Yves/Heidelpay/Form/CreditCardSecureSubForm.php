@@ -59,7 +59,7 @@ class CreditCardSecureSubForm extends AbstractHeidelpaySubForm
      *
      * @return $this
      */
-    public function addCreditCardPaymentOptions(FormBuilderInterface $builder, array $options): self
+    public function addCreditCardPaymentOptions(FormBuilderInterface $builder, array $options)
     {
         $builder->add(
             static::FIELD_CREDIT_CARD_PAYMENT_OPTION,

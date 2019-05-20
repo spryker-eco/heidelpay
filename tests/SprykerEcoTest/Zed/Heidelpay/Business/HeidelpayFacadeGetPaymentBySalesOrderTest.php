@@ -10,6 +10,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business;
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
 use Generated\Shared\Transfer\PaymentTransfer;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
 
 /**
@@ -31,7 +32,7 @@ class HeidelpayFacadeGetPaymentBySalesOrderTest extends HeidelpayPaymentTest
         $paymentTransfer = $this->heidelpayFacade->getPaymentByIdSalesOrder($salesOrder->getIdSalesOrder());
         $this->assertInstanceOf(HeidelpayPaymentTransfer::class, $paymentTransfer);
         $this->assertNotNull($paymentTransfer);
-        $this->assertEquals(HeidelpayTestConstants::HEIDELPAY_REFERENCE, $paymentTransfer->getIdPaymentReference());
+        $this->assertEquals(HeidelpayTestConfig::HEIDELPAY_REFERENCE, $paymentTransfer->getIdPaymentReference());
         $this->assertEquals(PaymentTransfer::HEIDELPAY_SOFORT, $paymentTransfer->getPaymentMethod());
         $this->assertNotNull($paymentTransfer->getFkSalesOrder());
     }

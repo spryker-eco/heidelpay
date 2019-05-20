@@ -10,9 +10,11 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\Mock;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\AdapterFactory;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\EasyCreditPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\PaypalPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\SofortPaymentInterface;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods\SuccessfulCreditCardCapturePaymentMock;
+use SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods\SuccessfulEasyCreditPaymentMock;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods\SuccessfulPaypalDebitPaymentMock;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods\SuccessfulSofortPaymentMock;
 
@@ -35,6 +37,16 @@ class SuccessfulResponseAdapterFactory extends AdapterFactory
     {
         return [
             HeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT => $this->createPaypalPaymentMethodAdapter(),
+        ];
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface[]
+     */
+    public function getInitializePaymentMethodAdapterCollection(): array
+    {
+        return [
+            HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT => $this->createEasyCreditPaymentMethodAdapter(),
         ];
     }
 
@@ -78,6 +90,30 @@ class SuccessfulResponseAdapterFactory extends AdapterFactory
     public function createCreditCardPaymentMethodAdapter(): CreditCardPaymentInterface
     {
         return new SuccessfulCreditCardCapturePaymentMock(
+            $this->createRequestToHeidelpayMapper(),
+            $this->createResponseFromHeidelpayMapper(),
+            $this->getHeidelpayConfig()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\EasyCreditPaymentInterface
+     */
+    public function createEasyCreditPaymentMethodAdapter(): EasyCreditPaymentInterface
+    {
+        return new SuccessfulEasyCreditPaymentMock(
+            $this->createRequestToHeidelpayMapper(),
+            $this->createResponseFromHeidelpayMapper(),
+            $this->getHeidelpayConfig()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\EasyCreditPaymentInterface
+     */
+    public function createEasyCreditInitializePaymentMethodAdapter()
+    {
+        return new SuccessfulEasyCreditPaymentMock(
             $this->createRequestToHeidelpayMapper(),
             $this->createResponseFromHeidelpayMapper(),
             $this->getHeidelpayConfig()

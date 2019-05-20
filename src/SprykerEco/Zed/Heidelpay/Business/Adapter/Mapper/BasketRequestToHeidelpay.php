@@ -43,7 +43,6 @@ class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
         $heidelpayBasket
             ->setAmountTotalNet($requestTransfer->getTotals()->getNetTotal())
             ->setAmountTotalVat($requestTransfer->getTotals()->getTaxTotal()->getAmount())
-            ->setAmountTotalDiscount($requestTransfer->getTotals()->getDiscountTotal())
             ->setCurrencyCode($requestTransfer->getCurrency()->getCode());
 
         $this->mapBasketItems($requestTransfer, $heidelpayBasket);
@@ -74,8 +73,7 @@ class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
                 ->setAmountPerUnit($itemTransfer->getUnitPriceToPayAggregation())
                 ->setAmountNet($itemTransfer->getSumPriceToPayAggregation() - $itemTransfer->getSumTaxAmount())
                 ->setAmountGross($itemTransfer->getSumPriceToPayAggregation())
-                ->setAmountVat($itemTransfer->getSumTaxAmountFullAggregation())
-                ->setAmountDiscount($itemTransfer->getSumDiscountAmountFullAggregation());
+                ->setAmountVat($itemTransfer->getSumTaxAmountFullAggregation());
 
             if ($isSplitPaymentEnabled) {
                 $basketItem
@@ -113,10 +111,9 @@ class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
                 ->setQuantity($expenseTransfer->getQuantity())
                 ->setVat($expenseTransfer->getTaxRate())
                 ->setAmountPerUnit($expenseTransfer->getUnitPriceToPayAggregation())
-                ->setAmountNet($expenseTransfer->getSumPriceToPayAggregation() - $expenseTransfer->getSumDiscountAmountAggregation())
+                ->setAmountNet(max($expenseTransfer->getSumPriceToPayAggregation() - $expenseTransfer->getSumDiscountAmountAggregation() - $expenseTransfer->getSumTaxAmount(), 0))
                 ->setAmountGross($expenseTransfer->getSumPriceToPayAggregation())
-                ->setAmountVat($expenseTransfer->getSumTaxAmount())
-                ->setAmountDiscount($expenseTransfer->getSumDiscountAmountAggregation());
+                ->setAmountVat($expenseTransfer->getSumTaxAmount());
 
             if ($isSplitPaymentEnabled) {
                 $basketItem

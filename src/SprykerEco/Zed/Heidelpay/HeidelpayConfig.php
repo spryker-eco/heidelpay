@@ -21,6 +21,7 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
         SharedHeidelpayConfig::PAYMENT_METHOD_IDEAL => HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_IDEAL,
         SharedHeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT => HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_PAYPAL,
         SharedHeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE => HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_PAYPAL,
+        SharedHeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT => HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_EASY_CREDIT,
     ];
 
     /**
@@ -82,6 +83,14 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     /**
      * @return string
      */
+    public function getEasyCreditPaymentResponseUrl(): string
+    {
+        return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_PAYMENT_RESPONSE_URL);
+    }
+
+    /**
+     * @return string
+     */
     public function getYvesCheckoutPaymentFailedUrl(): string
     {
         return $this->get(HeidelpayConstants::CONFIG_YVES_CHECKOUT_PAYMENT_FAILED_URL);
@@ -133,6 +142,30 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     public function getEncryptionKey(): string
     {
         return $this->get(HeidelpayConstants::CONFIG_ENCRYPTION_KEY);
+    }
+
+    /**
+     * @return string
+     */
+    public function getEasycreditCriteriaRejectedDeliveryAddress(): string
+    {
+        return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_REJECTED_DELIVERY_ADDRESS);
+    }
+
+    /**
+     * @return float
+     */
+    public function getEasycreditCriteriaGrandTotalMoreThan(): float
+    {
+        return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_GRAND_TOTAL_MORE_THAN);
+    }
+
+    /**
+     * @return float
+     */
+    public function getEasycreditCriteriaGrandTotalLessThan(): float
+    {
+        return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_GRAND_TOTAL_LESS_THAN);
     }
 
     /**

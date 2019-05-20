@@ -19,6 +19,7 @@ use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\CreditCard\CreditCardBuilder;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerAddressTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerTrait;
@@ -37,7 +38,10 @@ use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusin
 class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTest
 {
     public const CUSTOMER_ADDRESS_ID = 100000000;
-    use QuoteMockTrait, CustomerAddressTrait, CustomerTrait;
+
+    use QuoteMockTrait,
+        CustomerAddressTrait,
+        CustomerTrait;
 
     /**
      * @return void
@@ -55,7 +59,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
         $this->assertNotNull($heidelpayCreditCardPaymentOptionsTransfer);
         $this->assertInstanceOf(HeidelpayCreditCardPaymentOptionsTransfer::class, $heidelpayCreditCardPaymentOptionsTransfer);
         $this->assertEquals(
-            HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL,
+            HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL,
             $heidelpayCreditCardPaymentOptionsTransfer->getPaymentFrameUrl()
         );
         $this->assertNull($heidelpayCreditCardPaymentOptionsTransfer->getLastSuccessfulRegistration());
@@ -125,7 +129,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
         $this->assertNotNull($heidelpayCreditCardPaymentOptionsTransfer);
         $this->assertInstanceOf(HeidelpayCreditCardPaymentOptionsTransfer::class, $heidelpayCreditCardPaymentOptionsTransfer);
         $this->assertEquals(
-            HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL,
+            HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL,
             $heidelpayCreditCardPaymentOptionsTransfer->getPaymentFrameUrl()
         );
         $this->assertNull($heidelpayCreditCardPaymentOptionsTransfer->getLastSuccessfulRegistration());
@@ -287,7 +291,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
         QuoteTransfer $quoteTransfer
     ): void {
         $this->assertEquals(
-            HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL,
+            HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL,
             $heidelpayCreditCardPaymentOptionsTransfer->getPaymentFrameUrl()
         );
 
@@ -300,7 +304,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
         );
 
         $this->assertEquals(
-            HeidelpayTestConstants::REGISTRATION_NUMBER,
+            HeidelpayTestConfig::REGISTRATION_NUMBER,
             $lastSuccessfulRegistration->getRegistrationNumber()
         );
 

@@ -59,6 +59,7 @@ class BasePayment implements PaymentWithExternalResponseInterface
     public function processExternalResponse(HeidelpayExternalPaymentResponseTransfer $externalResponseTransfer): HeidelpayResponseTransfer
     {
         $apiResponseObject = new Response($externalResponseTransfer->getBody());
+
         return $this->verifyAndParseResponse($apiResponseObject);
     }
 

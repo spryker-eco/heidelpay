@@ -7,20 +7,21 @@
 
 namespace SprykerEco\Yves\Heidelpay;
 
+use Spryker\Shared\Money\Dependency\Plugin\MoneyPluginInterface;
 use Spryker\Yves\Kernel\AbstractFactory;
 use Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
 use SprykerEco\Client\Heidelpay\HeidelpayClientInterface;
-use SprykerEco\Yves\Heidelpay\CreditCard\RegistrationToQuoteHydrator;
-use SprykerEco\Yves\Heidelpay\CreditCard\RegistrationToQuoteHydratorInterface;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
 use SprykerEco\Yves\Heidelpay\Form\CreditCardSecureSubForm;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\CreditCardSecureDataProvider;
+use SprykerEco\Yves\Heidelpay\Form\DataProvider\EasyCreditDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\IdealDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\PaypalAuthorizeDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\PaypalDebitDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\SofortDataProvider;
+use SprykerEco\Yves\Heidelpay\Form\EasyCreditSubForm;
 use SprykerEco\Yves\Heidelpay\Form\IdealSubForm;
 use SprykerEco\Yves\Heidelpay\Form\PaypalAuthorizeSubForm;
 use SprykerEco\Yves\Heidelpay\Form\PaypalDebitSubForm;
@@ -32,6 +33,12 @@ use SprykerEco\Yves\Heidelpay\Handler\PaymentFailureHandler;
 use SprykerEco\Yves\Heidelpay\Handler\PaymentFailureHandlerInterface;
 use SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuote;
 use SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface;
+use SprykerEco\Yves\Heidelpay\Hydrator\EasyCreditResponseToQuoteHydrator;
+use SprykerEco\Yves\Heidelpay\Hydrator\EasyCreditResponseToQuoteHydratorInterface;
+use SprykerEco\Yves\Heidelpay\Hydrator\RegistrationToQuoteHydrator;
+use SprykerEco\Yves\Heidelpay\Hydrator\RegistrationToQuoteHydratorInterface;
+use SprykerEco\Yves\Heidelpay\Mapper\EasyCreditResponseToGetParametersMapper;
+use SprykerEco\Yves\Heidelpay\Mapper\EasyCreditResponseToGetParametersMapperInterface;
 use SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeForm;
 use SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeFormInterface;
 
@@ -97,6 +104,14 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
      */
+    public function createEasyCreditForm(): SubFormInterface
+    {
+        return new EasyCreditSubForm();
+    }
+
+    /**
+     * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
+     */
     public function createPaypalAuthorizeForm(): SubFormInterface
     {
         return new PaypalAuthorizeSubForm();
@@ -153,6 +168,14 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
+     * @return \Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface
+     */
+    public function createEasyCreditFormDataProvider(): StepEngineFormDataProviderInterface
+    {
+        return new EasyCreditDataProvider($this->getConfig());
+    }
+
+    /**
      * @return \SprykerEco\Client\Heidelpay\HeidelpayClientInterface
      */
     public function getHeidelpayClient(): HeidelpayClientInterface
@@ -166,6 +189,14 @@ class HeidelpayFactory extends AbstractFactory
     public function getCalculationClient(): HeidelpayToCalculationClientInterface
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::CLIENT_CALCULATION);
+    }
+
+    /**
+     * @return \Spryker\Shared\Money\Dependency\Plugin\MoneyPluginInterface
+     */
+    public function getMoneyClient(): MoneyPluginInterface
+    {
+        return $this->getProvidedDependency(HeidelpayDependencyProvider::PLUGIN_MONEY);
     }
 
     /**
@@ -185,13 +216,29 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \SprykerEco\Yves\Heidelpay\CreditCard\RegistrationToQuoteHydratorInterface
+     * @return \SprykerEco\Yves\Heidelpay\Hydrator\RegistrationToQuoteHydratorInterface
      */
     public function createCreditCardRegistrationToQuoteHydrator(): RegistrationToQuoteHydratorInterface
     {
         return new RegistrationToQuoteHydrator(
             $this->createHeidelpayCreditCardHandler()
         );
+    }
+
+    /**
+     * @return \SprykerEco\Yves\Heidelpay\Hydrator\EasyCreditResponseToQuoteHydratorInterface
+     */
+    public function createEasyCreditResponseToQuoteHydrator(): EasyCreditResponseToQuoteHydratorInterface
+    {
+        return new EasyCreditResponseToQuoteHydrator($this->getMoneyClient());
+    }
+
+    /**
+     * @return \SprykerEco\Yves\Heidelpay\Mapper\EasyCreditResponseToGetParametersMapperInterface
+     */
+    public function createEasyCreditResponseToGetParametersMapper(): EasyCreditResponseToGetParametersMapperInterface
+    {
+        return new EasyCreditResponseToGetParametersMapper();
     }
 
     /**

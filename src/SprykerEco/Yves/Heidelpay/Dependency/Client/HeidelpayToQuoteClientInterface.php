@@ -12,11 +12,6 @@ use Generated\Shared\Transfer\QuoteTransfer;
 interface HeidelpayToQuoteClientInterface
 {
     /**
-     * Specification:
-     * - Set quote in session.
-     *
-     * @api
-     *
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return void

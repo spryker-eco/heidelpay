@@ -10,8 +10,8 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Transaction;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Encoder\EncoderTrait;
-use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
 
 trait DebitTransactionTrait
 {
@@ -29,13 +29,13 @@ trait DebitTransactionTrait
             ->setIdTransactionUnique('some unique id')
             ->setTransactionType(HeidelpayConfig::TRANSACTION_TYPE_DEBIT)
             ->setResponseCode('ACK')
-            ->setRedirectUrl(HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL)
+            ->setRedirectUrl(HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL)
             ->setRequestPayload('{}')
             ->setResponsePayload($this->encryptData(
                 '{
                         "processing": {"result": "ACK"}, 
                         "payment": {"code": "CC.PA"}, 
-                        "frontend": {"payment_frame_url": "' . HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"} 
+                        "frontend": {"payment_frame_url": "' . HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"} 
                     }'
             ));
 

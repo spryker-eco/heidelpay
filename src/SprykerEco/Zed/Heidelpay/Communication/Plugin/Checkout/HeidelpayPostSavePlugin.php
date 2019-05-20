@@ -15,6 +15,8 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 /**
  * @method \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacadeInterface getFacade()
  * @method \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory getFactory()
+ * @method \SprykerEco\Zed\Heidelpay\HeidelpayConfig getConfig()
+ * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface getQueryContainer()
  */
 class HeidelpayPostSavePlugin extends AbstractPlugin implements CheckoutPostSaveHookInterface
 {

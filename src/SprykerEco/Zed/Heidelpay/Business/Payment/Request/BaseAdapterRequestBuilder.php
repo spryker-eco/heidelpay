@@ -10,13 +10,13 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment\Request;
 use Generated\Shared\Transfer\HeidelpayAsyncTransfer;
 use Generated\Shared\Transfer\HeidelpayAuthenticationTransfer;
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
-use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface;
+use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyFacadeInterface;
 use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class BaseAdapterRequestBuilder
 {
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface
+     * @var \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyFacadeInterface
      */
     protected $currencyFacade;
 
@@ -26,11 +26,11 @@ class BaseAdapterRequestBuilder
     protected $config;
 
     /**
-     * @param \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface $currencyFacade
+     * @param \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyFacadeInterface $currencyFacade
      * @param \SprykerEco\Zed\Heidelpay\HeidelpayConfig $config
      */
     public function __construct(
-        HeidelpayToCurrencyInterface $currencyFacade,
+        HeidelpayToCurrencyFacadeInterface $currencyFacade,
         HeidelpayConfig $config
     ) {
         $this->currencyFacade = $currencyFacade;

@@ -9,10 +9,32 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\Test;
 
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
-use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
 
 trait PaymentResponseTestTrait
 {
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer $responseTransfer
+     *
+     * @return void
+     */
+    protected function testSuccessfulIntializeHeidelpayPaymentResponse(HeidelpayResponseTransfer $responseTransfer): void
+    {
+        $this->assertNotNull($responseTransfer->getIdTransactionUnique());
+        $this->assertTrue($responseTransfer->getIsSuccess());
+        $this->assertNotNull($responseTransfer->getCustomerRedirectUrl());
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer $responseTransfer
+     *
+     * @return void
+     */
+    protected function testUnsuccessfulIntializeHeidelpayPaymentResponse(HeidelpayResponseTransfer $responseTransfer): void
+    {
+        $this->assertFalse($responseTransfer->getIsSuccess());
+    }
+
     /**
      * @param \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer $transaction
      *
@@ -25,7 +47,7 @@ trait PaymentResponseTestTrait
         $this->assertFalse($transaction->getHeidelpayResponse()->getIsError());
         $this->assertTrue($transaction->getHeidelpayResponse()->getIsSuccess());
         $this->assertEquals(
-            HeidelpayTestConstants::HEIDELPAY_SUCCESS_RESPONSE,
+            HeidelpayTestConfig::HEIDELPAY_SUCCESS_RESPONSE,
             $transaction->getHeidelpayResponse()->getResultCode()
         );
     }

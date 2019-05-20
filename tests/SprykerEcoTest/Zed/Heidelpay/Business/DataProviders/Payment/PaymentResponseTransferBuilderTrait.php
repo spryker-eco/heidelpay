@@ -9,7 +9,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment;
 
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Heidelpay\PhpPaymentApi\Exceptions\HashVerificationException;
-use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConstants;
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
 
 trait PaymentResponseTransferBuilderTrait
 {
@@ -25,10 +25,10 @@ trait PaymentResponseTransferBuilderTrait
         $responseTransfer->setIsError(false);
 
         $responseTransfer->setIdSalesOrder($response['idSalesOrder']);
-        $responseTransfer->setResultCode(HeidelpayTestConstants::HEIDELPAY_SUCCESS_RESPONSE);
+        $responseTransfer->setResultCode(HeidelpayTestConfig::HEIDELPAY_SUCCESS_RESPONSE);
         $responseTransfer->setIdTransactionUnique($response['idTransactionUnique']);
         $responseTransfer->setProcessingCode($response['processingCode']);
-        $responseTransfer->setCustomerRedirectUrl(HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL);
+        $responseTransfer->setCustomerRedirectUrl(HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL);
         $responseTransfer->setPayload($response['payload']);
         return $responseTransfer;
     }
@@ -49,10 +49,10 @@ trait PaymentResponseTransferBuilderTrait
         $responseTransfer->setError($errorTransfer);
 
         $responseTransfer->setIdSalesOrder($response['idSalesOrder']);
-        $responseTransfer->setResultCode(HeidelpayTestConstants::HEIDELPAY_UNSUCCESS_RESPONSE);
+        $responseTransfer->setResultCode(HeidelpayTestConfig::HEIDELPAY_UNSUCCESS_RESPONSE);
         $responseTransfer->setIdTransactionUnique($response['idTransactionUnique']);
         $responseTransfer->setProcessingCode($response['processingCode']);
-        $responseTransfer->setCustomerRedirectUrl(HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL);
+        $responseTransfer->setCustomerRedirectUrl(HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL);
         $responseTransfer->setPayload($response['payload']);
 
         return $responseTransfer;

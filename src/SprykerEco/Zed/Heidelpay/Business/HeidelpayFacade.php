@@ -12,11 +12,14 @@ use Generated\Shared\Transfer\HeidelpayAuthorizeTransactionLogRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
+use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer;
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
+use Generated\Shared\Transfer\PaymentMethodsTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\SaveOrderTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
@@ -64,6 +67,23 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @api
      *
+     * @param array $externalResponse
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
+     */
+    public function processExternalEasyCreditPaymentResponse(
+        array $externalResponse
+    ): HeidelpayPaymentProcessingResponseTransfer {
+        return $this->getFactory()
+            ->createEasyCreditInitializeExternalResponseTransactionHandler()
+            ->processExternalEasyCreditPaymentResponse($externalResponse);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
      * @return void
@@ -82,6 +102,38 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function authorizeOnRegistrationPayment(OrderTransfer $orderTransfer): HeidelpayResponseTransfer
+    {
+        return $this->getFactory()
+            ->createAuthorizeOnRegistrationTransactionHandler()
+            ->authorizeOnRegistration($orderTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function initializePayment(QuoteTransfer $quoteTransfer): HeidelpayResponseTransfer
+    {
+        return $this->getFactory()
+            ->createInitializeTransactionHandler()
+            ->initialize($quoteTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
      * @return void
      */
     public function debitPayment(OrderTransfer $orderTransfer): void
@@ -89,6 +141,38 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
         $this->getFactory()
             ->createDebitTransactionHandler()
             ->debit($orderTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return void
+     */
+    public function finalizePayment(OrderTransfer $orderTransfer): void
+    {
+        $this->getFactory()
+            ->createFinalizeTransactionHandler()
+            ->finalize($orderTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return void
+     */
+    public function executePaymentReservation(OrderTransfer $orderTransfer): void
+    {
+        $this->getFactory()
+            ->createReservationTransactionHandler()
+            ->executeReservation($orderTransfer);
     }
 
     /**
@@ -133,7 +217,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentTransfer
      */
-    public function getPaymentByIdSalesOrder(int $idSalesOrder)
+    public function getPaymentByIdSalesOrder(int $idSalesOrder): HeidelpayPaymentTransfer
     {
         return $this->getFactory()
             ->createPaymentReader()
@@ -206,5 +290,22 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
                 $findRegistrationRequestTransfer->getIdRegistration(),
                 $findRegistrationRequestTransfer->getQuote()
             );
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\PaymentMethodsTransfer $paymentMethodsTransfer
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\PaymentMethodsTransfer
+     */
+    public function filterPaymentMethods(PaymentMethodsTransfer $paymentMethodsTransfer, QuoteTransfer $quoteTransfer): PaymentMethodsTransfer
+    {
+        return $this->getFactory()
+            ->createPaymentMethodFilter()
+            ->filterPaymentMethods($paymentMethodsTransfer, $quoteTransfer);
     }
 }

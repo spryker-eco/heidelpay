@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<statemachine
+        xmlns="spryker:oms-01"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
+
+    <process name="HeidelpayEasyCredit01" main="true">
+        <subprocesses>
+            <process>Reservation</process>
+            <process>Shipment</process>
+            <process>Finalize</process>
+        </subprocesses>
+
+        <states>
+            <state name="new" reserved="true"/>
+        </states>
+
+        <transitions>
+
+            <transition>
+                <source>new</source>
+                <target>ready for reservation</target>
+                <event>start reservation process</event>
+            </transition>
+
+            <transition>
+                <source>reservation succeeded</source>
+                <target>ready for shipment</target>
+                <event>start shipment process</event>
+            </transition>
+
+            <transition>
+                <source>shipped</source>
+                <target>ready for finalize</target>
+                <event>start finalize process</event>
+            </transition>
+
+        </transitions>
+
+        <events>
+            <event name="start reservation process" onEnter="true" />
+            <event name="start shipment process" manual="true"/>
+            <event name="start finalize process" onEnter="true" />
+        </events>
+    </process>
+
+    <process name="Reservation" file="HeidelpaySubprocesses/Reservation.xml"/>
+    <process name="Shipment" file="HeidelpaySubprocesses/Shipment.xml"/>
+    <process name="Finalize" file="HeidelpaySubprocesses/Finalize.xml"/>
+
+</statemachine>

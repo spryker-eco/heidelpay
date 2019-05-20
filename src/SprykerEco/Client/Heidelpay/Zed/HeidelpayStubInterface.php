@@ -14,6 +14,7 @@ use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer;
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 
@@ -38,7 +39,18 @@ interface HeidelpayStubInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
-    public function processExternalPaymentResponse(HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer): HeidelpayPaymentProcessingResponseTransfer;
+    public function processExternalPaymentResponse(
+        HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer
+    ): HeidelpayPaymentProcessingResponseTransfer;
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
+     */
+    public function processExternalEasyCreditPaymentResponse(
+        HeidelpayExternalPaymentRequestTransfer $externalPaymentRequestTransfer
+    ): HeidelpayPaymentProcessingResponseTransfer;
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
@@ -54,5 +66,14 @@ interface HeidelpayStubInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer
      */
-    public function saveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $registrationRequestTransfer): HeidelpayRegistrationSaveResponseTransfer;
+    public function saveCreditCardRegistration(
+        HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
+    ): HeidelpayRegistrationSaveResponseTransfer;
+
+    /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function sendEasycreditInitializeRequest(QuoteTransfer $quoteTransfer): HeidelpayResponseTransfer;
 }

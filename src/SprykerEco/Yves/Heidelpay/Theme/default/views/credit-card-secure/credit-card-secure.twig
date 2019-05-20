@@ -1,9 +1,7 @@
 {% extends model('template') %}
 
 {% define data = {
-    form: form,
-    parentFormId: parentFormId,
-    togglerName: togglerName
+    form: form
 } %}
 
 {% block body %}
@@ -25,12 +23,11 @@
                             }
                         }) }}
                         <div class="js-heidelpay-method-{{ paymentOption.vars.value }}">
-                            {% include molecule(paymentOption.vars.value, 'Heidelpay') with {
+                            {% set registrationMoleculeName = paymentOption.vars.value == 'existing-registration' ? 'existing-registration' : 'new-registration' %}
+                            {% include molecule(registrationMoleculeName, 'Heidelpay') with {
                                 data: {
                                     paymentOption: paymentOption,
-                                    paymentMethod: data.form.vars.value.payment.heidelpayCreditCardSecure,
-                                    parentFormId: data.parentFormId,
-                                    togglerName: data.togglerName
+                                    paymentMethod: data.form.vars.value.payment.heidelpayCreditCardSecure
                                 }
                             } only %}
                         </div>

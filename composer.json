@@ -3,7 +3,7 @@
   "description": "Heidelpay module",
   "license": "MIT",
   "require": {
-    "heidelpay/php-payment-api": "^1.5.0",
+    "heidelpay/php-payment-api": "^1.6.1",
     "heidelpay/php-message-code-mapper": "^1.0.1",
     "heidelpay/php-basket-api": "^1.0.2",
     "spryker/calculation": "^4.0.0",

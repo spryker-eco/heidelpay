@@ -11,7 +11,7 @@ use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Mapper\OrderToHeidelpayRequestInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReaderInterface;
-use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface;
+use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyFacadeInterface;
 use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implements AdapterRequestFromOrderBuilderInterface
@@ -28,13 +28,13 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Mapper\OrderToHeidelpayRequestInterface $orderToHeidelpayMapper
-     * @param \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyInterface $currencyFacade
+     * @param \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyFacadeInterface $currencyFacade
      * @param \SprykerEco\Zed\Heidelpay\HeidelpayConfig $config
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReaderInterface $paymentReader
      */
     public function __construct(
         OrderToHeidelpayRequestInterface $orderToHeidelpayMapper,
-        HeidelpayToCurrencyInterface $currencyFacade,
+        HeidelpayToCurrencyFacadeInterface $currencyFacade,
         HeidelpayConfig $config,
         PaymentReaderInterface $paymentReader
     ) {
@@ -61,6 +61,46 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
     public function buildDebitRequestFromOrder(OrderTransfer $orderTransfer): HeidelpayRequestTransfer
     {
         return $this->buildBaseOrderHeidelpayRequest($orderTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
+     */
+    public function buildReservationRequestFromOrder(OrderTransfer $orderTransfer): HeidelpayRequestTransfer
+    {
+        return $this->buildBaseOrderHeidelpayRequest($orderTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
+     */
+    public function buildAuthorizeOnRegistrationRequestFromOrder(OrderTransfer $orderTransfer): HeidelpayRequestTransfer
+    {
+        $requestTransfer = $this->buildBaseOrderHeidelpayRequest($orderTransfer);
+        $requestTransfer->setIdPaymentReference(
+            $orderTransfer->getHeidelpayPayment()->getIdPaymentReference()
+        );
+
+        return $requestTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
+     */
+    public function buildFinalizeRequestFromOrder(OrderTransfer $orderTransfer): HeidelpayRequestTransfer
+    {
+        $requestTransfer = $this->buildBaseOrderHeidelpayRequest($orderTransfer);
+        $requestTransfer->setIdPaymentReference(
+            $orderTransfer->getHeidelpayPayment()->getIdPaymentReference()
+        );
+
+        return $requestTransfer;
     }
 
     /**
@@ -101,8 +141,10 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
-    protected function hydrateOrder(HeidelpayRequestTransfer $heidelpayRequestTransfer, OrderTransfer $orderTransfer): HeidelpayRequestTransfer
-    {
+    protected function hydrateOrder(
+        HeidelpayRequestTransfer $heidelpayRequestTransfer,
+        OrderTransfer $orderTransfer
+    ): HeidelpayRequestTransfer {
         return $this->orderToHeidelpayMapper
             ->map($orderTransfer, $heidelpayRequestTransfer);
     }

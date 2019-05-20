@@ -11,8 +11,8 @@ use Spryker\Client\Kernel\AbstractDependencyProvider;
 use Spryker\Client\Kernel\Container;
 use Spryker\Client\Session\ServiceProvider\SessionClientServiceProvider;
 use Spryker\Client\ZedRequest\ServiceProvider\ZedRequestClientServiceProvider;
-use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToLocaleBridge;
-use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteBridge;
+use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToLocaleClientBridge;
+use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteClientBridge;
 
 class HeidelpayDependencyProvider extends AbstractDependencyProvider
 {
@@ -28,12 +28,14 @@ class HeidelpayDependencyProvider extends AbstractDependencyProvider
      */
     public function provideServiceLayerDependencies(Container $container): Container
     {
+        $container = parent::provideServiceLayerDependencies($container);
+
         $container[static::CLIENT_LOCALE] = function (Container $container) {
-            return new HeidelpayToLocaleBridge($container->getLocator()->locale()->client());
+            return new HeidelpayToLocaleClientBridge($container->getLocator()->locale()->client());
         };
 
         $container[static::CLIENT_QUOTE] = function (Container $container) {
-            return new HeidelpayToQuoteBridge($container->getLocator()->quote()->client());
+            return new HeidelpayToQuoteClientBridge($container->getLocator()->quote()->client());
         };
 
         $container[static::CLIENT_ZED_REQUEST] = function (Container $container) {

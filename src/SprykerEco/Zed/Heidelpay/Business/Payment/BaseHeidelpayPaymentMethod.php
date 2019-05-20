@@ -57,11 +57,39 @@ class BaseHeidelpayPaymentMethod
     /**
      * @param int $idSalesOrder
      *
+     * @return string|null
+     */
+    protected function getCheckoutRedirectUrlFromAuthorizeOnRegistrationTransactionLog($idSalesOrder)
+    {
+        $authorizeTransactionLogTransfer = $this->findOrderAuthorizeOnRegistrationTransactionLog($idSalesOrder);
+
+        if (($authorizeTransactionLogTransfer !== null) &&
+            ($this->isAuthorizeTransactionSentSuccessfully($authorizeTransactionLogTransfer))
+        ) {
+            return $this->getAuthorizeRedirectUrl($authorizeTransactionLogTransfer);
+        }
+
+        return $this->getAuthorizeFailedRedirectUrl($authorizeTransactionLogTransfer);
+    }
+
+    /**
+     * @param int $idSalesOrder
+     *
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
      */
     protected function findOrderAuthorizeTransactionLog(int $idSalesOrder): HeidelpayTransactionLogTransfer
     {
         return $this->transactionLogManager->findOrderAuthorizeTransactionLogByIdSalesOrder($idSalesOrder);
+    }
+
+    /**
+     * @param int $idSalesOrder
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     */
+    protected function findOrderAuthorizeOnRegistrationTransactionLog($idSalesOrder)
+    {
+        return $this->transactionLogManager->findOrderAuthorizeOnRegistrationTransactionLogByIdSalesOrder($idSalesOrder);
     }
 
     /**

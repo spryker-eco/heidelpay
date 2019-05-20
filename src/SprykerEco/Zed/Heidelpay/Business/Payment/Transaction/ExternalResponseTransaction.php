@@ -50,12 +50,11 @@ class ExternalResponseTransaction implements ExternalResponseTransactionInterfac
      *
      * @return void
      */
-    protected function logTransaction(
-        HeidelpayResponseTransfer $externalResponseTransfer
-    ): void {
+    protected function logTransaction(HeidelpayResponseTransfer $externalResponseTransfer): void
+    {
         $this->transactionLogger->logTransaction(
             HeidelpayConfig::TRANSACTION_TYPE_EXTERNAL_RESPONSE,
-            (new HeidelpayRequestTransfer()),
+            new HeidelpayRequestTransfer(),
             $externalResponseTransfer
         );
     }

@@ -13,6 +13,7 @@ use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
+use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulIdealAuthorizeTransaction;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithUnsuccessfulIdealAuthorizeTransaction;
 
@@ -55,7 +56,7 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
 
         $this->assertTrue($heidelpayResponse->getIsSuccess());
         $this->assertFalse($heidelpayResponse->getIsError());
-        $this->assertEquals(HeidelpayTestConstants::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL, $heidelpayResponse->getPaymentFormUrl());
+        $this->assertEquals(HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL, $heidelpayResponse->getPaymentFormUrl());
     }
 
     /**
@@ -78,7 +79,7 @@ class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
         $heidelpayResponse = $transactionLogTransfer->getHeidelpayResponse();
 
         $this->assertInstanceOf(HeidelpayResponseTransfer::class, $heidelpayResponse);
-        $this->assertEquals(HeidelpayTestConstants::HEIDELPAY_UNSUCCESS_RESPONSE, $heidelpayResponse->getResultCode());
+        $this->assertEquals(HeidelpayTestConfig::HEIDELPAY_UNSUCCESS_RESPONSE, $heidelpayResponse->getResultCode());
         $this->assertEquals(
             $quoteTransfer->getPayment()->getHeidelpayIdeal()->getFkSalesOrder(),
             $heidelpayResponse->getIdSalesOrder()

@@ -15,6 +15,7 @@ use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer;
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractGatewayController;
@@ -55,6 +56,16 @@ class GatewayController extends AbstractGatewayController
     }
 
     /**
+     * @param \Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer $paymentRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
+     */
+    public function processExternalEasyCreditPaymentResponseAction(HeidelpayExternalPaymentRequestTransfer $paymentRequestTransfer)
+    {
+        return $this->getFacade()->processExternalEasyCreditPaymentResponse($paymentRequestTransfer->getBody());
+    }
+
+    /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer
@@ -74,5 +85,15 @@ class GatewayController extends AbstractGatewayController
         HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
     ): HeidelpayCreditCardRegistrationTransfer {
         return $this->getFacade()->findCreditCardRegistrationByIdAndQuote($findRegistrationRequestTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function easycreditInitializePaymentAction(QuoteTransfer $quoteTransfer): HeidelpayResponseTransfer
+    {
+        return $this->getFacade()->initializePayment($quoteTransfer);
     }
 }

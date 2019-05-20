@@ -7,8 +7,6 @@
 
 namespace SprykerEco\Zed\Heidelpay\Dependency\QueryContainer;
 
-use Orm\Zed\Sales\Persistence\SpySalesOrder;
-
 class HeidelpayToSalesQueryContainerBridge implements HeidelpayToSalesQueryContainerInterface
 {
     /**
@@ -29,7 +27,7 @@ class HeidelpayToSalesQueryContainerBridge implements HeidelpayToSalesQueryConta
      *
      * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
      */
-    public function getOrderByReference(string $orderReference): SpySalesOrder
+    public function getOrderByReference(string $orderReference)
     {
         return $this->salesQueryContainer->querySalesOrder()
             ->findOneByOrderReference($orderReference);
