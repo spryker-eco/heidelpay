@@ -137,12 +137,10 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
      */
     protected function mapCustomerInformation(OrderTransfer $orderTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer): HeidelpayRequestTransfer
     {
-        $customerRegistrationDate = $this->findCustomerRegistrationDate($orderTransfer->getCustomer());
-
         $heidelpayRequestTransfer->setRiskInformation(
             (new HeidelpayRiskInformationTransfer())
                 ->setIsCustomerGuest((bool)$orderTransfer->getCustomer()->getIsGuest())
-                ->setCustomerSince($customerRegistrationDate)
+                ->setCustomerSince($this->findCustomerRegistrationDate($orderTransfer))
                 ->setCustomerId($orderTransfer->getCustomer()->getIdCustomer())
         );
 
@@ -150,16 +148,19 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
     }
 
     /**
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
      * @return string|null
      */
-    protected function findCustomerRegistrationDate(CustomerTransfer $customerTransfer): ?string
+    protected function findCustomerRegistrationDate(OrderTransfer $orderTransfer): ?string
     {
-        $createdAtDate = $customerTransfer->getCreatedAt();
-        $createdAtDateFormatted = $createdAtDate ? $this->formatDate($createdAtDate) : $createdAtDate;
+        if ($orderTransfer->getCustomer() === null || $orderTransfer->getCustomer()->getCreatedAt() === null) {
+            return null;
+        }
 
-        return $createdAtDateFormatted;
+        return $this->formatDate(
+            $orderTransfer->getCustomer()->getCreatedAt()
+        );
     }
 
     /**
