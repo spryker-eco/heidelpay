@@ -137,30 +137,24 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
      */
     protected function mapCustomerInformation(OrderTransfer $orderTransfer, HeidelpayRequestTransfer $heidelpayRequestTransfer): HeidelpayRequestTransfer
     {
+        if ($orderTransfer->getCustomer() === null) {
+            return $heidelpayRequestTransfer
+                ->setRiskInformation(
+                    (new HeidelpayRiskInformationTransfer())
+                        ->setIsCustomerGuest(true)
+                );
+        }
+
         $heidelpayRequestTransfer->setRiskInformation(
             (new HeidelpayRiskInformationTransfer())
-                ->setIsCustomerGuest($orderTransfer->getCustomer() ? true : false)
-                ->setCustomerSince($this->findCustomerRegistrationDate($orderTransfer))
+                ->setIsCustomerGuest(false)
+                ->setCustomerSince(
+                    $this->formatDate($orderTransfer->getCustomer()->getCreatedAt())
+                )
                 ->setCustomerId($orderTransfer->getCustomer()->getIdCustomer())
         );
 
         return $heidelpayRequestTransfer;
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return string|null
-     */
-    protected function findCustomerRegistrationDate(OrderTransfer $orderTransfer): ?string
-    {
-        if ($orderTransfer->getCustomer() === null || $orderTransfer->getCustomer()->getCreatedAt() === null) {
-            return null;
-        }
-
-        return $this->formatDate(
-            $orderTransfer->getCustomer()->getCreatedAt()
-        );
     }
 
     /**
