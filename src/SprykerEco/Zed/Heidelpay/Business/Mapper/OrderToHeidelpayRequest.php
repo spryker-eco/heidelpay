@@ -139,7 +139,7 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
     {
         $heidelpayRequestTransfer->setRiskInformation(
             (new HeidelpayRiskInformationTransfer())
-                ->setIsCustomerGuest((bool)$orderTransfer->getCustomer()->getIsGuest())
+                ->setIsCustomerGuest($orderTransfer->getCustomer() ? true : false)
                 ->setCustomerSince($this->findCustomerRegistrationDate($orderTransfer))
                 ->setCustomerId($orderTransfer->getCustomer()->getIdCustomer())
         );
