@@ -27,7 +27,7 @@ trait PaymentHeidelpayTransferBuilderTrait
         $orderTransfer->setHeidelpayPayment($paymentTransfer);
         
         $customerTransfer = new CustomerTransfer();
-        $customerTransfer->setCreatedAt('2019-01-01 00:00:00')
+        $customerTransfer->setCreatedAt('2019-01-01 00:00:00');
         
         $orderTransfer->setCustomer($customerTransfer);
 
