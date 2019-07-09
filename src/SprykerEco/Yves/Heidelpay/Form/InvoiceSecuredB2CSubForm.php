@@ -7,10 +7,12 @@
 
 namespace SprykerEco\Yves\Heidelpay\Form;
 
+use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
 use Spryker\Yves\StepEngine\Dependency\Form\AbstractSubFormType;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormProviderNameInterface;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class InvoiceSecuredB2CSubForm extends AbstractSubFormType implements SubFormInterface, SubFormProviderNameInterface
 {
@@ -19,7 +21,7 @@ class InvoiceSecuredB2CSubForm extends AbstractSubFormType implements SubFormInt
     /**
      * @return string
      */
-    public function getProviderName()
+    public function getProviderName(): string
     {
         return HeidelpayConfig::PROVIDER_NAME;
     }
@@ -33,9 +35,6 @@ class InvoiceSecuredB2CSubForm extends AbstractSubFormType implements SubFormInt
     }
 
     /**
-     * Specifies the property name of the payment transfer object to access the default form data.
-     * Form data will be obtained from QuoteTransfer->getPayment()->getHeidelpaySofort()
-     *
      * @return string
      */
     public function getPropertyPath(): string
@@ -44,12 +43,22 @@ class InvoiceSecuredB2CSubForm extends AbstractSubFormType implements SubFormInt
     }
 
     /**
-     * Path to the form template
-     *
      * @return string
      */
     public function getTemplatePath(): string
     {
         return HeidelpayConfig::PROVIDER_NAME . DIRECTORY_SEPARATOR . static::PAYMENT_METHOD_TEMPLATE_PATH;
+    }
+
+    /**
+     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
+     *
+     * @return void
+     */
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => HeidelpayPaymentTransfer::class,
+        ])->setRequired(static::OPTIONS_FIELD_NAME);
     }
 }
