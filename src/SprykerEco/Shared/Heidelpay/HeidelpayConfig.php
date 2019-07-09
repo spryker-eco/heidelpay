@@ -7,7 +7,9 @@
 
 namespace SprykerEco\Shared\Heidelpay;
 
-interface HeidelpayConfig
+use Spryker\Shared\Kernel\AbstractBundleConfig;
+
+class HeidelpayConfig extends AbstractBundleConfig
 {
     public const PROVIDER_NAME = 'heidelpay';
 
@@ -17,6 +19,7 @@ interface HeidelpayConfig
     public const PAYMENT_METHOD_PAYPAL_DEBIT = self::PROVIDER_NAME . 'PaypalDebit';
     public const PAYMENT_METHOD_IDEAL = self::PROVIDER_NAME . 'Ideal';
     public const PAYMENT_METHOD_EASY_CREDIT = self::PROVIDER_NAME . 'EasyCredit';
+    public const PAYMENT_METHOD_INVOICE_SECURED_B2C = self::PROVIDER_NAME . 'InvoiceSecuredB2C';
 
     public const PAYMENT_OPTION_NEW_REGISTRATION = 'new-registration';
     public const PAYMENT_OPTION_EXISTING_REGISTRATION = 'existing-registration';
