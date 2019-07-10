@@ -229,9 +229,10 @@
         <property name="heidelpaySofort" type="HeidelpayPayment"/>
         <property name="heidelpayIdeal" type="HeidelpayPayment"/>
         <property name="heidelpayEasyCredit" type="HeidelpayEasyCreditPayment"/>
-        <property name="HeidelpayPaypalAuthorize" type="HeidelpayPayment"/>
-        <property name="HeidelpayPaypalDebit" type="HeidelpayPayment"/>
-        <property name="HeidelpayCreditCardSecure" type="HeidelpayCreditCardPayment"/>
+        <property name="heidelpayPaypalAuthorize" type="HeidelpayPayment"/>
+        <property name="heidelpayPaypalDebit" type="HeidelpayPayment"/>
+        <property name="heidelpayCreditCardSecure" type="HeidelpayCreditCardPayment"/>
+        <property name="heidelpayInvoiceSecuredB2C" type="HeidelpayPayment"/>
         <property name="idBasket" type="string" />
     </transfer>
 
