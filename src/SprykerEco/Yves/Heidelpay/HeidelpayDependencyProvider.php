@@ -15,7 +15,6 @@ use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientBridge;
 
 class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
 {
-    public const CLIENT_HEIDELPAY = 'CLIENT_HEIDELPAY';
     public const CLIENT_QUOTE = 'CLIENT_QUOTE';
     public const CLIENT_CALCULATION = 'CLIENT_CALCULATION';
     public const PLUGIN_MONEY = 'PLUGIN_MONEY';
@@ -28,24 +27,9 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
     public function provideDependencies(Container $container): Container
     {
         $container = parent::provideDependencies($container);
-        $container = $this->addHeidelpayClient($container);
         $container = $this->addQuoteClient($container);
         $container = $this->addCalculationClient($container);
         $container = $this->addMoneyPlugin($container);
-
-        return $container;
-    }
-
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
-    protected function addHeidelpayClient(Container $container): Container
-    {
-        $container[static::CLIENT_HEIDELPAY] = function (Container $container) {
-            return $container->getLocator()->heidelpay()->client();
-        };
 
         return $container;
     }
