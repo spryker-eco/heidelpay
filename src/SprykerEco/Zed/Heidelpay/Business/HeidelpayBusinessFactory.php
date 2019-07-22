@@ -100,6 +100,12 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\TransactionLogReader;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\TransactionLogReaderInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface;
+use SprykerEco\Zed\Heidelpay\Business\Processor\Notification\Converter\NotificationXmlConverter;
+use SprykerEco\Zed\Heidelpay\Business\Processor\Notification\Converter\NotificationXmlConverterInterface;
+use SprykerEco\Zed\Heidelpay\Business\Processor\Notification\Expander\NotificationExpander;
+use SprykerEco\Zed\Heidelpay\Business\Processor\Notification\Expander\NotificationExpanderInterface;
+use SprykerEco\Zed\Heidelpay\Business\Processor\Notification\HeidelpayNotificationProcessor;
+use SprykerEco\Zed\Heidelpay\Business\Processor\Notification\HeidelpayNotificationProcessorInterface;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyFacadeInterface;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyFacadeInterface;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesFacadeInterface;
@@ -699,6 +705,64 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface
+     */
+    public function getCreditCardPaymentMethodAdapter(): CreditCardPaymentInterface
+    {
+        return $this
+            ->createAdapterFactory()
+            ->createCreditCardPaymentMethodAdapter();
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreatorInterface
+     */
+    public function createBasketHanlder(): BasketCreatorInterface
+    {
+        return new BasketCreator(
+            $this->createAdapterFactory()->createBasketAdapter()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentMethodFilterInterface
+     */
+    public function createPaymentMethodFilter(): PaymentMethodFilterInterface
+    {
+        return new PaymentMethodFilter(
+            $this->getConfig(),
+            $this->getMoneyFacade()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Processor\Notification\HeidelpayNotificationProcessorInterface
+     */
+    public function createHeidelpayNotificationProcessor(): HeidelpayNotificationProcessorInterface
+    {
+        return new HeidelpayNotificationProcessor($this->createNotificationExpander());
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Processor\Notification\Expander\NotificationExpanderInterface
+     */
+    public function createNotificationExpander(): NotificationExpanderInterface
+    {
+        return new NotificationExpander(
+            $this->createNotificationXmlConverter(),
+            $this->getUtilEncodingService()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Processor\Notification\Converter\NotificationXmlConverterInterface
+     */
+    public function createNotificationXmlConverter(): NotificationXmlConverterInterface
+    {
+        return new NotificationXmlConverter();
+    }
+
+    /**
      * @return \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesFacadeInterface
      */
     public function getSalesFacade(): HeidelpayToSalesFacadeInterface
@@ -712,16 +776,6 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     public function getCurrencyFacade(): HeidelpayToCurrencyFacadeInterface
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::FACADE_CURRENCY);
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface
-     */
-    public function getCreditCardPaymentMethodAdapter(): CreditCardPaymentInterface
-    {
-        return $this
-            ->createAdapterFactory()
-            ->createCreditCardPaymentMethodAdapter();
     }
 
     /**
@@ -746,26 +800,5 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     public function getUtilEncodingService(): HeidelpayToUtilEncodingServiceInterface
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::SERVICE_UTIL_ENCODING);
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreatorInterface
-     */
-    public function createBasketHanlder(): BasketCreatorInterface
-    {
-        return new BasketCreator(
-            $this->createAdapterFactory()->createBasketAdapter()
-        );
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentMethodFilterInterface
-     */
-    public function createPaymentMethodFilter(): PaymentMethodFilterInterface
-    {
-        return new PaymentMethodFilter(
-            $this->getConfig(),
-            $this->getMoneyFacade()
-        );
     }
 }

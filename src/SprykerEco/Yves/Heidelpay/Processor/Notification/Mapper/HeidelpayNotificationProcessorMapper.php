@@ -12,6 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 class HeidelpayNotificationProcessorMapper implements HeidelpayNotificationProcessorMapperInterface
 {
+    protected const HEADER_X_PUSH_TIMESTAMP = 'X-Push-Timestamp';
+    protected const HEADER_X_PUSH_RETRIES = 'X-Push-Retries';
+
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \Generated\Shared\Transfer\HeidelpayNotificationTransfer $notificationTransfer
@@ -22,6 +25,11 @@ class HeidelpayNotificationProcessorMapper implements HeidelpayNotificationProce
         Request $request,
         HeidelpayNotificationTransfer $notificationTransfer
     ): HeidelpayNotificationTransfer {
+        $notificationTransfer
+            ->setNotificationBody($request->getContent())
+            ->setTimestamp($request->headers->get(static::HEADER_X_PUSH_TIMESTAMP))
+            ->setRetries((int)$request->headers->get(static::HEADER_X_PUSH_RETRIES));
+
         return $notificationTransfer;
     }
 }

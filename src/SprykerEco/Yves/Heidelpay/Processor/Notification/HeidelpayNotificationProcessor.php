@@ -22,26 +22,26 @@ class HeidelpayNotificationProcessor implements HeidelpayNotificationProcessorIn
     /**
      * @var \SprykerEco\Client\Heidelpay\HeidelpayClientInterface
      */
-    protected $heidelpayClient;
+    protected $client;
 
     /**
      * @param \SprykerEco\Yves\Heidelpay\Processor\Notification\Mapper\HeidelpayNotificationProcessorMapperInterface $mapper
-     * @param \SprykerEco\Client\Heidelpay\HeidelpayClientInterface $heidelpayClient
+     * @param \SprykerEco\Client\Heidelpay\HeidelpayClientInterface $client
      */
     public function __construct(
         HeidelpayNotificationProcessorMapperInterface $mapper,
-        HeidelpayClientInterface $heidelpayClient
+        HeidelpayClientInterface $client
     ) {
         $this->mapper = $mapper;
-        $this->heidelpayClient = $heidelpayClient;
+        $this->client = $client;
     }
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return void
+     * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer
      */
-    public function processNotification(Request $request): void
+    public function processNotification(Request $request): HeidelpayNotificationTransfer
     {
         $notificationTransfer = $this->mapper
             ->mapRequestToNotificationTransfer(
@@ -49,6 +49,6 @@ class HeidelpayNotificationProcessor implements HeidelpayNotificationProcessorIn
                 new HeidelpayNotificationTransfer()
             );
 
-        $this->heidelpayClient->processNotification($notificationTransfer);
+        return $this->client->processNotification($notificationTransfer);
     }
 }

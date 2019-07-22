@@ -5,17 +5,16 @@
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
-namespace SprykerEco\Yves\Heidelpay\Processor\Notification;
+namespace SprykerEco\Zed\Heidelpay\Business\Processor\Notification;
 
 use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
-use Symfony\Component\HttpFoundation\Request;
 
 interface HeidelpayNotificationProcessorInterface
 {
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Generated\Shared\Transfer\HeidelpayNotificationTransfer $notificationTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer
      */
-    public function processNotification(Request $request): HeidelpayNotificationTransfer;
+    public function processNotification(HeidelpayNotificationTransfer $notificationTransfer): HeidelpayNotificationTransfer;
 }
