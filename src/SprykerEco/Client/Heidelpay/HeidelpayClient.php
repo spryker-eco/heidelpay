@@ -213,9 +213,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     }
 
     /**
-     * Specification:
-     *  - Saves notification.
-     *  - Updates order items status depends on notification processing result.
+     * {@inheritdoc}
      *
      * @api
      *
