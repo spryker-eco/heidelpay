@@ -41,9 +41,9 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
      */
     protected function addQuoteClient(Container $container): Container
     {
-        $container[static::CLIENT_QUOTE] = function (Container $container) {
+        $container->set(static::CLIENT_QUOTE, function (Container $container) {
             return new HeidelpayToQuoteClientBridge($container->getLocator()->quote()->client());
-        };
+        });
 
         return $container;
     }
@@ -55,9 +55,9 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
      */
     protected function addCalculationClient(Container $container): Container
     {
-        $container[static::CLIENT_CALCULATION] = function (Container $container) {
+        $container->set(static::CLIENT_CALCULATION, function (Container $container) {
             return new HeidelpayToCalculationClientBridge($container->getLocator()->calculation()->client());
-        };
+        });
 
         return $container;
     }
@@ -69,9 +69,9 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
      */
     protected function addMoneyPlugin(Container $container): Container
     {
-        $container[static::PLUGIN_MONEY] = function () {
+        $container->set(static::PLUGIN_MONEY, function () {
             return new MoneyPlugin();
-        };
+        });
 
         return $container;
     }

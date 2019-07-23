@@ -1,5 +1,21 @@
+# IDEs
 /.idea
+/.project
+/nbproject
+/.buildpath
+/.settings
+*.sublime-*
+*.AppleDouble
+*.AppleDB
+*.AppleDesktop
+
+# OS
+.DS_Store
+
+/vendor
+/composer.lock
+composer.phar
+
+phpunit.phar
 /tests/_output/*
 !/tests/_output/.gitkeep
-/tests/*/*/_generated/*
-/tests/*/*/*/*/_generated/*

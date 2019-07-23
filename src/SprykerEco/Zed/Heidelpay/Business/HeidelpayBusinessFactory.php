@@ -808,6 +808,6 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
      */
     public function getHeidelpayNotificationExpanderPlugins(): array
     {
-        return $this->getProvidedDependency(HeidelpayDependencyProvider::PLUGIN_HEIDELPAY_NOTIFICATION_EXPANDER);
+        return $this->getProvidedDependency(HeidelpayDependencyProvider::PLUGINS_HEIDELPAY_NOTIFICATION_EXPANDER);
     }
 }

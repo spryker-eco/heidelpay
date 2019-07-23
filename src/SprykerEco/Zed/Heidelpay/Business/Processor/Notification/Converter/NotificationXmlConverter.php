@@ -8,11 +8,12 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Processor\Notification\Converter;
 
 use SimpleXMLElement;
-use SprykerEco\Zed\Heidelpay\Business\Exception\TransactionElementMissingException;
+use SprykerEco\Zed\Heidelpay\Business\Exception\TransactionNodeMissingException;
 
 class NotificationXmlConverter implements NotificationXmlConverterInterface
 {
     protected const TRANSACTION_ELEMENT = 'Transaction';
+    protected const EXCEPTION_MESSAGE_TRANSACTION_NODE_MISSING = 'Notification body has invalid body. Transaction node is missing.';
 
     /**
      * @param string $xml
@@ -29,15 +30,15 @@ class NotificationXmlConverter implements NotificationXmlConverterInterface
     /**
      * @param string $xml
      *
-     * @throws \SprykerEco\Zed\Heidelpay\Business\Exception\TransactionElementMissingException
-     *
      * @return \SimpleXMLElement
+     *@throws \SprykerEco\Zed\Heidelpay\Business\Exception\TransactionNodeMissingException
+     *
      */
     protected function loadXml(string $xml): SimpleXMLElement
     {
         $xmlProcess = new SimpleXMLElement($xml);
         if (!property_exists($xmlProcess, static::TRANSACTION_ELEMENT)) {
-            throw new TransactionElementMissingException();
+            throw new TransactionNodeMissingException(static::EXCEPTION_MESSAGE_TRANSACTION_NODE_MISSING);
         }
 
         return $xmlProcess->Transaction;

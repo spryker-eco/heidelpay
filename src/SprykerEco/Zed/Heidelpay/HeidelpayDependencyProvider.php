@@ -25,7 +25,7 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
 
     public const SERVICE_UTIL_ENCODING = 'util encoding service';
 
-    public const PLUGIN_HEIDELPAY_NOTIFICATION_EXPANDER = 'PLUGIN_HEIDELPAY_NOTIFICATION_EXPANDER';
+    public const PLUGINS_HEIDELPAY_NOTIFICATION_EXPANDER = 'PLUGINS_HEIDELPAY_NOTIFICATION_EXPANDER';
 
     /**
      * @param \Spryker\Zed\Kernel\Container $container
@@ -65,9 +65,9 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
      */
     protected function addSalesFacade(Container $container): Container
     {
-        $container[static::FACADE_SALES] = function (Container $container) {
+        $container->set(static::FACADE_SALES, function (Container $container) {
             return new HeidelpayToSalesFacadeBridge($container->getLocator()->sales()->facade());
-        };
+        });
 
         return $container;
     }
@@ -79,9 +79,9 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
      */
     protected function addCurrencyFacade(Container $container): Container
     {
-        $container[static::FACADE_CURRENCY] = function (Container $container) {
+        $container->set(static::FACADE_CURRENCY, function (Container $container) {
             return new HeidelpayToCurrencyFacadeBridge($container->getLocator()->currency()->facade());
-        };
+        });
 
         return $container;
     }
@@ -93,9 +93,9 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
      */
     protected function addMoneyFacade(Container $container): Container
     {
-        $container[static::FACADE_MONEY] = function (Container $container) {
+        $container->set(static::FACADE_MONEY, function (Container $container) {
             return new HeidelpayToMoneyFacadeBridge($container->getLocator()->money()->facade());
-        };
+        });
 
         return $container;
     }
@@ -107,9 +107,9 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
      */
     protected function addSalesQueryContainer(Container $container): Container
     {
-        $container[static::QUERY_CONTAINER_SALES] = function (Container $container) {
+        $container->set(static::QUERY_CONTAINER_SALES, function (Container $container) {
             return new HeidelpayToSalesQueryContainerBridge($container->getLocator()->sales()->queryContainer());
-        };
+        });
 
         return $container;
     }
@@ -121,9 +121,9 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
      */
     protected function addUtilEncodingService(Container $container): Container
     {
-        $container[static::SERVICE_UTIL_ENCODING] = function (Container $container) {
+        $container->set(static::SERVICE_UTIL_ENCODING, function (Container $container) {
             return new HeidelpayToUtilEncodingServiceBridge($container->getLocator()->utilEncoding()->service());
-        };
+        });
 
         return $container;
     }
@@ -135,9 +135,9 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
      */
     protected function addHeidelpayNotificationExpanderPlugins(Container $container): Container
     {
-        $container[static::PLUGIN_HEIDELPAY_NOTIFICATION_EXPANDER] = function () {
+        $container->set(static::PLUGINS_HEIDELPAY_NOTIFICATION_EXPANDER, function () {
             return $this->getHeidelpayNotificationExpanderPlugins();
-        };
+        });
 
         return $container;
     }

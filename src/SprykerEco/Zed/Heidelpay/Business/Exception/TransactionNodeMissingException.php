@@ -9,6 +9,6 @@ namespace SprykerEco\Zed\Heidelpay\Business\Exception;
 
 use Exception;
 
-class TransactionElementMissingException extends Exception
+class TransactionNodeMissingException extends Exception
 {
 }
