@@ -17,7 +17,7 @@ class NotificationXmlConverter implements NotificationXmlConverterInterface
     /**
      * @param string $xml
      *
-     * @return array
+     * @return string[][]
      */
     public function convert(string $xml): array
     {
@@ -46,7 +46,7 @@ class NotificationXmlConverter implements NotificationXmlConverterInterface
     /**
      * @param \SimpleXMLElement $xmlElement
      *
-     * @return string[]
+     * @return string[][]
      */
     protected function simpleXmlToArray(SimpleXMLElement $xmlElement): array
     {

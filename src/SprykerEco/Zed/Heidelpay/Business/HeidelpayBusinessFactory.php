@@ -152,7 +152,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
             $this->createInitializeTransaction(),
             $this->getInitializePaymentMethodAdapterCollection(),
             $this->createEasyCreditAdapterRequestFromQuoteBuilder(),
-            $this->createBasketHanlder()
+            $this->createBasketCreator()
         );
     }
 
@@ -257,7 +257,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     public function createOrderSaver(): SaverInterface
     {
         return new Saver(
-            $this->createBasketHanlder(),
+            $this->createBasketCreator(),
             $this->getPaymentMethodWithPreSavePaymentCollection()
         );
     }
@@ -717,7 +717,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreatorInterface
      */
-    public function createBasketHanlder(): BasketCreatorInterface
+    public function createBasketCreator(): BasketCreatorInterface
     {
         return new BasketCreator(
             $this->createAdapterFactory()->createBasketAdapter()
@@ -750,7 +750,8 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     {
         return new NotificationExpander(
             $this->createNotificationXmlConverter(),
-            $this->getUtilEncodingService()
+            $this->getUtilEncodingService(),
+            $this->getHeidelpayNotificationExpanderPlugins()
         );
     }
 
@@ -800,5 +801,13 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     public function getUtilEncodingService(): HeidelpayToUtilEncodingServiceInterface
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::SERVICE_UTIL_ENCODING);
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Dependency\Plugin\HeidelpayNotificationExpanderPluginInterface[]
+     */
+    public function getHeidelpayNotificationExpanderPlugins(): array
+    {
+        return $this->getProvidedDependency(HeidelpayDependencyProvider::PLUGIN_HEIDELPAY_NOTIFICATION_EXPANDER);
     }
 }

@@ -12,7 +12,7 @@ interface NotificationXmlConverterInterface
     /**
      * @param string $xml
      *
-     * @return array
+     * @return string[][]
      */
     public function convert(string $xml): array;
 }
