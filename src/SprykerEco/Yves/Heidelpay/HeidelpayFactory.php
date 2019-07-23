@@ -17,13 +17,13 @@ use SprykerEco\Yves\Heidelpay\Form\CreditCardSecureSubForm;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\CreditCardSecureDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\EasyCreditDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\IdealDataProvider;
-use SprykerEco\Yves\Heidelpay\Form\DataProvider\InvoiceSecuredB2CDataProvider;
+use SprykerEco\Yves\Heidelpay\Form\DataProvider\InvoiceSecuredB2cDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\PaypalAuthorizeDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\PaypalDebitDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\SofortDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\EasyCreditSubForm;
 use SprykerEco\Yves\Heidelpay\Form\IdealSubForm;
-use SprykerEco\Yves\Heidelpay\Form\InvoiceSecuredB2CSubForm;
+use SprykerEco\Yves\Heidelpay\Form\InvoiceSecuredB2cSubForm;
 use SprykerEco\Yves\Heidelpay\Form\PaypalAuthorizeSubForm;
 use SprykerEco\Yves\Heidelpay\Form\PaypalDebitSubForm;
 use SprykerEco\Yves\Heidelpay\Form\SofortSubForm;
@@ -134,9 +134,9 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
      */
-    public function createInvoiceSecuredB2CSubForm(): SubFormInterface
+    public function createInvoiceSecuredB2cSubForm(): SubFormInterface
     {
-        return new InvoiceSecuredB2CSubForm();
+        return new InvoiceSecuredB2cSubForm();
     }
 
     /**
@@ -192,9 +192,9 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface
      */
-    public function createInvoiceSecuredB2CDataProvider(): StepEngineFormDataProviderInterface
+    public function createInvoiceSecuredB2cDataProvider(): StepEngineFormDataProviderInterface
     {
-        return new InvoiceSecuredB2CDataProvider();
+        return new InvoiceSecuredB2cDataProvider();
     }
 
     /**

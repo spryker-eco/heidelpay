@@ -232,7 +232,7 @@
         <property name="heidelpayPaypalAuthorize" type="HeidelpayPayment"/>
         <property name="heidelpayPaypalDebit" type="HeidelpayPayment"/>
         <property name="heidelpayCreditCardSecure" type="HeidelpayCreditCardPayment"/>
-        <property name="heidelpayInvoiceSecuredB2C" type="HeidelpayPayment"/>
+        <property name="heidelpayInvoiceSecuredB2c" type="HeidelpayPayment"/>
         <property name="idBasket" type="string" />
     </transfer>
 
