@@ -9,6 +9,7 @@ namespace SprykerEco\Zed\Heidelpay\Business\Processor\Notification;
 
 use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Processor\Notification\Expander\NotificationExpanderInterface;
+use SprykerEco\Zed\Heidelpay\Business\Writer\HeidelpayWriterInterface;
 
 class HeidelpayNotificationProcessor implements HeidelpayNotificationProcessorInterface
 {
@@ -18,11 +19,20 @@ class HeidelpayNotificationProcessor implements HeidelpayNotificationProcessorIn
     protected $notificationExpander;
 
     /**
-     * @param \SprykerEco\Zed\Heidelpay\Business\Processor\Notification\Expander\NotificationExpanderInterface $notificationExpander
+     * @var \SprykerEco\Zed\Heidelpay\Business\Writer\HeidelpayWriterInterface
      */
-    public function __construct(NotificationExpanderInterface $notificationExpander)
-    {
+    protected $writer;
+
+    /**
+     * @param \SprykerEco\Zed\Heidelpay\Business\Processor\Notification\Expander\NotificationExpanderInterface $notificationExpander
+     * @param \SprykerEco\Zed\Heidelpay\Business\Writer\HeidelpayWriterInterface $writer
+     */
+    public function __construct(
+        NotificationExpanderInterface $notificationExpander,
+        HeidelpayWriterInterface $writer
+    ) {
         $this->notificationExpander = $notificationExpander;
+        $this->writer = $writer;
     }
 
     /**
@@ -33,6 +43,7 @@ class HeidelpayNotificationProcessor implements HeidelpayNotificationProcessorIn
     public function processNotification(HeidelpayNotificationTransfer $notificationTransfer): HeidelpayNotificationTransfer
     {
         $notificationTransfer = $this->notificationExpander->expandWithNotificationData($notificationTransfer);
+        $this->writer->createNotificationEntity($notificationTransfer);
 
         return $notificationTransfer;
     }

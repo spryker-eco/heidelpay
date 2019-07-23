@@ -106,6 +106,8 @@ use SprykerEco\Zed\Heidelpay\Business\Processor\Notification\Expander\Notificati
 use SprykerEco\Zed\Heidelpay\Business\Processor\Notification\Expander\NotificationExpanderInterface;
 use SprykerEco\Zed\Heidelpay\Business\Processor\Notification\HeidelpayNotificationProcessor;
 use SprykerEco\Zed\Heidelpay\Business\Processor\Notification\HeidelpayNotificationProcessorInterface;
+use SprykerEco\Zed\Heidelpay\Business\Writer\HeidelpayWriter;
+use SprykerEco\Zed\Heidelpay\Business\Writer\HeidelpayWriterInterface;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyFacadeInterface;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyFacadeInterface;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesFacadeInterface;
@@ -116,6 +118,8 @@ use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
 /**
  * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface getQueryContainer()
  * @method \SprykerEco\Zed\Heidelpay\HeidelpayConfig getConfig()
+ * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepositoryInterface getRepository()
+ * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayEntityManagerInterface getEntityManager()
  */
 class HeidelpayBusinessFactory extends AbstractBusinessFactory
 {
@@ -740,7 +744,10 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
      */
     public function createHeidelpayNotificationProcessor(): HeidelpayNotificationProcessorInterface
     {
-        return new HeidelpayNotificationProcessor($this->createNotificationExpander());
+        return new HeidelpayNotificationProcessor(
+            $this->createNotificationExpander(),
+            $this->createHeidelpayWriter()
+        );
     }
 
     /**
@@ -761,6 +768,14 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     public function createNotificationXmlConverter(): NotificationXmlConverterInterface
     {
         return new NotificationXmlConverter();
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Writer\HeidelpayWriterInterface
+     */
+    public function createHeidelpayWriter(): HeidelpayWriterInterface
+    {
+        return new HeidelpayWriter($this->getEntityManager());
     }
 
     /**
