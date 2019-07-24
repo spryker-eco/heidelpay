@@ -4,7 +4,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
 
-    <process name="HeidelpayInvoiceSecuredB2C01" main="true">
+    <process name="HeidelpayInvoiceSecuredB2c01" main="true">
         <subprocesses>
             <process>Authorization</process>
         </subprocesses>

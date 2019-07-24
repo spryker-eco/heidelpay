@@ -15,11 +15,11 @@ use Spryker\Yves\StepEngine\Dependency\Plugin\Form\SubFormPluginInterface;
 /**
  * @method \SprykerEco\Yves\Heidelpay\HeidelpayFactory getFactory()
  */
-class HeidelpayInvoiceSecuredB2CSubFormPlugin extends AbstractPlugin implements SubFormPluginInterface
+class HeidelpayInvoiceSecuredB2cSubFormPlugin extends AbstractPlugin implements SubFormPluginInterface
 {
     /**
      * {@inheritdoc}
-     *  - Creates sub form for InvoiceSecuredB2C payment method.
+     *  - Creates sub form for InvoiceSecuredB2c payment method.
      *
      * @api
      *
@@ -27,12 +27,12 @@ class HeidelpayInvoiceSecuredB2CSubFormPlugin extends AbstractPlugin implements 
      */
     public function createSubForm(): SubFormInterface
     {
-        return $this->getFactory()->createInvoiceSecuredB2CSubForm();
+        return $this->getFactory()->createInvoiceSecuredB2cSubForm();
     }
 
     /**
      * {@inheritdoc}
-     *  - Creates data provider for InvoiceSecuredB2C payment method.
+     *  - Creates data provider for InvoiceSecuredB2c payment method.
      *
      * @api
      *
@@ -40,6 +40,6 @@ class HeidelpayInvoiceSecuredB2CSubFormPlugin extends AbstractPlugin implements 
      */
     public function createSubFormDataProvider(): StepEngineFormDataProviderInterface
     {
-        return $this->getFactory()->createInvoiceSecuredB2CDataProvider();
+        return $this->getFactory()->createInvoiceSecuredB2cDataProvider();
     }
 }

@@ -93,4 +93,37 @@
         </index>
     </table>
 
+    <table name="spy_payment_heidelpay_notification">
+        <column name="id_payment_heidelpay_notification" required="true" type="INTEGER" primaryKey="true" autoIncrement="true"/>
+
+        <column name="transaction_source" required="false" type="VARCHAR" />
+        <column name="transaction_channel" required="true" type="VARCHAR" />
+        <column name="transaction_response_type" required="false" type="VARCHAR" />
+        <column name="transaction_mode" required="false" type="VARCHAR" />
+
+        <column name="transaction_id" required="true" type="VARCHAR" />
+        <column name="unique_id" required="true" type="VARCHAR" />
+        <column name="short_id" required="false" type="VARCHAR" />
+        <column name="identification_source" required="false" type="VARCHAR" />
+
+        <column name="result_code" required="true" type="VARCHAR" />
+        <column name="result_timestamp" required="false" type="VARCHAR" />
+        <column name="result" required="true" type="VARCHAR" />
+        <column name="result_status" required="false" type="VARCHAR" />
+        <column name="result_reason" required="false" type="VARCHAR" />
+        <column name="result_return" required="false" type="VARCHAR" />
+
+        <column name="payment_code" required="false" type="VARCHAR" />
+        <column name="amount" required="false" type="INTEGER" />
+        <column name="currency" required="false" type="VARCHAR" />
+        <column name="payment_descriptor" required="false" type="VARCHAR" />
+
+        <column name="account" required="false" type="VARCHAR" />
+        <column name="customer" required="false" type="VARCHAR" />
+
+        <behavior name="timestampable"/>
+
+        <id-method-parameter value="spy_payment_heidelpay_notification_pk_seq"/>
+    </table>
+
 </database>

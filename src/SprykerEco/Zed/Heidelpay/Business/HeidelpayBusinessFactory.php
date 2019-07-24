@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business;
 
+use Spryker\Shared\Money\Dependency\Plugin\MoneyPluginInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\AdapterFactory;
@@ -106,6 +107,8 @@ use SprykerEco\Zed\Heidelpay\Business\Processor\Notification\Expander\Notificati
 use SprykerEco\Zed\Heidelpay\Business\Processor\Notification\Expander\NotificationExpanderInterface;
 use SprykerEco\Zed\Heidelpay\Business\Processor\Notification\HeidelpayNotificationProcessor;
 use SprykerEco\Zed\Heidelpay\Business\Processor\Notification\HeidelpayNotificationProcessorInterface;
+use SprykerEco\Zed\Heidelpay\Business\Writer\HeidelpayWriter;
+use SprykerEco\Zed\Heidelpay\Business\Writer\HeidelpayWriterInterface;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyFacadeInterface;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyFacadeInterface;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesFacadeInterface;
@@ -116,6 +119,8 @@ use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
 /**
  * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface getQueryContainer()
  * @method \SprykerEco\Zed\Heidelpay\HeidelpayConfig getConfig()
+ * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepositoryInterface getRepository()
+ * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayEntityManagerInterface getEntityManager()
  */
 class HeidelpayBusinessFactory extends AbstractBusinessFactory
 {
@@ -740,7 +745,10 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
      */
     public function createHeidelpayNotificationProcessor(): HeidelpayNotificationProcessorInterface
     {
-        return new HeidelpayNotificationProcessor($this->createNotificationExpander());
+        return new HeidelpayNotificationProcessor(
+            $this->createNotificationExpander(),
+            $this->createHeidelpayWriter()
+        );
     }
 
     /**
@@ -751,6 +759,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
         return new NotificationExpander(
             $this->createNotificationXmlConverter(),
             $this->getUtilEncodingService(),
+            $this->getMoneyPlugin(),
             $this->getHeidelpayNotificationExpanderPlugins()
         );
     }
@@ -761,6 +770,14 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     public function createNotificationXmlConverter(): NotificationXmlConverterInterface
     {
         return new NotificationXmlConverter();
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Writer\HeidelpayWriterInterface
+     */
+    public function createHeidelpayWriter(): HeidelpayWriterInterface
+    {
+        return new HeidelpayWriter($this->getEntityManager());
     }
 
     /**
@@ -793,6 +810,14 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     public function getMoneyFacade(): HeidelpayToMoneyFacadeInterface
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::FACADE_MONEY);
+    }
+
+    /**
+     * @return \Spryker\Shared\Money\Dependency\Plugin\MoneyPluginInterface
+     */
+    public function getMoneyPlugin(): MoneyPluginInterface
+    {
+        return $this->getProvidedDependency(HeidelpayDependencyProvider::PLUGIN_MONEY);
     }
 
     /**

@@ -13,7 +13,7 @@ use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface;
 
-class InvoiceSecuredB2CDataProvider implements StepEngineFormDataProviderInterface
+class InvoiceSecuredB2cDataProvider implements StepEngineFormDataProviderInterface
 {
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
@@ -26,11 +26,11 @@ class InvoiceSecuredB2CDataProvider implements StepEngineFormDataProviderInterfa
             $quoteTransfer->setPayment(new PaymentTransfer());
         }
 
-        if ($quoteTransfer->getPayment()->getHeidelpayInvoiceSecuredB2C() !== null) {
+        if ($quoteTransfer->getPayment()->getHeidelpayInvoiceSecuredB2c() !== null) {
             return $quoteTransfer;
         }
 
-        $quoteTransfer->getPayment()->setHeidelpayInvoiceSecuredB2C(new HeidelpayPaymentTransfer());
+        $quoteTransfer->getPayment()->setHeidelpayInvoiceSecuredB2c(new HeidelpayPaymentTransfer());
 
         return $quoteTransfer;
     }

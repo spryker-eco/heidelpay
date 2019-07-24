@@ -14,7 +14,7 @@ use Spryker\Yves\StepEngine\Dependency\Form\SubFormProviderNameInterface;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class InvoiceSecuredB2CSubForm extends AbstractSubFormType implements SubFormInterface, SubFormProviderNameInterface
+class InvoiceSecuredB2cSubForm extends AbstractSubFormType implements SubFormInterface, SubFormProviderNameInterface
 {
     protected const PAYMENT_METHOD_TEMPLATE_PATH = 'invoice-secured-b2c';
 
