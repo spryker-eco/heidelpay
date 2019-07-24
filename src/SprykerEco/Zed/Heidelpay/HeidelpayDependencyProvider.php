@@ -9,6 +9,7 @@ namespace SprykerEco\Zed\Heidelpay;
 
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
+use Spryker\Zed\Money\Communication\Plugin\MoneyPlugin;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToCurrencyFacadeBridge;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyFacadeBridge;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesFacadeBridge;
@@ -26,6 +27,7 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
     public const SERVICE_UTIL_ENCODING = 'util encoding service';
 
     public const PLUGINS_HEIDELPAY_NOTIFICATION_EXPANDER = 'PLUGINS_HEIDELPAY_NOTIFICATION_EXPANDER';
+    public const PLUGIN_MONEY = 'PLUGIN_MONEY';
 
     /**
      * @param \Spryker\Zed\Kernel\Container $container
@@ -40,6 +42,7 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
         $container = $this->addSalesFacade($container);
         $container = $this->addSalesQueryContainer($container);
         $container = $this->addUtilEncodingService($container);
+        $container = $this->addMoneyPlugin($container);
         $container = $this->addHeidelpayNotificationExpanderPlugins($container);
 
         return $container;
@@ -123,6 +126,20 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
     {
         $container->set(static::SERVICE_UTIL_ENCODING, function (Container $container) {
             return new HeidelpayToUtilEncodingServiceBridge($container->getLocator()->utilEncoding()->service());
+        });
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
+    protected function addMoneyPlugin(Container $container): Container
+    {
+        $container->set(static::PLUGIN_MONEY, function () {
+            return new MoneyPlugin();
         });
 
         return $container;

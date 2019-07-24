@@ -275,7 +275,7 @@
         <property name="resultReason" type="string" />
         <property name="resultReturn" type="string" />
         <property name="paymentCode" type="string" />
-        <property name="amount" type="string" />
+        <property name="amount" type="int" />
         <property name="currency" type="string" />
         <property name="paymentDescriptor" type="string" />
         <property name="account" type="string" />

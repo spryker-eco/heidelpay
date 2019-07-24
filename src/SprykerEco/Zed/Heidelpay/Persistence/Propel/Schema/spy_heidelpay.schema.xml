@@ -114,7 +114,7 @@
         <column name="result_return" required="false" type="VARCHAR" />
 
         <column name="payment_code" required="false" type="VARCHAR" />
-        <column name="amount" required="false" type="VARCHAR" />
+        <column name="amount" required="false" type="INTEGER" />
         <column name="currency" required="false" type="VARCHAR" />
         <column name="payment_descriptor" required="false" type="VARCHAR" />
 

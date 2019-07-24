@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business;
 
+use Spryker\Shared\Money\Dependency\Plugin\MoneyPluginInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\AdapterFactory;
@@ -758,6 +759,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
         return new NotificationExpander(
             $this->createNotificationXmlConverter(),
             $this->getUtilEncodingService(),
+            $this->getMoneyPlugin(),
             $this->getHeidelpayNotificationExpanderPlugins()
         );
     }
@@ -808,6 +810,14 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     public function getMoneyFacade(): HeidelpayToMoneyFacadeInterface
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::FACADE_MONEY);
+    }
+
+    /**
+     * @return \Spryker\Shared\Money\Dependency\Plugin\MoneyPluginInterface
+     */
+    public function getMoneyPlugin(): MoneyPluginInterface
+    {
+        return $this->getProvidedDependency(HeidelpayDependencyProvider::PLUGIN_MONEY);
     }
 
     /**

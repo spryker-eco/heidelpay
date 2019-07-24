@@ -8,6 +8,7 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Processor\Notification\Expander;
 
 use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
+use Spryker\Shared\Money\Dependency\Plugin\MoneyPluginInterface;
 use SprykerEco\Zed\Heidelpay\Business\Processor\Notification\Converter\NotificationXmlConverterInterface;
 use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceInterface;
 
@@ -49,6 +50,11 @@ class NotificationExpander implements NotificationExpanderInterface
     protected $utilEncodingService;
 
     /**
+     * @var \Spryker\Shared\Money\Dependency\Plugin\MoneyPluginInterface
+     */
+    protected $moneyPlugin;
+
+    /**
      * @var \SprykerEco\Zed\Heidelpay\Dependency\Plugin\HeidelpayNotificationExpanderPluginInterface[]
      */
     protected $notificationExpanderPlugins;
@@ -56,15 +62,18 @@ class NotificationExpander implements NotificationExpanderInterface
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Processor\Notification\Converter\NotificationXmlConverterInterface $xmlConverter
      * @param \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceInterface $utilEncodingService
+     * @param \Spryker\Shared\Money\Dependency\Plugin\MoneyPluginInterface $moneyPlugin
      * @param \SprykerEco\Zed\Heidelpay\Dependency\Plugin\HeidelpayNotificationExpanderPluginInterface[] $notificationExpanderPlugins
      */
     public function __construct(
         NotificationXmlConverterInterface $xmlConverter,
         HeidelpayToUtilEncodingServiceInterface $utilEncodingService,
+        MoneyPluginInterface $moneyPlugin,
         array $notificationExpanderPlugins = []
     ) {
         $this->xmlConverter = $xmlConverter;
         $this->utilEncodingService = $utilEncodingService;
+        $this->moneyPlugin = $moneyPlugin;
         $this->notificationExpanderPlugins = $notificationExpanderPlugins;
     }
 
@@ -99,10 +108,11 @@ class NotificationExpander implements NotificationExpanderInterface
         HeidelpayNotificationTransfer $notificationTransfer,
         array $transactionData
     ): HeidelpayNotificationTransfer {
-        $notificationTransfer->setTransactionSource($transactionData[static::KEY_TRANSACTION_SOURCE]);
-        $notificationTransfer->setTransactionChannel($transactionData[static::KEY_CHANNEL]);
-        $notificationTransfer->setTransactionResponseType($transactionData[static::KEY_RESPONSE]);
-        $notificationTransfer->setTransactionMode($transactionData[static::KEY_MODE]);
+        $notificationTransfer
+            ->setTransactionSource($transactionData[static::KEY_TRANSACTION_SOURCE])
+            ->setTransactionChannel($transactionData[static::KEY_CHANNEL])
+            ->setTransactionResponseType($transactionData[static::KEY_RESPONSE])
+            ->setTransactionMode($transactionData[static::KEY_MODE]);
 
         return $notificationTransfer;
     }
@@ -117,10 +127,11 @@ class NotificationExpander implements NotificationExpanderInterface
         HeidelpayNotificationTransfer $notificationTransfer,
         array $identificationData
     ): HeidelpayNotificationTransfer {
-        $notificationTransfer->setTransactionId($identificationData[static::KEY_TRANSACTION_ID]);
-        $notificationTransfer->setUniqueId($identificationData[static::KEY_UNIQUE_ID]);
-        $notificationTransfer->setShortId($identificationData[static::KEY_SHORT_ID]);
-        $notificationTransfer->setIdentificationSource($identificationData[static::KEY_IDENTIFICATION_SOURCE]);
+        $notificationTransfer
+            ->setTransactionId($identificationData[static::KEY_TRANSACTION_ID])
+            ->setUniqueId($identificationData[static::KEY_UNIQUE_ID])
+            ->setShortId($identificationData[static::KEY_SHORT_ID])
+            ->setIdentificationSource($identificationData[static::KEY_IDENTIFICATION_SOURCE]);
 
         return $notificationTransfer;
     }
@@ -135,12 +146,13 @@ class NotificationExpander implements NotificationExpanderInterface
         HeidelpayNotificationTransfer $notificationTransfer,
         array $processingData
     ): HeidelpayNotificationTransfer {
-        $notificationTransfer->setResultCode($processingData[static::KEY_ATTRIBUTES][static::KEY_CODE]);
-        $notificationTransfer->setResultTimestamp($processingData[static::KEY_TIMESTAMP]);
-        $notificationTransfer->setResult($processingData[static::KEY_RESULT]);
-        $notificationTransfer->setResultStatus($processingData[static::KEY_STATUS]);
-        $notificationTransfer->setResultReason($processingData[static::KEY_REASON]);
-        $notificationTransfer->setResultReturn($processingData[static::KEY_RETURN]);
+        $notificationTransfer
+            ->setResultCode($processingData[static::KEY_ATTRIBUTES][static::KEY_CODE])
+            ->setResultTimestamp($processingData[static::KEY_TIMESTAMP])
+            ->setResult($processingData[static::KEY_RESULT])
+            ->setResultStatus($processingData[static::KEY_STATUS])
+            ->setResultReason($processingData[static::KEY_REASON])
+            ->setResultReturn($processingData[static::KEY_RETURN]);
 
         return $notificationTransfer;
     }
@@ -155,10 +167,13 @@ class NotificationExpander implements NotificationExpanderInterface
         HeidelpayNotificationTransfer $notificationTransfer,
         array $paymentData
     ): HeidelpayNotificationTransfer {
-        $notificationTransfer->setPaymentCode($paymentData[static::KEY_ATTRIBUTES][static::KEY_CODE]);
-        $notificationTransfer->setAmount($paymentData[static::KEY_CLEARING][static::KEY_AMOUNT]);
-        $notificationTransfer->setCurrency($paymentData[static::KEY_CLEARING][static::KEY_CURRENCY]);
-        $notificationTransfer->setPaymentDescriptor($paymentData[static::KEY_CLEARING][static::KEY_DESCRIPTOR]);
+        $notificationTransfer
+            ->setPaymentCode($paymentData[static::KEY_ATTRIBUTES][static::KEY_CODE])
+            ->setCurrency($paymentData[static::KEY_CLEARING][static::KEY_CURRENCY])
+            ->setPaymentDescriptor($paymentData[static::KEY_CLEARING][static::KEY_DESCRIPTOR])
+            ->setAmount(
+                $this->convertAmountToInt($paymentData[static::KEY_CLEARING][static::KEY_AMOUNT])
+            );
 
         return $notificationTransfer;
     }
@@ -212,5 +227,15 @@ class NotificationExpander implements NotificationExpanderInterface
         }
 
         return $notificationTransfer;
+    }
+
+    /**
+     * @param string $amount
+     *
+     * @return int
+     */
+    protected function convertAmountToInt(string $amount): int
+    {
+        return $this->moneyPlugin->convertDecimalToInteger((float)$amount);
     }
 }
