@@ -9,7 +9,7 @@ namespace SprykerEco\Zed\Heidelpay\Persistence;
 
 use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
 use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
-use SprykerEco\Zed\Heidelpay\Persistence\Mapper\HeidelpayPersistenceMapper;
+use SprykerEco\Zed\Heidelpay\Persistence\Propel\Mapper\HeidelpayPersistenceMapper;
 
 /**
  * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayPersistenceFactory getFactory()
@@ -42,7 +42,7 @@ class HeidelpayEntityManager extends AbstractEntityManager implements HeidelpayE
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Persistence\Mapper\HeidelpayPersistenceMapper
+     * @return \SprykerEco\Zed\Heidelpay\Persistence\Propel\Mapper\HeidelpayPersistenceMapper
      */
     protected function getMapper(): HeidelpayPersistenceMapper
     {

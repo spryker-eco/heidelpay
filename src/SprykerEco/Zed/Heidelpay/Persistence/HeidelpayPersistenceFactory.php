@@ -12,7 +12,7 @@ use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayNotificationQuery;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayQuery;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
-use SprykerEco\Zed\Heidelpay\Persistence\Mapper\HeidelpayPersistenceMapper;
+use SprykerEco\Zed\Heidelpay\Persistence\Propel\Mapper\HeidelpayPersistenceMapper;
 
 /**
  * @method \SprykerEco\Zed\Heidelpay\HeidelpayConfig getConfig()
@@ -55,7 +55,7 @@ class HeidelpayPersistenceFactory extends AbstractPersistenceFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Persistence\Mapper\HeidelpayPersistenceMapper
+     * @return \SprykerEco\Zed\Heidelpay\Persistence\Propel\Mapper\HeidelpayPersistenceMapper
      */
     public function createHeidelpayPersistenceMapper(): HeidelpayPersistenceMapper
     {

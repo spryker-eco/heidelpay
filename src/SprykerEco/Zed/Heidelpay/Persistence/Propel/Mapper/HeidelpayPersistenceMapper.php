@@ -5,7 +5,7 @@
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
-namespace SprykerEco\Zed\Heidelpay\Persistence\Mapper;
+namespace SprykerEco\Zed\Heidelpay\Persistence\Propel\Mapper;
 
 use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayNotification;
