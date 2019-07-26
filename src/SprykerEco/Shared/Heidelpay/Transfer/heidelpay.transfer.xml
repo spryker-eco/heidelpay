@@ -11,6 +11,8 @@
         <property name="idBasket" type="string" />
         <property name="legalText" type="string" />
         <property name="externalRedirectUrl" type="string" />
+        <property name="dateOfBirth" type="string" />
+        <property name="salutation" type="string" />
     </transfer>
 
     <transfer name="HeidelpayEasyCreditPayment">
@@ -92,6 +94,10 @@
         <property name="currencyCode" type="string"/>
         <property name="secret" type="string"/>
     </transfer>
+    <transfer name="HeidelpayInvoiceSecuredB2c">
+        <property name="salutation" type="string" />
+        <property name="dateOfBirth" type="string" />
+    </transfer>
 
     <transfer name="HeidelpayRequest">
         <property name="auth" type="HeidelpayAuthentication" />
@@ -103,6 +109,7 @@
         <property name="idPaymentRegistration" type="string" />
         <property name="idBasket" type="string"/>
         <property name="paymentMethod" type="string" />
+        <property name="invoiceSecuredB2c" type="HeidelpayInvoiceSecuredB2c" />
     </transfer>
 
     <transfer name="HeidelpayBasketRequest">

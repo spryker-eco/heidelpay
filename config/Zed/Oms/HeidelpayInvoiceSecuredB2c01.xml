@@ -27,5 +27,7 @@
     </process>
 
     <process name="Authorization" file="HeidelpaySubprocesses/Authorization.xml"/>
+    <process name="Shipment" file="HeidelpaySubprocesses/Shipment.xml"/>
+    <process name="Finalize" file="HeidelpaySubprocesses/Finalize.xml"/>
 
 </statemachine>
