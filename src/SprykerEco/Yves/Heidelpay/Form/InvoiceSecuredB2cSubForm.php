@@ -24,7 +24,7 @@ class InvoiceSecuredB2cSubForm extends AbstractSubFormType implements SubFormInt
 {
     protected const PAYMENT_METHOD_TEMPLATE_PATH = 'invoice-secured-b2c';
     protected const FORM_FIELD_DATE_OF_BIRTH = 'dateOfBirth';
-    protected const LABEL_DATE_OF_BIRTH = HeidelpayConfig::PAYMENT_METHOD_INVOICE_SECURED_B2C . '.date_of_birth';
+    protected const LABEL_DATE_OF_BIRTH = 'payment.heidelpay.date_of_birth_label';
     protected const FORMAT_DATE_OF_BIRTH = 'yyyy-MM-dd';
     protected const PLACEHOLDER_DATE_OF_BIRTH = 'customer.birth_date';
     protected const MIN_BIRTHDAY_DATE_STRING = '-18 years';
