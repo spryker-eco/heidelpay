@@ -7,6 +7,8 @@
     <process name="HeidelpayInvoiceSecuredB2c01" main="true">
         <subprocesses>
             <process>Authorization</process>
+            <process>Shipment</process>
+            <process>Finalize</process>
         </subprocesses>
 
         <states>
@@ -19,10 +21,24 @@
                 <target>ready for authorization</target>
                 <event>start authorization process</event>
             </transition>
+
+            <transition>
+                <source>authorization succeeded</source>
+                <target>ready for shipment</target>
+                <event>start shipment process</event>
+            </transition>
+
+            <transition>
+                <source>shipped</source>
+                <target>ready for finalize</target>
+                <event>start finalize process</event>
+            </transition>
         </transitions>
 
         <events>
             <event name="start authorization process" onEnter="true" />
+            <event name="start shipment process" manual="true"/>
+            <event name="start finalize process" onEnter="true" />
         </events>
     </process>
 
