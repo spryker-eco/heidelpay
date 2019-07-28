@@ -29,6 +29,8 @@ class InvoiceSecuredB2cSubForm extends AbstractSubFormType implements SubFormInt
     protected const PLACEHOLDER_DATE_OF_BIRTH = 'customer.birth_date';
     protected const MIN_BIRTHDAY_DATE_STRING = '-18 years';
     protected const AGE_VIOLATION_MESSAGE = 'checkout.step.payment.must_be_older_than_18_years';
+    protected const WIDGET_TYPE = 'single_text';
+    protected const INPUT_TYPE = 'string';
 
     /**
      * @return string
@@ -98,9 +100,9 @@ class InvoiceSecuredB2cSubForm extends AbstractSubFormType implements SubFormInt
             [
                 'label' => static::LABEL_DATE_OF_BIRTH,
                 'required' => true,
-                'widget' => 'single_text',
+                'widget' => static::WIDGET_TYPE,
                 'format' => static::FORMAT_DATE_OF_BIRTH,
-                'input' => 'string',
+                'input' => static::INPUT_TYPE,
                 'attr' => [
                     'placeholder' => static::PLACEHOLDER_DATE_OF_BIRTH,
                 ],
