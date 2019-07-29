@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Yves\Heidelpay\Form;
 
+use DateTime;
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
 use Spryker\Yves\StepEngine\Dependency\Form\AbstractSubFormType;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
@@ -132,7 +133,9 @@ class InvoiceSecuredB2cSubForm extends AbstractSubFormType implements SubFormInt
     {
         return new Callback([
             'callback' => function ($date, ExecutionContextInterface $context) {
-                if (strtotime($date) > strtotime(self::MIN_BIRTHDAY_DATE_STRING)) {
+                $inputDate = new DateTime($date);
+                $minBirthDate = new DateTime(static::MIN_BIRTHDAY_DATE_STRING);
+                if ($inputDate > $minBirthDate) {
                     $context->addViolation(static::AGE_VIOLATION_MESSAGE);
                 }
             },

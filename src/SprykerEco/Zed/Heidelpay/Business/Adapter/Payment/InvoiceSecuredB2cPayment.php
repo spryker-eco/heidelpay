@@ -7,12 +7,15 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Payment;
 
+use DateTime;
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Heidelpay\PhpPaymentApi\PaymentMethods\InvoiceB2CSecuredPaymentMethod;
 
 class InvoiceSecuredB2cPayment extends BasePayment implements InvoiceSecuredB2cPaymentInterface
 {
+    protected const FORMAT_DATE_OF_BIRTH = 'Y-m-d';
+
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $authorizeRequestTransfer
      *
@@ -54,10 +57,22 @@ class InvoiceSecuredB2cPayment extends BasePayment implements InvoiceSecuredB2cP
     ): InvoiceB2CSecuredPaymentMethod {
         $invoiceSecuredB2cMethod->getRequest()->b2cSecured(
             $authorizeRequestTransfer->getInvoiceSecuredB2c()->getSalutation(),
-            $authorizeRequestTransfer->getInvoiceSecuredB2c()->getDateOfBirth(),
+            $this->getFormattedDateOfBirth($authorizeRequestTransfer),
             $authorizeRequestTransfer->getIdBasket()
         );
 
         return $invoiceSecuredB2cMethod;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $authorizeRequestTransfer
+     *
+     * @return string
+     */
+    protected function getFormattedDateOfBirth(HeidelpayRequestTransfer $authorizeRequestTransfer): string
+    {
+        $date = new DateTime($authorizeRequestTransfer->getInvoiceSecuredB2c()->getDateOfBirth());
+
+        return $date->format(static::FORMAT_DATE_OF_BIRTH);
     }
 }
