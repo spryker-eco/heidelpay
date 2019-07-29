@@ -41,6 +41,7 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\Registrati
 use SprykerEco\Zed\Heidelpay\Business\Payment\CreditCardSecure;
 use SprykerEco\Zed\Heidelpay\Business\Payment\EasyCredit;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Ideal;
+use SprykerEco\Zed\Heidelpay\Business\Payment\InvoiceSecuredB2c;
 use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentMethodFilter;
 use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentMethodFilterInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReader;
@@ -596,6 +597,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
             HeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT => $this->createPaymentMethodPaypalDebit(),
             HeidelpayConfig::PAYMENT_METHOD_IDEAL => $this->createPaymentMethodIdeal(),
             HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE => $this->createPaymentMethodCreditCardSecure(),
+            HeidelpayConfig::PAYMENT_METHOD_INVOICE_SECURED_B2C => $this->createInvoiceSecuredB2c(),
         ];
     }
 
@@ -674,6 +676,17 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
             $this->createTransactionLogReader(),
             $this->getConfig(),
             $this->createCreditCardRegistrationWriter()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface
+     */
+    public function createInvoiceSecuredB2c(): PaymentWithPostSaveOrderInterface
+    {
+        return new InvoiceSecuredB2c(
+            $this->createTransactionLogReader(),
+            $this->getConfig()
         );
     }
 
