@@ -8,16 +8,8 @@
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
 use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
-use Generated\Shared\Transfer\PaymentTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayNotification;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayNotificationQuery;
-use Orm\Zed\Sales\Persistence\SpySalesOrder;
-use Propel\Runtime\Propel;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
-use SprykerEcoTest\Zed\Heidelpay\Business\Mock\SuccessfulResponseHeidelpayBusinessFactory;
-use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusinessFactory;
 
 /**
  * @group Functional
@@ -25,7 +17,7 @@ use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusin
  * @group Zed
  * @group Heidelpay
  * @group Business
- * @group HeidelpayFacadeAuthorizePaymentTest
+ * @group HeidelpayFacadeProcessNotificationTest
  */
 class HeidelpayFacadeProcessNotificationTest extends HeidelpayPaymentTest
 {
@@ -42,7 +34,7 @@ class HeidelpayFacadeProcessNotificationTest extends HeidelpayPaymentTest
 
         //Act
         $result = $this->heidelpayFacade->processNotification($notificationTransfer);
-        $entity = $this->getNotificationEntity($result);
+        $entity = $this->findNotificationEntity($result);
 
         //Assert
         $this->assertNotNull($entity);
@@ -69,7 +61,7 @@ class HeidelpayFacadeProcessNotificationTest extends HeidelpayPaymentTest
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayNotification|null
      */
-    protected function getNotificationEntity(HeidelpayNotificationTransfer $notificationTransfer): ?SpyPaymentHeidelpayNotification
+    protected function findNotificationEntity(HeidelpayNotificationTransfer $notificationTransfer): ?SpyPaymentHeidelpayNotification
     {
         $query = SpyPaymentHeidelpayNotificationQuery::create();
         $entity = $query
@@ -78,6 +70,5 @@ class HeidelpayFacadeProcessNotificationTest extends HeidelpayPaymentTest
             ->findOne();
 
         return $entity;
-
     }
 }
