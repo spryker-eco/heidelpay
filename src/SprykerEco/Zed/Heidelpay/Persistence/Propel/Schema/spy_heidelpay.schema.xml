@@ -19,7 +19,7 @@
 
         <column name="easy_credit_fee" required="false" type="INTEGER" />
 
-        <column name="date_of_birth" required="false" type="TIMESTAMP"/>
+        <column name="date_of_birth" required="false" type="DATE"/>
         <column name="salutation" required="false" type="VARCHAR"/>
 
         <foreign-key name="spy_payment_payone-fk_sales_order" foreignTable="spy_sales_order" phpName="SpySalesOrder">
