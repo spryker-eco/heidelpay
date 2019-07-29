@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response version="1.0">
+    <Transaction source="WPF" channel="31HA07BC81A71E2A47DA94B6ADC524D8" response="SYNC" mode="LIVE">
+        <Identification>
+            <TransactionID>Testtransaktion Heidelpay</TransactionID>
+            <UniqueID>31HA07BC810F815529CF7631895B6471</UniqueID>
+            <ShortID>2169.1671.0305</ShortID>
+            <Source>HPC</Source>
+        </Identification>
+        <Processing code="DD.DB.65.50">
+            <Timestamp>2012-11- 15 14:38:31</Timestamp>
+            <Result>NOK</Result>
+            <Status code="65">REJECTED_RISK</Status>
+            <Reason code="50">BLACKLIST_VALIDATION</Reason>
+            <Return code="800.300.101">account or user is blacklisted</Return>
+        </Processing>
+        <Payment code="DD.DB">
+            <Clearing>
+                <Amount>184.00</Amount>
+                <Currency>EUR</Currency>
+                <Descriptor>2169.1671.0305 Heidelpay Testmerchant</Descriptor>
+                <Date>2012-11- 15 14:38:31</Date>
+                <Support>+49 (0) 62216517010</Support>
+            </Clearing>
+            <Presentation>
+                <Amount>184.00</Amount>
+                <Currency>EUR</Currency>
+            </Presentation>
+        </Payment>
+        <Account>
+            <Number>123456</Number>
+            <Holder>Hans Mustermann</Holder>
+            <Bank>458516778</Bank>
+            <Country>DE</Country>
+            <Expiry/>
+            <BankName>SPK Musterstadt</BankName>
+        </Account>
+        <Customer>
+            <Name>
+                <Given>Hans</Given>
+                <Family>Mustermann</Family>
+                <Salutation>MR</Salutation>
+            </Name>
+            <Address>
+                <Street>Musterstrasse 12</Street>
+                <Zip>58566</Zip>
+                <City>Heidelberg</City>
+                <State>DE1</State>
+                <Country>DE</Country>
+            </Address>
+            <Contact>
+                <Email>mail@example.com</Email>
+            </Contact>
+        </Customer>
+        <Analysis/>
+        <RequestTimestamp>2012-11- 15 14:38:31</RequestTimestamp>
+    </Transaction>
+</Response>

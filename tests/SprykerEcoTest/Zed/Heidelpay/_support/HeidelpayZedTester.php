@@ -28,7 +28,19 @@ class HeidelpayZedTester extends Actor
 {
     use _generated\HeidelpayZedTesterActions;
 
+    protected const NOTIFICATION_FILE_PATH = __DIR__ . DS . 'fixtures' . DS . 'notification_body.xml';
+
    /**
     * Define custom actions here
     */
+
+    /**
+     * @return string
+     */
+   public function getNotificationBody(): string
+   {
+       $xml = simplexml_load_file(static::NOTIFICATION_FILE_PATH);
+
+       return $xml->asXML();
+   }
 }
