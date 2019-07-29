@@ -13,7 +13,7 @@ use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayNotificationQuery;
 
 /**
  * @group Functional
- * @group Spryker
+ * @group SprykerEcoTest
  * @group Zed
  * @group Heidelpay
  * @group Business

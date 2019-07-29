@@ -14,7 +14,7 @@ use Orm\Zed\Heidelpay\Persistence\Base\SpyPaymentHeidelpayCreditCardRegistration
 
 /**
  * @group Functional
- * @group Spryker
+ * @group SprykerEcoTest
  * @group Zed
  * @group Heidelpay
  * @group Business
