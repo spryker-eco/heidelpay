@@ -10,6 +10,7 @@ namespace SprykerEco\Client\Heidelpay\Zed;
 use Generated\Shared\Transfer\HeidelpayAuthorizeTransactionLogRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
+use Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
@@ -24,6 +25,7 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
 {
     protected const ZED_GET_AUTHORIZE_TRANSACTION_LOG = '/heidelpay/gateway/get-authorize-transaction-log';
     protected const ZED_GET_CREDIT_CARD_PAYMENT_OPTIONS = '/heidelpay/gateway/get-credit-card-payment-options';
+    protected const ZED_GET_DIRECT_DEBIT_PAYMENT_OPTIONS = '/heidelpay/gateway/get-direct-debit-payment-options';
     protected const ZED_GET_PROCESS_EXTERNAL_PAYMENT_RESPONSE = '/heidelpay/gateway/process-external-payment-response';
     protected const ZED_GET_SAVE_CREDIT_CARD_REGISTRATION = '/heidelpay/gateway/save-credit-card-registration';
     protected const ZED_GET_FIND_CREDIT_CARD_REGISTRATION = '/heidelpay/gateway/find-credit-card-registration';
@@ -61,6 +63,22 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
         );
 
         return $heidelpayCreditCardPaymentOptionsTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer
+     */
+    public function getDirectDebitPaymentOptions(QuoteTransfer $quoteTransfer): HeidelpayDirectDebitPaymentOptionsTransfer
+    {
+        /** @var \Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer $heidelpayDirectDebitPaymentOptionsTransfer */
+        $heidelpayDirectDebitPaymentOptionsTransfer = $this->zedStub->call(
+            static::ZED_GET_DIRECT_DEBIT_PAYMENT_OPTIONS,
+            $quoteTransfer
+        );
+
+        return $heidelpayDirectDebitPaymentOptionsTransfer;
     }
 
     /**

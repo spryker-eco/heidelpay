@@ -72,6 +72,45 @@
         <id-method-parameter value="spy_payment_heidelpay_credit_card_registration_pk_seq"/>
     </table>
 
+    <table name="spy_payment_heidelpay_direct_debit_registration">
+        <column name="id_direct_debit_registration" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_customer_address" required="false" type="INTEGER" />
+
+        <column name="registration_unique_id" required="true" type="VARCHAR" />
+        <column name="transaction_id" required="true" type="VARCHAR" />
+
+        <column name="account_holder" required="false" type="VARCHAR" />
+        <column name="account_bank_name" required="false" type="VARCHAR" />
+        <column name="account_number" required="false" type="VARCHAR" />
+        <column name="account_country" required="false" type="VARCHAR" />
+        <column name="account_bic" required="false" type="VARCHAR" />
+        <column name="account_iban" required="false" type="VARCHAR" />
+        <column name="account_identification" required="false" type="VARCHAR" />
+
+        <behavior name="timestampable">
+            <parameter name="disable_updated_at" value="true"/>
+        </behavior>
+
+        <foreign-key name="spy_payment_heidelpay_direct_debit_reg-fk_customer_address" foreignTable="spy_customer_address">
+            <reference foreign="id_customer_address" local="fk_customer_address"/>
+        </foreign-key>
+
+        <unique name="spy_heidelpay_direct_debit_reg_unique_id-customer_address">
+            <unique-column name="registration_unique_id"/>
+            <unique-column name="fk_customer_address"/>
+        </unique>
+
+        <index name="spy_heidelpay_direct_debit_registration-fk_customer_address">
+            <index-column name="fk_customer_address"/>
+        </index>
+
+        <index name="spy_heidelpay_direct_debit_registration-transaction_id">
+            <index-column name="transaction_id"/>
+        </index>
+
+        <id-method-parameter value="spy_payment_heidelpay_direct_debit_registration_pk_seq"/>
+    </table>
+
     <table name="spy_payment_heidelpay_transaction_log">
         <column name="id_payment_heidelpay_transaction_log" type="INTEGER" primaryKey="true" autoIncrement="true"/>
         <column name="fk_sales_order" required="true" type="INTEGER"/>

@@ -8,7 +8,9 @@
 namespace SprykerEco\Yves\Heidelpay\Form;
 
 use Generated\Shared\Transfer\HeidelpayEasyCreditPaymentTransfer;
+use Spryker\Yves\StepEngine\Dependency\Form\AbstractSubFormType;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
+use Spryker\Yves\StepEngine\Dependency\Form\SubFormProviderNameInterface;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,15 +20,46 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class EasyCreditSubForm extends AbstractHeidelpaySubForm
+class EasyCreditSubForm extends AbstractSubFormType implements SubFormInterface, SubFormProviderNameInterface
 {
-    public const PAYMENT_METHOD = HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT;
-    public const PAYMENT_METHOD_TEMPLATE_PATH = 'easy-credit';
     public const VARS_KEY_LEGAL_TEXT = 'legalText';
     public const VARS_KEY_LOGO_URL = 'logo_url';
     public const VARS_KEY_INFO_LINK = 'info_link';
 
     protected const FIELD_EASY_CREDIT_POLICY_AGREEMENT = 'isPolicyAgreementChecked';
+    protected const PAYMENT_METHOD_TEMPLATE_PATH = 'easy-credit';
+
+    /**
+     * @return string
+     */
+    public function getProviderName(): string
+    {
+        return HeidelpayConfig::PROVIDER_NAME;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPropertyPath(): string
+    {
+        return HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTemplatePath(): string
+    {
+        return HeidelpayConfig::PROVIDER_NAME . DS . static::PAYMENT_METHOD_TEMPLATE_PATH;
+    }
 
     /**
      * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
@@ -37,8 +70,7 @@ class EasyCreditSubForm extends AbstractHeidelpaySubForm
     {
         $resolver->setDefaults([
             'data_class' => HeidelpayEasyCreditPaymentTransfer::class,
-            SubFormInterface::OPTIONS_FIELD_NAME => [],
-        ]);
+        ])->setRequired(static::OPTIONS_FIELD_NAME);
     }
 
     /**

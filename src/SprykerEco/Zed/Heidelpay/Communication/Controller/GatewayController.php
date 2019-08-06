@@ -10,6 +10,7 @@ namespace SprykerEco\Zed\Heidelpay\Communication\Controller;
 use Generated\Shared\Transfer\HeidelpayAuthorizeTransactionLogRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
+use Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
@@ -43,6 +44,16 @@ class GatewayController extends AbstractGatewayController
     public function getCreditCardPaymentOptionsAction(QuoteTransfer $quoteTransfer): HeidelpayCreditCardPaymentOptionsTransfer
     {
         return $this->getFacade()->getCreditCardPaymentOptions($quoteTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer
+     */
+    public function getDirectDebitPaymentOptionsAction(QuoteTransfer $quoteTransfer): HeidelpayDirectDebitPaymentOptionsTransfer
+    {
+        return $this->getFacade()->getDirectDebitPaymentOptions($quoteTransfer);
     }
 
     /**

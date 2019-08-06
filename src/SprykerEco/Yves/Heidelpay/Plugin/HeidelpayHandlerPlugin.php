@@ -19,6 +19,11 @@ use Symfony\Component\HttpFoundation\Request;
 class HeidelpayHandlerPlugin extends AbstractPlugin implements StepHandlerPluginInterface
 {
     /**
+     * {@inheritdoc}
+     * - Expands QuoteTransfer with Heidelpay payment method related transfer.
+     *
+     * @api
+     *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
@@ -26,6 +31,8 @@ class HeidelpayHandlerPlugin extends AbstractPlugin implements StepHandlerPlugin
      */
     public function addToDataClass(Request $request, AbstractTransfer $quoteTransfer): QuoteTransfer
     {
-        return $this->getFactory()->createHeidelpayHandler()->addPaymentToQuote($quoteTransfer);
+        return $this->getFactory()
+            ->createHeidelpayHandler()
+            ->addPaymentToQuote($quoteTransfer);
     }
 }

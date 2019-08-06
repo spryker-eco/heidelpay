@@ -18,6 +18,9 @@ use Spryker\Yves\StepEngine\Dependency\Plugin\Form\SubFormPluginInterface;
 class HeidelpayPaypalAuthorizeSubFormPlugin extends AbstractPlugin implements SubFormPluginInterface
 {
     /**
+     * {@inheritdoc}
+     * - Creates sub form for PaypalAuthorize payment method.
+     *
      * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
      */
     public function createSubForm(): SubFormInterface
@@ -26,6 +29,11 @@ class HeidelpayPaypalAuthorizeSubFormPlugin extends AbstractPlugin implements Su
     }
 
     /**
+     * {@inheritdoc}
+     * - Creates data provider for PaypalAuthorize payment method.
+     *
+     * @api
+     *
      * @return \Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface
      */
     public function createSubFormDataProvider(): StepEngineFormDataProviderInterface

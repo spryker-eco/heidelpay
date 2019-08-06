@@ -9,6 +9,8 @@ namespace SprykerEco\Client\Heidelpay;
 
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
+use Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer;
+use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer;
@@ -58,6 +60,18 @@ interface HeidelpayClientInterface
 
     /**
      * Specification:
+     *  - For a given quote, requests from Zed list of allowed payment options for credit card payment method.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer
+     */
+    public function getDirectDebitPaymentOptions(QuoteTransfer $quoteTransfer): HeidelpayDirectDebitPaymentOptionsTransfer;
+
+    /**
+     * Specification:
      *  - Sends external response from payment provider (POST request) to Zed for processing.
      *
      * @api
@@ -98,6 +112,20 @@ interface HeidelpayClientInterface
 
     /**
      * Specification:
+     *  - Saves new DirectDebit registration into DB.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer $registrationResponseTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer
+     */
+    public function saveDirectDebitRegistration(
+        HeidelpayDirectDebitRegistrationResponseTransfer $registrationResponseTransfer
+    ): HeidelpayRegistrationSaveResponseTransfer;
+
+    /**
+     * Specification:
      *  - tries to find credit card registration by registration id and customer quote to reassure,
      *  that credit card registration really belongs to current customer.
      *
@@ -124,6 +152,19 @@ interface HeidelpayClientInterface
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer
      */
     public function parseExternalResponse(array $externalResponse): HeidelpayRegistrationRequestTransfer;
+
+    /**
+     * Specification:
+     *  - Parses DirectDebit registration response.
+     *  - Transforms it to the transfer object.
+     *
+     * @param array $externalResponse
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer
+     * @api
+     *
+     */
+    public function parseDirectDebitRegistrationResponse(array $externalResponse): HeidelpayDirectDebitRegistrationResponseTransfer;
 
     /**
      * Specification:

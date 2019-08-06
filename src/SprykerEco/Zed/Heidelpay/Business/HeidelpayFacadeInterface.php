@@ -11,6 +11,7 @@ use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayAuthorizeTransactionLogRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
+use Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
@@ -205,6 +206,18 @@ interface HeidelpayFacadeInterface
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer
      */
     public function getCreditCardPaymentOptions(QuoteTransfer $quoteTransfer): HeidelpayCreditCardPaymentOptionsTransfer;
+
+    /**
+     * Specification:
+     * - Calculates available payment options for DirectDebit payment method based on a given quote object.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer
+     */
+    public function getDirectDebitPaymentOptions(QuoteTransfer $quoteTransfer): HeidelpayDirectDebitPaymentOptionsTransfer;
 
     /**
      * Specification:
