@@ -402,6 +402,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     {
         return [
             $this->createDirectDebitNewRegistrationOption(),
+            $this->createDirectDebitLastSuccessfulRegistrationOption(),
         ];
     }
 
@@ -410,7 +411,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
      */
     public function createDirectDebitLastSuccessfulRegistrationOption(): DirectDebitPaymentOptionInterface
     {
-        return new DirectDebitLastSuccessfulRegistration($this->createCreditCardRegistrationReader());
+        return new DirectDebitLastSuccessfulRegistration($this->createDirectDebitRegistrationReader());
     }
 
     /**

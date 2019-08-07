@@ -16,12 +16,12 @@ interface DirectDebitPaymentOptionInterface
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer $paymentOptionsTransfer
      *
-     * @return void
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer
      */
-    public function hydrateToPaymentOptions(
+    public function addPaymentOption(
         QuoteTransfer $quoteTransfer,
         HeidelpayDirectDebitPaymentOptionsTransfer $paymentOptionsTransfer
-    ): void;
+    ): HeidelpayDirectDebitPaymentOptionsTransfer;
 
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer

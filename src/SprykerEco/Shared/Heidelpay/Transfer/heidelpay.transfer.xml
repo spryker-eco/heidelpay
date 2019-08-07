@@ -62,7 +62,7 @@
     </transfer>
 
     <transfer name="HeidelpayDirectDebitPaymentOptions">
-        <property name="optionsList" type="HeidelpayPaymentOption[]" />
+        <property name="optionsList" type="HeidelpayPaymentOption[]" singular="option" />
         <property name="paymentFormActionUrl" type="string"/>
         <property name="lastSuccessfulRegistration" type="HeidelpayDirectDebitRegistration"/>
     </transfer>
