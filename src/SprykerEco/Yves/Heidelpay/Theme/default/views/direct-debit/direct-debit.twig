@@ -8,8 +8,8 @@
     <div class="payment-method spacing-left">
         {{ 'payment.heidelpay.pay_with_direct_debit' | trans }}
         {{ form_errors(data.form.heidelpayDirectDebit) }}
-        <div class="small-12 columns">
-            <ul class="no-bullet">
+        <div class="grid spacing-top">
+            <ul class="col col--xl-9 col--lg-12">
                 {% for paymentOption in data.form.heidelpayDirectDebit.selected_payment_option %}
                     {% set checked = (paymentOption.vars.value == 'existing-registration') ? true : false %}
                     <li>
@@ -23,7 +23,7 @@
                             }
                         }) }}
                         <div class="js-heidelpay-method-{{ paymentOption.vars.value }}">
-                            {% set registrationMoleculeName = paymentOption.vars.value == 'existing-registration' ? 'existing-registration' : 'new-registration' %}
+                            {% set registrationMoleculeName = paymentOption.vars.value == 'existing-registration' ? 'direct-debit-existing-registration' : 'direct-debit-new-registration' %}
                             {% include molecule(registrationMoleculeName, 'Heidelpay') with {
                                 data: {
                                     paymentOption: paymentOption,
