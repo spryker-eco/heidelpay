@@ -12,6 +12,7 @@ use Generated\Shared\Transfer\HeidelpayAuthorizeTransactionLogRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer;
+use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
@@ -290,6 +291,24 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
+     * Specification:
+     *  - Creates DirectDebit registration based on registration response and saves it into DB.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
+     */
+    public function saveDirectDebitRegistration(
+        HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer {
+        return $this->getFactory()
+            ->createDirectDebitRegistrationWriter()
+            ->createDirectDebitRegistration($directDebitRegistrationTransfer);
+    }
+
+    /**
      * {@inheritdoc}
      *
      * @api
@@ -307,6 +326,23 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
                 $findRegistrationRequestTransfer->getIdRegistration(),
                 $findRegistrationRequestTransfer->getQuote()
             );
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
+     */
+    public function retrieveDirectDebitRegistration(
+        HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer {
+        return $this->getFactory()
+            ->createDirectDebitRegistrationReader()
+            ->retrieveDirectDebitRegistration($directDebitRegistrationTransfer);
     }
 
     /**

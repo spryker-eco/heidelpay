@@ -7,19 +7,19 @@
 
 namespace SprykerEco\Client\Heidelpay\Mapper;
 
-use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer;
+use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Heidelpay\PhpPaymentApi\Response;
 
 interface DirectDebitRegistrationResponseMapperInterface
 {
     /**
      * @param \Heidelpay\PhpPaymentApi\Response $apiResponseObject
-     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer $registrationRequestTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
      */
     public function mapApiResponseToDirectDebitRegistrationResponseTransfer(
         Response $apiResponseObject,
-        HeidelpayDirectDebitRegistrationResponseTransfer $registrationRequestTransfer
-    ): HeidelpayDirectDebitRegistrationResponseTransfer;
+        HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer;
 }

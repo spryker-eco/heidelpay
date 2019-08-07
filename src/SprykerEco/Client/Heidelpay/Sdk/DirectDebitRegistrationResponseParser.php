@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Client\Heidelpay\Sdk;
 
-use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer;
+use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseErrorTransfer;
 use Heidelpay\PhpPaymentApi\Exceptions\HashVerificationException;
 use Heidelpay\PhpPaymentApi\Response;
@@ -43,12 +43,13 @@ class DirectDebitRegistrationResponseParser implements DirectDebitRegistrationRe
     /**
      * @param array $responseArray
      *
-     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
      */
-    public function parseResponse(array $responseArray): HeidelpayDirectDebitRegistrationResponseTransfer
+    public function parseResponse(array $responseArray): HeidelpayDirectDebitRegistrationTransfer
     {
         try {
             $apiResponseObject = $this->getValidatedApiResponseObject($responseArray);
+
             return $this->createDirectDebitRegistrationResponseTransfer($apiResponseObject);
         } catch (HashVerificationException $exception) {
             return $this->createDirectDebitRegistrationResponseTransferWithError();
@@ -75,24 +76,24 @@ class DirectDebitRegistrationResponseParser implements DirectDebitRegistrationRe
     /**
      * @param \Heidelpay\PhpPaymentApi\Response $apiResponseObject
      *
-     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
      */
     protected function createDirectDebitRegistrationResponseTransfer(
         Response $apiResponseObject
-    ): HeidelpayDirectDebitRegistrationResponseTransfer {
+    ): HeidelpayDirectDebitRegistrationTransfer {
         return $this->registrationResponseMapper
             ->mapApiResponseToDirectDebitRegistrationResponseTransfer(
                 $apiResponseObject,
-                new HeidelpayDirectDebitRegistrationResponseTransfer()
+                new HeidelpayDirectDebitRegistrationTransfer()
             );
     }
 
     /**
-     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
      */
-    protected function createDirectDebitRegistrationResponseTransferWithError(): HeidelpayDirectDebitRegistrationResponseTransfer
+    protected function createDirectDebitRegistrationResponseTransferWithError(): HeidelpayDirectDebitRegistrationTransfer
     {
-        return (new HeidelpayDirectDebitRegistrationResponseTransfer())
+        return (new HeidelpayDirectDebitRegistrationTransfer())
             ->setIsError(true)
             ->setError(
                 (new HeidelpayResponseErrorTransfer())

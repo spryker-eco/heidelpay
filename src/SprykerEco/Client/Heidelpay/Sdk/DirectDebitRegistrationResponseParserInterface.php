@@ -7,14 +7,14 @@
 
 namespace SprykerEco\Client\Heidelpay\Sdk;
 
-use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer;
+use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 
 interface DirectDebitRegistrationResponseParserInterface
 {
     /**
      * @param array $responseArray
      *
-     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
      */
-    public function parseResponse(array $responseArray): HeidelpayDirectDebitRegistrationResponseTransfer;
+    public function parseResponse(array $responseArray): HeidelpayDirectDebitRegistrationTransfer;
 }

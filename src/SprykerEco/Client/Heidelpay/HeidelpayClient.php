@@ -10,7 +10,7 @@ namespace SprykerEco\Client\Heidelpay;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer;
-use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer;
+use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
@@ -109,13 +109,13 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     /**
      * {@inheritdoc}
      *
-     * @param array $externalResponse
-     *
-     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer
      * @api
      *
+     * @param array $externalResponse
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
      */
-    public function parseDirectDebitRegistrationResponse(array $externalResponse): HeidelpayDirectDebitRegistrationResponseTransfer
+    public function parseDirectDebitRegistrationResponse(array $externalResponse): HeidelpayDirectDebitRegistrationTransfer
     {
         return $this->getFactory()
             ->createDirectDebitRegistrationResponseParser()
@@ -197,14 +197,16 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
      *
      * @api
      *
-     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer $registrationResponseTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
      */
     public function saveDirectDebitRegistration(
-        HeidelpayDirectDebitRegistrationResponseTransfer $registrationResponseTransfer
-    ): HeidelpayRegistrationSaveResponseTransfer {
-        return new HeidelpayRegistrationSaveResponseTransfer();
+        HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer {
+        return $this->getFactory()
+            ->createZedStub()
+            ->saveDirectDebitRegistration($directDebitRegistrationTransfer);
     }
 
     /**
@@ -226,6 +228,23 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
         return $this->getFactory()
             ->createZedStub()
             ->findCreditCardRegistrationByIdAndQuote($findRegistrationRequestTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer|null
+     */
+    public function retrieveDirectDebitRegistration(
+        HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer {
+        return $this->getFactory()
+            ->createZedStub()
+            ->retrieveDirectDebitRegistration($directDebitRegistrationTransfer);
     }
 
     /**
