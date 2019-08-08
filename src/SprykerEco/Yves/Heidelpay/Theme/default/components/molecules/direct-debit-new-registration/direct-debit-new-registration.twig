@@ -14,21 +14,19 @@
     'payment-form-id': 'payment-form',
     'payment-option-input-name': data.paymentOption.vars.full_name,
     'payment-toggler-selector': 'input[target-selector*="js-payment-method"]',
-    url: 'https://test-heidelpay.hpcgw.net/ngw/whitelabel?state=c2a64a5dd2b85213d0c31c8e&lang=DE',
+    url: data.paymentMethod.paymentOptions.paymentFormActionUrl,
     method: 'post',
-
-
 } %}
 
 {% block body %}
     {{ form_widget(data.paymentOption) }}
     <div class="{{ config.name }}__option">
         <div class="form__field">
-            <label for="id"  class="label label--required">ACCOUNT.HOLDER</label>
+            <label for="id"  class="label label--required">{{ 'payment.heidelpay.direct_debit.holder' | trans }}</label>
             <input type="text" name="ACCOUNT.HOLDER" id="id" class="input input--expand">
         </div>
         <div class="form__field">
-            <label for="id2" class="label label--required">ACCOUNT.IBAN</label>
+            <label for="id2" class="label label--required">{{ 'payment.heidelpay.direct_debit.iban' | trans }}</label>
             <input type="text" name="ACCOUNT.IBAN" id="id2" class="input input--expand">
         </div>
     </div>
