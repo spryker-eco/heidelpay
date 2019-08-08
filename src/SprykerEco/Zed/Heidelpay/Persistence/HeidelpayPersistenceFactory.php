@@ -17,6 +17,8 @@ use SprykerEco\Zed\Heidelpay\Persistence\Propel\Mapper\HeidelpayPersistenceMappe
 /**
  * @method \SprykerEco\Zed\Heidelpay\HeidelpayConfig getConfig()
  * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface getQueryContainer()
+ * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayEntityManagerInterface getEntityManager()
+ * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepositoryInterface getRepository()
  */
 class HeidelpayPersistenceFactory extends AbstractPersistenceFactory
 {

@@ -15,6 +15,8 @@ use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
  * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface getQueryContainer()
  * @method \SprykerEco\Zed\Heidelpay\HeidelpayConfig getConfig()
  * @method \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacadeInterface getFacade()
+ * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayEntityManagerInterface getEntityManager()
+ * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepositoryInterface getRepository()
  */
 class HeidelpayCommunicationFactory extends AbstractCommunicationFactory
 {

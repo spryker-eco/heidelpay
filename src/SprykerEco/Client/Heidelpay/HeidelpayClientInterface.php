@@ -149,7 +149,7 @@ interface HeidelpayClientInterface
      *
      * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer|null
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
      */
     public function retrieveDirectDebitRegistration(
         HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer

@@ -258,6 +258,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
     protected function registerCard(QuoteTransfer $quoteTransfer): SpyPaymentHeidelpayCreditCardRegistration
     {
         $cardBuilder = new CreditCardBuilder();
+
         return $cardBuilder->createCreditCard($quoteTransfer);
     }
 

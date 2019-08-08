@@ -655,16 +655,18 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
             HeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT => $this->createPaymentMethodPaypalDebit(),
             HeidelpayConfig::PAYMENT_METHOD_IDEAL => $this->createPaymentMethodIdeal(),
             HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE => $this->createPaymentMethodCreditCardSecure(),
+            HeidelpayConfig::PAYMENT_METHOD_DIRECT_DEBIT => $this->createDirectDebit(),
         ];
     }
 
     /**
-     * @return array
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface[]
      */
     public function getPaymentMethodWithPreSavePaymentCollection(): array
     {
         return [
             HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE => $this->createPaymentMethodCreditCardSecure(),
+            HeidelpayConfig::PAYMENT_METHOD_DIRECT_DEBIT => $this->createDirectDebit(),
             HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT => $this->createPaymentMethodEasyCredit(),
         ];
     }

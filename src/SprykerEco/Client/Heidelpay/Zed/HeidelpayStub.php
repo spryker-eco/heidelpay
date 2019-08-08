@@ -19,7 +19,6 @@ use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
-use Generated\Shared\Transfer\PaymentHeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Client\ZedRequest\Stub\ZedRequestStub;
 

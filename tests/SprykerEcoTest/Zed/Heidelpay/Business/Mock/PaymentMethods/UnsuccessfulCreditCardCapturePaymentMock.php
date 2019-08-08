@@ -35,6 +35,7 @@ class UnsuccessfulCreditCardCapturePaymentMock extends CreditCardPayment
         $responseTransfer = $this->getUnsuccessfulHeidelpayTransfer($response);
         $responseTransfer->setResultCode('NOK');
         $responseTransfer->setPaymentFormUrl(null);
+
         return $responseTransfer;
     }
 

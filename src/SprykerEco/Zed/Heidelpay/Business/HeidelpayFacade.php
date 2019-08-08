@@ -28,6 +28,8 @@ use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
  * @method \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory getFactory()
+ * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayEntityManagerInterface getEntityManager()
+ * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepositoryInterface getRepository()
  */
 class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
 {

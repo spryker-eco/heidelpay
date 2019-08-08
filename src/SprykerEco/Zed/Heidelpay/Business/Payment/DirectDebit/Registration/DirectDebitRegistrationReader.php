@@ -9,7 +9,6 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\Registration;
 
 use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
-use SprykerEco\Shared\Heidelpay\QuoteUniqueIdGenerator;
 use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepositoryInterface;
 
 class DirectDebitRegistrationReader implements DirectDebitRegistrationReaderInterface
