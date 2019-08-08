@@ -1,0 +1,37 @@
+{% extends model('component') %}
+
+{% define config = {
+    name: 'direct-debit-new-registration',
+} %}
+
+{% define data = {
+    paymentOption: data.paymentOption,
+    paymentMethod: data.paymentMethod,
+} %}
+
+{% define attributes = {
+    'payment-form-id': 'payment-form',
+    'payment-option-input-name': data.paymentOption.vars.full_name,
+    'payment-toggler-selector': 'input[target-selector*="js-payment-method"]',
+} %}
+
+{% block body %}
+    {{ form_widget(data.paymentOption) }}
+    <div class="{{ config.name }}__option js-direct-debit-new-registration-mirror-selector">
+        <div class="form__field">
+            <label for="id"  class="label label--required">ACCOUNT.HOLDER</label>
+            <input type="text" name="ACCOUNT.HOLDER" id="id" class="input input--expand">
+        </div>
+        <div class="form__field">
+            <label for="id2" class="label label--required">ACCOUNT.IBAN</label>
+            <input type="text" name="ACCOUNT.IBAN" id="id2" class="input input--expand">
+        </div>
+    </div>
+    {% include molecule('direct-debit-form-mirror', 'Heidelpay') with {
+        attributes: {
+            'reference-selector': 'js-direct-debit-new-registration-mirror-selector',
+            url: 'https://test-heidelpay.hpcgw.net/ngw/whitelabel?state=c2a64a5dd2b85213d0c31c8e&lang=DE',
+            'parent-form-id': attributes['payment-form-id'],
+        }
+    } only %}
+{% endblock %}
