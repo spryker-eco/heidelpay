@@ -53,9 +53,9 @@ class DirectDebitDataProvider implements StepEngineFormDataProviderInterface
 
         return [
             DirectDebitSubForm::PAYMENT_OPTIONS => $this->fetchPaymentOptions($directDebitPayment),
-//            DirectDebitSubForm::REGISTRATION_FORM_ACTION_URL => '',
-//            DirectDebitSubForm::REGISTRATION_FORM_IBAN_FIELD_NAME => '',
-//            DirectDebitSubForm::REGISTRATION_FORM_ACCOUNT_HOLDER_FIELD_NAME => '',
+            DirectDebitSubForm::REGISTRATION_FORM_ACTION_URL => '',
+            DirectDebitSubForm::REGISTRATION_FORM_IBAN_FIELD_NAME => '',
+            DirectDebitSubForm::REGISTRATION_FORM_ACCOUNT_HOLDER_FIELD_NAME => '',
         ];
     }
 
