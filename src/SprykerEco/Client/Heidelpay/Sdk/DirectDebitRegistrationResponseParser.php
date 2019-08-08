@@ -41,7 +41,7 @@ class DirectDebitRegistrationResponseParser implements DirectDebitRegistrationRe
     }
 
     /**
-     * @param array $responseArray
+     * @param string[] $responseArray
      *
      * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
      */
@@ -57,7 +57,7 @@ class DirectDebitRegistrationResponseParser implements DirectDebitRegistrationRe
     }
 
     /**
-     * @param array $apiResponseArray
+     * @param string[] $apiResponseArray
      *
      * @return \Heidelpay\PhpPaymentApi\Response
      */

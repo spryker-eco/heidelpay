@@ -205,7 +205,7 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return array
+     * @return string[]
      */
     protected function getUrlDecodedRequestBody(Request $request): array
     {
@@ -221,9 +221,9 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
     }
 
     /**
-     * @param array $responseArray
+     * @param string[] $responseArray
      *
-     * @return array
+     * @return string[]
      */
     public function filterResponseParameters(array $responseArray): array
     {
