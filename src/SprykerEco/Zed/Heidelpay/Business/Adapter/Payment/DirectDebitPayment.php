@@ -21,12 +21,12 @@ class DirectDebitPayment extends BasePayment implements
      */
     public function register(HeidelpayRequestTransfer $registerRequestTransfer): HeidelpayResponseTransfer
     {
-        $directDebit = new DirectDebitPaymentMethod();
-        $this->prepareRequest($registerRequestTransfer, $directDebit->getRequest());
+        $directDebitPaymentMethod = new DirectDebitPaymentMethod();
+        $this->prepareRequest($registerRequestTransfer, $directDebitPaymentMethod->getRequest());
 
-        $directDebit->registration();
+        $directDebitPaymentMethod->registration();
 
-        return $this->verifyAndParseResponse($directDebit->getResponse());
+        return $this->verifyAndParseResponse($directDebitPaymentMethod->getResponse());
     }
 
     /**
@@ -36,12 +36,12 @@ class DirectDebitPayment extends BasePayment implements
      */
     public function authorize(HeidelpayRequestTransfer $authorizeRequestTransfer): HeidelpayResponseTransfer
     {
-        $creditCardMethod = new DirectDebitPaymentMethod();
-        $this->prepareRequest($authorizeRequestTransfer, $creditCardMethod->getRequest());
+        $directDebitPaymentMethod = new DirectDebitPaymentMethod();
+        $this->prepareRequest($authorizeRequestTransfer, $directDebitPaymentMethod->getRequest());
 
-        $creditCardMethod->authorizeOnRegistration($authorizeRequestTransfer->getIdPaymentRegistration());
+        $directDebitPaymentMethod->authorizeOnRegistration($authorizeRequestTransfer->getIdPaymentRegistration());
 
-        return $this->verifyAndParseResponse($creditCardMethod->getResponse());
+        return $this->verifyAndParseResponse($directDebitPaymentMethod->getResponse());
     }
 
     /**
@@ -51,10 +51,10 @@ class DirectDebitPayment extends BasePayment implements
      */
     public function capture(HeidelpayRequestTransfer $captureRequestTransfer): HeidelpayResponseTransfer
     {
-        $creditCardMethod = new DirectDebitPaymentMethod();
-        $this->prepareRequest($captureRequestTransfer, $creditCardMethod->getRequest());
-        $creditCardMethod->capture($captureRequestTransfer->getIdPaymentReference());
+        $directDebitPaymentMethod = new DirectDebitPaymentMethod();
+        $this->prepareRequest($captureRequestTransfer, $directDebitPaymentMethod->getRequest());
+        $directDebitPaymentMethod->capture($captureRequestTransfer->getIdPaymentReference());
 
-        return $this->verifyAndParseResponse($creditCardMethod->getResponse());
+        return $this->verifyAndParseResponse($directDebitPaymentMethod->getResponse());
     }
 }

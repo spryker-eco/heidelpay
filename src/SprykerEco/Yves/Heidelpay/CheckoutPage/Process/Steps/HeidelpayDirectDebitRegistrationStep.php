@@ -25,14 +25,14 @@ class HeidelpayDirectDebitRegistrationStep extends AbstractBaseStep implements S
     protected $heidelpayClient;
 
     /**
-     * @param \SprykerEco\Client\Heidelpay\HeidelpayClientInterface $heidelpayClient
      * @param string $stepRoute
      * @param string $escapeRoute
+     * @param \SprykerEco\Client\Heidelpay\HeidelpayClientInterface $heidelpayClient
      */
     public function __construct(
-        HeidelpayClientInterface $heidelpayClient,
         string $stepRoute,
-        string $escapeRoute
+        string $escapeRoute,
+        HeidelpayClientInterface $heidelpayClient
     ) {
         parent::__construct($stepRoute, $escapeRoute);
 
