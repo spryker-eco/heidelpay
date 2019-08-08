@@ -7,26 +7,35 @@
 
 namespace SprykerEco\Zed\Heidelpay\Persistence\Propel\Mapper;
 
-use Generated\Shared\Transfer\PaymentHeidelpayDirectDebitRegistrationTransfer;
+use Generated\Shared\Transfer\HeidelpayDirectDebitAccountTransfer;
+use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayDirectDebitRegistration;
 
 class HeidelpayPersistenceMapper
 {
     /**
      * @param \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayDirectDebitRegistration $paymentHeidelpayDirectDebitRegistrationEntity
-     * @param \Generated\Shared\Transfer\PaymentHeidelpayDirectDebitRegistrationTransfer $heidelpayDirectDebitRegistrationTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
      *
-     * @return \Generated\Shared\Transfer\PaymentHeidelpayDirectDebitRegistrationTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
      */
     public function mapEntityToHeidelpayDirectDebitRegistrationTransfer(
         SpyPaymentHeidelpayDirectDebitRegistration $paymentHeidelpayDirectDebitRegistrationEntity,
-        PaymentHeidelpayDirectDebitRegistrationTransfer $heidelpayDirectDebitRegistrationTransfer
-    ): PaymentHeidelpayDirectDebitRegistrationTransfer {
-        $heidelpayDirectDebitRegistrationTransfer->fromArray(
-            $paymentHeidelpayDirectDebitRegistrationEntity->toArray(),
-            true
-        )->setIdCustomerAddress($paymentHeidelpayDirectDebitRegistrationEntity->getFkCustomerAddress());
+        HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer {
+        $directDebitRegistrationTransfer
+            ->setIdDirectDebitRegistration($paymentHeidelpayDirectDebitRegistrationEntity->getIdDirectDebitRegistration())
+            ->setIdCustomerAddress($paymentHeidelpayDirectDebitRegistrationEntity->getFkCustomerAddress())
+            ->setRegistrationUniqueId($paymentHeidelpayDirectDebitRegistrationEntity->getRegistrationUniqueId())
+            ->setTransactionId($paymentHeidelpayDirectDebitRegistrationEntity->getTransactionId())
+            ->setAccountInfo(
+                (new HeidelpayDirectDebitAccountTransfer())
+                    ->fromArray(
+                        $paymentHeidelpayDirectDebitRegistrationEntity->toArray(),
+                        true
+                    )
+            );
 
-        return $heidelpayDirectDebitRegistrationTransfer;
+        return $directDebitRegistrationTransfer;
     }
 }

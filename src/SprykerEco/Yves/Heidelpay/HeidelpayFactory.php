@@ -46,6 +46,8 @@ use SprykerEco\Yves\Heidelpay\Mapper\EasyCreditResponseToGetParametersMapper;
 use SprykerEco\Yves\Heidelpay\Mapper\EasyCreditResponseToGetParametersMapperInterface;
 use SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeForm;
 use SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeFormInterface;
+use SprykerEco\Yves\Heidelpay\Processor\HeidelpayDirectDebitRegistrationProcessor;
+use SprykerEco\Yves\Heidelpay\Processor\HeidelpayDirectDebitRegistrationProcessorInterface;
 
 /**
  * @method \SprykerEco\Yves\Heidelpay\HeidelpayConfig getConfig()
@@ -254,6 +256,17 @@ class HeidelpayFactory extends AbstractFactory
     public function createCreditCardPaymentOptionsToQuoteHydrator(): CreditCardPaymentOptionsToQuoteInterface
     {
         return new CreditCardPaymentOptionsToQuote($this->getClient());
+    }
+
+    /**
+     * @return \SprykerEco\Yves\Heidelpay\Processor\HeidelpayDirectDebitRegistrationProcessorInterface
+     */
+    public function createHeidelpayDirectDebitRegistrationProcessor(): HeidelpayDirectDebitRegistrationProcessorInterface
+    {
+        return new HeidelpayDirectDebitRegistrationProcessor(
+            $this->getClient(),
+            $this->getQuoteClient()
+        );
     }
 
     /**

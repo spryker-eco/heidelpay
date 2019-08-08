@@ -8,7 +8,7 @@
 namespace SprykerEco\Client\Heidelpay\Mapper;
 
 use Generated\Shared\Transfer\HeidelpayDirectDebitAccountTransfer;
-use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer;
+use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseErrorTransfer;
 use Heidelpay\PhpPaymentApi\Response;
 
@@ -19,31 +19,31 @@ class DirectDebitRegistrationResponseMapper implements DirectDebitRegistrationRe
 
     /**
      * @param \Heidelpay\PhpPaymentApi\Response $apiResponseObject
-     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer $registrationResponseTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
      */
     public function mapApiResponseToDirectDebitRegistrationResponseTransfer(
         Response $apiResponseObject,
-        HeidelpayDirectDebitRegistrationResponseTransfer $registrationResponseTransfer
-    ): HeidelpayDirectDebitRegistrationResponseTransfer {
-        $registrationResponseTransfer = $this->addAccountInfo($apiResponseObject, $registrationResponseTransfer);
-        $registrationResponseTransfer = $this->addError($apiResponseObject, $registrationResponseTransfer);
-        $registrationResponseTransfer = $this->addIdentification($apiResponseObject, $registrationResponseTransfer);
+        HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer {
+        $directDebitRegistrationTransfer = $this->addAccountInfo($apiResponseObject, $directDebitRegistrationTransfer);
+        $directDebitRegistrationTransfer = $this->addError($apiResponseObject, $directDebitRegistrationTransfer);
+        $directDebitRegistrationTransfer = $this->addIdentification($apiResponseObject, $directDebitRegistrationTransfer);
 
-        return $registrationResponseTransfer;
+        return $directDebitRegistrationTransfer;
     }
 
     /**
      * @param \Heidelpay\PhpPaymentApi\Response $apiResponseObject
-     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer $registrationResponseTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
      */
     protected function addAccountInfo(
         Response $apiResponseObject,
-        HeidelpayDirectDebitRegistrationResponseTransfer $registrationResponseTransfer
-    ): HeidelpayDirectDebitRegistrationResponseTransfer {
+        HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer {
         $accountInfo = $apiResponseObject->getAccount();
         $directDebitAccountTransfer = (new HeidelpayDirectDebitAccountTransfer())
             ->setAccountHolder($accountInfo->getHolder())
@@ -54,27 +54,27 @@ class DirectDebitRegistrationResponseMapper implements DirectDebitRegistrationRe
             ->setAccountIban($accountInfo->getIban())
             ->setAccountIdentification($accountInfo->getIdentification());
 
-        $registrationResponseTransfer->setAccountInfo($directDebitAccountTransfer);
+        $directDebitRegistrationTransfer->setAccountInfo($directDebitAccountTransfer);
 
-        return $registrationResponseTransfer;
+        return $directDebitRegistrationTransfer;
     }
 
     /**
      * @param \Heidelpay\PhpPaymentApi\Response $apiResponse
-     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer $registrationResponseTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
      */
     protected function addError(
         Response $apiResponse,
-        HeidelpayDirectDebitRegistrationResponseTransfer $registrationResponseTransfer
-    ): HeidelpayDirectDebitRegistrationResponseTransfer {
+        HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer {
         if (!$apiResponse->isError()) {
-            return $registrationResponseTransfer;
+            return $directDebitRegistrationTransfer;
         }
 
         $errorResponse = $apiResponse->getError();
-        $registrationResponseTransfer
+        $directDebitRegistrationTransfer
             ->setIsError(true)
             ->setError(
                 (new HeidelpayResponseErrorTransfer())
@@ -82,23 +82,23 @@ class DirectDebitRegistrationResponseMapper implements DirectDebitRegistrationRe
                     ->setInternalMessage($errorResponse[static::API_RESPONSE_ERROR_MESSAGE_KEY])
             );
 
-        return $registrationResponseTransfer;
+        return $directDebitRegistrationTransfer;
     }
 
     /**
      * @param \Heidelpay\PhpPaymentApi\Response $apiResponse
-     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer $registrationResponseTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationResponseTransfer
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
      */
     protected function addIdentification(
         Response $apiResponse,
-        HeidelpayDirectDebitRegistrationResponseTransfer $registrationResponseTransfer
-    ): HeidelpayDirectDebitRegistrationResponseTransfer {
-        $registrationResponseTransfer
+        HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer {
+        $directDebitRegistrationTransfer
             ->setRegistrationUniqueId($apiResponse->getIdentification()->getUniqueId())
             ->setTransactionId($apiResponse->getIdentification()->getTransactionId());
 
-        return $registrationResponseTransfer;
+        return $directDebitRegistrationTransfer;
     }
 }

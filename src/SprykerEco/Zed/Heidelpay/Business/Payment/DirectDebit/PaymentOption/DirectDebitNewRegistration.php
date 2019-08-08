@@ -43,14 +43,23 @@ class DirectDebitNewRegistration implements DirectDebitPaymentOptionInterface
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer $paymentOptionsTransfer
      *
-     * @return void
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer
      */
-    public function hydrateToPaymentOptions(
+    public function addPaymentOption(
         QuoteTransfer $quoteTransfer,
         HeidelpayDirectDebitPaymentOptionsTransfer $paymentOptionsTransfer
-    ): void {
+    ): HeidelpayDirectDebitPaymentOptionsTransfer {
         $registrationResponseTransfer = $this->registerQuote($quoteTransfer);
-        $this->mapResponseToPaymentOptions($paymentOptionsTransfer, $registrationResponseTransfer);
+
+        if ($registrationResponseTransfer->getIsError()) {
+            return $paymentOptionsTransfer;
+        }
+
+        $paymentOptionsTransfer
+            ->addOption($this->createPaymentOptionTransfer())
+            ->setPaymentFormActionUrl($registrationResponseTransfer->getPaymentFormUrl());
+
+        return $paymentOptionsTransfer;
     }
 
     /**
@@ -77,37 +86,11 @@ class DirectDebitNewRegistration implements DirectDebitPaymentOptionInterface
     }
 
     /**
-     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer $paymentOptionsTransfer
-     * @param \Generated\Shared\Transfer\HeidelpayResponseTransfer $registrationResponseTransfer
-     *
-     * @return void
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentOptionTransfer
      */
-    protected function mapResponseToPaymentOptions(
-        HeidelpayDirectDebitPaymentOptionsTransfer $paymentOptionsTransfer,
-        HeidelpayResponseTransfer $registrationResponseTransfer
-    ): void {
-        if ($registrationResponseTransfer->getIsError()) {
-            return;
-        }
-
-        $this->addNewRegistrationAsPaymentOption($paymentOptionsTransfer);
-
-        $paymentOptionsTransfer
-            ->setPaymentFormActionUrl($registrationResponseTransfer->getPaymentFormUrl());
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer $paymentOptionsTransfer
-     *
-     * @return void
-     */
-    protected function addNewRegistrationAsPaymentOption(HeidelpayDirectDebitPaymentOptionsTransfer $paymentOptionsTransfer): void
+    protected function createPaymentOptionTransfer(): HeidelpayPaymentOptionTransfer
     {
-        $optionsList = $paymentOptionsTransfer->getOptionsList();
-
-        $optionsList[] = (new HeidelpayPaymentOptionTransfer())
+        return (new HeidelpayPaymentOptionTransfer())
             ->setCode(HeidelpayConfig::PAYMENT_OPTION_NEW_REGISTRATION);
-
-        $paymentOptionsTransfer->setOptionsList($optionsList);
     }
 }

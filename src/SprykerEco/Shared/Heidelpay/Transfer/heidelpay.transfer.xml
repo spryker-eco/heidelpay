@@ -46,6 +46,11 @@
 
     <transfer name="HeidelpayDirectDebitRegistration">
         <property name="idDirectDebitRegistration" type="int" />
+        <property name="idCustomerAddress" type="int" />
+        <property name="isError" type="bool" />
+        <property name="error" type="HeidelpayResponseError" />
+        <property name="transactionId" type="string" />
+        <property name="registrationUniqueId" type="string" />
         <property name="accountInfo" type="HeidelpayDirectDebitAccount" />
         <property name="idCustomerAddress" type="int" />
     </transfer>
@@ -57,7 +62,7 @@
     </transfer>
 
     <transfer name="HeidelpayDirectDebitPaymentOptions">
-        <property name="optionsList" type="HeidelpayPaymentOption[]" />
+        <property name="optionsList" type="HeidelpayPaymentOption[]" singular="option" />
         <property name="paymentFormActionUrl" type="string"/>
         <property name="lastSuccessfulRegistration" type="HeidelpayDirectDebitRegistration"/>
     </transfer>
@@ -205,15 +210,6 @@
         <property name="creditCardInfo" type="HeidelpayCreditCardInfo"/>
     </transfer>
 
-    <transfer name="HeidelpayDirectDebitRegistrationResponse">
-        <property name="isError" type="bool" />
-        <property name="error" type="HeidelpayResponseError" />
-        <property name="isSaved" type="bool" />
-        <property name="transactionId" type="string" />
-        <property name="registrationUniqueId" type="string" />
-        <property name="accountInfo" type="HeidelpayDirectDebitAccount" />
-    </transfer>
-
     <transfer name="HeidelpayRegistrationSaveResponse">
         <property name="isError" type="bool"/>
         <property name="error" type="HeidelpayResponseError"/>
@@ -291,20 +287,6 @@
 
     <transfer name="HeidelpayAuthorizeTransactionLogRequest">
         <property name="orderReference" type="string"/>
-    </transfer>
-
-    <transfer name="PaymentHeidelpayDirectDebitRegistration">
-        <property name="idDirectDebitRegistration" type="int" />
-        <property name="idCustomerAddress" type="int" />
-        <property name="accountBankName" type="string" />
-        <property name="accountBic" type="string" />
-        <property name="accountCountry" type="string" />
-        <property name="accountHolder" type="string" />
-        <property name="accountIban" type="string" />
-        <property name="accountIdentification" type="string" />
-        <property name="accountNumber" type="string" />
-        <property name="registrationUniqueId" type="string" />
-        <property name="transactionId" type="string" />
     </transfer>
 
 </transfers>

@@ -25,10 +25,6 @@ class HeidelpayToQuoteClientBridge implements HeidelpayToQuoteClientInterface
     }
 
     /**
-     * {@inheritdoc}
-     *
-     * @api
-     *
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return void
@@ -36,5 +32,13 @@ class HeidelpayToQuoteClientBridge implements HeidelpayToQuoteClientInterface
     public function setQuote(QuoteTransfer $quoteTransfer)
     {
         $this->quoteClient->setQuote($quoteTransfer);
+    }
+
+    /**
+     * @return \Generated\Shared\Transfer\QuoteTransfer
+     */
+    public function getQuote()
+    {
+        return $this->quoteClient->getQuote();
     }
 }

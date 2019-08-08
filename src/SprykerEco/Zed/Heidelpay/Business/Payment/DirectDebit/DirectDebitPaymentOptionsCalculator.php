@@ -7,14 +7,13 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit;
 
-use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 
 class DirectDebitPaymentOptionsCalculator implements DirectDebitPaymentOptionsCalculatorInterface
 {
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\PaymentOption\PaymentOptionInterface[]
+     * @var array|\SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\PaymentOption\DirectDebitPaymentOptionInterface[]
      */
     protected $paymentOptions;
 
@@ -39,7 +38,7 @@ class DirectDebitPaymentOptionsCalculator implements DirectDebitPaymentOptionsCa
             if (!$paymentOption->isOptionAvailableForQuote($quoteTransfer)) {
                 continue;
             }
-            $paymentOption->hydrateToPaymentOptions($quoteTransfer, $paymentOptionsTransfer);
+            $paymentOptionsTransfer = $paymentOption->addPaymentOption($quoteTransfer, $paymentOptionsTransfer);
         }
 
         return $paymentOptionsTransfer;

@@ -11,6 +11,7 @@ use Generated\Shared\Transfer\HeidelpayAuthorizeTransactionLogRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer;
+use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
@@ -18,6 +19,7 @@ use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
+use Generated\Shared\Transfer\PaymentHeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Client\ZedRequest\Stub\ZedRequestStub;
 
@@ -28,7 +30,9 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
     protected const ZED_GET_DIRECT_DEBIT_PAYMENT_OPTIONS = '/heidelpay/gateway/get-direct-debit-payment-options';
     protected const ZED_GET_PROCESS_EXTERNAL_PAYMENT_RESPONSE = '/heidelpay/gateway/process-external-payment-response';
     protected const ZED_GET_SAVE_CREDIT_CARD_REGISTRATION = '/heidelpay/gateway/save-credit-card-registration';
+    protected const ZED_GET_SAVE_DIRECT_DEBIT_REGISTRATION = '/heidelpay/gateway/save-direct-debit-registration';
     protected const ZED_GET_FIND_CREDIT_CARD_REGISTRATION = '/heidelpay/gateway/find-credit-card-registration';
+    protected const ZED_GET_RETRIEVE_DIRECT_DEBIT_REGISTRATION = '/heidelpay/gateway/retrieve-direct-debit-registration';
     protected const ZED_SEND_EASYCREDIT_INITIALIZE_REQUEST = '/heidelpay/gateway/easycredit-initialize-payment';
     protected const ZED_GET_AUTHORIZE_ON_REGISTRATION_TRANSACTION_LOG = '/heidelpay/gateway/get-authorize-on-registration-transaction-log';
     protected const ZED_GET_PROCESS_EXTERNAL_EASY_CREDIT_PAYMENT_RESPONSE = '/heidelpay/gateway/process-external-easy-credit-payment-response';
@@ -133,6 +137,23 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
     }
 
     /**
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
+     */
+    public function saveDirectDebitRegistration(
+        HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer {
+        /** @var \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer */
+        $directDebitRegistrationTransfer = $this->zedStub->call(
+            static::ZED_GET_SAVE_DIRECT_DEBIT_REGISTRATION,
+            $directDebitRegistrationTransfer
+        );
+
+        return $directDebitRegistrationTransfer;
+    }
+
+    /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer|null
@@ -147,6 +168,23 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
         );
 
         return $heidelpayCreditCardRegistrationTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
+     */
+    public function retrieveDirectDebitRegistration(
+        HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer {
+        /** @var \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer */
+        $directDebitRegistrationTransfer = $this->zedStub->call(
+            static::ZED_GET_RETRIEVE_DIRECT_DEBIT_REGISTRATION,
+            $directDebitRegistrationTransfer
+        );
+
+        return $directDebitRegistrationTransfer;
     }
 
     /**
