@@ -1,9 +1,8 @@
 import Component from 'ShopUi/models/component';
 
 
-export default class DirectDebitFormMirror extends Component {
+export default class DirectDebitNewRegistration extends Component {
 
-    protected referenceContainer: HTMLElement;
     protected xhr: XMLHttpRequest;
     protected inputs: HTMLInputElement[];
     protected parentForm: HTMLFormElement;
@@ -11,9 +10,8 @@ export default class DirectDebitFormMirror extends Component {
     protected readyCallback(): void {}
 
     protected init(): void {
-        this.referenceContainer = <HTMLElement>document.getElementsByClassName(this.referenceSelector)[0];
         this.parentForm = <HTMLFormElement>document.getElementById(this.parentFormId);
-        this.inputs = Array.from(this.referenceContainer.getElementsByTagName('input'));
+        this.inputs = Array.from(this.getElementsByTagName('input'));
         this.xhr = new XMLHttpRequest();
         this.mapEvents();
     }
@@ -68,10 +66,6 @@ export default class DirectDebitFormMirror extends Component {
 
     }
 
-    protected get referenceSelector(): string {
-        return this.getAttribute('reference-selector');
-    }
-
     protected get formUrl(): string {
         return this.getAttribute('url');
     }
@@ -81,6 +75,6 @@ export default class DirectDebitFormMirror extends Component {
     }
 
     protected get parentFormId(): string {
-        return this.getAttribute('parent-form-id');
+        return this.getAttribute('payment-form-id');
     }
 }
