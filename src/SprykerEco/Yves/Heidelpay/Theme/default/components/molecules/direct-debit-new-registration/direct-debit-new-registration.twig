@@ -18,7 +18,6 @@
 } %}
 
 {% block body %}
-    {{ dump(data.paymentOption.vars) }}
     {{ form_widget(data.paymentOption) }}
     <div class="{{ config.name }}__option">
         <div class="form__field">

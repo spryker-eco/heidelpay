@@ -17,7 +17,7 @@ export default class DirectDebitNewRegistration extends Component {
         this.paymentForm = <HTMLFormElement>document.getElementById(this.parentFormId);
         this.inputs = Array.from(this.getElementsByTagName('input'));
         this.paymentOptionsTogglers = <HTMLInputElement[]>Array.from(this.paymentForm.querySelectorAll(`input[name="${this.paymentOptionInputName}"`));
-        this.directDebitPaymentToggler = <HTMLInputElement>this.paymentOptionsTogglers.find(toggler => toggler.value === 'new-registration');
+        this.directDebitPaymentToggler = <HTMLInputElement>this.paymentOptionsTogglers.find(toggler => toggler.value === this.name);
         this.paymentFormTogglers = <HTMLInputElement[]>Array.from(this.paymentForm.querySelectorAll(this.paymentTogglerSelector));
         this.paymentMethodToggler = <HTMLInputElement>this.paymentFormTogglers.find(toggler => toggler.value === this.paymentName);
         this.mapEvents();
@@ -32,18 +32,23 @@ export default class DirectDebitNewRegistration extends Component {
 
         if(this.isDirectDebitNewRegistrationActive()) {
             this.setupFormAttributes();
-            console.log(this.paymentForm);
-            debugger;
+            this.filterFormFields();
             this.paymentForm.submit();
         }
 
     }
 
-    protected disableFormFields(): void {
-        const elements = Array.from(this.paymentForm.elements);
-        // elements.forEach(element => {
-        //     console.log(element.name);
-        // })
+    protected filterFormFields(): void {
+        const elements = Array.from(this.paymentForm.elements) as HTMLInputElement[];
+        elements.forEach((element: HTMLInputElement) => {
+            this.inputs.forEach((input)=>{
+                element.disabled = true;
+                if(element.name === input.name || element.type === "submit") {
+                    element.disabled = false;
+                }
+
+            })
+        })
     }
 
     protected setupFormAttributes(): void {
