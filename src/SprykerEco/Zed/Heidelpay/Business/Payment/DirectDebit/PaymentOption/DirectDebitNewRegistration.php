@@ -91,6 +91,6 @@ class DirectDebitNewRegistration implements DirectDebitPaymentOptionInterface
     protected function createPaymentOptionTransfer(): HeidelpayPaymentOptionTransfer
     {
         return (new HeidelpayPaymentOptionTransfer())
-            ->setCode(HeidelpayConfig::PAYMENT_OPTION_NEW_REGISTRATION);
+            ->setCode(HeidelpayConfig::DIRECT_DEBIT_PAYMENT_OPTION_NEW_REGISTRATION);
     }
 }

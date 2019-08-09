@@ -137,7 +137,7 @@ class DirectDebitLastSuccessfulRegistration implements DirectDebitPaymentOptionI
     protected function createPaymentOptionTransfer(): HeidelpayPaymentOptionTransfer
     {
         return (new HeidelpayPaymentOptionTransfer())
-            ->setCode(HeidelpayConfig::PAYMENT_OPTION_EXISTING_REGISTRATION);
+            ->setCode(HeidelpayConfig::DIRECT_DEBIT_PAYMENT_OPTION_EXISTING_REGISTRATION);
     }
 
     /**

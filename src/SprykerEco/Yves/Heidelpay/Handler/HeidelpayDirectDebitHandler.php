@@ -61,7 +61,7 @@ class HeidelpayDirectDebitHandler extends HeidelpayHandler
     {
         $directDebitPayment = $quoteTransfer->getPayment()->getHeidelpayDirectDebit();
 
-        if ($directDebitPayment->getSelectedPaymentOption() !== HeidelpayConfig::PAYMENT_OPTION_EXISTING_REGISTRATION) {
+        if ($directDebitPayment->getSelectedPaymentOption() !== HeidelpayConfig::DIRECT_DEBIT_PAYMENT_OPTION_EXISTING_REGISTRATION) {
             return $quoteTransfer;
         }
 

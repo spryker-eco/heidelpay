@@ -201,7 +201,7 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
             ->requireHeidelpayDirectDebit()
             ->getHeidelpayDirectDebit()
             ->setSelectedRegistration($directDebitRegistrationTransfer)
-            ->setSelectedPaymentOption(HeidelpayConfig::PAYMENT_OPTION_NEW_REGISTRATION);
+            ->setSelectedPaymentOption(HeidelpayConfig::DIRECT_DEBIT_PAYMENT_OPTION_NEW_REGISTRATION);
 
         $paymentTransfer
             ->setPaymentProvider(HeidelpayConfig::PROVIDER_NAME)
