@@ -15,10 +15,10 @@
     'payment-option-input-name': data.paymentOption.vars.full_name,
     'payment-toggler-selector': 'input[target-selector*="js-payment-method"]',
     url: data.paymentMethod.paymentOptions.paymentFormActionUrl,
-    method: 'post',
 } %}
 
 {% block body %}
+    {{ dump(data.paymentOption.vars) }}
     {{ form_widget(data.paymentOption) }}
     <div class="{{ config.name }}__option">
         <div class="form__field">

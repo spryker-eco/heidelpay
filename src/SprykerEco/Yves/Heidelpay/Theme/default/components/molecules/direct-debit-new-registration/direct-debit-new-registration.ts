@@ -3,75 +3,67 @@ import Component from 'ShopUi/models/component';
 
 export default class DirectDebitNewRegistration extends Component {
 
-    protected xhr: XMLHttpRequest;
     protected inputs: HTMLInputElement[];
-    protected parentForm: HTMLFormElement;
+    protected paymentForm: HTMLFormElement;
+    protected paymentMethodToggler: HTMLInputElement;
+    protected paymentFormTogglers: HTMLInputElement[];
+    protected directDebitPaymentToggler: HTMLInputElement;
+    protected paymentName: string = 'heidelpayDirectDebit';
+    protected paymentOptionsTogglers: HTMLInputElement[];
 
     protected readyCallback(): void {}
 
     protected init(): void {
-        this.parentForm = <HTMLFormElement>document.getElementById(this.parentFormId);
+        this.paymentForm = <HTMLFormElement>document.getElementById(this.parentFormId);
         this.inputs = Array.from(this.getElementsByTagName('input'));
-        this.xhr = new XMLHttpRequest();
+        this.paymentOptionsTogglers = <HTMLInputElement[]>Array.from(this.paymentForm.querySelectorAll(`input[name="${this.paymentOptionInputName}"`));
+        this.directDebitPaymentToggler = <HTMLInputElement>this.paymentOptionsTogglers.find(toggler => toggler.value === 'new-registration');
+        this.paymentFormTogglers = <HTMLInputElement[]>Array.from(this.paymentForm.querySelectorAll(this.paymentTogglerSelector));
+        this.paymentMethodToggler = <HTMLInputElement>this.paymentFormTogglers.find(toggler => toggler.value === this.paymentName);
         this.mapEvents();
     }
 
     protected mapEvents(): void {
-        this.parentForm.addEventListener('submit', this.handleSubmit.bind(this));
+        this.paymentForm.addEventListener('submit', this.handleSubmit.bind(this));
     }
 
     protected handleSubmit(event): void {
         event.preventDefault();
-        this.handleRequest();
-    }
 
-    protected createRequestBody(): string {
-        let reqBody = '';
-        this.inputs.map((input, index) => {
-            reqBody += `${(index !== 0 ? '&' : '') + input.name}=${encodeURIComponent(input.value)}`;
-        });
-        console.log(reqBody);
-        return reqBody;
-    }
-
-    protected handleRequest(): void {
-        new Promise((resolve, reject) => {
-            const reqBody = this.createRequestBody();
-            this.xhr.withCredentials = true;
-            this.xhr.open(this.formMethod, this.formUrl);
-            this.xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            this.xhr.setRequestHeader("Accept", "*/*");
-            this.xhr.setRequestHeader("Cache-Control", "no-cache");
-            this.xhr.addEventListener('load', (event: Event) => this.onRequestLoad(resolve, reject));
-            this.xhr.addEventListener('error', (event: Event) => this.onRequestError(reject));
-            this.xhr.send(reqBody);
-        })
-    }
-
-    protected onRequestLoad(resolve, reject): void {
-        if(this.xhr.status === 200){
-            resolve(this.xhr.response);
-            this.parentForm.submit();
-            return;
+        if(this.isDirectDebitNewRegistrationActive()) {
+            this.setupFormAttributes();
+            console.log(this.paymentForm);
+            debugger;
+            this.paymentForm.submit();
         }
-        this.onRequestError(reject);
+
     }
 
-    protected onRequestError(reject): void {
-        this.errorMessage();
-        reject(new Error(`${this.formUrl} request aborted with ${this.xhr.status}`));
+    protected disableFormFields(): void {
+        const elements = Array.from(this.paymentForm.elements);
+        // elements.forEach(element => {
+        //     console.log(element.name);
+        // })
     }
 
-    protected errorMessage(): void {
+    protected setupFormAttributes(): void {
+        this.paymentForm.action = this.formUrl;
+    }
 
+    protected isDirectDebitNewRegistrationActive(): boolean {
+        return this.paymentMethodToggler.checked && this.directDebitPaymentToggler.checked;
+    }
+
+    get paymentOptionInputName(): string {
+        return this.getAttribute('payment-option-input-name');
+    }
+
+    get paymentTogglerSelector(): string {
+        return this.getAttribute('payment-toggler-selector');
     }
 
     protected get formUrl(): string {
         return this.getAttribute('url');
-    }
-
-    protected get formMethod(): string {
-        return this.getAttribute('method');
     }
 
     protected get parentFormId(): string {
