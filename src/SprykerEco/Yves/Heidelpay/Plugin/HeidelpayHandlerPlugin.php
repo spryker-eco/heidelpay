@@ -20,7 +20,7 @@ class HeidelpayHandlerPlugin extends AbstractPlugin implements StepHandlerPlugin
 {
     /**
      * {@inheritdoc}
-     * - Expands QuoteTransfer with Heidelpay payment method related transfer.
+     * - Expands `QuoteTransfer` with Heidelpay payment method related transfer.
      *
      * @api
      *

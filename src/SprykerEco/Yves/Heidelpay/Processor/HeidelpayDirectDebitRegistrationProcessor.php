@@ -10,12 +10,14 @@ namespace SprykerEco\Yves\Heidelpay\Processor;
 use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseErrorTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
-use Spryker\Shared\Kernel\Transfer\Exception\RequiredTransferPropertyException;
 use SprykerEco\Client\Heidelpay\HeidelpayClientInterface;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Shared\Heidelpay\QuoteUniqueIdGenerator;
+use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
 use Symfony\Component\HttpFoundation\Request;
+
+
 
 class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitRegistrationProcessorInterface
 {
@@ -23,11 +25,17 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
     protected const ERROR_CODE_REGISTRATION_NOT_FOUND = 'registration_not_found';
     protected const ERROR_CODE_REGISTRATION_NOT_SAVED = 'registration_not_saved';
     protected const ERROR_CODE_QUOTE_EXPIRED = 'quote_expired';
+    protected const RESPONSE_PARAMETERS_FILTER_PATTERN = '/^paymentForm+|^lang+/';
 
     /**
      * @var \SprykerEco\Client\Heidelpay\HeidelpayClientInterface
      */
     protected $heidelpayClient;
+
+    /**
+     * @var \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface
+     */
+    protected $calculationClient;
 
     /**
      * @var \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface
@@ -36,13 +44,16 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
 
     /**
      * @param \SprykerEco\Client\Heidelpay\HeidelpayClientInterface $heidelpayClient
+     * @param \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface $calculationClient
      * @param \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface $quoteClient
      */
     public function __construct(
         HeidelpayClientInterface $heidelpayClient,
+        HeidelpayToCalculationClientInterface $calculationClient,
         HeidelpayToQuoteClientInterface $quoteClient
     ) {
         $this->heidelpayClient = $heidelpayClient;
+        $this->calculationClient = $calculationClient;
         $this->quoteClient = $quoteClient;
     }
 
@@ -98,6 +109,7 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
         }
 
         $quoteTransfer = $this->addDirectDebitRegistrationToQuote($directDebitRegistrationTransfer, $quoteTransfer);
+        $quoteTransfer = $this->calculationClient->recalculate($quoteTransfer);
         $this->quoteClient->setQuote($quoteTransfer);
 
         return $directDebitRegistrationTransfer;
@@ -169,15 +181,9 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
      */
     protected function isQuoteExpired(QuoteTransfer $quoteTransfer): bool
     {
-        try {
-            $quoteTransfer->requireCustomer();
-            $quoteTransfer->getCustomer()->requireEmail();
-            $quoteTransfer->requireTotals();
-        } catch (RequiredTransferPropertyException $exception) {
-            return true;
-        }
-
-        return false;
+        return $quoteTransfer->getCustomer() === null
+            || $quoteTransfer->getCustomer()->getEmail() === null
+            || $quoteTransfer->getTotals() === null;
     }
 
     /**
@@ -196,6 +202,11 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
             ->getHeidelpayDirectDebit()
             ->setSelectedRegistration($directDebitRegistrationTransfer)
             ->setSelectedPaymentOption(HeidelpayConfig::PAYMENT_OPTION_NEW_REGISTRATION);
+
+        $paymentTransfer
+            ->setPaymentProvider(HeidelpayConfig::PROVIDER_NAME)
+            ->setPaymentMethod(HeidelpayConfig::PAYMENT_METHOD_DIRECT_DEBIT)
+            ->setPaymentSelection(HeidelpayConfig::PAYMENT_METHOD_DIRECT_DEBIT);
 
         $quoteTransfer->setPayment($paymentTransfer);
 
@@ -228,7 +239,7 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
     public function filterResponseParameters(array $responseArray): array
     {
         return array_filter($responseArray, function ($key) {
-            return !preg_match('/^paymentForm+|^lang+/', $key);
+            return !preg_match(static::RESPONSE_PARAMETERS_FILTER_PATTERN, $key);
         }, ARRAY_FILTER_USE_KEY);
     }
 

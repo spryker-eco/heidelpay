@@ -262,6 +262,7 @@ class HeidelpayFactory extends AbstractFactory
     {
         return new HeidelpayDirectDebitRegistrationProcessor(
             $this->getClient(),
+            $this->getCalculationClient(),
             $this->getQuoteClient()
         );
     }

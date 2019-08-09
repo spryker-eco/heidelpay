@@ -85,7 +85,7 @@ class HeidelpayControllerProvider extends AbstractYvesControllerProvider
             'registrationSuccess'
         );
 
-        $this->createController(
+        $this->createPostController(
             '/heidelpay/dd-register-response',
             static::HEIDELPAY_DIRECT_DEBIT_REGISTER,
             'Heidelpay',
