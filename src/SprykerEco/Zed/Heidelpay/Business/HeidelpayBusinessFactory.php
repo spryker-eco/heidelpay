@@ -746,7 +746,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
         return new DirectDebit(
             $this->createTransactionLogReader(),
             $this->getConfig(),
-            $this->createCreditCardRegistrationWriter()
+            $this->createDirectDebitRegistrationWriter()
         );
     }
 

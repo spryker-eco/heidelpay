@@ -60,7 +60,7 @@ interface HeidelpayClientInterface
 
     /**
      * Specification:
-     *  - For a given quote, requests from Zed list of allowed payment options for credit card payment method.
+     *  - Requests from Zed list of allowed payment options for Direct Debit payment method.
      *
      * @api
      *

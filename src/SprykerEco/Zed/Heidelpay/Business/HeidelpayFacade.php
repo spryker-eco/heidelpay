@@ -293,8 +293,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * Specification:
-     *  - Creates DirectDebit registration based on registration response and saves it into DB.
+     * {@inheritdoc}
      *
      * @api
      *

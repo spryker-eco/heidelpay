@@ -21,7 +21,7 @@ class HeidelpayDirectDebitHandlerPlugin extends AbstractPlugin implements StepHa
     /**
      * {@inheritdoc}
      * - Expands QuoteTransfer with DirectDebit payment method transfer.
-     * - Expands QuoteTransfer with registered credit cards.
+     * - Expands QuoteTransfer with registered direct debit account.
      *
      * @api
      *

@@ -260,7 +260,7 @@ interface HeidelpayFacadeInterface
 
     /**
      * Specification:
-     *  - Fetches credit cart registration transfer by id registration and quote hash.
+     *  - Fetches DirectDebit registration transfer by id registration and quote hash.
      *
      * @api
      *

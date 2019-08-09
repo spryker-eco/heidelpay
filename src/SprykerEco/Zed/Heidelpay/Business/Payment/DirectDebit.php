@@ -11,7 +11,7 @@ use Generated\Shared\Transfer\AddressTransfer;
 use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay;
-use SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationWriterInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\Registration\DirectDebitRegistrationWriterInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\TransactionLogReaderInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface;
@@ -22,19 +22,19 @@ class DirectDebit extends BaseHeidelpayPaymentMethod implements
     PaymentWithPreSavePaymentInterface
 {
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationWriterInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\Registration\DirectDebitRegistrationWriterInterface
      */
-    private $registrationWriter;
+    protected $registrationWriter;
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\TransactionLogReaderInterface $transactionLogManager
      * @param \SprykerEco\Zed\Heidelpay\HeidelpayConfig $config
-     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationWriterInterface $registrationWriter
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\Registration\DirectDebitRegistrationWriterInterface $registrationWriter
      */
     public function __construct(
         TransactionLogReaderInterface $transactionLogManager,
         HeidelpayConfig $config,
-        RegistrationWriterInterface $registrationWriter
+        DirectDebitRegistrationWriterInterface $registrationWriter
     ) {
         parent::__construct($transactionLogManager, $config);
 
@@ -56,7 +56,7 @@ class DirectDebit extends BaseHeidelpayPaymentMethod implements
         if ($this->isAuthorizeTransactionSentSuccessfully($authorizeTransactionLogTransfer) &&
             $this->hasCustomerRegisteredShipmentAddress($quoteTransfer->getShippingAddress())
         ) {
-            $this->updateCreditCardRegistrationWithAddressId($quoteTransfer);
+            $this->updateRegistrationWithAddressId($quoteTransfer);
         }
 
         $redirectUrl = $this->getCheckoutRedirectUrlFromAuthorizeTransactionLog(
@@ -93,9 +93,9 @@ class DirectDebit extends BaseHeidelpayPaymentMethod implements
      *
      * @return void
      */
-    protected function updateCreditCardRegistrationWithAddressId(QuoteTransfer $quoteTransfer): void
+    protected function updateRegistrationWithAddressId(QuoteTransfer $quoteTransfer): void
     {
-        $this->registrationWriter->updateRegistrationWithAddressIdFromQuote($quoteTransfer);
+        $this->registrationWriter->updateDirectDebitRegistration($quoteTransfer);
     }
 
     /**
