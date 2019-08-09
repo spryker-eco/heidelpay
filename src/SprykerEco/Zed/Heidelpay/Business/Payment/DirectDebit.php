@@ -53,8 +53,8 @@ class DirectDebit extends BaseHeidelpayPaymentMethod implements
             $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder()
         );
 
-        if ($this->isAuthorizeTransactionSentSuccessfully($authorizeTransactionLogTransfer) &&
-            $this->hasCustomerRegisteredShipmentAddress($quoteTransfer->getShippingAddress())
+        if ($this->isAuthorizeTransactionSentSuccessfully($authorizeTransactionLogTransfer)
+            && $this->hasCustomerRegisteredShipmentAddress($quoteTransfer->getShippingAddress())
         ) {
             $this->updateRegistrationWithAddressId($quoteTransfer);
         }
@@ -109,6 +109,6 @@ class DirectDebit extends BaseHeidelpayPaymentMethod implements
             ->getPayment()
             ->getHeidelpayDirectDebit()
             ->getSelectedRegistration()
-            ->getIdDirectDebitRegistration();
+            ->getRegistrationUniqueId();
     }
 }

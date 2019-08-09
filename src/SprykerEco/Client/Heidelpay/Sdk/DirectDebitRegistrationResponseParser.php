@@ -66,7 +66,7 @@ class DirectDebitRegistrationResponseParser implements DirectDebitRegistrationRe
         $apiResponse = new Response($apiResponseArray);
 
         $apiResponse->verifySecurityHash(
-            $this->getApplicationSecret(),
+            $this->config->getApplicationSecret(),
             $apiResponse->getIdentification()->getTransactionId()
         );
 
@@ -99,13 +99,5 @@ class DirectDebitRegistrationResponseParser implements DirectDebitRegistrationRe
                 (new HeidelpayResponseErrorTransfer())
                     ->setCode(static::ERROR_CODE_INVALID_RESPONSE)
             );
-    }
-
-    /**
-     * @return string
-     */
-    protected function getApplicationSecret(): string
-    {
-        return $this->config->getApplicationSecret();
     }
 }

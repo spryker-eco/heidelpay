@@ -11,8 +11,7 @@ use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Heidelpay\PhpPaymentApi\PaymentMethods\DirectDebitPaymentMethod;
 
-class DirectDebitPayment extends BasePayment implements
-    DirectDebitPaymentInterface
+class DirectDebitPayment extends BasePayment implements DirectDebitPaymentInterface
 {
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $registerRequestTransfer
@@ -53,6 +52,7 @@ class DirectDebitPayment extends BasePayment implements
     {
         $directDebitPaymentMethod = new DirectDebitPaymentMethod();
         $this->prepareRequest($captureRequestTransfer, $directDebitPaymentMethod->getRequest());
+
         $directDebitPaymentMethod->capture($captureRequestTransfer->getIdPaymentReference());
 
         return $this->verifyAndParseResponse($directDebitPaymentMethod->getResponse());

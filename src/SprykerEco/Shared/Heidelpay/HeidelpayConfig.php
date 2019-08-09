@@ -22,6 +22,9 @@ class HeidelpayConfig
     public const PAYMENT_OPTION_NEW_REGISTRATION = 'new-registration';
     public const PAYMENT_OPTION_EXISTING_REGISTRATION = 'existing-registration';
 
+    public const DIRECT_DEBIT_PAYMENT_OPTION_NEW_REGISTRATION = 'direct-debit-new-registration';
+    public const DIRECT_DEBIT_PAYMENT_OPTION_EXISTING_REGISTRATION = 'direct-debit-existing-registration';
+
     public const TRANSACTION_TYPE_EXTERNAL_RESPONSE = 'external_response';
     public const TRANSACTION_TYPE_DEBIT = 'debit';
     public const TRANSACTION_TYPE_FINALIZE = 'finalize';

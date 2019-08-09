@@ -20,8 +20,8 @@ class HeidelpayCreditCardHandlerPlugin extends AbstractPlugin implements StepHan
 {
     /**
      * {@inheritdoc}
-     * - Expands QuoteTransfer with CreditCard payment method transfer.
-     * - Expands QuoteTransfer with registered credit cards.
+     * - Expands `QuoteTransfer` with CreditCard payment method transfer.
+     * - Expands `QuoteTransfer` with registered credit cards.
      *
      * @api
      *
