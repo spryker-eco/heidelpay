@@ -28,14 +28,12 @@ export default class DirectDebitNewRegistration extends Component {
     }
 
     protected handleSubmit(event): void {
-        event.preventDefault();
-
         if(this.isDirectDebitNewRegistrationActive()) {
+            event.preventDefault();
             this.setupFormAttributes();
             this.filterFormFields();
             this.paymentForm.submit();
         }
-
     }
 
     protected filterFormFields(): void {
