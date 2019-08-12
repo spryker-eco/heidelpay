@@ -21,12 +21,12 @@
     {{ form_widget(data.paymentOption) }}
     <div class="{{ config.name }}__option">
         <div class="form__field">
-            <label for="id"  class="label label--required">{{ 'payment.heidelpay.direct_debit.holder' | trans }}</label>
-            <input type="text" name="ACCOUNT.HOLDER" id="id" class="input input--expand">
+            <label for="direct-debit-account"  class="label label--required">{{ 'payment.heidelpay.direct_debit.holder' | trans }}</label>
+            <input type="text" name="ACCOUNT.HOLDER" id="direct-debit-account" class="input input--expand">
         </div>
         <div class="form__field">
-            <label for="id2" class="label label--required">{{ 'payment.heidelpay.direct_debit.iban' | trans }}</label>
-            <input type="text" name="ACCOUNT.IBAN" id="id2" class="input input--expand">
+            <label for="direct-debit-iban" class="label label--required">{{ 'payment.heidelpay.direct_debit.iban' | trans }}</label>
+            <input type="text" name="ACCOUNT.IBAN" id="direct-debit-iban" class="input input--expand">
         </div>
     </div>
 {% endblock %}

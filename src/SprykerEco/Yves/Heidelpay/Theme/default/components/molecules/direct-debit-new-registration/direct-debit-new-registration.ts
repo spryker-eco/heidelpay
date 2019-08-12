@@ -1,6 +1,5 @@
 import Component from 'ShopUi/models/component';
 
-
 export default class DirectDebitNewRegistration extends Component {
 
     protected inputs: HTMLInputElement[];
@@ -27,8 +26,8 @@ export default class DirectDebitNewRegistration extends Component {
         this.paymentForm.addEventListener('submit', this.handleSubmit.bind(this));
     }
 
-    protected handleSubmit(event): void {
-        if(this.isDirectDebitNewRegistrationActive()) {
+    protected handleSubmit(event: Event): void {
+        if (this.isDirectDebitNewRegistrationActive()) {
             event.preventDefault();
             this.setupFormAttributes();
             this.filterFormFields();
@@ -38,15 +37,13 @@ export default class DirectDebitNewRegistration extends Component {
 
     protected filterFormFields(): void {
         const elements = Array.from(this.paymentForm.elements) as HTMLInputElement[];
-        elements.forEach((element: HTMLInputElement) => {
-            this.inputs.forEach((input)=>{
-                element.disabled = true;
-                if(element.name === input.name || element.type === "submit") {
-                    element.disabled = false;
+        elements.forEach(element => {
+            this.inputs.forEach(input => {
+                if (element.name !== input.name || element.type !== 'submit') {
+                    element.disabled = true;
                 }
-
-            })
-        })
+            });
+        });
     }
 
     protected setupFormAttributes(): void {
@@ -57,11 +54,11 @@ export default class DirectDebitNewRegistration extends Component {
         return this.paymentMethodToggler.checked && this.directDebitPaymentToggler.checked;
     }
 
-    get paymentOptionInputName(): string {
+    protected get paymentOptionInputName(): string {
         return this.getAttribute('payment-option-input-name');
     }
 
-    get paymentTogglerSelector(): string {
+    protected get paymentTogglerSelector(): string {
         return this.getAttribute('payment-toggler-selector');
     }
 
