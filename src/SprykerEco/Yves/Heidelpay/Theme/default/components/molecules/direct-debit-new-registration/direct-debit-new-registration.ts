@@ -39,8 +39,9 @@ export default class DirectDebitNewRegistration extends Component {
         const elements = Array.from(this.paymentForm.elements) as HTMLInputElement[];
         elements.forEach(element => {
             this.inputs.forEach(input => {
-                if (element.name !== input.name || element.type !== 'submit') {
-                    element.disabled = true;
+                element.disabled = true;
+                if (element.name === input.name || element.type === 'submit') {
+                    element.disabled = false;
                 }
             });
         });
