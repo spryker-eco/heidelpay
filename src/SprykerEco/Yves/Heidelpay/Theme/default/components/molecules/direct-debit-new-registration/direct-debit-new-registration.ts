@@ -27,25 +27,27 @@ export default class DirectDebitNewRegistration extends Component {
     }
 
     protected onSubmit(event: Event): void {
-        if (!this.isDirectDebitNewRegistrationActive()) return;
+        if (!this.isDirectDebitNewRegistrationActive()) {
+            return;
+        }
         event.preventDefault();
         this.changeFormAction();
         this.disableFormFields();
+        this.enableDirectDebitInputs();
         this.paymentForm.submit();
-
     }
 
     protected disableFormFields(): void {
-        const elements = <HTMLInputElement[]>Array.from(this.paymentForm.elements);
-        elements.forEach(this.checkInputsToDisable.bind(this));
+        Array.from(this.paymentForm.elements).forEach((element: HTMLInputElement) => {
+            if (element.type !== 'submit'){
+                element.disabled = true;
+            }
+        });
     }
 
-    protected checkInputsToDisable(element: HTMLInputElement): void {
+    protected enableDirectDebitInputs(): void {
         this.inputs.forEach(input => {
-            element.disabled = true;
-            if (element.name === input.name || element.type === 'submit') {
-                element.disabled = false;
-            }
+            input.disabled = false;
         });
     }
 

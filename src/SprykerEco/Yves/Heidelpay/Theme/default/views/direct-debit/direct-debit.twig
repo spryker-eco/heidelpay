@@ -11,7 +11,7 @@
         <div class="grid spacing-top">
             <ul class="col col--xl-9 col--lg-12">
                 {% for paymentOption in data.form.heidelpayDirectDebit.selected_payment_option %}
-                    {% set isPaymentOptionActive = (paymentOption.vars.value == 'direct-debit-existing-registration') ? true : false %}
+                    {% set isPaymentOptionActive = (paymentOption.vars.value == 'direct-debit-existing-registration') %}
                     <li>
                         {{ form_row(paymentOption, {
                             required: false,
