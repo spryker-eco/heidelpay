@@ -23,31 +23,33 @@ export default class DirectDebitNewRegistration extends Component {
     }
 
     protected mapEvents(): void {
-        this.paymentForm.addEventListener('submit', this.handleSubmit.bind(this));
+        this.paymentForm.addEventListener('submit', this.onSubmit.bind(this));
     }
 
-    protected handleSubmit(event: Event): void {
-        if (this.isDirectDebitNewRegistrationActive()) {
-            event.preventDefault();
-            this.setupFormAttributes();
-            this.filterFormFields();
-            this.paymentForm.submit();
-        }
+    protected onSubmit(event: Event): void {
+        if (!this.isDirectDebitNewRegistrationActive()) return;
+        event.preventDefault();
+        this.changeFormAction();
+        this.disableFormFields();
+        this.paymentForm.submit();
+
     }
 
-    protected filterFormFields(): void {
-        const elements = Array.from(this.paymentForm.elements) as HTMLInputElement[];
-        elements.forEach(element => {
-            this.inputs.forEach(input => {
-                element.disabled = true;
-                if (element.name === input.name || element.type === 'submit') {
-                    element.disabled = false;
-                }
-            });
+    protected disableFormFields(): void {
+        const elements = <HTMLInputElement[]>Array.from(this.paymentForm.elements);
+        elements.forEach(this.checkInputsToDisable.bind(this));
+    }
+
+    protected checkInputsToDisable(element: HTMLInputElement): void {
+        this.inputs.forEach(input => {
+            element.disabled = true;
+            if (element.name === input.name || element.type === 'submit') {
+                element.disabled = false;
+            }
         });
     }
 
-    protected setupFormAttributes(): void {
+    protected changeFormAction(): void {
         this.paymentForm.action = this.formUrl;
     }
 

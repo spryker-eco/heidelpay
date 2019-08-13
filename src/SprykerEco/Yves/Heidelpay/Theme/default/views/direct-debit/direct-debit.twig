@@ -1,7 +1,7 @@
 {% extends model('template') %}
 
 {% define data = {
-    form: form
+    form: form,
 } %}
 
 {% block body %}
@@ -11,24 +11,24 @@
         <div class="grid spacing-top">
             <ul class="col col--xl-9 col--lg-12">
                 {% for paymentOption in data.form.heidelpayDirectDebit.selected_payment_option %}
-                    {% set checked = (paymentOption.vars.value == 'existing-registration') ? true : false %}
+                    {% set isPaymentOptionActive = (paymentOption.vars.value == 'existing-registration') ? true : false %}
                     <li>
                         {{ form_row(paymentOption, {
                             required: false,
                             component: molecule('toggler-radio'),
                             attributes: {
-                                'checked': checked,
+                                'checked': isPaymentOptionActive,
                                 'target-selector': '.js-heidelpay-method-' ~ paymentOption.vars.value,
-                                'class-to-toggle': 'is-hidden'
-                            }
+                                'class-to-toggle': 'is-hidden',
+                            },
                         }) }}
                         <div class="js-heidelpay-method-{{ paymentOption.vars.value }}">
                             {% set registrationMoleculeName = paymentOption.vars.value == 'existing-registration' ? 'direct-debit-existing-registration' : 'direct-debit-new-registration' %}
                             {% include molecule(registrationMoleculeName, 'Heidelpay') with {
                                 data: {
                                     paymentOption: paymentOption,
-                                    paymentMethod: data.form.vars.value.payment.heidelpayDirectDebit
-                                }
+                                    paymentMethod: data.form.vars.value.payment.heidelpayDirectDebit,
+                                },
                             } only %}
                         </div>
                     </li>
