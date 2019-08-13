@@ -11,13 +11,13 @@
         <div class="grid spacing-top">
             <ul class="col col--xl-9 col--lg-12">
                 {% for paymentOption in data.form.heidelpayDirectDebit.selected_payment_option %}
-                    {% set checked = (paymentOption.vars.value == 'direct-debit-existing-registration') ? true : false %}
+                    {% set isPaymentOptionActive = (paymentOption.vars.value == 'direct-debit-existing-registration') ? true : false %}
                     <li>
                         {{ form_row(paymentOption, {
                             required: false,
                             component: molecule('toggler-radio'),
                             attributes: {
-                                'checked': checked,
+                                'checked': isPaymentOptionActive,
                                 'target-selector': '.js-heidelpay-method-' ~ paymentOption.vars.value,
                                 'class-to-toggle': 'is-hidden',
                             },
