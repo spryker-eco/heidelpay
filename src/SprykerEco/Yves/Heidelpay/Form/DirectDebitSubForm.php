@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class DirectDebitSubForm extends AbstractSubFormType implements SubFormInterface, SubFormProviderNameInterface
 {
-    public const PAYMENT_OPTIONS = 'payment_options';
+    public const DIRECT_DEBIT_PAYMENT_OPTIONS = 'direct_debit_payment_options';
 
     protected const PAYMENT_METHOD_TEMPLATE_PATH = 'direct-debit';
     protected const FIELD_DIRECT_DEBIT_PAYMENT_OPTION = 'selected_payment_option';
@@ -92,7 +92,7 @@ class DirectDebitSubForm extends AbstractSubFormType implements SubFormInterface
             static::FIELD_DIRECT_DEBIT_PAYMENT_OPTION,
             ChoiceType::class,
             [
-                'choices' => array_flip($options[static::OPTIONS_FIELD_NAME][static::PAYMENT_OPTIONS]),
+                'choices' => array_flip($options[static::OPTIONS_FIELD_NAME][static::DIRECT_DEBIT_PAYMENT_OPTIONS]),
                 'label' => false,
                 'required' => true,
                 'expanded' => true,

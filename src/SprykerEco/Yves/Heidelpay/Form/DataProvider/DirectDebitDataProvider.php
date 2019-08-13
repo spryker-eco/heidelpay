@@ -52,7 +52,7 @@ class DirectDebitDataProvider implements StepEngineFormDataProviderInterface
         $quoteTransfer->getPayment()->setHeidelpayDirectDebit($directDebitPayment);
 
         return [
-            DirectDebitSubForm::PAYMENT_OPTIONS => $this->fetchPaymentOptions($directDebitPayment),
+            DirectDebitSubForm::DIRECT_DEBIT_PAYMENT_OPTIONS => $this->fetchPaymentOptions($directDebitPayment),
         ];
     }
 
