@@ -11,7 +11,7 @@
         <div class="grid spacing-top">
             <ul class="col col--xl-9 col--lg-12">
                 {% for paymentOption in data.form.heidelpayDirectDebit.selected_payment_option %}
-                    {% set checked = (paymentOption.vars.value == 'existing-registration') ? true : false %}
+                    {% set checked = (paymentOption.vars.value == 'direct-debit-existing-registration') ? true : false %}
                     <li>
                         {{ form_row(paymentOption, {
                             required: false,
@@ -23,7 +23,7 @@
                             }
                         }) }}
                         <div class="js-heidelpay-method-{{ paymentOption.vars.value }}">
-                            {% set registrationMoleculeName = paymentOption.vars.value == 'existing-registration' ? 'direct-debit-existing-registration' : 'direct-debit-new-registration' %}
+                            {% set registrationMoleculeName = paymentOption.vars.value == 'direct-debit-existing-registration' ? 'direct-debit-existing-registration' : 'direct-debit-new-registration' %}
                             {% include molecule(registrationMoleculeName, 'Heidelpay') with {
                                 data: {
                                     paymentOption: paymentOption,
