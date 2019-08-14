@@ -24,7 +24,7 @@ class CreditCardSecure extends BaseHeidelpayPaymentMethod implements
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationWriterInterface
      */
-    private $registrationWriter;
+    protected $registrationWriter;
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\TransactionLogReaderInterface $transactionLogManager

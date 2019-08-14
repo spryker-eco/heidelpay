@@ -54,6 +54,20 @@ class AdapterRequestFromQuoteBuilder extends BaseAdapterRequestBuilder implement
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
+    public function buildDirectDebitRegistrationRequest(QuoteTransfer $quoteTransfer): HeidelpayRequestTransfer
+    {
+        $registrationRequestTransfer = $this->buildBaseQuoteHeidelpayRequest($quoteTransfer);
+        $this->setDirectDebitTransactionChannel($registrationRequestTransfer);
+        $this->setYvesUrlForAsyncDirectDebitResponse($registrationRequestTransfer);
+
+        return $registrationRequestTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
+     */
     public function buildEasyCreditRequest(QuoteTransfer $quoteTransfer): HeidelpayRequestTransfer
     {
         return $this->buildBaseQuoteHeidelpayRequest($quoteTransfer);
@@ -67,6 +81,17 @@ class AdapterRequestFromQuoteBuilder extends BaseAdapterRequestBuilder implement
     protected function setCreditCardTransactionChannel(HeidelpayRequestTransfer $heidelpayRequestTransfer): void
     {
         $paymentMethod = SharedHeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE;
+        $this->hydrateTransactionChannel($heidelpayRequestTransfer, $paymentMethod);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $heidelpayRequestTransfer
+     *
+     * @return void
+     */
+    protected function setDirectDebitTransactionChannel(HeidelpayRequestTransfer $heidelpayRequestTransfer): void
+    {
+        $paymentMethod = SharedHeidelpayConfig::PAYMENT_METHOD_DIRECT_DEBIT;
         $this->hydrateTransactionChannel($heidelpayRequestTransfer, $paymentMethod);
     }
 
@@ -111,6 +136,18 @@ class AdapterRequestFromQuoteBuilder extends BaseAdapterRequestBuilder implement
     {
         $requestTransfer->getAsync()->setResponseUrl(
             $this->config->getYvesUrlForAsyncIframeResponse()
+        );
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $requestTransfer
+     *
+     * @return void
+     */
+    protected function setYvesUrlForAsyncDirectDebitResponse(HeidelpayRequestTransfer $requestTransfer): void
+    {
+        $requestTransfer->getAsync()->setResponseUrl(
+            $this->config->getYvesUrlForAsyncDirectDebitResponse()
         );
     }
 }

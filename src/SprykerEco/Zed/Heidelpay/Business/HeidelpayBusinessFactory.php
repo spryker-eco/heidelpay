@@ -12,6 +12,7 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\AdapterFactory;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\AdapterFactoryInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\DirectDebitPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreator;
 use SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreatorInterface;
 use SprykerEco\Zed\Heidelpay\Business\Encrypter\AesEncrypter;
@@ -38,6 +39,16 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\Registrati
 use SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationWriter;
 use SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationWriterInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\CreditCardSecure;
+use SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit;
+use SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\DirectDebitPaymentOptionsCalculator;
+use SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\DirectDebitPaymentOptionsCalculatorInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\PaymentOption\DirectDebitLastSuccessfulRegistration;
+use SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\PaymentOption\DirectDebitNewRegistration;
+use SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\PaymentOption\DirectDebitPaymentOptionInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\Registration\DirectDebitRegistrationReader;
+use SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\Registration\DirectDebitRegistrationReaderInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\Registration\DirectDebitRegistrationWriter;
+use SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\Registration\DirectDebitRegistrationWriterInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\EasyCredit;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Ideal;
 use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentMethodFilter;
@@ -110,6 +121,8 @@ use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
 /**
  * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface getQueryContainer()
  * @method \SprykerEco\Zed\Heidelpay\HeidelpayConfig getConfig()
+ * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepositoryInterface getRepository()
+ * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayEntityManagerInterface getEntityManager()
  */
 class HeidelpayBusinessFactory extends AbstractBusinessFactory
 {
@@ -310,6 +323,14 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\DirectDebitPaymentOptionsCalculatorInterface
+     */
+    public function createDirectDebitPaymentOptionsCalculator(): DirectDebitPaymentOptionsCalculatorInterface
+    {
+        return new DirectDebitPaymentOptionsCalculator($this->getDirectDebitPaymentOptionsArray());
+    }
+
+    /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationReaderInterface
      */
     public function createCreditCardRegistrationReader(): RegistrationReaderInterface
@@ -352,6 +373,55 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
         return new NewRegistrationIframe(
             $this->createAdapterRequestFromQuoteBuilder(),
             $this->getCreditCardPaymentMethodAdapter()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\Registration\DirectDebitRegistrationWriterInterface
+     */
+    public function createDirectDebitRegistrationWriter(): DirectDebitRegistrationWriterInterface
+    {
+        return new DirectDebitRegistrationWriter(
+            $this->getEntityManager(),
+            $this->getRepository()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\Registration\DirectDebitRegistrationReaderInterface
+     */
+    public function createDirectDebitRegistrationReader(): DirectDebitRegistrationReaderInterface
+    {
+        return new DirectDebitRegistrationReader($this->getRepository());
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\PaymentOption\DirectDebitPaymentOptionInterface[]
+     */
+    public function getDirectDebitPaymentOptionsArray(): array
+    {
+        return [
+            $this->createDirectDebitNewRegistrationOption(),
+            $this->createDirectDebitLastSuccessfulRegistrationOption(),
+        ];
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\PaymentOption\DirectDebitPaymentOptionInterface
+     */
+    public function createDirectDebitLastSuccessfulRegistrationOption(): DirectDebitPaymentOptionInterface
+    {
+        return new DirectDebitLastSuccessfulRegistration($this->createDirectDebitRegistrationReader());
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\PaymentOption\DirectDebitPaymentOptionInterface
+     */
+    public function createDirectDebitNewRegistrationOption(): DirectDebitPaymentOptionInterface
+    {
+        return new DirectDebitNewRegistration(
+            $this->createAdapterRequestFromQuoteBuilder(),
+            $this->getDirectDebitPaymentMethod()
         );
     }
 
@@ -585,16 +655,18 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
             HeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT => $this->createPaymentMethodPaypalDebit(),
             HeidelpayConfig::PAYMENT_METHOD_IDEAL => $this->createPaymentMethodIdeal(),
             HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE => $this->createPaymentMethodCreditCardSecure(),
+            HeidelpayConfig::PAYMENT_METHOD_DIRECT_DEBIT => $this->createDirectDebit(),
         ];
     }
 
     /**
-     * @return array
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface[]
      */
     public function getPaymentMethodWithPreSavePaymentCollection(): array
     {
         return [
             HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE => $this->createPaymentMethodCreditCardSecure(),
+            HeidelpayConfig::PAYMENT_METHOD_DIRECT_DEBIT => $this->createDirectDebit(),
             HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT => $this->createPaymentMethodEasyCredit(),
         ];
     }
@@ -667,6 +739,18 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface
+     */
+    public function createDirectDebit(): PaymentWithPostSaveOrderInterface
+    {
+        return new DirectDebit(
+            $this->createTransactionLogReader(),
+            $this->getConfig(),
+            $this->createDirectDebitRegistrationWriter()
+        );
+    }
+
+    /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\CreditCard\Registration\RegistrationWriterInterface
      */
     public function createCreditCardRegistrationWriter(): RegistrationWriterInterface
@@ -722,6 +806,16 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
         return $this
             ->createAdapterFactory()
             ->createCreditCardPaymentMethodAdapter();
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\DirectDebitPaymentInterface
+     */
+    public function getDirectDebitPaymentMethod(): DirectDebitPaymentInterface
+    {
+        return $this
+            ->createAdapterFactory()
+            ->createDirectDebitPaymentMethod();
     }
 
     /**

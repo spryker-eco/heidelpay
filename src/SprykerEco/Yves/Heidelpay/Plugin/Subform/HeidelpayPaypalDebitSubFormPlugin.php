@@ -18,6 +18,9 @@ use Spryker\Yves\StepEngine\Dependency\Plugin\Form\SubFormPluginInterface;
 class HeidelpayPaypalDebitSubFormPlugin extends AbstractPlugin implements SubFormPluginInterface
 {
     /**
+     * {@inheritdoc}
+     * - Creates sub form for PaypalDebit payment method.
+     *
      * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
      */
     public function createSubForm(): SubFormInterface
@@ -26,6 +29,11 @@ class HeidelpayPaypalDebitSubFormPlugin extends AbstractPlugin implements SubFor
     }
 
     /**
+     * {@inheritdoc}
+     * - Creates data provider for PaypalDebit payment method.
+     *
+     * @api
+     *
      * @return \Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface
      */
     public function createSubFormDataProvider(): StepEngineFormDataProviderInterface

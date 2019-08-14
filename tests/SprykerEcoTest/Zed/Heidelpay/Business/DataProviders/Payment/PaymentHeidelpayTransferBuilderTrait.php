@@ -25,10 +25,10 @@ trait PaymentHeidelpayTransferBuilderTrait
         $paymentTransfer = $heidelpayFacade->getPaymentByIdSalesOrder($salesOrder->getIdSalesOrder());
         $orderTransfer = $this->heidelpayToSales->getOrderByIdSalesOrder($salesOrder->getIdSalesOrder());
         $orderTransfer->setHeidelpayPayment($paymentTransfer);
-        
+
         $customerTransfer = new CustomerTransfer();
         $customerTransfer->setCreatedAt('2019-01-01 00:00:00');
-        
+
         $orderTransfer->setCustomer($customerTransfer);
 
         return $orderTransfer;

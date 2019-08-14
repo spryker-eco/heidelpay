@@ -36,6 +36,7 @@ class SuccessfulCreditCardCapturePaymentMock extends CreditCardPayment
         $responseTransfer = $this->getSuccessfulHeidelpayTransfer($response);
         $responseTransfer->setResultCode('ACK');
         $responseTransfer->setPaymentFormUrl(HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL);
+
         return $responseTransfer;
     }
 
@@ -57,6 +58,7 @@ class SuccessfulCreditCardCapturePaymentMock extends CreditCardPayment
         $response['idSalesOrder'] = $captureRequestTransfer->getCustomerPurchase()->getIdOrder();
         $responseTransfer = $this->getSuccessfulHeidelpayTransfer($response);
         $responseTransfer->setPaymentFormUrl(null);
+
         return $responseTransfer;
     }
 }

@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Shared\Heidelpay;
 
-interface HeidelpayConfig
+class HeidelpayConfig
 {
     public const PROVIDER_NAME = 'heidelpay';
 
@@ -17,9 +17,13 @@ interface HeidelpayConfig
     public const PAYMENT_METHOD_PAYPAL_DEBIT = self::PROVIDER_NAME . 'PaypalDebit';
     public const PAYMENT_METHOD_IDEAL = self::PROVIDER_NAME . 'Ideal';
     public const PAYMENT_METHOD_EASY_CREDIT = self::PROVIDER_NAME . 'EasyCredit';
+    public const PAYMENT_METHOD_DIRECT_DEBIT = self::PROVIDER_NAME . 'DirectDebit';
 
     public const PAYMENT_OPTION_NEW_REGISTRATION = 'new-registration';
     public const PAYMENT_OPTION_EXISTING_REGISTRATION = 'existing-registration';
+
+    public const DIRECT_DEBIT_PAYMENT_OPTION_NEW_REGISTRATION = 'direct-debit-new-registration';
+    public const DIRECT_DEBIT_PAYMENT_OPTION_EXISTING_REGISTRATION = 'direct-debit-existing-registration';
 
     public const TRANSACTION_TYPE_EXTERNAL_RESPONSE = 'external_response';
     public const TRANSACTION_TYPE_DEBIT = 'debit';

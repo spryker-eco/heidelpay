@@ -56,6 +56,7 @@ class IsAuthorizationCompletedPlugin extends AbstractPlugin implements Condition
     protected function getExternalTransactionLogEntry(int $idSalesOrder): ?SpyPaymentHeidelpayTransactionLog
     {
         $transactionLogQuery = $this->getQueryContainer()->queryExternalResponseTransactionLog($idSalesOrder);
+
         return $transactionLogQuery->findOne();
     }
 

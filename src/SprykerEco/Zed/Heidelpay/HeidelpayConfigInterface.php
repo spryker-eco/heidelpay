@@ -62,6 +62,11 @@ interface HeidelpayConfigInterface
     /**
      * @return string
      */
+    public function getYvesUrlForAsyncDirectDebitResponse(): string;
+
+    /**
+     * @return string
+     */
     public function getIdealAuthorizeUrl(): string;
 
     /**

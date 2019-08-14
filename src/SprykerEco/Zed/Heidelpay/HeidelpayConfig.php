@@ -22,6 +22,7 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
         SharedHeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT => HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_PAYPAL,
         SharedHeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE => HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_PAYPAL,
         SharedHeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT => HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_EASY_CREDIT,
+        SharedHeidelpayConfig::PAYMENT_METHOD_DIRECT_DEBIT => HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_DIRECT_DEBIT,
     ];
 
     /**
@@ -102,6 +103,14 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     public function getYvesUrlForAsyncIframeResponse(): string
     {
         return $this->get(HeidelpayConstants::CONFIG_YVES_CHECKOUT_ASYNC_RESPONSE_URL);
+    }
+
+    /**
+     * @return string
+     */
+    public function getYvesUrlForAsyncDirectDebitResponse(): string
+    {
+        return $this->get(HeidelpayConstants::DIRECT_DEBIT_REGISTRATION_ASYNC_RESPONSE_URL);
     }
 
     /**

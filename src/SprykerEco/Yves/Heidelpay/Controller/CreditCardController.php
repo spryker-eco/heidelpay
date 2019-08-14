@@ -66,6 +66,7 @@ class CreditCardController extends BaseHeidelpayController
 
         if ($creditCardRegistration->getIdCreditCardRegistration() !== null) {
             $this->hydrateCreditCardRegistrationToQuote($creditCardRegistration, $quoteTransfer);
+
             return $this->redirectToSummaryStep();
         }
 
@@ -164,22 +165,6 @@ class CreditCardController extends BaseHeidelpayController
         );
 
         return new RedirectResponse($paymentFailedUrl);
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer $saveResponseTransfer
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    protected function redirectToRegistrationFailedAction(
-        HeidelpayRegistrationSaveResponseTransfer $saveResponseTransfer
-    ): Response {
-        $redirectUrl = sprintf(
-            $this->getConfig()->getYvesCheckoutPaymentFailedUrl(),
-            $saveResponseTransfer->getError()->getCode()
-        );
-
-        return $this->streamRedirectResponse($redirectUrl);
     }
 
     /**

@@ -10,6 +10,8 @@ namespace SprykerEco\Zed\Heidelpay\Communication\Controller;
 use Generated\Shared\Transfer\HeidelpayAuthorizeTransactionLogRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
+use Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer;
+use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
@@ -46,6 +48,16 @@ class GatewayController extends AbstractGatewayController
     }
 
     /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer
+     */
+    public function getDirectDebitPaymentOptionsAction(QuoteTransfer $quoteTransfer): HeidelpayDirectDebitPaymentOptionsTransfer
+    {
+        return $this->getFacade()->getDirectDebitPaymentOptions($quoteTransfer);
+    }
+
+    /**
      * @param \Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer $paymentRequestTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
@@ -77,6 +89,17 @@ class GatewayController extends AbstractGatewayController
     }
 
     /**
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $registrationResponseTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
+     */
+    public function saveDirectDebitRegistrationAction(
+        HeidelpayDirectDebitRegistrationTransfer $registrationResponseTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer {
+        return $this->getFacade()->saveDirectDebitRegistration($registrationResponseTransfer);
+    }
+
+    /**
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
@@ -85,6 +108,17 @@ class GatewayController extends AbstractGatewayController
         HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
     ): HeidelpayCreditCardRegistrationTransfer {
         return $this->getFacade()->findCreditCardRegistrationByIdAndQuote($findRegistrationRequestTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $registrationResponseTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
+     */
+    public function retrieveDirectDebitRegistrationAction(
+        HeidelpayDirectDebitRegistrationTransfer $registrationResponseTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer {
+        return $this->getFacade()->retrieveDirectDebitRegistration($registrationResponseTransfer);
     }
 
     /**

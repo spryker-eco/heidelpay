@@ -9,6 +9,7 @@ namespace SprykerEco\Zed\Heidelpay\Business\Adapter;
 
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Basket\BasketInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\DirectDebitPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\EasyCreditPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\IdealPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\PaypalPaymentInterface;
@@ -83,6 +84,11 @@ interface AdapterFactoryInterface
      * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface
      */
     public function createCreditCardPaymentMethodAdapter(): CreditCardPaymentInterface;
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\DirectDebitPaymentInterface
+     */
+    public function createDirectDebitPaymentMethod(): DirectDebitPaymentInterface;
 
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\TransactionParserInterface
