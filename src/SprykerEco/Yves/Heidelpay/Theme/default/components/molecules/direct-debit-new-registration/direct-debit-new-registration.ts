@@ -1,7 +1,6 @@
 import Component from 'ShopUi/models/component';
 
 export default class DirectDebitNewRegistration extends Component {
-
     protected inputs: HTMLInputElement[];
     protected paymentForm: HTMLFormElement;
     protected paymentMethodToggler: HTMLInputElement;

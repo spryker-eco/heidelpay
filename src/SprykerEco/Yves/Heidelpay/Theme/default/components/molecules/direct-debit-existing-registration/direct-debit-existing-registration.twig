@@ -13,13 +13,13 @@
     {{ form_widget(data.paymentOption) }}
     {{ form_label(data.paymentOption) }}
     <div class="{{ config.name }}__option spacing-top text-small">
-            {% set accountInfo = data.paymentMethod.paymentOptions.lastSuccessfulRegistration.accountInfo %}
-            <h6>{{ 'payment.heidelpay.direct_debit' | trans }}:</h6>
-            <ul class="list">
-                <li class="list__item">{{ 'payment.heidelpay.direct_debit.holder' | trans }} - {{ accountInfo.accountHolder }}</li>
-                <li class="list__item">{{ 'payment.heidelpay.direct_debit.bank_name' | trans }} - {{ accountInfo.accountBankName }}</li>
-                <li class="list__item">{{ 'payment.heidelpay.direct_debit.iban' | trans }} - {{ accountInfo.accountIban }}</li>
-                <li class="list__item">{{ 'payment.heidelpay.direct_debit.bic' | trans }} - {{ accountInfo.accountBic }}</li>
-            </ul>
+        {% set accountInfo = data.paymentMethod.paymentOptions.lastSuccessfulRegistration.accountInfo %}
+        <h6>{{ 'payment.heidelpay.direct_debit' | trans }}:</h6>
+        <ul class="list">
+            <li class="list__item">{{ 'payment.heidelpay.direct_debit.holder' | trans }} - {{ accountInfo.accountHolder }}</li>
+            <li class="list__item">{{ 'payment.heidelpay.direct_debit.bank_name' | trans }} - {{ accountInfo.accountBankName }}</li>
+            <li class="list__item">{{ 'payment.heidelpay.direct_debit.iban' | trans }} - {{ accountInfo.accountIban }}</li>
+            <li class="list__item">{{ 'payment.heidelpay.direct_debit.bic' | trans }} - {{ accountInfo.accountBic }}</li>
+        </ul>
     </div>
 {% endblock %}
