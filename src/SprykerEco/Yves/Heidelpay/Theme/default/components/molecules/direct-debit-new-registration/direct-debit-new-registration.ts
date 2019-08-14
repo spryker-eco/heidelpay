@@ -38,7 +38,7 @@ export default class DirectDebitNewRegistration extends Component {
 
     protected disableFormFields(): void {
         Array.from(this.paymentForm.elements).forEach((element: HTMLInputElement) => {
-            if (element.type !== 'submit'){
+            if (element.type !== 'submit') {
                 element.disabled = true;
             }
         });
