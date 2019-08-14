@@ -9,7 +9,9 @@ namespace SprykerEco\Zed\Heidelpay\Persistence\Propel\Mapper;
 
 use Generated\Shared\Transfer\HeidelpayDirectDebitAccountTransfer;
 use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
+use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayDirectDebitRegistration;
+use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
 
 class HeidelpayPersistenceMapper
 {
@@ -37,5 +39,23 @@ class HeidelpayPersistenceMapper
             );
 
         return $directDebitRegistrationTransfer;
+    }
+
+    /**
+     * @param \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog $paymentHeidelpayTransactionLogEntity
+     * @param \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer $heidelpayTransactionLogTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
+     */
+    public function mapEntityToHeidelpayTransactionLogTransfer(
+        SpyPaymentHeidelpayTransactionLog $paymentHeidelpayTransactionLogEntity,
+        HeidelpayTransactionLogTransfer $heidelpayTransactionLogTransfer
+    ): HeidelpayTransactionLogTransfer {
+        $heidelpayTransactionLogTransfer->fromArray(
+            $paymentHeidelpayTransactionLogEntity->toArray(),
+            true
+        )->setIdSalesOrder($paymentHeidelpayTransactionLogEntity->getFkSalesOrder());
+
+        return $heidelpayTransactionLogTransfer;
     }
 }

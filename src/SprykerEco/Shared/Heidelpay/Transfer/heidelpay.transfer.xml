@@ -289,4 +289,15 @@
         <property name="orderReference" type="string"/>
     </transfer>
 
+    <transfer name="HeidelpayTransactionLog">
+        <property name="idTransactionUnique" type="string" />
+        <property name="idSalesOrder" type="int" />
+        <property name="processingCode" type="string" />
+        <property name="redirectUrl" type="string" />
+        <property name="requestPayload" type="string" />
+        <property name="responsePayload" type="string" />
+        <property name="responseCode" type="string" />
+        <property name="transactionType" type="string" />
+    </transfer>
+
 </transfers>

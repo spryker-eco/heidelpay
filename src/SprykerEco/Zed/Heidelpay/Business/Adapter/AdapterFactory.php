@@ -88,6 +88,16 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     }
 
     /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithRefundInterface[]
+     */
+    public function getRefundPaymentMethodAdapterCollection(): array
+    {
+        return [
+            HeidelpayConfig::PAYMENT_METHOD_DIRECT_DEBIT => $this->createDirectDebitPaymentMethod(),
+        ];
+    }
+
+    /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithFinalizeInterface[]
      */
     public function getFinalizePaymentMethodAdapterCollection(): array
@@ -117,6 +127,16 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     {
         return [
             HeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT => $this->createPaypalPaymentMethodAdapter(),
+        ];
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitOnRegistrationInterface[]
+     */
+    public function getDebitOnRegistrationPaymentMethodAdapterCollection(): array
+    {
+        return [
+            HeidelpayConfig::PAYMENT_METHOD_DIRECT_DEBIT => $this->createDirectDebitPaymentMethod(),
         ];
     }
 

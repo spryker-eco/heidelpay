@@ -29,6 +29,36 @@ class DirectDebitPayment extends BasePayment implements DirectDebitPaymentInterf
     }
 
     /**
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $debitOnRegistrationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function debitOnRegistration(HeidelpayRequestTransfer $debitOnRegistrationRequestTransfer): HeidelpayResponseTransfer
+    {
+        $directDebitPaymentMethod = new DirectDebitPaymentMethod();
+        $this->prepareRequest($debitOnRegistrationRequestTransfer, $directDebitPaymentMethod->getRequest());
+
+        $directDebitPaymentMethod->debitOnRegistration($debitOnRegistrationRequestTransfer->getIdPaymentRegistration());
+
+        return $this->verifyAndParseResponse($directDebitPaymentMethod->getResponse());
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $refundRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
+     */
+    public function refund(HeidelpayRequestTransfer $refundRequestTransfer)
+    {
+        $directDebitPaymentMethod = new DirectDebitPaymentMethod();
+        $this->prepareRequest($refundRequestTransfer, $directDebitPaymentMethod->getRequest());
+
+        $directDebitPaymentMethod->refund($refundRequestTransfer->getIdPaymentReference());
+
+        return $this->verifyAndParseResponse($directDebitPaymentMethod->getResponse());
+    }
+
+    /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $authorizeRequestTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer

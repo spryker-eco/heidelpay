@@ -57,7 +57,8 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      */
     public function map(Response $apiResponse, HeidelpayResponseTransfer $responseTransfer): void
     {
-        $responseTransfer->setIsPending($apiResponse->isPending())
+        $responseTransfer
+            ->setIsPending($apiResponse->isPending())
             ->setIsSuccess($apiResponse->isSuccess())
             ->setIdSalesOrder((int)$apiResponse->getIdentification()->getTransactionId())
             ->setIsError($apiResponse->isError())

@@ -38,7 +38,21 @@ interface AdapterRequestFromOrderBuilderInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
+    public function buildDebitOnRegistrationRequestFromOrder(OrderTransfer $orderTransfer): HeidelpayRequestTransfer;
+
+    /**
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
+     */
     public function buildReservationRequestFromOrder(OrderTransfer $orderTransfer): HeidelpayRequestTransfer;
+
+    /**
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
+     */
+    public function buildRefundRequestFromOrder(OrderTransfer $orderTransfer): HeidelpayRequestTransfer;
 
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer

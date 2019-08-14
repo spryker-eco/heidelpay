@@ -22,6 +22,9 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 class IsReservationCompletedPlugin extends AbstractPlugin implements ConditionInterface
 {
     /**
+     * {@inheritdoc}
+     * - Checks if Reservation transaction was successful.
+     *
      * @api
      *
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem $orderItem

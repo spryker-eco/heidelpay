@@ -97,6 +97,19 @@ interface HeidelpayFacadeInterface
 
     /**
      * Specification:
+     *  - Builds refund request based on `OrderTransfer`.
+     *  - Executes refund transaction.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return void
+     */
+    public function executeRefund(OrderTransfer $orderTransfer): void;
+
+    /**
+     * Specification:
      *  - Prepares the request for ExternalResponseTransaction
      *  - Executes ExternalResponseTransaction and returns the results
      *
@@ -145,6 +158,19 @@ interface HeidelpayFacadeInterface
      * @return void
      */
     public function debitPayment(OrderTransfer $orderTransfer): void;
+
+    /**
+     * Specification:
+     * - Sends payment debit on registration request to Heidelpay gateway.
+     * - Saves the transaction result in DB for future recognition.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return void
+     */
+    public function executeDebitOnRegistration(OrderTransfer $orderTransfer): void;
 
     /**
      * Specification:
