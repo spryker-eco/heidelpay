@@ -7,7 +7,6 @@
 
 namespace SprykerEco\Zed\Heidelpay\Communication\Plugin\Checkout\Oms\Command;
 
-use Generated\Shared\Transfer\OrderTransfer;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\Oms\Business\Util\ReadOnlyArrayObject;
@@ -19,11 +18,11 @@ use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
  * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface getQueryContainer()
  * @method \SprykerEco\Zed\Heidelpay\HeidelpayConfig getConfig()
  */
-class AuthorizePlugin extends AbstractPlugin implements CommandByOrderInterface
+class DebitOnRegistrationPlugin extends AbstractPlugin implements CommandByOrderInterface
 {
     /**
      * {@inheritdoc}
-     * - Execute Authorize API transaction.
+     * - Execute DebitOnRegistration API transaction.
      *
      * @api
      *
@@ -35,38 +34,10 @@ class AuthorizePlugin extends AbstractPlugin implements CommandByOrderInterface
      */
     public function run(array $orderItems, SpySalesOrder $orderEntity, ReadOnlyArrayObject $data): array
     {
-        $orderTransfer = $this->getOrderWithPaymentTransfer($orderEntity->getIdSalesOrder());
-        $this->getFacade()->authorizePayment($orderTransfer);
+        $this->getFactory()
+            ->createDebitOnRegistrationOmsCommand()
+            ->execute($orderItems, $orderEntity, $data);
 
         return [];
-    }
-
-    /**
-     * @param int $idSalesOrder
-     *
-     * @return \Generated\Shared\Transfer\OrderTransfer
-     */
-    protected function getOrderWithPaymentTransfer($idSalesOrder): OrderTransfer
-    {
-        $orderTransfer = $this->getFactory()
-            ->getSalesFacade()
-            ->getOrderByIdSalesOrder($idSalesOrder);
-
-        $orderTransfer = $this->hydrateHeidelpayPayment($orderTransfer);
-
-        return $orderTransfer;
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return \Generated\Shared\Transfer\OrderTransfer
-     */
-    protected function hydrateHeidelpayPayment(OrderTransfer $orderTransfer): OrderTransfer
-    {
-        $paymentTransfer = $this->getFacade()->getPaymentByIdSalesOrder($orderTransfer->getIdSalesOrder());
-        $orderTransfer->setHeidelpayPayment($paymentTransfer);
-
-        return $orderTransfer;
     }
 }

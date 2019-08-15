@@ -17,8 +17,6 @@ use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInte
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-
-
 class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitRegistrationProcessorInterface
 {
     protected const REQUEST_PARAM_REGISTRATION_ID = 'id_registration';

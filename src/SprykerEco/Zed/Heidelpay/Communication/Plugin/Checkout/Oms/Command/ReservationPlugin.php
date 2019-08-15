@@ -22,6 +22,9 @@ use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
 class ReservationPlugin extends AbstractPlugin implements CommandByOrderInterface
 {
     /**
+     * {@inheritdoc}
+     * - Execute Reservation API transaction.
+     *
      * @api
      *
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems

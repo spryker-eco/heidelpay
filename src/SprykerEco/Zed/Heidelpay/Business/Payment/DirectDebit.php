@@ -9,6 +9,7 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment;
 
 use Generated\Shared\Transfer\AddressTransfer;
 use Generated\Shared\Transfer\CheckoutResponseTransfer;
+use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay;
 use SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\Registration\DirectDebitRegistrationWriterInterface;
@@ -49,19 +50,24 @@ class DirectDebit extends BaseHeidelpayPaymentMethod implements
      */
     public function postSaveOrder(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer): void
     {
-        $authorizeTransactionLogTransfer = $this->findOrderAuthorizeTransactionLog(
-            $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder()
-        );
+        $debitOnRegistrationTransactionLogTransfer = $this->transactionLogManager
+            ->findDebitOnRegistrationTransactionLogByIdSalesOrder(
+                $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder()
+            );
 
-        if ($this->isAuthorizeTransactionSentSuccessfully($authorizeTransactionLogTransfer)
+        if ($debitOnRegistrationTransactionLogTransfer === null) {
+            $checkoutResponseTransfer->setIsSuccess(false);
+
+            return;
+        }
+
+        if ($debitOnRegistrationTransactionLogTransfer->getHeidelpayResponse()->getIsSuccess()
             && $this->hasCustomerRegisteredShipmentAddress($quoteTransfer->getShippingAddress())
         ) {
             $this->updateRegistrationWithAddressId($quoteTransfer);
         }
 
-        $redirectUrl = $this->getCheckoutRedirectUrlFromAuthorizeTransactionLog(
-            $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder()
-        );
+        $redirectUrl = $this->getCheckoutRedirectUrl($debitOnRegistrationTransactionLogTransfer);
 
         $this->setExternalRedirect($redirectUrl, $checkoutResponseTransfer);
     }
@@ -110,5 +116,22 @@ class DirectDebit extends BaseHeidelpayPaymentMethod implements
             ->getHeidelpayDirectDebit()
             ->getSelectedRegistration()
             ->getRegistrationUniqueId();
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer $transactionLogTransfer
+     *
+     * @return string
+     */
+    protected function getCheckoutRedirectUrl(HeidelpayTransactionLogTransfer $transactionLogTransfer): string
+    {
+        if ($transactionLogTransfer->getHeidelpayResponse()->getIsSuccess()) {
+            return $transactionLogTransfer->getHeidelpayResponse()->getPaymentFormUrl();
+        }
+
+        $errorCode = $transactionLogTransfer->getHeidelpayResponse()->getError()->getCode();
+        $paymentFailedUrl = $this->config->getYvesCheckoutPaymentFailedUrl();
+
+        return sprintf($paymentFailedUrl, $errorCode);
     }
 }

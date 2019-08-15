@@ -22,6 +22,9 @@ use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
 class FinalizePlugin extends AbstractPlugin implements CommandByOrderInterface
 {
     /**
+     * {@inheritdoc}
+     * - Execute Finalize API transaction.
+     *
      * @api
      *
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems

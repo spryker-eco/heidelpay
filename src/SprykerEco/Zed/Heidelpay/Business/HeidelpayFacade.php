@@ -156,6 +156,22 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @return void
      */
+    public function executeDebitOnRegistration(OrderTransfer $orderTransfer): void
+    {
+        $this->getFactory()
+            ->createDebitOnRegistrationTransactionHandler()
+            ->debitOnRegistration($orderTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return void
+     */
     public function finalizePayment(OrderTransfer $orderTransfer): void
     {
         $this->getFactory()
@@ -177,6 +193,22 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
         $this->getFactory()
             ->createReservationTransactionHandler()
             ->executeReservation($orderTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return void
+     */
+    public function executeRefund(OrderTransfer $orderTransfer): void
+    {
+        $this->getFactory()
+            ->createRefundTransactionHandler()
+            ->executeRefund($orderTransfer);
     }
 
     /**

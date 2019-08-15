@@ -22,6 +22,9 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 class IsDebitCompletedPlugin extends AbstractPlugin implements ConditionInterface
 {
     /**
+     * {@inheritdoc}
+     * - Checks if Debit transaction was successful.
+     *
      * @api
      *
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem $orderItem

@@ -9,14 +9,14 @@ namespace SprykerEco\Zed\Heidelpay\Business\Adapter\Payment;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitOnRegistrationInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithRefundInterface;
 
 interface DirectDebitPaymentInterface extends
-    PaymentWithAuthorizeInterface,
+    PaymentWithDebitOnRegistrationInterface,
     PaymentWithExternalResponseInterface,
-    PaymentWithCaptureInterface
+    PaymentWithRefundInterface
 {
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $authorizeRequestTransfer

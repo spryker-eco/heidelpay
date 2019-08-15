@@ -8,6 +8,7 @@
 namespace SprykerEco\Zed\Heidelpay\Persistence;
 
 use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
+use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 
 interface HeidelpayRepositoryInterface
 {
@@ -39,4 +40,15 @@ interface HeidelpayRepositoryInterface
         int $idRegistration,
         string $transactionId
     ): ?HeidelpayDirectDebitRegistrationTransfer;
+
+    /**
+     * @param int $idSalesOrder
+     * @param string $transactionType
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     */
+    public function findHeidelpayTransactionLogByIdSalesOrderAndTransactionType(
+        int $idSalesOrder,
+        string $transactionType
+    ): ?HeidelpayTransactionLogTransfer;
 }

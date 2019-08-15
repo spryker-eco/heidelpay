@@ -36,6 +36,11 @@ interface AdapterFactoryInterface
     public function getDebitPaymentMethodAdapterCollection(): array;
 
     /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitOnRegistrationInterface[]
+     */
+    public function getDebitOnRegistrationPaymentMethodAdapterCollection(): array;
+
+    /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithFinalizeInterface[]
      */
     public function getFinalizePaymentMethodAdapterCollection(): array;
@@ -44,6 +49,11 @@ interface AdapterFactoryInterface
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithReservationInterface[]
      */
     public function getReservationPaymentMethodAdapterCollection(): array;
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithRefundInterface[]
+     */
+    public function getRefundPaymentMethodAdapterCollection(): array;
 
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface[]

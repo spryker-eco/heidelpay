@@ -6,9 +6,9 @@
 
     <process name="HeidelpayDirectDebit01" main="true">
         <subprocesses>
-            <process>Authorization</process>
+            <process>DebitOnRegistration</process>
             <process>Shipment</process>
-            <process>Capture</process>
+            <process>Refund</process>
         </subprocesses>
 
         <states>
@@ -18,33 +18,32 @@
         <transitions>
             <transition>
                 <source>new</source>
-                <target>ready for authorization</target>
-                <event>start authorization process</event>
+                <target>ready for debit on registration</target>
+                <event>start debit on registration process</event>
             </transition>
 
             <transition>
-                <source>authorization succeeded</source>
+                <source>debit on registration succeeded</source>
                 <target>ready for shipment</target>
                 <event>start shipment process</event>
             </transition>
 
             <transition>
                 <source>shipped</source>
-                <target>ready for capture</target>
-                <event>start capture process</event>
+                <target>ready for refund</target>
+                <event>start refund process</event>
             </transition>
-
         </transitions>
 
         <events>
-            <event name="start authorization process" onEnter="true" />
+            <event name="start debit on registration process" onEnter="true" />
             <event name="start shipment process" manual="true"/>
-            <event name="start capture process" onEnter="true"/>
+            <event name="start refund process" onEnter="true"/>
         </events>
     </process>
 
-    <process name="Authorization" file="HeidelpaySubprocesses/Authorization.xml"/>
+    <process name="DebitOnRegistration" file="HeidelpaySubprocesses/DebitOnRegistration.xml"/>
     <process name="Shipment" file="HeidelpaySubprocesses/Shipment.xml"/>
-    <process name="Capture" file="HeidelpaySubprocesses/Capture.xml"/>
+    <process name="Refund" file="HeidelpaySubprocesses/Refund.xml"/>
 
 </statemachine>

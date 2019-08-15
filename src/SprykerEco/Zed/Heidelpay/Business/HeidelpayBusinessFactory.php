@@ -76,6 +76,8 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\AuthorizeTransaction;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\AuthorizeTransactionInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\CaptureTransaction;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\CaptureTransactionInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\DebitOnRegistrationTransaction;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\DebitOnRegistrationTransactionInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\DebitTransaction;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\DebitTransactionInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\EasyCreditInitializeExternalResponseTransaction;
@@ -89,6 +91,8 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\AuthorizeTrans
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\AuthorizeTransactionHandlerInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\CaptureTransactionHandler;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\CaptureTransactionHandlerInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\DebitOnRegistrationTransactionHandler;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\DebitOnRegistrationTransactionHandlerInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\DebitTransactionHandler;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\DebitTransactionHandlerInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\ExternalEasyCreditResponseTransactionHandler;
@@ -99,12 +103,16 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\FinalizeTransa
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\FinalizeTransactionHandlerInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\InitializeTransactionHandler;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\InitializeTransactionHandlerInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\RefundTransactionHandler;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\RefundTransactionHandlerInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\ReservationTransactionHandler;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\ReservationTransactionHandlerInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\InitializeTransaction;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\InitializeTransactionInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Logger\TransactionLogger;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Logger\TransactionLoggerInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\RefundTransaction;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\RefundTransactionInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ReservationTransaction;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ReservationTransactionInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\TransactionLogReader;
@@ -176,6 +184,18 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\DebitOnRegistrationTransactionHandlerInterface
+     */
+    public function createDebitOnRegistrationTransactionHandler(): DebitOnRegistrationTransactionHandlerInterface
+    {
+        return new DebitOnRegistrationTransactionHandler(
+            $this->createDebitOnRegistrationTransaction(),
+            $this->getDebitOnRegistrationPaymentMethodAdapterCollection(),
+            $this->createAdapterRequestFromOrderBuilder()
+        );
+    }
+
+    /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\FinalizeTransactionHandlerInterface
      */
     public function createFinalizeTransactionHandler(): FinalizeTransactionHandlerInterface
@@ -198,6 +218,18 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
             $this->getReservationPaymentMethodAdapterCollection(),
             $this->createAdapterRequestFromOrderBuilder(),
             $this->createPaymentWriter()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\RefundTransactionHandlerInterface
+     */
+    public function createRefundTransactionHandler(): RefundTransactionHandlerInterface
+    {
+        return new RefundTransactionHandler(
+            $this->createRefundTransaction(),
+            $this->getRefundPaymentMethodAdapterCollection(),
+            $this->createAdapterRequestFromOrderBuilder()
         );
     }
 
@@ -446,8 +478,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
      */
     public function getAuthorizePaymentMethodAdapterCollection(): array
     {
-        return $this
-            ->createAdapterFactory()
+        return $this->createAdapterFactory()
             ->getAuthorizePaymentMethodAdapterCollection();
     }
 
@@ -456,8 +487,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
      */
     public function getAuthorizeOnRegistrationPaymentMethodAdapterCollection(): array
     {
-        return $this
-            ->createAdapterFactory()
+        return $this->createAdapterFactory()
             ->getAuthorizeOnRegistrationPaymentMethodAdapterCollection();
     }
 
@@ -466,8 +496,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
      */
     public function getCapturePaymentMethodAdapterCollection(): array
     {
-        return $this
-            ->createAdapterFactory()
+        return $this->createAdapterFactory()
             ->getCapturePaymentMethodAdapterCollection();
     }
 
@@ -476,8 +505,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
      */
     public function getInitializePaymentMethodAdapterCollection(): array
     {
-        return $this
-            ->createAdapterFactory()
+        return $this->createAdapterFactory()
             ->getInitializePaymentMethodAdapterCollection();
     }
 
@@ -486,9 +514,17 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
      */
     public function getDebitPaymentMethodAdapterCollection(): array
     {
-        return $this
-            ->createAdapterFactory()
+        return $this->createAdapterFactory()
             ->getDebitPaymentMethodAdapterCollection();
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitOnRegistrationInterface[]
+     */
+    public function getDebitOnRegistrationPaymentMethodAdapterCollection(): array
+    {
+        return $this->createAdapterFactory()
+            ->getDebitOnRegistrationPaymentMethodAdapterCollection();
     }
 
     /**
@@ -496,8 +532,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
      */
     public function getFinalizePaymentMethodAdapterCollection(): array
     {
-        return $this
-            ->createAdapterFactory()
+        return $this->createAdapterFactory()
             ->getFinalizePaymentMethodAdapterCollection();
     }
 
@@ -506,9 +541,17 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
      */
     public function getReservationPaymentMethodAdapterCollection(): array
     {
-        return $this
-            ->createAdapterFactory()
+        return $this->createAdapterFactory()
             ->getReservationPaymentMethodAdapterCollection();
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithRefundInterface[]
+     */
+    public function getRefundPaymentMethodAdapterCollection(): array
+    {
+        return $this->createAdapterFactory()
+            ->getRefundPaymentMethodAdapterCollection();
     }
 
     /**
@@ -516,8 +559,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
      */
     public function getExternalResponsePaymentMethodAdapterCollection(): array
     {
-        return $this
-            ->createAdapterFactory()
+        return $this->createAdapterFactory()
             ->getExternalResponsePaymentMethodAdapterCollection();
     }
 
@@ -621,6 +663,14 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\DebitOnRegistrationTransactionInterface
+     */
+    public function createDebitOnRegistrationTransaction(): DebitOnRegistrationTransactionInterface
+    {
+        return new DebitOnRegistrationTransaction($this->createTransactionLogger());
+    }
+
+    /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\FinalizeTransactionInterface
      */
     public function createFinalizeTransaction(): FinalizeTransactionInterface
@@ -634,6 +684,14 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     public function createReservationTransaction(): ReservationTransactionInterface
     {
         return new ReservationTransaction($this->createTransactionLogger());
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\RefundTransactionInterface
+     */
+    public function createRefundTransaction(): RefundTransactionInterface
+    {
+        return new RefundTransaction($this->createTransactionLogger());
     }
 
     /**

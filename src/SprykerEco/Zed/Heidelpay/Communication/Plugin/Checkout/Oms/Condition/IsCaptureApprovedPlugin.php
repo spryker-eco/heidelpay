@@ -22,6 +22,9 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 class IsCaptureApprovedPlugin extends AbstractPlugin implements ConditionInterface
 {
     /**
+     * {@inheritdoc}
+     * - Checks if Capture transaction was successful.
+     *
      * @api
      *
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem $orderItem

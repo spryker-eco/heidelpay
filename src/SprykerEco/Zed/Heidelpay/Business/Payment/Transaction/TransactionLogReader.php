@@ -76,6 +76,22 @@ class TransactionLogReader implements TransactionLogReaderInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
      */
+    public function findDebitOnRegistrationTransactionLogByIdSalesOrder(int $idSalesOrder): ?HeidelpayTransactionLogTransfer
+    {
+        $spyTransactionLog = $this->findDebitOnRegistrationTransactionLogEntityByIdSalesOrder($idSalesOrder);
+
+        if ($spyTransactionLog === null) {
+            return null;
+        }
+
+        return $this->buildTransactionTransfer($spyTransactionLog);
+    }
+
+    /**
+     * @param int $idSalesOrder
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     */
     public function findOrderAuthorizeTransactionLogByIdSalesOrder(int $idSalesOrder): ?HeidelpayTransactionLogTransfer
     {
         $spyTransactionLog = $this->findOrderAuthorizeTransactionEntity($idSalesOrder);
@@ -289,6 +305,24 @@ class TransactionLogReader implements TransactionLogReaderInterface
             ->queryTransactionByIdSalesOrderAndType(
                 $idSalesOrder,
                 HeidelpayConfig::TRANSACTION_TYPE_DEBIT
+            )
+            ->findOne();
+
+        return $transactionLogEntity;
+    }
+
+    /**
+     * @param int $idSalesOrder
+     *
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog|null
+     */
+    protected function findDebitOnRegistrationTransactionLogEntityByIdSalesOrder(int $idSalesOrder): ?SpyPaymentHeidelpayTransactionLog
+    {
+        $transactionLogEntity = $this
+            ->queryContainer
+            ->queryTransactionByIdSalesOrderAndType(
+                $idSalesOrder,
+                HeidelpayConfig::TRANSACTION_TYPE_DEBIT_ON_REGISTRATION
             )
             ->findOne();
 

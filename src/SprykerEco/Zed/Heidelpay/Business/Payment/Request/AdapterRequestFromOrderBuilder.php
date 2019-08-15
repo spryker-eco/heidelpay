@@ -68,7 +68,27 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
+    public function buildDebitOnRegistrationRequestFromOrder(OrderTransfer $orderTransfer): HeidelpayRequestTransfer
+    {
+        return $this->buildBaseOrderHeidelpayRequest($orderTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
+     */
     public function buildReservationRequestFromOrder(OrderTransfer $orderTransfer): HeidelpayRequestTransfer
+    {
+        return $this->buildBaseOrderHeidelpayRequest($orderTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
+     */
+    public function buildRefundRequestFromOrder(OrderTransfer $orderTransfer): HeidelpayRequestTransfer
     {
         return $this->buildBaseOrderHeidelpayRequest($orderTransfer);
     }

@@ -8,7 +8,9 @@
 namespace SprykerEco\Zed\Heidelpay\Persistence;
 
 use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
+use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayDirectDebitRegistrationQuery;
+use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 use Spryker\Zed\PropelOrm\Business\Runtime\ActiveQuery\Criteria;
 use SprykerEco\Zed\Heidelpay\Persistence\Propel\Mapper\HeidelpayPersistenceMapper;
@@ -92,6 +94,32 @@ class HeidelpayRepository extends AbstractRepository implements HeidelpayReposit
     }
 
     /**
+     * @param int $idSalesOrder
+     * @param string $transactionType
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     */
+    public function findHeidelpayTransactionLogByIdSalesOrderAndTransactionType(
+        int $idSalesOrder,
+        string $transactionType
+    ): ?HeidelpayTransactionLogTransfer {
+        $paymentHeidelpayTransactionLogEntity = $this->getPaymentHeidelpayTransactionLogQuery()
+            ->filterByFkSalesOrder($idSalesOrder)
+            ->filterByTransactionType($transactionType)
+            ->findOne();
+
+        if ($paymentHeidelpayTransactionLogEntity === null) {
+            return null;
+        }
+
+        return $this->getMapper()
+            ->mapEntityToHeidelpayTransactionLogTransfer(
+                $paymentHeidelpayTransactionLogEntity,
+                new HeidelpayTransactionLogTransfer()
+            );
+    }
+
+    /**
      * @return \SprykerEco\Zed\Heidelpay\Persistence\Propel\Mapper\HeidelpayPersistenceMapper
      */
     protected function getMapper(): HeidelpayPersistenceMapper
@@ -105,5 +133,13 @@ class HeidelpayRepository extends AbstractRepository implements HeidelpayReposit
     protected function getPaymentHeidelpayDirectDebitRegistrationQuery(): SpyPaymentHeidelpayDirectDebitRegistrationQuery
     {
         return $this->getFactory()->createPaymentHeidelpayDirectDebitRegistrationQuery();
+    }
+
+    /**
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery
+     */
+    protected function getPaymentHeidelpayTransactionLogQuery(): SpyPaymentHeidelpayTransactionLogQuery
+    {
+        return $this->getFactory()->createPaymentHeidelpayTransactionLogQuery();
     }
 }
