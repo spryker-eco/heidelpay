@@ -36,7 +36,7 @@ class RefundTransactionHandler implements RefundTransactionHandlerInterface
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\RefundTransactionInterface $transaction
-     * @param array $paymentMethodAdapterCollection
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithRefundInterface[] $paymentMethodAdapterCollection
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder
      */
     public function __construct(

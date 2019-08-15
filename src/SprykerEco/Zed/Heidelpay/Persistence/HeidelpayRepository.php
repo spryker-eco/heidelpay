@@ -103,18 +103,18 @@ class HeidelpayRepository extends AbstractRepository implements HeidelpayReposit
         int $idSalesOrder,
         string $transactionType
     ): ?HeidelpayTransactionLogTransfer {
-        $paymentHeidelpayTransactionLog = $this->getPaymentHeidelpayTransactionLogQuery()
+        $paymentHeidelpayTransactionLogEntity = $this->getPaymentHeidelpayTransactionLogQuery()
             ->filterByFkSalesOrder($idSalesOrder)
             ->filterByTransactionType($transactionType)
             ->findOne();
 
-        if ($paymentHeidelpayTransactionLog === null) {
+        if ($paymentHeidelpayTransactionLogEntity === null) {
             return null;
         }
 
         return $this->getMapper()
             ->mapEntityToHeidelpayTransactionLogTransfer(
-                $paymentHeidelpayTransactionLog,
+                $paymentHeidelpayTransactionLogEntity,
                 new HeidelpayTransactionLogTransfer()
             );
     }
