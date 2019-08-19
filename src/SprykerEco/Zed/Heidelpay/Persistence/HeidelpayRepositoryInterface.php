@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Zed\Heidelpay\Persistence;
 
+use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
 
 interface HeidelpayRepositoryInterface
@@ -17,4 +18,11 @@ interface HeidelpayRepositoryInterface
      * @return \Generated\Shared\Transfer\HeidelpayPaymentTransfer|null
      */
     public function findHeidelpayPaymentByIdSalesOrder(int $idSalesOrder): ?HeidelpayPaymentTransfer;
+
+    /**
+     * @param string $uniqueId
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer|null
+     */
+    public function findPaymentHeidelpayNotificationByUniqueId(string $uniqueId): ?HeidelpayNotificationTransfer;
 }
