@@ -7,13 +7,14 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment;
 
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
+
 interface PaymentWriterInterface
 {
     /**
-     * @param string $paymentReference
-     * @param int $idSalesOrder
+     * @param \Generated\Shared\Transfer\HeidelpayResponseTransfer $responseTransfer
      *
      * @return void
      */
-    public function updatePaymentReferenceByIdSalesOrder(string $paymentReference, int $idSalesOrder): void;
+    public function updateHeidelpayPaymentWithResponse(HeidelpayResponseTransfer $responseTransfer): void;
 }

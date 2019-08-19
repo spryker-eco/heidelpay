@@ -289,7 +289,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
      */
     public function createPaymentWriter(): PaymentWriterInterface
     {
-        return new PaymentWriter($this->getQueryContainer());
+        return new PaymentWriter($this->getEntityManager());
     }
 
     /**

@@ -22,6 +22,8 @@
         <column name="date_of_birth" required="false" type="DATE"/>
         <column name="salutation" required="false" type="VARCHAR"/>
 
+        <column name="connector_invoice_account_info" required="false" type="VARCHAR" />
+
         <foreign-key name="spy_payment_payone-fk_sales_order" foreignTable="spy_sales_order" phpName="SpySalesOrder">
             <reference foreign="id_sales_order" local="fk_sales_order"/>
         </foreign-key>

@@ -64,7 +64,8 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
             ->setProcessingCode($apiResponse->getProcessing()->code)
             ->setIdTransactionUnique($apiResponse->getIdentification()->getUniqueId())
             ->setResultCode($apiResponse->getProcessing()->getResult())
-            ->setLegalText($apiResponse->getConfig()->getOptinText());
+            ->setLegalText($apiResponse->getConfig()->getOptinText())
+            ->setConnectorInvoiceAccountInfo($this->getConnectorInfo($apiResponse));
 
         $this->mapPaymentFormUrl($apiResponse, $responseTransfer);
         $this->mapError($apiResponse, $responseTransfer);
@@ -220,5 +221,19 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
         } catch (PaymentFormUrlException $exception) {
             $responseTransfer->setPaymentFormUrl(null);
         }
+    }
+
+    /**
+     * @param \Heidelpay\PhpPaymentApi\Response $apiResponse
+     *
+     * @return string|null
+     */
+    protected function getConnectorInfo(Response $apiResponse): ?string
+    {
+        if ($apiResponse->getConnector()->getAccountIBan() === null) {
+            return null;
+        }
+
+        return $apiResponse->getConnector()->toJson();
     }
 }

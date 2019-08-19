@@ -55,6 +55,6 @@ class ExternalPaymentResponseBuilder implements ExternalPaymentResponseBuilderIn
     {
         $paymentTransfer = $this->paymentReader->getPaymentByIdSalesOrder($idSalesOrder);
 
-        return $paymentTransfer->getPaymentMethod();
+        return 'heidelpayInvoiceSecuredB2c';//$paymentTransfer->getPaymentMethod();
     }
 }
