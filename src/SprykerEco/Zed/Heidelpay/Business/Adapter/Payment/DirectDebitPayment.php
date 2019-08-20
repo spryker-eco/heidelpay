@@ -57,34 +57,4 @@ class DirectDebitPayment extends BasePayment implements DirectDebitPaymentInterf
 
         return $this->verifyAndParseResponse($directDebitPaymentMethod->getResponse());
     }
-
-    /**
-     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $authorizeRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
-     */
-    public function authorize(HeidelpayRequestTransfer $authorizeRequestTransfer): HeidelpayResponseTransfer
-    {
-        $directDebitPaymentMethod = new DirectDebitPaymentMethod();
-        $this->prepareRequest($authorizeRequestTransfer, $directDebitPaymentMethod->getRequest());
-
-        $directDebitPaymentMethod->authorizeOnRegistration($authorizeRequestTransfer->getIdPaymentRegistration());
-
-        return $this->verifyAndParseResponse($directDebitPaymentMethod->getResponse());
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $captureRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
-     */
-    public function capture(HeidelpayRequestTransfer $captureRequestTransfer): HeidelpayResponseTransfer
-    {
-        $directDebitPaymentMethod = new DirectDebitPaymentMethod();
-        $this->prepareRequest($captureRequestTransfer, $directDebitPaymentMethod->getRequest());
-
-        $directDebitPaymentMethod->capture($captureRequestTransfer->getIdPaymentReference());
-
-        return $this->verifyAndParseResponse($directDebitPaymentMethod->getResponse());
-    }
 }
