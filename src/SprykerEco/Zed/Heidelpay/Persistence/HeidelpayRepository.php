@@ -64,6 +64,32 @@ class HeidelpayRepository extends AbstractRepository implements HeidelpayReposit
     }
 
     /**
+     * @param string $transactionId
+     * @param string $paymentCode
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer|null
+     */
+    public function findPaymentHeidelpayNotificationByTransactionIdAndPaymentCode(
+        string $transactionId,
+        string $paymentCode
+    ): ?HeidelpayNotificationTransfer {
+        $paymentHeidelpayNotification = $this->getPaymentHeidelpayNotificationQuery()
+            ->filterByTransactionId($transactionId)
+            ->filterByPaymentCode($paymentCode)
+            ->findOne();
+
+        if ($paymentHeidelpayNotification === null) {
+            return null;
+        }
+
+        return $this->getMapper()
+            ->mapEntityToHeidelpayNotificationTransfer(
+                $paymentHeidelpayNotification,
+                new HeidelpayNotificationTransfer()
+            );
+    }
+
+    /**
      * @return \SprykerEco\Zed\Heidelpay\Persistence\Propel\Mapper\HeidelpayPersistenceMapper
      */
     protected function getMapper(): HeidelpayPersistenceMapper

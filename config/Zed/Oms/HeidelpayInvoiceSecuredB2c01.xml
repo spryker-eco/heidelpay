@@ -13,6 +13,10 @@
 
         <states>
             <state name="new" reserved="true" />
+            <state name="authorization finished" reserved="true" />
+            <state name="authorization failed" />
+            <state name="finalizing finished" reserved="true" />
+            <state name="finalizing failed" />
             <state name="paid" reserved="true" />
             <state name="done" />
         </states>
@@ -24,14 +28,34 @@
                 <event>start authorization process</event>
             </transition>
 
-            <transition happy="true">
+            <transition happy="true" condition="Heidelpay/IsAuthorizationFinished">
                 <source>authorization succeeded</source>
+                <target>authorization finished</target>
+            </transition>
+
+            <transition condition="Heidelpay/IsAuthorizationFailed">
+                <source>authorization succeeded</source>
+                <target>authorization failed</target>
+            </transition>
+
+            <transition happy="true">
+                <source>authorization finished</source>
                 <target>ready for finalize</target>
                 <event>start finalize process</event>
             </transition>
 
-            <transition happy="true" condition="Heidelpay/IsPaidNotificationReceived">
+            <transition happy="true" condition="Heidelpay/IsFinalizingFinished">
                 <source>finalize succeeded</source>
+                <target>finalizing finished</target>
+            </transition>
+
+            <transition condition="Heidelpay/IsFinalizingFailed">
+                <source>finalize succeeded</source>
+                <target>finalizing failed</target>
+            </transition>
+
+            <transition happy="true" condition="Heidelpay/IsPaidNotificationReceived">
+                <source>finalizing finished</source>
                 <target>paid</target>
             </transition>
 

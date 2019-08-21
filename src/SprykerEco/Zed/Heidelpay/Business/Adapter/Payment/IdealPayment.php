@@ -23,6 +23,7 @@ class IdealPayment extends BasePayment implements IdealPaymentInterface
         $idealMethod = new IDealPaymentMethod();
         $this->prepareRequest($authorizeRequestTransfer, $idealMethod->getRequest());
         $idealMethod->authorize();
+
         return $this->verifyAndParseResponse($idealMethod->getResponse());
     }
 }

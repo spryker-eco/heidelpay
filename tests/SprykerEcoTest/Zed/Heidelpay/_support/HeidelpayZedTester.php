@@ -37,10 +37,10 @@ class HeidelpayZedTester extends Actor
     /**
      * @return string
      */
-   public function getNotificationBody(): string
-   {
-       $xml = simplexml_load_file(static::NOTIFICATION_FILE_PATH);
+    public function getNotificationBody(): string
+    {
+        $xml = simplexml_load_file(static::NOTIFICATION_FILE_PATH);
 
-       return $xml->asXML();
-   }
+        return $xml->asXML();
+    }
 }

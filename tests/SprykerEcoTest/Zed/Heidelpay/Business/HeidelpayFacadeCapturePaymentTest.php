@@ -59,6 +59,7 @@ class HeidelpayFacadeCapturePaymentTest extends HeidelpayPaymentTest
     {
         $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
         $orderTransfer = $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_CREDIT_CARD_SECURE);
+
         return $orderTransfer;
     }
 

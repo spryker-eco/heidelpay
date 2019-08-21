@@ -9,6 +9,10 @@ namespace SprykerEco\Zed\Heidelpay\Communication;
 
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
 use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\HeidelpayOmsConditionInterface;
+use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsAuthorizationFailedOmsCondition;
+use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsAuthorizationFinishedOmsCondition;
+use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsFinalizingFailedOmsCondition;
+use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsFinalizingFinishedOmsCondition;
 use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsPaidNotificationReceivedOmsCondition;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesFacadeInterface;
 use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
@@ -22,6 +26,38 @@ use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
  */
 class HeidelpayCommunicationFactory extends AbstractCommunicationFactory
 {
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\HeidelpayOmsConditionInterface
+     */
+    public function createIsAuthorizationFinishedOmsCondition(): HeidelpayOmsConditionInterface
+    {
+        return new IsAuthorizationFinishedOmsCondition($this->getRepository());
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\HeidelpayOmsConditionInterface
+     */
+    public function createIsAuthorizationFailedOmsCondition(): HeidelpayOmsConditionInterface
+    {
+        return new IsAuthorizationFailedOmsCondition($this->getRepository());
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\HeidelpayOmsConditionInterface
+     */
+    public function createIsFinalizingFinishedOmsCondition(): HeidelpayOmsConditionInterface
+    {
+        return new IsFinalizingFinishedOmsCondition($this->getRepository());
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\HeidelpayOmsConditionInterface
+     */
+    public function createIsFinalizingFailedOmsCondition(): HeidelpayOmsConditionInterface
+    {
+        return new IsFinalizingFailedOmsCondition($this->getRepository());
+    }
+
     /**
      * @return \SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\HeidelpayOmsConditionInterface
      */

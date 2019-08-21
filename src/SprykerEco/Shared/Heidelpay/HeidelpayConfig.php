@@ -38,4 +38,5 @@ class HeidelpayConfig extends AbstractBundleConfig
     public const RESERVATION_TRANSACTION_STATUS_OK = 'ACK';
     public const FINALIZE_TRANSACTION_STATUS_OK = 'ACK';
     public const NOTIFICATION_STATUS_OK = 'ACK';
+    public const NOTIFICATION_STATUS_FAILED = 'NOK';
 }

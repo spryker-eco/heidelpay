@@ -51,7 +51,7 @@ class HeidelpayEntityManager extends AbstractEntityManager implements HeidelpayE
         HeidelpayNotificationTransfer $heidelpayNotificationTransfer
     ): HeidelpayNotificationTransfer {
         $paymentHeidelpayNotificationEntity = $this->getPaymentHeidelpayNotificationQuery()
-            ->filterByTransactionId($heidelpayNotificationTransfer->getTransactionId())
+            ->filterByUniqueId($heidelpayNotificationTransfer->getUniqueId())
             ->findOneOrCreate();
 
         $paymentHeidelpayNotificationEntity->fromArray(

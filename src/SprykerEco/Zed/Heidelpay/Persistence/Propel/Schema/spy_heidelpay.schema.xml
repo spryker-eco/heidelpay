@@ -128,6 +128,10 @@
 
         <behavior name="timestampable"/>
 
+        <unique name="spy_payment_heidelpay_notification-unique_id">
+            <unique-column name="unique_id"/>
+        </unique>
+
         <id-method-parameter value="spy_payment_heidelpay_notification_pk_seq"/>
     </table>
 

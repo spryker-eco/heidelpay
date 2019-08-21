@@ -25,4 +25,15 @@ interface HeidelpayRepositoryInterface
      * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer|null
      */
     public function findPaymentHeidelpayNotificationByUniqueId(string $uniqueId): ?HeidelpayNotificationTransfer;
+
+    /**
+     * @param string $transactionId
+     * @param string $paymentCode
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer|null
+     */
+    public function findPaymentHeidelpayNotificationByTransactionIdAndPaymentCode(
+        string $transactionId,
+        string $paymentCode
+    ): ?HeidelpayNotificationTransfer;
 }
