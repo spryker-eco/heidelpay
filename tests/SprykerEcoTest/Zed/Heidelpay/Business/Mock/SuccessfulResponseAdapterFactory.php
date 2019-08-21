@@ -68,7 +68,7 @@ class SuccessfulResponseAdapterFactory extends AdapterFactory
     public function getDebitOnRegistrationPaymentMethodAdapterCollection(): array
     {
         return [
-            HeidelpayConfig::PAYMENT_METHOD_DIRECT_DEBIT => $this->createSuccessDirectDebitPaymentMock(),
+            HeidelpayConfig::PAYMENT_METHOD_DIRECT_DEBIT => $this->createDirectDebitPaymentMethod(),
         ];
     }
 
@@ -78,7 +78,7 @@ class SuccessfulResponseAdapterFactory extends AdapterFactory
     public function getRefundPaymentMethodAdapterCollection(): array
     {
         return [
-            HeidelpayConfig::PAYMENT_METHOD_DIRECT_DEBIT => $this->createSuccessDirectDebitPaymentMock(),
+            HeidelpayConfig::PAYMENT_METHOD_DIRECT_DEBIT => $this->createDirectDebitPaymentMethod(),
         ];
     }
 
@@ -145,7 +145,7 @@ class SuccessfulResponseAdapterFactory extends AdapterFactory
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\DirectDebitPaymentInterface
      */
-    public function createSuccessDirectDebitPaymentMock(): DirectDebitPaymentInterface
+    public function createDirectDebitPaymentMethod(): DirectDebitPaymentInterface
     {
         return new SuccessfulDirectDebitPaymentMock(
             $this->createRequestToHeidelpayMapper(),
