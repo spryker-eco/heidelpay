@@ -19,4 +19,11 @@ interface HeidelpayTestConfig
     public const CARD_ACCOUNT_NUMBER = '471110******0000';
     public const CARD_BRAND = 'MASTER';
     public const CARD_QUOTE_HASH = '1f7f60dcf32900f266e3a516b13358792cbee777';
+
+    public const ACCOUNT_BANK_NAME = 'COMMERZBANK KÖLN';
+    public const ACCOUNT_BIC = 'COBADEFFXXX';
+    public const ACCOUNT_COUNTRY = 'DE';
+    public const ACCOUNT_IBAN = 'DE89370400440532013000';
+    public const ACCOUNT_NUMBER = 532013000;
+    public const TRANSACTION_ID = 'eabb916460b66891beddc595e9ef3433fc597c03';
 }
