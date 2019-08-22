@@ -30,7 +30,7 @@ class HeidelpayFacadeSaveDirectDebitRegistrationTest extends HeidelpayPaymentTes
     /**
      * @return void
      */
-    public function testSuccessfulSaveCreditCardRegistration(): void
+    public function testSuccessfulSaveDirectDebitRegistration(): void
     {
         //Arrange
         $directDebitRegistration = $this->createRegistrationTransfer();
