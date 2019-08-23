@@ -41,6 +41,7 @@ class HeidelpayConfigurationBuilder
         $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_PAYMENT_STEP_PATH] = '/checkout/payment';
         $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_SUMMARY_STEP_URL] = $config[ApplicationConstants::HOST_YVES] . '/checkout/summary';
         $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_ASYNC_RESPONSE_URL] = $config[ApplicationConstants::HOST_YVES] . '/heidelpay/cc-register-response';
+        $config[HeidelpayConstants::DIRECT_DEBIT_REGISTRATION_ASYNC_RESPONSE_URL] = $config[ApplicationConstants::HOST_YVES] . '/heidelpay/dd-register-response';
         $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_REGISTRATION_SUCCESS_URL] = $config[ApplicationConstants::HOST_YVES] . '/heidelpay/cc-register-success?id_registration=%s';
 
         // Merchant config values, got from Heidelpay
