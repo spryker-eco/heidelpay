@@ -55,7 +55,7 @@ class DirectDebitRegistrationReader implements DirectDebitRegistrationReaderInte
     ): HeidelpayDirectDebitRegistrationTransfer {
         $directDebitRegistration = $this->repository
             ->findHeidelpayDirectDebitRegistrationByIdAndTransactionId(
-                $directDebitRegistrationTransfer->getRegistrationUniqueId(),
+                $directDebitRegistrationTransfer->getIdDirectDebitRegistration(),
                 $directDebitRegistrationTransfer->getTransactionId()
             );
 
