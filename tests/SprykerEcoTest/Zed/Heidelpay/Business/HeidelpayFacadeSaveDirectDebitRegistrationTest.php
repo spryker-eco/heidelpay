@@ -55,13 +55,13 @@ class HeidelpayFacadeSaveDirectDebitRegistrationTest extends HeidelpayPaymentTes
         return (new HeidelpayDirectDebitRegistrationTransfer())
             ->setTransactionId(static::TRANSACTION_ID)
             ->setRegistrationUniqueId(static::REGISTRATION_UNIQUE_ID)
-            ->setAccountInfo($this->createDirectDebitAccount());
+            ->setAccountInfo($this->createDirectDebitAccountTransfer());
     }
 
     /**
      * @return \Generated\Shared\Transfer\HeidelpayDirectDebitAccountTransfer
      */
-    protected function createDirectDebitAccount(): HeidelpayDirectDebitAccountTransfer
+    protected function createDirectDebitAccountTransfer(): HeidelpayDirectDebitAccountTransfer
     {
         return (new HeidelpayDirectDebitAccountTransfer())
             ->setAccountBankName(HeidelpayTestConfig::ACCOUNT_BANK_NAME)

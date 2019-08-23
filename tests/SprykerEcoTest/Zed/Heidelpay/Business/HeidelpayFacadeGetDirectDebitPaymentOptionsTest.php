@@ -37,9 +37,9 @@ use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusin
  */
 class HeidelpayFacadeGetDirectDebitPaymentOptionsTest extends HeidelpayPaymentTest
 {
-    use QuoteMockTrait,
-        CustomerAddressTrait,
-        CustomerTrait;
+    use QuoteMockTrait;
+    use CustomerAddressTrait;
+    use CustomerTrait;
 
     /**
      * @return void
@@ -98,7 +98,7 @@ class HeidelpayFacadeGetDirectDebitPaymentOptionsTest extends HeidelpayPaymentTe
     {
         //Arrange
         $quoteTransfer = $this->createQuoteForNotRegisteredAccount();
-        $directDebitAccountEntity = $this->registerDirectDebitAccount($quoteTransfer);
+        $directDebitAccountEntity = $this->createDirectDebitRegistration($quoteTransfer);
 
         $heidelpayFacade = (new HeidelpayFacade())
             ->setFactory($this->createSuccessfulPaymentHeidelpayFactoryMock());
@@ -150,7 +150,7 @@ class HeidelpayFacadeGetDirectDebitPaymentOptionsTest extends HeidelpayPaymentTe
     {
         //Arrange
         $quoteTransfer = $this->createQuoteForNotRegisteredAccount();
-        $directDebitAccountEntity = $this->registerDirectDebitAccount($quoteTransfer);
+        $directDebitAccountEntity = $this->createDirectDebitRegistration($quoteTransfer);
         $quoteTransfer = $this->addLastSuccessfulRegistration($quoteTransfer, $directDebitAccountEntity);
         $customer = $this->createOrGetCustomerByQuote($quoteTransfer);
         $address = $this->createCustomerAddressByCustomer($customer);
@@ -187,7 +187,7 @@ class HeidelpayFacadeGetDirectDebitPaymentOptionsTest extends HeidelpayPaymentTe
     {
         //Arrange
         $quoteTransfer = $this->createQuoteForNotRegisteredAccount();
-        $directDebitAccountEntity = $this->registerDirectDebitAccount($quoteTransfer);
+        $directDebitAccountEntity = $this->createDirectDebitRegistration($quoteTransfer);
         $quoteTransfer = $this->addLastSuccessfulRegistration($quoteTransfer, $directDebitAccountEntity);
 
         $heidelpayFacade = (new HeidelpayFacade())
@@ -320,10 +320,10 @@ class HeidelpayFacadeGetDirectDebitPaymentOptionsTest extends HeidelpayPaymentTe
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayDirectDebitRegistration
      */
-    protected function registerDirectDebitAccount(QuoteTransfer $quoteTransfer): SpyPaymentHeidelpayDirectDebitRegistration
+    protected function createDirectDebitRegistration(QuoteTransfer $quoteTransfer): SpyPaymentHeidelpayDirectDebitRegistration
     {
         $directDebitRegistrationBuilder = new DirectDebitRegistrationBuilder();
 
-        return $directDebitRegistrationBuilder->createDirectDebitAccount($quoteTransfer);
+        return $directDebitRegistrationBuilder->createDirectDebitRegistration($quoteTransfer);
     }
 }

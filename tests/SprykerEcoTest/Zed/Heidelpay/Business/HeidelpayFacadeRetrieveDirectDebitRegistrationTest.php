@@ -37,7 +37,7 @@ class HeidelpayFacadeRetrieveDirectDebitRegistrationTest extends HeidelpayPaymen
         //Arrange
         $quoteTransfer = $this->createQuote();
         $directDebitRegistrationTransfer = $this->createHeidelpayDirectDebitRegistrationTransfer();
-        $directDebitRegistrationEntity = $this->createDirectDebitRegistrationEntity($quoteTransfer);
+        $directDebitRegistrationEntity = $this->createDirectDebitRegistration($quoteTransfer);
         $directDebitRegistrationTransfer
             ->setIdDirectDebitRegistration(
                 $directDebitRegistrationEntity->getIdDirectDebitRegistration()
@@ -71,10 +71,10 @@ class HeidelpayFacadeRetrieveDirectDebitRegistrationTest extends HeidelpayPaymen
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayDirectDebitRegistration
      */
-    protected function createDirectDebitRegistrationEntity(QuoteTransfer $quoteTransfer): SpyPaymentHeidelpayDirectDebitRegistration
+    protected function createDirectDebitRegistration(QuoteTransfer $quoteTransfer): SpyPaymentHeidelpayDirectDebitRegistration
     {
         $directDebitRegistrationBuilder = new DirectDebitRegistrationBuilder();
 
-        return $directDebitRegistrationBuilder->createDirectDebitAccount($quoteTransfer);
+        return $directDebitRegistrationBuilder->createDirectDebitRegistration($quoteTransfer);
     }
 }

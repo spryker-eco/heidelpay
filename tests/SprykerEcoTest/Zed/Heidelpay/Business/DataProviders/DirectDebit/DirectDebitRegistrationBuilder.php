@@ -18,7 +18,7 @@ class DirectDebitRegistrationBuilder
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayDirectDebitRegistration
      */
-    public function createDirectDebitAccount(QuoteTransfer $quoteTransfer): SpyPaymentHeidelpayDirectDebitRegistration
+    public function createDirectDebitRegistration(QuoteTransfer $quoteTransfer): SpyPaymentHeidelpayDirectDebitRegistration
     {
         $directDebitRegistrationEntity = new SpyPaymentHeidelpayDirectDebitRegistration();
 
