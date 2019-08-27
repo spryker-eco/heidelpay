@@ -10,16 +10,13 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business;
 use Generated\Shared\Transfer\PaymentTransfer;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepository;
 use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
-use SprykerEcoTest\Zed\Heidelpay\Business\Mock\SuccessfulResponseHeidelpayBusinessFactory;
 
 /**
  * @group Functional
- * @group Spryker
+ * @group SprykerEcoTest
  * @group Zed
  * @group Heidelpay
  * @group Business
@@ -34,9 +31,7 @@ class HeidelpayFacadeExecuteRefundTest extends HeidelpayPaymentTest
     {
         //Arrange
         $salesOrder = $this->createSuccessOrder();
-        $factory = $this->createSuccessfulPaymentHeidelpayFactoryMock();
-        $heidelpayFacade = (new HeidelpayFacade())
-            ->setFactory($factory);
+        $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
         $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrder);
 
         //Act
@@ -63,14 +58,6 @@ class HeidelpayFacadeExecuteRefundTest extends HeidelpayPaymentTest
         $orderTransfer = $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_DIRECT_DEBIT);
 
         return $orderTransfer;
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
-     */
-    protected function createSuccessfulPaymentHeidelpayFactoryMock(): HeidelpayBusinessFactory
-    {
-        return new SuccessfulResponseHeidelpayBusinessFactory();
     }
 
     /**
