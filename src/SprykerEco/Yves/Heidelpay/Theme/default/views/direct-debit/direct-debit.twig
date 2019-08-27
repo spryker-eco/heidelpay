@@ -23,13 +23,25 @@
                             },
                         }) }}
                         <div class="js-heidelpay-method-{{ paymentOption.vars.value }}">
-                            {% set registrationMoleculeName = paymentOption.vars.value == 'direct-debit-existing-registration' ? 'direct-debit-existing-registration' : 'direct-debit-new-registration' %}
-                            {% include molecule(registrationMoleculeName, 'Heidelpay') with {
-                                data: {
-                                    paymentOption: paymentOption,
-                                    paymentMethod: data.form.vars.value.payment.heidelpayDirectDebit,
-                                },
-                            } only %}
+                            {% if paymentOption.vars.value == 'direct-debit-existing-registration' %}
+                                {% include molecule('direct-debit-existing-registration', 'Heidelpay') with {
+                                    data: {
+                                        paymentOption: paymentOption,
+                                        paymentMethod: data.form.vars.value.payment.heidelpayDirectDebit,
+                                    },
+                                } only %}
+                            {% else %}
+                                {% include molecule('direct-debit-new-registration', 'Heidelpay') with {
+                                    data: {
+                                        paymentOption: paymentOption,
+                                        paymentMethod: data.form.vars.value.payment.heidelpayDirectDebit,
+                                    },
+                                    attributes: {
+                                        'payment-form-id': 'payment-form',
+                                        'payment-toggler-selector': 'input[target-class-name*="js-payment-method"]',
+                                    },
+                                } only %}
+                            {% endif %}
                         </div>
                     </li>
                 {% endfor %}
