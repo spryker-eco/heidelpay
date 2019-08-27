@@ -12,8 +12,11 @@ use Propel\Runtime\Propel;
 use Spryker\Zed\Sales\Business\SalesFacade;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
+use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacadeInterface;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesFacadeBridge;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentHeidelpayTransferBuilderTrait;
+use SprykerEcoTest\Zed\Heidelpay\Business\Mock\SuccessfulResponseHeidelpayBusinessFactory;
+use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusinessFactory;
 use SprykerEcoTest\Zed\Heidelpay\Business\Test\PaymentResponseTestTrait;
 use SprykerTest\Shared\Testify\Helper\ConfigHelper;
 
@@ -97,5 +100,39 @@ class HeidelpayPaymentTest extends Test
         $data = $this->$dataProviderFunctionName();
         [$quoteTransfer, $checkoutResponseTransfer] = $data;
         $this->$testFunctionName($quoteTransfer, $checkoutResponseTransfer);
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacadeInterface
+     */
+    protected function createFacadeWithSuccessfulFactory(): HeidelpayFacadeInterface
+    {
+        return (new HeidelpayFacade())
+            ->setFactory($this->createSuccessfulPaymentHeidelpayFactoryMock());
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacadeInterface
+     */
+    protected function createFacadeWithUnsuccessfulFactory(): HeidelpayFacadeInterface
+    {
+        return (new HeidelpayFacade())
+            ->setFactory($this->createUnsuccessfulPaymentHeidelpayFactoryMock());
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
+     */
+    protected function createSuccessfulPaymentHeidelpayFactoryMock(): HeidelpayBusinessFactory
+    {
+        return new SuccessfulResponseHeidelpayBusinessFactory();
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
+     */
+    protected function createUnsuccessfulPaymentHeidelpayFactoryMock(): HeidelpayBusinessFactory
+    {
+        return new UnsuccesfulResponseHeidelpayBusinessFactory();
     }
 }

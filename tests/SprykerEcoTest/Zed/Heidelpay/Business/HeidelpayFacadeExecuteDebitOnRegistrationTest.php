@@ -10,16 +10,14 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business;
 use Generated\Shared\Transfer\PaymentTransfer;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepository;
+use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepositoryInterface;
 use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
-use SprykerEcoTest\Zed\Heidelpay\Business\Mock\SuccessfulResponseHeidelpayBusinessFactory;
 
 /**
  * @group Functional
- * @group Spryker
+ * @group SprykerEcoTest
  * @group Zed
  * @group Heidelpay
  * @group Business
@@ -30,13 +28,11 @@ class HeidelpayFacadeExecuteDebitOnRegistrationTest extends HeidelpayPaymentTest
     /**
      * @return void
      */
-    public function testSuccessfulExecuteRefund(): void
+    public function testSuccessfulExecuteDebitOnRegistration(): void
     {
         //Arrange
         $salesOrder = $this->createSuccessOrder();
-        $factory = $this->createSuccessfulPaymentHeidelpayFactoryMock();
-        $heidelpayFacade = (new HeidelpayFacade())
-            ->setFactory($factory);
+        $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
         $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrder);
 
         //Act
@@ -65,17 +61,9 @@ class HeidelpayFacadeExecuteDebitOnRegistrationTest extends HeidelpayPaymentTest
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
+     * @return \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepositoryInterface
      */
-    protected function createSuccessfulPaymentHeidelpayFactoryMock(): HeidelpayBusinessFactory
-    {
-        return new SuccessfulResponseHeidelpayBusinessFactory();
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepository
-     */
-    protected function createRepository(): HeidelpayRepository
+    protected function createRepository(): HeidelpayRepositoryInterface
     {
         return new HeidelpayRepository();
     }
