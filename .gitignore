@@ -19,3 +19,4 @@ composer.phar
 phpunit.phar
 /tests/_output/*
 !/tests/_output/.gitkeep
+tests/*/*/*/_support/_generated/
