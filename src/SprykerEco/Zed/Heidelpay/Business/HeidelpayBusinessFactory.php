@@ -602,7 +602,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return array
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface[]
      */
     public function getPaymentMethodWithPreSavePaymentCollection(): array
     {
