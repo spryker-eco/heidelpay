@@ -36,17 +36,19 @@ class IsFinalizingFailedOmsCondition implements HeidelpayOmsConditionInterface
      */
     public function check(SpySalesOrderItem $orderItem): bool
     {
-        $heidelpayNotificationTransfer = $this->repository
-            ->findPaymentHeidelpayNotificationByTransactionIdAndPaymentCode(
+        $heidelpayNotificationCollection = $this->repository
+            ->getPaymentHeidelpayNotificationCollectionByTransactionIdAndPaymentCode(
                 (string)$orderItem->getFkSalesOrder(),
                 static::FINALIZE_PAYMENT_CODE
             );
 
-        if ($heidelpayNotificationTransfer === null) {
+        if ($heidelpayNotificationCollection->getNotifications()->count() === 0) {
             return false;
         }
 
-        return $this->isNotificationFailed($heidelpayNotificationTransfer);
+        return $this->isFinalizingFailed(
+            $heidelpayNotificationCollection->getNotifications()->offsetGet(0)
+        );
     }
 
     /**
@@ -54,7 +56,7 @@ class IsFinalizingFailedOmsCondition implements HeidelpayOmsConditionInterface
      *
      * @return bool
      */
-    protected function isNotificationFailed(HeidelpayNotificationTransfer $heidelpayNotificationTransfer): bool
+    protected function isFinalizingFailed(HeidelpayNotificationTransfer $heidelpayNotificationTransfer): bool
     {
         return $heidelpayNotificationTransfer->getResult() === HeidelpayConfig::NOTIFICATION_STATUS_FAILED;
     }

@@ -15,7 +15,7 @@
             <state name="new" reserved="true" />
             <state name="authorization finished" reserved="true" />
             <state name="authorization failed" />
-            <state name="finalizing finished" reserved="true" />
+            <state name="waiting for payment" reserved="true" />
             <state name="finalizing failed" />
             <state name="paid" reserved="true" />
             <state name="done" />
@@ -46,7 +46,7 @@
 
             <transition happy="true" condition="Heidelpay/IsFinalizingFinished">
                 <source>finalize succeeded</source>
-                <target>finalizing finished</target>
+                <target>waiting for payment</target>
             </transition>
 
             <transition condition="Heidelpay/IsFinalizingFailed">
@@ -54,8 +54,8 @@
                 <target>finalizing failed</target>
             </transition>
 
-            <transition happy="true" condition="Heidelpay/IsPaidNotificationReceived">
-                <source>finalizing finished</source>
+            <transition happy="true" condition="Heidelpay/IsOrderPaid">
+                <source>waiting for payment</source>
                 <target>paid</target>
             </transition>
 

@@ -7,10 +7,12 @@
 
 namespace SprykerEco\Zed\Heidelpay\Persistence\Propel\Mapper;
 
+use Generated\Shared\Transfer\HeidelpayNotificationCollectionTransfer;
 use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayNotification;
+use Propel\Runtime\Collection\ObjectCollection;
 
 class HeidelpayPersistenceMapper
 {
@@ -30,6 +32,27 @@ class HeidelpayPersistenceMapper
         );
 
         return $heidelpayPaymentTransfer;
+    }
+
+    /**
+     * @param \Propel\Runtime\Collection\ObjectCollection|\Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayNotification[] $paymentHeidelpayNotificationEntities
+     * @param \Generated\Shared\Transfer\HeidelpayNotificationCollectionTransfer $heidelpayNotificationCollection
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayNotificationCollectionTransfer
+     */
+    public function mapNotificationEntitiesToHeidelpayNotificationCollection(
+        ObjectCollection $paymentHeidelpayNotificationEntities,
+        HeidelpayNotificationCollectionTransfer $heidelpayNotificationCollection
+    ): HeidelpayNotificationCollectionTransfer {
+        foreach ($paymentHeidelpayNotificationEntities as $paymentHeidelpayNotificationEntity) {
+            $heidelpayNotificationTransfer = $this->mapEntityToHeidelpayNotificationTransfer(
+                $paymentHeidelpayNotificationEntity,
+                new HeidelpayNotificationTransfer()
+            );
+            $heidelpayNotificationCollection->addNotification($heidelpayNotificationTransfer);
+        }
+
+        return $heidelpayNotificationCollection;
     }
 
     /**

@@ -266,7 +266,7 @@
         <property name="orderReference" type="string"/>
     </transfer>
 
-    <transfer name="HeidelpayNotification" >
+    <transfer name="HeidelpayNotification">
         <property name="notificationBody" type="string" />
         <property name="timestamp" type="string" />
         <property name="retries" type="int" />
@@ -290,6 +290,10 @@
         <property name="paymentDescriptor" type="string" />
         <property name="account" type="string" />
         <property name="customer" type="string" />
+    </transfer>
+
+    <transfer name="HeidelpayNotificationCollection">
+        <property name="notifications" type="HeidelpayNotification[]" singular="notification" />
     </transfer>
 
 </transfers>

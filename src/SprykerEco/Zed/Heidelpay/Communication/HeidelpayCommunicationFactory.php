@@ -13,7 +13,7 @@ use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsAuthorizationFailedOm
 use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsAuthorizationFinishedOmsCondition;
 use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsFinalizingFailedOmsCondition;
 use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsFinalizingFinishedOmsCondition;
-use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsPaidNotificationReceivedOmsCondition;
+use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsOrderPaidOmsCondition;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesFacadeInterface;
 use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
 
@@ -61,9 +61,12 @@ class HeidelpayCommunicationFactory extends AbstractCommunicationFactory
     /**
      * @return \SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\HeidelpayOmsConditionInterface
      */
-    public function createIsPaidNotificationReceivedOmsCondition(): HeidelpayOmsConditionInterface
+    public function createIsOrderPaidOmsCondition(): HeidelpayOmsConditionInterface
     {
-        return new IsPaidNotificationReceivedOmsCondition($this->getRepository());
+        return new IsOrderPaidOmsCondition(
+            $this->getRepository(),
+            $this->getSalesFacade()
+        );
     }
 
     /**

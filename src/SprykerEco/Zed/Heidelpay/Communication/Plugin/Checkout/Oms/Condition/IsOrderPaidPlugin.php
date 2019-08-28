@@ -17,11 +17,11 @@ use Spryker\Zed\Oms\Dependency\Plugin\Condition\ConditionInterface;
  * @method \SprykerEco\Zed\Heidelpay\Communication\HeidelpayCommunicationFactory getFactory()
  * @method \SprykerEco\Zed\Heidelpay\HeidelpayConfig getConfig()
  */
-class IsPaidNotificationReceivedPlugin extends AbstractPlugin implements ConditionInterface
+class IsOrderPaidPlugin extends AbstractPlugin implements ConditionInterface
 {
     /**
      * {@inheritdoc}
-     * - Checks if PAID notification received for given order item.
+     * - Checks if full order amount has been paid.
      *
      * @api
      *
@@ -32,7 +32,7 @@ class IsPaidNotificationReceivedPlugin extends AbstractPlugin implements Conditi
     public function check(SpySalesOrderItem $orderItem): bool
     {
         return $this->getFactory()
-            ->createIsPaidNotificationReceivedOmsCondition()
+            ->createIsOrderPaidOmsCondition()
             ->check($orderItem);
     }
 }

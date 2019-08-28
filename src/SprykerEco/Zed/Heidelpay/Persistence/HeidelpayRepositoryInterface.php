@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Zed\Heidelpay\Persistence;
 
+use Generated\Shared\Transfer\HeidelpayNotificationCollectionTransfer;
 use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
 
@@ -30,10 +31,10 @@ interface HeidelpayRepositoryInterface
      * @param string $transactionId
      * @param string $paymentCode
      *
-     * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer|null
+     * @return \Generated\Shared\Transfer\HeidelpayNotificationCollectionTransfer
      */
-    public function findPaymentHeidelpayNotificationByTransactionIdAndPaymentCode(
+    public function getPaymentHeidelpayNotificationCollectionByTransactionIdAndPaymentCode(
         string $transactionId,
         string $paymentCode
-    ): ?HeidelpayNotificationTransfer;
+    ): HeidelpayNotificationCollectionTransfer;
 }
