@@ -56,6 +56,7 @@ class IsFinalizeCompletedPlugin extends AbstractPlugin implements ConditionInter
     protected function getFinalizeTransactionLogEntry($idSalesOrder)
     {
         $transactionLogQuery = $this->getQueryContainer()->queryFinalizeTransactionLog($idSalesOrder);
+
         return $transactionLogQuery->findOne();
     }
 

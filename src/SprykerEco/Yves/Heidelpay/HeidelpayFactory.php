@@ -42,6 +42,8 @@ use SprykerEco\Yves\Heidelpay\Mapper\EasyCreditResponseToGetParametersMapper;
 use SprykerEco\Yves\Heidelpay\Mapper\EasyCreditResponseToGetParametersMapperInterface;
 use SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeForm;
 use SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeFormInterface;
+use SprykerEco\Yves\Heidelpay\Processor\HeidelpayPaymentResponseProcessor;
+use SprykerEco\Yves\Heidelpay\Processor\HeidelpayPaymentResponseProcessorInterface;
 use SprykerEco\Yves\Heidelpay\Processor\Notification\HeidelpayNotificationProcessor;
 use SprykerEco\Yves\Heidelpay\Processor\Notification\HeidelpayNotificationProcessorInterface;
 use SprykerEco\Yves\Heidelpay\Processor\Notification\Mapper\HeidelpayNotificationProcessorMapper;
@@ -256,6 +258,17 @@ class HeidelpayFactory extends AbstractFactory
     public function createHeidelpayNotificationProcessorMapper(): HeidelpayNotificationProcessorMapperInterface
     {
         return new HeidelpayNotificationProcessorMapper();
+    }
+
+    /**
+     * @return \SprykerEco\Yves\Heidelpay\Processor\HeidelpayPaymentResponseProcessorInterface
+     */
+    public function createHeidelpayPaymentResponseProcessor(): HeidelpayPaymentResponseProcessorInterface
+    {
+        return new HeidelpayPaymentResponseProcessor(
+            $this->getClient(),
+            $this->getQuoteClient()
+        );
     }
 
     /**

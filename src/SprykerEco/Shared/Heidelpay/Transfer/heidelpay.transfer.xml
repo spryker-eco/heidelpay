@@ -13,6 +13,7 @@
         <property name="externalRedirectUrl" type="string" />
         <property name="dateOfBirth" type="string" />
         <property name="salutation" type="string" />
+        <property name="connectorInvoiceAccountInfo" type="string" />
     </transfer>
 
     <transfer name="HeidelpayEasyCreditPayment">
@@ -174,6 +175,7 @@
         <property name="customerRedirectUrl" type="string"/>
         <property name="legalText" type="string"/>
         <property name="config" type="HeidelpayResponseConfig"/>
+        <property name="connectorInvoiceAccountInfo" type="string" />
     </transfer>
 
     <transfer name="HeidelpayRegistrationRequest">
@@ -198,6 +200,7 @@
     <transfer name="HeidelpayPaymentProcessingResponse">
         <property name="isError" type="bool"/>
         <property name="error" type="HeidelpayResponseError"/>
+        <property name="connectorInvoiceAccountInfo" type="string" />
     </transfer>
 
     <transfer name="Expense">
@@ -263,7 +266,7 @@
         <property name="orderReference" type="string"/>
     </transfer>
 
-    <transfer name="HeidelpayNotification" >
+    <transfer name="HeidelpayNotification">
         <property name="notificationBody" type="string" />
         <property name="timestamp" type="string" />
         <property name="retries" type="int" />
@@ -287,6 +290,10 @@
         <property name="paymentDescriptor" type="string" />
         <property name="account" type="string" />
         <property name="customer" type="string" />
+    </transfer>
+
+    <transfer name="HeidelpayNotificationCollection">
+        <property name="notifications" type="HeidelpayNotification[]" singular="notification" />
     </transfer>
 
 </transfers>

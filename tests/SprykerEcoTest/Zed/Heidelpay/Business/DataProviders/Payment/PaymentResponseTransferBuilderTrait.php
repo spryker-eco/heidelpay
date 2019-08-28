@@ -30,6 +30,7 @@ trait PaymentResponseTransferBuilderTrait
         $responseTransfer->setProcessingCode($response['processingCode']);
         $responseTransfer->setCustomerRedirectUrl(HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL);
         $responseTransfer->setPayload($response['payload']);
+
         return $responseTransfer;
     }
 

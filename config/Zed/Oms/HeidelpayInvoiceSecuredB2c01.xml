@@ -7,43 +7,81 @@
     <process name="HeidelpayInvoiceSecuredB2c01" main="true">
         <subprocesses>
             <process>Authorization</process>
-            <process>Shipment</process>
             <process>Finalize</process>
+            <process>Shipment</process>
         </subprocesses>
 
         <states>
-            <state name="new" reserved="true"/>
+            <state name="new" reserved="true" />
+            <state name="authorization finished" reserved="true" />
+            <state name="authorization failed" />
+            <state name="waiting for payment" reserved="true" />
+            <state name="finalizing failed" />
+            <state name="paid" reserved="true" />
+            <state name="done" />
         </states>
 
         <transitions>
-            <transition>
+            <transition happy="true">
                 <source>new</source>
                 <target>ready for authorization</target>
                 <event>start authorization process</event>
             </transition>
 
-            <transition>
+            <transition happy="true" condition="Heidelpay/IsAuthorizationFinished">
                 <source>authorization succeeded</source>
+                <target>authorization finished</target>
+            </transition>
+
+            <transition condition="Heidelpay/IsAuthorizationFailed">
+                <source>authorization succeeded</source>
+                <target>authorization failed</target>
+            </transition>
+
+            <transition happy="true">
+                <source>authorization finished</source>
+                <target>ready for finalize</target>
+                <event>start finalize process</event>
+            </transition>
+
+            <transition happy="true" condition="Heidelpay/IsFinalizingFinished">
+                <source>finalize succeeded</source>
+                <target>waiting for payment</target>
+            </transition>
+
+            <transition condition="Heidelpay/IsFinalizingFailed">
+                <source>finalize succeeded</source>
+                <target>finalizing failed</target>
+            </transition>
+
+            <transition happy="true" condition="Heidelpay/IsOrderPaid">
+                <source>waiting for payment</source>
+                <target>paid</target>
+            </transition>
+
+            <transition happy="true">
+                <source>paid</source>
                 <target>ready for shipment</target>
                 <event>start shipment process</event>
             </transition>
 
-            <transition>
+            <transition happy="true">
                 <source>shipped</source>
-                <target>ready for finalize</target>
-                <event>start finalize process</event>
+                <target>done</target>
+                <event>close</event>
             </transition>
         </transitions>
 
         <events>
             <event name="start authorization process" onEnter="true" />
-            <event name="start shipment process" manual="true"/>
             <event name="start finalize process" onEnter="true" />
+            <event name="start shipment process" manual="true"/>
+            <event name="close" manual="true"/>
         </events>
     </process>
 
     <process name="Authorization" file="HeidelpaySubprocesses/Authorization.xml"/>
-    <process name="Shipment" file="HeidelpaySubprocesses/Shipment.xml"/>
     <process name="Finalize" file="HeidelpaySubprocesses/Finalize.xml"/>
+    <process name="Shipment" file="HeidelpaySubprocesses/Shipment.xml"/>
 
 </statemachine>

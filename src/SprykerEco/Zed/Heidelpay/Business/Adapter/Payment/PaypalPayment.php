@@ -23,6 +23,7 @@ class PaypalPayment extends BasePayment implements PaypalPaymentInterface
         $paypalMethod = new PayPalPaymentMethod();
         $this->prepareRequest($authorizeRequestTransfer, $paypalMethod->getRequest());
         $paypalMethod->authorize();
+
         return $this->verifyAndParseResponse($paypalMethod->getResponse());
     }
 
@@ -50,6 +51,7 @@ class PaypalPayment extends BasePayment implements PaypalPaymentInterface
         $paypalMethod = new PayPalPaymentMethod();
         $this->prepareRequest($debitRequestTransfer, $paypalMethod->getRequest());
         $paypalMethod->debit();
+
         return $this->verifyAndParseResponse($paypalMethod->getResponse());
     }
 }

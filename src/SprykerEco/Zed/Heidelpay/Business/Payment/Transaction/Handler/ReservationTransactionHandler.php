@@ -76,10 +76,7 @@ class ReservationTransactionHandler implements ReservationTransactionHandlerInte
             return;
         }
 
-        $this->paymentWriter->updatePaymentReferenceByIdSalesOrder(
-            $reservationResponseTransfer->getIdTransactionUnique(),
-            $orderTransfer->getIdSalesOrder()
-        );
+        $this->paymentWriter->updateHeidelpayPaymentWithResponse($reservationResponseTransfer);
         $orderTransfer->getHeidelpayPayment()->setIdPaymentReference(
             $reservationResponseTransfer->getIdTransactionUnique()
         );

@@ -289,7 +289,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
      */
     public function createPaymentWriter(): PaymentWriterInterface
     {
-        return new PaymentWriter($this->getQueryContainer());
+        return new PaymentWriter($this->getEntityManager());
     }
 
     /**
@@ -602,7 +602,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return array
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface[]
      */
     public function getPaymentMethodWithPreSavePaymentCollection(): array
     {

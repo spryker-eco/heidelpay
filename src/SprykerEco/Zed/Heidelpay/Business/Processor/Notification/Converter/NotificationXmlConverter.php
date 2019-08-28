@@ -30,9 +30,9 @@ class NotificationXmlConverter implements NotificationXmlConverterInterface
     /**
      * @param string $xml
      *
-     * @return \SimpleXMLElement
-     *@throws \SprykerEco\Zed\Heidelpay\Business\Exception\TransactionNodeMissingException
+     * @throws \SprykerEco\Zed\Heidelpay\Business\Exception\TransactionNodeMissingException
      *
+     * @return \SimpleXMLElement
      */
     protected function loadXml(string $xml): SimpleXMLElement
     {

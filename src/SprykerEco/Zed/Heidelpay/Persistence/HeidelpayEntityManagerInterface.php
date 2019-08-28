@@ -8,9 +8,17 @@
 namespace SprykerEco\Zed\Heidelpay\Persistence;
 
 use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
+use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
 
 interface HeidelpayEntityManagerInterface
 {
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayPaymentTransfer $heidelpayPaymentTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentTransfer
+     */
+    public function savePaymentHeidelpayEntity(HeidelpayPaymentTransfer $heidelpayPaymentTransfer): HeidelpayPaymentTransfer;
+
     /**
      * @param \Generated\Shared\Transfer\HeidelpayNotificationTransfer $heidelpayNotificationTransfer
      *
