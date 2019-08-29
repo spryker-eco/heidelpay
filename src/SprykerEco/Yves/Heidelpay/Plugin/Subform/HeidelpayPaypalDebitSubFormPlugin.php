@@ -21,6 +21,8 @@ class HeidelpayPaypalDebitSubFormPlugin extends AbstractPlugin implements SubFor
      * {@inheritdoc}
      * - Creates sub form for PaypalDebit payment method.
      *
+     * @api
+     *
      * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
      */
     public function createSubForm(): SubFormInterface

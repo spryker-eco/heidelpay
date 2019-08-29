@@ -21,6 +21,8 @@ class HeidelpayIdealSubFormPlugin extends AbstractPlugin implements SubFormPlugi
      * {@inheritdoc}
      * - Creates sub form for Ideal payment method.
      *
+     * @api
+     *
      * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
      */
     public function createSubForm(): SubFormInterface

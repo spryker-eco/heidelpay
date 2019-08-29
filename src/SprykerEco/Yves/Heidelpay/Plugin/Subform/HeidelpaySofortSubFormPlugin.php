@@ -21,6 +21,8 @@ class HeidelpaySofortSubFormPlugin extends AbstractPlugin implements SubFormPlug
      * {@inheritdoc}
      * - Creates sub form for Sofort payment method.
      *
+     * @api
+     *
      * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
      */
     public function createSubForm(): SubFormInterface

@@ -21,6 +21,8 @@ class HeidelpayPaypalAuthorizeSubFormPlugin extends AbstractPlugin implements Su
      * {@inheritdoc}
      * - Creates sub form for PaypalAuthorize payment method.
      *
+     * @api
+     *
      * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
      */
     public function createSubForm(): SubFormInterface
