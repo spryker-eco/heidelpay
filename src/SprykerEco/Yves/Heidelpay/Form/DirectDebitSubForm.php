@@ -54,7 +54,7 @@ class DirectDebitSubForm extends AbstractSubFormType implements SubFormInterface
      */
     public function getTemplatePath(): string
     {
-        return HeidelpayConfig::PROVIDER_NAME . DS . static::PAYMENT_METHOD_TEMPLATE_PATH;
+        return HeidelpayConfig::PROVIDER_NAME . DIRECTORY_SEPARATOR . static::PAYMENT_METHOD_TEMPLATE_PATH;
     }
 
     /**

@@ -10,10 +10,12 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\Mock;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\AdapterFactory;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\DirectDebitPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\EasyCreditPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\PaypalPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\SofortPaymentInterface;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods\UnsuccessfulCreditCardCapturePaymentMock;
+use SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods\UnsuccessfulDirectDebitPaymentMock;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods\UnsuccessfulEasyCreditPaymentMock;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods\UnsuccessfulPaypalDebitPaymentMock;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods\UnsuccessfulSofortPaymentMock;
@@ -112,6 +114,18 @@ class UnsuccessfulResponseAdapterFactory extends AdapterFactory
     public function createEasyCreditPaymentMethodAdapter(): EasyCreditPaymentInterface
     {
         return new UnsuccessfulEasyCreditPaymentMock(
+            $this->createRequestToHeidelpayMapper(),
+            $this->createResponseFromHeidelpayMapper(),
+            $this->getHeidelpayConfig()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\DirectDebitPaymentInterface
+     */
+    public function createDirectDebitPaymentMethod(): DirectDebitPaymentInterface
+    {
+        return new UnsuccessfulDirectDebitPaymentMock(
             $this->createRequestToHeidelpayMapper(),
             $this->createResponseFromHeidelpayMapper(),
             $this->getHeidelpayConfig()

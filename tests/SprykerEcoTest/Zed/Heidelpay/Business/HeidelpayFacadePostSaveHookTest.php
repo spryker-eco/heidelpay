@@ -10,8 +10,6 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business;
 use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulCreditCardSecureTransaction;
@@ -23,7 +21,7 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
 
 /**
  * @group Functional
- * @group Spryker
+ * @group SprykerEcoTest
  * @group Zed
  * @group Heidelpay
  * @group Business
@@ -31,25 +29,6 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
  */
 class HeidelpayFacadePostSaveHookTest extends HeidelpayPaymentTest
 {
-    /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade
-     */
-    protected $heidelpayFacade;
-
-    /**
-     * @return void
-     */
-    protected function _before(): void
-    {
-        parent::_before();
-
-        $this->heidelpayFacade = (new HeidelpayFacade())
-            ->setFactory($this->createHeidelpayFactory());
-
-        $this->getModule('\\' . ConfigHelper::class)
-            ->setConfig(HeidelpayConstants::CONFIG_ENCRYPTION_KEY, 'encryption_key');
-    }
-
     /**
      * @dataProvider functionForPostSaveHookForSuccessfulSalesOrdersSetsExternalRedirectTest
      *
@@ -199,13 +178,5 @@ class HeidelpayFacadePostSaveHookTest extends HeidelpayPaymentTest
         $orderWithPaypalAuthorize = new OrderWithSuccessfulCreditCardSecureTransaction($this->createHeidelpayFactory());
 
         return $orderWithPaypalAuthorize->createOrderWithCreditCardSecureTransaction();
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
-     */
-    protected function createHeidelpayFactory(): HeidelpayBusinessFactory
-    {
-        return new HeidelpayBusinessFactory();
     }
 }

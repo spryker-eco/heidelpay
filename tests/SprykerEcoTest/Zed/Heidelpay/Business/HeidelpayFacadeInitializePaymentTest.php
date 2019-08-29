@@ -9,21 +9,17 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
 use Generated\Shared\Transfer\HeidelpayEasyCreditPaymentTransfer;
 use Generated\Shared\Transfer\PaymentTransfer;
+use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\TaxTotalTransfer;
 use Generated\Shared\Transfer\TotalsTransfer;
-use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerAddressTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerTrait;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Quote\QuoteMockTrait;
-use SprykerEcoTest\Zed\Heidelpay\Business\Mock\SuccessfulResponseHeidelpayBusinessFactory;
-use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusinessFactory;
 
 /**
  * @group Functional
- * @group Spryker
+ * @group SprykerEcoTest
  * @group Zed
  * @group Heidelpay
  * @group Business
@@ -31,41 +27,46 @@ use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusin
  */
 class HeidelpayFacadeInitializePaymentTest extends HeidelpayPaymentTest
 {
-    use QuoteMockTrait,
-        CustomerAddressTrait,
-        CustomerTrait;
+    use QuoteMockTrait;
+    use CustomerAddressTrait;
+    use CustomerTrait;
 
     /**
      * @return void
      */
-    public function testProcessSuccessfulInitializeRequest()
+    public function testProcessSuccessfulInitializeRequest(): void
     {
-        $salesOrder = $this->createSuccessOrder();
-        $quoteTransfer = $this->createQuoteWithPaymentTransfer($salesOrder);
+        //Arrange
+        $quoteTransfer = $this->createQuoteWithPaymentTransfer();
+        $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
 
-        $heidelpayFacade = (new HeidelpayFacade())->setFactory($this->createSuccessfulPaymentHeidelpayFactoryMock());
+        //Act
         $responseTransfer = $heidelpayFacade->initializePayment($quoteTransfer);
 
+        //Assert
         $this->testSuccessfulIntializeHeidelpayPaymentResponse($responseTransfer);
     }
 
     /**
-     * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
+     * @return void
      */
-    public function createSuccessOrder()
+    public function testProcessUnsuccessfulInitializeRequest(): void
     {
-        $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
-        $orderTransfer = $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_EASY_CREDIT);
+        //Arrange
+        $quoteTransfer = $this->createQuoteWithPaymentTransfer();
+        $heidelpayFacade = $this->createFacadeWithUnsuccessfulFactory();
 
-        return $orderTransfer;
+        //Act
+        $responseTransfer = $heidelpayFacade->initializePayment($quoteTransfer);
+
+        //Assert
+        $this->testUnsuccessfulIntializeHeidelpayPaymentResponse($responseTransfer);
     }
 
     /**
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
-     *
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    protected function createQuoteWithPaymentTransfer(SpySalesOrder $orderEntity)
+    protected function createQuoteWithPaymentTransfer(): QuoteTransfer
     {
         $quoteTransfer = $this->createQuote();
         $paymentTransfer = (new PaymentTransfer())
@@ -86,40 +87,10 @@ class HeidelpayFacadeInitializePaymentTest extends HeidelpayPaymentTest
         $quoteTransfer->setPayment($paymentTransfer);
         $customer = $this->createOrGetCustomerByQuote($quoteTransfer);
         $address = $this->createCustomerAddressByCustomer($customer);
-        $quoteTransfer->getShippingAddress()->setIdCustomerAddress(
-            $address->getIdCustomerAddress()
-        );
+        $quoteTransfer
+            ->getShippingAddress()
+            ->setIdCustomerAddress($address->getIdCustomerAddress());
 
         return $quoteTransfer;
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
-     */
-    protected function createSuccessfulPaymentHeidelpayFactoryMock()
-    {
-        return new SuccessfulResponseHeidelpayBusinessFactory();
-    }
-
-    /**
-     * @return void
-     */
-    public function testProcessUnsuccessfulInitializeRequest()
-    {
-        $salesOrder = $this->createSuccessOrder();
-        $quoteTransfer = $this->createQuoteWithPaymentTransfer($salesOrder);
-
-        $heidelpayFacade = (new HeidelpayFacade())->setFactory($this->createUnsuccessfulPaymentHeidelpayFactoryMock());
-        $responseTransfer = $heidelpayFacade->initializePayment($quoteTransfer);
-
-        $this->testUnsuccessfulIntializeHeidelpayPaymentResponse($responseTransfer);
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
-     */
-    protected function createUnsuccessfulPaymentHeidelpayFactoryMock()
-    {
-        return new UnsuccesfulResponseHeidelpayBusinessFactory();
     }
 }

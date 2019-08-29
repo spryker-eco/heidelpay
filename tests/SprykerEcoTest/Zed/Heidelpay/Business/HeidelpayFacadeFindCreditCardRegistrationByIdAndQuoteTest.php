@@ -24,7 +24,7 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
 
 /**
  * @group Functional
- * @group Spryker
+ * @group SprykerEcoTest
  * @group Zed
  * @group Heidelpay
  * @group Business
@@ -39,20 +39,22 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Heidelpa
      */
     public function testSuccessfulFindCreditCardRegistrationByIdAndQuote(): void
     {
-        $quote = $this->createQuote();
-        $transfer = new HeidelpayRegistrationByIdAndQuoteRequestTransfer();
-        $transfer->setQuote($quote);
-        $creditCardRegistrationEntity = $this->createCardRegistrationTransfer($quote);
-        $transfer->setIdRegistration($creditCardRegistrationEntity->getIdCreditCardRegistration());
+        //Arrange
+        $quoteTransfer = $this->createQuote();
+        $heidelpayRegistrationByIdAndQuoteRequestTransfer = new HeidelpayRegistrationByIdAndQuoteRequestTransfer();
+        $heidelpayRegistrationByIdAndQuoteRequestTransfer->setQuote($quoteTransfer);
+        $creditCardRegistrationEntity = $this->createCardRegistrationTransfer($quoteTransfer);
+        $heidelpayRegistrationByIdAndQuoteRequestTransfer->setIdRegistration($creditCardRegistrationEntity->getIdCreditCardRegistration());
 
-        $response = $this->heidelpayFacade->findCreditCardRegistrationByIdAndQuote($transfer);
+        //Act
+        $response = $this->heidelpayFacade->findCreditCardRegistrationByIdAndQuote($heidelpayRegistrationByIdAndQuoteRequestTransfer);
 
+        //Assert
         $this->assertInstanceOf(HeidelpayCreditCardRegistrationTransfer::class, $response);
         $this->assertNotNull($response->getIdCreditCardRegistration());
         $this->assertNotNull($response->getCreditCardInfo());
         $this->assertInstanceOf(HeidelpayCreditCardInfoTransfer::class, $response->getCreditCardInfo());
-
-        $this->assertEquals($response->getCreditCardInfo()->getAccountHolder(), $this->getAccountHolder($quote));
+        $this->assertEquals($response->getCreditCardInfo()->getAccountHolder(), $this->getAccountHolder($quoteTransfer));
         $this->assertEquals($response->getCreditCardInfo()->getAccountBrand(), HeidelpayTestConfig::CARD_BRAND);
     }
 
@@ -61,16 +63,19 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Heidelpa
      */
     public function testUnsuccessfulFindCreditCardRegistrationByIdAndQuote(): void
     {
-        $quote = $this->createQuote();
-        $transfer = new HeidelpayRegistrationByIdAndQuoteRequestTransfer();
-        $transfer->setQuote($quote);
-        $creditCardRegistrationEntity = $this->createCardRegistrationTransfer($quote);
+        //Arrange
+        $quoteTransfer = $this->createQuote();
+        $heidelpayRegistrationByIdAndQuoteRequestTransfer = new HeidelpayRegistrationByIdAndQuoteRequestTransfer();
+        $heidelpayRegistrationByIdAndQuoteRequestTransfer->setQuote($quoteTransfer);
+        $creditCardRegistrationEntity = $this->createCardRegistrationTransfer($quoteTransfer);
         $creditCardRegistrationEntity->setQuoteHash(HeidelpayTestConfig::CARD_QUOTE_HASH);
         $creditCardRegistrationEntity->save();
-        $transfer->setIdRegistration($creditCardRegistrationEntity->getIdCreditCardRegistration());
+        $heidelpayRegistrationByIdAndQuoteRequestTransfer->setIdRegistration($creditCardRegistrationEntity->getIdCreditCardRegistration());
 
-        $response = $this->heidelpayFacade->findCreditCardRegistrationByIdAndQuote($transfer);
+        //Act
+        $response = $this->heidelpayFacade->findCreditCardRegistrationByIdAndQuote($heidelpayRegistrationByIdAndQuoteRequestTransfer);
 
+        //Assert
         $this->assertInstanceOf(HeidelpayCreditCardRegistrationTransfer::class, $response);
         $this->assertNull($response->getIdCreditCardRegistration());
         $this->assertNull($response->getCreditCardInfo());
@@ -79,7 +84,7 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Heidelpa
     /**
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    public function createQuote(): QuoteTransfer
+    protected function createQuote(): QuoteTransfer
     {
         $product = $this->tester->haveProduct();
         $this->tester->haveProductInStock([StockProductTransfer::SKU => $product->getSku()]);
@@ -101,37 +106,35 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Heidelpa
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration
      */
-    public function createCardRegistrationTransfer(QuoteTransfer $quoteTransfer): SpyPaymentHeidelpayCreditCardRegistration
+    protected function createCardRegistrationTransfer(QuoteTransfer $quoteTransfer): SpyPaymentHeidelpayCreditCardRegistration
     {
-        $creditCardRegistrationEntity = new SpyPaymentHeidelpayCreditCardRegistration();
-        $quoteHash = QuoteUniqueIdGenerator::getHashByCustomerEmailAndTotals($quoteTransfer);
-
-        $creditCardRegistrationEntity->setAccountBrand(HeidelpayTestConfig::CARD_BRAND)
+        $creditCardRegistrationEntity = (new SpyPaymentHeidelpayCreditCardRegistration())
+            ->setAccountBrand(HeidelpayTestConfig::CARD_BRAND)
             ->setRegistrationNumber(HeidelpayTestConfig::REGISTRATION_NUMBER)
-        ->setAccountHolder($this->getAccountHolder($quoteTransfer))
-        ->setAccountExpiryMonth(1)
-        ->setAccountExpiryYear(2030)
-        ->setAccountNumber(HeidelpayTestConfig::CARD_ACCOUNT_NUMBER)
-        ->setFkCustomerAddress($quoteTransfer->getBillingAddress()->getIdCustomerAddress())
+            ->setAccountHolder($this->getAccountHolder($quoteTransfer))
+            ->setAccountExpiryMonth(1)
+            ->setAccountExpiryYear(2030)
+            ->setAccountNumber(HeidelpayTestConfig::CARD_ACCOUNT_NUMBER)
+            ->setFkCustomerAddress($quoteTransfer->getBillingAddress()->getIdCustomerAddress())
+            ->setQuoteHash(QuoteUniqueIdGenerator::getHashByCustomerEmailAndTotals($quoteTransfer));
 
-        ->setQuoteHash($quoteHash);
         $creditCardRegistrationEntity->save();
 
         return $creditCardRegistrationEntity;
     }
 
     /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $qoute
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return string
      */
-    protected function getAccountHolder(QuoteTransfer $qoute): string
+    protected function getAccountHolder(QuoteTransfer $quoteTransfer): string
     {
         return vsprintf(
             "%s %s",
             [
-                $qoute->getCustomer()->getFirstName(),
-                $qoute->getCustomer()->getLastName(),
+                $quoteTransfer->getCustomer()->getFirstName(),
+                $quoteTransfer->getCustomer()->getLastName(),
             ]
         );
     }

@@ -15,7 +15,7 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
 
 /**
  * @group Functional
- * @group Spryker
+ * @group SprykerEcoTest
  * @group Zed
  * @group Heidelpay
  * @group Business
@@ -28,8 +28,13 @@ class HeidelpayFacadeGetPaymentBySalesOrderTest extends HeidelpayPaymentTest
      */
     public function testProcessExternalPaymentResponseForSofort(): void
     {
-        $salesOrder = $this->createSofortSuccessOrder();
+        //Arrange
+        $salesOrder = $this->createSofortOrder();
+
+        //Act
         $paymentTransfer = $this->heidelpayFacade->getPaymentByIdSalesOrder($salesOrder->getIdSalesOrder());
+
+        //Assert
         $this->assertInstanceOf(HeidelpayPaymentTransfer::class, $paymentTransfer);
         $this->assertNotNull($paymentTransfer);
         $this->assertEquals(HeidelpayTestConfig::HEIDELPAY_REFERENCE, $paymentTransfer->getIdPaymentReference());
@@ -38,27 +43,29 @@ class HeidelpayFacadeGetPaymentBySalesOrderTest extends HeidelpayPaymentTest
     }
 
     /**
-     * @return \Orm\Zed\Sales\Persistence\SpySalesOrder $salesOrder
-     */
-    public function createSofortSuccessOrder(): SpySalesOrder
-    {
-        $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
-        $orderTransfer = $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_SOFORT);
-
-        return $orderTransfer;
-    }
-
-    /**
      * @return void
      */
     public function testProcessExternalPaymentResponseForSofortForFailedPayment(): void
     {
+        //Act
         $paymentTransfer = $this->heidelpayFacade->getPaymentByIdSalesOrder(1000000000);
+
+        //Assert
         $this->assertInstanceOf(HeidelpayPaymentTransfer::class, $paymentTransfer);
         $this->assertNotNull($paymentTransfer);
         $paymentTransferArray = $paymentTransfer->toArray();
         foreach ($paymentTransferArray as $value) {
             $this->assertNull($value);
         }
+    }
+
+    /**
+     * @return \Orm\Zed\Sales\Persistence\SpySalesOrder $salesOrder
+     */
+    protected function createSofortOrder(): SpySalesOrder
+    {
+        $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
+
+        return $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_SOFORT);
     }
 }

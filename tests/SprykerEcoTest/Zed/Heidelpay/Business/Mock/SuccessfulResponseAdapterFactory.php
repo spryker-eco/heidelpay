@@ -10,10 +10,12 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\Mock;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\AdapterFactory;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\DirectDebitPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\EasyCreditPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\PaypalPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\SofortPaymentInterface;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods\SuccessfulCreditCardCapturePaymentMock;
+use SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods\SuccessfulDirectDebitPaymentMock;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods\SuccessfulEasyCreditPaymentMock;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods\SuccessfulPaypalDebitPaymentMock;
 use SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods\SuccessfulSofortPaymentMock;
@@ -41,7 +43,7 @@ class SuccessfulResponseAdapterFactory extends AdapterFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface[]
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithInitializeInterface[]
      */
     public function getInitializePaymentMethodAdapterCollection(): array
     {
@@ -57,6 +59,26 @@ class SuccessfulResponseAdapterFactory extends AdapterFactory
     {
         return [
             HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE => $this->createCreditCardPaymentMethodAdapter(),
+        ];
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitOnRegistrationInterface[]
+     */
+    public function getDebitOnRegistrationPaymentMethodAdapterCollection(): array
+    {
+        return [
+            HeidelpayConfig::PAYMENT_METHOD_DIRECT_DEBIT => $this->createDirectDebitPaymentMethod(),
+        ];
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitOnRegistrationInterface[]
+     */
+    public function getRefundPaymentMethodAdapterCollection(): array
+    {
+        return [
+            HeidelpayConfig::PAYMENT_METHOD_DIRECT_DEBIT => $this->createDirectDebitPaymentMethod(),
         ];
     }
 
@@ -111,9 +133,21 @@ class SuccessfulResponseAdapterFactory extends AdapterFactory
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\EasyCreditPaymentInterface
      */
-    public function createEasyCreditInitializePaymentMethodAdapter()
+    public function createEasyCreditInitializePaymentMethodAdapter(): EasyCreditPaymentInterface
     {
         return new SuccessfulEasyCreditPaymentMock(
+            $this->createRequestToHeidelpayMapper(),
+            $this->createResponseFromHeidelpayMapper(),
+            $this->getHeidelpayConfig()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\DirectDebitPaymentInterface
+     */
+    public function createDirectDebitPaymentMethod(): DirectDebitPaymentInterface
+    {
+        return new SuccessfulDirectDebitPaymentMock(
             $this->createRequestToHeidelpayMapper(),
             $this->createResponseFromHeidelpayMapper(),
             $this->getHeidelpayConfig()

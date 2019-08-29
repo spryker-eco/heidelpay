@@ -23,7 +23,7 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulSofor
 
 /**
  * @group Functional
- * @group Spryker
+ * @group SprykerEcoTest
  * @group Zed
  * @group Heidelpay
  * @group Business
@@ -31,7 +31,7 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulSofor
  */
 class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
 {
-    public const REGISTRATION_NUMBER = '31HA07BC814CA0300B135019D1515E08';
+    protected const REGISTRATION_NUMBER = '31HA07BC814CA0300B135019D1515E08';
 
     use NewOrderWithOneItemTrait;
 

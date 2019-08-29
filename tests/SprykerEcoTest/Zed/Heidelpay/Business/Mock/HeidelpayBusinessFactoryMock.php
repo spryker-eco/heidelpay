@@ -28,12 +28,4 @@ class HeidelpayBusinessFactoryMock extends HeidelpayBusinessFactory
     {
         return new UnsuccessfulResponseAdapterFactory();
     }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface
-     */
-    public function getHeidelpayQueryContainer(): HeidelpayQueryContainerInterface
-    {
-        return $this->getQueryContainer();
-    }
 }

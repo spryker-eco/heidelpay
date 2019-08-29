@@ -14,7 +14,7 @@ use Orm\Zed\Heidelpay\Persistence\Base\SpyPaymentHeidelpayCreditCardRegistration
 
 /**
  * @group Functional
- * @group Spryker
+ * @group SprykerEcoTest
  * @group Zed
  * @group Heidelpay
  * @group Business
@@ -22,13 +22,13 @@ use Orm\Zed\Heidelpay\Persistence\Base\SpyPaymentHeidelpayCreditCardRegistration
  */
 class HeidelpayFacadeSaveCreditCardRegistrationTest extends HeidelpayPaymentTest
 {
-    public const QUOTE_HASH = 'bea74ee13da897592f633fc93024ab3f5231d74d';
-    public const REGISTRATION_HASH = '31HA07BC814CA0300B131ABC71AEECB3';
-    public const ACCOUNT_EXPIRY_YEAR = 2030;
-    public const ACCOUNT_EXPIRY_MONTH = '03';
-    public const ACCOUNT_HOLDER_NAME = 'John Doe';
-    public const CREDIT_CARD_BRAND = 'MASTER';
-    public const CREDIT_CARD_NUMBER = '471110******0000';
+    protected const QUOTE_HASH = 'bea74ee13da897592f633fc93024ab3f5231d74d';
+    protected const REGISTRATION_HASH = '31HA07BC814CA0300B131ABC71AEECB3';
+    protected const ACCOUNT_EXPIRY_YEAR = 2030;
+    protected const ACCOUNT_EXPIRY_MONTH = '03';
+    protected const ACCOUNT_HOLDER_NAME = 'John Doe';
+    protected const CREDIT_CARD_BRAND = 'MASTER';
+    protected const CREDIT_CARD_NUMBER = '471110******0000';
 
     /**
      * @dataProvider createRegistrationTransfer
@@ -39,8 +39,10 @@ class HeidelpayFacadeSaveCreditCardRegistrationTest extends HeidelpayPaymentTest
      */
     public function testSuccessfulSaveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $cardRegistrationTransfer): void
     {
+        //Act
         $response = $this->heidelpayFacade->saveCreditCardRegistration($cardRegistrationTransfer);
 
+        //Assert
         $this->assertNotNull($response);
         $this->assertInstanceOf(HeidelpayRegistrationSaveResponseTransfer::class, $response);
         $this->assertNull($response->getIsError());

@@ -27,7 +27,6 @@ class HeidelpayEntityManager extends AbstractEntityManager implements HeidelpayE
     ): HeidelpayDirectDebitRegistrationTransfer {
         $paymentHeidelpayDirectDebitRegistrationEntity = $this->getPaymentHeidelpayDirectDebitRegistrationQuery()
             ->filterByRegistrationUniqueId($directDebitRegistrationTransfer->getRegistrationUniqueId())
-            ->filterByFkCustomerAddress($directDebitRegistrationTransfer->getIdCustomerAddress())
             ->findOneOrCreate();
 
         $paymentHeidelpayDirectDebitRegistrationEntity->fromArray(

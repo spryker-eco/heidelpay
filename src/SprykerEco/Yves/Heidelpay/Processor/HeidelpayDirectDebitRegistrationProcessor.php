@@ -137,7 +137,7 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
         QuoteTransfer $quoteTransfer
     ): HeidelpayDirectDebitRegistrationTransfer {
         $directDebitRegistrationTransfer = (new HeidelpayDirectDebitRegistrationTransfer())
-            ->setRegistrationUniqueId($this->getRegistrationId($request))
+            ->setIdDirectDebitRegistration($this->getRegistrationId($request))
             ->setIdCustomerAddress($quoteTransfer->getShippingAddress()->getIdCustomerAddress())
             ->setTransactionId($this->generateTransactionId($quoteTransfer));
 
