@@ -31,7 +31,7 @@ class HeidelpayFacadeExecuteDebitOnRegistrationTest extends HeidelpayPaymentTest
     public function testSuccessfulExecuteDebitOnRegistration(): void
     {
         //Arrange
-        $salesOrder = $this->createSuccessOrder();
+        $salesOrder = $this->createOrder();
         $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
         $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrder);
 
@@ -53,7 +53,7 @@ class HeidelpayFacadeExecuteDebitOnRegistrationTest extends HeidelpayPaymentTest
     /**
      * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
      */
-    public function createSuccessOrder(): SpySalesOrder
+    protected function createOrder(): SpySalesOrder
     {
         $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
 

@@ -30,7 +30,7 @@ class HeidelpayFacadeExecuteRefundTest extends HeidelpayPaymentTest
     public function testExecuteRefund(): void
     {
         //Arrange
-        $salesOrder = $this->createSuccessOrder();
+        $salesOrder = $this->createOrder();
         $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
         $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrder);
 
@@ -52,12 +52,11 @@ class HeidelpayFacadeExecuteRefundTest extends HeidelpayPaymentTest
     /**
      * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
      */
-    public function createSuccessOrder(): SpySalesOrder
+    protected function createOrder(): SpySalesOrder
     {
         $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
-        $orderTransfer = $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_DIRECT_DEBIT);
 
-        return $orderTransfer;
+        return $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_DIRECT_DEBIT);
     }
 
     /**

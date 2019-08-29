@@ -50,7 +50,7 @@ class HeidelpayFacadeSaveDirectDebitRegistrationTest extends HeidelpayPaymentTes
     /**
      * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
      */
-    public function createRegistrationTransfer(): HeidelpayDirectDebitRegistrationTransfer
+    protected function createRegistrationTransfer(): HeidelpayDirectDebitRegistrationTransfer
     {
         return (new HeidelpayDirectDebitRegistrationTransfer())
             ->setTransactionId(static::TRANSACTION_ID)
@@ -75,7 +75,7 @@ class HeidelpayFacadeSaveDirectDebitRegistrationTest extends HeidelpayPaymentTes
     /**
      * @return \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepositoryInterface
      */
-    public function getRepository(): HeidelpayRepositoryInterface
+    protected function getRepository(): HeidelpayRepositoryInterface
     {
         return new HeidelpayRepository();
     }

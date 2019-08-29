@@ -121,17 +121,17 @@ class HeidelpayPaymentTest extends Test
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
+     * @return \SprykerEcoTest\Zed\Heidelpay\Business\Mock\SuccessfulResponseHeidelpayBusinessFactory
      */
-    protected function createSuccessfulPaymentHeidelpayFactoryMock(): HeidelpayBusinessFactory
+    protected function createSuccessfulPaymentHeidelpayFactoryMock(): SuccessfulResponseHeidelpayBusinessFactory
     {
         return new SuccessfulResponseHeidelpayBusinessFactory();
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
+     * @return \SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusinessFactory
      */
-    protected function createUnsuccessfulPaymentHeidelpayFactoryMock(): HeidelpayBusinessFactory
+    protected function createUnsuccessfulPaymentHeidelpayFactoryMock(): UnsuccesfulResponseHeidelpayBusinessFactory
     {
         return new UnsuccesfulResponseHeidelpayBusinessFactory();
     }

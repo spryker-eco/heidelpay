@@ -145,7 +145,7 @@ class HeidelpayFacadeGetDirectDebitPaymentOptionsTest extends HeidelpayPaymentTe
         $customer = $this->createOrGetCustomerByQuote($quoteTransfer);
         $address = $this->createCustomerAddressByCustomer($customer);
         $quoteTransfer->getShippingAddress()->setIdCustomerAddress($address->getIdCustomerAddress());
-        $heidelpayFacade = $this->createFacadeWithUnsuccessfulFactory();
+        $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
 
         //Act
         $heidelpayDirectDebitPaymentOptionsTransfer = $heidelpayFacade->getDirectDebitPaymentOptions($quoteTransfer);
