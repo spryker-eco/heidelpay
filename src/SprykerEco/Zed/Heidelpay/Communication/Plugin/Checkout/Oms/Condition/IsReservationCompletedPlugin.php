@@ -56,6 +56,7 @@ class IsReservationCompletedPlugin extends AbstractPlugin implements ConditionIn
     protected function getReservationTransactionLogEntry($idSalesOrder)
     {
         $transactionLogQuery = $this->getQueryContainer()->queryReservationTransactionLog($idSalesOrder);
+
         return $transactionLogQuery->findOne();
     }
 

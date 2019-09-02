@@ -11,6 +11,7 @@ use Generated\Shared\Transfer\HeidelpayAuthorizeTransactionLogRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
@@ -95,5 +96,15 @@ class GatewayController extends AbstractGatewayController
     public function easycreditInitializePaymentAction(QuoteTransfer $quoteTransfer): HeidelpayResponseTransfer
     {
         return $this->getFacade()->initializePayment($quoteTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayNotificationTransfer $notificationTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer
+     */
+    public function processNotificationAction(HeidelpayNotificationTransfer $notificationTransfer): HeidelpayNotificationTransfer
+    {
+        return $this->getFacade()->processNotification($notificationTransfer);
     }
 }

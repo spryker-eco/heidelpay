@@ -40,7 +40,7 @@ class BaseHeidelpayController extends AbstractController
      */
     protected function getConfig(): HeidelpayConfigInterface
     {
-        return $this->getFactory()->getYvesConfig();
+        return $this->getFactory()->getConfig();
     }
 
     /**

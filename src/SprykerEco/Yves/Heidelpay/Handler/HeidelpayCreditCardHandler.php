@@ -15,9 +15,6 @@ use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
 
 class HeidelpayCreditCardHandler extends HeidelpayHandler
 {
-    public const PAYMENT_PROVIDER = HeidelpayConfig::PROVIDER_NAME;
-    public const CHECKOUT_PARTIAL_SUMMARY_PATH = 'Heidelpay/partial/summary';
-
     /**
      * @var \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface
      */
@@ -27,16 +24,6 @@ class HeidelpayCreditCardHandler extends HeidelpayHandler
      * @var \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface
      */
     protected $quoteClient;
-
-    /**
-     * @var array
-     */
-    protected static $paymentMethods = [
-        HeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE => HeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE,
-        HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE => HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE,
-        HeidelpayConfig::PAYMENT_METHOD_IDEAL => HeidelpayConfig::PAYMENT_METHOD_IDEAL,
-        HeidelpayConfig::PAYMENT_METHOD_SOFORT => HeidelpayConfig::PAYMENT_METHOD_SOFORT,
-    ];
 
     /**
      * @param \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface $calculationClient
