@@ -23,7 +23,7 @@ use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusin
 
 /**
  * @group Functional
- * @group Spryker
+ * @group SprykerEcoTest
  * @group Zed
  * @group Heidelpay
  * @group Business
@@ -56,6 +56,7 @@ class HeidelpayFacadeInitializePaymentTest extends HeidelpayPaymentTest
     {
         $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
         $orderTransfer = $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_EASY_CREDIT);
+
         return $orderTransfer;
     }
 

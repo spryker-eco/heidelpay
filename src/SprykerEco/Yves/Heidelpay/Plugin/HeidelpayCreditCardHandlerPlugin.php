@@ -19,6 +19,12 @@ use Symfony\Component\HttpFoundation\Request;
 class HeidelpayCreditCardHandlerPlugin extends AbstractPlugin implements StepHandlerPluginInterface
 {
     /**
+     * {@inheritdoc}
+     *  - Expands QuoteTransfer with CreditCard payment method transfer.
+     *  - Expands QuoteTransfer with registered credit cards.
+     *
+     * @api
+     *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *

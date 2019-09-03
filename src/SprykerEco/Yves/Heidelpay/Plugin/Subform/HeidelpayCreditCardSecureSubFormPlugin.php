@@ -18,6 +18,11 @@ use Spryker\Yves\StepEngine\Dependency\Plugin\Form\SubFormPluginInterface;
 class HeidelpayCreditCardSecureSubFormPlugin extends AbstractPlugin implements SubFormPluginInterface
 {
     /**
+     * {@inheritdoc}
+     *  - Creates sub form for CreditCardSecured payment method.
+     *
+     * @api
+     *
      * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
      */
     public function createSubForm(): SubFormInterface
@@ -26,6 +31,11 @@ class HeidelpayCreditCardSecureSubFormPlugin extends AbstractPlugin implements S
     }
 
     /**
+     * {@inheritdoc}
+     *  - Creates data provider for CreditCardSecured payment method.
+     *
+     * @api
+     *
      * @return \Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface
      */
     public function createSubFormDataProvider(): StepEngineFormDataProviderInterface

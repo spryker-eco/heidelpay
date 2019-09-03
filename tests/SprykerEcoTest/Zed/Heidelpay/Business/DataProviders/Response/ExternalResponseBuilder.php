@@ -99,6 +99,7 @@ abstract class ExternalResponseBuilder
         $property->setAccessible(true);
 
         $brand = $property->getValue(new $fullClassName());
+
         return $brand;
     }
 
@@ -126,6 +127,7 @@ abstract class ExternalResponseBuilder
     protected function getClassName(string $paymentMethodName): string
     {
         $className = $paymentMethodName . self::PAYMENT_METHOD_CLASS_NAME;
+
         return ucfirst($className);
     }
 

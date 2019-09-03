@@ -29,7 +29,7 @@ use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusin
 
 /**
  * @group Functional
- * @group Spryker
+ * @group SprykerEcoTest
  * @group Zed
  * @group Heidelpay
  * @group Business
@@ -258,6 +258,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
     protected function registerCard(QuoteTransfer $quoteTransfer): SpyPaymentHeidelpayCreditCardRegistration
     {
         $cardBuilder = new CreditCardBuilder();
+
         return $cardBuilder->createCreditCard($quoteTransfer);
     }
 
