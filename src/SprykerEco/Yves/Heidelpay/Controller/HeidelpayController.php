@@ -52,24 +52,11 @@ class HeidelpayController extends BaseHeidelpayController
             throw new NotFoundHttpException();
         }
 
-        $requestAsArray = $this->getUrldecodedRequestBody($request);
-        $processingResultTransfer = $this->processPaymentResponse(
-            $this->getClient()->filterResponseParameters($requestAsArray)
-        );
+        $processingResultTransfer = $this->getFactory()
+            ->createHeidelpayPaymentResponseProcessor()
+            ->processPaymentResponse($request);
 
         return $this->streamResponse($processingResultTransfer);
-    }
-
-    /**
-     * @param array $requestArray
-     *
-     * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
-     */
-    protected function processPaymentResponse(array $requestArray): HeidelpayPaymentProcessingResponseTransfer
-    {
-        return $this
-            ->getClient()
-            ->processExternalPaymentResponse($requestArray);
     }
 
     /**

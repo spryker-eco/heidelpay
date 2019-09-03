@@ -7,50 +7,56 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Payment;
 
-use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay;
-use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
+use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
+use Generated\Shared\Transfer\HeidelpayResponseTransfer;
+use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayEntityManagerInterface;
 
 class PaymentWriter implements PaymentWriterInterface
 {
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface
+     * @var \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayEntityManagerInterface
      */
-    protected $heidelpayQueryContainer;
+    protected $entityManager;
 
     /**
-     * @param \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface $heidelpayQueryContainer
+     * @param \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayEntityManagerInterface $entityManager
      */
-    public function __construct(HeidelpayQueryContainerInterface $heidelpayQueryContainer)
+    public function __construct(HeidelpayEntityManagerInterface $entityManager)
     {
-        $this->heidelpayQueryContainer = $heidelpayQueryContainer;
+        $this->entityManager = $entityManager;
     }
 
     /**
-     * @param string $paymentReference
-     * @param int $idSalesOrder
+     * @param \Generated\Shared\Transfer\HeidelpayResponseTransfer $responseTransfer
      *
      * @return void
      */
-    public function updatePaymentReferenceByIdSalesOrder(string $paymentReference, int $idSalesOrder): void
+    public function updateHeidelpayPaymentWithResponse(HeidelpayResponseTransfer $responseTransfer): void
     {
-        $heidelpayPaymentEntity = $this->getPaymentEntityByIdSalesOrder($idSalesOrder);
-
-        $heidelpayPaymentEntity
-            ->setIdPaymentReference($paymentReference)
-            ->save();
+        $heidelpayPaymentTransfer = $this->createHeidelpayPaymentTransfer($responseTransfer);
+        $this->entityManager->savePaymentHeidelpayEntity($heidelpayPaymentTransfer);
     }
 
     /**
-     * @param int $idSalesOrder
+     * @param \Generated\Shared\Transfer\HeidelpayResponseTransfer $responseTransfer
      *
-     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentTransfer
      */
-    protected function getPaymentEntityByIdSalesOrder(int $idSalesOrder): SpyPaymentHeidelpay
+    protected function createHeidelpayPaymentTransfer(HeidelpayResponseTransfer $responseTransfer): HeidelpayPaymentTransfer
     {
-        $heidelpayPaymentEntity = $this->heidelpayQueryContainer
-            ->queryPaymentByIdSalesOrder($idSalesOrder)
-            ->findOne();
+        return (new HeidelpayPaymentTransfer())
+            ->setFkSalesOrder($responseTransfer->getIdSalesOrder())
+            ->setIdPaymentReference($this->getIdPaymentReferenceFromResponse($responseTransfer))
+            ->setConnectorInvoiceAccountInfo($responseTransfer->getConnectorInvoiceAccountInfo());
+    }
 
-        return $heidelpayPaymentEntity;
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayResponseTransfer $responseTransfer
+     *
+     * @return string|null
+     */
+    protected function getIdPaymentReferenceFromResponse(HeidelpayResponseTransfer $responseTransfer): ?string
+    {
+        return $responseTransfer->getIdPaymentReference() ?? $responseTransfer->getIdTransactionUnique();
     }
 }

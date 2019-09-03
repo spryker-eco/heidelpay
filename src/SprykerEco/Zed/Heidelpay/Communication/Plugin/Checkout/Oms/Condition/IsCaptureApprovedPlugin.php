@@ -56,6 +56,7 @@ class IsCaptureApprovedPlugin extends AbstractPlugin implements ConditionInterfa
     protected function getCaptureTransactionLogEntry(int $idSalesOrder): ?SpyPaymentHeidelpayTransactionLog
     {
         $transactionLogQuery = $this->getQueryContainer()->queryCaptureTransactionLog($idSalesOrder);
+
         return $transactionLogQuery->findOne();
     }
 

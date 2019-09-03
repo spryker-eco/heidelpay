@@ -11,18 +11,19 @@ use Spryker\Shared\Money\Dependency\Plugin\MoneyPluginInterface;
 use Spryker\Yves\Kernel\AbstractFactory;
 use Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
-use SprykerEco\Client\Heidelpay\HeidelpayClientInterface;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
 use SprykerEco\Yves\Heidelpay\Form\CreditCardSecureSubForm;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\CreditCardSecureDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\EasyCreditDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\IdealDataProvider;
+use SprykerEco\Yves\Heidelpay\Form\DataProvider\InvoiceSecuredB2cDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\PaypalAuthorizeDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\PaypalDebitDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\SofortDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\EasyCreditSubForm;
 use SprykerEco\Yves\Heidelpay\Form\IdealSubForm;
+use SprykerEco\Yves\Heidelpay\Form\InvoiceSecuredB2cSubForm;
 use SprykerEco\Yves\Heidelpay\Form\PaypalAuthorizeSubForm;
 use SprykerEco\Yves\Heidelpay\Form\PaypalDebitSubForm;
 use SprykerEco\Yves\Heidelpay\Form\SofortSubForm;
@@ -41,9 +42,16 @@ use SprykerEco\Yves\Heidelpay\Mapper\EasyCreditResponseToGetParametersMapper;
 use SprykerEco\Yves\Heidelpay\Mapper\EasyCreditResponseToGetParametersMapperInterface;
 use SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeForm;
 use SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeFormInterface;
+use SprykerEco\Yves\Heidelpay\Processor\HeidelpayPaymentResponseProcessor;
+use SprykerEco\Yves\Heidelpay\Processor\HeidelpayPaymentResponseProcessorInterface;
+use SprykerEco\Yves\Heidelpay\Processor\Notification\HeidelpayNotificationProcessor;
+use SprykerEco\Yves\Heidelpay\Processor\Notification\HeidelpayNotificationProcessorInterface;
+use SprykerEco\Yves\Heidelpay\Processor\Notification\Mapper\HeidelpayNotificationProcessorMapper;
+use SprykerEco\Yves\Heidelpay\Processor\Notification\Mapper\HeidelpayNotificationProcessorMapperInterface;
 
 /**
  * @method \SprykerEco\Yves\Heidelpay\HeidelpayConfig getConfig()
+ * @method \SprykerEco\Client\Heidelpay\HeidelpayClientInterface getClient()
  */
 class HeidelpayFactory extends AbstractFactory
 {
@@ -72,7 +80,7 @@ class HeidelpayFactory extends AbstractFactory
     public function createPaymentFailureHandler(): PaymentFailureHandlerInterface
     {
         return new PaymentFailureHandler(
-            $this->getHeidelpayClient(),
+            $this->getClient(),
             $this->getConfig()
         );
     }
@@ -126,6 +134,14 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
+     * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
+     */
+    public function createInvoiceSecuredB2cSubForm(): SubFormInterface
+    {
+        return new InvoiceSecuredB2cSubForm();
+    }
+
+    /**
      * @return \Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface
      */
     public function createSofortFormDataProvider(): StepEngineFormDataProviderInterface
@@ -176,35 +192,11 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \SprykerEco\Client\Heidelpay\HeidelpayClientInterface
+     * @return \Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface
      */
-    public function getHeidelpayClient(): HeidelpayClientInterface
+    public function createInvoiceSecuredB2cDataProvider(): StepEngineFormDataProviderInterface
     {
-        return $this->getProvidedDependency(HeidelpayDependencyProvider::CLIENT_HEIDELPAY);
-    }
-
-    /**
-     * @return \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface
-     */
-    public function getCalculationClient(): HeidelpayToCalculationClientInterface
-    {
-        return $this->getProvidedDependency(HeidelpayDependencyProvider::CLIENT_CALCULATION);
-    }
-
-    /**
-     * @return \Spryker\Shared\Money\Dependency\Plugin\MoneyPluginInterface
-     */
-    public function getMoneyClient(): MoneyPluginInterface
-    {
-        return $this->getProvidedDependency(HeidelpayDependencyProvider::PLUGIN_MONEY);
-    }
-
-    /**
-     * @return \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface
-     */
-    public function getQuoteClient(): HeidelpayToQuoteClientInterface
-    {
-        return $this->getProvidedDependency(HeidelpayDependencyProvider::CLIENT_QUOTE);
+        return new InvoiceSecuredB2cDataProvider();
     }
 
     /**
@@ -230,7 +222,7 @@ class HeidelpayFactory extends AbstractFactory
      */
     public function createEasyCreditResponseToQuoteHydrator(): EasyCreditResponseToQuoteHydratorInterface
     {
-        return new EasyCreditResponseToQuoteHydrator($this->getMoneyClient());
+        return new EasyCreditResponseToQuoteHydrator($this->getMoneyPlugin());
     }
 
     /**
@@ -242,20 +234,64 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
-     * @return \SprykerEco\Yves\Heidelpay\HeidelpayConfigInterface
-     */
-    public function getYvesConfig(): HeidelpayConfigInterface
-    {
-        return $this->getConfig();
-    }
-
-    /**
      * @return \SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface
      */
     public function createCreditCardPaymentOptionsToQuoteHydrator(): CreditCardPaymentOptionsToQuoteInterface
     {
-        return new CreditCardPaymentOptionsToQuote(
-            $this->getHeidelpayClient()
+        return new CreditCardPaymentOptionsToQuote($this->getClient());
+    }
+
+    /**
+     * @return \SprykerEco\Yves\Heidelpay\Processor\Notification\HeidelpayNotificationProcessorInterface
+     */
+    public function createHeidelpayNotificationProcessor(): HeidelpayNotificationProcessorInterface
+    {
+        return new HeidelpayNotificationProcessor(
+            $this->createHeidelpayNotificationProcessorMapper(),
+            $this->getClient()
         );
+    }
+
+    /**
+     * @return \SprykerEco\Yves\Heidelpay\Processor\Notification\Mapper\HeidelpayNotificationProcessorMapperInterface
+     */
+    public function createHeidelpayNotificationProcessorMapper(): HeidelpayNotificationProcessorMapperInterface
+    {
+        return new HeidelpayNotificationProcessorMapper();
+    }
+
+    /**
+     * @return \SprykerEco\Yves\Heidelpay\Processor\HeidelpayPaymentResponseProcessorInterface
+     */
+    public function createHeidelpayPaymentResponseProcessor(): HeidelpayPaymentResponseProcessorInterface
+    {
+        return new HeidelpayPaymentResponseProcessor(
+            $this->getClient(),
+            $this->getQuoteClient()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface
+     */
+    public function getCalculationClient(): HeidelpayToCalculationClientInterface
+    {
+        return $this->getProvidedDependency(HeidelpayDependencyProvider::CLIENT_CALCULATION);
+    }
+
+    /**
+     * @return \Spryker\Shared\Money\Dependency\Plugin\MoneyPluginInterface
+     */
+    public function getMoneyPlugin(): MoneyPluginInterface
+    {
+        return $this->getProvidedDependency(HeidelpayDependencyProvider::PLUGIN_MONEY);
+    }
+
+    /**
+     * @return \SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface
+     */
+    public function getQuoteClient(): HeidelpayToQuoteClientInterface
+    {
+        return $this->getProvidedDependency(HeidelpayDependencyProvider::CLIENT_QUOTE);
     }
 }
