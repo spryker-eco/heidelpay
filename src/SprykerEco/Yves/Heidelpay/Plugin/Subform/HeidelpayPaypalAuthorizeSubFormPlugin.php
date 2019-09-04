@@ -19,7 +19,7 @@ class HeidelpayPaypalAuthorizeSubFormPlugin extends AbstractPlugin implements Su
 {
     /**
      * {@inheritdoc}
-     * - Creates sub form for PaypalAuthorize payment method.
+     *  - Creates sub form for PaypalAuthorize payment method.
      *
      * @api
      *
@@ -32,7 +32,7 @@ class HeidelpayPaypalAuthorizeSubFormPlugin extends AbstractPlugin implements Su
 
     /**
      * {@inheritdoc}
-     * - Creates data provider for PaypalAuthorize payment method.
+     *  - Creates data provider for PaypalAuthorize payment method.
      *
      * @api
      *

@@ -12,6 +12,7 @@ use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
@@ -277,6 +278,22 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
         return $this->getFactory()
             ->createZedStub()
             ->getDirectDebitPaymentOptions($quoteTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\HeidelpayNotificationTransfer $notificationTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer
+     */
+    public function processNotification(HeidelpayNotificationTransfer $notificationTransfer): HeidelpayNotificationTransfer
+    {
+        return $this->getFactory()
+            ->createZedStub()
+            ->processNotification($notificationTransfer);
     }
 
     /**

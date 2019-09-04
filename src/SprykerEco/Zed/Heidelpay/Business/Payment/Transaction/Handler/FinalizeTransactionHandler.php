@@ -73,10 +73,7 @@ class FinalizeTransactionHandler implements FinalizeTransactionHandlerInterface
             return;
         }
 
-        $this->paymentWriter->updatePaymentReferenceByIdSalesOrder(
-            $finalizeResponseTransfer->getIdTransactionUnique(),
-            $orderTransfer->getIdSalesOrder()
-        );
+        $this->paymentWriter->updateHeidelpayPaymentWithResponse($finalizeResponseTransfer);
         $orderTransfer->getHeidelpayPayment()->setIdPaymentReference(
             $finalizeResponseTransfer->getIdTransactionUnique()
         );

@@ -69,7 +69,7 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
     {
         $externalResponseTransfer = $this->buildExternalResponseTransfer($externalResponseArray);
         $transactionResultTransfer = $this->executeTransaction($externalResponseTransfer);
-        $this->updateIdPaymentReference($transactionResultTransfer);
+        $this->updatePaymentHeidelpayWithExternalResponse($transactionResultTransfer);
 
         return $this->buildPaymentProcessingResponse($transactionResultTransfer);
     }
@@ -79,7 +79,7 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
      *
      * @return void
      */
-    protected function updateIdPaymentReference(HeidelpayResponseTransfer $responseTransfer): void
+    protected function updatePaymentHeidelpayWithExternalResponse(HeidelpayResponseTransfer $responseTransfer): void
     {
         if ($responseTransfer->getIdPaymentReference() === null
             && $responseTransfer->getIdTransactionUnique() === null
@@ -87,10 +87,7 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
             return;
         }
 
-        $this->paymentWriter->updatePaymentReferenceByIdSalesOrder(
-            $responseTransfer->getIdPaymentReference() ?? $responseTransfer->getIdTransactionUnique(),
-            $responseTransfer->getIdSalesOrder()
-        );
+        $this->paymentWriter->updateHeidelpayPaymentWithResponse($responseTransfer);
     }
 
     /**
@@ -146,15 +143,10 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
      */
     protected function buildPaymentProcessingResponse(HeidelpayResponseTransfer $transactionResultTransfer): HeidelpayPaymentProcessingResponseTransfer
     {
-        $paymentProcessingResponseTransfer = (new HeidelpayPaymentProcessingResponseTransfer())
-            ->setIsError(false);
-
-        if ($transactionResultTransfer->getIsError()) {
-            $paymentProcessingResponseTransfer
-                ->setIsError(true)
-                ->setError($transactionResultTransfer->getError());
-        }
-
-        return $paymentProcessingResponseTransfer;
+        return (new HeidelpayPaymentProcessingResponseTransfer())
+            ->fromArray(
+                $transactionResultTransfer->toArray(),
+                true
+            );
     }
 }

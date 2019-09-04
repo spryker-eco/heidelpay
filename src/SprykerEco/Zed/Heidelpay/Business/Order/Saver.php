@@ -71,6 +71,8 @@ class Saver implements SaverInterface
             $paymentEntity = $this->addEasyCreditFee($quoteTransfer, $paymentEntity);
         }
 
+        $paymentEntity = $this->addAdditionalCustomerInformation($quoteTransfer, $paymentEntity);
+
         $paymentEntity->save();
 
         $idPayment = $paymentEntity->getIdPaymentHeidelpay();
@@ -171,5 +173,38 @@ class Saver implements SaverInterface
         );
 
         return $paymentEntity;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     * @param \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay $paymentEntity
+     *
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay
+     */
+    protected function addAdditionalCustomerInformation(QuoteTransfer $quoteTransfer, SpyPaymentHeidelpay $paymentEntity): SpyPaymentHeidelpay
+    {
+        if ($quoteTransfer->getPayment()->getPaymentSelection() !== PaymentTransfer::HEIDELPAY_INVOICE_SECURED_B2C) {
+            return $paymentEntity;
+        }
+
+        $paymentEntity
+            ->setDateOfBirth(
+                $quoteTransfer->getPayment()->getHeidelpayInvoiceSecuredB2c()->getDateOfBirth()
+            )
+            ->setSalutation($this->getSalutation($quoteTransfer));
+
+        return $paymentEntity;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return string
+     */
+    protected function getSalutation(QuoteTransfer $quoteTransfer): string
+    {
+        $salutation = $quoteTransfer->getBillingAddress()->getSalutation();
+
+        return $salutation ? strtoupper($salutation) : '';
     }
 }

@@ -12,6 +12,7 @@ use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
@@ -103,4 +104,11 @@ interface HeidelpayStubInterface
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
     public function sendEasycreditInitializeRequest(QuoteTransfer $quoteTransfer): HeidelpayResponseTransfer;
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayNotificationTransfer $notificationTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer
+     */
+    public function processNotification(HeidelpayNotificationTransfer $notificationTransfer): HeidelpayNotificationTransfer;
 }

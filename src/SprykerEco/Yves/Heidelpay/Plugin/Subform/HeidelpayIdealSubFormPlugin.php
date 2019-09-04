@@ -19,7 +19,7 @@ class HeidelpayIdealSubFormPlugin extends AbstractPlugin implements SubFormPlugi
 {
     /**
      * {@inheritdoc}
-     * - Creates sub form for Ideal payment method.
+     *  - Creates sub form for Ideal payment method.
      *
      * @api
      *
@@ -32,7 +32,7 @@ class HeidelpayIdealSubFormPlugin extends AbstractPlugin implements SubFormPlugi
 
     /**
      * {@inheritdoc}
-     * - Creates data provider for Ideal payment method.
+     *  - Creates data provider for Ideal payment method.
      *
      * @api
      *

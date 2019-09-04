@@ -8,8 +8,13 @@
 namespace SprykerEco\Zed\Heidelpay\Persistence;
 
 use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
+use Generated\Shared\Transfer\HeidelpayNotificationCollectionTransfer;
+use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
+use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayDirectDebitRegistrationQuery;
+use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayNotificationQuery;
+use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayQuery;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 use Spryker\Zed\PropelOrm\Business\Runtime\ActiveQuery\Criteria;
@@ -20,6 +25,72 @@ use SprykerEco\Zed\Heidelpay\Persistence\Propel\Mapper\HeidelpayPersistenceMappe
  */
 class HeidelpayRepository extends AbstractRepository implements HeidelpayRepositoryInterface
 {
+    /**
+     * @param int $idSalesOrder
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentTransfer|null
+     */
+    public function findHeidelpayPaymentByIdSalesOrder(int $idSalesOrder): ?HeidelpayPaymentTransfer
+    {
+        $paymentHeidelpayEntity = $this->getPaymentHeidelpayQuery()
+            ->filterByFkSalesOrder($idSalesOrder)
+            ->findOne();
+
+        if ($paymentHeidelpayEntity === null) {
+            return null;
+        }
+
+        return $this->getMapper()
+            ->mapEntityToHeidelpayPaymentTransfer(
+                $paymentHeidelpayEntity,
+                new HeidelpayPaymentTransfer()
+            );
+    }
+
+    /**
+     * @param string $uniqueId
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer|null
+     */
+    public function findPaymentHeidelpayNotificationByUniqueId(string $uniqueId): ?HeidelpayNotificationTransfer
+    {
+        $paymentHeidelpayNotification = $this->getPaymentHeidelpayNotificationQuery()
+            ->filterByUniqueId($uniqueId)
+            ->findOne();
+
+        if ($paymentHeidelpayNotification === null) {
+            return null;
+        }
+
+        return $this->getMapper()
+            ->mapEntityToHeidelpayNotificationTransfer(
+                $paymentHeidelpayNotification,
+                new HeidelpayNotificationTransfer()
+            );
+    }
+
+    /**
+     * @param string $transactionId
+     * @param string $paymentCode
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayNotificationCollectionTransfer
+     */
+    public function getPaymentHeidelpayNotificationCollectionByTransactionIdAndPaymentCode(
+        string $transactionId,
+        string $paymentCode
+    ): HeidelpayNotificationCollectionTransfer {
+        $paymentHeidelpayNotification = $this->getPaymentHeidelpayNotificationQuery()
+            ->filterByTransactionId($transactionId)
+            ->filterByPaymentCode($paymentCode)
+            ->find();
+
+        return $this->getMapper()
+            ->mapNotificationEntitiesToHeidelpayNotificationCollection(
+                $paymentHeidelpayNotification,
+                new HeidelpayNotificationCollectionTransfer()
+            );
+    }
+
     /**
      * @param string $registrationUniqueId
      *
@@ -125,6 +196,22 @@ class HeidelpayRepository extends AbstractRepository implements HeidelpayReposit
     protected function getMapper(): HeidelpayPersistenceMapper
     {
         return $this->getFactory()->createHeidelpayPersistenceMapper();
+    }
+
+    /**
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayQuery
+     */
+    protected function getPaymentHeidelpayQuery(): SpyPaymentHeidelpayQuery
+    {
+        return $this->getFactory()->createPaymentHeidelpayQuery();
+    }
+
+    /**
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayNotificationQuery
+     */
+    protected function getPaymentHeidelpayNotificationQuery(): SpyPaymentHeidelpayNotificationQuery
+    {
+        return $this->getFactory()->createPaymentHeidelpayNotificationQuery();
     }
 
     /**

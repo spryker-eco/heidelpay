@@ -19,7 +19,7 @@ class HeidelpaySofortSubFormPlugin extends AbstractPlugin implements SubFormPlug
 {
     /**
      * {@inheritdoc}
-     * - Creates sub form for Sofort payment method.
+     *  - Creates sub form for Sofort payment method.
      *
      * @api
      *
@@ -32,7 +32,7 @@ class HeidelpaySofortSubFormPlugin extends AbstractPlugin implements SubFormPlug
 
     /**
      * {@inheritdoc}
-     * - Creates data provider for Sofort payment method.
+     *  - Creates data provider for Sofort payment method.
      *
      * @api
      *

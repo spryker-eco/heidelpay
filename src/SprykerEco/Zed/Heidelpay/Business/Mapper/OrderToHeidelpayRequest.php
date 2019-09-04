@@ -11,9 +11,11 @@ use DateTime;
 use Generated\Shared\Transfer\AddressTransfer;
 use Generated\Shared\Transfer\HeidelpayCustomerAddressTransfer;
 use Generated\Shared\Transfer\HeidelpayCustomerPurchaseTransfer;
+use Generated\Shared\Transfer\HeidelpayInvoiceSecuredB2cTransfer;
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRiskInformationTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
+use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToMoneyFacadeInterface;
 
 class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
@@ -43,6 +45,7 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
         $heidelpayRequestTransfer = $this->mapOrderInformation($orderTransfer, $heidelpayRequestTransfer);
         $heidelpayRequestTransfer = $this->mapOrderPayment($orderTransfer, $heidelpayRequestTransfer);
         $heidelpayRequestTransfer = $this->mapCustomerInformation($orderTransfer, $heidelpayRequestTransfer);
+        $heidelpayRequestTransfer = $this->addAdditionalCustomerInformation($orderTransfer, $heidelpayRequestTransfer);
 
         return $heidelpayRequestTransfer;
     }
@@ -154,6 +157,30 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
         );
 
         return $heidelpayRequestTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $requestTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
+     */
+    protected function addAdditionalCustomerInformation(
+        OrderTransfer $orderTransfer,
+        HeidelpayRequestTransfer $requestTransfer
+    ): HeidelpayRequestTransfer {
+        if ($orderTransfer->getHeidelpayPayment()->getPaymentMethod() !== HeidelpayConfig::PAYMENT_METHOD_INVOICE_SECURED_B2C) {
+            return $requestTransfer;
+        }
+
+        $requestTransfer
+            ->setInvoiceSecuredB2c(
+                (new HeidelpayInvoiceSecuredB2cTransfer())
+                    ->setSalutation($orderTransfer->getHeidelpayPayment()->getSalutation())
+                    ->setDateOfBirth($orderTransfer->getHeidelpayPayment()->getDateOfBirth())
+            );
+
+        return $requestTransfer;
     }
 
     /**

@@ -12,20 +12,68 @@ use SprykerEco\Zed\Heidelpay\Communication\Oms\Command\DebitOnRegistrationOmsCom
 use SprykerEco\Zed\Heidelpay\Communication\Oms\Command\HeidelpayOmsCommandByOrderInterface;
 use SprykerEco\Zed\Heidelpay\Communication\Oms\Command\RefundOmsCommand;
 use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\HeidelpayOmsConditionInterface;
+use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsAuthorizationFailedOmsCondition;
+use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsAuthorizationFinishedOmsCondition;
 use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsDebitOnRegistrationCompletedOmsCondition;
+use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsFinalizingFailedOmsCondition;
+use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsFinalizingFinishedOmsCondition;
+use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsOrderPaidOmsCondition;
 use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsRefundedOmsCondition;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesFacadeInterface;
 use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
 
 /**
  * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface getQueryContainer()
+ * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepositoryInterface getRepository()
+ * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayEntityManagerInterface getEntityManager()
  * @method \SprykerEco\Zed\Heidelpay\HeidelpayConfig getConfig()
  * @method \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacadeInterface getFacade()
- * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayEntityManagerInterface getEntityManager()
- * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepositoryInterface getRepository()
  */
 class HeidelpayCommunicationFactory extends AbstractCommunicationFactory
 {
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\HeidelpayOmsConditionInterface
+     */
+    public function createIsAuthorizationFinishedOmsCondition(): HeidelpayOmsConditionInterface
+    {
+        return new IsAuthorizationFinishedOmsCondition($this->getRepository());
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\HeidelpayOmsConditionInterface
+     */
+    public function createIsAuthorizationFailedOmsCondition(): HeidelpayOmsConditionInterface
+    {
+        return new IsAuthorizationFailedOmsCondition($this->getRepository());
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\HeidelpayOmsConditionInterface
+     */
+    public function createIsFinalizingFinishedOmsCondition(): HeidelpayOmsConditionInterface
+    {
+        return new IsFinalizingFinishedOmsCondition($this->getRepository());
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\HeidelpayOmsConditionInterface
+     */
+    public function createIsFinalizingFailedOmsCondition(): HeidelpayOmsConditionInterface
+    {
+        return new IsFinalizingFailedOmsCondition($this->getRepository());
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\HeidelpayOmsConditionInterface
+     */
+    public function createIsOrderPaidOmsCondition(): HeidelpayOmsConditionInterface
+    {
+        return new IsOrderPaidOmsCondition(
+            $this->getRepository(),
+            $this->getSalesFacade()
+        );
+    }
+
     /**
      * @return \SprykerEco\Zed\Heidelpay\Communication\Oms\Command\HeidelpayOmsCommandByOrderInterface
      */

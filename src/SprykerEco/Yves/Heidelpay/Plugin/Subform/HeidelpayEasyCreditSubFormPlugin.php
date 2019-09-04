@@ -17,7 +17,7 @@ class HeidelpayEasyCreditSubFormPlugin extends AbstractPlugin implements SubForm
 {
     /**
      * {@inheritdoc}
-     * - Creates sub form for EasyCredit payment method.
+     *  - Creates sub form for EasyCredit payment method.
      *
      * @api
      *
@@ -30,7 +30,7 @@ class HeidelpayEasyCreditSubFormPlugin extends AbstractPlugin implements SubForm
 
     /**
      * {@inheritdoc}
-     * - Creates data provider for EasyCredit payment method.
+     *  - Creates data provider for EasyCredit payment method.
      *
      * @api
      *

@@ -11,6 +11,9 @@
         <property name="idBasket" type="string" />
         <property name="legalText" type="string" />
         <property name="externalRedirectUrl" type="string" />
+        <property name="dateOfBirth" type="string" />
+        <property name="salutation" type="string" />
+        <property name="connectorInvoiceAccountInfo" type="string" />
     </transfer>
 
     <transfer name="HeidelpayEasyCreditPayment">
@@ -116,6 +119,11 @@
         <property name="secret" type="string"/>
     </transfer>
 
+    <transfer name="HeidelpayInvoiceSecuredB2c">
+        <property name="salutation" type="string" />
+        <property name="dateOfBirth" type="string" />
+    </transfer>
+
     <transfer name="HeidelpayRequest">
         <property name="auth" type="HeidelpayAuthentication" />
         <property name="async" type="HeidelpayAsync" />
@@ -126,6 +134,7 @@
         <property name="idPaymentRegistration" type="string" />
         <property name="idBasket" type="string"/>
         <property name="paymentMethod" type="string" />
+        <property name="invoiceSecuredB2c" type="HeidelpayInvoiceSecuredB2c" />
     </transfer>
 
     <transfer name="HeidelpayBasketRequest">
@@ -200,6 +209,7 @@
         <property name="customerRedirectUrl" type="string"/>
         <property name="legalText" type="string"/>
         <property name="config" type="HeidelpayResponseConfig"/>
+        <property name="connectorInvoiceAccountInfo" type="string" />
     </transfer>
 
     <transfer name="HeidelpayRegistrationRequest">
@@ -224,6 +234,7 @@
     <transfer name="HeidelpayPaymentProcessingResponse">
         <property name="isError" type="bool"/>
         <property name="error" type="HeidelpayResponseError"/>
+        <property name="connectorInvoiceAccountInfo" type="string" />
     </transfer>
 
     <transfer name="Expense">
@@ -262,9 +273,10 @@
         <property name="heidelpaySofort" type="HeidelpayPayment"/>
         <property name="heidelpayIdeal" type="HeidelpayPayment"/>
         <property name="heidelpayEasyCredit" type="HeidelpayEasyCreditPayment"/>
-        <property name="HeidelpayPaypalAuthorize" type="HeidelpayPayment"/>
-        <property name="HeidelpayPaypalDebit" type="HeidelpayPayment"/>
-        <property name="HeidelpayCreditCardSecure" type="HeidelpayCreditCardPayment"/>
+        <property name="heidelpayPaypalAuthorize" type="HeidelpayPayment"/>
+        <property name="heidelpayPaypalDebit" type="HeidelpayPayment"/>
+        <property name="heidelpayCreditCardSecure" type="HeidelpayCreditCardPayment"/>
+        <property name="heidelpayInvoiceSecuredB2c" type="HeidelpayPayment"/>
         <property name="heidelpayDirectDebit" type="HeidelpayDirectDebitPayment"/>
         <property name="idBasket" type="string" />
     </transfer>
@@ -287,6 +299,36 @@
 
     <transfer name="HeidelpayAuthorizeTransactionLogRequest">
         <property name="orderReference" type="string"/>
+    </transfer>
+
+    <transfer name="HeidelpayNotification">
+        <property name="notificationBody" type="string" />
+        <property name="timestamp" type="string" />
+        <property name="retries" type="int" />
+        <property name="transactionSource" type="string" />
+        <property name="transactionChannel" type="string" />
+        <property name="transactionResponseType" type="string" />
+        <property name="transactionMode" type="string" />
+        <property name="transactionId" type="string" />
+        <property name="uniqueId" type="string" />
+        <property name="shortId" type="string" />
+        <property name="identificationSource" type="string" />
+        <property name="resultCode" type="string" />
+        <property name="resultTimestamp" type="string" />
+        <property name="result" type="string" />
+        <property name="resultStatus" type="string" />
+        <property name="resultReason" type="string" />
+        <property name="resultReturn" type="string" />
+        <property name="paymentCode" type="string" />
+        <property name="amount" type="int" />
+        <property name="currency" type="string" />
+        <property name="paymentDescriptor" type="string" />
+        <property name="account" type="string" />
+        <property name="customer" type="string" />
+    </transfer>
+
+    <transfer name="HeidelpayNotificationCollection">
+        <property name="notifications" type="HeidelpayNotification[]" singular="notification" />
     </transfer>
 
     <transfer name="HeidelpayTransactionLog">

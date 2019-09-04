@@ -8,7 +8,11 @@
 namespace SprykerEco\Zed\Heidelpay\Persistence;
 
 use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
+use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
+use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayDirectDebitRegistrationQuery;
+use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayNotificationQuery;
+use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
 use SprykerEco\Zed\Heidelpay\Persistence\Propel\Mapper\HeidelpayPersistenceMapper;
 
@@ -17,6 +21,53 @@ use SprykerEco\Zed\Heidelpay\Persistence\Propel\Mapper\HeidelpayPersistenceMappe
  */
 class HeidelpayEntityManager extends AbstractEntityManager implements HeidelpayEntityManagerInterface
 {
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayPaymentTransfer $heidelpayPaymentTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayPaymentTransfer
+     */
+    public function savePaymentHeidelpayEntity(HeidelpayPaymentTransfer $heidelpayPaymentTransfer): HeidelpayPaymentTransfer
+    {
+        $paymentHeidelpayEntity = $this->getPaymentHeidelpayQuery()
+            ->filterByFkSalesOrder($heidelpayPaymentTransfer->getFkSalesOrder())
+            ->findOneOrCreate();
+
+        $paymentHeidelpayEntity->fromArray(
+            $heidelpayPaymentTransfer->modifiedToArray()
+        );
+        $paymentHeidelpayEntity->save();
+
+        return $this->getMapper()
+            ->mapEntityToHeidelpayPaymentTransfer(
+                $paymentHeidelpayEntity,
+                $heidelpayPaymentTransfer
+            );
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayNotificationTransfer $heidelpayNotificationTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer
+     */
+    public function savePaymentHeidelpayNotificationEntity(
+        HeidelpayNotificationTransfer $heidelpayNotificationTransfer
+    ): HeidelpayNotificationTransfer {
+        $paymentHeidelpayNotificationEntity = $this->getPaymentHeidelpayNotificationQuery()
+            ->filterByUniqueId($heidelpayNotificationTransfer->getUniqueId())
+            ->findOneOrCreate();
+
+        $paymentHeidelpayNotificationEntity->fromArray(
+            $heidelpayNotificationTransfer->modifiedToArray()
+        );
+        $paymentHeidelpayNotificationEntity->save();
+
+        return $this->getMapper()
+            ->mapEntityToHeidelpayNotificationTransfer(
+                $paymentHeidelpayNotificationEntity,
+                $heidelpayNotificationTransfer
+            );
+    }
+
     /**
      * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
      *
@@ -52,6 +103,22 @@ class HeidelpayEntityManager extends AbstractEntityManager implements HeidelpayE
     protected function getMapper(): HeidelpayPersistenceMapper
     {
         return $this->getFactory()->createHeidelpayPersistenceMapper();
+    }
+
+    /**
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayQuery
+     */
+    protected function getPaymentHeidelpayQuery(): SpyPaymentHeidelpayQuery
+    {
+        return $this->getFactory()->createPaymentHeidelpayQuery();
+    }
+
+    /**
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayNotificationQuery
+     */
+    protected function getPaymentHeidelpayNotificationQuery(): SpyPaymentHeidelpayNotificationQuery
+    {
+        return $this->getFactory()->createPaymentHeidelpayNotificationQuery();
     }
 
     /**

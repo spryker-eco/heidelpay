@@ -126,6 +126,14 @@ interface HeidelpayConstants
 
     /**
      * Specification:
+     * - Transaction channel value for InvoiceSecuredB2c payment method.
+     *
+     * @api
+     */
+    public const CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_INVOICE_SECURED_B2C = 'HEIDELPAY:CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_INVOICE_SECURED_B2C';
+
+    /**
+     * Specification:
      * - Transaction channel value for DirectDebit payment method.
      *
      * @api

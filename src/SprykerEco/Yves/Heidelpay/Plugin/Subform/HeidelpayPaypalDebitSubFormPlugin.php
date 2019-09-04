@@ -19,7 +19,7 @@ class HeidelpayPaypalDebitSubFormPlugin extends AbstractPlugin implements SubFor
 {
     /**
      * {@inheritdoc}
-     * - Creates sub form for PaypalDebit payment method.
+     *  - Creates sub form for PaypalDebit payment method.
      *
      * @api
      *
@@ -32,7 +32,7 @@ class HeidelpayPaypalDebitSubFormPlugin extends AbstractPlugin implements SubFor
 
     /**
      * {@inheritdoc}
-     * - Creates data provider for PaypalDebit payment method.
+     *  - Creates data provider for PaypalDebit payment method.
      *
      * @api
      *

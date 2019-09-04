@@ -7,7 +7,9 @@
 
 namespace SprykerEco\Shared\Heidelpay;
 
-class HeidelpayConfig
+use Spryker\Shared\Kernel\AbstractBundleConfig;
+
+class HeidelpayConfig extends AbstractBundleConfig
 {
     public const PROVIDER_NAME = 'heidelpay';
 
@@ -17,6 +19,7 @@ class HeidelpayConfig
     public const PAYMENT_METHOD_PAYPAL_DEBIT = self::PROVIDER_NAME . 'PaypalDebit';
     public const PAYMENT_METHOD_IDEAL = self::PROVIDER_NAME . 'Ideal';
     public const PAYMENT_METHOD_EASY_CREDIT = self::PROVIDER_NAME . 'EasyCredit';
+    public const PAYMENT_METHOD_INVOICE_SECURED_B2C = self::PROVIDER_NAME . 'InvoiceSecuredB2c';
     public const PAYMENT_METHOD_DIRECT_DEBIT = self::PROVIDER_NAME . 'DirectDebit';
 
     public const PAYMENT_OPTION_NEW_REGISTRATION = 'new-registration';
@@ -41,4 +44,6 @@ class HeidelpayConfig
     public const REFUND_TRANSACTION_STATUS_OK = 'ACK';
     public const RESERVATION_TRANSACTION_STATUS_OK = 'ACK';
     public const FINALIZE_TRANSACTION_STATUS_OK = 'ACK';
+    public const NOTIFICATION_STATUS_OK = 'ACK';
+    public const NOTIFICATION_STATUS_FAILED = 'NOK';
 }

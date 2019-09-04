@@ -12,6 +12,7 @@ use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\DirectDebitPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\EasyCreditPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\IdealPaymentInterface;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\InvoiceSecuredB2cPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\PaypalPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\SofortPaymentInterface;
 
@@ -94,6 +95,11 @@ interface AdapterFactoryInterface
      * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface
      */
     public function createCreditCardPaymentMethodAdapter(): CreditCardPaymentInterface;
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\InvoiceSecuredB2cPaymentInterface
+     */
+    public function createInvoiceSecuredB2cPayment(): InvoiceSecuredB2cPaymentInterface;
 
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\DirectDebitPaymentInterface

@@ -13,6 +13,7 @@ use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer;
+use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationByIdAndQuoteRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
@@ -35,6 +36,7 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
     protected const ZED_SEND_EASYCREDIT_INITIALIZE_REQUEST = '/heidelpay/gateway/easycredit-initialize-payment';
     protected const ZED_GET_AUTHORIZE_ON_REGISTRATION_TRANSACTION_LOG = '/heidelpay/gateway/get-authorize-on-registration-transaction-log';
     protected const ZED_GET_PROCESS_EXTERNAL_EASY_CREDIT_PAYMENT_RESPONSE = '/heidelpay/gateway/process-external-easy-credit-payment-response';
+    protected const ZED_PROCESS_NOTIFICATION = '/heidelpay/gateway/process-notification';
 
     /**
      * @param string $orderReference
@@ -200,6 +202,22 @@ class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
         );
 
         return $heidelpayResponseTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayNotificationTransfer $notificationTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer
+     */
+    public function processNotification(HeidelpayNotificationTransfer $notificationTransfer): HeidelpayNotificationTransfer
+    {
+        /** @var \Generated\Shared\Transfer\HeidelpayNotificationTransfer $notificationTransfer */
+        $notificationTransfer = $this->zedStub->call(
+            static::ZED_PROCESS_NOTIFICATION,
+            $notificationTransfer
+        );
+
+        return $notificationTransfer;
     }
 
     /**

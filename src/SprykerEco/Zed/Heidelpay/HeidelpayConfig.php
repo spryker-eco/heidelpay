@@ -22,6 +22,7 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
         SharedHeidelpayConfig::PAYMENT_METHOD_PAYPAL_DEBIT => HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_PAYPAL,
         SharedHeidelpayConfig::PAYMENT_METHOD_PAYPAL_AUTHORIZE => HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_PAYPAL,
         SharedHeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT => HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_EASY_CREDIT,
+        SharedHeidelpayConfig::PAYMENT_METHOD_INVOICE_SECURED_B2C => HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_INVOICE_SECURED_B2C,
         SharedHeidelpayConfig::PAYMENT_METHOD_DIRECT_DEBIT => HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_DIRECT_DEBIT,
     ];
 

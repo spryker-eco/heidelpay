@@ -9,7 +9,6 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\Mock;
 
 use SprykerEco\Zed\Heidelpay\Business\Adapter\AdapterFactoryInterface;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
-use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
 
 class HeidelpayBusinessFactoryMock extends HeidelpayBusinessFactory
 {

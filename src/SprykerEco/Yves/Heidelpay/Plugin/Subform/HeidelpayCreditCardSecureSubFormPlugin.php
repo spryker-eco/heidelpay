@@ -19,7 +19,7 @@ class HeidelpayCreditCardSecureSubFormPlugin extends AbstractPlugin implements S
 {
     /**
      * {@inheritdoc}
-     * - Creates sub form for CreditCardSecure payment method.
+     *  - Creates sub form for CreditCardSecured payment method.
      *
      * @api
      *
@@ -32,7 +32,7 @@ class HeidelpayCreditCardSecureSubFormPlugin extends AbstractPlugin implements S
 
     /**
      * {@inheritdoc}
-     * - Creates data provider for CreditCardSecure payment method.
+     *  - Creates data provider for CreditCardSecured payment method.
      *
      * @api
      *
