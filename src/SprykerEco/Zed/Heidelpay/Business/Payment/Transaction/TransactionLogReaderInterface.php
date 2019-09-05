@@ -37,6 +37,13 @@ interface TransactionLogReaderInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
      */
+    public function findDebitOnRegistrationTransactionLogByIdSalesOrder(int $idSalesOrder): ?HeidelpayTransactionLogTransfer;
+
+    /**
+     * @param int $idSalesOrder
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     */
     public function findOrderAuthorizeOnRegistrationTransactionLogByIdSalesOrder($idSalesOrder);
 
     /**

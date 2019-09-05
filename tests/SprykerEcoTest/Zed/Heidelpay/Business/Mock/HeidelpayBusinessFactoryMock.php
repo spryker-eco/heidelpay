@@ -9,7 +9,6 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\Mock;
 
 use SprykerEco\Zed\Heidelpay\Business\Adapter\AdapterFactoryInterface;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
-use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
 
 class HeidelpayBusinessFactoryMock extends HeidelpayBusinessFactory
 {
@@ -27,13 +26,5 @@ class HeidelpayBusinessFactoryMock extends HeidelpayBusinessFactory
     public function createUnsuccessfulResponseAdapterFactory(): AdapterFactoryInterface
     {
         return new UnsuccessfulResponseAdapterFactory();
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface
-     */
-    public function getHeidelpayQueryContainer(): HeidelpayQueryContainerInterface
-    {
-        return $this->getQueryContainer();
     }
 }

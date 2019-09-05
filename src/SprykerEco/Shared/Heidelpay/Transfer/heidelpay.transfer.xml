@@ -34,6 +34,12 @@
         <property name="paymentOptions" type="HeidelpayCreditCardPaymentOptions" />
     </transfer>
 
+    <transfer name="HeidelpayDirectDebitPayment">
+        <property name="selectedPaymentOption" type="string" />
+        <property name="selectedRegistration" type="HeidelpayDirectDebitRegistration" />
+        <property name="paymentOptions" type="HeidelpayDirectDebitPaymentOptions" />
+    </transfer>
+
     <transfer name="HeidelpayCreditCardRegistration">
         <property name="idCreditCardRegistration" type="int" />
         <property name="creditCardInfo" type="HeidelpayCreditCardInfo" />
@@ -41,10 +47,27 @@
         <property name="idCustomerAddress" type="int" />
     </transfer>
 
+    <transfer name="HeidelpayDirectDebitRegistration">
+        <property name="idDirectDebitRegistration" type="int" />
+        <property name="idCustomerAddress" type="int" />
+        <property name="isError" type="bool" />
+        <property name="error" type="HeidelpayResponseError" />
+        <property name="transactionId" type="string" />
+        <property name="registrationUniqueId" type="string" />
+        <property name="accountInfo" type="HeidelpayDirectDebitAccount" />
+        <property name="idCustomerAddress" type="int" />
+    </transfer>
+
     <transfer name="HeidelpayCreditCardPaymentOptions">
         <property name="optionsList" type="HeidelpayPaymentOption[]" />
         <property name="paymentFrameUrl" type="string"/>
         <property name="lastSuccessfulRegistration" type="HeidelpayCreditCardRegistration"/>
+    </transfer>
+
+    <transfer name="HeidelpayDirectDebitPaymentOptions">
+        <property name="optionsList" type="HeidelpayPaymentOption[]" singular="option" />
+        <property name="paymentFormActionUrl" type="string"/>
+        <property name="lastSuccessfulRegistration" type="HeidelpayDirectDebitRegistration"/>
     </transfer>
 
     <transfer name="HeidelpayPaymentOption">
@@ -95,6 +118,7 @@
         <property name="currencyCode" type="string"/>
         <property name="secret" type="string"/>
     </transfer>
+
     <transfer name="HeidelpayInvoiceSecuredB2c">
         <property name="salutation" type="string" />
         <property name="dateOfBirth" type="string" />
@@ -142,6 +166,16 @@
         <property name="accountBrand" type="string" />
         <property name="accountHolder" type="string" />
         <property name="accountExpiryMonth" type="string" />
+    </transfer>
+
+    <transfer name="HeidelpayDirectDebitAccount">
+        <property name="accountHolder" type="string" />
+        <property name="accountBankName" type="string" />
+        <property name="accountNumber" type="string" />
+        <property name="accountCountry" type="string" />
+        <property name="accountBic" type="string" />
+        <property name="accountIban" type="string" />
+        <property name="accountIdentification" type="string" />
     </transfer>
 
     <transfer name="HeidelpayResponseError">
@@ -243,6 +277,7 @@
         <property name="heidelpayPaypalDebit" type="HeidelpayPayment"/>
         <property name="heidelpayCreditCardSecure" type="HeidelpayCreditCardPayment"/>
         <property name="heidelpayInvoiceSecuredB2c" type="HeidelpayPayment"/>
+        <property name="heidelpayDirectDebit" type="HeidelpayDirectDebitPayment"/>
         <property name="idBasket" type="string" />
     </transfer>
 
@@ -294,6 +329,17 @@
 
     <transfer name="HeidelpayNotificationCollection">
         <property name="notifications" type="HeidelpayNotification[]" singular="notification" />
+    </transfer>
+
+    <transfer name="HeidelpayTransactionLog">
+        <property name="idTransactionUnique" type="string" />
+        <property name="idSalesOrder" type="int" />
+        <property name="processingCode" type="string" />
+        <property name="redirectUrl" type="string" />
+        <property name="requestPayload" type="string" />
+        <property name="responsePayload" type="string" />
+        <property name="responseCode" type="string" />
+        <property name="transactionType" type="string" />
     </transfer>
 
 </transfers>

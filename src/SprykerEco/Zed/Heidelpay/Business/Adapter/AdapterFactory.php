@@ -23,6 +23,8 @@ use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponsePayloadToApiRespons
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Mapper\ResponsePayloadToApiResponseInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPayment;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\DirectDebitPayment;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\DirectDebitPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\EasyCreditPayment;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\EasyCreditPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\IdealPayment;
@@ -88,6 +90,16 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     }
 
     /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithRefundInterface[]
+     */
+    public function getRefundPaymentMethodAdapterCollection(): array
+    {
+        return [
+            HeidelpayConfig::PAYMENT_METHOD_DIRECT_DEBIT => $this->createDirectDebitPaymentMethod(),
+        ];
+    }
+
+    /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithFinalizeInterface[]
      */
     public function getFinalizePaymentMethodAdapterCollection(): array
@@ -121,6 +133,16 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     }
 
     /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitOnRegistrationInterface[]
+     */
+    public function getDebitOnRegistrationPaymentMethodAdapterCollection(): array
+    {
+        return [
+            HeidelpayConfig::PAYMENT_METHOD_DIRECT_DEBIT => $this->createDirectDebitPaymentMethod(),
+        ];
+    }
+
+    /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface[]
      */
     public function getExternalResponsePaymentMethodAdapterCollection(): array
@@ -133,6 +155,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
             HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT => $this->createEasyCreditPaymentMethodAdapter(),
             HeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE => $this->createCreditCardPaymentMethodAdapter(),
             HeidelpayConfig::PAYMENT_METHOD_INVOICE_SECURED_B2C => $this->createInvoiceSecuredB2cPayment(),
+            HeidelpayConfig::PAYMENT_METHOD_DIRECT_DEBIT => $this->createDirectDebitPaymentMethod(),
         ];
     }
 
@@ -214,6 +237,18 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     public function createInvoiceSecuredB2cPayment(): InvoiceSecuredB2cPaymentInterface
     {
         return new InvoiceSecuredB2cPayment(
+            $this->createRequestToHeidelpayMapper(),
+            $this->createResponseFromHeidelpayMapper(),
+            $this->getHeidelpayConfig()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\DirectDebitPaymentInterface
+     */
+    public function createDirectDebitPaymentMethod(): DirectDebitPaymentInterface
+    {
+        return new DirectDebitPayment(
             $this->createRequestToHeidelpayMapper(),
             $this->createResponseFromHeidelpayMapper(),
             $this->getHeidelpayConfig()

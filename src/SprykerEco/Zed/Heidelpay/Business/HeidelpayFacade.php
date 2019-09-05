@@ -11,6 +11,8 @@ use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayAuthorizeTransactionLogRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
+use Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer;
+use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
@@ -155,6 +157,22 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @return void
      */
+    public function executeDebitOnRegistration(OrderTransfer $orderTransfer): void
+    {
+        $this->getFactory()
+            ->createDebitOnRegistrationTransactionHandler()
+            ->debitOnRegistration($orderTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return void
+     */
     public function finalizePayment(OrderTransfer $orderTransfer): void
     {
         $this->getFactory()
@@ -176,6 +194,22 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
         $this->getFactory()
             ->createReservationTransactionHandler()
             ->executeReservation($orderTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return void
+     */
+    public function executeRefund(OrderTransfer $orderTransfer): void
+    {
+        $this->getFactory()
+            ->createRefundTransactionHandler()
+            ->executeRefund($orderTransfer);
     }
 
     /**
@@ -264,6 +298,22 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @api
      *
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer
+     */
+    public function getDirectDebitPaymentOptions(QuoteTransfer $quoteTransfer): HeidelpayDirectDebitPaymentOptionsTransfer
+    {
+        return $this->getFactory()
+            ->createDirectDebitPaymentOptionsCalculator()
+            ->getDirectDebitPaymentOptions($quoteTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
      * @param \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationSaveResponseTransfer
@@ -273,6 +323,23 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
         return $this->getFactory()
             ->createCreditCardRegistrationSaver()
             ->saveCreditCardRegistration($registrationRequestTransfer);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
+     */
+    public function saveDirectDebitRegistration(
+        HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer {
+        return $this->getFactory()
+            ->createDirectDebitRegistrationWriter()
+            ->createDirectDebitRegistration($directDebitRegistrationTransfer);
     }
 
     /**
@@ -293,6 +360,23 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
                 $findRegistrationRequestTransfer->getIdRegistration(),
                 $findRegistrationRequestTransfer->getQuote()
             );
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
+     */
+    public function retrieveDirectDebitRegistration(
+        HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer {
+        return $this->getFactory()
+            ->createDirectDebitRegistrationReader()
+            ->retrieveDirectDebitRegistration($directDebitRegistrationTransfer);
     }
 
     /**

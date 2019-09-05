@@ -7,8 +7,10 @@
 
 namespace SprykerEco\Zed\Heidelpay\Persistence;
 
+use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
+use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayDirectDebitRegistrationQuery;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayNotificationQuery;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
@@ -67,6 +69,35 @@ class HeidelpayEntityManager extends AbstractEntityManager implements HeidelpayE
     }
 
     /**
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
+     */
+    public function savePaymentHeidelpayDirectDebitRegistrationEntity(
+        HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer {
+        $paymentHeidelpayDirectDebitRegistrationEntity = $this->getPaymentHeidelpayDirectDebitRegistrationQuery()
+            ->filterByRegistrationUniqueId($directDebitRegistrationTransfer->getRegistrationUniqueId())
+            ->findOneOrCreate();
+
+        $paymentHeidelpayDirectDebitRegistrationEntity->fromArray(
+            $directDebitRegistrationTransfer->getAccountInfo()->modifiedToArray()
+        );
+        $paymentHeidelpayDirectDebitRegistrationEntity
+            ->setFkCustomerAddress($directDebitRegistrationTransfer->getIdCustomerAddress())
+            ->setRegistrationUniqueId($directDebitRegistrationTransfer->getRegistrationUniqueId())
+            ->setTransactionId($directDebitRegistrationTransfer->getTransactionId());
+
+        $paymentHeidelpayDirectDebitRegistrationEntity->save();
+
+        return $this->getMapper()
+            ->mapEntityToHeidelpayDirectDebitRegistrationTransfer(
+                $paymentHeidelpayDirectDebitRegistrationEntity,
+                $directDebitRegistrationTransfer
+            );
+    }
+
+    /**
      * @return \SprykerEco\Zed\Heidelpay\Persistence\Propel\Mapper\HeidelpayPersistenceMapper
      */
     protected function getMapper(): HeidelpayPersistenceMapper
@@ -88,5 +119,13 @@ class HeidelpayEntityManager extends AbstractEntityManager implements HeidelpayE
     protected function getPaymentHeidelpayNotificationQuery(): SpyPaymentHeidelpayNotificationQuery
     {
         return $this->getFactory()->createPaymentHeidelpayNotificationQuery();
+    }
+
+    /**
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayDirectDebitRegistrationQuery
+     */
+    protected function getPaymentHeidelpayDirectDebitRegistrationQuery(): SpyPaymentHeidelpayDirectDebitRegistrationQuery
+    {
+        return $this->getFactory()->createPaymentHeidelpayDirectDebitRegistrationQuery();
     }
 }

@@ -22,6 +22,9 @@ use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
 class InitializePlugin extends AbstractPlugin implements CommandByOrderInterface
 {
     /**
+     * {@inheritdoc}
+     * - Execute Initialize API transaction.
+     *
      * @api
      *
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems

@@ -11,6 +11,8 @@ use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayAuthorizeTransactionLogRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
+use Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer;
+use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
@@ -96,6 +98,19 @@ interface HeidelpayFacadeInterface
 
     /**
      * Specification:
+     *  - Builds refund request based on `OrderTransfer`.
+     *  - Executes refund transaction.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return void
+     */
+    public function executeRefund(OrderTransfer $orderTransfer): void;
+
+    /**
+     * Specification:
      *  - Prepares the request for ExternalResponseTransaction
      *  - Executes ExternalResponseTransaction and returns the results
      *
@@ -144,6 +159,19 @@ interface HeidelpayFacadeInterface
      * @return void
      */
     public function debitPayment(OrderTransfer $orderTransfer): void;
+
+    /**
+     * Specification:
+     * - Sends payment debit on registration request to Heidelpay gateway.
+     * - Saves the transaction result in DB for future recognition.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return void
+     */
+    public function executeDebitOnRegistration(OrderTransfer $orderTransfer): void;
 
     /**
      * Specification:
@@ -209,6 +237,18 @@ interface HeidelpayFacadeInterface
 
     /**
      * Specification:
+     * - Calculates available payment options for DirectDebit payment method based on a given quote object.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer
+     */
+    public function getDirectDebitPaymentOptions(QuoteTransfer $quoteTransfer): HeidelpayDirectDebitPaymentOptionsTransfer;
+
+    /**
+     * Specification:
      *  - Builds registration entity from $registrationRequestTransfer and save it.
      *
      * @api
@@ -221,6 +261,20 @@ interface HeidelpayFacadeInterface
 
     /**
      * Specification:
+     *  - Creates DirectDebit registration based on registration response and saves it into DB.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
+     */
+    public function saveDirectDebitRegistration(
+        HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer;
+
+    /**
+     * Specification:
      *  - Fetches credit cart registration transfer by id registration and quote hash.
      *
      * @api
@@ -230,6 +284,20 @@ interface HeidelpayFacadeInterface
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
      */
     public function findCreditCardRegistrationByIdAndQuote(HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer): HeidelpayCreditCardRegistrationTransfer;
+
+    /**
+     * Specification:
+     *  - Fetches DirectDebit registration transfer by id registration and quote hash.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
+     */
+    public function retrieveDirectDebitRegistration(
+        HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer;
 
     /**
      * Specification:

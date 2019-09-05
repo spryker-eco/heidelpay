@@ -55,8 +55,6 @@ class HeidelpayEasycreditInitializeStep extends AbstractBaseStep
     }
 
     /**
-     * Empty quote transfer and mark logged in customer as "dirty" to force update it in the next request.
-     *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *

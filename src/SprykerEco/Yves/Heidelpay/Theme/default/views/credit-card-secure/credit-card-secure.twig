@@ -23,13 +23,25 @@
                             }
                         }) }}
                         <div class="js-heidelpay-method-{{ paymentOption.vars.value }}">
-                            {% set registrationMoleculeName = paymentOption.vars.value == 'existing-registration' ? 'existing-registration' : 'new-registration' %}
-                            {% include molecule(registrationMoleculeName, 'Heidelpay') with {
-                                data: {
-                                    paymentOption: paymentOption,
-                                    paymentMethod: data.form.vars.value.payment.heidelpayCreditCardSecure
-                                }
-                            } only %}
+                            {% if paymentOption.vars.value == 'existing-registration' %}
+                                {% include molecule('existing-registration', 'Heidelpay') with {
+                                    data: {
+                                        paymentOption: paymentOption,
+                                        paymentMethod: data.form.vars.value.payment.heidelpayCreditCardSecure,
+                                    },
+                                } only %}
+                            {% else %}
+                                {% include molecule('new-registration', 'Heidelpay') with {
+                                    data: {
+                                        paymentOption: paymentOption,
+                                        paymentMethod: data.form.vars.value.payment.heidelpayCreditCardSecure,
+                                    },
+                                    attributes: {
+                                        'payment-form-selector': '#payment-form',
+                                        'payment-toggler-selector': 'input[target-class-name*="js-payment-method"]',
+                                    },
+                                } only %}
+                            {% endif %}
                         </div>
                     </li>
                 {% endfor %}

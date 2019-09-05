@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Zed\Heidelpay\Persistence;
 
+use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
 
@@ -27,4 +28,13 @@ interface HeidelpayEntityManagerInterface
     public function savePaymentHeidelpayNotificationEntity(
         HeidelpayNotificationTransfer $heidelpayNotificationTransfer
     ): HeidelpayNotificationTransfer;
+
+    /**
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
+     */
+    public function savePaymentHeidelpayDirectDebitRegistrationEntity(
+        HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer;
 }

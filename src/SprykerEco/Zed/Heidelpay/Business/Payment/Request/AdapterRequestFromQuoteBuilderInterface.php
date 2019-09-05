@@ -24,5 +24,12 @@ interface AdapterRequestFromQuoteBuilderInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
+    public function buildDirectDebitRegistrationRequest(QuoteTransfer $quoteTransfer): HeidelpayRequestTransfer;
+
+    /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
+     */
     public function buildEasyCreditRequest(QuoteTransfer $quoteTransfer): HeidelpayRequestTransfer;
 }

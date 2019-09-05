@@ -15,12 +15,14 @@ use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInte
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
 use SprykerEco\Yves\Heidelpay\Form\CreditCardSecureSubForm;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\CreditCardSecureDataProvider;
+use SprykerEco\Yves\Heidelpay\Form\DataProvider\DirectDebitDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\EasyCreditDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\IdealDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\InvoiceSecuredB2cDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\PaypalAuthorizeDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\PaypalDebitDataProvider;
 use SprykerEco\Yves\Heidelpay\Form\DataProvider\SofortDataProvider;
+use SprykerEco\Yves\Heidelpay\Form\DirectDebitSubForm;
 use SprykerEco\Yves\Heidelpay\Form\EasyCreditSubForm;
 use SprykerEco\Yves\Heidelpay\Form\IdealSubForm;
 use SprykerEco\Yves\Heidelpay\Form\InvoiceSecuredB2cSubForm;
@@ -28,6 +30,7 @@ use SprykerEco\Yves\Heidelpay\Form\PaypalAuthorizeSubForm;
 use SprykerEco\Yves\Heidelpay\Form\PaypalDebitSubForm;
 use SprykerEco\Yves\Heidelpay\Form\SofortSubForm;
 use SprykerEco\Yves\Heidelpay\Handler\HeidelpayCreditCardHandler;
+use SprykerEco\Yves\Heidelpay\Handler\HeidelpayDirectDebitHandler;
 use SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandler;
 use SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface;
 use SprykerEco\Yves\Heidelpay\Handler\PaymentFailureHandler;
@@ -42,6 +45,8 @@ use SprykerEco\Yves\Heidelpay\Mapper\EasyCreditResponseToGetParametersMapper;
 use SprykerEco\Yves\Heidelpay\Mapper\EasyCreditResponseToGetParametersMapperInterface;
 use SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeForm;
 use SprykerEco\Yves\Heidelpay\Mapper\HeidelpayResponseToIdealAuthorizeFormInterface;
+use SprykerEco\Yves\Heidelpay\Processor\HeidelpayDirectDebitRegistrationProcessor;
+use SprykerEco\Yves\Heidelpay\Processor\HeidelpayDirectDebitRegistrationProcessorInterface;
 use SprykerEco\Yves\Heidelpay\Processor\HeidelpayPaymentResponseProcessor;
 use SprykerEco\Yves\Heidelpay\Processor\HeidelpayPaymentResponseProcessorInterface;
 use SprykerEco\Yves\Heidelpay\Processor\Notification\HeidelpayNotificationProcessor;
@@ -69,6 +74,17 @@ class HeidelpayFactory extends AbstractFactory
     public function createHeidelpayCreditCardHandler(): HeidelpayHandlerInterface
     {
         return new HeidelpayCreditCardHandler(
+            $this->getCalculationClient(),
+            $this->getQuoteClient()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Yves\Heidelpay\Handler\HeidelpayHandlerInterface
+     */
+    public function createHeidelpayDirectDebitHandler(): HeidelpayHandlerInterface
+    {
+        return new HeidelpayDirectDebitHandler(
             $this->getCalculationClient(),
             $this->getQuoteClient()
         );
@@ -107,6 +123,14 @@ class HeidelpayFactory extends AbstractFactory
     public function createCreditCardSecureForm(): SubFormInterface
     {
         return new CreditCardSecureSubForm();
+    }
+
+    /**
+     * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
+     */
+    public function createDirectDebitSubForm(): SubFormInterface
+    {
+        return new DirectDebitSubForm();
     }
 
     /**
@@ -162,9 +186,15 @@ class HeidelpayFactory extends AbstractFactory
      */
     public function createCreditCardSecureFormDataProvider(): StepEngineFormDataProviderInterface
     {
-        return new CreditCardSecureDataProvider(
-            $this->createCreditCardPaymentOptionsToQuoteHydrator()
-        );
+        return new CreditCardSecureDataProvider($this->createCreditCardPaymentOptionsToQuoteHydrator());
+    }
+
+    /**
+     * @return \Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface
+     */
+    public function createDirectDebitDataProvider(): StepEngineFormDataProviderInterface
+    {
+        return new DirectDebitDataProvider();
     }
 
     /**
@@ -239,6 +269,18 @@ class HeidelpayFactory extends AbstractFactory
     public function createCreditCardPaymentOptionsToQuoteHydrator(): CreditCardPaymentOptionsToQuoteInterface
     {
         return new CreditCardPaymentOptionsToQuote($this->getClient());
+    }
+
+    /**
+     * @return \SprykerEco\Yves\Heidelpay\Processor\HeidelpayDirectDebitRegistrationProcessorInterface
+     */
+    public function createHeidelpayDirectDebitRegistrationProcessor(): HeidelpayDirectDebitRegistrationProcessorInterface
+    {
+        return new HeidelpayDirectDebitRegistrationProcessor(
+            $this->getClient(),
+            $this->getCalculationClient(),
+            $this->getQuoteClient()
+        );
     }
 
     /**

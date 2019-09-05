@@ -8,7 +8,6 @@
 namespace SprykerEco\Yves\Heidelpay\Handler;
 
 use Generated\Shared\Transfer\QuoteTransfer;
-use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientInterface;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
@@ -46,7 +45,7 @@ class HeidelpayCreditCardHandler extends HeidelpayHandler
     {
         $quoteTransfer = parent::addPaymentToQuote($quoteTransfer);
 
-        $this->addCurrentRegistrationToQuote($quoteTransfer);
+        $quoteTransfer = $this->addCurrentRegistrationToQuote($quoteTransfer);
         $quoteTransfer = $this->calculationClient->recalculate($quoteTransfer);
         $this->quoteClient->setQuote($quoteTransfer);
 
@@ -56,17 +55,22 @@ class HeidelpayCreditCardHandler extends HeidelpayHandler
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return void
+     * @return \Generated\Shared\Transfer\QuoteTransfer
      */
-    protected function addCurrentRegistrationToQuote(AbstractTransfer $quoteTransfer): void
+    protected function addCurrentRegistrationToQuote(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         $creditCardPayment = $quoteTransfer->getPayment()->getHeidelpayCreditCardSecure();
-        $paymentOption = $creditCardPayment->getSelectedPaymentOption();
 
-        if ($paymentOption === HeidelpayConfig::PAYMENT_OPTION_EXISTING_REGISTRATION) {
-            $creditCardPayment->setSelectedRegistration(
-                $creditCardPayment->getPaymentOptions()->getLastSuccessfulRegistration()
-            );
+        if ($creditCardPayment->getSelectedPaymentOption() !== HeidelpayConfig::PAYMENT_OPTION_EXISTING_REGISTRATION) {
+            return $quoteTransfer;
         }
+
+        $creditCardPayment->setSelectedRegistration(
+            $creditCardPayment->getPaymentOptions()->getLastSuccessfulRegistration()
+        );
+
+        $quoteTransfer->getPayment()->setHeidelpayCreditCardSecure($creditCardPayment);
+
+        return $quoteTransfer;
     }
 }

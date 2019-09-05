@@ -41,6 +41,7 @@ class HeidelpayConfigurationBuilder
         $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_PAYMENT_STEP_PATH] = '/checkout/payment';
         $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_SUMMARY_STEP_URL] = $config[ApplicationConstants::HOST_YVES] . '/checkout/summary';
         $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_ASYNC_RESPONSE_URL] = $config[ApplicationConstants::HOST_YVES] . '/heidelpay/cc-register-response';
+        $config[HeidelpayConstants::DIRECT_DEBIT_REGISTRATION_ASYNC_RESPONSE_URL] = $config[ApplicationConstants::HOST_YVES] . '/heidelpay/dd-register-response';
         $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_REGISTRATION_SUCCESS_URL] = $config[ApplicationConstants::HOST_YVES] . '/heidelpay/cc-register-success?id_registration=%s';
 
         // Merchant config values, got from Heidelpay
@@ -52,6 +53,7 @@ class HeidelpayConfigurationBuilder
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_IDEAL] = '31HA07BC8142C5A171744B56E61281E5';
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_SOFORT] = '31HA07BC8142C5A171749CDAA43365D2';
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_EASY_CREDIT] = '31HA07BC810DCA126FA83FA533886979';
+        $config[HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_DIRECT_DEBIT] = '31HA07BC8142C5A171744F3D6D155865';
         // Shop configuration values
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_APPLICATION_SECRET] = 'debug_secret';
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_SANDBOX_REQUEST] = true;

@@ -15,23 +15,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 class HeidelpayEasycreditStep extends AbstractBaseStep implements StepWithExternalRedirectInterface
 {
-    public const HEIDELPAY_EASYCREDIT_STEP_ROUTE = 'HEIDELPAY_EASYCREDIT_STEP_ROUTE';
-
     /**
      * @var string
      */
     protected $externalRedirectUrl;
-
-    /**
-     * @param string $stepRoute
-     * @param string $escapeRoute
-     */
-    public function __construct(
-        string $stepRoute,
-        string $escapeRoute
-    ) {
-        parent::__construct($stepRoute, $escapeRoute);
-    }
 
     /**
      * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer $quoteTransfer
@@ -44,8 +31,6 @@ class HeidelpayEasycreditStep extends AbstractBaseStep implements StepWithExtern
     }
 
     /**
-     * Empty quote transfer and mark logged in customer as "dirty" to force update it in the next request.
-     *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *

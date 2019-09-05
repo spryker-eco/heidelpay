@@ -9,6 +9,7 @@ namespace SprykerEco\Zed\Heidelpay\Business\Adapter;
 
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Basket\BasketInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\DirectDebitPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\EasyCreditPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\IdealPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\InvoiceSecuredB2cPaymentInterface;
@@ -36,6 +37,11 @@ interface AdapterFactoryInterface
     public function getDebitPaymentMethodAdapterCollection(): array;
 
     /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitOnRegistrationInterface[]
+     */
+    public function getDebitOnRegistrationPaymentMethodAdapterCollection(): array;
+
+    /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithFinalizeInterface[]
      */
     public function getFinalizePaymentMethodAdapterCollection(): array;
@@ -44,6 +50,11 @@ interface AdapterFactoryInterface
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithReservationInterface[]
      */
     public function getReservationPaymentMethodAdapterCollection(): array;
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithRefundInterface[]
+     */
+    public function getRefundPaymentMethodAdapterCollection(): array;
 
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface[]
@@ -89,6 +100,11 @@ interface AdapterFactoryInterface
      * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\InvoiceSecuredB2cPaymentInterface
      */
     public function createInvoiceSecuredB2cPayment(): InvoiceSecuredB2cPaymentInterface;
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\DirectDebitPaymentInterface
+     */
+    public function createDirectDebitPaymentMethod(): DirectDebitPaymentInterface;
 
     /**
      * @return \SprykerEco\Zed\Heidelpay\Business\Adapter\TransactionParserInterface

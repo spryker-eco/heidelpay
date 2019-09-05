@@ -14,8 +14,12 @@ use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToLocaleClientInterfa
 use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
 use SprykerEco\Client\Heidelpay\Mapper\ApiResponseToRegistrationRequestTransfer;
 use SprykerEco\Client\Heidelpay\Mapper\ApiResponseToRegistrationResponseTransferInterface;
+use SprykerEco\Client\Heidelpay\Mapper\DirectDebitRegistrationResponseMapper;
+use SprykerEco\Client\Heidelpay\Mapper\DirectDebitRegistrationResponseMapperInterface;
 use SprykerEco\Client\Heidelpay\Sdk\CreditCardRegistrationResponseParser;
 use SprykerEco\Client\Heidelpay\Sdk\CreditCardRegistrationResponseParserInterface;
+use SprykerEco\Client\Heidelpay\Sdk\DirectDebitRegistrationResponseParser;
+use SprykerEco\Client\Heidelpay\Sdk\DirectDebitRegistrationResponseParserInterface;
 use SprykerEco\Client\Heidelpay\Sdk\HeidelpayApiAdapter;
 use SprykerEco\Client\Heidelpay\Sdk\HeidelpayApiAdapterInterface;
 use SprykerEco\Client\Heidelpay\Zed\HeidelpayStub;
@@ -73,10 +77,29 @@ class HeidelpayFactory extends AbstractFactory
     }
 
     /**
+     * @return \SprykerEco\Client\Heidelpay\Sdk\DirectDebitRegistrationResponseParserInterface
+     */
+    public function createDirectDebitRegistrationResponseParser(): DirectDebitRegistrationResponseParserInterface
+    {
+        return new DirectDebitRegistrationResponseParser(
+            $this->createDirectDebitRegistrationResponseMapper(),
+            $this->getConfig()
+        );
+    }
+
+    /**
      * @return \SprykerEco\Client\Heidelpay\Mapper\ApiResponseToRegistrationResponseTransferInterface
      */
     public function createApiResponseToRegistrationResponseTransferMapper(): ApiResponseToRegistrationResponseTransferInterface
     {
         return new ApiResponseToRegistrationRequestTransfer();
+    }
+
+    /**
+     * @return \SprykerEco\Client\Heidelpay\Mapper\DirectDebitRegistrationResponseMapperInterface
+     */
+    public function createDirectDebitRegistrationResponseMapper(): DirectDebitRegistrationResponseMapperInterface
+    {
+        return new DirectDebitRegistrationResponseMapper();
     }
 }
