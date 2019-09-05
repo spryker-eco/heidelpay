@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<statemachine
+        xmlns="spryker:oms-01"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
+
+    <process name="DebitOnRegistration">
+        <states>
+            <state name="ready for debit on registration"/>
+            <state name="debit on registration request sent"/>
+            <state name="debit on registration succeeded"/>
+            <state name="invalid"/>
+        </states>
+
+        <transitions>
+            <!-- pre-authorization -->
+            <transition happy="true">
+                <source>ready for debit on registration</source>
+                <target>debit on registration request sent</target>
+                <event>send debit on registration request</event>
+            </transition>
+
+            <transition happy="true" condition="Heidelpay/IsDebitOnRegistrationCompleted">
+                <source>debit on registration request sent</source>
+                <target>debit on registration succeeded</target>
+                <event>debit on registration payment</event>
+            </transition>
+
+            <transition>
+                <source>debit on registration request sent</source>
+                <target>invalid</target>
+                <event>debit on registration payment</event>
+            </transition>
+        </transitions>
+
+        <events>
+            <event name="send debit on registration request" onEnter="true" command="Heidelpay/DebitOnRegistration" />
+            <event name="debit on registration payment" timeout="1hour" />
+        </events>
+    </process>
+</statemachine>

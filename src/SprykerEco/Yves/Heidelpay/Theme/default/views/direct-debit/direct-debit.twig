@@ -1,0 +1,51 @@
+{% extends model('template') %}
+
+{% define data = {
+    form: form,
+} %}
+
+{% block body %}
+    <div class="payment-method spacing-left">
+        {{ 'payment.heidelpay.pay_with_direct_debit' | trans }}
+        {{ form_errors(data.form.heidelpayDirectDebit) }}
+        <div class="grid spacing-top">
+            <ul class="col col--xl-9 col--lg-12">
+                {% for paymentOption in data.form.heidelpayDirectDebit.selected_payment_option %}
+                    {% set isPaymentOptionActive = (paymentOption.vars.value == 'direct-debit-existing-registration') %}
+                    <li>
+                        {{ form_row(paymentOption, {
+                            required: false,
+                            component: molecule('toggler-radio'),
+                            attributes: {
+                                'checked': isPaymentOptionActive,
+                                'target-selector': '.js-heidelpay-method-' ~ paymentOption.vars.value,
+                                'class-to-toggle': 'is-hidden',
+                            },
+                        }) }}
+                        <div class="js-heidelpay-method-{{ paymentOption.vars.value }}">
+                            {% if paymentOption.vars.value == 'direct-debit-existing-registration' %}
+                                {% include molecule('direct-debit-existing-registration', 'Heidelpay') with {
+                                    data: {
+                                        paymentOption: paymentOption,
+                                        paymentMethod: data.form.vars.value.payment.heidelpayDirectDebit,
+                                    },
+                                } only %}
+                            {% else %}
+                                {% include molecule('direct-debit-new-registration', 'Heidelpay') with {
+                                    data: {
+                                        paymentOption: paymentOption,
+                                        paymentMethod: data.form.vars.value.payment.heidelpayDirectDebit,
+                                    },
+                                    attributes: {
+                                        'payment-form-id': 'payment-form',
+                                        'payment-toggler-selector': 'input[target-class-name*="js-payment-method"]',
+                                    },
+                                } only %}
+                            {% endif %}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

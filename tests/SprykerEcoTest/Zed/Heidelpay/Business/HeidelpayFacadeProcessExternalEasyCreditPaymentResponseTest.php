@@ -25,13 +25,15 @@ class HeidelpayFacadeProcessExternalEasyCreditPaymentResponseTest extends Heidel
     /**
      * @return void
      */
-    public function testProcessExternalPaymentSuccessEasyCreditPaymentResponse()
+    public function testProcessExternalPaymentSuccessEasyCreditPaymentResponse(): void
     {
+        //Arrange
         $heidelpayResponse = $this->createSuccessEasyCreditPaymentExternalResponse();
-        $response = $this
-            ->heidelpayFacade
-            ->processExternalPaymentResponse($heidelpayResponse);
 
+        //Act
+        $response = $this->heidelpayFacade->processExternalPaymentResponse($heidelpayResponse);
+
+        //Assert
         $this->assertInstanceOf(HeidelpayPaymentProcessingResponseTransfer::class, $response);
         $this->assertFalse($response->getIsError());
     }
@@ -39,14 +41,15 @@ class HeidelpayFacadeProcessExternalEasyCreditPaymentResponseTest extends Heidel
     /**
      * @return void
      */
-    public function testProcessExternalPaymentFailedEasyCreditResponseWhichUnsuccessful()
+    public function testProcessExternalPaymentFailedEasyCreditResponseWhichUnsuccessful(): void
     {
+        //Arrange
         $heidelpayResponse = $this->createFailedEasyCreditPaymentExternalResponseThatIsUnsuccessful();
 
-        $response = $this->heidelpayFacade->processExternalPaymentResponse(
-            $heidelpayResponse
-        );
+        //Act
+        $response = $this->heidelpayFacade->processExternalPaymentResponse($heidelpayResponse);
 
+        //Assert
         $this->assertInstanceOf(HeidelpayPaymentProcessingResponseTransfer::class, $response);
         $this->assertTrue($response->getIsError());
         $this->assertEquals(
@@ -58,22 +61,20 @@ class HeidelpayFacadeProcessExternalEasyCreditPaymentResponseTest extends Heidel
     /**
      * @return array
      */
-    public function createSuccessEasyCreditPaymentExternalResponse()
+    protected function createSuccessEasyCreditPaymentExternalResponse(): array
     {
         $orderBuilder = new SuccessEasyCreditPaymentExternalResponseBuilder($this->createHeidelpayFactory());
-        $heidelpayResponse = $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_EASY_CREDIT);
 
-        return $heidelpayResponse;
+        return $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_EASY_CREDIT);
     }
 
     /**
      * @return array
      */
-    public function createFailedEasyCreditPaymentExternalResponseThatIsUnsuccessful()
+    protected function createFailedEasyCreditPaymentExternalResponseThatIsUnsuccessful(): array
     {
         $orderBuilder = new UnsuccessEasyCreditPaymentExternalResponseBuilder($this->createHeidelpayFactory());
-        $heidelpayResponse = $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_EASY_CREDIT);
 
-        return $heidelpayResponse;
+        return $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_EASY_CREDIT);
     }
 }

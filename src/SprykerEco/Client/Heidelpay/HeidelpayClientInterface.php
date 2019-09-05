@@ -9,6 +9,8 @@ namespace SprykerEco\Client\Heidelpay;
 
 use Generated\Shared\Transfer\HeidelpayCreditCardPaymentOptionsTransfer;
 use Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer;
+use Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer;
+use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
@@ -59,6 +61,18 @@ interface HeidelpayClientInterface
 
     /**
      * Specification:
+     *  - Requests from Zed list of allowed payment options for Direct Debit payment method.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitPaymentOptionsTransfer
+     */
+    public function getDirectDebitPaymentOptions(QuoteTransfer $quoteTransfer): HeidelpayDirectDebitPaymentOptionsTransfer;
+
+    /**
+     * Specification:
      *  - Sends external response from payment provider (POST request) to Zed for processing.
      *
      * @api
@@ -99,7 +113,21 @@ interface HeidelpayClientInterface
 
     /**
      * Specification:
-     *  - tries to find credit card registration by registration id and customer quote to reassure,
+     *  - Saves new DirectDebit registration into DB.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
+     */
+    public function saveDirectDebitRegistration(
+        HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer;
+
+    /**
+     * Specification:
+     *  - Tries to find credit card registration by registration id and customer quote to reassure,
      *  that credit card registration really belongs to current customer.
      *
      * @api
@@ -116,6 +144,20 @@ interface HeidelpayClientInterface
 
     /**
      * Specification:
+     *  - Retrieves DirectDebit registration by registration id and quote.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
+     */
+    public function retrieveDirectDebitRegistration(
+        HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer;
+
+    /**
+     * Specification:
      *  - Parses the external Heidelpay array response, transforming it to the transfer object.
      *
      * @api
@@ -125,6 +167,19 @@ interface HeidelpayClientInterface
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer
      */
     public function parseExternalResponse(array $externalResponse): HeidelpayRegistrationRequestTransfer;
+
+    /**
+     * Specification:
+     *  - Parses DirectDebit registration response.
+     *  - Transforms it to the transfer object.
+     *
+     * @api
+     *
+     * @param string[] $externalResponse
+     *
+     * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
+     */
+    public function parseDirectDebitRegistrationResponse(array $externalResponse): HeidelpayDirectDebitRegistrationTransfer;
 
     /**
      * Specification:

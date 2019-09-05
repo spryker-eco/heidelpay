@@ -22,6 +22,9 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 class IsAuthorizationCompletedPlugin extends AbstractPlugin implements ConditionInterface
 {
     /**
+     * {@inheritdoc}
+     * - Checks if Authorize transaction was successful.
+     *
      * @api
      *
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem $orderItem

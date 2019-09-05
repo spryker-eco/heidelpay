@@ -8,6 +8,7 @@
 namespace SprykerEco\Zed\Heidelpay\Persistence;
 
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistrationQuery;
+use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayDirectDebitRegistrationQuery;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayNotificationQuery;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayQuery;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery;
@@ -52,6 +53,14 @@ class HeidelpayPersistenceFactory extends AbstractPersistenceFactory
     public function createPaymentHeidelpayNotificationQuery(): SpyPaymentHeidelpayNotificationQuery
     {
         return SpyPaymentHeidelpayNotificationQuery::create();
+    }
+
+    /**
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayDirectDebitRegistrationQuery
+     */
+    public function createPaymentHeidelpayDirectDebitRegistrationQuery(): SpyPaymentHeidelpayDirectDebitRegistrationQuery
+    {
+        return SpyPaymentHeidelpayDirectDebitRegistrationQuery::create();
     }
 
     /**

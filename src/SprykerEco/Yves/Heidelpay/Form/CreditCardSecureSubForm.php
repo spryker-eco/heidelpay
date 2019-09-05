@@ -108,18 +108,6 @@ class CreditCardSecureSubForm extends AbstractSubFormType implements SubFormInte
     }
 
     /**
-     * @param array $options
-     *
-     * @return bool
-     */
-    protected function hasExistingRegistrationOption(array $options): bool
-    {
-        $paymentOptions = $options[static::OPTIONS_FIELD_NAME][static::PAYMENT_OPTIONS];
-
-        return isset($paymentOptions[HeidelpayConfig::PAYMENT_OPTION_EXISTING_REGISTRATION]);
-    }
-
-    /**
      * @return \Symfony\Component\Validator\Constraint
      */
     protected function createNotBlankConstraint(): Constraint

@@ -32,6 +32,8 @@ class HeidelpayCreditCardHandlerPlugin extends AbstractPlugin implements StepHan
      */
     public function addToDataClass(Request $request, AbstractTransfer $quoteTransfer): QuoteTransfer
     {
-        return $this->getFactory()->createHeidelpayCreditCardHandler()->addPaymentToQuote($quoteTransfer);
+        return $this->getFactory()
+            ->createHeidelpayCreditCardHandler()
+            ->addPaymentToQuote($quoteTransfer);
     }
 }

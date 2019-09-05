@@ -10,12 +10,9 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business;
 use Generated\Shared\Transfer\PaymentTransfer;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
-use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacade;
+use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainer;
+use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
-use SprykerEcoTest\Zed\Heidelpay\Business\Mock\HeidelpayBusinessFactoryMock;
-use SprykerEcoTest\Zed\Heidelpay\Business\Mock\SuccessfulResponseHeidelpayBusinessFactory;
-use SprykerEcoTest\Zed\Heidelpay\Business\Mock\UnsuccesfulResponseHeidelpayBusinessFactory;
 
 /**
  * @group Functional
@@ -32,43 +29,21 @@ class HeidelpayFacadeCapturePaymentTest extends HeidelpayPaymentTest
      */
     public function testProcessSuccessfulExternalPaymentResponseForCreditCardCapture(): void
     {
+        //Arrange
         $salesOrder = $this->createOrder();
-
-        $heidelpayFacade = (new HeidelpayFacade())
-            ->setFactory($this->createSuccessfulPaymentHeidelpayFactoryMock());
-
+        $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
         $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrder);
 
+        //Act
         $heidelpayFacade->capturePayment($orderTransfer);
+        $transaction = $this->createQueryContainer()
+            ->queryCaptureTransactionLog($salesOrder->getIdSalesOrder())
+            ->findOne();
 
-        $transactionHandler = $this->createHeidelpayFactory()
-           ->getHeidelpayQueryContainer()
-           ->queryCaptureTransactionLog($salesOrder->getIdSalesOrder());
-        $transaction = $transactionHandler->findOne();
-
+        //Assert
         $this->assertNotNull($transaction);
-
         $this->assertNotEmpty($transaction->getResponseCode());
         $this->assertEquals(HeidelpayConfig::CAPTURE_TRANSACTION_STATUS_OK, $transaction->getResponseCode());
-    }
-
-    /**
-     * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
-     */
-    public function createOrder(): SpySalesOrder
-    {
-        $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
-        $orderTransfer = $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_CREDIT_CARD_SECURE);
-
-        return $orderTransfer;
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
-     */
-    protected function createSuccessfulPaymentHeidelpayFactoryMock(): HeidelpayBusinessFactory
-    {
-        return new SuccessfulResponseHeidelpayBusinessFactory();
     }
 
     /**
@@ -76,39 +51,38 @@ class HeidelpayFacadeCapturePaymentTest extends HeidelpayPaymentTest
      */
     public function testProcessUnsuccessfulExternalPaymentResponseForCreditCardCapture(): void
     {
+        //Arrange
         $salesOrder = $this->createOrder();
-
-        $heidelpayFacade = (new HeidelpayFacade())
-            ->setFactory($this->createUnsuccessfulPaymentHeidelpayFactoryMock());
-
+        $heidelpayFacade = $this->createFacadeWithUnsuccessfulFactory();
         $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrder);
 
+        //Act
         $heidelpayFacade->capturePayment($orderTransfer);
+        $transaction = $this->createQueryContainer()
+            ->queryCaptureTransactionLog($salesOrder->getIdSalesOrder())
+            ->findOne();
 
-        $transactionHandler = $this->createHeidelpayFactory()
-            ->getHeidelpayQueryContainer()
-            ->queryCaptureTransactionLog($salesOrder->getIdSalesOrder());
-        $transaction = $transactionHandler->findOne();
-
+        //Assert
         $this->assertNotNull($transaction);
-
         $this->assertNotEmpty($transaction->getResponseCode());
         $this->assertNotEquals(HeidelpayConfig::CAPTURE_TRANSACTION_STATUS_OK, $transaction->getResponseCode());
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
+     * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
      */
-    protected function createUnsuccessfulPaymentHeidelpayFactoryMock(): HeidelpayBusinessFactory
+    protected function createOrder(): SpySalesOrder
     {
-        return new UnsuccesfulResponseHeidelpayBusinessFactory();
+        $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
+
+        return $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_CREDIT_CARD_SECURE);
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
+     * @return \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface
      */
-    protected function createHeidelpayFactory(): HeidelpayBusinessFactory
+    protected function createQueryContainer(): HeidelpayQueryContainerInterface
     {
-        return new HeidelpayBusinessFactoryMock();
+        return new HeidelpayQueryContainer();
     }
 }

@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<statemachine
+        xmlns="spryker:oms-01"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
+
+    <process name="HeidelpayDirectDebit01" main="true">
+        <subprocesses>
+            <process>DebitOnRegistration</process>
+            <process>Shipment</process>
+            <process>Refund</process>
+        </subprocesses>
+
+        <states>
+            <state name="new" reserved="true"/>
+        </states>
+
+        <transitions>
+            <transition>
+                <source>new</source>
+                <target>ready for debit on registration</target>
+                <event>start debit on registration process</event>
+            </transition>
+
+            <transition>
+                <source>debit on registration succeeded</source>
+                <target>ready for shipment</target>
+                <event>start shipment process</event>
+            </transition>
+
+            <transition>
+                <source>shipped</source>
+                <target>ready for refund</target>
+                <event>start refund process</event>
+            </transition>
+        </transitions>
+
+        <events>
+            <event name="start debit on registration process" onEnter="true" />
+            <event name="start shipment process" manual="true"/>
+            <event name="start refund process" onEnter="true"/>
+        </events>
+    </process>
+
+    <process name="DebitOnRegistration" file="HeidelpaySubprocesses/DebitOnRegistration.xml"/>
+    <process name="Shipment" file="HeidelpaySubprocesses/Shipment.xml"/>
+    <process name="Refund" file="HeidelpaySubprocesses/Refund.xml"/>
+
+</statemachine>

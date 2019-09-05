@@ -21,6 +21,9 @@ use Spryker\Zed\Payment\Dependency\Plugin\Payment\PaymentMethodFilterPluginInter
 class HeidelpayPaymentMethodFilterPlugin extends AbstractPlugin implements PaymentMethodFilterPluginInterface
 {
     /**
+     * {@inheritdoc}
+     * - Removes EasyCredit if conditions for this payment method are not met.
+     *
      * @api
      *
      * @param \Generated\Shared\Transfer\PaymentMethodsTransfer $paymentMethodsTransfer

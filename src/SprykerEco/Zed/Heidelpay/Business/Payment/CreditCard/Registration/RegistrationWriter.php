@@ -16,7 +16,7 @@ class RegistrationWriter implements RegistrationWriterInterface
     /**
      * @var \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface
      */
-    private $heidelpayQueryContainer;
+    protected $heidelpayQueryContainer;
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface $heidelpayQueryContainer
@@ -49,19 +49,6 @@ class RegistrationWriter implements RegistrationWriterInterface
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration
      */
-    protected function fetchRegistrationFromQuote(QuoteTransfer $quoteTransfer): SpyPaymentHeidelpayCreditCardRegistration
-    {
-        $registrationEntity = new SpyPaymentHeidelpayCreditCardRegistration();
-        $this->fillRegistrationEntityFromQuoteTransfer($quoteTransfer, $registrationEntity);
-
-        return $registrationEntity;
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration
-     */
     protected function findRegistrationFromQuote(QuoteTransfer $quoteTransfer): SpyPaymentHeidelpayCreditCardRegistration
     {
         $registrationHash = $quoteTransfer
@@ -77,46 +64,5 @@ class RegistrationWriter implements RegistrationWriterInterface
             ->findOne();
 
         return $registrationEntity;
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration $registrationEntity
-     *
-     * @return void
-     */
-    protected function fillRegistrationEntityFromQuoteTransfer(
-        QuoteTransfer $quoteTransfer,
-        SpyPaymentHeidelpayCreditCardRegistration $registrationEntity
-    ): void {
-        $creditCardPayment = $quoteTransfer
-            ->getPayment()
-            ->getHeidelpayCreditCardSecure()
-            ->getSelectedRegistration();
-
-        $creditCardInfo = $creditCardPayment->getCreditCardInfo();
-
-        $registrationEntity->setFkCustomerAddress($quoteTransfer->getShippingAddress()->getIdCustomerAddress())
-            ->setAccountVerification($creditCardInfo->getAccountVerification())
-            ->setAccountNumber($creditCardInfo->getAccountNumber())
-            ->setAccountHolder($creditCardInfo->getAccountHolder())
-            ->setAccountExpiryYear((int)$creditCardInfo->getAccountExpiryYear())
-            ->setAccountExpiryMonth((int)$creditCardInfo->getAccountExpiryMonth())
-            ->setAccountBrand($creditCardInfo->getAccountBrand())
-            ->setRegistrationNumber($creditCardPayment->getRegistrationNumber());
-    }
-
-    /**
-     * @param \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration $registrationEntity
-     *
-     * @return bool
-     */
-    protected function isRegistrationExists(SpyPaymentHeidelpayCreditCardRegistration $registrationEntity): bool
-    {
-        return $this->heidelpayQueryContainer
-            ->queryCreditCardRegistrationByRegistrationNumber(
-                $registrationEntity->getRegistrationNumber()
-            )
-            ->exists();
     }
 }

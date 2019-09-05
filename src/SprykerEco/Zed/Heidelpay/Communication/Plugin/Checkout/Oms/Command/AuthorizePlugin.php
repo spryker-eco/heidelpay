@@ -22,6 +22,9 @@ use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
 class AuthorizePlugin extends AbstractPlugin implements CommandByOrderInterface
 {
     /**
+     * {@inheritdoc}
+     * - Execute Authorize API transaction.
+     *
      * @api
      *
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems

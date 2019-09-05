@@ -134,6 +134,14 @@ interface HeidelpayConstants
 
     /**
      * Specification:
+     * - Transaction channel value for DirectDebit payment method.
+     *
+     * @api
+     */
+    public const CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_DIRECT_DEBIT = 'HEIDELPAY:CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_DIRECT_DEBIT';
+
+    /**
+     * Specification:
      * - Language code, store specific.
      *
      * @api
@@ -235,6 +243,14 @@ interface HeidelpayConstants
      * @api
      */
     public const CONFIG_YVES_CHECKOUT_ASYNC_RESPONSE_URL = 'HEIDELPAY:CONFIG_YVES_CHECKOUT_ASYNC_RESPONSE_URL';
+
+    /**
+     * Specification:
+     * - Url for receiving registration responses asynchronously for DirectDebit payment method.
+     *
+     * @api
+     */
+    public const DIRECT_DEBIT_REGISTRATION_ASYNC_RESPONSE_URL = 'HEIDELPAY:DIRECT_DEBIT_REGISTRATION_ASYNC_RESPONSE_URL';
 
     /**
      * Specification:
