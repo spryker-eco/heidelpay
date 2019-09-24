@@ -23,7 +23,7 @@
     "spryker/util-encoding": "^2.0.0",
     "spryker/util-text": "^1.2.0",
     "spryker/zed-request": "^3.0.0",
-    "spryker-shop/checkout-page": "^2.0.0"
+    "spryker-shop/checkout-page": "^2.0.0 || ^3.0.0"
   },
   "require-dev": {
     "spryker/application": "*",
