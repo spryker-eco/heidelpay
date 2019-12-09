@@ -213,6 +213,19 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
         return new FinalizeTransactionHandler(
             $this->createFinalizeTransaction(),
             $this->getFinalizePaymentMethodAdapterCollection(),
+            $this->createAdapterRequestFromOrderBuilder(),
+            $this->createPaymentWriter()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\FinalizeTransactionHandlerInterface
+     */
+    public function createFinalizeEasyCreditTransactionHandler(): FinalizeTransactionHandlerInterface
+    {
+        return new FinalizeTransactionHandler(
+            $this->createFinalizeTransaction(),
+            $this->getFinalizePaymentMethodAdapterCollection(),
             $this->createEasyCreditAdapterRequestFromOrderBuilder(),
             $this->createPaymentWriter()
         );

@@ -84,6 +84,20 @@ interface HeidelpayFacadeInterface
 
     /**
      * Specification:
+     *  - Builds finalize request based on $orderTransfer with a redirect to the EasyCredit.
+     *  - Executes finalize transaction.
+     *  - Updates payment reference by sales order id.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return void
+     */
+    public function finalizeEasyCreditPayment(OrderTransfer $orderTransfer): void;
+
+    /**
+     * Specification:
      *  - Builds reservation request based on $orderTransfer.
      *  - Executes reservation transaction.
      *  - Updates payment reference by sales order id.
