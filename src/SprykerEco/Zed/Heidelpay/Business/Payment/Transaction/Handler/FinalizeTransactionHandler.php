@@ -30,9 +30,9 @@ class FinalizeTransactionHandler implements FinalizeTransactionHandlerInterface
     protected $paymentMethodAdapterCollection;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface
+     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface[]
      */
-    protected $heidelpayRequestBuilder;
+    protected $requestBuilderCollection;
 
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriterInterface
@@ -42,18 +42,18 @@ class FinalizeTransactionHandler implements FinalizeTransactionHandlerInterface
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\FinalizeTransactionInterface $transaction
      * @param array $paymentMethodAdapterCollection
-     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder
+     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface[] $requestBuilderCollection
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriterInterface $paymentWriter
      */
     public function __construct(
         FinalizeTransactionInterface $transaction,
         array $paymentMethodAdapterCollection,
-        AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder,
+        array $requestBuilderCollection,
         PaymentWriterInterface $paymentWriter
     ) {
         $this->transaction = $transaction;
         $this->paymentMethodAdapterCollection = $paymentMethodAdapterCollection;
-        $this->heidelpayRequestBuilder = $heidelpayRequestBuilder;
+        $this->requestBuilderCollection = $requestBuilderCollection;
         $this->paymentWriter = $paymentWriter;
     }
 
@@ -82,13 +82,15 @@ class FinalizeTransactionHandler implements FinalizeTransactionHandlerInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
+     * @throws \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\FinalizeNotSupportedException
+     *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
     protected function buildFinalizeRequest(OrderTransfer $orderTransfer)
     {
-        $finalizeRequestTransfer = $this->heidelpayRequestBuilder->buildFinalizeRequestFromOrder($orderTransfer);
+        $requestBuilder = $this->getPaymentMethodRequestBuilder($orderTransfer);
 
-        return $finalizeRequestTransfer;
+        return $requestBuilder->buildFinalizeRequestFromOrder($orderTransfer);
     }
 
     /**
@@ -109,6 +111,26 @@ class FinalizeTransactionHandler implements FinalizeTransactionHandlerInterface
         }
 
         return $this->paymentMethodAdapterCollection[$paymentMethodCode];
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @throws \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\FinalizeNotSupportedException
+     *
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface
+     */
+    protected function getPaymentMethodRequestBuilder(OrderTransfer $orderTransfer)
+    {
+        $paymentMethodCode = $this->getPaymentMethodCode($orderTransfer);
+
+        if (!isset($this->requestBuilderCollection[$paymentMethodCode])) {
+            throw new FinalizeNotSupportedException(
+                sprintf(static::ERROR_MESSAGE_FINALIZE_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode)
+            );
+        }
+
+        return $this->requestBuilderCollection[$paymentMethodCode];
     }
 
     /**

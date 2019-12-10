@@ -213,22 +213,20 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
         return new FinalizeTransactionHandler(
             $this->createFinalizeTransaction(),
             $this->getFinalizePaymentMethodAdapterCollection(),
-            $this->createAdapterRequestFromOrderBuilder(),
+            $this->getAdapterRequestFromOrderBuilderCollection(),
             $this->createPaymentWriter()
         );
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler\FinalizeTransactionHandlerInterface
+     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface[]
      */
-    public function createFinalizeEasyCreditTransactionHandler(): FinalizeTransactionHandlerInterface
+    public function getAdapterRequestFromOrderBuilderCollection(): array
     {
-        return new FinalizeTransactionHandler(
-            $this->createFinalizeTransaction(),
-            $this->getFinalizePaymentMethodAdapterCollection(),
-            $this->createEasyCreditAdapterRequestFromOrderBuilder(),
-            $this->createPaymentWriter()
-        );
+        return [
+            HeidelpayConfig::PAYMENT_METHOD_INVOICE_SECURED_B2C => $this->createAdapterRequestFromOrderBuilder(),
+            HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT => $this->createEasyCreditAdapterRequestFromOrderBuilder()
+        ];
     }
 
     /**

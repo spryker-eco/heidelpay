@@ -189,22 +189,6 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @return void
      */
-    public function finalizeEasyCreditPayment(OrderTransfer $orderTransfer): void
-    {
-        $this->getFactory()
-            ->createFinalizeEasyCreditTransactionHandler()
-            ->finalize($orderTransfer);
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @api
-     *
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return void
-     */
     public function executePaymentReservation(OrderTransfer $orderTransfer): void
     {
         $this->getFactory()
