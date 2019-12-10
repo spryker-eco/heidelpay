@@ -9,7 +9,6 @@ namespace SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Handler;
 
 use Generated\Shared\Transfer\OrderTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriterInterface;
-use SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\FinalizeNotSupportedException;
 use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\FinalizeTransactionInterface;
 
