@@ -94,11 +94,6 @@
         <property name="customerId" type="int"/>
     </transfer>
 
-    <transfer name="HeidelpayTransactionLog">
-        <property name="heidelpayResponse" type="HeidelpayResponse"/>
-        <property name="responsePayload" type="string"/>
-    </transfer>
-
     <transfer name="HeidelpayCustomerAddress">
         <property name="firstName" type="string"/>
         <property name="lastName" type="string"/>
@@ -340,6 +335,7 @@
         <property name="responsePayload" type="string" />
         <property name="responseCode" type="string" />
         <property name="transactionType" type="string" />
+        <property name="heidelpayResponse" type="HeidelpayResponse"/>
     </transfer>
 
 </transfers>
