@@ -1,16 +1,18 @@
 {
   "name": "spryker-eco/heidelpay",
+  "type": "library",
   "description": "Heidelpay module",
   "license": "MIT",
   "require": {
-    "php": ">=7.2",
-    "heidelpay/php-payment-api": "^1.6.1",
-    "heidelpay/php-message-code-mapper": "^1.0.1",
     "heidelpay/php-basket-api": "^1.0.2",
+    "heidelpay/php-message-code-mapper": "^1.0.1",
+    "heidelpay/php-payment-api": "^1.6.1",
+    "php": ">=7.2",
+    "spryker-shop/checkout-page": "^2.0.0 || ^3.0.0",
     "spryker/calculation": "^4.0.0",
     "spryker/checkout-extension": "^1.0.0",
-    "spryker/customer": "^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0",
     "spryker/currency": "^2.0.0 || ^3.0.0",
+    "spryker/customer": "^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0",
     "spryker/kernel": "^3.30.0",
     "spryker/locale": "^3.0.0",
     "spryker/money": "^2.0.0",
@@ -23,17 +25,16 @@
     "spryker/symfony": "^3.0.0",
     "spryker/util-encoding": "^2.0.0",
     "spryker/util-text": "^1.2.0",
-    "spryker/zed-request": "^3.0.0",
-    "spryker-shop/checkout-page": "^2.0.0 || ^3.0.0"
+    "spryker/zed-request": "^3.0.0"
   },
   "require-dev": {
-    "spryker/application": "*",
     "spryker-shop/shop-application": "*",
+    "spryker/application": "*",
     "spryker/checkout": "*",
     "spryker/country": "*",
     "spryker/payment": "*",
-    "spryker/propel": "*",
     "spryker/product": "*",
+    "spryker/propel": "*",
     "spryker/silex": "*",
     "spryker/stock": "*",
     "spryker/testify": "*"
@@ -46,8 +47,7 @@
   },
   "autoload": {
     "psr-4": {
-      "SprykerEco\\": "src/SprykerEco/",
-      "SprykerEcoTest\\": "tests/SprykerEcoTest/"
+      "SprykerEco\\": "src/SprykerEco/"
     }
   },
   "autoload-dev": {
