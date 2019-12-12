@@ -31,6 +31,7 @@
     "spryker-shop/shop-application": "*",
     "spryker/application": "*",
     "spryker/checkout": "*",
+    "spryker/code-sniffer": "*",
     "spryker/country": "*",
     "spryker/payment": "*",
     "spryker/product": "*",
