@@ -58,7 +58,7 @@
     </transfer>
 
     <transfer name="HeidelpayCreditCardPaymentOptions">
-        <property name="optionsList" type="HeidelpayPaymentOption[]" singular="option"/>
+        <property name="optionsList" type="HeidelpayPaymentOption[]"/>
         <property name="paymentFrameUrl" type="string"/>
         <property name="lastSuccessfulRegistration" type="HeidelpayCreditCardRegistration"/>
     </transfer>
@@ -132,7 +132,7 @@
     </transfer>
 
     <transfer name="HeidelpayBasketRequest">
-        <property name="items" type="Item[]" singular="item"/>
+        <property name="items" type="Item[]"/>
         <property name="totals" type="Totals"/>
         <property name="expenses" type="Expense[]" singular="expense"/>
         <property name="currency" type="Currency"/>
@@ -143,14 +143,14 @@
     </transfer>
 
     <transfer name="HeidelpayExternalPaymentResponse">
-        <property name="body" type="array" singular="row"/>
+        <property name="body" type="array"/>
         <property name="idSalesOrder" type="string"/>
         <property name="applicationSecret" type="string"/>
         <property name="paymentMethod" type="string"/>
     </transfer>
 
     <transfer name="HeidelpayExternalPaymentRequest">
-        <property name="body" type="array" singular="row"/>
+        <property name="body" type="array"/>
     </transfer>
 
     <transfer name="HeidelpayCreditCardInfo">
@@ -179,8 +179,8 @@
     </transfer>
 
     <transfer name="HeidelpayResponseConfig">
-        <property name="bankCountries" type="HeidelpayBankCountry[]" singular="bankCountry"/>
-        <property name="bankBrands" type="HeidelpayBank[]" singular="bankBrand"/>
+        <property name="bankCountries" type="HeidelpayBankCountry[]"/>
+        <property name="bankBrands" type="HeidelpayBank[]"/>
     </transfer>
 
     <transfer name="HeidelpayErrorRedirectResponse">
@@ -277,8 +277,8 @@
 
     <transfer name="HeidelpayIdealAuthorizeForm">
         <property name="actionUrl" type="string"/>
-        <property name="countries" type="HeidelpayBankCountry[]" singular="country"/>
-        <property name="banks" type="HeidelpayBank[]" singular="bank"/>
+        <property name="countries" type="HeidelpayBankCountry[]"/>
+        <property name="banks" type="HeidelpayBank[]"/>
     </transfer>
 
     <transfer name="HeidelpayBankCountry">
