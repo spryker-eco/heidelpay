@@ -55,7 +55,6 @@
         <property name="transactionId" type="string" />
         <property name="registrationUniqueId" type="string" />
         <property name="accountInfo" type="HeidelpayDirectDebitAccount" />
-        <property name="idCustomerAddress" type="int" />
     </transfer>
 
     <transfer name="HeidelpayCreditCardPaymentOptions">
