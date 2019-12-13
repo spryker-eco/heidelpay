@@ -4,74 +4,73 @@
            xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
 
     <transfer name="HeidelpayPayment">
-        <property name="fkSalesOrder" type="int" />
-        <property name="paymentMethod" type="string" />
-        <property name="idPaymentReference" type="string" />
-        <property name="idPaymentRegistration" type="string" />
-        <property name="idBasket" type="string" />
-        <property name="legalText" type="string" />
-        <property name="externalRedirectUrl" type="string" />
-        <property name="dateOfBirth" type="string" />
-        <property name="salutation" type="string" />
-        <property name="connectorInvoiceAccountInfo" type="string" />
+        <property name="fkSalesOrder" type="int"/>
+        <property name="paymentMethod" type="string"/>
+        <property name="idPaymentReference" type="string"/>
+        <property name="idPaymentRegistration" type="string"/>
+        <property name="idBasket" type="string"/>
+        <property name="legalText" type="string"/>
+        <property name="externalRedirectUrl" type="string"/>
+        <property name="dateOfBirth" type="string"/>
+        <property name="salutation" type="string"/>
+        <property name="connectorInvoiceAccountInfo" type="string"/>
     </transfer>
 
     <transfer name="HeidelpayEasyCreditPayment">
-        <property name="fkSalesOrder" type="int" />
-        <property name="paymentMethod" type="string" />
-        <property name="idPaymentReference" type="string" />
-        <property name="amortisationText" type="string" />
-        <property name="preContractionInformationUrl" type="string" />
-        <property name="accruingInterest" type="float" />
-        <property name="totalAmount" type="float" />
-        <property name="totalOrderAmount" type="float" />
-        <property name="isPolicyAgreementChecked" type="bool" />
+        <property name="fkSalesOrder" type="int"/>
+        <property name="paymentMethod" type="string"/>
+        <property name="idPaymentReference" type="string"/>
+        <property name="amortisationText" type="string"/>
+        <property name="preContractionInformationUrl" type="string"/>
+        <property name="accruingInterest" type="float"/>
+        <property name="totalAmount" type="float"/>
+        <property name="totalOrderAmount" type="float"/>
+        <property name="isPolicyAgreementChecked" type="bool"/>
     </transfer>
 
     <transfer name="HeidelpayCreditCardPayment">
-        <property name="selectedPaymentOption" type="string" />
-        <property name="selectedRegistration" type="HeidelpayCreditCardRegistration" />
-        <property name="paymentOptions" type="HeidelpayCreditCardPaymentOptions" />
+        <property name="selectedPaymentOption" type="string"/>
+        <property name="selectedRegistration" type="HeidelpayCreditCardRegistration"/>
+        <property name="paymentOptions" type="HeidelpayCreditCardPaymentOptions"/>
     </transfer>
 
     <transfer name="HeidelpayDirectDebitPayment">
-        <property name="selectedPaymentOption" type="string" />
-        <property name="selectedRegistration" type="HeidelpayDirectDebitRegistration" />
-        <property name="paymentOptions" type="HeidelpayDirectDebitPaymentOptions" />
+        <property name="selectedPaymentOption" type="string"/>
+        <property name="selectedRegistration" type="HeidelpayDirectDebitRegistration"/>
+        <property name="paymentOptions" type="HeidelpayDirectDebitPaymentOptions"/>
     </transfer>
 
     <transfer name="HeidelpayCreditCardRegistration">
-        <property name="idCreditCardRegistration" type="int" />
-        <property name="creditCardInfo" type="HeidelpayCreditCardInfo" />
-        <property name="registrationNumber" type="string" />
-        <property name="idCustomerAddress" type="int" />
+        <property name="idCreditCardRegistration" type="int"/>
+        <property name="creditCardInfo" type="HeidelpayCreditCardInfo"/>
+        <property name="registrationNumber" type="string"/>
+        <property name="idCustomerAddress" type="int"/>
     </transfer>
 
     <transfer name="HeidelpayDirectDebitRegistration">
-        <property name="idDirectDebitRegistration" type="int" />
-        <property name="idCustomerAddress" type="int" />
-        <property name="isError" type="bool" />
-        <property name="error" type="HeidelpayResponseError" />
-        <property name="transactionId" type="string" />
-        <property name="registrationUniqueId" type="string" />
-        <property name="accountInfo" type="HeidelpayDirectDebitAccount" />
-        <property name="idCustomerAddress" type="int" />
+        <property name="idDirectDebitRegistration" type="int"/>
+        <property name="idCustomerAddress" type="int"/>
+        <property name="isError" type="bool"/>
+        <property name="error" type="HeidelpayResponseError"/>
+        <property name="transactionId" type="string"/>
+        <property name="registrationUniqueId" type="string"/>
+        <property name="accountInfo" type="HeidelpayDirectDebitAccount"/>
     </transfer>
 
     <transfer name="HeidelpayCreditCardPaymentOptions">
-        <property name="optionsList" type="HeidelpayPaymentOption[]" />
+        <property name="optionsList" type="HeidelpayPaymentOption[]"/>
         <property name="paymentFrameUrl" type="string"/>
         <property name="lastSuccessfulRegistration" type="HeidelpayCreditCardRegistration"/>
     </transfer>
 
     <transfer name="HeidelpayDirectDebitPaymentOptions">
-        <property name="optionsList" type="HeidelpayPaymentOption[]" singular="option" />
+        <property name="optionsList" type="HeidelpayPaymentOption[]" singular="option"/>
         <property name="paymentFormActionUrl" type="string"/>
         <property name="lastSuccessfulRegistration" type="HeidelpayDirectDebitRegistration"/>
     </transfer>
 
     <transfer name="HeidelpayPaymentOption">
-        <property name="code" type="string" />
+        <property name="code" type="string"/>
     </transfer>
 
     <transfer name="HeidelpayAuthentication">
@@ -92,11 +91,6 @@
         <property name="customerOrdersCount" type="int"/>
         <property name="customerSince" type="string"/>
         <property name="customerId" type="int"/>
-    </transfer>
-
-    <transfer name="HeidelpayTransactionLog">
-        <property name="heidelpayResponse" type="HeidelpayResponse"/>
-        <property name="responsePayload" type="string"/>
     </transfer>
 
     <transfer name="HeidelpayCustomerAddress">
@@ -120,62 +114,62 @@
     </transfer>
 
     <transfer name="HeidelpayInvoiceSecuredB2c">
-        <property name="salutation" type="string" />
-        <property name="dateOfBirth" type="string" />
+        <property name="salutation" type="string"/>
+        <property name="dateOfBirth" type="string"/>
     </transfer>
 
     <transfer name="HeidelpayRequest">
-        <property name="auth" type="HeidelpayAuthentication" />
-        <property name="async" type="HeidelpayAsync" />
-        <property name="customerAddress" type="HeidelpayCustomerAddress" />
-        <property name="customerPurchase" type="HeidelpayCustomerPurchase" />
-        <property name="riskInformation" type="HeidelpayRiskInformation" />
-        <property name="idPaymentReference" type="string" />
-        <property name="idPaymentRegistration" type="string" />
+        <property name="auth" type="HeidelpayAuthentication"/>
+        <property name="async" type="HeidelpayAsync"/>
+        <property name="customerAddress" type="HeidelpayCustomerAddress"/>
+        <property name="customerPurchase" type="HeidelpayCustomerPurchase"/>
+        <property name="riskInformation" type="HeidelpayRiskInformation"/>
+        <property name="idPaymentReference" type="string"/>
+        <property name="idPaymentRegistration" type="string"/>
         <property name="idBasket" type="string"/>
-        <property name="paymentMethod" type="string" />
-        <property name="invoiceSecuredB2c" type="HeidelpayInvoiceSecuredB2c" />
+        <property name="paymentMethod" type="string"/>
+        <property name="invoiceSecuredB2c" type="HeidelpayInvoiceSecuredB2c"/>
     </transfer>
 
     <transfer name="HeidelpayBasketRequest">
-        <property name="items" type="Item[]" />
-        <property name="totals" type="Totals" />
+        <property name="items" type="Item[]"/>
+        <property name="totals" type="Totals"/>
         <property name="expenses" type="Expense[]" singular="expense"/>
-        <property name="currency" type="Currency" />
+        <property name="currency" type="Currency"/>
     </transfer>
 
     <transfer name="HeidelpayBasketResponse">
-        <property name="idBasket" type="string" />
+        <property name="idBasket" type="string"/>
     </transfer>
 
     <transfer name="HeidelpayExternalPaymentResponse">
-        <property name="body" type="array" />
-        <property name="idSalesOrder" type="string" />
-        <property name="applicationSecret" type="string" />
-        <property name="paymentMethod" type="string" />
+        <property name="body" type="array"/>
+        <property name="idSalesOrder" type="string"/>
+        <property name="applicationSecret" type="string"/>
+        <property name="paymentMethod" type="string"/>
     </transfer>
 
     <transfer name="HeidelpayExternalPaymentRequest">
-        <property name="body" type="array" />
+        <property name="body" type="array"/>
     </transfer>
 
     <transfer name="HeidelpayCreditCardInfo">
-        <property name="accountExpiryYear" type="string" />
-        <property name="accountVerification" type="string" />
-        <property name="accountNumber" type="string" />
-        <property name="accountBrand" type="string" />
-        <property name="accountHolder" type="string" />
-        <property name="accountExpiryMonth" type="string" />
+        <property name="accountExpiryYear" type="string"/>
+        <property name="accountVerification" type="string"/>
+        <property name="accountNumber" type="string"/>
+        <property name="accountBrand" type="string"/>
+        <property name="accountHolder" type="string"/>
+        <property name="accountExpiryMonth" type="string"/>
     </transfer>
 
     <transfer name="HeidelpayDirectDebitAccount">
-        <property name="accountHolder" type="string" />
-        <property name="accountBankName" type="string" />
-        <property name="accountNumber" type="string" />
-        <property name="accountCountry" type="string" />
-        <property name="accountBic" type="string" />
-        <property name="accountIban" type="string" />
-        <property name="accountIdentification" type="string" />
+        <property name="accountHolder" type="string"/>
+        <property name="accountBankName" type="string"/>
+        <property name="accountNumber" type="string"/>
+        <property name="accountCountry" type="string"/>
+        <property name="accountBic" type="string"/>
+        <property name="accountIban" type="string"/>
+        <property name="accountIdentification" type="string"/>
     </transfer>
 
     <transfer name="HeidelpayResponseError">
@@ -190,8 +184,8 @@
     </transfer>
 
     <transfer name="HeidelpayErrorRedirectResponse">
-        <property name="errorMessage" type="string" />
-        <property name="redirectUrl" type="string" />
+        <property name="errorMessage" type="string"/>
+        <property name="redirectUrl" type="string"/>
     </transfer>
 
     <transfer name="HeidelpayResponse">
@@ -209,7 +203,7 @@
         <property name="customerRedirectUrl" type="string"/>
         <property name="legalText" type="string"/>
         <property name="config" type="HeidelpayResponseConfig"/>
-        <property name="connectorInvoiceAccountInfo" type="string" />
+        <property name="connectorInvoiceAccountInfo" type="string"/>
     </transfer>
 
     <transfer name="HeidelpayRegistrationRequest">
@@ -234,39 +228,39 @@
     <transfer name="HeidelpayPaymentProcessingResponse">
         <property name="isError" type="bool"/>
         <property name="error" type="HeidelpayResponseError"/>
-        <property name="connectorInvoiceAccountInfo" type="string" />
+        <property name="connectorInvoiceAccountInfo" type="string"/>
     </transfer>
 
     <transfer name="Expense">
-        <property name="heidelpayItemChannelId" type="string" />
+        <property name="heidelpayItemChannelId" type="string"/>
     </transfer>
 
     <transfer name="Order">
-        <property name="idSalesOrder" type="int" />
+        <property name="idSalesOrder" type="int"/>
         <property name="heidelpayPayment" type="HeidelpayPayment"/>
         <property name="items" type="Item[]" singular="item"/>
     </transfer>
 
     <transfer name="Quote">
-        <property name="idSalesOrder" type="int" />
+        <property name="idSalesOrder" type="int"/>
         <property name="heidelpayPayment" type="HeidelpayPayment"/>
         <property name="items" type="Item[]" singular="item"/>
-        <property name="totals" type="Totals" />
+        <property name="totals" type="Totals"/>
         <property name="expenses" type="Expense[]" singular="expense"/>
-        <property name="currency" type="Currency" />
+        <property name="currency" type="Currency"/>
     </transfer>
 
     <transfer name="Item">
-        <property name="heidelpayItemChannelId" type="string" />
-        <property name="name" type="string" />
-        <property name="description" type="string" />
-        <property name="unitGrossPrice" type="int" />
-        <property name="quantity" type="int" />
-        <property name="sumGrossPrice" type="int" />
-        <property name="taxRate" type="float" />
-        <property name="sku" type="string" />
-        <property name="sumTaxAmountFullAggregation" type="int" />
-        <property name="sumDiscountAmountFullAggregation" type="int" />
+        <property name="heidelpayItemChannelId" type="string"/>
+        <property name="name" type="string"/>
+        <property name="description" type="string"/>
+        <property name="unitGrossPrice" type="int"/>
+        <property name="quantity" type="int"/>
+        <property name="sumGrossPrice" type="int"/>
+        <property name="taxRate" type="float"/>
+        <property name="sku" type="string"/>
+        <property name="sumTaxAmountFullAggregation" type="int"/>
+        <property name="sumDiscountAmountFullAggregation" type="int"/>
     </transfer>
 
     <transfer name="Payment">
@@ -278,7 +272,7 @@
         <property name="heidelpayCreditCardSecure" type="HeidelpayCreditCardPayment"/>
         <property name="heidelpayInvoiceSecuredB2c" type="HeidelpayPayment"/>
         <property name="heidelpayDirectDebit" type="HeidelpayDirectDebitPayment"/>
-        <property name="idBasket" type="string" />
+        <property name="idBasket" type="string"/>
     </transfer>
 
     <transfer name="HeidelpayIdealAuthorizeForm">
@@ -302,44 +296,45 @@
     </transfer>
 
     <transfer name="HeidelpayNotification">
-        <property name="notificationBody" type="string" />
-        <property name="timestamp" type="string" />
-        <property name="retries" type="int" />
-        <property name="transactionSource" type="string" />
-        <property name="transactionChannel" type="string" />
-        <property name="transactionResponseType" type="string" />
-        <property name="transactionMode" type="string" />
-        <property name="transactionId" type="string" />
-        <property name="uniqueId" type="string" />
-        <property name="shortId" type="string" />
-        <property name="identificationSource" type="string" />
-        <property name="resultCode" type="string" />
-        <property name="resultTimestamp" type="string" />
-        <property name="result" type="string" />
-        <property name="resultStatus" type="string" />
-        <property name="resultReason" type="string" />
-        <property name="resultReturn" type="string" />
-        <property name="paymentCode" type="string" />
-        <property name="amount" type="int" />
-        <property name="currency" type="string" />
-        <property name="paymentDescriptor" type="string" />
-        <property name="account" type="string" />
-        <property name="customer" type="string" />
+        <property name="notificationBody" type="string"/>
+        <property name="timestamp" type="string"/>
+        <property name="retries" type="int"/>
+        <property name="transactionSource" type="string"/>
+        <property name="transactionChannel" type="string"/>
+        <property name="transactionResponseType" type="string"/>
+        <property name="transactionMode" type="string"/>
+        <property name="transactionId" type="string"/>
+        <property name="uniqueId" type="string"/>
+        <property name="shortId" type="string"/>
+        <property name="identificationSource" type="string"/>
+        <property name="resultCode" type="string"/>
+        <property name="resultTimestamp" type="string"/>
+        <property name="result" type="string"/>
+        <property name="resultStatus" type="string"/>
+        <property name="resultReason" type="string"/>
+        <property name="resultReturn" type="string"/>
+        <property name="paymentCode" type="string"/>
+        <property name="amount" type="int"/>
+        <property name="currency" type="string"/>
+        <property name="paymentDescriptor" type="string"/>
+        <property name="account" type="string"/>
+        <property name="customer" type="string"/>
     </transfer>
 
     <transfer name="HeidelpayNotificationCollection">
-        <property name="notifications" type="HeidelpayNotification[]" singular="notification" />
+        <property name="notifications" type="HeidelpayNotification[]" singular="notification"/>
     </transfer>
 
     <transfer name="HeidelpayTransactionLog">
-        <property name="idTransactionUnique" type="string" />
-        <property name="idSalesOrder" type="int" />
-        <property name="processingCode" type="string" />
-        <property name="redirectUrl" type="string" />
-        <property name="requestPayload" type="string" />
-        <property name="responsePayload" type="string" />
-        <property name="responseCode" type="string" />
-        <property name="transactionType" type="string" />
+        <property name="idTransactionUnique" type="string"/>
+        <property name="idSalesOrder" type="int"/>
+        <property name="processingCode" type="string"/>
+        <property name="redirectUrl" type="string"/>
+        <property name="requestPayload" type="string"/>
+        <property name="responsePayload" type="string"/>
+        <property name="responseCode" type="string"/>
+        <property name="transactionType" type="string"/>
+        <property name="heidelpayResponse" type="HeidelpayResponse"/>
     </transfer>
 
 </transfers>
