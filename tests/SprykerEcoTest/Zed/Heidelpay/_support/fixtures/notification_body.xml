@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Response version="1.0">
-    <Transaction source="WPF" channel="31HA07BC81A71E2A47DA94B6ADC524D8" response="SYNC" mode="LIVE">
+    <Transaction channel="31HA07BC81A71E2A47DA94B6ADC524D8" response="SYNC" mode="LIVE">
         <Identification>
             <TransactionID>Testtransaktion Heidelpay</TransactionID>
             <UniqueID>31HA07BC810F815529CF7631895B6471</UniqueID>
             <ShortID>2169.1671.0305</ShortID>
-            <Source>HPC</Source>
         </Identification>
         <Processing code="DD.DB.65.50">
             <Timestamp>2012-11- 15 14:38:31</Timestamp>
@@ -17,14 +16,12 @@
         <Payment code="DD.DB">
             <Clearing>
                 <Amount>184.00</Amount>
-                <Currency>EUR</Currency>
                 <Descriptor>2169.1671.0305 Heidelpay Testmerchant</Descriptor>
                 <Date>2012-11- 15 14:38:31</Date>
                 <Support>+49 (0) 62216517010</Support>
             </Clearing>
             <Presentation>
                 <Amount>184.00</Amount>
-                <Currency>EUR</Currency>
             </Presentation>
         </Payment>
         <Account>
