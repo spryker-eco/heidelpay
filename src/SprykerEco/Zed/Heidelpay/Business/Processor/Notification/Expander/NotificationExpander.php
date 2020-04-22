@@ -115,7 +115,7 @@ class NotificationExpander implements NotificationExpanderInterface
 
         $transactionData = $notificationData[static::KEY_ATTRIBUTES];
         $notificationTransfer
-            ->setTransactionSource($transactionData[static::KEY_TRANSACTION_SOURCE])
+            ->setTransactionSource($transactionData[static::KEY_TRANSACTION_SOURCE] ?? '')
             ->setTransactionChannel($transactionData[static::KEY_CHANNEL])
             ->setTransactionResponseType($transactionData[static::KEY_RESPONSE])
             ->setTransactionMode($transactionData[static::KEY_MODE]);
@@ -142,7 +142,7 @@ class NotificationExpander implements NotificationExpanderInterface
             ->setTransactionId($identificationData[static::KEY_TRANSACTION_ID])
             ->setUniqueId($identificationData[static::KEY_UNIQUE_ID])
             ->setShortId($identificationData[static::KEY_SHORT_ID])
-            ->setIdentificationSource($identificationData[static::KEY_IDENTIFICATION_SOURCE]);
+            ->setIdentificationSource($identificationData[static::KEY_IDENTIFICATION_SOURCE] ?? '');
 
         return $notificationTransfer;
     }
@@ -190,7 +190,7 @@ class NotificationExpander implements NotificationExpanderInterface
         $paymentData = $notificationData[static::KEY_PAYMENT];
         $notificationTransfer
             ->setPaymentCode($paymentData[static::KEY_ATTRIBUTES][static::KEY_CODE])
-            ->setCurrency($paymentData[static::KEY_CLEARING][static::KEY_CURRENCY])
+            ->setCurrency($paymentData[static::KEY_CLEARING][static::KEY_CURRENCY] ?? '')
             ->setPaymentDescriptor($paymentData[static::KEY_CLEARING][static::KEY_DESCRIPTOR])
             ->setAmount(
                 $this->convertAmountToInt($paymentData[static::KEY_CLEARING][static::KEY_AMOUNT])
