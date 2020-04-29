@@ -51,12 +51,28 @@ class NotificationXmlConverter implements NotificationXmlConverterInterface
      */
     protected function simpleXmlToArray(SimpleXMLElement $xmlElement): array
     {
-        $result = (array)$xmlElement;
+        $result = [];
 
-        foreach ($result as $name => $value) {
-            if ($value instanceof SimpleXMLElement) {
-                $result[$name] = $this->simpleXmlToArray($value);
-            }
+        /**
+         * When this $xmlElement has children, then add its attributes. If not, don't add the attributes.
+         * This is a quick-fix & workaround for a fixed PHP bug (#61597) to preserve backwards-compatibility for users
+         * of this module. In a future version we should change this to always return all attributes, and then mark
+         * it as a backwards-incompatible release to let our users change their code to expect an array and not a string
+         * in the places where a node only contains text (and not children).
+         */
+        $attributes = $xmlElement->attributes();
+        if ($xmlElement->count() > 0 && $attributes->count() > 0) {
+            $result['@attributes'] = ((array)$attributes)['@attributes'];
+        }
+
+        foreach ($xmlElement->children() as $node) {
+            /* @var \SimpleXMLElement $node */
+
+            $result[$node->getName()] = (
+                ($node->count() > 0)
+                ? $this->simpleXmlToArray($node)
+                : (string)$node
+            );
         }
 
         return $result;
