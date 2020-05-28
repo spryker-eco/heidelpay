@@ -61,8 +61,6 @@ class NotificationXmlConverter implements NotificationXmlConverterInterface
         foreach ($xmlElement->children() as $node) {
             /** @var \SimpleXMLElement $node */
             $result[$node->getName()] = $node->count() > 0 ? $this->simpleXmlToArray($node) : (string)$node;
-
-            return $result;
         }
 
         return $result;
