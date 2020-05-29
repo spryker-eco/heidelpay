@@ -51,12 +51,16 @@ class NotificationXmlConverter implements NotificationXmlConverterInterface
      */
     protected function simpleXmlToArray(SimpleXMLElement $xmlElement): array
     {
-        $result = (array)$xmlElement;
+        $result = [];
 
-        foreach ($result as $name => $value) {
-            if ($value instanceof SimpleXMLElement) {
-                $result[$name] = $this->simpleXmlToArray($value);
-            }
+        $attributes = $xmlElement->attributes();
+        if ($xmlElement->count() > 0 && $attributes->count() > 0) {
+            $result['@attributes'] = ((array)$attributes)['@attributes'];
+        }
+
+        foreach ($xmlElement->children() as $node) {
+            /** @var \SimpleXMLElement $node */
+            $result[$node->getName()] = $node->count() > 0 ? $this->simpleXmlToArray($node) : (string)$node;
         }
 
         return $result;
