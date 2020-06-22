@@ -58,7 +58,7 @@
     </transfer>
 
     <transfer name="HeidelpayCreditCardPaymentOptions">
-        <property name="optionsList" type="HeidelpayPaymentOption[]"/>
+        <property name="optionsList" type="HeidelpayPaymentOption[]" singular="optionsList"/>
         <property name="paymentFrameUrl" type="string"/>
         <property name="lastSuccessfulRegistration" type="HeidelpayCreditCardRegistration"/>
     </transfer>
@@ -132,7 +132,7 @@
     </transfer>
 
     <transfer name="HeidelpayBasketRequest">
-        <property name="items" type="Item[]"/>
+        <property name="items" type="Item[]" singular="items"/>
         <property name="totals" type="Totals"/>
         <property name="expenses" type="Expense[]" singular="expense"/>
         <property name="currency" type="Currency"/>
@@ -143,14 +143,14 @@
     </transfer>
 
     <transfer name="HeidelpayExternalPaymentResponse">
-        <property name="body" type="array"/>
+        <property name="body" type="array" singular="body"/>
         <property name="idSalesOrder" type="string"/>
         <property name="applicationSecret" type="string"/>
         <property name="paymentMethod" type="string"/>
     </transfer>
 
     <transfer name="HeidelpayExternalPaymentRequest">
-        <property name="body" type="array"/>
+        <property name="body" type="array" singular="body"/>
     </transfer>
 
     <transfer name="HeidelpayCreditCardInfo">
@@ -179,8 +179,8 @@
     </transfer>
 
     <transfer name="HeidelpayResponseConfig">
-        <property name="bankCountries" type="HeidelpayBankCountry[]"/>
-        <property name="bankBrands" type="HeidelpayBank[]"/>
+        <property name="bankCountries" type="HeidelpayBankCountry[]" singular="bankCountries"/>
+        <property name="bankBrands" type="HeidelpayBank[]" singular="bankBrands"/>
     </transfer>
 
     <transfer name="HeidelpayErrorRedirectResponse">
@@ -233,12 +233,24 @@
 
     <transfer name="Expense">
         <property name="heidelpayItemChannelId" type="string"/>
+        <property name="type" type="string"/>
+        <property name="name" type="string"/>
+        <property name="quantity" type="int"/>
+        <property name="taxRate" type="float"/>
+        <property name="sumDiscountAmountAggregation" type="int"/>
+        <property name="sumPriceToPayAggregation" type="int"/>
+        <property name="sumTaxAmount" type="int"/>
+        <property name="unitPriceToPayAggregation" type="int"/>
     </transfer>
 
     <transfer name="Order">
         <property name="idSalesOrder" type="int"/>
         <property name="heidelpayPayment" type="HeidelpayPayment"/>
         <property name="items" type="Item[]" singular="item"/>
+        <property name="billingAddress" type="Address"/>
+        <property name="email" type="string"/>
+        <property name="totals" type="Totals"/>
+        <property name="customer" type="Customer"/>
     </transfer>
 
     <transfer name="Quote">
@@ -248,6 +260,11 @@
         <property name="totals" type="Totals"/>
         <property name="expenses" type="Expense[]" singular="expense"/>
         <property name="currency" type="Currency"/>
+        <property name="payment" type="Payment" deprecated="Use payments property instead."/>
+        <property name="shippingAddress" type="Address" deprecated="Use item level shipping addresses (item.shipment.shippingAddress) instead."/>
+        <property name="customer" type="Customer"/>
+        <property name="billingAddress" type="Address"/>
+        <property name="orderReference" type="string"/>
     </transfer>
 
     <transfer name="Item">
@@ -261,6 +278,10 @@
         <property name="sku" type="string"/>
         <property name="sumTaxAmountFullAggregation" type="int"/>
         <property name="sumDiscountAmountFullAggregation" type="int"/>
+        <property name="unitPriceToPayAggregation" type="int"/>
+        <property name="sumPriceToPayAggregation" type="int"/>
+        <property name="sumTaxAmount" type="int"/>
+        <property name="idSalesOrderItem" type="int"/>
     </transfer>
 
     <transfer name="Payment">
@@ -273,12 +294,15 @@
         <property name="heidelpayInvoiceSecuredB2c" type="HeidelpayPayment"/>
         <property name="heidelpayDirectDebit" type="HeidelpayDirectDebitPayment"/>
         <property name="idBasket" type="string"/>
+        <property name="paymentMethod" type="string"/>
+        <property name="paymentSelection" type="string"/>
+        <property name="paymentProvider" type="string"/>
     </transfer>
 
     <transfer name="HeidelpayIdealAuthorizeForm">
         <property name="actionUrl" type="string"/>
-        <property name="countries" type="HeidelpayBankCountry[]"/>
-        <property name="banks" type="HeidelpayBank[]"/>
+        <property name="countries" type="HeidelpayBankCountry[]" singular="countries"/>
+        <property name="banks" type="HeidelpayBank[]" singular="banks"/>
     </transfer>
 
     <transfer name="HeidelpayBankCountry">
@@ -335,6 +359,67 @@
         <property name="responseCode" type="string"/>
         <property name="transactionType" type="string"/>
         <property name="heidelpayResponse" type="HeidelpayResponse"/>
+    </transfer>
+
+    <transfer name="Totals">
+        <property name="netTotal" type="int"/>
+        <property name="taxTotal" type="TaxTotal"/>
+        <property name="grandTotal" type="int"/>
+        <property name="hash" type="string"/>
+        <property name="priceToPay" type="int"/>
+    </transfer>
+
+    <transfer name="Currency">
+        <property name="code" type="string"/>
+    </transfer>
+
+    <transfer name="Address">
+        <property name="address1" type="string"/>
+        <property name="address2" type="string"/>
+        <property name="idCustomerAddress" type="int"/>
+        <property name="city" type="string"/>
+        <property name="company" type="string"/>
+        <property name="iso2Code" type="string"/>
+        <property name="firstName" type="string"/>
+        <property name="lastName" type="string"/>
+        <property name="state" type="string"/>
+        <property name="zipCode" type="string"/>
+        <property name="salutation" type="string"/>
+    </transfer>
+
+    <transfer name="Customer">
+        <property name="createdAt" type="string"/>
+        <property name="email" type="string"/>
+        <property name="idCustomer" type="int"/>
+        <property name="isGuest" type="bool"/>
+    </transfer>
+
+    <transfer name="SaveOrder">
+        <property name="idSalesOrder" type="int"/>
+        <property name="orderItems" type="Item[]" singular="orderItem"/>
+    </transfer>
+
+    <transfer name="CheckoutResponse">
+        <property name="isExternalRedirect" type="bool"/>
+        <property name="redirectUrl" type="string"/>
+        <property name="saveOrder" type="SaveOrder"/>
+        <property name="isSuccess" type="bool"/>
+    </transfer>
+
+    <transfer name="PaymentMethods">
+        <property name="methods" singular="method" type="PaymentMethod[]"/>
+    </transfer>
+
+    <transfer name="PaymentMethod">
+        <property name="methodName" type="string"/>
+    </transfer>
+
+    <transfer name="OrderList">
+        <property name="orders" type="Order[]" singular="order"/>
+    </transfer>
+
+    <transfer name="TaxTotal">
+        <property name="amount" type="int"/>
     </transfer>
 
 </transfers>
