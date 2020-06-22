@@ -82,7 +82,7 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
      */
     protected function isQuoteValidForEasyCredit(QuoteTransfer $quoteTransfer): bool
     {
-        return $quoteTransfer->getShippingAddress()->getIso2Code() === $this->config->getEasycreditCriteriaCountryIsoCode()
+        return in_array($quoteTransfer->getShippingAddress()->getIso2Code(), $this->config->getEasycreditCriteriaCountryIsoCodes(), true)
             && $this->isAddressCorrect($quoteTransfer)
             && $quoteTransfer->getBillingAddress()->toArray() === $quoteTransfer->getShippingAddress()->toArray()
             && !$this->isQuoteGrandTotalOutOfRange($quoteTransfer);

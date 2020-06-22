@@ -19,7 +19,7 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 $config[HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_REJECTED_DELIVERY_ADDRESS] = 'Packstation';
 $config[HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_GRAND_TOTAL_LESS_THAN] = 200;
 $config[HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_GRAND_TOTAL_MORE_THAN] = 5000;
-$config[HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_COUNTRY_ISO_CODE] = 'DE';
+$config[HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_COUNTRY_ISO_CODES] = ['DE'];
 
 // ---------- Merchant config values, got from Heidelpay
 $config[HeidelpayConstants::CONFIG_HEIDELPAY_SECURITY_SENDER] = '';

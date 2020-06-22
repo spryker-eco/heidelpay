@@ -179,11 +179,11 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
-     * @return float
+     * @return string[]
      */
-    public function getEasycreditCriteriaCountryIsoCode(): string
+    public function getEasycreditCriteriaCountryIsoCodes(): array
     {
-        return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_COUNTRY_ISO_CODE);
+        return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_COUNTRY_ISO_CODES, ['DE']);
     }
 
     /**
