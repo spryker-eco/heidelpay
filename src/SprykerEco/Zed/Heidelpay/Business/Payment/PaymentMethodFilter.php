@@ -17,8 +17,6 @@ use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class PaymentMethodFilter implements PaymentMethodFilterInterface
 {
-    protected const ISO2_COUNTRY_DE = 'DE';
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\HeidelpayConfig
      */
@@ -84,7 +82,7 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
      */
     protected function isQuoteValidForEasyCredit(QuoteTransfer $quoteTransfer): bool
     {
-        return $quoteTransfer->getShippingAddress()->getIso2Code() === static::ISO2_COUNTRY_DE
+        return $quoteTransfer->getShippingAddress()->getIso2Code() === $this->config->getEasycreditCriteriaCountryIsoCode()
             && $this->isAddressCorrect($quoteTransfer)
             && $quoteTransfer->getBillingAddress()->toArray() === $quoteTransfer->getShippingAddress()->toArray()
             && !$this->isQuoteGrandTotalOutOfRange($quoteTransfer);
