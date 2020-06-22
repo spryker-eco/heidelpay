@@ -17,6 +17,8 @@ use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class PaymentMethodFilter implements PaymentMethodFilterInterface
 {
+    protected const ISO2_COUNTRY_DE = 'DE';
+
     /**
      * @var \SprykerEco\Zed\Heidelpay\HeidelpayConfig
      */
@@ -51,10 +53,9 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
     ): PaymentMethodsTransfer {
 
         $result = new ArrayObject();
-        $grandTotal = $this->moneyFacade->convertIntegerToDecimal($quoteTransfer->getTotals()->getGrandTotal());
+
         foreach ($paymentMethodsTransfer->getMethods() as $paymentMethod) {
-            $address = $this->isAddressCorrect($quoteTransfer);
-            if ($this->isPaymentMethodHeidelpayEasyCredit($paymentMethod) && $this->isTotalOutOfRange($grandTotal) && $this->isAddressCorrect($quoteTransfer)) {
+            if ($this->isPaymentMethodHeidelpayEasyCredit($paymentMethod) && !$this->isQuoteValidForEasyCredit($quoteTransfer)) {
                 continue;
             }
 
@@ -77,18 +78,31 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
     }
 
     /**
-     * @param float $grandTotal
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return bool
      */
-    protected function isTotalOutOfRange(float $grandTotal): bool
+    protected function isQuoteValidForEasyCredit(QuoteTransfer $quoteTransfer): bool
     {
-        $isOutOfRange = (
+        return $quoteTransfer->getShippingAddress()->getIso2Code() === static::ISO2_COUNTRY_DE
+            && $this->isAddressCorrect($quoteTransfer)
+            && $quoteTransfer->getBillingAddress()->toArray() === $quoteTransfer->getShippingAddress()->toArray()
+            && !$this->isQuoteGrandTotalOutOfRange($quoteTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return bool
+     */
+    protected function isQuoteGrandTotalOutOfRange(QuoteTransfer $quoteTransfer): bool
+    {
+        $grandTotal = $this->moneyFacade->convertIntegerToDecimal($quoteTransfer->getTotals()->getGrandTotal());
+
+        return (
             $grandTotal < $this->config->getEasycreditCriteriaGrandTotalLessThan()
             || $grandTotal > $this->config->getEasycreditCriteriaGrandTotalMoreThan()
         );
-
-        return $isOutOfRange;
     }
 
     /**
