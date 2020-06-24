@@ -8,6 +8,7 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Payment;
 
 use ArrayObject;
+use Generated\Shared\Transfer\AddressTransfer;
 use Generated\Shared\Transfer\PaymentMethodsTransfer;
 use Generated\Shared\Transfer\PaymentMethodTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
@@ -82,9 +83,18 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
      */
     protected function isQuoteValidForEasyCredit(QuoteTransfer $quoteTransfer): bool
     {
+        $billingAddressData = $quoteTransfer->getBillingAddress()->toArrayRecursiveCamelCased();
+        $shippingAddressData = $quoteTransfer->getShippingAddress()->toArrayRecursiveCamelCased();
+        unset(
+            $billingAddressData[AddressTransfer::IS_DEFAULT_BILLING],
+            $shippingAddressData[AddressTransfer::IS_DEFAULT_BILLING],
+            $billingAddressData[AddressTransfer::IS_DEFAULT_SHIPPING],
+            $shippingAddressData[AddressTransfer::IS_DEFAULT_SHIPPING]
+        );
+
         return in_array($quoteTransfer->getShippingAddress()->getIso2Code(), $this->config->getEasycreditCriteriaCountryIsoCodes(), true)
             && $this->isAddressCorrect($quoteTransfer)
-            && $quoteTransfer->getBillingAddress()->toArray() === $quoteTransfer->getShippingAddress()->toArray()
+            && $billingAddressData === $shippingAddressData
             && !$this->isQuoteGrandTotalOutOfRange($quoteTransfer);
     }
 
