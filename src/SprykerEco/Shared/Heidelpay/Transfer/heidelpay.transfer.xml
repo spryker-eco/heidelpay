@@ -386,6 +386,7 @@
         <property name="zipCode" type="string"/>
         <property name="salutation" type="string"/>
         <property name="isDefaultBilling" type="bool"/>
+        <property name="isDefaultShipping" type="bool"/>
     </transfer>
 
     <transfer name="Customer">
