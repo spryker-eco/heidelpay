@@ -58,7 +58,7 @@
     </transfer>
 
     <transfer name="HeidelpayCreditCardPaymentOptions">
-        <property name="optionsList" type="HeidelpayPaymentOption[]" singular="optionsList"/>
+        <property name="optionsList" type="HeidelpayPaymentOption[]" singular="option"/>
         <property name="paymentFrameUrl" type="string"/>
         <property name="lastSuccessfulRegistration" type="HeidelpayCreditCardRegistration"/>
     </transfer>
@@ -132,7 +132,7 @@
     </transfer>
 
     <transfer name="HeidelpayBasketRequest">
-        <property name="items" type="Item[]" singular="items"/>
+        <property name="items" type="Item[]" singular="item"/>
         <property name="totals" type="Totals"/>
         <property name="expenses" type="Expense[]" singular="expense"/>
         <property name="currency" type="Currency"/>
@@ -179,8 +179,8 @@
     </transfer>
 
     <transfer name="HeidelpayResponseConfig">
-        <property name="bankCountries" type="HeidelpayBankCountry[]" singular="bankCountries"/>
-        <property name="bankBrands" type="HeidelpayBank[]" singular="bankBrands"/>
+        <property name="bankCountries" type="HeidelpayBankCountry[]" singular="bankCountry"/>
+        <property name="bankBrands" type="HeidelpayBank[]" singular="bankBrand"/>
     </transfer>
 
     <transfer name="HeidelpayErrorRedirectResponse">
@@ -301,8 +301,8 @@
 
     <transfer name="HeidelpayIdealAuthorizeForm">
         <property name="actionUrl" type="string"/>
-        <property name="countries" type="HeidelpayBankCountry[]" singular="countries"/>
-        <property name="banks" type="HeidelpayBank[]" singular="banks"/>
+        <property name="countries" type="HeidelpayBankCountry[]" singular="country"/>
+        <property name="banks" type="HeidelpayBank[]" singular="bank"/>
     </transfer>
 
     <transfer name="HeidelpayBankCountry">
