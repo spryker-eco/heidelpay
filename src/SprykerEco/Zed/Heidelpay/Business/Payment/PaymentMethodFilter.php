@@ -8,6 +8,7 @@
 namespace SprykerEco\Zed\Heidelpay\Business\Payment;
 
 use ArrayObject;
+use Generated\Shared\Transfer\AddressTransfer;
 use Generated\Shared\Transfer\PaymentMethodsTransfer;
 use Generated\Shared\Transfer\PaymentMethodTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
@@ -51,10 +52,9 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
     ): PaymentMethodsTransfer {
 
         $result = new ArrayObject();
-        $grandTotal = $this->moneyFacade->convertIntegerToDecimal($quoteTransfer->getTotals()->getGrandTotal());
+
         foreach ($paymentMethodsTransfer->getMethods() as $paymentMethod) {
-            $address = $this->isAddressCorrect($quoteTransfer);
-            if ($this->isPaymentMethodHeidelpayEasyCredit($paymentMethod) && $this->isTotalOutOfRange($grandTotal) && $this->isAddressCorrect($quoteTransfer)) {
+            if ($this->isPaymentMethodHeidelpayEasyCredit($paymentMethod) && !$this->isEasyCreditAllowed($quoteTransfer)) {
                 continue;
             }
 
@@ -77,18 +77,40 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
     }
 
     /**
-     * @param float $grandTotal
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return bool
      */
-    protected function isTotalOutOfRange(float $grandTotal): bool
+    protected function isEasyCreditAllowed(QuoteTransfer $quoteTransfer): bool
     {
-        $isOutOfRange = (
+        $billingAddressData = $quoteTransfer->getBillingAddress()->toArrayRecursiveCamelCased();
+        $shippingAddressData = $quoteTransfer->getShippingAddress()->toArrayRecursiveCamelCased();
+        unset(
+            $billingAddressData[AddressTransfer::IS_DEFAULT_BILLING],
+            $shippingAddressData[AddressTransfer::IS_DEFAULT_BILLING],
+            $billingAddressData[AddressTransfer::IS_DEFAULT_SHIPPING],
+            $shippingAddressData[AddressTransfer::IS_DEFAULT_SHIPPING]
+        );
+
+        return in_array($quoteTransfer->getShippingAddress()->getIso2Code(), $this->config->getEasyCreditAllowedCountries(), true)
+            && $this->isAddressCorrect($quoteTransfer)
+            && $billingAddressData === $shippingAddressData
+            && !$this->isQuoteGrandTotalOutOfRange($quoteTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
+     * @return bool
+     */
+    protected function isQuoteGrandTotalOutOfRange(QuoteTransfer $quoteTransfer): bool
+    {
+        $grandTotal = $this->moneyFacade->convertIntegerToDecimal($quoteTransfer->getTotals()->getGrandTotal());
+
+        return (
             $grandTotal < $this->config->getEasycreditCriteriaGrandTotalLessThan()
             || $grandTotal > $this->config->getEasycreditCriteriaGrandTotalMoreThan()
         );
-
-        return $isOutOfRange;
     }
 
     /**

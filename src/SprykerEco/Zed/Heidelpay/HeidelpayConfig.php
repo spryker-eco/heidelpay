@@ -179,6 +179,14 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @return string[]
+     */
+    public function getEasyCreditAllowedCountries(): array
+    {
+        return $this->get(HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_COUNTRY_ISO_CODES, ['DE']);
+    }
+
+    /**
      * @return bool
      */
     public function getIsSplitPaymentEnabledKey(): bool

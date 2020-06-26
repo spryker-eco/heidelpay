@@ -38,6 +38,14 @@ interface HeidelpayConstants
 
     /**
      * Specification:
+     * - Reject criteria for EasyCredit by country ISO codes.
+     *
+     * @api
+     */
+    public const CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_COUNTRY_ISO_CODES = 'HEIDELPAY:CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_COUNTRY_ISO_CODES';
+
+    /**
+     * Specification:
      * - Security sender configuration.
      *
      * @api
