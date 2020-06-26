@@ -54,7 +54,7 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
         $result = new ArrayObject();
 
         foreach ($paymentMethodsTransfer->getMethods() as $paymentMethod) {
-            if ($this->isPaymentMethodHeidelpayEasyCredit($paymentMethod) && !$this->isQuoteValidForEasyCredit($quoteTransfer)) {
+            if ($this->isPaymentMethodHeidelpayEasyCredit($paymentMethod) && !$this->isEasyCreditAllowed($quoteTransfer)) {
                 continue;
             }
 
@@ -81,7 +81,7 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
      *
      * @return bool
      */
-    protected function isQuoteValidForEasyCredit(QuoteTransfer $quoteTransfer): bool
+    protected function isEasyCreditAllowed(QuoteTransfer $quoteTransfer): bool
     {
         $billingAddressData = $quoteTransfer->getBillingAddress()->toArrayRecursiveCamelCased();
         $shippingAddressData = $quoteTransfer->getShippingAddress()->toArrayRecursiveCamelCased();
@@ -92,7 +92,7 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
             $shippingAddressData[AddressTransfer::IS_DEFAULT_SHIPPING]
         );
 
-        return in_array($quoteTransfer->getShippingAddress()->getIso2Code(), $this->config->getEasycreditCriteriaCountryIsoCodes(), true)
+        return in_array($quoteTransfer->getShippingAddress()->getIso2Code(), $this->config->getEasyCreditAllowedCountries(), true)
             && $this->isAddressCorrect($quoteTransfer)
             && $billingAddressData === $shippingAddressData
             && !$this->isQuoteGrandTotalOutOfRange($quoteTransfer);
