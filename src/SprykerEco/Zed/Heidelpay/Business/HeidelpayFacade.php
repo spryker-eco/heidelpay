@@ -25,6 +25,7 @@ use Generated\Shared\Transfer\OrderTransfer;
 use Generated\Shared\Transfer\PaymentMethodsTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\SaveOrderTransfer;
+use Orm\Zed\Sales\Persistence\SpySalesOrderItem;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
@@ -410,5 +411,21 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
         return $this->getFactory()
             ->createHeidelpayNotificationProcessor()
             ->processNotification($notificationTransfer);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem $orderItem
+     *
+     * @return bool
+     */
+    public function isCaptureSuccessful(SpySalesOrderItem $orderItem): bool
+    {
+        return $this->getFactory()
+            ->createCaptureTransactionChecker()
+            ->isSuccessful($orderItem);
     }
 }

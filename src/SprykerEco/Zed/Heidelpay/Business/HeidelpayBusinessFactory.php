@@ -16,6 +16,8 @@ use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\DirectDebitPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreator;
 use SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreatorInterface;
+use SprykerEco\Zed\Heidelpay\Business\Checker\CaptureTransactionChecker;
+use SprykerEco\Zed\Heidelpay\Business\Checker\CaptureTransactionCheckerInterface;
 use SprykerEco\Zed\Heidelpay\Business\Encrypter\AesEncrypter;
 use SprykerEco\Zed\Heidelpay\Business\Encrypter\EncrypterInterface;
 use SprykerEco\Zed\Heidelpay\Business\Hook\PostSaveHook;
@@ -1006,5 +1008,13 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     public function getHeidelpayNotificationExpanderPlugins(): array
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::PLUGINS_HEIDELPAY_NOTIFICATION_EXPANDER);
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Checker\CaptureTransactionCheckerInterface
+     */
+    public function createCaptureTransactionChecker(): CaptureTransactionCheckerInterface
+    {
+        return new CaptureTransactionChecker($this->getQueryContainer());
     }
 }

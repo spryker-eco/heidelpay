@@ -154,4 +154,19 @@ class HeidelpayQueryContainer extends AbstractQueryContainer implements Heidelpa
             ->filterByIdCreditCardRegistration($idRegistration)
             ->filterByQuoteHash($quoteHash);
     }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param int $idSalesOrder
+     *
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery
+     */
+    public function queryCaptureSuccessTransactionLog(int $idSalesOrder): SpyPaymentHeidelpayTransactionLogQuery
+    {
+        return $this->queryCaptureTransactionLog($idSalesOrder)
+            ->filterByResponseCode(HeidelpayConfig::CAPTURE_TRANSACTION_STATUS_OK);
+    }
 }

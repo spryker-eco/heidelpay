@@ -14,6 +14,8 @@ use Spryker\Zed\Oms\Dependency\Plugin\Condition\ConditionInterface;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 
 /**
+ * @deprecated Use {@link \SprykerEco\Zed\Heidelpay\Communication\Plugin\Checkout\Oms\Condition\IsCaptureSuccessPlugin} instead.
+ *
  * @method \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacadeInterface getFacade()
  * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface getQueryContainer()
  * @method \SprykerEco\Zed\Heidelpay\Communication\HeidelpayCommunicationFactory getFactory()

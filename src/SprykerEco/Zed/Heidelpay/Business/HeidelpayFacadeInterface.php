@@ -25,6 +25,7 @@ use Generated\Shared\Transfer\OrderTransfer;
 use Generated\Shared\Transfer\PaymentMethodsTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\SaveOrderTransfer;
+use Orm\Zed\Sales\Persistence\SpySalesOrderItem;
 
 interface HeidelpayFacadeInterface
 {
@@ -324,4 +325,16 @@ interface HeidelpayFacadeInterface
      * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer
      */
     public function processNotification(HeidelpayNotificationTransfer $notificationTransfer): HeidelpayNotificationTransfer;
+
+    /**
+     * Specification:
+     *  - Checks if Capture was successful.
+     *
+     * @api
+     *
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem $orderItem
+     *
+     * @return bool
+     */
+    public function isCaptureSuccessful(SpySalesOrderItem $orderItem): bool;
 }
