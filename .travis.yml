@@ -1,4 +1,6 @@
 language: php
+os: linux
+dist: bionic
 
 notifications:
   email: false
@@ -26,12 +28,24 @@ services:
   - rabbitmq
 
 addons:
-  postgresql: 9.4
+    postgresql: "12"
 
-  apt:
-    packages:
-      - graphviz
-      - rabbitmq-server
+    apt:
+        sources:
+            -   sourceline: ppa:chris-lea/redis-server
+            -   sourceline: deb http://dl.bintray.com/rabbitmq-erlang/debian bionic erlang
+                key_url: https://github.com/rabbitmq/signing-keys/releases/download/2.0/rabbitmq-release-signing-key.asc
+            -   sourceline: deb https://dl.bintray.com/rabbitmq/debian bionic main
+                key_url: https://github.com/rabbitmq/signing-keys/releases/download/2.0/rabbitmq-release-signing-key.asc
+            -   sourceline: ppa:ondrej/php
+        packages:
+            - redis-tools
+            - redis-server
+            - rabbitmq-server
+            - graphviz
+            - postgresql-12
+            - postgresql-client-12
+            - postgresql-server-dev-12
 
   hosts:
     - zed.de.spryker.test
@@ -39,12 +53,14 @@ addons:
 
 env:
   global:
+    - APPLICATION_ENV=ci.pgsql
+    - SPRYKER_TESTING_ENABLED=1
     - APPLICATION_ENV=devtest
     - APPLICATION_STORE=DE
     - MODULE_DIR=module
     - SHOP_DIR=current
     - MODULE_NAME=heidelpay
-    - POSTGRES_PORT=5432
+    - POSTGRES_PORT=5433
 
 cache:
   directories:
