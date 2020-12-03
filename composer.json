@@ -4,7 +4,7 @@
   "description": "Heidelpay module",
   "license": "MIT",
   "require": {
-    "php": ">=7.2",
+    "php": ">=7.3",
     "heidelpay/php-basket-api": "^1.0.2",
     "heidelpay/php-message-code-mapper": "^1.0.1",
     "heidelpay/php-payment-api": "^1.6.1",
