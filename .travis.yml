@@ -29,7 +29,7 @@ services:
   - rabbitmq
 
 addons:
-  postgresql: 9.4
+  mariadb: 10.3
 
   apt:
     sources:
@@ -49,14 +49,12 @@ addons:
 
 env:
   global:
-    - APPLICATION_ENV=ci.pgsql
     - SPRYKER_TESTING_ENABLED=1
     - APPLICATION_ENV=devtest
     - APPLICATION_STORE=DE
     - MODULE_DIR=module
     - SHOP_DIR=current
     - MODULE_NAME=heidelpay
-    - POSTGRES_PORT=5433
 
 cache:
   directories:
