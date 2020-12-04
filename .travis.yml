@@ -29,8 +29,7 @@ services:
   - rabbitmq
 
 addons:
-  mariadb: 10.3
-
+  postgresql: 9.4
   apt:
     sources:
       - sourceline: ppa:chris-lea/redis-server
@@ -66,5 +65,5 @@ before_install:
   - phpenv config-rm xdebug.ini
 
 script:
-    - git clone -b 'master' --single-branch https://github.com/spryker-eco/eco-ci.git ecoci
-    - ./ecoci/build/travis.sh
+  - git clone -b 'master' --single-branch https://github.com/spryker-eco/eco-ci.git ecoci
+  - ./ecoci/build/travis.sh
