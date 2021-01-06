@@ -16,8 +16,8 @@ use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\DirectDebitPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreator;
 use SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreatorInterface;
-use SprykerEco\Zed\Heidelpay\Business\Checker\CaptureTransactionChecker;
-use SprykerEco\Zed\Heidelpay\Business\Checker\CaptureTransactionCheckerInterface;
+use SprykerEco\Zed\Heidelpay\Business\Checker\SalesOrderChecker;
+use SprykerEco\Zed\Heidelpay\Business\Checker\SalesOrderCheckerInterface;
 use SprykerEco\Zed\Heidelpay\Business\Encrypter\AesEncrypter;
 use SprykerEco\Zed\Heidelpay\Business\Encrypter\EncrypterInterface;
 use SprykerEco\Zed\Heidelpay\Business\Hook\PostSaveHook;
@@ -227,7 +227,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     {
         return [
             HeidelpayConfig::PAYMENT_METHOD_INVOICE_SECURED_B2C => $this->createAdapterRequestFromOrderBuilder(),
-            HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT => $this->createEasyCreditAdapterRequestFromOrderBuilder()
+            HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT => $this->createEasyCreditAdapterRequestFromOrderBuilder(),
         ];
     }
 
@@ -1011,10 +1011,10 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Checker\CaptureTransactionCheckerInterface
+     * @return \SprykerEco\Zed\Heidelpay\Business\Checker\SalesOrderCheckerInterface
      */
-    public function createCaptureTransactionChecker(): CaptureTransactionCheckerInterface
+    public function createSalesOrderChecker(): SalesOrderCheckerInterface
     {
-        return new CaptureTransactionChecker($this->getQueryContainer());
+        return new SalesOrderChecker($this->getRepository());
     }
 }

@@ -22,7 +22,7 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 class IsFinalizeCompletedPlugin extends AbstractPlugin implements ConditionInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      * - Checks if Finalize transaction was successful.
      *
      * @api

@@ -25,7 +25,6 @@ use Generated\Shared\Transfer\OrderTransfer;
 use Generated\Shared\Transfer\PaymentMethodsTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\SaveOrderTransfer;
-use Orm\Zed\Sales\Persistence\SpySalesOrderItem;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
@@ -36,7 +35,7 @@ use Spryker\Zed\Kernel\Business\AbstractFacade;
 class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -53,7 +52,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -69,7 +68,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -86,7 +85,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -102,7 +101,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -118,7 +117,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -134,7 +133,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -150,7 +149,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -166,7 +165,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -182,7 +181,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -198,7 +197,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -214,7 +213,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -230,7 +229,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -247,7 +246,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -263,7 +262,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -279,7 +278,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -295,7 +294,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -311,7 +310,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -327,7 +326,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -344,7 +343,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -364,7 +363,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -381,7 +380,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -398,7 +397,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -418,14 +417,46 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @api
      *
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem $orderItem
+     * @param int $idSalesOrder
      *
      * @return bool
      */
-    public function isCaptureSuccessful(SpySalesOrderItem $orderItem): bool
+    public function isSalesOrderCaptureApproved(int $idSalesOrder): bool
     {
         return $this->getFactory()
-            ->createCaptureTransactionChecker()
-            ->isSuccessful($orderItem);
+            ->createSalesOrderChecker()
+            ->isCaptureApproved($idSalesOrder);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param int $idSalesOrder
+     *
+     * @return bool
+     */
+    public function isSalesOrderRefunded(int $idSalesOrder): bool
+    {
+        return $this->getFactory()
+            ->createSalesOrderChecker()
+            ->isRefunded($idSalesOrder);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param int $idSalesOrder
+     *
+     * @return bool
+     */
+    public function isSalesOrderDebitOnRegistrationCompleted(int $idSalesOrder): bool
+    {
+        return $this->getFactory()
+            ->createSalesOrderChecker()
+            ->isDebitOnRegistrationCompleted($idSalesOrder);
     }
 }

@@ -20,7 +20,7 @@ use Spryker\Zed\Oms\Dependency\Plugin\Condition\ConditionInterface;
 class IsCaptureApprovedPlugin extends AbstractPlugin implements ConditionInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      * - Checks if Capture transaction was successful.
      *
      * @api
@@ -31,7 +31,8 @@ class IsCaptureApprovedPlugin extends AbstractPlugin implements ConditionInterfa
      */
     public function check(SpySalesOrderItem $orderItem): bool
     {
-        return $this->getFacade()
-            ->isCaptureSuccessful($orderItem);
+        return $this->getFacade()->isSalesOrderCaptureApproved(
+            $orderItem->getFkSalesOrder()
+        );
     }
 }

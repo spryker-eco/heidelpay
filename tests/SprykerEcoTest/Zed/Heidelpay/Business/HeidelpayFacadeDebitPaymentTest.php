@@ -66,7 +66,7 @@ class HeidelpayFacadeDebitPaymentTest extends HeidelpayPaymentTest
      */
     protected function createOrder(): SpySalesOrder
     {
-        $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
+        $orderBuilder = new PaymentBuilder();
 
         return $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_PAYPAL_DEBIT);
     }

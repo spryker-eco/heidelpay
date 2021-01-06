@@ -20,6 +20,8 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 class HeidelpayQueryContainer extends AbstractQueryContainer implements HeidelpayQueryContainerInterface
 {
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param int $idSalesOrder
@@ -35,6 +37,8 @@ class HeidelpayQueryContainer extends AbstractQueryContainer implements Heidelpa
     }
 
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param int $idSalesOrder
@@ -50,6 +54,8 @@ class HeidelpayQueryContainer extends AbstractQueryContainer implements Heidelpa
     }
 
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param int $idSalesOrder
@@ -65,6 +71,8 @@ class HeidelpayQueryContainer extends AbstractQueryContainer implements Heidelpa
     }
 
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param int $idSalesOrder
@@ -80,6 +88,8 @@ class HeidelpayQueryContainer extends AbstractQueryContainer implements Heidelpa
     }
 
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param int $idSalesOrder
@@ -95,6 +105,8 @@ class HeidelpayQueryContainer extends AbstractQueryContainer implements Heidelpa
     }
 
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param int $idSalesOrder
@@ -111,6 +123,8 @@ class HeidelpayQueryContainer extends AbstractQueryContainer implements Heidelpa
     }
 
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param string $registrationNumber
@@ -125,6 +139,8 @@ class HeidelpayQueryContainer extends AbstractQueryContainer implements Heidelpa
     }
 
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param int $idAddress
@@ -140,6 +156,8 @@ class HeidelpayQueryContainer extends AbstractQueryContainer implements Heidelpa
     }
 
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param int $idRegistration
@@ -153,20 +171,5 @@ class HeidelpayQueryContainer extends AbstractQueryContainer implements Heidelpa
             ->createHeidelpayCreditCardRegistrationQuery()
             ->filterByIdCreditCardRegistration($idRegistration)
             ->filterByQuoteHash($quoteHash);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @api
-     *
-     * @param int $idSalesOrder
-     *
-     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery
-     */
-    public function queryCaptureSuccessTransactionLog(int $idSalesOrder): SpyPaymentHeidelpayTransactionLogQuery
-    {
-        return $this->queryCaptureTransactionLog($idSalesOrder)
-            ->filterByResponseCode(HeidelpayConfig::CAPTURE_TRANSACTION_STATUS_OK);
     }
 }

@@ -72,11 +72,13 @@ interface HeidelpayRepositoryInterface
     /**
      * @param int $idSalesOrder
      * @param string $transactionType
+     * @param string $responseCode
      *
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
      */
-    public function findHeidelpayTransactionLogByIdSalesOrderAndTransactionType(
+    public function findHeidelpayTransactionLogByIdSalesOrderAndTransactionTypeAndResponseCode(
         int $idSalesOrder,
-        string $transactionType
+        string $transactionType,
+        string $responseCode
     ): ?HeidelpayTransactionLogTransfer;
 }

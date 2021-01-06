@@ -37,13 +37,13 @@ class HeidelpayFacadeExecuteRefundTest extends HeidelpayPaymentTest
         //Act
         $heidelpayFacade->executeRefund($orderTransfer);
         $transaction = $this->createRepository()
-            ->findHeidelpayTransactionLogByIdSalesOrderAndTransactionType(
+            ->findHeidelpayTransactionLogByIdSalesOrderAndTransactionTypeAndResponseCode(
                 $orderTransfer->getIdSalesOrder(),
-                HeidelpayConfig::TRANSACTION_TYPE_REFUND
+                HeidelpayConfig::TRANSACTION_TYPE_REFUND,
+                HeidelpayTestConfig::HEIDELPAY_SUCCESS_RESPONSE
             );
 
         //Assert
-        $this->assertEquals(HeidelpayTestConfig::HEIDELPAY_SUCCESS_RESPONSE, $transaction->getResponseCode());
         $this->assertNotEmpty($transaction->getIdTransactionUnique());
         $this->assertNotEmpty($transaction->getResponsePayload());
         $this->assertNotEmpty($transaction->getRequestPayload());
@@ -54,7 +54,7 @@ class HeidelpayFacadeExecuteRefundTest extends HeidelpayPaymentTest
      */
     protected function createOrder(): SpySalesOrder
     {
-        $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
+        $orderBuilder = new PaymentBuilder();
 
         return $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_DIRECT_DEBIT);
     }

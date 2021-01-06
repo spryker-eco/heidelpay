@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * @method \SprykerEco\Yves\Heidelpay\HeidelpayFactory getFactory()
  * @method \SprykerEco\Client\Heidelpay\HeidelpayClientInterface getClient()
+ * @method \SprykerEco\Yves\Heidelpay\HeidelpayConfig getConfig()
  */
 class CreditCardController extends BaseHeidelpayController
 {
@@ -146,7 +147,7 @@ class CreditCardController extends BaseHeidelpayController
      */
     protected function redirectToSummaryStep(): RedirectResponse
     {
-        $summaryStepUrl = $this->getConfig()->getYvesCheckoutSummaryStepUrl();
+        $summaryStepUrl = $this->getFactory()->getConfig()->getYvesCheckoutSummaryStepUrl();
 
         return new RedirectResponse($summaryStepUrl);
     }
@@ -159,8 +160,7 @@ class CreditCardController extends BaseHeidelpayController
     protected function redirectToPaymentStepWithError(string $errorCode): RedirectResponse
     {
         $paymentFailedUrl = sprintf(
-
-            $this->getConfig()->getYvesCheckoutPaymentFailedUrl(),
+            $this->getFactory()->getConfig()->getYvesCheckoutPaymentFailedUrl(),
             $errorCode
         );
 
@@ -176,7 +176,7 @@ class CreditCardController extends BaseHeidelpayController
         HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
     ): Response {
         $redirectUrl = sprintf(
-            $this->getConfig()->getYvesCheckoutPaymentFailedUrl(),
+            $this->getFactory()->getConfig()->getYvesCheckoutPaymentFailedUrl(),
             $registrationRequestTransfer->getError()->getCode()
         );
 
@@ -192,7 +192,7 @@ class CreditCardController extends BaseHeidelpayController
         HeidelpayRegistrationSaveResponseTransfer $saveResponseTransfer
     ): Response {
         $redirectUrl = sprintf(
-            $this->getConfig()->getYvesRegistrationSuccessUrl(),
+            $this->getFactory()->getConfig()->getYvesRegistrationSuccessUrl(),
             $saveResponseTransfer->getIdRegistration()
         );
 

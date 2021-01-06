@@ -80,7 +80,6 @@ class LastSuccessfulRegistration implements PaymentOptionInterface
         HeidelpayCreditCardRegistrationTransfer $creditCardRegistrationTransfer,
         HeidelpayCreditCardPaymentOptionsTransfer $paymentOptionsTransfer
     ): void {
-
         $this->addLastSuccessfulRegistrationAsPaymentOption($paymentOptionsTransfer);
 
         $paymentOptionsTransfer
@@ -95,7 +94,6 @@ class LastSuccessfulRegistration implements PaymentOptionInterface
     protected function addLastSuccessfulRegistrationAsPaymentOption(
         HeidelpayCreditCardPaymentOptionsTransfer $paymentOptionsTransfer
     ): void {
-
         $optionsList = $paymentOptionsTransfer->getOptionsList();
         $optionsList[] = (new HeidelpayPaymentOptionTransfer())
             ->setCode(HeidelpayConfig::PAYMENT_OPTION_EXISTING_REGISTRATION);

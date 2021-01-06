@@ -38,13 +38,13 @@ class HeidelpayFacadeExecuteDebitOnRegistrationTest extends HeidelpayPaymentTest
         //Act
         $heidelpayFacade->executeDebitOnRegistration($orderTransfer);
         $transaction = $this->createRepository()
-            ->findHeidelpayTransactionLogByIdSalesOrderAndTransactionType(
+            ->findHeidelpayTransactionLogByIdSalesOrderAndTransactionTypeAndResponseCode(
                 $orderTransfer->getIdSalesOrder(),
-                HeidelpayConfig::TRANSACTION_TYPE_DEBIT_ON_REGISTRATION
+                HeidelpayConfig::TRANSACTION_TYPE_DEBIT_ON_REGISTRATION,
+                HeidelpayTestConfig::HEIDELPAY_SUCCESS_RESPONSE
             );
 
         //Assert
-        $this->assertEquals(HeidelpayTestConfig::HEIDELPAY_SUCCESS_RESPONSE, $transaction->getResponseCode());
         $this->assertNotEmpty($transaction->getIdTransactionUnique());
         $this->assertNotEmpty($transaction->getResponsePayload());
         $this->assertNotEmpty($transaction->getRequestPayload());
@@ -55,7 +55,7 @@ class HeidelpayFacadeExecuteDebitOnRegistrationTest extends HeidelpayPaymentTest
      */
     protected function createOrder(): SpySalesOrder
     {
-        $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
+        $orderBuilder = new PaymentBuilder();
 
         return $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_DIRECT_DEBIT);
     }

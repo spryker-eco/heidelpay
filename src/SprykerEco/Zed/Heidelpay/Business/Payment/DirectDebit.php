@@ -61,7 +61,8 @@ class DirectDebit extends BaseHeidelpayPaymentMethod implements
             return;
         }
 
-        if ($debitOnRegistrationTransactionLogTransfer->getHeidelpayResponse()->getIsSuccess()
+        if (
+            $debitOnRegistrationTransactionLogTransfer->getHeidelpayResponse()->getIsSuccess()
             && $this->hasCustomerRegisteredShipmentAddress($quoteTransfer->getShippingAddress())
         ) {
             $this->updateRegistrationWithAddressId($quoteTransfer);

@@ -33,11 +33,11 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Quote\QuoteMockTrait;
  */
 class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTest
 {
-    public const CUSTOMER_ADDRESS_ID = 100000000;
-
     use QuoteMockTrait;
     use CustomerAddressTrait;
     use CustomerTrait;
+
+    public const CUSTOMER_ADDRESS_ID = 100000000;
 
     /**
      * @return void

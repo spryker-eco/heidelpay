@@ -13,6 +13,8 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInterface
 {
     /**
+     * @api
+     *
      * @return string
      */
     public function getYvesCheckoutPaymentStepPath(): string
@@ -21,6 +23,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getYvesCheckoutPaymentFailedUrl(): string
@@ -29,6 +33,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getYvesCheckoutSummaryStepUrl(): string
@@ -37,6 +43,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getYvesInitializePaymentUrl(): string
@@ -45,6 +53,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getYvesCheckoutSuccessUrl(): string
@@ -53,6 +63,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getYvesRegistrationSuccessUrl(): string
@@ -61,6 +73,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getEasyCreditLogoUrl(): string
@@ -69,6 +83,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getEasyCreditInfoLink(): string

@@ -20,7 +20,7 @@ use Spryker\Zed\Oms\Dependency\Plugin\Condition\ConditionInterface;
 class IsRefundedPlugin extends AbstractPlugin implements ConditionInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      * - Checks if Refund transaction was successful.
      *
      * @api
@@ -31,8 +31,8 @@ class IsRefundedPlugin extends AbstractPlugin implements ConditionInterface
      */
     public function check(SpySalesOrderItem $orderItem): bool
     {
-        return $this->getFactory()
-            ->createIsRefundedOmsCondition()
-            ->check($orderItem);
+        return $this->getFacade()->isSalesOrderRefunded(
+            $orderItem->getFkSalesOrder()
+        );
     }
 }

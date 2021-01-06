@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 class HeidelpayHandlerPlugin extends AbstractPlugin implements StepHandlerPluginInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *  - Expands QuoteTransfer with Heidelpay payment method related transfer.
      *
      * @api

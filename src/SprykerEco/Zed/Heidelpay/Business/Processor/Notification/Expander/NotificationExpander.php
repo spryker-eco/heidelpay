@@ -209,7 +209,8 @@ class NotificationExpander implements NotificationExpanderInterface
         HeidelpayNotificationTransfer $notificationTransfer,
         array $notificationData
     ): HeidelpayNotificationTransfer {
-        if (!array_key_exists(static::KEY_CONNECTOR, $notificationData)
+        if (
+            !array_key_exists(static::KEY_CONNECTOR, $notificationData)
             || !array_key_exists(static::KEY_ACCOUNT, $notificationData[static::KEY_CONNECTOR])
         ) {
             return $notificationTransfer;

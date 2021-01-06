@@ -25,7 +25,6 @@ use Generated\Shared\Transfer\OrderTransfer;
 use Generated\Shared\Transfer\PaymentMethodsTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\SaveOrderTransfer;
-use Orm\Zed\Sales\Persistence\SpySalesOrderItem;
 
 interface HeidelpayFacadeInterface
 {
@@ -284,7 +283,9 @@ interface HeidelpayFacadeInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
      */
-    public function findCreditCardRegistrationByIdAndQuote(HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer): HeidelpayCreditCardRegistrationTransfer;
+    public function findCreditCardRegistrationByIdAndQuote(
+        HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
+    ): HeidelpayCreditCardRegistrationTransfer;
 
     /**
      * Specification:
@@ -328,13 +329,37 @@ interface HeidelpayFacadeInterface
 
     /**
      * Specification:
-     *  - Checks if Capture was successful.
+     * - Checks if Capture transaction was successful.
      *
      * @api
      *
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem $orderItem
+     * @param int $idSalesOrder
      *
      * @return bool
      */
-    public function isCaptureSuccessful(SpySalesOrderItem $orderItem): bool;
+    public function isSalesOrderCaptureApproved(int $idSalesOrder): bool;
+
+    /**
+     * Specification:
+     * - Checks if Refund transaction was successful.
+     *
+     * @api
+     *
+     * @param int $idSalesOrder
+     *
+     * @return bool
+     */
+    public function isSalesOrderRefunded(int $idSalesOrder): bool;
+
+    /**
+     * Specification:
+     * - Checks if DebitOnRegistration transaction was successful.
+     *
+     * @api
+     *
+     * @param int $idSalesOrder
+     *
+     * @return bool
+     */
+    public function isSalesOrderDebitOnRegistrationCompleted(int $idSalesOrder): bool;
 }
