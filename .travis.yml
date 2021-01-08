@@ -25,11 +25,11 @@ matrix:
 
 services:
   - postgresql
-  - redis-server
+  - redis
   - rabbitmq
 
 addons:
-  postgresql: 9.4
+  postgresql: "12"
   apt:
     sources:
       - sourceline: ppa:chris-lea/redis-server
@@ -39,8 +39,13 @@ addons:
         key_url: https://github.com/rabbitmq/signing-keys/releases/download/2.0/rabbitmq-release-signing-key.asc
       - sourceline: ppa:ondrej/php
     packages:
-      - graphviz
-      - rabbitmq-server
+        - redis-tools
+        - redis-server
+        - rabbitmq-server
+        - graphviz
+        - postgresql-12
+        - postgresql-client-12
+        - postgresql-server-dev-12
 
   hosts:
     - zed.de.spryker.test
@@ -54,6 +59,7 @@ env:
     - MODULE_DIR=module
     - SHOP_DIR=current
     - MODULE_NAME=heidelpay
+    - POSTGRES_PORT=5433
 
 cache:
   directories:
