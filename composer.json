@@ -28,7 +28,6 @@
     "spryker/zed-request": "^3.0.0"
   },
   "require-dev": {
-    "codeception/module-asserts": "*",
     "spryker-shop/shop-application": "*",
     "spryker/application": "*",
     "spryker/checkout": "*",
