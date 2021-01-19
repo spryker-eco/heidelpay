@@ -75,6 +75,6 @@ before_script:
     - sleep 10
 
 script:
-  - git clone -b master --single-branch https://github.com/spryker-eco/eco-ci.git ecoci
+  - git clone -b bugfix/spryker-shop-suite-contains-no-ci-scripts --single-branch https://github.com/spryker-eco/eco-ci.git ecoci
   - ./ecoci/build/travis.sh
 
