@@ -49,6 +49,11 @@
   "autoload": {
     "psr-4": {
       "SprykerEco\\": "src/SprykerEco/",
+      "SprykerEcoTest\\Zed\\Heidelpay\\Helper\\": "tests/SprykerEcoTest/Zed/Heidelpay/_support/Helper/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
       "SprykerEcoTest\\": "tests/SprykerEcoTest/"
     }
   },
