@@ -68,8 +68,10 @@ class IdealController extends AbstractController
      *
      * @return void
      */
-    protected function mapTransactionLogToAuthorizeFormTransfer(HeidelpayTransactionLogTransfer $authorizeTransactionLogTransfer, HeidelpayIdealAuthorizeFormTransfer $idealAuthorizeFormTransfer): void
-    {
+    protected function mapTransactionLogToAuthorizeFormTransfer(
+        HeidelpayTransactionLogTransfer $authorizeTransactionLogTransfer,
+        HeidelpayIdealAuthorizeFormTransfer $idealAuthorizeFormTransfer
+    ): void {
         $this->getFactory()
             ->createHeidelpayResponseToIdealAuthorizeFormMapper()
             ->map($authorizeTransactionLogTransfer->getHeidelpayResponse(), $idealAuthorizeFormTransfer);

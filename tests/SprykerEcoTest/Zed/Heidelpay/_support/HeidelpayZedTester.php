@@ -11,6 +11,7 @@ use Codeception\Actor;
 
 /**
  * Inherited Methods
+ *
  * @method void wantToTest($text)
  * @method void wantTo($text)
  * @method void execute($callable)
@@ -29,10 +30,6 @@ class HeidelpayZedTester extends Actor
     use _generated\HeidelpayZedTesterActions;
 
     protected const NOTIFICATION_FILE_PATH = __DIR__ . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SEPARATOR . 'notification_body.xml';
-
-   /**
-    * Define custom actions here
-    */
 
     /**
      * @return string

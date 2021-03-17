@@ -15,6 +15,7 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentResponseT
 class UnsuccessfulPaypalDebitPaymentMock extends PaypalPayment
 {
     use PaymentResponseTransferBuilderTrait;
+
     /**
      * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $debitRequestTransfer
      *

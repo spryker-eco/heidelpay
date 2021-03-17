@@ -46,7 +46,7 @@ class DirectDebitRegistrationBuilder
     protected function getAccountHolder(QuoteTransfer $quoteTransfer): string
     {
         return vsprintf(
-            "%s %s",
+            '%s %s',
             [
                 $quoteTransfer->getCustomer()->getFirstName(),
                 $quoteTransfer->getCustomer()->getLastName(),

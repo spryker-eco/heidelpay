@@ -18,7 +18,7 @@ use Spryker\Yves\StepEngine\Dependency\Plugin\Form\SubFormPluginInterface;
 class HeidelpayDirectDebitSubFormPlugin extends AbstractPlugin implements SubFormPluginInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      * - Creates sub form for DirectDebit payment method.
      *
      * @api
@@ -31,7 +31,7 @@ class HeidelpayDirectDebitSubFormPlugin extends AbstractPlugin implements SubFor
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      * - Creates data provider for DirectDebit payment method.
      *
      * @api
