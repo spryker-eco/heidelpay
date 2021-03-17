@@ -9,7 +9,7 @@ namespace SprykerEco\Yves\Heidelpay\Plugin\Router;
 
 use Spryker\Yves\Router\Plugin\RouteProvider\AbstractRouteProviderPlugin;
 
-class HeidelpayRouteProvider extends AbstractRouteProviderPlugin
+class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
 {
     protected const HEIDELPAY_BUNDLE_NAME = 'Heidelpay';
     protected const HEIDELPAY_PAYMENT = 'heidelpay-payment';
