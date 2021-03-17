@@ -8,6 +8,7 @@
 namespace SprykerEco\Yves\Heidelpay\Plugin\Router;
 
 use Spryker\Yves\Router\Plugin\RouteProvider\AbstractRouteProviderPlugin;
+use Spryker\Yves\Router\Route\RouteCollection;
 
 class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
 {
