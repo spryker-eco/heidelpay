@@ -43,7 +43,7 @@ abstract class ExternalResponseBuilder
     public const PROCESSING_REASON_CODE = 'PROCESSING_REASON_CODE';
 
     public const CRITERION_SDK_NAME = 'HEIDELPAY:CRITERION_SDK_NAME';
-    public const CRITERION_SDK_VALUE = "Heidelpay\\PhpPaymentApi";
+    public const CRITERION_SDK_VALUE = 'Heidelpay\\PhpPaymentApi';
 
     public const BRAND_PROPERTY_NAME = 'brand';
     public const CRITERION_SECRET = 'HEIDELPAY:CRITERION_SECRET';
@@ -56,11 +56,11 @@ abstract class ExternalResponseBuilder
     public const PAYMENT_CODE_HP_PI = 'HP.PI';
     public const PAYMENT_CODE_HP_FI = 'HP.FI';
 
-    use HeidelpayResponseTrait,
-        CustomerTrait,
-        OrderAddressTrait,
-        NewOrderWithOneItemTrait,
-        PaymentHeidelpayTrait;
+    use HeidelpayResponseTrait;
+    use CustomerTrait;
+    use OrderAddressTrait;
+    use NewOrderWithOneItemTrait;
+    use PaymentHeidelpayTrait;
 
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory

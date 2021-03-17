@@ -35,7 +35,7 @@ use Spryker\Zed\Kernel\Business\AbstractFacade;
 class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -52,7 +52,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -68,7 +68,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -85,7 +85,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -101,7 +101,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -117,7 +117,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -133,7 +133,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -149,7 +149,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -165,7 +165,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -181,7 +181,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -197,7 +197,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -213,7 +213,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -229,7 +229,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -246,7 +246,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -262,7 +262,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -278,7 +278,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -294,7 +294,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -310,7 +310,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -326,7 +326,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -343,7 +343,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -363,7 +363,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -380,7 +380,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -397,7 +397,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *

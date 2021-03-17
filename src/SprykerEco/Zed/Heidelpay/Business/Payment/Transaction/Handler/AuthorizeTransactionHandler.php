@@ -19,6 +19,7 @@ class AuthorizeTransactionHandler implements AuthorizeTransactionHandlerInterfac
     public const ERROR_MESSAGE_AUTHORIZE_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call authorize transaction on payment method \'%s\' ' .
         'that does not support it';
+
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\AuthorizeTransactionInterface
      */

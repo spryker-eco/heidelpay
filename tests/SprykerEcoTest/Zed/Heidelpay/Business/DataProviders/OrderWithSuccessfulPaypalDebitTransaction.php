@@ -23,7 +23,10 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Transaction\DebitTransac
 
 class OrderWithSuccessfulPaypalDebitTransaction
 {
-    use CustomerTrait, OrderAddressTrait, NewOrderWithOneItemTrait, DebitTransactionTrait;
+    use CustomerTrait;
+    use OrderAddressTrait;
+    use NewOrderWithOneItemTrait;
+    use DebitTransactionTrait;
 
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory

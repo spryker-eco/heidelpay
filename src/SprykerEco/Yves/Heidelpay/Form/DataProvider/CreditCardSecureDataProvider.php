@@ -19,6 +19,7 @@ use SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface;
 class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterface
 {
     public const PAYMENT_OPTION_TRANSLATION_PREFIX = 'heidelpay.payment.credit_card.';
+
     /**
      * @var \SprykerEco\Yves\Heidelpay\Hydrator\CreditCardPaymentOptionsToQuoteInterface
      */
