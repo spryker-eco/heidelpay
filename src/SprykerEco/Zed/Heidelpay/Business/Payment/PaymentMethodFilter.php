@@ -50,7 +50,6 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
         PaymentMethodsTransfer $paymentMethodsTransfer,
         QuoteTransfer $quoteTransfer
     ): PaymentMethodsTransfer {
-
         $result = new ArrayObject();
 
         foreach ($paymentMethodsTransfer->getMethods() as $paymentMethod) {

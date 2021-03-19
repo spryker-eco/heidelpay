@@ -81,8 +81,6 @@ class FinalizeTransactionHandler implements FinalizeTransactionHandlerInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      *
-     * @throws \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\FinalizeNotSupportedException
-     *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */
     protected function buildFinalizeRequest(OrderTransfer $orderTransfer)

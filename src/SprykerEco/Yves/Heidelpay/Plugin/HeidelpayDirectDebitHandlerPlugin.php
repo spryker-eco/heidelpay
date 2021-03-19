@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 class HeidelpayDirectDebitHandlerPlugin extends AbstractPlugin implements StepHandlerPluginInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      * - Expands `QuoteTransfer` with DirectDebit payment method transfer.
      * - Expands `QuoteTransfer` with registered direct debit account.
      *

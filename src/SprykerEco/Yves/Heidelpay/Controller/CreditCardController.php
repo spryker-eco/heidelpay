@@ -159,7 +159,6 @@ class CreditCardController extends BaseHeidelpayController
     protected function redirectToPaymentStepWithError(string $errorCode): RedirectResponse
     {
         $paymentFailedUrl = sprintf(
-
             $this->getConfig()->getYvesCheckoutPaymentFailedUrl(),
             $errorCode
         );

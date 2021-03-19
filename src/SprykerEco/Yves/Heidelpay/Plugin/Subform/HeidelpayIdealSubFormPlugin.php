@@ -18,7 +18,7 @@ use Spryker\Yves\StepEngine\Dependency\Plugin\Form\SubFormPluginInterface;
 class HeidelpayIdealSubFormPlugin extends AbstractPlugin implements SubFormPluginInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *  - Creates sub form for Ideal payment method.
      *
      * @api
@@ -31,7 +31,7 @@ class HeidelpayIdealSubFormPlugin extends AbstractPlugin implements SubFormPlugi
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *  - Creates data provider for Ideal payment method.
      *
      * @api

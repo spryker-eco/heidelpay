@@ -63,7 +63,6 @@ class Saver implements SaverInterface
         QuoteTransfer $quoteTransfer,
         SaveOrderTransfer $saveOrderTransfer
     ): void {
-
         $paymentEntity = $this->buildPaymentEntity($quoteTransfer, $saveOrderTransfer);
         $this->addBasketInformation($quoteTransfer, $paymentEntity);
 
@@ -125,7 +124,6 @@ class Saver implements SaverInterface
         SpyPaymentHeidelpay $paymentEntity,
         QuoteTransfer $quoteTransfer
     ): void {
-
         $paymentMethodCode = $quoteTransfer->getPayment()->getPaymentMethod();
 
         if (!$this->hasPaymentMethodSpecificDataToSave($paymentMethodCode)) {

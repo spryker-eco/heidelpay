@@ -18,7 +18,7 @@ use Spryker\Yves\StepEngine\Dependency\Plugin\Form\SubFormPluginInterface;
 class HeidelpayInvoiceSecuredB2cSubFormPlugin extends AbstractPlugin implements SubFormPluginInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *  - Creates sub form for InvoiceSecuredB2c payment method.
      *
      * @api
@@ -31,7 +31,7 @@ class HeidelpayInvoiceSecuredB2cSubFormPlugin extends AbstractPlugin implements 
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *  - Creates data provider for InvoiceSecuredB2c payment method.
      *
      * @api
