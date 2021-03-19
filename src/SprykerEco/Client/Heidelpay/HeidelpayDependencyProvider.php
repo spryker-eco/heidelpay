@@ -16,7 +16,7 @@ use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteClientBridge;
 class HeidelpayDependencyProvider extends AbstractDependencyProvider
 {
     public const CLIENT_LOCALE = 'client locale';
-    public const CLIENT_ZED_REQUEST = ZedRequestClientServiceProvider::CLIENT_ZED_REQUEST;
+    public const CLIENT_ZED_REQUEST = 'zed request client';
     public const CLIENT_QUOTE = 'client quote';
 
     /**
