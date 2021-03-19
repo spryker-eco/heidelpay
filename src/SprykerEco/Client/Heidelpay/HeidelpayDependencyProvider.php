@@ -9,7 +9,6 @@ namespace SprykerEco\Client\Heidelpay;
 
 use Spryker\Client\Kernel\AbstractDependencyProvider;
 use Spryker\Client\Kernel\Container;
-use Spryker\Client\ZedRequest\ServiceProvider\ZedRequestClientServiceProvider;
 use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToLocaleClientBridge;
 use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteClientBridge;
 
