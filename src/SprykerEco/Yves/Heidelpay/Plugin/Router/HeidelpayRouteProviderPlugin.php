@@ -12,17 +12,17 @@ use Spryker\Yves\Router\Route\RouteCollection;
 
 class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
 {
-    protected const HEIDELPAY_BUNDLE_NAME = 'Heidelpay';
-    protected const HEIDELPAY_PAYMENT = 'heidelpay-payment';
-    protected const HEIDELPAY_PAYMENT_FAILED = 'heidelpay-payment-failed';
-    protected const HEIDELPAY_EASY_CREDIT_PAYMENT = 'heidelpay-easy-credit-payment';
-    protected const HEIDELPAY_EASY_CREDIT_INITIALIZE_PAYMENT = 'heidelpay-easy-credit-initialize-payment';
-    protected const HEIDELPAY_IDEAL_AUTHORIZE = 'heidelpay-ideal-authorize';
-    protected const HEIDELPAY_CREDIT_CARD_REGISTER = 'heidelpay-cc-register';
-    protected const HEIDELPAY_CREDIT_CARD_REGISTER_SUCCESS = 'heidelpay-cc-register-success';
-    protected const HEIDELPAY_DIRECT_DEBIT_REGISTER = 'heidelpay-dd-register';
-    protected const HEIDELPAY_DIRECT_DEBIT_REGISTER_SUCCESS = 'heidelpay-dd-register-success';
-    protected const HEIDELPAY_NOTIFICATION = 'heidelpay-notification';
+    public const HEIDELPAY_BUNDLE_NAME = 'Heidelpay';
+    public const ROUTE_HEIDELPAY_PAYMENT = 'heidelpay-payment';
+    public const ROUTE_HEIDELPAY_PAYMENT_FAILED = 'heidelpay-payment-failed';
+    public const ROUTE_HEIDELPAY_EASY_CREDIT_PAYMENT = 'heidelpay-easy-credit-payment';
+    public const ROUTE_HEIDELPAY_EASY_CREDIT_INITIALIZE_PAYMENT = 'heidelpay-easy-credit-initialize-payment';
+    public const ROUTE_HEIDELPAY_IDEAL_AUTHORIZE = 'heidelpay-ideal-authorize';
+    public const ROUTE_HEIDELPAY_CREDIT_CARD_REGISTER = 'heidelpay-cc-register';
+    public const ROUTE_HEIDELPAY_CREDIT_CARD_REGISTER_SUCCESS = 'heidelpay-cc-register-success';
+    public const ROUTE_HEIDELPAY_DIRECT_DEBIT_REGISTER = 'heidelpay-dd-register';
+    public const ROUTE_HEIDELPAY_DIRECT_DEBIT_REGISTER_SUCCESS = 'heidelpay-dd-register-success';
+    public const ROUTE_HEIDELPAY_NOTIFICATION = 'heidelpay-notification';
 
     /**
      * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
@@ -46,6 +46,8 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     }
 
     /**
+     * @uses \SprykerEco\Yves\Heidelpay\Controller\HeidelpayController
+     *
      * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
      * @return \Spryker\Yves\Router\Route\RouteCollection
@@ -53,7 +55,7 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     protected function addHeidelpayPaymentRoute(RouteCollection $routeCollection): RouteCollection
     {
         $routeCollection->add(
-            static::HEIDELPAY_PAYMENT,
+            static::ROUTE_HEIDELPAY_PAYMENT,
             $this->buildPostRoute('/heidelpay/payment', static::HEIDELPAY_BUNDLE_NAME, 'Heidelpay', 'payment')
         );
 
@@ -61,6 +63,8 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     }
 
     /**
+     * @uses \SprykerEco\Yves\Heidelpay\Controller\HeidelpayController
+     *
      * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
      * @return \Spryker\Yves\Router\Route\RouteCollection
@@ -68,7 +72,7 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     protected function addHeidelpayPaymentFailedRoute(RouteCollection $routeCollection): RouteCollection
     {
         $routeCollection->add(
-            static::HEIDELPAY_PAYMENT_FAILED,
+            static::ROUTE_HEIDELPAY_PAYMENT_FAILED,
             $this->buildPostRoute('/heidelpay/payment-failed', static::HEIDELPAY_BUNDLE_NAME, 'Heidelpay', 'paymentFailed')
         );
 
@@ -76,6 +80,8 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     }
 
     /**
+     * @uses \SprykerEco\Yves\Heidelpay\Controller\EasyCreditController
+     *
      * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
      * @return \Spryker\Yves\Router\Route\RouteCollection
@@ -83,7 +89,7 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     protected function addHeidelpayEasyCreditPaymentRoute(RouteCollection $routeCollection): RouteCollection
     {
         $routeCollection->add(
-            static::HEIDELPAY_EASY_CREDIT_PAYMENT,
+            static::ROUTE_HEIDELPAY_EASY_CREDIT_PAYMENT,
             $this->buildPostRoute('/heidelpay/easyCreditPayment', static::HEIDELPAY_BUNDLE_NAME, 'EasyCredit', 'easyCreditPayment')
         );
 
@@ -91,6 +97,8 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     }
 
     /**
+     * @uses \SprykerEco\Yves\Heidelpay\Controller\EasyCreditController
+     *
      * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
      * @return \Spryker\Yves\Router\Route\RouteCollection
@@ -98,7 +106,7 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     protected function addHeidelpayEasyCreditInitializePaymentRoute(RouteCollection $routeCollection): RouteCollection
     {
         $routeCollection->add(
-            static::HEIDELPAY_EASY_CREDIT_INITIALIZE_PAYMENT,
+            static::ROUTE_HEIDELPAY_EASY_CREDIT_INITIALIZE_PAYMENT,
             $this->buildPostRoute('/heidelpay/easyCreditInitializePayment', static::HEIDELPAY_BUNDLE_NAME, 'EasyCredit', 'easyCreditInitializePayment')
         );
 
@@ -106,6 +114,8 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     }
 
     /**
+     * @uses \SprykerEco\Yves\Heidelpay\Controller\IdealController
+     *
      * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
      * @return \Spryker\Yves\Router\Route\RouteCollection
@@ -113,7 +123,7 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     protected function addHeidelpayIdealAuthorizeRoute(RouteCollection $routeCollection): RouteCollection
     {
         $routeCollection->add(
-            static::HEIDELPAY_IDEAL_AUTHORIZE,
+            static::ROUTE_HEIDELPAY_IDEAL_AUTHORIZE,
             $this->buildPostRoute('/heidelpay/ideal-authorize', static::HEIDELPAY_BUNDLE_NAME, 'Ideal', 'authorize')
         );
 
@@ -121,6 +131,8 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     }
 
     /**
+     * @uses \SprykerEco\Yves\Heidelpay\Controller\CreditCardController
+     *
      * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
      * @return \Spryker\Yves\Router\Route\RouteCollection
@@ -128,7 +140,7 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     protected function addHeidelpayCreditCardRegisterRoute(RouteCollection $routeCollection): RouteCollection
     {
         $routeCollection->add(
-            static::HEIDELPAY_CREDIT_CARD_REGISTER,
+            static::ROUTE_HEIDELPAY_CREDIT_CARD_REGISTER,
             $this->buildPostRoute('/heidelpay/cc-register-response', static::HEIDELPAY_BUNDLE_NAME, 'CreditCard', 'registrationRequest')
         );
 
@@ -136,6 +148,8 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     }
 
     /**
+     * @uses \SprykerEco\Yves\Heidelpay\Controller\CreditCardController
+     *
      * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
      * @return \Spryker\Yves\Router\Route\RouteCollection
@@ -143,7 +157,7 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     protected function addHeidelpayCreditCardRegisterSuccessRoute(RouteCollection $routeCollection): RouteCollection
     {
         $routeCollection->add(
-            static::HEIDELPAY_CREDIT_CARD_REGISTER_SUCCESS,
+            static::ROUTE_HEIDELPAY_CREDIT_CARD_REGISTER_SUCCESS,
             $this->buildPostRoute('/heidelpay/cc-register-success', static::HEIDELPAY_BUNDLE_NAME, 'CreditCard', 'registrationSuccess')
         );
 
@@ -151,6 +165,8 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     }
 
     /**
+     * @uses \SprykerEco\Yves\Heidelpay\Controller\DirectDebitController
+     *
      * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
      * @return \Spryker\Yves\Router\Route\RouteCollection
@@ -158,7 +174,7 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     protected function addHeidelpayDirectDebitRegisterRoute(RouteCollection $routeCollection): RouteCollection
     {
         $routeCollection->add(
-            static::HEIDELPAY_DIRECT_DEBIT_REGISTER,
+            static::ROUTE_HEIDELPAY_DIRECT_DEBIT_REGISTER,
             $this->buildPostRoute('/heidelpay/dd-register-response', static::HEIDELPAY_BUNDLE_NAME, 'DirectDebit', 'registrationRequest')
         );
 
@@ -166,6 +182,8 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     }
 
     /**
+     * @uses \SprykerEco\Yves\Heidelpay\Controller\DirectDebitController
+     *
      * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
      * @return \Spryker\Yves\Router\Route\RouteCollection
@@ -173,7 +191,7 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     protected function addHeidelpayDirectDebitRegisterSuccessRoute(RouteCollection $routeCollection): RouteCollection
     {
         $routeCollection->add(
-            static::HEIDELPAY_DIRECT_DEBIT_REGISTER_SUCCESS,
+            static::ROUTE_HEIDELPAY_DIRECT_DEBIT_REGISTER_SUCCESS,
             $this->buildPostRoute('/heidelpay/dd-register-success', static::HEIDELPAY_BUNDLE_NAME, 'DirectDebit', 'registrationSuccess')
         );
 
@@ -181,6 +199,8 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     }
 
     /**
+     * @uses \SprykerEco\Yves\Heidelpay\Controller\NotificationController
+     *
      * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
      * @return \Spryker\Yves\Router\Route\RouteCollection
@@ -188,7 +208,7 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     protected function addHeidelpayNotificationRoute(RouteCollection $routeCollection): RouteCollection
     {
         $routeCollection->add(
-            static::HEIDELPAY_NOTIFICATION,
+            static::ROUTE_HEIDELPAY_NOTIFICATION,
             $this->buildPostRoute('/heidelpay/notification', static::HEIDELPAY_BUNDLE_NAME, 'Notification', 'index')
         );
 

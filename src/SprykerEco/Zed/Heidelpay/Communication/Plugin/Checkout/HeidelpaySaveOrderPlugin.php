@@ -22,7 +22,6 @@ class HeidelpaySaveOrderPlugin extends AbstractPlugin implements CheckoutDoSaveO
 {
     /**
      * {@inheritDoc}
-     * Specification:
      * - Retrieves (its) data from the quote object and saves it to the database.
      * - These plugins are already enveloped into a transaction.
      *

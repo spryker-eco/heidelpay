@@ -9,6 +9,7 @@ namespace SprykerEco\Client\Heidelpay;
 
 use Spryker\Client\Kernel\AbstractFactory;
 use Spryker\Client\Session\SessionClientFactoryTrait;
+use Spryker\Client\ZedRequest\ZedRequestClientInterface;
 use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToLocaleClientInterface;
 use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
 use SprykerEco\Client\Heidelpay\Mapper\ApiResponseToRegistrationRequestTransfer;
@@ -34,7 +35,7 @@ class HeidelpayFactory extends AbstractFactory
     /**
      * @return \Spryker\Client\ZedRequest\ZedRequestClientInterface
      */
-    public function getZedRequestClient()
+    public function getZedRequestClient(): ZedRequestClientInterface
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::CLIENT_ZED_REQUEST);
     }
