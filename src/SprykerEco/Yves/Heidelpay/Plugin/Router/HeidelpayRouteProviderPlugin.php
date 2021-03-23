@@ -12,7 +12,7 @@ use Spryker\Yves\Router\Route\RouteCollection;
 
 class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
 {
-    public const HEIDELPAY_BUNDLE_NAME = 'Heidelpay';
+    protected const HEIDELPAY_BUNDLE_NAME = 'Heidelpay';
     public const ROUTE_HEIDELPAY_PAYMENT = 'heidelpay-payment';
     public const ROUTE_HEIDELPAY_PAYMENT_FAILED = 'heidelpay-payment-failed';
     public const ROUTE_HEIDELPAY_EASY_CREDIT_PAYMENT = 'heidelpay-easy-credit-payment';
@@ -46,7 +46,7 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     }
 
     /**
-     * @uses \SprykerEco\Yves\Heidelpay\Controller\HeidelpayController
+     * @uses \SprykerEco\Yves\Heidelpay\Controller\HeidelpayController::paymentAction()
      *
      * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
@@ -63,7 +63,7 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     }
 
     /**
-     * @uses \SprykerEco\Yves\Heidelpay\Controller\HeidelpayController
+     * @uses \SprykerEco\Yves\Heidelpay\Controller\HeidelpayController::paymentFailedAction()
      *
      * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
@@ -80,7 +80,7 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     }
 
     /**
-     * @uses \SprykerEco\Yves\Heidelpay\Controller\EasyCreditController
+     * @uses \SprykerEco\Yves\Heidelpay\Controller\EasyCreditController::easyCreditPaymentAction()
      *
      * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
@@ -97,7 +97,7 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     }
 
     /**
-     * @uses \SprykerEco\Yves\Heidelpay\Controller\EasyCreditController
+     * @uses \SprykerEco\Yves\Heidelpay\Controller\EasyCreditController::easyCreditInitializePaymentAction()
      *
      * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
@@ -114,7 +114,7 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     }
 
     /**
-     * @uses \SprykerEco\Yves\Heidelpay\Controller\IdealController
+     * @uses \SprykerEco\Yves\Heidelpay\Controller\IdealController::authorizeAction()
      *
      * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
@@ -131,7 +131,7 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     }
 
     /**
-     * @uses \SprykerEco\Yves\Heidelpay\Controller\CreditCardController
+     * @uses \SprykerEco\Yves\Heidelpay\Controller\CreditCardController::registrationRequestAction()
      *
      * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
@@ -148,7 +148,7 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     }
 
     /**
-     * @uses \SprykerEco\Yves\Heidelpay\Controller\CreditCardController
+     * @uses \SprykerEco\Yves\Heidelpay\Controller\CreditCardController::registrationSuccessAction()
      *
      * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
@@ -165,7 +165,7 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     }
 
     /**
-     * @uses \SprykerEco\Yves\Heidelpay\Controller\DirectDebitController
+     * @uses \SprykerEco\Yves\Heidelpay\Controller\DirectDebitController::registrationRequestAction()
      *
      * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
@@ -182,7 +182,7 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     }
 
     /**
-     * @uses \SprykerEco\Yves\Heidelpay\Controller\DirectDebitController
+     * @uses \SprykerEco\Yves\Heidelpay\Controller\DirectDebitController::registrationSuccessAction()
      *
      * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
@@ -199,7 +199,7 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     }
 
     /**
-     * @uses \SprykerEco\Yves\Heidelpay\Controller\NotificationController
+     * @uses \SprykerEco\Yves\Heidelpay\Controller\NotificationController::indexAction()
      *
      * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *

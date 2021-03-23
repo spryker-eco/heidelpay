@@ -37,6 +37,7 @@
     "spryker/payment": "*",
     "spryker/product": "*",
     "spryker/propel": "*",
+    "spryker/silex": "*",
     "spryker/stock": "*",
     "spryker/testify": "*"
   },
