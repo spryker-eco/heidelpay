@@ -50,7 +50,8 @@
   },
   "autoload": {
     "psr-4": {
-      "SprykerEco\\": "src/SprykerEco/"
+      "SprykerEco\\": "src/SprykerEco/",
+      "SprykerEcoTest\\": "tests/SprykerEcoTest/"
     }
   },
   "autoload-dev": {
@@ -61,8 +62,8 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "scripts": {
-    "cs-check": "phpcs -p -s --standard=vendor/spryker/code-sniffer/Spryker/ruleset.xml src/ tests/",
-    "cs-fix": "phpcbf -p --standard=vendor/spryker/code-sniffer/Spryker/ruleset.xml src/ tests/"
+    "cs-check": "phpcs -p -s --standard=vendor/spryker/code-sniffer/Spryker/ruleset.xml src/",
+    "cs-fix": "phpcbf -p --standard=vendor/spryker/code-sniffer/Spryker/ruleset.xml src/"
   },
   "extra": {
     "branch-alias": {
