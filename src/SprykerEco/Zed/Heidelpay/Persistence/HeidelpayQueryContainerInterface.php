@@ -15,6 +15,9 @@ use Spryker\Zed\Kernel\Persistence\QueryContainer\QueryContainerInterface;
 interface HeidelpayQueryContainerInterface extends QueryContainerInterface
 {
     /**
+     * Specification:
+     * - Queries payment by id sales order
+     *
      * @api
      *
      * @param int $idSalesOrder
@@ -24,6 +27,9 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
     public function queryPaymentByIdSalesOrder(int $idSalesOrder): SpyPaymentHeidelpayQuery;
 
     /**
+     * Specification:
+     * - Queries capture transaction log
+     *
      * @api
      *
      * @param int $idSalesOrder
@@ -33,6 +39,9 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
     public function queryCaptureTransactionLog(int $idSalesOrder): SpyPaymentHeidelpayTransactionLogQuery;
 
     /**
+     * Specification:
+     * - Queries reservation transaction log
+     *
      * @api
      *
      * @param int $idSalesOrder
@@ -42,6 +51,9 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
     public function queryReservationTransactionLog($idSalesOrder);
 
     /**
+     * Specification:
+     * - Queries transaction by id sales order and type
+     *
      * @api
      *
      * @param int $idSalesOrder
@@ -52,6 +64,9 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
     public function queryTransactionByIdSalesOrderAndType(int $idSalesOrder, string $transactionType): SpyPaymentHeidelpayTransactionLogQuery;
 
     /**
+     * Specification:
+     * - Queries external response transaction log
+     *
      * @api
      *
      * @param int $idSalesOrder
@@ -61,6 +76,9 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
     public function queryExternalResponseTransactionLog(int $idSalesOrder): SpyPaymentHeidelpayTransactionLogQuery;
 
     /**
+     * Specification:
+     * - Queries credit card registration by registration number
+     *
      * @api
      *
      * @param string $registrationNumber
@@ -70,6 +88,9 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
     public function queryCreditCardRegistrationByRegistrationNumber(string $registrationNumber): SpyPaymentHeidelpayCreditCardRegistrationQuery;
 
     /**
+     * Specification:
+     * - Queries latest registration by id shipping address
+     *
      * @api
      *
      * @param int $idAddress
@@ -79,6 +100,9 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
     public function queryLatestRegistrationByIdShippingAddress(int $idAddress): SpyPaymentHeidelpayCreditCardRegistrationQuery;
 
     /**
+     * Specification:
+     * - Queries registration by id and quote hash
+     *
      * @api
      *
      * @param int $idRegistration
@@ -89,6 +113,9 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
     public function queryRegistrationByIdAndQuoteHash(int $idRegistration, string $quoteHash): SpyPaymentHeidelpayCreditCardRegistrationQuery;
 
     /**
+     * Specification:
+     * - Queries finalize transaction log
+     *
      * @api
      *
      * @param int $idSalesOrder
