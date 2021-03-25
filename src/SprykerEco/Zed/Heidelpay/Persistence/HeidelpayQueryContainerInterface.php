@@ -16,7 +16,7 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
 {
     /**
      * Specification:
-     * - Queries payment by id sales order
+     * - Queries payment by id sales order.
      *
      * @api
      *
@@ -28,7 +28,7 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
 
     /**
      * Specification:
-     * - Queries capture transaction log
+     * - Queries capture transaction log.
      *
      * @api
      *
@@ -40,7 +40,7 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
 
     /**
      * Specification:
-     * - Queries reservation transaction log
+     * - Queries reservation transaction log.
      *
      * @api
      *
@@ -52,7 +52,7 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
 
     /**
      * Specification:
-     * - Queries transaction by id sales order and type
+     * - Queries transaction by id sales order and type.
      *
      * @api
      *
@@ -65,7 +65,7 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
 
     /**
      * Specification:
-     * - Queries external response transaction log
+     * - Queries external response transaction log.
      *
      * @api
      *
@@ -77,7 +77,7 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
 
     /**
      * Specification:
-     * - Queries credit card registration by registration number
+     * - Queries credit card registration by registration number.
      *
      * @api
      *
@@ -89,7 +89,7 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
 
     /**
      * Specification:
-     * - Queries latest registration by id shipping address
+     * - Queries latest registration by id shipping address.
      *
      * @api
      *
@@ -101,7 +101,7 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
 
     /**
      * Specification:
-     * - Queries registration by id and quote hash
+     * - Queries registration by id and quote hash.
      *
      * @api
      *
@@ -114,7 +114,7 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
 
     /**
      * Specification:
-     * - Queries finalize transaction log
+     * - Queries finalize transaction log.
      *
      * @api
      *
