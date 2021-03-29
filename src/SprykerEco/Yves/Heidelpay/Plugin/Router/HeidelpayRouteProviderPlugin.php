@@ -25,6 +25,8 @@ class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
     public const ROUTE_HEIDELPAY_NOTIFICATION = 'heidelpay-notification';
 
     /**
+     * {@inheritDoc}
+     *
      * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
      *
      * @return \Spryker\Yves\Router\Route\RouteCollection
