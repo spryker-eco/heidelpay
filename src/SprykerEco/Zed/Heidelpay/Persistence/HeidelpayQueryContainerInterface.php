@@ -15,6 +15,9 @@ use Spryker\Zed\Kernel\Persistence\QueryContainer\QueryContainerInterface;
 interface HeidelpayQueryContainerInterface extends QueryContainerInterface
 {
     /**
+     * Specification:
+     * - Get Heidelpay payment query by sales order.
+     *
      * @api
      *
      * @param int $idSalesOrder
@@ -24,6 +27,9 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
     public function queryPaymentByIdSalesOrder(int $idSalesOrder): SpyPaymentHeidelpayQuery;
 
     /**
+     * Specification:
+     * - Get Heidelpay transaction log query by sales order.
+     *
      * @api
      *
      * @param int $idSalesOrder
@@ -33,15 +39,21 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
     public function queryCaptureTransactionLog(int $idSalesOrder): SpyPaymentHeidelpayTransactionLogQuery;
 
     /**
+     * Specification:
+     * - Get Heidelpay reservation transaction log query by sales order.
+     *
      * @api
      *
      * @param int $idSalesOrder
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery
      */
-    public function queryReservationTransactionLog($idSalesOrder);
+    public function queryReservationTransactionLog(int $idSalesOrder): SpyPaymentHeidelpayTransactionLogQuery;
 
     /**
+     * Specification:
+     * - Get Heidelpay transaction query by sales order id and transaction type.
+     *
      * @api
      *
      * @param int $idSalesOrder
@@ -52,6 +64,9 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
     public function queryTransactionByIdSalesOrderAndType(int $idSalesOrder, string $transactionType): SpyPaymentHeidelpayTransactionLogQuery;
 
     /**
+     * Specification:
+     * - Get Heidelpay external response transaction log query by sales order id.
+     *
      * @api
      *
      * @param int $idSalesOrder
@@ -61,6 +76,9 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
     public function queryExternalResponseTransactionLog(int $idSalesOrder): SpyPaymentHeidelpayTransactionLogQuery;
 
     /**
+     * Specification:
+     * - Get Heidelpay credit card registration query by registration number.
+     *
      * @api
      *
      * @param string $registrationNumber
@@ -70,6 +88,9 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
     public function queryCreditCardRegistrationByRegistrationNumber(string $registrationNumber): SpyPaymentHeidelpayCreditCardRegistrationQuery;
 
     /**
+     * Specification:
+     * - Get Heidelpay latest registration query by shipping address id.
+     *
      * @api
      *
      * @param int $idAddress
@@ -79,6 +100,9 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
     public function queryLatestRegistrationByIdShippingAddress(int $idAddress): SpyPaymentHeidelpayCreditCardRegistrationQuery;
 
     /**
+     * Specification:
+     * - Get Heidelpay registration query by id and qoute hash.
+     *
      * @api
      *
      * @param int $idRegistration
@@ -89,11 +113,14 @@ interface HeidelpayQueryContainerInterface extends QueryContainerInterface
     public function queryRegistrationByIdAndQuoteHash(int $idRegistration, string $quoteHash): SpyPaymentHeidelpayCreditCardRegistrationQuery;
 
     /**
+     * Specification:
+     * - Get Heidelpay finalize transaction log query by sales order id.
+     *
      * @api
      *
      * @param int $idSalesOrder
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery
      */
-    public function queryFinalizeTransactionLog($idSalesOrder): SpyPaymentHeidelpayTransactionLogQuery;
+    public function queryFinalizeTransactionLog(int $idSalesOrder): SpyPaymentHeidelpayTransactionLogQuery;
 }

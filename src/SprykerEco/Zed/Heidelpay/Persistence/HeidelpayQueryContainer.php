@@ -62,7 +62,7 @@ class HeidelpayQueryContainer extends AbstractQueryContainer implements Heidelpa
      *
      * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery
      */
-    public function queryReservationTransactionLog($idSalesOrder)
+    public function queryReservationTransactionLog($idSalesOrder): SpyPaymentHeidelpayTransactionLogQuery
     {
         return $this->getFactory()
             ->createPaymentHeidelpayTransactionLogQuery()
