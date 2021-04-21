@@ -14,7 +14,7 @@ coverage:
 
 suites:
     Zed:
-        path: Business
+        path: .
         class_name: HeidelpayZedTester
         modules:
             enabled:
@@ -23,8 +23,10 @@ suites:
                 - \SprykerTest\Shared\Testify\Helper\ConfigHelper
                 - \SprykerTest\Shared\Testify\Helper\LocatorHelper:
                     projectNamespaces:
-                        - 'SprykerEco'
-                        - 'SprykerEcoTest'
+                        - Spryker
+                        - SprykerShop
+                        - SprykerEco
+                        - SprykerEcoTest
                 - \SprykerTest\Shared\Testify\Helper\DependencyHelper
                 - \SprykerTest\Shared\Propel\Helper\TransactionHelper
                 - \SprykerTest\Shared\Testify\Helper\DataCleanupHelper
