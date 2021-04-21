@@ -31,3 +31,4 @@ suites:
                 - \SprykerTest\Shared\Customer\Helper\CustomerDataHelper
                 - \SprykerTest\Shared\Product\Helper\ProductDataHelper
                 - \SprykerTest\Shared\Stock\Helper\StockDataHelper
+                - \SprykerEcoTest\Zed\Heidelpay\Helper\HeidelpayHelper
