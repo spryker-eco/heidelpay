@@ -22,7 +22,7 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 class IsReservationCompletedPlugin extends AbstractPlugin implements ConditionInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      * - Checks if Reservation transaction was successful.
      *
      * @api

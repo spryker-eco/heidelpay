@@ -28,7 +28,7 @@ use Spryker\Client\Kernel\AbstractClient;
 class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -46,7 +46,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -62,11 +62,11 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     }
 
     /**
-     * @deprecated Use `getQuote()` instead.
-     *
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
+     *
+     * @deprecated Use `getQuote()` instead.
      *
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
@@ -78,7 +78,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -92,7 +92,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -108,7 +108,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -124,7 +124,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -140,7 +140,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -158,7 +158,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -177,7 +177,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -194,7 +194,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -211,7 +211,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -232,7 +232,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -249,7 +249,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -265,7 +265,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -281,7 +281,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -297,7 +297,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *

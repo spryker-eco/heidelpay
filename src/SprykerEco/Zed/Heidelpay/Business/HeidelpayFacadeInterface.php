@@ -283,7 +283,9 @@ interface HeidelpayFacadeInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
      */
-    public function findCreditCardRegistrationByIdAndQuote(HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer): HeidelpayCreditCardRegistrationTransfer;
+    public function findCreditCardRegistrationByIdAndQuote(
+        HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
+    ): HeidelpayCreditCardRegistrationTransfer;
 
     /**
      * Specification:
@@ -324,4 +326,40 @@ interface HeidelpayFacadeInterface
      * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer
      */
     public function processNotification(HeidelpayNotificationTransfer $notificationTransfer): HeidelpayNotificationTransfer;
+
+    /**
+     * Specification:
+     * - Checks if Capture transaction was successful.
+     *
+     * @api
+     *
+     * @param int $idSalesOrder
+     *
+     * @return bool
+     */
+    public function isSalesOrderCaptureApproved(int $idSalesOrder): bool;
+
+    /**
+     * Specification:
+     * - Checks if Refund transaction was successful.
+     *
+     * @api
+     *
+     * @param int $idSalesOrder
+     *
+     * @return bool
+     */
+    public function isSalesOrderRefunded(int $idSalesOrder): bool;
+
+    /**
+     * Specification:
+     * - Checks if DebitOnRegistration transaction was successful.
+     *
+     * @api
+     *
+     * @param int $idSalesOrder
+     *
+     * @return bool
+     */
+    public function isSalesOrderDebitOnRegistrationCompleted(int $idSalesOrder): bool;
 }

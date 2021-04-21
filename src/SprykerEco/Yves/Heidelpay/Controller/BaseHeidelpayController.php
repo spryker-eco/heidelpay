@@ -8,7 +8,6 @@
 namespace SprykerEco\Yves\Heidelpay\Controller;
 
 use Spryker\Yves\Kernel\Controller\AbstractController;
-use SprykerEco\Yves\Heidelpay\HeidelpayConfigInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -33,14 +32,6 @@ class BaseHeidelpayController extends AbstractController
         }
 
         return $allRequestParameters;
-    }
-
-    /**
-     * @return \SprykerEco\Yves\Heidelpay\HeidelpayConfigInterface
-     */
-    protected function getConfig(): HeidelpayConfigInterface
-    {
-        return $this->getFactory()->getConfig();
     }
 
     /**

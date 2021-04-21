@@ -53,7 +53,8 @@ class CreditCardSecure extends BaseHeidelpayPaymentMethod implements
             $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder()
         );
 
-        if ($this->isAuthorizeTransactionSentSuccessfully($authorizeTransactionLogTransfer) &&
+        if (
+            $this->isAuthorizeTransactionSentSuccessfully($authorizeTransactionLogTransfer) &&
             $this->hasCustomerRegisteredShipmentAddress($quoteTransfer->getShippingAddress())
         ) {
             $this->updateCreditCardRegistrationWithAddressId($quoteTransfer);

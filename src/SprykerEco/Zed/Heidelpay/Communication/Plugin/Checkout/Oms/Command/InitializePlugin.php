@@ -22,7 +22,7 @@ use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
 class InitializePlugin extends AbstractPlugin implements CommandByOrderInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      * - Execute Initialize API transaction.
      *
      * @api

@@ -52,7 +52,7 @@ class SuccessfulCreditCardCapturePaymentMock extends CreditCardPayment
                         "payment": {"code": "VA.RC"}                         
                     }';
 
-        $response['processingCode'] = "CC.CP.90.00";
+        $response['processingCode'] = 'CC.CP.90.00';
 
         $response['idTransactionUnique'] = 'some unique transaction';
         $response['idSalesOrder'] = $captureRequestTransfer->getCustomerPurchase()->getIdOrder();

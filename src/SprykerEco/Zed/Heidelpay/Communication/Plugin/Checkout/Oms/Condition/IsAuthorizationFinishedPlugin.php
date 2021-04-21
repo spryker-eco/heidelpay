@@ -20,7 +20,7 @@ use Spryker\Zed\Oms\Dependency\Plugin\Condition\ConditionInterface;
 class IsAuthorizationFinishedPlugin extends AbstractPlugin implements ConditionInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      * - Checks if Authorize notification received with success code for given order item.
      *
      * @api

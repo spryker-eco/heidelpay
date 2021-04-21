@@ -22,7 +22,8 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
 
 class HeidelpayPaymentTest extends Test
 {
-    use PaymentHeidelpayTransferBuilderTrait, PaymentResponseTestTrait;
+    use PaymentHeidelpayTransferBuilderTrait;
+    use PaymentResponseTestTrait;
 
     /**
      * @var \SprykerEcoTest\Zed\Heidelpay\HeidelpayZedTester

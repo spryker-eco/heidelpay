@@ -38,7 +38,8 @@ class PaypalDebit extends BaseHeidelpayPaymentMethod implements PaymentWithPostS
     {
         $debitTransactionLogTransfer = $this->findOrderDebitTransactionLog($idSalesOrder);
 
-        if (($debitTransactionLogTransfer !== null) &&
+        if (
+            ($debitTransactionLogTransfer !== null) &&
             $this->isDebitTransactionSentSuccessfully($debitTransactionLogTransfer)
         ) {
             return $this->getDebitRedirectUrl($debitTransactionLogTransfer);

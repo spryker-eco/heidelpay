@@ -22,7 +22,7 @@ use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
 class ReservationPlugin extends AbstractPlugin implements CommandByOrderInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      * - Execute Reservation API transaction.
      *
      * @api

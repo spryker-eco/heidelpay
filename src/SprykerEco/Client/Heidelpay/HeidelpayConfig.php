@@ -13,6 +13,8 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 class HeidelpayConfig extends AbstractBundleConfig
 {
     /**
+     * @api
+     *
      * @return string
      */
     public function getApplicationSecret(): string

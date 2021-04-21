@@ -10,6 +10,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment;
 use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
+use Spryker\Zed\Sales\SalesDependencyProvider;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayFacadeInterface;
 
 trait PaymentHeidelpayTransferBuilderTrait
@@ -22,6 +23,16 @@ trait PaymentHeidelpayTransferBuilderTrait
      */
     protected function getOrderTransfer(HeidelpayFacadeInterface $heidelpayFacade, SpySalesOrder $salesOrder): OrderTransfer
     {
+        $this->tester->setDependency(
+            SalesDependencyProvider::PLUGINS_ORDER_ITEM_EXPANDER,
+            []
+        );
+
+        $this->tester->setDependency(
+            SalesDependencyProvider::HYDRATE_ORDER_PLUGINS,
+            []
+        );
+
         $paymentTransfer = $heidelpayFacade->getPaymentByIdSalesOrder($salesOrder->getIdSalesOrder());
         $orderTransfer = $this->heidelpayToSales->getOrderByIdSalesOrder($salesOrder->getIdSalesOrder());
         $orderTransfer->setHeidelpayPayment($paymentTransfer);

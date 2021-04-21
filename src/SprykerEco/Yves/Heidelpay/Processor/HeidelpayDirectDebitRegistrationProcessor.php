@@ -150,8 +150,10 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
      *
      * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
      */
-    protected function addError(string $code, HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer): HeidelpayDirectDebitRegistrationTransfer
-    {
+    protected function addError(
+        string $code,
+        HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer {
         $directDebitRegistrationTransfer
             ->setIsError(true)
             ->setError(

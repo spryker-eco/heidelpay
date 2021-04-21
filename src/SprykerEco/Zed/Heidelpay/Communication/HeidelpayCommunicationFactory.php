@@ -14,11 +14,9 @@ use SprykerEco\Zed\Heidelpay\Communication\Oms\Command\RefundOmsCommand;
 use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\HeidelpayOmsConditionInterface;
 use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsAuthorizationFailedOmsCondition;
 use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsAuthorizationFinishedOmsCondition;
-use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsDebitOnRegistrationCompletedOmsCondition;
 use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsFinalizingFailedOmsCondition;
 use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsFinalizingFinishedOmsCondition;
 use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsOrderPaidOmsCondition;
-use SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\IsRefundedOmsCondition;
 use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesFacadeInterface;
 use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
 
@@ -94,22 +92,6 @@ class HeidelpayCommunicationFactory extends AbstractCommunicationFactory
             $this->getFacade(),
             $this->getSalesFacade()
         );
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\HeidelpayOmsConditionInterface
-     */
-    public function createIsDebitOnRegistrationCompletedOmsCondition(): HeidelpayOmsConditionInterface
-    {
-        return new IsDebitOnRegistrationCompletedOmsCondition($this->getRepository());
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Communication\Oms\Condition\HeidelpayOmsConditionInterface
-     */
-    public function createIsRefundedOmsCondition(): HeidelpayOmsConditionInterface
-    {
-        return new IsRefundedOmsCondition($this->getRepository());
     }
 
     /**

@@ -31,9 +31,9 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulSofor
  */
 class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
 {
-    protected const REGISTRATION_NUMBER = '31HA07BC814CA0300B135019D1515E08';
-
     use NewOrderWithOneItemTrait;
+
+    protected const REGISTRATION_NUMBER = '31HA07BC814CA0300B135019D1515E08';
 
     /**
      * @dataProvider functionListForSuccessfulSaveOrderPaymentTest

@@ -60,11 +60,11 @@ class HeidelpayFacadeGetPaymentBySalesOrderTest extends HeidelpayPaymentTest
     }
 
     /**
-     * @return \Orm\Zed\Sales\Persistence\SpySalesOrder $salesOrder
+     * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
      */
     protected function createSofortOrder(): SpySalesOrder
     {
-        $orderBuilder = new PaymentBuilder($this->createHeidelpayFactory());
+        $orderBuilder = new PaymentBuilder();
 
         return $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_SOFORT);
     }
