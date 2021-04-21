@@ -36,6 +36,7 @@
     "spryker/payment": "*",
     "spryker/product": "*",
     "spryker/propel": "*",
+    "spryker/router": "*",
     "spryker/silex": "*",
     "spryker/stock": "*",
     "spryker/testify": "*"
@@ -43,12 +44,14 @@
   "suggest": {
     "spryker/checkout": "CheckoutPostSaveHookInterface is used.",
     "spryker/payment": "Filter payment methods plugin used.",
+    "spryker/router": "Use this module if you want use the RouterProviderPlugin.",
     "spryker-shop/shop-application": "Abstract Yves controller provider is used.",
     "spryker/silex": "Silex application is used."
   },
   "autoload": {
     "psr-4": {
-      "SprykerEco\\": "src/SprykerEco/"
+      "SprykerEco\\": "src/SprykerEco/",
+      "SprykerEcoTest\\": "tests/SprykerEcoTest/"
     }
   },
   "autoload-dev": {
