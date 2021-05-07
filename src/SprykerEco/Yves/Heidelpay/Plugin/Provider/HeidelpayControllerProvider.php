@@ -11,7 +11,7 @@ use Silex\Application;
 use SprykerShop\Yves\ShopApplication\Plugin\Provider\AbstractYvesControllerProvider;
 
 /**
- * @deprecated Use {@link \SprykerEco\Yves\Heidelpay\Plugin\Router\HeidelpayRouteProvider} instead.
+ * @deprecated Use {@link \SprykerEco\Yves\Heidelpay\Plugin\Router\HeidelpayRouteProviderPlugin} instead.
  */
 class HeidelpayControllerProvider extends AbstractYvesControllerProvider
 {
