@@ -37,6 +37,7 @@ addons:
     packages:
       - redis-tools
       - redis-server
+      - rabbitmq-server
       - graphviz
       - postgresql-12
       - postgresql-client-12
