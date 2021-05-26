@@ -45,16 +45,16 @@ jobs:
             - name: Composer validate
               run: composer validate
 
-            - name: Composer install
-              run: |
-                  composer --version
-                  composer install
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
                   php-version: ${{ matrix.php }}
                   extensions: mbstring, intl
                   tools: composer:v2
+            - name: Composer install
+              run: |
+                  composer --version
+                  composer install
 
             - name: Run CodeStyle checks
               run: composer cs-check
