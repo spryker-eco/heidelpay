@@ -19,6 +19,12 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentHeidelpay
 
 abstract class ExternalResponseBuilder
 {
+    use HeidelpayResponseTrait;
+    use CustomerTrait;
+    use OrderAddressTrait;
+    use NewOrderWithOneItemTrait;
+    use PaymentHeidelpayTrait;
+
     public const EMAIL = 'email';
     public const RESPONSE_URL = 'responseUrl';
     public const PAYMENT_BRAND = 'paymentBrand';
@@ -56,12 +62,6 @@ abstract class ExternalResponseBuilder
     public const PAYMENT_CODE_HP_PI = 'HP.PI';
     public const PAYMENT_CODE_HP_FI = 'HP.FI';
 
-    use HeidelpayResponseTrait;
-    use CustomerTrait;
-    use OrderAddressTrait;
-    use NewOrderWithOneItemTrait;
-    use PaymentHeidelpayTrait;
-
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
      */
@@ -85,7 +85,7 @@ abstract class ExternalResponseBuilder
     /**
      * @param string $paymentMethod
      *
-     * @return string $brand
+     * @return string
      */
     protected function getPaymentBrand(string $paymentMethod): string
     {
