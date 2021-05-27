@@ -1,1 +1,6 @@
 parameters:
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
+    ignoreErrors:
+        - '#Parameter .+ of method .+ has invalid typehint type .+Transfer#'
+        - '#Call to method .+ on an unknown class .+Transfer#'
