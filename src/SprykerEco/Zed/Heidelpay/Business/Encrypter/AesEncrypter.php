@@ -52,7 +52,7 @@ class AesEncrypter implements EncrypterInterface
     /**
      * @param string $data
      *
-     * @return string|null
+     * @return string|false
      */
     public function decryptData(string $data)
     {

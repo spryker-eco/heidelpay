@@ -15,10 +15,10 @@ parameters:
         - '#Parameter \#2 \$object of method Spryker\\Client\\ZedRequest\\ZedRequestClientInterface::call\(\) expects .+TransferInterface, .+Transfer given#'
         - '#PHPDoc tag @param for parameter \$quoteTransfer with type .+Transfer is not subtype of native type .+Transfer#'
         - '#Return typehint of method .+ has invalid type Orm\\.+#'
-        - '#Access to constant [A-Z_]+ on an unknown class .+Transfer#'
+        - '#Access to constant [A-Z_0-9]+ on an unknown class .+Transfer#'
         - '#Cloning object of an unknown class .+Transfer#'
         - '#Parameter .+ of method .+ has invalid typehint type Orm\\.+#'
         - '#Call to static method create\(\) on an unknown class Orm\\.+#'
-        - '#Class Orm\\.+not found#'
-
+    excludePaths:
+        - src/SprykerEco/Zed/Heidelpay/HeidelpayPersistenceFactory.php
 
