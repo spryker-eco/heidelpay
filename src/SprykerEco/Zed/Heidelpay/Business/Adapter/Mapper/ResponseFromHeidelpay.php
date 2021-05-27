@@ -180,9 +180,9 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
     /**
      * @param \Heidelpay\PhpPaymentApi\Response $apiResponse
      *
-     * @return string
+     * @return string|null
      */
-    protected function getJsonEncodedPayloadFromApiResponse(Response $apiResponse): string
+    protected function getJsonEncodedPayloadFromApiResponse(Response $apiResponse): ?string
     {
         $payload = [
             static::RESPONSE_PARAMETER_GROUP_PROCESSING => get_object_vars($apiResponse->getProcessing()),

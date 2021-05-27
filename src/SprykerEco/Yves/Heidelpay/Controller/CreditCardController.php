@@ -64,7 +64,7 @@ class CreditCardController extends BaseHeidelpayController
 
         $creditCardRegistration = $this->findRegistrationByIdAndQuote($idRegistration, $quoteTransfer);
 
-        if ($creditCardRegistration->getIdCreditCardRegistration() !== null) {
+        if ($creditCardRegistration !== null && $creditCardRegistration->getIdCreditCardRegistration() !== null) {
             $this->hydrateCreditCardRegistrationToQuote($creditCardRegistration, $quoteTransfer);
 
             return $this->redirectToSummaryStep();

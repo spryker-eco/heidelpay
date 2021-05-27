@@ -45,6 +45,8 @@ use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
 class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryInterface
 {
     /**
+     * @phpstan-return array<string, \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface>
+     *
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface[]
      */
     public function getAuthorizePaymentMethodAdapterCollection(): array
@@ -111,6 +113,8 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     }
 
     /**
+     * @phpstan-return array<string, \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface>
+     *
      * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface[]
      */
     public function getCapturePaymentMethodAdapterCollection(): array
