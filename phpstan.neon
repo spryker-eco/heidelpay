@@ -7,3 +7,7 @@ parameters:
         - '#Return typehint of method .+ has invalid type .+Transfer#'
         - '#Instantiated class Generated\\Shared\\Transfer\\.+Transfer not found#'
         - '#Class Generated\\Shared\\Transfer\\.+Transfer not found.+#'
+        - '#Call to an undefined method .+Transfer\\AbstractTransfer::.+#'
+        - '#PHPDoc tag @var for variable .+ contains unknown class Generated\\Shared\\Transfer\\[A-Za-z]+Transfer.+#'
+        - '#Call to method .+ on an unknown class Orm\\.+#'
+        - '#Parameter .+ has invalid typehint type Orm\\.+#'
