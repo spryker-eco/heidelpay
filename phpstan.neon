@@ -19,6 +19,8 @@ parameters:
         - '#Cloning object of an unknown class .+Transfer#'
         - '#Parameter .+ of method .+ has invalid typehint type Orm\\.+#'
         - '#Call to static method create\(\) on an unknown class Orm\\.+#'
+        - '#Method .+ should return Generated\\.+ but returns .+Transfer#'
+        - '#Parameter .+ of method .+ expects .+Transfer, .+AbstractTransfer given#'
     excludePaths:
-        - src/SprykerEco/Zed/Heidelpay/HeidelpayPersistenceFactory.php
+        - src/SprykerEco/Zed/Heidelpay/Persistence/Propel/Abstract*.php
 
