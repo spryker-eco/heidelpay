@@ -19,7 +19,7 @@ interface EncrypterInterface
     /**
      * @param string $data
      *
-     * @return string
+     * @return string|false|null
      */
     public function decryptData(string $data);
 }

@@ -45,10 +45,7 @@ class BaseHeidelpayPaymentMethod
     {
         $authorizeTransactionLogTransfer = $this->findOrderAuthorizeTransactionLog($idSalesOrder);
 
-        if (
-            ($authorizeTransactionLogTransfer !== null) &&
-            ($this->isAuthorizeTransactionSentSuccessfully($authorizeTransactionLogTransfer))
-        ) {
+        if ($this->isAuthorizeTransactionSentSuccessfully($authorizeTransactionLogTransfer)) {
             return $this->getAuthorizeRedirectUrl($authorizeTransactionLogTransfer);
         }
 
@@ -64,10 +61,7 @@ class BaseHeidelpayPaymentMethod
     {
         $authorizeTransactionLogTransfer = $this->findOrderAuthorizeOnRegistrationTransactionLog($idSalesOrder);
 
-        if (
-            ($authorizeTransactionLogTransfer !== null) &&
-            ($this->isAuthorizeTransactionSentSuccessfully($authorizeTransactionLogTransfer))
-        ) {
+        if ($this->isAuthorizeTransactionSentSuccessfully($authorizeTransactionLogTransfer)) {
             return $this->getAuthorizeRedirectUrl($authorizeTransactionLogTransfer);
         }
 

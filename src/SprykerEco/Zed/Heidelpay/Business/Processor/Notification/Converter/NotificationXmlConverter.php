@@ -54,7 +54,7 @@ class NotificationXmlConverter implements NotificationXmlConverterInterface
         $result = [];
 
         $attributes = $xmlElement->attributes();
-        if ($xmlElement->count() > 0 && $attributes->count() > 0) {
+        if ($attributes !== null && $xmlElement->count() > 0 && $attributes->count() > 0) {
             $result['@attributes'] = ((array)$attributes)['@attributes'];
         }
 
