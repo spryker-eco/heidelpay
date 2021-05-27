@@ -4,3 +4,6 @@ parameters:
     ignoreErrors:
         - '#Parameter .+ of method .+ has invalid typehint type .+Transfer#'
         - '#Call to method .+ on an unknown class .+Transfer#'
+        - '#Return typehint of method .+ has invalid type .+Transfer#'
+        - '#Instantiated class Generated\\Shared\\Transfer\\.+Transfer not found#'
+        - '#Class Generated\\Shared\\Transfer\\.+Transfer not found.+#'
