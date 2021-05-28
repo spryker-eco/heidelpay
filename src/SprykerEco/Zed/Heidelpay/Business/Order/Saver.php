@@ -31,8 +31,6 @@ class Saver implements SaverInterface
     protected $paymentCollection;
 
     /**
-     * @phpstan-param array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface> $paymentCollection
-     *
      * @param \SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreatorInterface $basketCreator
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface[] $paymentCollection
      */
