@@ -108,7 +108,7 @@ class BaseHeidelpayPaymentMethod
     }
 
     /**
-     * @param \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer $transactionLogTransfer|null
+     * @param \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null $transactionLogTransfer
      *
      * @return string
      */
