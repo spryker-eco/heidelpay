@@ -54,6 +54,7 @@ class CreditCardSecure extends BaseHeidelpayPaymentMethod implements
         );
 
         if (
+            $authorizeTransactionLogTransfer !== null &&
             $this->isAuthorizeTransactionSentSuccessfully($authorizeTransactionLogTransfer) &&
             $this->hasCustomerRegisteredShipmentAddress($quoteTransfer->getShippingAddress())
         ) {

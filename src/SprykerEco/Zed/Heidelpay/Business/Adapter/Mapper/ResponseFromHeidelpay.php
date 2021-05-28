@@ -231,7 +231,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      */
     protected function getConnectorInfo(Response $apiResponse): ?string
     {
-        if ($apiResponse->getConnector()->getAccountIBan() === null) {
+        if (empty($apiResponse->getConnector()->getAccountIBan())) {
             return null;
         }
 
