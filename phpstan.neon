@@ -21,6 +21,7 @@ parameters:
         - '#Call to static method create\(\) on an unknown class Orm\\.+#'
         - '#Method .+ should return Generated\\.+ but returns .+Transfer#'
         - '#Parameter .+ of method .+ expects .+Transfer, .+AbstractTransfer given#'
+        - '#Method .+ should return array<.+ but returns array<string,.+#'
         - '#Parameter \#1 \$position of method Heidelpay\\PhpBasketApi\\Object\\BasketItem::setPosition\(\) expects int, float\|int given#'
         - '#SprykerEco\\Zed\\Heidelpay\\Business\\Mapper\\QuoteToHeidelpayRequest::findCustomerRegistrationDate\(\) should return string\|null but returns array\|float\|int\|string\|false\|null#'
         - '#Method SprykerEco\\Zed\\Heidelpay\\Business\\Encrypter\\AesEncrypter::decryptData\(\) should return string\|null but returns string\|false#'
