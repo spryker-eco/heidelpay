@@ -23,6 +23,9 @@ parameters:
         - '#Parameter .+ of method .+ expects .+Transfer, .+AbstractTransfer given#'
         - '#Parameter \#1 \$position of method Heidelpay\\PhpBasketApi\\Object\\BasketItem::setPosition\(\) expects int, float\|int given#'
         - '#SprykerEco\\Zed\\Heidelpay\\Business\\Mapper\\QuoteToHeidelpayRequest::findCustomerRegistrationDate\(\) should return string\|null but returns array\|float\|int\|string\|false\|null#'
+        - '#Method SprykerEco\\Zed\\Heidelpay\\Business\\Encrypter\\AesEncrypter::decryptData\(\) should return string\|null but returns string\|false#'
+        - '#Method SprykerEco\\Zed\\Heidelpay\\Business\\Encrypter\\AesEncrypter::getRandomPseudoBytes\(\) should return string but returns string\|false#'
+        - '#Parameter \#1 \$length of function openssl_random_pseudo_bytes expects int, int\|false given#'
     excludePaths:
         - src/SprykerEco/Zed/Heidelpay/Persistence/Propel/Abstract*.php
 

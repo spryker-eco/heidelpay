@@ -14,6 +14,8 @@ use Spryker\Zed\Oms\Business\Util\ReadOnlyArrayObject;
 use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
 
 /**
+ * @deprecated Use {@link \SprykerEco\Zed\Heidelpay\Communication\Plugin\Checkout\Oms\Command\AuthorizePlugin} instead.
+ *
  * @method \SprykerEco\Zed\Heidelpay\Business\HeidelpayFacadeInterface getFacade()
  * @method \SprykerEco\Zed\Heidelpay\Communication\HeidelpayCommunicationFactory getFactory()
  * @method \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayQueryContainerInterface getQueryContainer()
@@ -36,7 +38,7 @@ class InitializePlugin extends AbstractPlugin implements CommandByOrderInterface
     public function run(array $orderItems, SpySalesOrder $orderEntity, ReadOnlyArrayObject $data)
     {
         $orderTransfer = $this->getOrderWithPaymentTransfer($orderEntity->getIdSalesOrder());
-        $this->getFacade()->initializePayment($orderTransfer);
+        $this->getFacade()->authorizePayment($orderTransfer);
 
         return [];
     }
