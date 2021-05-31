@@ -117,7 +117,7 @@ class BaseHeidelpayPaymentMethod
         $paymentFailedUrl = $this->config->getYvesCheckoutPaymentFailedUrl();
 
         if ($transactionLogTransfer === null) {
-            return $paymentFailedUrl;
+            return sprintf($paymentFailedUrl, '');
         }
 
         $errorCode = $transactionLogTransfer->getHeidelpayResponse()->getError()->getCode();
