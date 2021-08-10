@@ -28,6 +28,7 @@
         "spryker/zed-request": "^3.0.0"
     },
     "require-dev": {
+        "phpstan/phpstan": "*",
         "spryker-shop/shop-application": "*",
         "spryker/application": "*",
         "spryker/checkout": "*",
@@ -50,8 +51,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SprykerEco\\": "src/SprykerEco/",
-            "SprykerEcoTest\\": "tests/SprykerEcoTest/"
+            "SprykerEco\\": "src/SprykerEco/"
         }
     },
     "autoload-dev": {
