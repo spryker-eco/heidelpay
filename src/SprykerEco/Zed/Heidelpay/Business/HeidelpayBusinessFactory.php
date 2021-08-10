@@ -225,7 +225,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     {
         return [
             HeidelpayConfig::PAYMENT_METHOD_INVOICE_SECURED_B2C => $this->createAdapterRequestFromOrderBuilder(),
-            HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT => $this->createEasyCreditAdapterRequestFromOrderBuilder()
+            HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT => $this->createEasyCreditAdapterRequestFromOrderBuilder(),
         ];
     }
 

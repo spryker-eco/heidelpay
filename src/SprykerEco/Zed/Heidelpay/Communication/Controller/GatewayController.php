@@ -33,8 +33,9 @@ class GatewayController extends AbstractGatewayController
      *
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
      */
-    public function getAuthorizeTransactionLogAction(HeidelpayAuthorizeTransactionLogRequestTransfer $authorizeLogRequestTransfer): HeidelpayTransactionLogTransfer
-    {
+    public function getAuthorizeTransactionLogAction(
+        HeidelpayAuthorizeTransactionLogRequestTransfer $authorizeLogRequestTransfer
+    ): HeidelpayTransactionLogTransfer {
         return $this->getFacade()->getAuthorizeTransactionLog($authorizeLogRequestTransfer);
     }
 
@@ -63,8 +64,9 @@ class GatewayController extends AbstractGatewayController
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
-    public function processExternalPaymentResponseAction(HeidelpayExternalPaymentRequestTransfer $paymentRequestTransfer): HeidelpayPaymentProcessingResponseTransfer
-    {
+    public function processExternalPaymentResponseAction(
+        HeidelpayExternalPaymentRequestTransfer $paymentRequestTransfer
+    ): HeidelpayPaymentProcessingResponseTransfer {
         return $this->getFacade()->processExternalPaymentResponse($paymentRequestTransfer->getBody());
     }
 

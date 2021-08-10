@@ -26,9 +26,8 @@ class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
     /**
      * @param \SprykerEco\Zed\Heidelpay\HeidelpayConfigInterface $config
      */
-    public function __construct(
-        HeidelpayConfigInterface $config
-    ) {
+    public function __construct(HeidelpayConfigInterface $config)
+    {
         $this->config = $config;
     }
 

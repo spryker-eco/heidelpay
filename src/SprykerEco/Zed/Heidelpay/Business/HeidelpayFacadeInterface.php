@@ -283,7 +283,9 @@ interface HeidelpayFacadeInterface
      *
      * @return \Generated\Shared\Transfer\HeidelpayCreditCardRegistrationTransfer
      */
-    public function findCreditCardRegistrationByIdAndQuote(HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer): HeidelpayCreditCardRegistrationTransfer;
+    public function findCreditCardRegistrationByIdAndQuote(
+        HeidelpayRegistrationByIdAndQuoteRequestTransfer $findRegistrationRequestTransfer
+    ): HeidelpayCreditCardRegistrationTransfer;
 
     /**
      * Specification:

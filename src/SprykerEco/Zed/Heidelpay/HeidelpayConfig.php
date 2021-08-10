@@ -27,6 +27,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     ];
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getMerchantSecuritySender(): string
@@ -35,6 +37,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getMerchantUserLogin(): string
@@ -43,6 +47,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getMerchantUserPassword(): string
@@ -51,6 +57,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return bool
      */
     public function getMerchantSandboxMode(): bool
@@ -59,6 +67,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getApplicationSecret(): string
@@ -67,6 +77,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getAsyncLanguageCode(): string
@@ -75,6 +87,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getZedResponseUrl(): string
@@ -83,6 +97,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getEasyCreditPaymentResponseUrl(): string
@@ -91,6 +107,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getYvesCheckoutPaymentFailedUrl(): string
@@ -99,6 +117,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getYvesUrlForAsyncIframeResponse(): string
@@ -107,6 +127,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getYvesUrlForAsyncDirectDebitResponse(): string
@@ -115,6 +137,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getIdealAuthorizeUrl(): string
@@ -123,6 +147,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getCreditCardPaymentFrameOrigin(): string
@@ -131,6 +157,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getCreditCardPaymentFrameCustomCssUrl(): string
@@ -139,6 +167,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getCreditCardPaymentFramePreventAsyncRedirect(): string
@@ -147,6 +177,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getEncryptionKey(): string
@@ -155,6 +187,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getEasycreditCriteriaRejectedDeliveryAddress(): string
@@ -163,6 +197,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return float
      */
     public function getEasycreditCriteriaGrandTotalMoreThan(): float
@@ -171,6 +207,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return float
      */
     public function getEasycreditCriteriaGrandTotalLessThan(): float
@@ -179,6 +217,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return string[]
      */
     public function getEasyCreditAllowedCountries(): array
@@ -187,6 +227,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @return bool
      */
     public function getIsSplitPaymentEnabledKey(): bool
@@ -195,6 +237,8 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     }
 
     /**
+     * @api
+     *
      * @param string $paymentType
      *
      * @return string

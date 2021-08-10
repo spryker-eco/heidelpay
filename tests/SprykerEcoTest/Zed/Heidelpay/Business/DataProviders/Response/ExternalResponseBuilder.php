@@ -19,6 +19,12 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentHeidelpay
 
 abstract class ExternalResponseBuilder
 {
+    use HeidelpayResponseTrait;
+    use CustomerTrait;
+    use OrderAddressTrait;
+    use NewOrderWithOneItemTrait;
+    use PaymentHeidelpayTrait;
+
     public const EMAIL = 'email';
     public const RESPONSE_URL = 'responseUrl';
     public const PAYMENT_BRAND = 'paymentBrand';
@@ -43,7 +49,7 @@ abstract class ExternalResponseBuilder
     public const PROCESSING_REASON_CODE = 'PROCESSING_REASON_CODE';
 
     public const CRITERION_SDK_NAME = 'HEIDELPAY:CRITERION_SDK_NAME';
-    public const CRITERION_SDK_VALUE = "Heidelpay\\PhpPaymentApi";
+    public const CRITERION_SDK_VALUE = 'Heidelpay\\PhpPaymentApi';
 
     public const BRAND_PROPERTY_NAME = 'brand';
     public const CRITERION_SECRET = 'HEIDELPAY:CRITERION_SECRET';
@@ -55,12 +61,6 @@ abstract class ExternalResponseBuilder
     public const PAYMENT_CODE_HP_INI = 'HP.INI';
     public const PAYMENT_CODE_HP_PI = 'HP.PI';
     public const PAYMENT_CODE_HP_FI = 'HP.FI';
-
-    use HeidelpayResponseTrait,
-        CustomerTrait,
-        OrderAddressTrait,
-        NewOrderWithOneItemTrait,
-        PaymentHeidelpayTrait;
 
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
@@ -85,7 +85,7 @@ abstract class ExternalResponseBuilder
     /**
      * @param string $paymentMethod
      *
-     * @return string $brand
+     * @return string
      */
     protected function getPaymentBrand(string $paymentMethod): string
     {

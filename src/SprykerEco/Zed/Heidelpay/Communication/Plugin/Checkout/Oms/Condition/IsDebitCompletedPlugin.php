@@ -22,7 +22,7 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 class IsDebitCompletedPlugin extends AbstractPlugin implements ConditionInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      * - Checks if Debit transaction was successful.
      *
      * @api

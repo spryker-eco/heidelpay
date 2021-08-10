@@ -88,7 +88,11 @@ class DirectDebitController extends BaseHeidelpayController
      */
     protected function redirectToRegistrationFailureUrl(HeidelpayResponseErrorTransfer $responseErrorTransfer): Response
     {
-        $redirectUrl = $this->getApplication()
+        /**
+         * @var \Spryker\Yves\Kernel\Application $application
+         */
+        $application = $this->getApplication();
+        $redirectUrl = $application
             ->url(
                 HeidelpayControllerProvider::HEIDELPAY_PAYMENT_FAILED,
                 [static::URL_PARAM_ERROR_CODE => $responseErrorTransfer->getCode()]
@@ -104,7 +108,11 @@ class DirectDebitController extends BaseHeidelpayController
      */
     protected function redirectToRegistrationSuccessUrl(HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer): Response
     {
-        $redirectUrl = $this->getApplication()
+        /**
+         * @var \Spryker\Yves\Kernel\Application $application
+         */
+        $application = $this->getApplication();
+        $redirectUrl = $application
             ->url(
                 HeidelpayControllerProvider::HEIDELPAY_DIRECT_DEBIT_REGISTER_SUCCESS,
                 [static::REQUEST_PARAM_REGISTRATION_ID => $directDebitRegistrationTransfer->getIdDirectDebitRegistration()]

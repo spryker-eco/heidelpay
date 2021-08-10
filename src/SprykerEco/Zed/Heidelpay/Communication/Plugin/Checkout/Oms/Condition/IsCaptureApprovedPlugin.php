@@ -22,7 +22,7 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 class IsCaptureApprovedPlugin extends AbstractPlugin implements ConditionInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      * - Checks if Capture transaction was successful.
      *
      * @api

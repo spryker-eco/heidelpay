@@ -81,7 +81,8 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
      */
     protected function updatePaymentHeidelpayWithExternalResponse(HeidelpayResponseTransfer $responseTransfer): void
     {
-        if ($responseTransfer->getIdPaymentReference() === null
+        if (
+            $responseTransfer->getIdPaymentReference() === null
             && $responseTransfer->getIdTransactionUnique() === null
         ) {
             return;

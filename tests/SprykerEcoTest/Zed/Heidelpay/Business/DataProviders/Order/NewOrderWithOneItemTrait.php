@@ -39,7 +39,6 @@ trait NewOrderWithOneItemTrait
         SpySalesOrderAddress $billingAddress,
         SpySalesOrderAddress $shippingAddress
     ): SpySalesOrder {
-
         $orderEntity = (new SpySalesOrder())
             ->setEmail($customer->getEmail())
             ->setIsTest(true)

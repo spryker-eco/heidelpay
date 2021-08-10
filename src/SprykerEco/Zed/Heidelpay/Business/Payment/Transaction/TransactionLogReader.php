@@ -361,9 +361,9 @@ class TransactionLogReader implements TransactionLogReaderInterface
     /**
      * @param \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog $transactionLogEntry
      *
-     * @return string
+     * @return string|null
      */
-    protected function prepareResponsePayload(SpyPaymentHeidelpayTransactionLog $transactionLogEntry): string
+    protected function prepareResponsePayload(SpyPaymentHeidelpayTransactionLog $transactionLogEntry): ?string
     {
         $responsePayload = $transactionLogEntry->getResponsePayload();
         if ($responsePayload !== null) {
