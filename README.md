@@ -1,5 +1,6 @@
 # Heidelpay Module
 
+[![CI](https://github.com/spryker-eco/heidelpay/workflows/CI/badge.svg?branch=master)](https://github.com/spryker-eco/heidelpay/actions?query=workflow%3ACI+branch%3Amaster)
 [![Build Status](https://travis-ci.org/spryker-eco/heidelpay.svg?branch=master)](https://travis-ci.org/spryker-eco/heidelpay)
 [![License](https://img.shields.io/github/license/spryker-eco/heidelpay.svg?b=master)](https://github.com/spryker-eco/heidelpay)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/spryker-eco/heidelpay/?branch=master)
