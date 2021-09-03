@@ -11,16 +11,16 @@
         <column name="id_payment_heidelpay" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
         <column name="fk_sales_order" required="true" type="INTEGER"/>
 
-        <column name="id_payment_reference" required="false" type="VARCHAR"/>
-        <column name="id_payment_registration" required="false" type="VARCHAR"/>
-        <column name="id_basket" required="false" type="VARCHAR"/>
+        <column name="id_payment_reference" required="false" type="VARCHAR" size="255"/>
+        <column name="id_payment_registration" required="false" type="VARCHAR" size="255"/>
+        <column name="id_basket" required="false" type="VARCHAR" size="255"/>
 
-        <column name="payment_method" required="true" type="VARCHAR"/>
+        <column name="payment_method" required="true" type="VARCHAR" size="255"/>
 
-        <column name="easy_credit_fee" required="false" type="INTEGER" />
+        <column name="easy_credit_fee" required="false" type="INTEGER"/>
 
         <column name="date_of_birth" required="false" type="DATE"/>
-        <column name="salutation" required="false" type="VARCHAR"/>
+        <column name="salutation" required="false" type="VARCHAR" size="255"/>
 
         <column name="connector_invoice_account_info" required="false" type="LONGVARCHAR" />
 
@@ -49,12 +49,12 @@
     <table name="spy_payment_heidelpay_credit_card_registration">
         <column name="id_credit_card_registration" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
         <column name="fk_customer_address" required="false" type="INTEGER" />
-        <column name="registration_number" required="true" type="VARCHAR" />
-        <column name="quote_hash" required="true" type="VARCHAR" />
-        <column name="account_brand" required="false" type="VARCHAR" />
-        <column name="account_holder" required="false" type="VARCHAR" />
-        <column name="account_number" required="false" type="VARCHAR" />
-        <column name="account_verification" required="false" type="VARCHAR" />
+        <column name="registration_number" required="true" type="VARCHAR" size="255"/>
+        <column name="quote_hash" required="true" type="VARCHAR" size="255"/>
+        <column name="account_brand" required="false" type="VARCHAR" size="255"/>
+        <column name="account_holder" required="false" type="VARCHAR" size="255"/>
+        <column name="account_number" required="false" type="VARCHAR" size="255"/>
+        <column name="account_verification" required="false" type="VARCHAR" size="255"/>
         <column name="account_expiry_month" required="false" type="INTEGER" />
         <column name="account_expiry_year" required="false" type="INTEGER" />
 
@@ -81,16 +81,16 @@
         <column name="id_direct_debit_registration" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
         <column name="fk_customer_address" required="false" type="INTEGER" />
 
-        <column name="registration_unique_id" required="true" type="VARCHAR" />
-        <column name="transaction_id" required="true" type="VARCHAR" />
+        <column name="registration_unique_id" required="true" type="VARCHAR" size="255"/>
+        <column name="transaction_id" required="true" type="VARCHAR" size="255"/>
 
-        <column name="account_holder" required="false" type="VARCHAR" />
-        <column name="account_bank_name" required="false" type="VARCHAR" />
-        <column name="account_number" required="false" type="VARCHAR" />
-        <column name="account_country" required="false" type="VARCHAR" />
-        <column name="account_bic" required="false" type="VARCHAR" />
-        <column name="account_iban" required="false" type="VARCHAR" />
-        <column name="account_identification" required="false" type="VARCHAR" />
+        <column name="account_holder" required="false" type="VARCHAR" size="255"/>
+        <column name="account_bank_name" required="false" type="VARCHAR" size="255"/>
+        <column name="account_number" required="false" type="VARCHAR" size="255"/>
+        <column name="account_country" required="false" type="VARCHAR" size="255"/>
+        <column name="account_bic" required="false" type="VARCHAR" size="255"/>
+        <column name="account_iban" required="false" type="VARCHAR" size="255"/>
+        <column name="account_identification" required="false" type="VARCHAR" size="255"/>
 
         <behavior name="timestampable">
             <parameter name="disable_updated_at" value="true"/>
@@ -119,11 +119,11 @@
     <table name="spy_payment_heidelpay_transaction_log">
         <column name="id_payment_heidelpay_transaction_log" type="INTEGER" primaryKey="true" autoIncrement="true"/>
         <column name="fk_sales_order" required="true" type="INTEGER"/>
-        <column name="id_transaction_unique" required="false" type="VARCHAR"/>
-        <column name="transaction_type" required="false" type="VARCHAR"/>
-        <column name="processing_code" required="false" type="VARCHAR"/>
-        <column name="response_code" required="false" type="VARCHAR"/>
-        <column name="redirect_url" type="VARCHAR"/>
+        <column name="id_transaction_unique" required="false" type="VARCHAR" size="255"/>
+        <column name="transaction_type" required="false" type="VARCHAR" size="255"/>
+        <column name="processing_code" required="false" type="VARCHAR" size="255"/>
+        <column name="response_code" required="false" type="VARCHAR" size="255"/>
+        <column name="redirect_url" type="VARCHAR" size="255"/>
         <column name="request_payload" required="false" type="LONGVARCHAR"/>
         <column name="response_payload" required="true" type="LONGVARCHAR"/>
 
@@ -140,30 +140,30 @@
     <table name="spy_payment_heidelpay_notification">
         <column name="id_payment_heidelpay_notification" required="true" type="INTEGER" primaryKey="true" autoIncrement="true"/>
 
-        <column name="transaction_source" required="false" type="VARCHAR" />
-        <column name="transaction_channel" required="true" type="VARCHAR" />
-        <column name="transaction_response_type" required="false" type="VARCHAR" />
-        <column name="transaction_mode" required="false" type="VARCHAR" />
+        <column name="transaction_source" required="false" type="VARCHAR" size="255"/>
+        <column name="transaction_channel" required="true" type="VARCHAR" size="255"/>
+        <column name="transaction_response_type" required="false" type="VARCHAR" size="255"/>
+        <column name="transaction_mode" required="false" type="VARCHAR" size="255"/>
 
-        <column name="transaction_id" required="true" type="VARCHAR" />
-        <column name="unique_id" required="true" type="VARCHAR" />
-        <column name="short_id" required="false" type="VARCHAR" />
-        <column name="identification_source" required="false" type="VARCHAR" />
+        <column name="transaction_id" required="true" type="VARCHAR" size="255"/>
+        <column name="unique_id" required="true" type="VARCHAR" size="255"/>
+        <column name="short_id" required="false" type="VARCHAR" size="255"/>
+        <column name="identification_source" required="false" type="VARCHAR" size="255"/>
 
-        <column name="result_code" required="true" type="VARCHAR" />
-        <column name="result_timestamp" required="false" type="VARCHAR" />
-        <column name="result" required="true" type="VARCHAR" />
-        <column name="result_status" required="false" type="VARCHAR" />
-        <column name="result_reason" required="false" type="VARCHAR" />
-        <column name="result_return" required="false" type="VARCHAR" />
+        <column name="result_code" required="true" type="VARCHAR" size="255"/>
+        <column name="result_timestamp" required="false" type="VARCHAR" size="255"/>
+        <column name="result" required="true" type="VARCHAR" size="255"/>
+        <column name="result_status" required="false" type="VARCHAR" size="255"/>
+        <column name="result_reason" required="false" type="VARCHAR" size="255"/>
+        <column name="result_return" required="false" type="VARCHAR" size="255"/>
 
-        <column name="payment_code" required="false" type="VARCHAR" />
-        <column name="amount" required="false" type="INTEGER" />
-        <column name="currency" required="false" type="VARCHAR" />
-        <column name="payment_descriptor" required="false" type="VARCHAR" />
+        <column name="payment_code" required="false" type="VARCHAR" size="255"/>
+        <column name="amount" required="false" type="INTEGER" size="255"/>
+        <column name="currency" required="false" type="VARCHAR" size="255"/>
+        <column name="payment_descriptor" required="false" type="VARCHAR" size="255"/>
 
-        <column name="account" required="false" type="VARCHAR" />
-        <column name="customer" required="false" type="VARCHAR" />
+        <column name="account" required="false" type="VARCHAR" size="255"/>
+        <column name="customer" required="false" type="VARCHAR" size="255"/>
 
         <behavior name="timestampable"/>
 
