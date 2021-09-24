@@ -15,6 +15,9 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitOnRegistratio
 
 class DebitOnRegistrationTransactionHandler implements DebitOnRegistrationTransactionHandlerInterface
 {
+    /**
+     * @var string
+     */
     public const ERROR_MESSAGE_DEBIT_ON_REGISTRATION_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call debit on registration transaction on payment method \'%s\' ' .
         'that does not support it';
@@ -25,7 +28,7 @@ class DebitOnRegistrationTransactionHandler implements DebitOnRegistrationTransa
     protected $transaction;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitOnRegistrationInterface[]
+     * @var array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitOnRegistrationInterface>
      */
     protected $paymentMethodAdapterCollection;
 
@@ -36,7 +39,7 @@ class DebitOnRegistrationTransactionHandler implements DebitOnRegistrationTransa
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\DebitOnRegistrationTransactionInterface $transaction
-     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitOnRegistrationInterface[] $paymentMethodAdapterCollection
+     * @param array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitOnRegistrationInterface> $paymentMethodAdapterCollection
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder
      */
     public function __construct(

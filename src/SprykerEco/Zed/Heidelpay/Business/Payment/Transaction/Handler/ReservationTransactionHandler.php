@@ -15,6 +15,9 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ReservationTransaction
 
 class ReservationTransactionHandler implements ReservationTransactionHandlerInterface
 {
+    /**
+     * @var string
+     */
     public const ERROR_MESSAGE_RESERVATION_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call reservation transaction on payment method \'%s\' ' .
         'that does not support it';
@@ -25,7 +28,7 @@ class ReservationTransactionHandler implements ReservationTransactionHandlerInte
     protected $transaction;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithReservationInterface[]
+     * @var array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithReservationInterface>
      */
     protected $paymentMethodAdapterCollection;
 

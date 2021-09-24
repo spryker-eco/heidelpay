@@ -20,9 +20,18 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CreditCardSecureSubForm extends AbstractSubFormType implements SubFormInterface, SubFormProviderNameInterface
 {
+    /**
+     * @var string
+     */
     public const PAYMENT_OPTIONS = 'payment_options';
 
+    /**
+     * @var string
+     */
     protected const FIELD_CREDIT_CARD_PAYMENT_OPTION = 'selected_payment_option';
+    /**
+     * @var string
+     */
     protected const PAYMENT_METHOD_TEMPLATE_PATH = 'credit-card-secure';
 
     /**

@@ -12,16 +12,49 @@ use Spryker\Yves\Router\Route\RouteCollection;
 
 class HeidelpayRouteProviderPlugin extends AbstractRouteProviderPlugin
 {
+    /**
+     * @var string
+     */
     protected const HEIDELPAY_BUNDLE_NAME = 'Heidelpay';
+    /**
+     * @var string
+     */
     public const ROUTE_NAME_HEIDELPAY_PAYMENT = 'heidelpay-payment';
+    /**
+     * @var string
+     */
     public const ROUTE_NAME_HEIDELPAY_PAYMENT_FAILED = 'heidelpay-payment-failed';
+    /**
+     * @var string
+     */
     public const ROUTE_NAME_HEIDELPAY_EASY_CREDIT_PAYMENT = 'heidelpay-easy-credit-payment';
+    /**
+     * @var string
+     */
     public const ROUTE_NAME_HEIDELPAY_EASY_CREDIT_INITIALIZE_PAYMENT = 'heidelpay-easy-credit-initialize-payment';
+    /**
+     * @var string
+     */
     public const ROUTE_NAME_HEIDELPAY_IDEAL_AUTHORIZE = 'heidelpay-ideal-authorize';
+    /**
+     * @var string
+     */
     public const ROUTE_NAME_HEIDELPAY_CREDIT_CARD_REGISTER = 'heidelpay-cc-register';
+    /**
+     * @var string
+     */
     public const ROUTE_NAME_HEIDELPAY_CREDIT_CARD_REGISTER_SUCCESS = 'heidelpay-cc-register-success';
+    /**
+     * @var string
+     */
     public const ROUTE_NAME_HEIDELPAY_DIRECT_DEBIT_REGISTER = 'heidelpay-dd-register';
+    /**
+     * @var string
+     */
     public const ROUTE_NAME_HEIDELPAY_DIRECT_DEBIT_REGISTER_SUCCESS = 'heidelpay-dd-register-success';
+    /**
+     * @var string
+     */
     public const ROUTE_NAME_HEIDELPAY_NOTIFICATION = 'heidelpay-notification';
 
     /**

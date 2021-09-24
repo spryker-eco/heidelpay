@@ -25,41 +25,128 @@ abstract class ExternalResponseBuilder
     use NewOrderWithOneItemTrait;
     use PaymentHeidelpayTrait;
 
+    /**
+     * @var string
+     */
     public const EMAIL = 'email';
+    /**
+     * @var string
+     */
     public const RESPONSE_URL = 'responseUrl';
+    /**
+     * @var string
+     */
     public const PAYMENT_BRAND = 'paymentBrand';
+    /**
+     * @var string
+     */
     public const AMOUNT = 'amount';
 
+    /**
+     * @var string
+     */
     public const FULL_NAME = 'fullName';
+    /**
+     * @var string
+     */
     public const PAYMENT_METHOD = 'paymentMethod';
+    /**
+     * @var string
+     */
     public const CUSTOMER_NAME = 'customerName';
+    /**
+     * @var string
+     */
     public const CUSTOMER_FULL_NAME = 'fullName';
+    /**
+     * @var string
+     */
     public const TRANSACRTION_CHANNEL = 'transactionChannel';
 
+    /**
+     * @var string
+     */
     public const SECURITY_SENDER = 'SECURITY_SENDER';
+    /**
+     * @var string
+     */
     public const USER_LOGIN = 'USER_LOGIN';
+    /**
+     * @var string
+     */
     public const USER_PWD = 'USER_PWD';
+    /**
+     * @var string
+     */
     public const TRANSACRTION_ID = 'TRANSACRTION_ID';
+    /**
+     * @var string
+     */
     public const IDENTIFICATION_UNIQUEID = 'IDENTIFICATION_UNIQUEID';
+    /**
+     * @var string
+     */
     public const PROCESSING_RESULT = 'PROCESSING_RESULT';
+    /**
+     * @var string
+     */
     public const PROCESSING_RETURN = 'PROCESSING_RETURN';
+    /**
+     * @var string
+     */
     public const PAYMENT_CODE = 'PAYMENT_CODE';
+    /**
+     * @var string
+     */
     public const PROCESSING_CODE = 'PROCESSING_CODE';
+    /**
+     * @var string
+     */
     public const PROCESSING_STATUS_CODE = 'PROCESSING_STATUS_CODE';
+    /**
+     * @var string
+     */
     public const PROCESSING_REASON_CODE = 'PROCESSING_REASON_CODE';
 
+    /**
+     * @var string
+     */
     public const CRITERION_SDK_NAME = 'HEIDELPAY:CRITERION_SDK_NAME';
+    /**
+     * @var string
+     */
     public const CRITERION_SDK_VALUE = 'Heidelpay\\PhpPaymentApi';
 
+    /**
+     * @var string
+     */
     public const BRAND_PROPERTY_NAME = 'brand';
+    /**
+     * @var string
+     */
     public const CRITERION_SECRET = 'HEIDELPAY:CRITERION_SECRET';
 
+    /**
+     * @var string
+     */
     public const PAYMENT_METHOD_CLASS_NAME = 'PaymentMethod';
 
+    /**
+     * @var string
+     */
     public const SHA_512_ENCODE_ALGO = 'sha512';
 
+    /**
+     * @var string
+     */
     public const PAYMENT_CODE_HP_INI = 'HP.INI';
+    /**
+     * @var string
+     */
     public const PAYMENT_CODE_HP_PI = 'HP.PI';
+    /**
+     * @var string
+     */
     public const PAYMENT_CODE_HP_FI = 'HP.FI';
 
     /**

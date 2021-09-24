@@ -14,6 +14,9 @@ use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepositoryInterface;
 
 class IsFinalizingFinishedOmsCondition implements HeidelpayOmsConditionInterface
 {
+    /**
+     * @var string
+     */
     protected const FINALIZE_PAYMENT_CODE = 'IV.FI';
 
     /**

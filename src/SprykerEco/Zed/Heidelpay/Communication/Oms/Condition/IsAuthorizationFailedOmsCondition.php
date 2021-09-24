@@ -14,6 +14,9 @@ use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepositoryInterface;
 
 class IsAuthorizationFailedOmsCondition implements HeidelpayOmsConditionInterface
 {
+    /**
+     * @var string
+     */
     protected const AUTHORIZATION_PAYMENT_CODE = 'IV.PA';
 
     /**

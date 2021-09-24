@@ -13,8 +13,14 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 
 class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInterface
 {
+    /**
+     * @var string
+     */
     public const MERCHANT_TRANSACTION_CONFIG_NOT_FOUND = '';
 
+    /**
+     * @var array
+     */
     protected const MERCHANT_TRANSACTION_CHANNEL_PAYMENT_TYPE_MAPPING = [
         SharedHeidelpayConfig::PAYMENT_METHOD_SOFORT => HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_SOFORT,
         SharedHeidelpayConfig::PAYMENT_METHOD_CREDIT_CARD_SECURE => HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_CC_3D_SECURE,
@@ -219,7 +225,7 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     /**
      * @api
      *
-     * @return string[]
+     * @return array<string>
      */
     public function getEasyCreditAllowedCountries(): array
     {
