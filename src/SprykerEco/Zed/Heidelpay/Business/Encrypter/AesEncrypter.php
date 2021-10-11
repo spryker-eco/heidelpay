@@ -66,7 +66,7 @@ class AesEncrypter implements EncrypterInterface
             ->getEncryptionKey();
 
         $dataChunks = explode(static::INIT_VECTOR_SEPARATOR, $data);
-        if (count($dataChunks) !== 2) {
+        if (!$dataChunks || count($dataChunks) !== 2) {
             return null;
         }
 
