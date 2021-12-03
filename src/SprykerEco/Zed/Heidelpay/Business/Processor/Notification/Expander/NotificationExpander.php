@@ -14,30 +14,105 @@ use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceIn
 
 class NotificationExpander implements NotificationExpanderInterface
 {
+    /**
+     * @var string
+     */
     protected const KEY_ATTRIBUTES = '@attributes';
+    /**
+     * @var string
+     */
     protected const KEY_IDENTIFICATION = 'Identification';
+    /**
+     * @var string
+     */
     protected const KEY_PROCESSING = 'Processing';
+    /**
+     * @var string
+     */
     protected const KEY_PAYMENT = 'Payment';
+    /**
+     * @var string
+     */
     protected const KEY_CLEARING = 'Clearing';
+    /**
+     * @var string
+     */
     protected const KEY_ACCOUNT = 'Account';
+    /**
+     * @var string
+     */
     protected const KEY_CONNECTOR = 'Connector';
+    /**
+     * @var string
+     */
     protected const KEY_CUSTOMER = 'Customer';
+    /**
+     * @var string
+     */
     protected const KEY_TRANSACTION_SOURCE = 'source';
+    /**
+     * @var string
+     */
     protected const KEY_CHANNEL = 'channel';
+    /**
+     * @var string
+     */
     protected const KEY_RESPONSE = 'response';
+    /**
+     * @var string
+     */
     protected const KEY_MODE = 'mode';
+    /**
+     * @var string
+     */
     protected const KEY_TRANSACTION_ID = 'TransactionID';
+    /**
+     * @var string
+     */
     protected const KEY_UNIQUE_ID = 'UniqueID';
+    /**
+     * @var string
+     */
     protected const KEY_SHORT_ID = 'ShortID';
+    /**
+     * @var string
+     */
     protected const KEY_IDENTIFICATION_SOURCE = 'Source';
+    /**
+     * @var string
+     */
     protected const KEY_CODE = 'code';
+    /**
+     * @var string
+     */
     protected const KEY_TIMESTAMP = 'Timestamp';
+    /**
+     * @var string
+     */
     protected const KEY_RESULT = 'Result';
+    /**
+     * @var string
+     */
     protected const KEY_STATUS = 'Status';
+    /**
+     * @var string
+     */
     protected const KEY_REASON = 'Reason';
+    /**
+     * @var string
+     */
     protected const KEY_RETURN = 'Return';
+    /**
+     * @var string
+     */
     protected const KEY_AMOUNT = 'Amount';
+    /**
+     * @var string
+     */
     protected const KEY_CURRENCY = 'Currency';
+    /**
+     * @var string
+     */
     protected const KEY_DESCRIPTOR = 'Descriptor';
 
     /**
@@ -56,7 +131,7 @@ class NotificationExpander implements NotificationExpanderInterface
     protected $moneyPlugin;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Dependency\Plugin\HeidelpayNotificationExpanderPluginInterface[]
+     * @var array<\SprykerEco\Zed\Heidelpay\Dependency\Plugin\HeidelpayNotificationExpanderPluginInterface>
      */
     protected $notificationExpanderPlugins;
 
@@ -64,7 +139,7 @@ class NotificationExpander implements NotificationExpanderInterface
      * @param \SprykerEco\Zed\Heidelpay\Business\Processor\Notification\Converter\NotificationXmlConverterInterface $xmlConverter
      * @param \SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceInterface $utilEncodingService
      * @param \Spryker\Shared\Money\Dependency\Plugin\MoneyPluginInterface $moneyPlugin
-     * @param \SprykerEco\Zed\Heidelpay\Dependency\Plugin\HeidelpayNotificationExpanderPluginInterface[] $notificationExpanderPlugins
+     * @param array<\SprykerEco\Zed\Heidelpay\Dependency\Plugin\HeidelpayNotificationExpanderPluginInterface> $notificationExpanderPlugins
      */
     public function __construct(
         NotificationXmlConverterInterface $xmlConverter,
@@ -209,7 +284,8 @@ class NotificationExpander implements NotificationExpanderInterface
         HeidelpayNotificationTransfer $notificationTransfer,
         array $notificationData
     ): HeidelpayNotificationTransfer {
-        if (!array_key_exists(static::KEY_CONNECTOR, $notificationData)
+        if (
+            !array_key_exists(static::KEY_CONNECTOR, $notificationData)
             || !array_key_exists(static::KEY_ACCOUNT, $notificationData[static::KEY_CONNECTOR])
         ) {
             return $notificationTransfer;
@@ -245,7 +321,7 @@ class NotificationExpander implements NotificationExpanderInterface
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayNotificationTransfer $notificationTransfer
-     * @param string[][] $notificationData
+     * @param array<string[]> $notificationData
      *
      * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer
      */

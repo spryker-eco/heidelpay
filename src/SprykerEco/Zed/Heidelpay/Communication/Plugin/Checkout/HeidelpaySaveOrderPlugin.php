@@ -21,7 +21,7 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 class HeidelpaySaveOrderPlugin extends AbstractPlugin implements CheckoutDoSaveOrderInterface
 {
     /**
-     * Specification:
+     * {@inheritDoc}
      * - Retrieves (its) data from the quote object and saves it to the database.
      * - These plugins are already enveloped into a transaction.
      *

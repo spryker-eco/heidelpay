@@ -16,6 +16,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class IdealSubForm extends AbstractSubFormType implements SubFormInterface, SubFormProviderNameInterface
 {
+    /**
+     * @var string
+     */
     protected const PAYMENT_METHOD_TEMPLATE_PATH = 'ideal';
 
     /**

@@ -13,12 +13,12 @@ use Generated\Shared\Transfer\QuoteTransfer;
 class PostSaveHook implements PostSaveHookInterface
 {
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface[]
+     * @var array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface>
      */
     protected $paymentMethodsWithPostSaveOrderProcessing;
 
     /**
-     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface[] $paymentMethodsWithPostSaveOrderProcessing
+     * @param array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface> $paymentMethodsWithPostSaveOrderProcessing
      */
     public function __construct(array $paymentMethodsWithPostSaveOrderProcessing)
     {

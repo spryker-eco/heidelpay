@@ -25,17 +25,53 @@ use Spryker\Client\ZedRequest\Stub\ZedRequestStub;
 
 class HeidelpayStub extends ZedRequestStub implements HeidelpayStubInterface
 {
+    /**
+     * @var string
+     */
     protected const ZED_GET_AUTHORIZE_TRANSACTION_LOG = '/heidelpay/gateway/get-authorize-transaction-log';
+    /**
+     * @var string
+     */
     protected const ZED_GET_CREDIT_CARD_PAYMENT_OPTIONS = '/heidelpay/gateway/get-credit-card-payment-options';
+    /**
+     * @var string
+     */
     protected const ZED_GET_DIRECT_DEBIT_PAYMENT_OPTIONS = '/heidelpay/gateway/get-direct-debit-payment-options';
+    /**
+     * @var string
+     */
     protected const ZED_GET_PROCESS_EXTERNAL_PAYMENT_RESPONSE = '/heidelpay/gateway/process-external-payment-response';
+    /**
+     * @var string
+     */
     protected const ZED_GET_SAVE_CREDIT_CARD_REGISTRATION = '/heidelpay/gateway/save-credit-card-registration';
+    /**
+     * @var string
+     */
     protected const ZED_GET_SAVE_DIRECT_DEBIT_REGISTRATION = '/heidelpay/gateway/save-direct-debit-registration';
+    /**
+     * @var string
+     */
     protected const ZED_GET_FIND_CREDIT_CARD_REGISTRATION = '/heidelpay/gateway/find-credit-card-registration';
+    /**
+     * @var string
+     */
     protected const ZED_GET_RETRIEVE_DIRECT_DEBIT_REGISTRATION = '/heidelpay/gateway/retrieve-direct-debit-registration';
+    /**
+     * @var string
+     */
     protected const ZED_SEND_EASYCREDIT_INITIALIZE_REQUEST = '/heidelpay/gateway/easycredit-initialize-payment';
+    /**
+     * @var string
+     */
     protected const ZED_GET_AUTHORIZE_ON_REGISTRATION_TRANSACTION_LOG = '/heidelpay/gateway/get-authorize-on-registration-transaction-log';
+    /**
+     * @var string
+     */
     protected const ZED_GET_PROCESS_EXTERNAL_EASY_CREDIT_PAYMENT_RESPONSE = '/heidelpay/gateway/process-external-easy-credit-payment-response';
+    /**
+     * @var string
+     */
     protected const ZED_PROCESS_NOTIFICATION = '/heidelpay/gateway/process-notification';
 
     /**

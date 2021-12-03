@@ -20,9 +20,18 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class DirectDebitSubForm extends AbstractSubFormType implements SubFormInterface, SubFormProviderNameInterface
 {
+    /**
+     * @var string
+     */
     public const DIRECT_DEBIT_PAYMENT_OPTIONS = 'direct_debit_payment_options';
 
+    /**
+     * @var string
+     */
     protected const PAYMENT_METHOD_TEMPLATE_PATH = 'direct-debit';
+    /**
+     * @var string
+     */
     protected const FIELD_DIRECT_DEBIT_PAYMENT_OPTION = 'selected_payment_option';
 
     /**

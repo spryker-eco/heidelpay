@@ -15,6 +15,9 @@ use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepositoryInterface;
 
 class IsOrderPaidOmsCondition implements HeidelpayOmsConditionInterface
 {
+    /**
+     * @var string
+     */
     protected const PAID_RECEIPT_PAYMENT_CODE = 'IV.RC';
 
     /**

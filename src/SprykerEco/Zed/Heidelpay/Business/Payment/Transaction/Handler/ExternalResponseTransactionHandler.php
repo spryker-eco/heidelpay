@@ -18,6 +18,9 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseIn
 
 class ExternalResponseTransactionHandler implements ExternalResponseTransactionHandlerInterface
 {
+    /**
+     * @var string
+     */
     public const ERROR_MESSAGE_EXTERNAL_RESPONSE_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call external response transaction on payment method \'%s\' ' .
         'that does not support it';
@@ -28,7 +31,7 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
     protected $transaction;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface[]
+     * @var array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface>
      */
     protected $paymentMethodAdapterCollection;
 
@@ -44,7 +47,7 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ExternalResponseTransactionInterface $transaction
-     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface[] $paymentMethodAdapterCollection
+     * @param array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface> $paymentMethodAdapterCollection
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\ExternalPaymentResponseBuilderInterface $externalPaymentResponseBuilder
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriterInterface $paymentWriter
      */
@@ -81,7 +84,8 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
      */
     protected function updatePaymentHeidelpayWithExternalResponse(HeidelpayResponseTransfer $responseTransfer): void
     {
-        if ($responseTransfer->getIdPaymentReference() === null
+        if (
+            $responseTransfer->getIdPaymentReference() === null
             && $responseTransfer->getIdTransactionUnique() === null
         ) {
             return;

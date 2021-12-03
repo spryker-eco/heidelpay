@@ -45,7 +45,8 @@ class BaseHeidelpayPaymentMethod
     {
         $authorizeTransactionLogTransfer = $this->findOrderAuthorizeTransactionLog($idSalesOrder);
 
-        if (($authorizeTransactionLogTransfer !== null) &&
+        if (
+            ($authorizeTransactionLogTransfer !== null) &&
             ($this->isAuthorizeTransactionSentSuccessfully($authorizeTransactionLogTransfer))
         ) {
             return $this->getAuthorizeRedirectUrl($authorizeTransactionLogTransfer);
@@ -57,27 +58,9 @@ class BaseHeidelpayPaymentMethod
     /**
      * @param int $idSalesOrder
      *
-     * @return string|null
+     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
      */
-    protected function getCheckoutRedirectUrlFromAuthorizeOnRegistrationTransactionLog($idSalesOrder)
-    {
-        $authorizeTransactionLogTransfer = $this->findOrderAuthorizeOnRegistrationTransactionLog($idSalesOrder);
-
-        if (($authorizeTransactionLogTransfer !== null) &&
-            ($this->isAuthorizeTransactionSentSuccessfully($authorizeTransactionLogTransfer))
-        ) {
-            return $this->getAuthorizeRedirectUrl($authorizeTransactionLogTransfer);
-        }
-
-        return $this->getAuthorizeFailedRedirectUrl($authorizeTransactionLogTransfer);
-    }
-
-    /**
-     * @param int $idSalesOrder
-     *
-     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
-     */
-    protected function findOrderAuthorizeTransactionLog(int $idSalesOrder): HeidelpayTransactionLogTransfer
+    protected function findOrderAuthorizeTransactionLog(int $idSalesOrder): ?HeidelpayTransactionLogTransfer
     {
         return $this->transactionLogManager->findOrderAuthorizeTransactionLogByIdSalesOrder($idSalesOrder);
     }
@@ -125,14 +108,19 @@ class BaseHeidelpayPaymentMethod
     }
 
     /**
-     * @param \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer $transactionLogTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null $transactionLogTransfer
      *
      * @return string
      */
-    protected function getAuthorizeFailedRedirectUrl(HeidelpayTransactionLogTransfer $transactionLogTransfer): string
+    protected function getAuthorizeFailedRedirectUrl(?HeidelpayTransactionLogTransfer $transactionLogTransfer = null): string
     {
-        $errorCode = $transactionLogTransfer->getHeidelpayResponse()->getError()->getCode();
         $paymentFailedUrl = $this->config->getYvesCheckoutPaymentFailedUrl();
+
+        if ($transactionLogTransfer === null) {
+            return sprintf($paymentFailedUrl, '');
+        }
+
+        $errorCode = $transactionLogTransfer->getHeidelpayResponse()->getError()->getCode();
 
         return sprintf($paymentFailedUrl, $errorCode);
     }

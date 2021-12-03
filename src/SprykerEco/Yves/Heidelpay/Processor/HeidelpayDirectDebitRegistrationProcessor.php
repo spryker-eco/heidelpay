@@ -19,10 +19,25 @@ use Symfony\Component\HttpFoundation\Request;
 
 class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitRegistrationProcessorInterface
 {
+    /**
+     * @var string
+     */
     protected const REQUEST_PARAM_REGISTRATION_ID = 'id_registration';
+    /**
+     * @var string
+     */
     protected const ERROR_CODE_REGISTRATION_NOT_FOUND = 'registration_not_found';
+    /**
+     * @var string
+     */
     protected const ERROR_CODE_REGISTRATION_NOT_SAVED = 'registration_not_saved';
+    /**
+     * @var string
+     */
     protected const ERROR_CODE_QUOTE_EXPIRED = 'quote_expired';
+    /**
+     * @var string
+     */
     protected const RESPONSE_PARAMETERS_FILTER_PATTERN = '/^paymentForm+|^lang+/';
 
     /**
@@ -150,8 +165,10 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
      *
      * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
      */
-    protected function addError(string $code, HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer): HeidelpayDirectDebitRegistrationTransfer
-    {
+    protected function addError(
+        string $code,
+        HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer
+    ): HeidelpayDirectDebitRegistrationTransfer {
         $directDebitRegistrationTransfer
             ->setIsError(true)
             ->setError(
@@ -214,7 +231,7 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return string[]
+     * @return array<string>
      */
     protected function getUrlDecodedRequestBody(Request $request): array
     {
@@ -230,9 +247,9 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
     }
 
     /**
-     * @param string[] $responseArray
+     * @param array<string> $responseArray
      *
-     * @return string[]
+     * @return array<string>
      */
     public function filterResponseParameters(array $responseArray): array
     {

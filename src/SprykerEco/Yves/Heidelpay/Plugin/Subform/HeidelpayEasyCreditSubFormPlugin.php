@@ -16,7 +16,7 @@ use Spryker\Yves\StepEngine\Dependency\Plugin\Form\SubFormPluginInterface;
 class HeidelpayEasyCreditSubFormPlugin extends AbstractPlugin implements SubFormPluginInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *  - Creates sub form for EasyCredit payment method.
      *
      * @api
@@ -29,7 +29,7 @@ class HeidelpayEasyCreditSubFormPlugin extends AbstractPlugin implements SubForm
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *  - Creates data provider for EasyCredit payment method.
      *
      * @api

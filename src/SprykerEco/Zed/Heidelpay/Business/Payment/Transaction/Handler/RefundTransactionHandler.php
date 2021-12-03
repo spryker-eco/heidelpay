@@ -15,6 +15,9 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithRefundInterface;
 
 class RefundTransactionHandler implements RefundTransactionHandlerInterface
 {
+    /**
+     * @var string
+     */
     public const ERROR_MESSAGE_REFUND_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call refund transaction on payment method \'%s\' ' .
         'that does not support it';
@@ -25,7 +28,7 @@ class RefundTransactionHandler implements RefundTransactionHandlerInterface
     protected $transaction;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithRefundInterface[]
+     * @var array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithRefundInterface>
      */
     protected $paymentMethodAdapterCollection;
 
@@ -36,7 +39,7 @@ class RefundTransactionHandler implements RefundTransactionHandlerInterface
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\RefundTransactionInterface $transaction
-     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithRefundInterface[] $paymentMethodAdapterCollection
+     * @param array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithRefundInterface> $paymentMethodAdapterCollection
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder
      */
     public function __construct(

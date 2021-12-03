@@ -11,7 +11,13 @@ use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
 
 class AesEncrypter implements EncrypterInterface
 {
+    /**
+     * @var string
+     */
     public const CYPHER_METHOD = 'aes-256-cbc';
+    /**
+     * @var string
+     */
     public const INIT_VECTOR_SEPARATOR = ':::';
 
     /**
@@ -60,7 +66,7 @@ class AesEncrypter implements EncrypterInterface
             ->getEncryptionKey();
 
         $dataChunks = explode(static::INIT_VECTOR_SEPARATOR, $data);
-        if (count($dataChunks) !== 2) {
+        if (!$dataChunks || count($dataChunks) !== 2) {
             return null;
         }
 

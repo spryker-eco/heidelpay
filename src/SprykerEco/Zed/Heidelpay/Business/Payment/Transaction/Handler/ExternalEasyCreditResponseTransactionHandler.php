@@ -16,9 +16,21 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ExternalResponseTransa
 
 class ExternalEasyCreditResponseTransactionHandler implements ExternalEasyCreditResponseTransactionHandlerInterface
 {
+    /**
+     * @var string
+     */
     protected const CRITERION_EASYCREDIT_AMORTISATIONTEXT = 'CRITERION_EASYCREDIT_AMORTISATIONTEXT';
+    /**
+     * @var string
+     */
     protected const CRITERION_EASYCREDIT_ACCRUINGINTEREST = 'CRITERION_EASYCREDIT_ACCRUINGINTEREST';
+    /**
+     * @var string
+     */
     protected const CRITERION_EASYCREDIT_TOTALAMOUNT = 'CRITERION_EASYCREDIT_TOTALAMOUNT';
+    /**
+     * @var string
+     */
     protected const HEIDELPAY_EASY_CREDIT_PAYMENT_METHOD = 'heidelpayEasyCredit';
 
     /**
@@ -27,7 +39,7 @@ class ExternalEasyCreditResponseTransactionHandler implements ExternalEasyCredit
     protected $transaction;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface[]
+     * @var array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface>
      */
     protected $paymentMethodAdapterCollection;
 
@@ -43,7 +55,7 @@ class ExternalEasyCreditResponseTransactionHandler implements ExternalEasyCredit
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ExternalResponseTransactionInterface $transaction
-     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface[] $paymentMethodAdapterCollection
+     * @param array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface> $paymentMethodAdapterCollection
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\ExternalEasyCreditPaymentResponseBuilderInterface $externalEasyCreditPaymentResponseBuilder
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriterInterface $paymentWriter
      */

@@ -23,7 +23,7 @@ use SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods\UnsuccessfulSofort
 class UnsuccessfulResponseAdapterFactory extends AdapterFactory
 {
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface[]
+     * @return array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface>
      */
     public function getAuthorizePaymentMethodAdapterCollection(): array
     {
@@ -33,7 +33,7 @@ class UnsuccessfulResponseAdapterFactory extends AdapterFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface[]
+     * @return array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface>
      */
     public function getAuthorizeOnRegistrationPaymentMethodAdapterCollection(): array
     {
@@ -43,7 +43,7 @@ class UnsuccessfulResponseAdapterFactory extends AdapterFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface[]
+     * @return array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface>
      */
     public function getDebitPaymentMethodAdapterCollection(): array
     {
@@ -53,7 +53,7 @@ class UnsuccessfulResponseAdapterFactory extends AdapterFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface[]
+     * @return array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface>
      */
     public function getCapturePaymentMethodAdapterCollection(): array
     {
@@ -63,7 +63,7 @@ class UnsuccessfulResponseAdapterFactory extends AdapterFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface[]
+     * @return array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface>
      */
     public function getInitializePaymentMethodAdapterCollection(): array
     {

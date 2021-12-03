@@ -14,8 +14,17 @@ use SprykerEco\Zed\Heidelpay\HeidelpayConfigInterface;
 
 class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
 {
+    /**
+     * @var string
+     */
     public const BASKET_ITEM_GOODS_TYPE = 'goods';
+    /**
+     * @var string
+     */
     public const SHIPMENT_EXPENSE_TYPE = 'SHIPMENT_EXPENSE_TYPE';
+    /**
+     * @var string
+     */
     public const BASKET_ITEM_SHIPPING_TYPE = 'shipping';
 
     /**
@@ -26,9 +35,8 @@ class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
     /**
      * @param \SprykerEco\Zed\Heidelpay\HeidelpayConfigInterface $config
      */
-    public function __construct(
-        HeidelpayConfigInterface $config
-    ) {
+    public function __construct(HeidelpayConfigInterface $config)
+    {
         $this->config = $config;
     }
 

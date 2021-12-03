@@ -15,6 +15,7 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Encoder\EncoderTrait;
 trait InitializeTransactionTrait
 {
     use EncoderTrait;
+
     /**
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
      *

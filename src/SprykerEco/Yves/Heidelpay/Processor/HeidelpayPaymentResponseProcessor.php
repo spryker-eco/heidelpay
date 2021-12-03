@@ -14,6 +14,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 class HeidelpayPaymentResponseProcessor implements HeidelpayPaymentResponseProcessorInterface
 {
+    /**
+     * @var string
+     */
     protected const RESPONSE_PARAMETERS_FILTER_PATTERN = '/^paymentForm+|^lang+/';
 
     /**
@@ -100,9 +103,9 @@ class HeidelpayPaymentResponseProcessor implements HeidelpayPaymentResponseProce
     }
 
     /**
-     * @param string[] $responseArray
+     * @param array<string> $responseArray
      *
-     * @return string[]
+     * @return array<string>
      */
     public function filterResponseParameters(array $responseArray): array
     {

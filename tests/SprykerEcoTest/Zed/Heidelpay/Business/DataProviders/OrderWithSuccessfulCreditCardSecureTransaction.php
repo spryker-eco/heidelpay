@@ -24,7 +24,10 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Transaction\AuthorizeTra
 
 class OrderWithSuccessfulCreditCardSecureTransaction
 {
-    use CustomerTrait, OrderAddressTrait, NewOrderWithOneItemTrait, AuthorizeTransactionTrait;
+    use CustomerTrait;
+    use OrderAddressTrait;
+    use NewOrderWithOneItemTrait;
+    use AuthorizeTransactionTrait;
 
     /**
      * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory

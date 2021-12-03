@@ -89,6 +89,6 @@ class TransactionLogger implements TransactionLoggerInterface
      */
     protected function encodeRequestTransfer(HeidelpayRequestTransfer $requestTransfer): string
     {
-        return $this->utilEncoding->encodeJson($requestTransfer->toArray());
+        return $this->utilEncoding->encodeJson($requestTransfer->toArray()) ?? '';
     }
 }

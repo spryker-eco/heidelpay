@@ -45,7 +45,7 @@ use SprykerEco\Zed\Heidelpay\HeidelpayDependencyProvider;
 class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryInterface
 {
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface[]
+     * @return array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface>
      */
     public function getAuthorizePaymentMethodAdapterCollection(): array
     {
@@ -60,7 +60,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeOnRegistrationInterface[]
+     * @return array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeOnRegistrationInterface>
      */
     public function getAuthorizeOnRegistrationPaymentMethodAdapterCollection(): array
     {
@@ -70,7 +70,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithInitializeInterface[]
+     * @return array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithInitializeInterface>
      */
     public function getInitializePaymentMethodAdapterCollection(): array
     {
@@ -80,7 +80,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithReservationInterface[]
+     * @return array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithReservationInterface>
      */
     public function getReservationPaymentMethodAdapterCollection(): array
     {
@@ -90,7 +90,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithRefundInterface[]
+     * @return array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithRefundInterface>
      */
     public function getRefundPaymentMethodAdapterCollection(): array
     {
@@ -100,7 +100,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithFinalizeInterface[]
+     * @return array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithFinalizeInterface>
      */
     public function getFinalizePaymentMethodAdapterCollection(): array
     {
@@ -111,7 +111,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface[]
+     * @return array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface>
      */
     public function getCapturePaymentMethodAdapterCollection(): array
     {
@@ -123,7 +123,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface[]
+     * @return array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface>
      */
     public function getDebitPaymentMethodAdapterCollection(): array
     {
@@ -133,7 +133,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitOnRegistrationInterface[]
+     * @return array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitOnRegistrationInterface>
      */
     public function getDebitOnRegistrationPaymentMethodAdapterCollection(): array
     {
@@ -143,7 +143,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface[]
+     * @return array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithExternalResponseInterface>
      */
     public function getExternalResponsePaymentMethodAdapterCollection(): array
     {

@@ -19,6 +19,9 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class HeidelpayController extends BaseHeidelpayController
 {
+    /**
+     * @var string
+     */
     public const PARAM_ERROR_CODE = 'error_code';
 
     /**

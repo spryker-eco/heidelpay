@@ -15,8 +15,17 @@ use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientBridge;
 
 class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
 {
+    /**
+     * @var string
+     */
     public const CLIENT_QUOTE = 'CLIENT_QUOTE';
+    /**
+     * @var string
+     */
     public const CLIENT_CALCULATION = 'CLIENT_CALCULATION';
+    /**
+     * @var string
+     */
     public const PLUGIN_MONEY = 'PLUGIN_MONEY';
 
     /**

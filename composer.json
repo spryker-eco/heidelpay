@@ -4,10 +4,10 @@
     "description": "Heidelpay module",
     "license": "MIT",
     "require": {
-        "php": ">=7.2",
         "heidelpay/php-basket-api": "^1.0.2",
         "heidelpay/php-message-code-mapper": "^1.0.1",
         "heidelpay/php-payment-api": "^1.6.1",
+        "php": ">=7.4",
         "spryker-shop/checkout-page": "^2.0.0 || ^3.0.0",
         "spryker/calculation": "^4.0.0",
         "spryker/checkout-extension": "^1.0.0",
@@ -28,6 +28,7 @@
         "spryker/zed-request": "^3.0.0"
     },
     "require-dev": {
+        "phpstan/phpstan": "*",
         "spryker-shop/shop-application": "*",
         "spryker/application": "*",
         "spryker/checkout": "*",
@@ -36,6 +37,7 @@
         "spryker/payment": "*",
         "spryker/product": "*",
         "spryker/propel": "*",
+        "spryker/router": "*",
         "spryker/silex": "*",
         "spryker/stock": "*",
         "spryker/testify": "*"
@@ -43,13 +45,13 @@
     "suggest": {
         "spryker/checkout": "CheckoutPostSaveHookInterface is used.",
         "spryker/payment": "Filter payment methods plugin used.",
+        "spryker/router": "Use this module if you want use the RouterProviderPlugin.",
         "spryker-shop/shop-application": "Abstract Yves controller provider is used.",
         "spryker/silex": "Silex application is used."
     },
     "autoload": {
         "psr-4": {
-            "SprykerEco\\": "src/SprykerEco/",
-            "SprykerEcoTest\\": "tests/SprykerEcoTest/"
+            "SprykerEco\\": "src/SprykerEco/"
         }
     },
     "autoload-dev": {
@@ -60,8 +62,10 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-        "cs-check": "phpcs -p -s --standard=vendor/spryker/code-sniffer/Spryker/ruleset.xml src/",
-        "cs-fix": "phpcbf -p --standard=vendor/spryker/code-sniffer/Spryker/ruleset.xml src/"
+        "cs-check": "phpcs -p -s --standard=vendor/spryker/code-sniffer/Spryker/ruleset.xml src/ tests/",
+        "cs-fix": "phpcbf -p --standard=vendor/spryker/code-sniffer/Spryker/ruleset.xml src/ tests/",
+        "stan": "phpstan analyse -c phpstan.neon -l 8 src/",
+        "stan-setup": "cp composer.json composer.backup && COMPOSER_MEMORY_LIMIT=-1 composer require --dev phpstan/phpstan:^0.12 && mv composer.backup composer.json"
     },
     "extra": {
         "branch-alias": {

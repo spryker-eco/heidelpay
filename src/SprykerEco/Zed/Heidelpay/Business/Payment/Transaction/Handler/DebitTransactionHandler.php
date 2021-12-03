@@ -16,6 +16,9 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface;
 
 class DebitTransactionHandler implements DebitTransactionHandlerInterface
 {
+    /**
+     * @var string
+     */
     public const ERROR_MESSAGE_DEBIT_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call debit transaction on payment method \'%s\' ' .
         'that does not support it';
@@ -26,7 +29,7 @@ class DebitTransactionHandler implements DebitTransactionHandlerInterface
     protected $transaction;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface[]
+     * @var array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface>
      */
     protected $paymentMethodAdapterCollection;
 
@@ -37,7 +40,7 @@ class DebitTransactionHandler implements DebitTransactionHandlerInterface
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\DebitTransactionInterface $transaction
-     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface[] $paymentMethodAdapterCollection
+     * @param array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithDebitInterface> $paymentMethodAdapterCollection
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder
      */
     public function __construct(

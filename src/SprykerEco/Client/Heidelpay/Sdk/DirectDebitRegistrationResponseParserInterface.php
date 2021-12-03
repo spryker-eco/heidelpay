@@ -12,7 +12,7 @@ use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 interface DirectDebitRegistrationResponseParserInterface
 {
     /**
-     * @param string[] $responseArray
+     * @param array<string> $responseArray
      *
      * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
      */

@@ -14,7 +14,13 @@ use Heidelpay\PhpPaymentApi\Response;
 
 class DirectDebitRegistrationResponseMapper implements DirectDebitRegistrationResponseMapperInterface
 {
+    /**
+     * @var string
+     */
     protected const API_RESPONSE_ERROR_CODE_KEY = 'code';
+    /**
+     * @var string
+     */
     protected const API_RESPONSE_ERROR_MESSAGE_KEY = 'message';
 
     /**

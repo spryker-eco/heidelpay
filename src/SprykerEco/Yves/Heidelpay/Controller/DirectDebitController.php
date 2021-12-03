@@ -20,8 +20,17 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class DirectDebitController extends BaseHeidelpayController
 {
+    /**
+     * @var string
+     */
     protected const REQUEST_PARAM_REGISTRATION_ID = 'id_registration';
+    /**
+     * @var string
+     */
     protected const URL_PARAM_ERROR_CODE = 'error_code';
+    /**
+     * @var string
+     */
     protected const PATH_CHECKOUT_SUMMARY = 'checkout-summary';
 
     /**
@@ -88,7 +97,11 @@ class DirectDebitController extends BaseHeidelpayController
      */
     protected function redirectToRegistrationFailureUrl(HeidelpayResponseErrorTransfer $responseErrorTransfer): Response
     {
-        $redirectUrl = $this->getApplication()
+        /**
+         * @var \Spryker\Yves\Kernel\Application $application
+         */
+        $application = $this->getApplication();
+        $redirectUrl = $application
             ->url(
                 HeidelpayControllerProvider::HEIDELPAY_PAYMENT_FAILED,
                 [static::URL_PARAM_ERROR_CODE => $responseErrorTransfer->getCode()]
@@ -104,7 +117,11 @@ class DirectDebitController extends BaseHeidelpayController
      */
     protected function redirectToRegistrationSuccessUrl(HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer): Response
     {
-        $redirectUrl = $this->getApplication()
+        /**
+         * @var \Spryker\Yves\Kernel\Application $application
+         */
+        $application = $this->getApplication();
+        $redirectUrl = $application
             ->url(
                 HeidelpayControllerProvider::HEIDELPAY_DIRECT_DEBIT_REGISTER_SUCCESS,
                 [static::REQUEST_PARAM_REGISTRATION_ID => $directDebitRegistrationTransfer->getIdDirectDebitRegistration()]

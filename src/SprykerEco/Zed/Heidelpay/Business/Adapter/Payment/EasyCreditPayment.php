@@ -14,6 +14,9 @@ use Heidelpay\PhpPaymentApi\Request;
 
 class EasyCreditPayment extends BasePayment implements EasyCreditPaymentInterface
 {
+    /**
+     * @var string
+     */
     protected const FRONTEND_DISABLED_VALUE = 'FALSE';
 
     /**

@@ -13,12 +13,12 @@ use Generated\Shared\Transfer\QuoteTransfer;
 class DirectDebitPaymentOptionsCalculator implements DirectDebitPaymentOptionsCalculatorInterface
 {
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\PaymentOption\DirectDebitPaymentOptionInterface[]
+     * @var array<\SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\PaymentOption\DirectDebitPaymentOptionInterface>
      */
     protected $paymentOptions;
 
     /**
-     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\PaymentOption\DirectDebitPaymentOptionInterface[] $paymentOptions
+     * @param array<\SprykerEco\Zed\Heidelpay\Business\Payment\DirectDebit\PaymentOption\DirectDebitPaymentOptionInterface> $paymentOptions
      */
     public function __construct(array $paymentOptions)
     {

@@ -14,6 +14,9 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\FinalizeTransactionInt
 
 class FinalizeTransactionHandler implements FinalizeTransactionHandlerInterface
 {
+    /**
+     * @var string
+     */
     public const ERROR_MESSAGE_FINALIZE_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call finalize transaction on payment method \'%s\' ' .
         'that does not support it';
@@ -24,12 +27,12 @@ class FinalizeTransactionHandler implements FinalizeTransactionHandlerInterface
     protected $transaction;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithFinalizeInterface[]
+     * @var array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithFinalizeInterface>
      */
     protected $paymentMethodAdapterCollection;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface[]
+     * @var array<\SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface>
      */
     protected $requestBuilderCollection;
 
@@ -41,7 +44,7 @@ class FinalizeTransactionHandler implements FinalizeTransactionHandlerInterface
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\FinalizeTransactionInterface $transaction
      * @param array $paymentMethodAdapterCollection
-     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface[] $requestBuilderCollection
+     * @param array<\SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface> $requestBuilderCollection
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriterInterface $paymentWriter
      */
     public function __construct(
@@ -80,8 +83,6 @@ class FinalizeTransactionHandler implements FinalizeTransactionHandlerInterface
 
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @throws \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\FinalizeNotSupportedException
      *
      * @return \Generated\Shared\Transfer\HeidelpayRequestTransfer
      */

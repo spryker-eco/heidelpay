@@ -43,7 +43,7 @@ class CreditCardBuilder
     protected function getAccountHolder(QuoteTransfer $qouteTransfer): string
     {
         return vsprintf(
-            "%s %s",
+            '%s %s',
             [
                 $qouteTransfer->getCustomer()->getFirstName(),
                 $qouteTransfer->getCustomer()->getLastName(),
