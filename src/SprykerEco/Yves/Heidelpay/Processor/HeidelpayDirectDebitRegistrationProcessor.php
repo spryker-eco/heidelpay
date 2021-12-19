@@ -23,18 +23,22 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
      * @var string
      */
     protected const REQUEST_PARAM_REGISTRATION_ID = 'id_registration';
+
     /**
      * @var string
      */
     protected const ERROR_CODE_REGISTRATION_NOT_FOUND = 'registration_not_found';
+
     /**
      * @var string
      */
     protected const ERROR_CODE_REGISTRATION_NOT_SAVED = 'registration_not_saved';
+
     /**
      * @var string
      */
     protected const ERROR_CODE_QUOTE_EXPIRED = 'quote_expired';
+
     /**
      * @var string
      */
@@ -91,7 +95,7 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
 
         return $this->addError(
             static::ERROR_CODE_REGISTRATION_NOT_SAVED,
-            $directDebitRegistrationTransfer
+            $directDebitRegistrationTransfer,
         );
     }
 
@@ -107,7 +111,7 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
         if ($this->isQuoteExpired($quoteTransfer)) {
             return $this->addError(
                 static::ERROR_CODE_QUOTE_EXPIRED,
-                $directDebitRegistrationTransfer
+                $directDebitRegistrationTransfer,
             );
         }
 
@@ -117,7 +121,7 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
         if ($directDebitRegistrationTransfer->getIdDirectDebitRegistration() === null) {
             return $this->addError(
                 static::ERROR_CODE_REGISTRATION_NOT_FOUND,
-                $directDebitRegistrationTransfer
+                $directDebitRegistrationTransfer,
             );
         }
 
@@ -173,7 +177,7 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
             ->setIsError(true)
             ->setError(
                 (new HeidelpayResponseErrorTransfer())
-                    ->setCode($code)
+                    ->setCode($code),
             );
 
         return $directDebitRegistrationTransfer;

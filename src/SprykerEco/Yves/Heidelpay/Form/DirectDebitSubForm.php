@@ -29,6 +29,7 @@ class DirectDebitSubForm extends AbstractSubFormType implements SubFormInterface
      * @var string
      */
     protected const PAYMENT_METHOD_TEMPLATE_PATH = 'direct-debit';
+
     /**
      * @var string
      */
@@ -110,7 +111,7 @@ class DirectDebitSubForm extends AbstractSubFormType implements SubFormInterface
                 'constraints' => [
                     $this->createNotBlankConstraint(),
                 ],
-            ]
+            ],
         );
 
         return $this;

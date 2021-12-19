@@ -25,6 +25,7 @@ class HeidelpayFacadeProcessNotificationTest extends HeidelpayPaymentTest
      * @var string
      */
     protected const NOTIFICATION_TIMESTAMP = '2019-07-09 12:34:45';
+
     /**
      * @var int
      */

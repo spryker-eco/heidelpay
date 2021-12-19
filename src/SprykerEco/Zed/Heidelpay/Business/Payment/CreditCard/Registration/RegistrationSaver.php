@@ -51,7 +51,7 @@ class RegistrationSaver implements RegistrationSaverInterface
         $spyCreditCardRegistration = new SpyPaymentHeidelpayCreditCardRegistration();
 
         $spyCreditCardRegistration->fromArray(
-            $registrationRequestTransfer->getCreditCardInfo()->toArray()
+            $registrationRequestTransfer->getCreditCardInfo()->toArray(),
         );
 
         $spyCreditCardRegistration

@@ -135,7 +135,7 @@ class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends Heidelpa
             [
                 $quoteTransfer->getCustomer()->getFirstName(),
                 $quoteTransfer->getCustomer()->getLastName(),
-            ]
+            ],
         );
     }
 

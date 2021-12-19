@@ -68,7 +68,7 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
                 ->setLastName($orderTransfer->getBillingAddress()->getLastName())
                 ->setState($orderTransfer->getBillingAddress()->getState())
                 ->setStreet($this->getFullStreetName($orderTransfer->getBillingAddress()))
-                ->setZip($orderTransfer->getBillingAddress()->getZipCode())
+                ->setZip($orderTransfer->getBillingAddress()->getZipCode()),
         );
 
         return $heidelpayRequestTransfer;
@@ -85,7 +85,7 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
         $heidelpayRequestTransfer->setCustomerPurchase(
             (new HeidelpayCustomerPurchaseTransfer())
                 ->setAmount($this->getOrderGrandTotalInDecimal($orderTransfer))
-                ->setIdOrder((string)$orderTransfer->getIdSalesOrder())
+                ->setIdOrder((string)$orderTransfer->getIdSalesOrder()),
         );
 
         return $heidelpayRequestTransfer;
@@ -143,7 +143,7 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
             return $heidelpayRequestTransfer
                 ->setRiskInformation(
                     (new HeidelpayRiskInformationTransfer())
-                        ->setIsCustomerGuest(true)
+                        ->setIsCustomerGuest(true),
                 );
         }
 
@@ -151,9 +151,9 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
             (new HeidelpayRiskInformationTransfer())
                 ->setIsCustomerGuest(false)
                 ->setCustomerSince(
-                    $this->formatDate($orderTransfer->getCustomer()->getCreatedAt())
+                    $this->formatDate($orderTransfer->getCustomer()->getCreatedAt()),
                 )
-                ->setCustomerId($orderTransfer->getCustomer()->getIdCustomer())
+                ->setCustomerId($orderTransfer->getCustomer()->getIdCustomer()),
         );
 
         return $heidelpayRequestTransfer;
@@ -177,7 +177,7 @@ class OrderToHeidelpayRequest implements OrderToHeidelpayRequestInterface
             ->setInvoiceSecuredB2c(
                 (new HeidelpayInvoiceSecuredB2cTransfer())
                     ->setSalutation($orderTransfer->getHeidelpayPayment()->getSalutation())
-                    ->setDateOfBirth($orderTransfer->getHeidelpayPayment()->getDateOfBirth())
+                    ->setDateOfBirth($orderTransfer->getHeidelpayPayment()->getDateOfBirth()),
             );
 
         return $requestTransfer;

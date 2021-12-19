@@ -23,7 +23,7 @@ class PaypalDebit extends BaseHeidelpayPaymentMethod implements PaymentWithPostS
     public function postSaveOrder(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer): void
     {
         $redirectUrl = $this->getCheckoutRedirectUrlFromDebitTransactionLog(
-            $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder()
+            $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder(),
         );
 
         $this->setExternalRedirect($redirectUrl, $checkoutResponseTransfer);

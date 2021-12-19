@@ -80,7 +80,7 @@ class UnsuccessfulResponseAdapterFactory extends AdapterFactory
         return new UnsuccessfulSofortPaymentMock(
             $this->createRequestToHeidelpayMapper(),
             $this->createResponseFromHeidelpayMapper(),
-            $this->getHeidelpayConfig()
+            $this->getHeidelpayConfig(),
         );
     }
 
@@ -92,7 +92,7 @@ class UnsuccessfulResponseAdapterFactory extends AdapterFactory
         return new UnsuccessfulPaypalDebitPaymentMock(
             $this->createRequestToHeidelpayMapper(),
             $this->createResponseFromHeidelpayMapper(),
-            $this->getHeidelpayConfig()
+            $this->getHeidelpayConfig(),
         );
     }
 
@@ -104,7 +104,7 @@ class UnsuccessfulResponseAdapterFactory extends AdapterFactory
         return new UnsuccessfulCreditCardCapturePaymentMock(
             $this->createRequestToHeidelpayMapper(),
             $this->createResponseFromHeidelpayMapper(),
-            $this->getHeidelpayConfig()
+            $this->getHeidelpayConfig(),
         );
     }
 
@@ -116,7 +116,7 @@ class UnsuccessfulResponseAdapterFactory extends AdapterFactory
         return new UnsuccessfulEasyCreditPaymentMock(
             $this->createRequestToHeidelpayMapper(),
             $this->createResponseFromHeidelpayMapper(),
-            $this->getHeidelpayConfig()
+            $this->getHeidelpayConfig(),
         );
     }
 
@@ -128,7 +128,7 @@ class UnsuccessfulResponseAdapterFactory extends AdapterFactory
         return new UnsuccessfulDirectDebitPaymentMock(
             $this->createRequestToHeidelpayMapper(),
             $this->createResponseFromHeidelpayMapper(),
-            $this->getHeidelpayConfig()
+            $this->getHeidelpayConfig(),
         );
     }
 }

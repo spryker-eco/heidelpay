@@ -24,10 +24,12 @@ class DirectDebitController extends BaseHeidelpayController
      * @var string
      */
     protected const REQUEST_PARAM_REGISTRATION_ID = 'id_registration';
+
     /**
      * @var string
      */
     protected const URL_PARAM_ERROR_CODE = 'error_code';
+
     /**
      * @var string
      */
@@ -86,7 +88,7 @@ class DirectDebitController extends BaseHeidelpayController
     {
         return $this->redirectResponseInternal(
             HeidelpayControllerProvider::HEIDELPAY_PAYMENT_FAILED,
-            [static::URL_PARAM_ERROR_CODE => $responseErrorTransfer->getCode()]
+            [static::URL_PARAM_ERROR_CODE => $responseErrorTransfer->getCode()],
         );
     }
 
@@ -104,7 +106,7 @@ class DirectDebitController extends BaseHeidelpayController
         $redirectUrl = $application
             ->url(
                 HeidelpayControllerProvider::HEIDELPAY_PAYMENT_FAILED,
-                [static::URL_PARAM_ERROR_CODE => $responseErrorTransfer->getCode()]
+                [static::URL_PARAM_ERROR_CODE => $responseErrorTransfer->getCode()],
             );
 
         return $this->streamRedirectResponse($redirectUrl);
@@ -124,7 +126,7 @@ class DirectDebitController extends BaseHeidelpayController
         $redirectUrl = $application
             ->url(
                 HeidelpayControllerProvider::HEIDELPAY_DIRECT_DEBIT_REGISTER_SUCCESS,
-                [static::REQUEST_PARAM_REGISTRATION_ID => $directDebitRegistrationTransfer->getIdDirectDebitRegistration()]
+                [static::REQUEST_PARAM_REGISTRATION_ID => $directDebitRegistrationTransfer->getIdDirectDebitRegistration()],
             );
 
         return $this->streamRedirectResponse($redirectUrl);

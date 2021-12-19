@@ -50,7 +50,7 @@ class CreditCardSecure extends BaseHeidelpayPaymentMethod implements
     public function postSaveOrder(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer): void
     {
         $authorizeTransactionLogTransfer = $this->findOrderAuthorizeTransactionLog(
-            $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder()
+            $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder(),
         );
 
         if (
@@ -62,7 +62,7 @@ class CreditCardSecure extends BaseHeidelpayPaymentMethod implements
         }
 
         $redirectUrl = $this->getCheckoutRedirectUrlFromAuthorizeTransactionLog(
-            $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder()
+            $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder(),
         );
 
         $this->setExternalRedirect($redirectUrl, $checkoutResponseTransfer);

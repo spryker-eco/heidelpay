@@ -27,10 +27,12 @@ class HeidelpayFacadeSaveDirectDebitRegistrationTest extends HeidelpayPaymentTes
      * @var string
      */
     protected const TRANSACTION_ID = 'bea74ee13da897592f633fc93024ab3f5231d74d';
+
     /**
      * @var string
      */
     protected const REGISTRATION_UNIQUE_ID = '31HA07BC814CA0300B131ABC71AEECB3';
+
     /**
      * @var string
      */

@@ -33,14 +33,14 @@ class HeidelpayPersistenceMapper
     ): HeidelpayPaymentTransfer {
         $heidelpayPaymentTransfer->fromArray(
             $paymentHeidelpayEntity->toArray(),
-            true
+            true,
         );
 
         return $heidelpayPaymentTransfer;
     }
 
     /**
-     * @param \Propel\Runtime\Collection\ObjectCollection<\Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayNotification> $paymentHeidelpayNotificationEntities
+     * @param \Propel\Runtime\Collection\ObjectCollection|\Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayNotification[] $paymentHeidelpayNotificationEntities
      * @param \Generated\Shared\Transfer\HeidelpayNotificationCollectionTransfer $heidelpayNotificationCollection
      *
      * @return \Generated\Shared\Transfer\HeidelpayNotificationCollectionTransfer
@@ -52,7 +52,7 @@ class HeidelpayPersistenceMapper
         foreach ($paymentHeidelpayNotificationEntities as $paymentHeidelpayNotificationEntity) {
             $heidelpayNotificationTransfer = $this->mapEntityToHeidelpayNotificationTransfer(
                 $paymentHeidelpayNotificationEntity,
-                new HeidelpayNotificationTransfer()
+                new HeidelpayNotificationTransfer(),
             );
             $heidelpayNotificationCollection->addNotification($heidelpayNotificationTransfer);
         }
@@ -72,7 +72,7 @@ class HeidelpayPersistenceMapper
     ): HeidelpayNotificationTransfer {
         $heidelpayNotificationTransfer->fromArray(
             $paymentHeidelpayNotificationEntity->toArray(),
-            true
+            true,
         );
 
         return $heidelpayNotificationTransfer;
@@ -97,8 +97,8 @@ class HeidelpayPersistenceMapper
                 (new HeidelpayDirectDebitAccountTransfer())
                     ->fromArray(
                         $paymentHeidelpayDirectDebitRegistrationEntity->toArray(),
-                        true
-                    )
+                        true,
+                    ),
             );
 
         return $directDebitRegistrationTransfer;
@@ -116,7 +116,7 @@ class HeidelpayPersistenceMapper
     ): HeidelpayTransactionLogTransfer {
         $heidelpayTransactionLogTransfer->fromArray(
             $paymentHeidelpayTransactionLogEntity->toArray(),
-            true
+            true,
         )->setIdSalesOrder($paymentHeidelpayTransactionLogEntity->getFkSalesOrder());
 
         return $heidelpayTransactionLogTransfer;

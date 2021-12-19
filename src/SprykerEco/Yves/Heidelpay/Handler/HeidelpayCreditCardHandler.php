@@ -66,7 +66,7 @@ class HeidelpayCreditCardHandler extends HeidelpayHandler
         }
 
         $creditCardPayment->setSelectedRegistration(
-            $creditCardPayment->getPaymentOptions()->getLastSuccessfulRegistration()
+            $creditCardPayment->getPaymentOptions()->getLastSuccessfulRegistration(),
         );
 
         $quoteTransfer->getPayment()->setHeidelpayCreditCardSecure($creditCardPayment);

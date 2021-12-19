@@ -51,7 +51,7 @@ class HeidelpayPaymentResponseProcessor implements HeidelpayPaymentResponseProce
         $requestAsArray = $this->getUrlDecodedRequestBody($request);
         $processingResultTransfer = $this->heidelpayClient
             ->processExternalPaymentResponse(
-                $this->filterResponseParameters($requestAsArray)
+                $this->filterResponseParameters($requestAsArray),
             );
 
         if ($processingResultTransfer->getConnectorInvoiceAccountInfo() === null) {
@@ -78,7 +78,7 @@ class HeidelpayPaymentResponseProcessor implements HeidelpayPaymentResponseProce
 
         $quoteTransfer->getHeidelpayPayment()
             ->setConnectorInvoiceAccountInfo(
-                $processingResultTransfer->getConnectorInvoiceAccountInfo()
+                $processingResultTransfer->getConnectorInvoiceAccountInfo(),
             );
 
         $this->quoteClient->setQuote($quoteTransfer);

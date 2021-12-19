@@ -105,7 +105,7 @@ class HeidelpayController extends BaseHeidelpayController
     {
         return sprintf(
             $this->getConfig()->getYvesCheckoutPaymentFailedUrl(),
-            $processingResultTransfer->getError()->getCode()
+            $processingResultTransfer->getError()->getCode(),
         );
     }
 }

@@ -88,7 +88,7 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
             $billingAddressData[AddressTransfer::IS_DEFAULT_BILLING],
             $shippingAddressData[AddressTransfer::IS_DEFAULT_BILLING],
             $billingAddressData[AddressTransfer::IS_DEFAULT_SHIPPING],
-            $shippingAddressData[AddressTransfer::IS_DEFAULT_SHIPPING]
+            $shippingAddressData[AddressTransfer::IS_DEFAULT_SHIPPING],
         );
 
         return in_array($quoteTransfer->getShippingAddress()->getIso2Code(), $this->config->getEasyCreditAllowedCountries(), true)
@@ -121,11 +121,11 @@ class PaymentMethodFilter implements PaymentMethodFilterInterface
     {
         $isRejectedShippingAddress = strpos(
             $quoteTransfer->getShippingAddress()->getAddress1(),
-            $this->config->getEasycreditCriteriaRejectedDeliveryAddress()
+            $this->config->getEasycreditCriteriaRejectedDeliveryAddress(),
         );
         $isRejectedBillingAddress = strpos(
             $quoteTransfer->getBillingAddress()->getAddress1(),
-            $this->config->getEasycreditCriteriaRejectedDeliveryAddress()
+            $this->config->getEasycreditCriteriaRejectedDeliveryAddress(),
         );
 
         return ($isRejectedShippingAddress === false && $isRejectedBillingAddress === false);

@@ -16,16 +16,21 @@ use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesFacadeBridge;
 use SprykerEco\Zed\Heidelpay\Dependency\QueryContainer\HeidelpayToSalesQueryContainerBridge;
 use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceBridge;
 
+/**
+ * @method \SprykerEco\Zed\Heidelpay\HeidelpayConfig getConfig()
+ */
 class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
 {
     /**
      * @var string
      */
     public const FACADE_CURRENCY = 'currency facade';
+
     /**
      * @var string
      */
     public const FACADE_MONEY = 'money facade';
+
     /**
      * @var string
      */
@@ -45,6 +50,7 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
      * @var string
      */
     public const PLUGINS_HEIDELPAY_NOTIFICATION_EXPANDER = 'PLUGINS_HEIDELPAY_NOTIFICATION_EXPANDER';
+
     /**
      * @var string
      */

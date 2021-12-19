@@ -37,7 +37,7 @@ class EasyCreditController extends BaseHeidelpayController
 
         $responseArray = $this->getUrldecodedRequestBody($request);
         $processingResultTransfer = $this->processEasyCreditPaymentResponse(
-            $this->getClient()->filterResponseParameters($responseArray)
+            $this->getClient()->filterResponseParameters($responseArray),
         );
 
         if ($processingResultTransfer->getIsError()) {
@@ -64,7 +64,7 @@ class EasyCreditController extends BaseHeidelpayController
             ->hydrateQuoteTransferWithEasyCreditResponse($paymentParameters, $quoteTransfer);
 
         return $this->redirectResponseExternal(
-            $this->getSummaryPageUrl()
+            $this->getSummaryPageUrl(),
         );
     }
 
@@ -133,7 +133,7 @@ class EasyCreditController extends BaseHeidelpayController
     {
         return sprintf(
             $this->getConfig()->getYvesCheckoutPaymentFailedUrl(),
-            $processingResultTransfer->getError()->getCode()
+            $processingResultTransfer->getError()->getCode(),
         );
     }
 
@@ -146,7 +146,7 @@ class EasyCreditController extends BaseHeidelpayController
     {
         return Url::generate(
             $this->getInitializePaymentUrl(),
-            $this->getPaymentParametersFromEasyCreditResponseParameters($responseArray)
+            $this->getPaymentParametersFromEasyCreditResponseParameters($responseArray),
         )->build();
     }
 }

@@ -40,7 +40,7 @@ class HeidelpayFacadeRetrieveDirectDebitRegistrationTest extends HeidelpayPaymen
         $directDebitRegistrationEntity = $this->createDirectDebitRegistration($quoteTransfer);
         $directDebitRegistrationTransfer
             ->setIdDirectDebitRegistration(
-                $directDebitRegistrationEntity->getIdDirectDebitRegistration()
+                $directDebitRegistrationEntity->getIdDirectDebitRegistration(),
             );
 
         //Act

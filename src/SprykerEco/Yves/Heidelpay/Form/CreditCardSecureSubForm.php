@@ -29,6 +29,7 @@ class CreditCardSecureSubForm extends AbstractSubFormType implements SubFormInte
      * @var string
      */
     protected const FIELD_CREDIT_CARD_PAYMENT_OPTION = 'selected_payment_option';
+
     /**
      * @var string
      */
@@ -110,7 +111,7 @@ class CreditCardSecureSubForm extends AbstractSubFormType implements SubFormInte
                 'constraints' => [
                     $this->createNotBlankConstraint(),
                 ],
-            ]
+            ],
         );
 
         return $this;

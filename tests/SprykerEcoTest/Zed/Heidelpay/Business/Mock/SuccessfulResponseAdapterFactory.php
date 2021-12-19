@@ -90,7 +90,7 @@ class SuccessfulResponseAdapterFactory extends AdapterFactory
         return new SuccessfulSofortPaymentMock(
             $this->createRequestToHeidelpayMapper(),
             $this->createResponseFromHeidelpayMapper(),
-            $this->getHeidelpayConfig()
+            $this->getHeidelpayConfig(),
         );
     }
 
@@ -102,7 +102,7 @@ class SuccessfulResponseAdapterFactory extends AdapterFactory
         return new SuccessfulPaypalDebitPaymentMock(
             $this->createRequestToHeidelpayMapper(),
             $this->createResponseFromHeidelpayMapper(),
-            $this->getHeidelpayConfig()
+            $this->getHeidelpayConfig(),
         );
     }
 
@@ -114,7 +114,7 @@ class SuccessfulResponseAdapterFactory extends AdapterFactory
         return new SuccessfulCreditCardCapturePaymentMock(
             $this->createRequestToHeidelpayMapper(),
             $this->createResponseFromHeidelpayMapper(),
-            $this->getHeidelpayConfig()
+            $this->getHeidelpayConfig(),
         );
     }
 
@@ -126,7 +126,7 @@ class SuccessfulResponseAdapterFactory extends AdapterFactory
         return new SuccessfulEasyCreditPaymentMock(
             $this->createRequestToHeidelpayMapper(),
             $this->createResponseFromHeidelpayMapper(),
-            $this->getHeidelpayConfig()
+            $this->getHeidelpayConfig(),
         );
     }
 
@@ -138,7 +138,7 @@ class SuccessfulResponseAdapterFactory extends AdapterFactory
         return new SuccessfulEasyCreditPaymentMock(
             $this->createRequestToHeidelpayMapper(),
             $this->createResponseFromHeidelpayMapper(),
-            $this->getHeidelpayConfig()
+            $this->getHeidelpayConfig(),
         );
     }
 
@@ -150,7 +150,7 @@ class SuccessfulResponseAdapterFactory extends AdapterFactory
         return new SuccessfulDirectDebitPaymentMock(
             $this->createRequestToHeidelpayMapper(),
             $this->createResponseFromHeidelpayMapper(),
-            $this->getHeidelpayConfig()
+            $this->getHeidelpayConfig(),
         );
     }
 }

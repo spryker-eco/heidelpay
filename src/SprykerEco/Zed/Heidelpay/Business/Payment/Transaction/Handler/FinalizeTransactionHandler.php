@@ -77,7 +77,7 @@ class FinalizeTransactionHandler implements FinalizeTransactionHandlerInterface
 
         $this->paymentWriter->updateHeidelpayPaymentWithResponse($finalizeResponseTransfer);
         $orderTransfer->getHeidelpayPayment()->setIdPaymentReference(
-            $finalizeResponseTransfer->getIdTransactionUnique()
+            $finalizeResponseTransfer->getIdTransactionUnique(),
         );
     }
 
@@ -106,7 +106,7 @@ class FinalizeTransactionHandler implements FinalizeTransactionHandlerInterface
 
         if (!isset($this->paymentMethodAdapterCollection[$paymentMethodCode])) {
             throw new FinalizeNotSupportedException(
-                sprintf(static::ERROR_MESSAGE_FINALIZE_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode)
+                sprintf(static::ERROR_MESSAGE_FINALIZE_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode),
             );
         }
 
@@ -126,7 +126,7 @@ class FinalizeTransactionHandler implements FinalizeTransactionHandlerInterface
 
         if (!isset($this->requestBuilderCollection[$paymentMethodCode])) {
             throw new FinalizeNotSupportedException(
-                sprintf(static::ERROR_MESSAGE_FINALIZE_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode)
+                sprintf(static::ERROR_MESSAGE_FINALIZE_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode),
             );
         }
 

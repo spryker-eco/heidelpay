@@ -54,7 +54,7 @@ class HeidelpayFacadeGetDirectDebitPaymentOptionsTest extends HeidelpayPaymentTe
         $this->assertInstanceOf(HeidelpayDirectDebitPaymentOptionsTransfer::class, $heidelpayDirectDebitPaymentOptionsTransfer);
         $this->assertEquals(
             HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL,
-            $heidelpayDirectDebitPaymentOptionsTransfer->getPaymentFormActionUrl()
+            $heidelpayDirectDebitPaymentOptionsTransfer->getPaymentFormActionUrl(),
         );
         $this->assertNull($heidelpayDirectDebitPaymentOptionsTransfer->getLastSuccessfulRegistration());
         $optionsList = $heidelpayDirectDebitPaymentOptionsTransfer->getOptionsList();
@@ -99,7 +99,7 @@ class HeidelpayFacadeGetDirectDebitPaymentOptionsTest extends HeidelpayPaymentTe
         //Assert
         $this->assertEquals(
             HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL,
-            $heidelpayDirectDebitPaymentOptionsTransfer->getPaymentFormActionUrl()
+            $heidelpayDirectDebitPaymentOptionsTransfer->getPaymentFormActionUrl(),
         );
 
         $lastSuccessfulRegistration = $heidelpayDirectDebitPaymentOptionsTransfer->getLastSuccessfulRegistration();
@@ -107,17 +107,17 @@ class HeidelpayFacadeGetDirectDebitPaymentOptionsTest extends HeidelpayPaymentTe
 
         $this->assertEquals(
             HeidelpayTestConfig::REGISTRATION_NUMBER,
-            $lastSuccessfulRegistration->getRegistrationUniqueId()
+            $lastSuccessfulRegistration->getRegistrationUniqueId(),
         );
 
         $this->assertEquals(
             $directDebitAccountEntity->getIdDirectDebitRegistration(),
-            $lastSuccessfulRegistration->getIdDirectDebitRegistration()
+            $lastSuccessfulRegistration->getIdDirectDebitRegistration(),
         );
 
         $this->assertEquals(
             $quoteTransfer->getShippingAddress()->getIdCustomerAddress(),
-            $lastSuccessfulRegistration->getIdCustomerAddress()
+            $lastSuccessfulRegistration->getIdCustomerAddress(),
         );
 
         $optionsList = $heidelpayDirectDebitPaymentOptionsTransfer->getOptionsList();
@@ -153,11 +153,11 @@ class HeidelpayFacadeGetDirectDebitPaymentOptionsTest extends HeidelpayPaymentTe
         //Assert
         $this->assertInstanceOf(
             HeidelpayDirectDebitPaymentOptionsTransfer::class,
-            $heidelpayDirectDebitPaymentOptionsTransfer
+            $heidelpayDirectDebitPaymentOptionsTransfer,
         );
         $this->assertEquals(
             HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL,
-            $heidelpayDirectDebitPaymentOptionsTransfer->getPaymentFormActionUrl()
+            $heidelpayDirectDebitPaymentOptionsTransfer->getPaymentFormActionUrl(),
         );
         $this->assertNull($heidelpayDirectDebitPaymentOptionsTransfer->getLastSuccessfulRegistration());
         $optionsList = $heidelpayDirectDebitPaymentOptionsTransfer->getOptionsList();
@@ -185,7 +185,7 @@ class HeidelpayFacadeGetDirectDebitPaymentOptionsTest extends HeidelpayPaymentTe
         //Assert
         $this->assertEquals(
             HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL,
-            $heidelpayDirectDebitPaymentOptionsTransfer->getPaymentFormActionUrl()
+            $heidelpayDirectDebitPaymentOptionsTransfer->getPaymentFormActionUrl(),
         );
 
         $lastSuccessfulRegistration = $heidelpayDirectDebitPaymentOptionsTransfer->getLastSuccessfulRegistration();
@@ -193,17 +193,17 @@ class HeidelpayFacadeGetDirectDebitPaymentOptionsTest extends HeidelpayPaymentTe
 
         $this->assertEquals(
             HeidelpayTestConfig::REGISTRATION_NUMBER,
-            $lastSuccessfulRegistration->getRegistrationUniqueId()
+            $lastSuccessfulRegistration->getRegistrationUniqueId(),
         );
 
         $this->assertEquals(
             $directDebitAccountEntity->getIdDirectDebitRegistration(),
-            $lastSuccessfulRegistration->getIdDirectDebitRegistration()
+            $lastSuccessfulRegistration->getIdDirectDebitRegistration(),
         );
 
         $this->assertEquals(
             $quoteTransfer->getShippingAddress()->getIdCustomerAddress(),
-            $lastSuccessfulRegistration->getIdCustomerAddress()
+            $lastSuccessfulRegistration->getIdCustomerAddress(),
         );
 
         $optionsList = $heidelpayDirectDebitPaymentOptionsTransfer->getOptionsList();
@@ -229,8 +229,8 @@ class HeidelpayFacadeGetDirectDebitPaymentOptionsTest extends HeidelpayPaymentTe
             ->setHeidelpayDirectDebit(
                 (new HeidelpayDirectDebitPaymentTransfer())
                 ->setPaymentOptions(
-                    new HeidelpayDirectDebitPaymentOptionsTransfer()
-                )
+                    new HeidelpayDirectDebitPaymentOptionsTransfer(),
+                ),
             );
         $quoteTransfer->setPayment($paymentTransfer);
 
@@ -245,7 +245,7 @@ class HeidelpayFacadeGetDirectDebitPaymentOptionsTest extends HeidelpayPaymentTe
         $quoteTransfer = $this->createQuoteWithPaymentTransfer();
         $quoteTransfer->setTotals(
             (new TotalsTransfer())
-                ->setGrandTotal(10000)
+                ->setGrandTotal(10000),
         );
 
         $customer = $this->createOrGetCustomerByQuote($quoteTransfer);
@@ -269,10 +269,10 @@ class HeidelpayFacadeGetDirectDebitPaymentOptionsTest extends HeidelpayPaymentTe
     ): QuoteTransfer {
         $lastSuccessfulRegistration = (new HeidelpayDirectDebitRegistrationTransfer())
             ->setIdCustomerAddress(
-                $quoteTransfer->getShippingAddress()->getIdCustomerAddress()
+                $quoteTransfer->getShippingAddress()->getIdCustomerAddress(),
             )
             ->setRegistrationUniqueId(
-                $directDebitRegistrationEntity->getRegistrationUniqueId()
+                $directDebitRegistrationEntity->getRegistrationUniqueId(),
             )
             ->setAccountInfo(new HeidelpayDirectDebitAccountTransfer())
             ->setIdDirectDebitRegistration($directDebitRegistrationEntity->getIdDirectDebitRegistration());

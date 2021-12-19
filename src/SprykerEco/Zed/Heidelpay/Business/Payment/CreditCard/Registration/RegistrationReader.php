@@ -59,7 +59,7 @@ class RegistrationReader implements RegistrationReaderInterface
         $registrationEntity = $this->heidelpayQueryContainer
             ->queryRegistrationByIdAndQuoteHash(
                 $idRegistration,
-                $quoteHash
+                $quoteHash,
             )
             ->findOne();
 
@@ -120,7 +120,7 @@ class RegistrationReader implements RegistrationReaderInterface
     {
         $lastSuccessfulRegistration = $this->heidelpayQueryContainer
             ->queryLatestRegistrationByIdShippingAddress(
-                $quoteTransfer->getShippingAddress()->getIdCustomerAddress()
+                $quoteTransfer->getShippingAddress()->getIdCustomerAddress(),
             )
             ->findOne();
 

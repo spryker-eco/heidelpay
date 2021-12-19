@@ -23,6 +23,7 @@ class UnsuccessfulSofortPaymentMock extends SofortPayment
      */
     public function authorize(HeidelpayRequestTransfer $authorizeRequestTransfer): HeidelpayResponseTransfer
     {
+        $response = [];
         $response['payload'] = '{
                         "processing": {"result": "null"}, 
                         "payment": {"code": "OT.RC"}                         

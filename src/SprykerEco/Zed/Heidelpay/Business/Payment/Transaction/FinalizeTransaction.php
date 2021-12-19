@@ -57,7 +57,7 @@ class FinalizeTransaction implements FinalizeTransactionInterface
         $this->transactionLogger->logTransaction(
             HeidelpayConfig::TRANSACTION_TYPE_FINALIZE,
             $finalizeRequestTransfer,
-            $finalizeResponseTransfer
+            $finalizeResponseTransfer,
         );
     }
 }

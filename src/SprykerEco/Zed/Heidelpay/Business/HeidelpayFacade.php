@@ -358,7 +358,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
             ->createCreditCardRegistrationReader()
             ->findCreditCardRegistrationByIdAndQuote(
                 $findRegistrationRequestTransfer->getIdRegistration(),
-                $findRegistrationRequestTransfer->getQuote()
+                $findRegistrationRequestTransfer->getQuote(),
             );
     }
 

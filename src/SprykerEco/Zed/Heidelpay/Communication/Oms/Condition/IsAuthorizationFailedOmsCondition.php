@@ -42,7 +42,7 @@ class IsAuthorizationFailedOmsCondition implements HeidelpayOmsConditionInterfac
         $heidelpayNotificationCollection = $this->repository
             ->getPaymentHeidelpayNotificationCollectionByTransactionIdAndPaymentCode(
                 (string)$orderItem->getFkSalesOrder(),
-                static::AUTHORIZATION_PAYMENT_CODE
+                static::AUTHORIZATION_PAYMENT_CODE,
             );
 
         if ($heidelpayNotificationCollection->getNotifications()->count() === 0) {
@@ -50,7 +50,7 @@ class IsAuthorizationFailedOmsCondition implements HeidelpayOmsConditionInterfac
         }
 
         return $this->isAuthorizationFailed(
-            $heidelpayNotificationCollection->getNotifications()->offsetGet(0)
+            $heidelpayNotificationCollection->getNotifications()->offsetGet(0),
         );
     }
 

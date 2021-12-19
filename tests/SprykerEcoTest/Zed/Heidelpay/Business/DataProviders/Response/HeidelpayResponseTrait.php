@@ -49,7 +49,7 @@ trait HeidelpayResponseTrait
             'IDENTIFICATION_UNIQUEID' => $responseParam[static::IDENTIFICATION_UNIQUEID],
             'lang' => 'DE',
             'NAME_COMPANY' => 'somecompany',
-            'NAME_FAMILY' => $responseParam[self::CUSTOMER_FULL_NAME], //"Muster"
+            'NAME_FAMILY' => $responseParam[static::CUSTOMER_FULL_NAME], //"Muster"
             'NAME_GIVEN' => $responseParam[static::CUSTOMER_NAME],
             'PAYMENT_CODE' => 'OT.RC',
             'PRESENTATION_AMOUNT' => '272.62',

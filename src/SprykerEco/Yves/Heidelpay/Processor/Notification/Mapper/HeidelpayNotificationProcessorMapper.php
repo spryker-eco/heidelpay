@@ -16,6 +16,7 @@ class HeidelpayNotificationProcessorMapper implements HeidelpayNotificationProce
      * @var string
      */
     protected const HEADER_X_PUSH_TIMESTAMP = 'X-Push-Timestamp';
+
     /**
      * @var string
      */

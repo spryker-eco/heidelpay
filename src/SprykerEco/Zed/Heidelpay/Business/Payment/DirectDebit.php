@@ -52,7 +52,7 @@ class DirectDebit extends BaseHeidelpayPaymentMethod implements
     {
         $debitOnRegistrationTransactionLogTransfer = $this->transactionLogManager
             ->findDebitOnRegistrationTransactionLogByIdSalesOrder(
-                $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder()
+                $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder(),
             );
 
         if ($debitOnRegistrationTransactionLogTransfer === null) {

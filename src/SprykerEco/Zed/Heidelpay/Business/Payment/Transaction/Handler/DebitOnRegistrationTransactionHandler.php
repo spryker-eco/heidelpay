@@ -79,7 +79,7 @@ class DebitOnRegistrationTransactionHandler implements DebitOnRegistrationTransa
 
         if (!isset($this->paymentMethodAdapterCollection[$paymentMethodCode])) {
             throw new DebitOnRegistrationNotSupportedException(
-                sprintf(static::ERROR_MESSAGE_DEBIT_ON_REGISTRATION_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode)
+                sprintf(static::ERROR_MESSAGE_DEBIT_ON_REGISTRATION_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode),
             );
         }
 

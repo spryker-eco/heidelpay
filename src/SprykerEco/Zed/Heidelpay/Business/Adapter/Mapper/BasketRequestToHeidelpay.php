@@ -18,10 +18,12 @@ class BasketRequestToHeidelpay implements BasketRequestToHeidelpayInterface
      * @var string
      */
     public const BASKET_ITEM_GOODS_TYPE = 'goods';
+
     /**
      * @var string
      */
     public const SHIPMENT_EXPENSE_TYPE = 'SHIPMENT_EXPENSE_TYPE';
+
     /**
      * @var string
      */

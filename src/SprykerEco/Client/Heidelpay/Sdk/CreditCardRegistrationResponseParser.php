@@ -73,7 +73,7 @@ class CreditCardRegistrationResponseParser implements CreditCardRegistrationResp
 
         $apiResponse->verifySecurityHash(
             $this->getApplicationSecret(),
-            $apiResponse->getIdentification()->getTransactionId()
+            $apiResponse->getIdentification()->getTransactionId(),
         );
 
         return $apiResponse;
@@ -114,7 +114,7 @@ class CreditCardRegistrationResponseParser implements CreditCardRegistrationResp
         $this->apiResponseToRegistrationResponseMapper
             ->map(
                 $apiResponseObject,
-                $registrationRequestTransfer
+                $registrationRequestTransfer,
             );
     }
 }

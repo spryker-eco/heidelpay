@@ -101,7 +101,7 @@ class InitializeTransactionHandler implements InitializeTransactionHandlerInterf
 
         if (!isset($this->paymentMethodAdapterCollection[$paymentMethodCode])) {
             throw new InitializeNotSupportedException(
-                sprintf(static::ERROR_MESSAGE_INITIALIZE_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode)
+                sprintf(static::ERROR_MESSAGE_INITIALIZE_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode),
             );
         }
 

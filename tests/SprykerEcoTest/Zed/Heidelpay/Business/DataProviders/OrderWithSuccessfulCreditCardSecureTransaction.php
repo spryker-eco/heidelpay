@@ -53,7 +53,7 @@ class OrderWithSuccessfulCreditCardSecureTransaction
         $orderEntity = $this->createOrderEntityWithItems(
             $customerJohnDoe,
             $billingAddressJohnDoe,
-            $shippingAddressJohnDoe
+            $shippingAddressJohnDoe,
         );
 
         $this->createSuccessfulAuthorizeTransactionForOrder($orderEntity);

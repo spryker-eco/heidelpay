@@ -77,7 +77,7 @@ class RefundTransactionHandler implements RefundTransactionHandlerInterface
 
         if (!isset($this->paymentMethodAdapterCollection[$paymentMethodCode])) {
             throw new RefundNotSupportedException(
-                sprintf(static::ERROR_MESSAGE_REFUND_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode)
+                sprintf(static::ERROR_MESSAGE_REFUND_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode),
             );
         }
 

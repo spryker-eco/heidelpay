@@ -29,14 +29,17 @@ abstract class ExternalResponseBuilder
      * @var string
      */
     public const EMAIL = 'email';
+
     /**
      * @var string
      */
     public const RESPONSE_URL = 'responseUrl';
+
     /**
      * @var string
      */
     public const PAYMENT_BRAND = 'paymentBrand';
+
     /**
      * @var string
      */
@@ -46,18 +49,22 @@ abstract class ExternalResponseBuilder
      * @var string
      */
     public const FULL_NAME = 'fullName';
+
     /**
      * @var string
      */
     public const PAYMENT_METHOD = 'paymentMethod';
+
     /**
      * @var string
      */
     public const CUSTOMER_NAME = 'customerName';
+
     /**
      * @var string
      */
     public const CUSTOMER_FULL_NAME = 'fullName';
+
     /**
      * @var string
      */
@@ -67,42 +74,52 @@ abstract class ExternalResponseBuilder
      * @var string
      */
     public const SECURITY_SENDER = 'SECURITY_SENDER';
+
     /**
      * @var string
      */
     public const USER_LOGIN = 'USER_LOGIN';
+
     /**
      * @var string
      */
     public const USER_PWD = 'USER_PWD';
+
     /**
      * @var string
      */
     public const TRANSACRTION_ID = 'TRANSACRTION_ID';
+
     /**
      * @var string
      */
     public const IDENTIFICATION_UNIQUEID = 'IDENTIFICATION_UNIQUEID';
+
     /**
      * @var string
      */
     public const PROCESSING_RESULT = 'PROCESSING_RESULT';
+
     /**
      * @var string
      */
     public const PROCESSING_RETURN = 'PROCESSING_RETURN';
+
     /**
      * @var string
      */
     public const PAYMENT_CODE = 'PAYMENT_CODE';
+
     /**
      * @var string
      */
     public const PROCESSING_CODE = 'PROCESSING_CODE';
+
     /**
      * @var string
      */
     public const PROCESSING_STATUS_CODE = 'PROCESSING_STATUS_CODE';
+
     /**
      * @var string
      */
@@ -112,6 +129,7 @@ abstract class ExternalResponseBuilder
      * @var string
      */
     public const CRITERION_SDK_NAME = 'HEIDELPAY:CRITERION_SDK_NAME';
+
     /**
      * @var string
      */
@@ -121,6 +139,7 @@ abstract class ExternalResponseBuilder
      * @var string
      */
     public const BRAND_PROPERTY_NAME = 'brand';
+
     /**
      * @var string
      */
@@ -140,10 +159,12 @@ abstract class ExternalResponseBuilder
      * @var string
      */
     public const PAYMENT_CODE_HP_INI = 'HP.INI';
+
     /**
      * @var string
      */
     public const PAYMENT_CODE_HP_PI = 'HP.PI';
+
     /**
      * @var string
      */
@@ -182,7 +203,7 @@ abstract class ExternalResponseBuilder
 
         $obj = new $fullClassName();
         $reflection = new ReflectionObject($obj);
-        $property = $reflection->getProperty(self::BRAND_PROPERTY_NAME);
+        $property = $reflection->getProperty(static::BRAND_PROPERTY_NAME);
         $property->setAccessible(true);
 
         $brand = $property->getValue(new $fullClassName());
@@ -200,7 +221,7 @@ abstract class ExternalResponseBuilder
         $paymentMethod = preg_replace(
             '~' . HeidelpayConfig::PROVIDER_NAME . '~',
             '',
-            $paymentMethod
+            $paymentMethod,
         );
 
         return ucfirst($paymentMethod);
@@ -213,7 +234,7 @@ abstract class ExternalResponseBuilder
      */
     protected function getClassName(string $paymentMethodName): string
     {
-        $className = $paymentMethodName . self::PAYMENT_METHOD_CLASS_NAME;
+        $className = $paymentMethodName . static::PAYMENT_METHOD_CLASS_NAME;
 
         return ucfirst($className);
     }
@@ -262,6 +283,6 @@ abstract class ExternalResponseBuilder
      */
     protected function getCriterionSecret(int $identificationTransactionId, string $secret): string
     {
-        return hash(self::SHA_512_ENCODE_ALGO, $identificationTransactionId . $secret);
+        return hash(static::SHA_512_ENCODE_ALGO, $identificationTransactionId . $secret);
     }
 }

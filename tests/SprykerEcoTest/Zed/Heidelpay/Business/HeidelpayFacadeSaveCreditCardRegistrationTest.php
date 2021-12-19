@@ -26,26 +26,32 @@ class HeidelpayFacadeSaveCreditCardRegistrationTest extends HeidelpayPaymentTest
      * @var string
      */
     protected const QUOTE_HASH = 'bea74ee13da897592f633fc93024ab3f5231d74d';
+
     /**
      * @var string
      */
     protected const REGISTRATION_HASH = '31HA07BC814CA0300B131ABC71AEECB3';
+
     /**
      * @var int
      */
     protected const ACCOUNT_EXPIRY_YEAR = 2030;
+
     /**
      * @var string
      */
     protected const ACCOUNT_EXPIRY_MONTH = '03';
+
     /**
      * @var string
      */
     protected const ACCOUNT_HOLDER_NAME = 'John Doe';
+
     /**
      * @var string
      */
     protected const CREDIT_CARD_BRAND = 'MASTER';
+
     /**
      * @var string
      */
@@ -83,7 +89,7 @@ class HeidelpayFacadeSaveCreditCardRegistrationTest extends HeidelpayPaymentTest
     {
         $cardRegistrationTransfer = new HeidelpayRegistrationRequestTransfer();
         $cardRegistrationTransfer->setQuoteHash(static::QUOTE_HASH)
-            ->setRegistrationHash(self::REGISTRATION_HASH)
+            ->setRegistrationHash(static::REGISTRATION_HASH)
             ->setCreditCardInfo($this->getCreditCardInfo());
 
         return [[$cardRegistrationTransfer]];

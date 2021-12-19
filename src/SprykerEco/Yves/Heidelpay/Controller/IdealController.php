@@ -28,7 +28,7 @@ class IdealController extends AbstractController
         return $this->viewResponse(
             [
                 'idealAuthorizeForm' => $idealAuthorizeFormTransfer,
-            ]
+            ],
         );
     }
 
@@ -56,7 +56,7 @@ class IdealController extends AbstractController
 
         $this->mapTransactionLogToAuthorizeFormTransfer(
             $authorizeTransactionLogTransfer,
-            $idealAuthorizeFormTransfer
+            $idealAuthorizeFormTransfer,
         );
 
         return $idealAuthorizeFormTransfer;

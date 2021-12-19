@@ -75,7 +75,7 @@ class HeidelpayFactory extends AbstractFactory
     {
         return new HeidelpayCreditCardHandler(
             $this->getCalculationClient(),
-            $this->getQuoteClient()
+            $this->getQuoteClient(),
         );
     }
 
@@ -86,7 +86,7 @@ class HeidelpayFactory extends AbstractFactory
     {
         return new HeidelpayDirectDebitHandler(
             $this->getCalculationClient(),
-            $this->getQuoteClient()
+            $this->getQuoteClient(),
         );
     }
 
@@ -97,7 +97,7 @@ class HeidelpayFactory extends AbstractFactory
     {
         return new PaymentFailureHandler(
             $this->getClient(),
-            $this->getConfig()
+            $this->getConfig(),
         );
     }
 
@@ -243,7 +243,7 @@ class HeidelpayFactory extends AbstractFactory
     public function createCreditCardRegistrationToQuoteHydrator(): RegistrationToQuoteHydratorInterface
     {
         return new RegistrationToQuoteHydrator(
-            $this->createHeidelpayCreditCardHandler()
+            $this->createHeidelpayCreditCardHandler(),
         );
     }
 
@@ -279,7 +279,7 @@ class HeidelpayFactory extends AbstractFactory
         return new HeidelpayDirectDebitRegistrationProcessor(
             $this->getClient(),
             $this->getCalculationClient(),
-            $this->getQuoteClient()
+            $this->getQuoteClient(),
         );
     }
 
@@ -290,7 +290,7 @@ class HeidelpayFactory extends AbstractFactory
     {
         return new HeidelpayNotificationProcessor(
             $this->createHeidelpayNotificationProcessorMapper(),
-            $this->getClient()
+            $this->getClient(),
         );
     }
 
@@ -309,7 +309,7 @@ class HeidelpayFactory extends AbstractFactory
     {
         return new HeidelpayPaymentResponseProcessor(
             $this->getClient(),
-            $this->getQuoteClient()
+            $this->getQuoteClient(),
         );
     }
 

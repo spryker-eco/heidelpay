@@ -90,7 +90,7 @@ class AuthorizeOnRegistrationTransactionHandler implements AuthorizeOnRegistrati
 
         if (!isset($this->paymentMethodAdapterCollection[$paymentMethodCode])) {
             throw new AuthorizeOnRegistrationNotSupportedException(
-                sprintf(static::ERROR_MESSAGE_AUTHORIZE_ON_REGISTRATION_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode)
+                sprintf(static::ERROR_MESSAGE_AUTHORIZE_ON_REGISTRATION_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode),
             );
         }
 

@@ -102,7 +102,7 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
     {
         $requestTransfer = $this->buildBaseOrderHeidelpayRequest($orderTransfer);
         $requestTransfer->setIdPaymentReference(
-            $orderTransfer->getHeidelpayPayment()->getIdPaymentReference()
+            $orderTransfer->getHeidelpayPayment()->getIdPaymentReference(),
         );
 
         return $requestTransfer;
@@ -117,7 +117,7 @@ class AdapterRequestFromOrderBuilder extends BaseAdapterRequestBuilder implement
     {
         $requestTransfer = $this->buildBaseOrderHeidelpayRequest($orderTransfer);
         $requestTransfer->setIdPaymentReference(
-            $orderTransfer->getHeidelpayPayment()->getIdPaymentReference()
+            $orderTransfer->getHeidelpayPayment()->getIdPaymentReference(),
         );
 
         return $requestTransfer;

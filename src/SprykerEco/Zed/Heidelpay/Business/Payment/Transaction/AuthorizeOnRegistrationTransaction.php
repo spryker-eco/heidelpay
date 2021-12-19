@@ -57,7 +57,7 @@ class AuthorizeOnRegistrationTransaction implements AuthorizeOnRegistrationTrans
         $this->transactionLogger->logTransaction(
             HeidelpayConfig::TRANSACTION_TYPE_AUTHORIZE_ON_REGISTRATION,
             $authorizeOnRegistrationRequestTransfer,
-            $authorizeOnRegistrationResponseTransfer
+            $authorizeOnRegistrationResponseTransfer,
         );
     }
 }

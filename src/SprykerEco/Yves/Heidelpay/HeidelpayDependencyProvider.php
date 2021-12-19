@@ -13,16 +13,21 @@ use Spryker\Yves\Kernel\Container;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToCalculationClientBridge;
 use SprykerEco\Yves\Heidelpay\Dependency\Client\HeidelpayToQuoteClientBridge;
 
+/**
+ * @method \SprykerEco\Yves\Heidelpay\HeidelpayConfig getConfig()
+ */
 class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
 {
     /**
      * @var string
      */
     public const CLIENT_QUOTE = 'CLIENT_QUOTE';
+
     /**
      * @var string
      */
     public const CLIENT_CALCULATION = 'CLIENT_CALCULATION';
+
     /**
      * @var string
      */

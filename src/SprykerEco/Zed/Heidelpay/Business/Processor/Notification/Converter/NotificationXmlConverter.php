@@ -16,6 +16,7 @@ class NotificationXmlConverter implements NotificationXmlConverterInterface
      * @var string
      */
     protected const TRANSACTION_ELEMENT = 'Transaction';
+
     /**
      * @var string
      */
@@ -24,7 +25,7 @@ class NotificationXmlConverter implements NotificationXmlConverterInterface
     /**
      * @param string $xml
      *
-     * @return array<string[]>
+     * @return array<array<string>>
      */
     public function convert(string $xml): array
     {
@@ -53,7 +54,7 @@ class NotificationXmlConverter implements NotificationXmlConverterInterface
     /**
      * @param \SimpleXMLElement $xmlElement
      *
-     * @return array<string[]>
+     * @return array<array<string>>
      */
     protected function simpleXmlToArray(SimpleXMLElement $xmlElement): array
     {

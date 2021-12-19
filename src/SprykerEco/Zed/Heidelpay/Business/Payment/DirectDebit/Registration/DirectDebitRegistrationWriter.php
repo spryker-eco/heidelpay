@@ -50,7 +50,7 @@ class DirectDebitRegistrationWriter implements DirectDebitRegistrationWriterInte
         return $this->getTransactionHandler()->handleTransaction(
             function () use ($directDebitRegistrationTransfer) {
                 return $this->savePaymentHeidelpayDirectDebitRegistrationEntity($directDebitRegistrationTransfer);
-            }
+            },
         );
     }
 
@@ -70,11 +70,11 @@ class DirectDebitRegistrationWriter implements DirectDebitRegistrationWriterInte
                 }
 
                 $directDebitRegistrationTransfer->setIdCustomerAddress(
-                    $quoteTransfer->getShippingAddress()->getIdCustomerAddress()
+                    $quoteTransfer->getShippingAddress()->getIdCustomerAddress(),
                 );
 
                 return $this->savePaymentHeidelpayDirectDebitRegistrationEntity($directDebitRegistrationTransfer);
-            }
+            },
         );
     }
 
