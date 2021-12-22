@@ -40,9 +40,9 @@ trait AuthorizeTransactionTrait
                             "payment": {"code": "CC.PA"}, 
                             "identification": {"transactionid": "' . $orderEntity->getIdSalesOrder() . '"},
                             "frontend": {"payment_frame_url": "' . HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"} 
-                        }'
-                    )
-                )
+                        }',
+                    ),
+                ),
             );
 
         $authorizeTransaction->save();
@@ -75,9 +75,9 @@ trait AuthorizeTransactionTrait
                             "payment": {"code": "CC.PA"}, 
                             "identification": {"transactionid": "' . $orderEntity->getIdSalesOrder() . '"},
                             "frontend": {"payment_frame_url": "' . HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"} 
-                        }'
-                    )
-                )
+                        }',
+                    ),
+                ),
             );
 
         $authorizeTransaction->save();

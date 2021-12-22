@@ -41,7 +41,7 @@ trait CustomerTrait
     {
         return $this->createCustomer(
             $quoteTransfer->getCustomer()->getFirstName(),
-            $quoteTransfer->getCustomer()->getLastName()
+            $quoteTransfer->getCustomer()->getLastName(),
         );
     }
 

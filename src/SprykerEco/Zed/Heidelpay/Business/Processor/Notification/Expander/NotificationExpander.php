@@ -18,98 +18,122 @@ class NotificationExpander implements NotificationExpanderInterface
      * @var string
      */
     protected const KEY_ATTRIBUTES = '@attributes';
+
     /**
      * @var string
      */
     protected const KEY_IDENTIFICATION = 'Identification';
+
     /**
      * @var string
      */
     protected const KEY_PROCESSING = 'Processing';
+
     /**
      * @var string
      */
     protected const KEY_PAYMENT = 'Payment';
+
     /**
      * @var string
      */
     protected const KEY_CLEARING = 'Clearing';
+
     /**
      * @var string
      */
     protected const KEY_ACCOUNT = 'Account';
+
     /**
      * @var string
      */
     protected const KEY_CONNECTOR = 'Connector';
+
     /**
      * @var string
      */
     protected const KEY_CUSTOMER = 'Customer';
+
     /**
      * @var string
      */
     protected const KEY_TRANSACTION_SOURCE = 'source';
+
     /**
      * @var string
      */
     protected const KEY_CHANNEL = 'channel';
+
     /**
      * @var string
      */
     protected const KEY_RESPONSE = 'response';
+
     /**
      * @var string
      */
     protected const KEY_MODE = 'mode';
+
     /**
      * @var string
      */
     protected const KEY_TRANSACTION_ID = 'TransactionID';
+
     /**
      * @var string
      */
     protected const KEY_UNIQUE_ID = 'UniqueID';
+
     /**
      * @var string
      */
     protected const KEY_SHORT_ID = 'ShortID';
+
     /**
      * @var string
      */
     protected const KEY_IDENTIFICATION_SOURCE = 'Source';
+
     /**
      * @var string
      */
     protected const KEY_CODE = 'code';
+
     /**
      * @var string
      */
     protected const KEY_TIMESTAMP = 'Timestamp';
+
     /**
      * @var string
      */
     protected const KEY_RESULT = 'Result';
+
     /**
      * @var string
      */
     protected const KEY_STATUS = 'Status';
+
     /**
      * @var string
      */
     protected const KEY_REASON = 'Reason';
+
     /**
      * @var string
      */
     protected const KEY_RETURN = 'Return';
+
     /**
      * @var string
      */
     protected const KEY_AMOUNT = 'Amount';
+
     /**
      * @var string
      */
     protected const KEY_CURRENCY = 'Currency';
+
     /**
      * @var string
      */
@@ -268,7 +292,7 @@ class NotificationExpander implements NotificationExpanderInterface
             ->setCurrency($paymentData[static::KEY_CLEARING][static::KEY_CURRENCY] ?? '')
             ->setPaymentDescriptor($paymentData[static::KEY_CLEARING][static::KEY_DESCRIPTOR])
             ->setAmount(
-                $this->convertAmountToInt($paymentData[static::KEY_CLEARING][static::KEY_AMOUNT])
+                $this->convertAmountToInt($paymentData[static::KEY_CLEARING][static::KEY_AMOUNT]),
             );
 
         return $notificationTransfer;
@@ -292,7 +316,7 @@ class NotificationExpander implements NotificationExpanderInterface
         }
 
         $notificationTransfer->setAccount(
-            $this->utilEncodingService->encodeJson($notificationData[static::KEY_CONNECTOR][static::KEY_ACCOUNT])
+            $this->utilEncodingService->encodeJson($notificationData[static::KEY_CONNECTOR][static::KEY_ACCOUNT]),
         );
 
         return $notificationTransfer;
@@ -313,7 +337,7 @@ class NotificationExpander implements NotificationExpanderInterface
         }
 
         $notificationTransfer->setCustomer(
-            $this->utilEncodingService->encodeJson($notificationData[static::KEY_CUSTOMER])
+            $this->utilEncodingService->encodeJson($notificationData[static::KEY_CUSTOMER]),
         );
 
         return $notificationTransfer;
@@ -321,7 +345,7 @@ class NotificationExpander implements NotificationExpanderInterface
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayNotificationTransfer $notificationTransfer
-     * @param array<string[]> $notificationData
+     * @param array<array<string>> $notificationData
      *
      * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer
      */

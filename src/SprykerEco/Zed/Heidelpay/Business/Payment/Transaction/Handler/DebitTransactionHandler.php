@@ -90,7 +90,7 @@ class DebitTransactionHandler implements DebitTransactionHandlerInterface
 
         if (!isset($this->paymentMethodAdapterCollection[$paymentMethodCode])) {
             throw new DebitNotSupportedException(
-                sprintf(static::ERROR_MESSAGE_DEBIT_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode)
+                sprintf(static::ERROR_MESSAGE_DEBIT_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode),
             );
         }
 

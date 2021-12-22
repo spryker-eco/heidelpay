@@ -12,16 +12,21 @@ use Spryker\Client\Kernel\Container;
 use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToLocaleClientBridge;
 use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteClientBridge;
 
+/**
+ * @method \SprykerEco\Client\Heidelpay\HeidelpayConfig getConfig()
+ */
 class HeidelpayDependencyProvider extends AbstractDependencyProvider
 {
     /**
      * @var string
      */
     public const CLIENT_LOCALE = 'client locale';
+
     /**
      * @var string
      */
     public const CLIENT_ZED_REQUEST = 'zed request client';
+
     /**
      * @var string
      */

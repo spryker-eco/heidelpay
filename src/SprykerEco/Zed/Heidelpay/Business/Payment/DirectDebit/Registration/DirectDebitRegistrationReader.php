@@ -35,7 +35,7 @@ class DirectDebitRegistrationReader implements DirectDebitRegistrationReaderInte
     {
         $lastSuccessfulRegistration = $this->repository
             ->findLastHeidelpayDirectDebitRegistrationByIdCustomerAddress(
-                $quoteTransfer->getShippingAddress()->getIdCustomerAddress()
+                $quoteTransfer->getShippingAddress()->getIdCustomerAddress(),
             );
 
         if ($lastSuccessfulRegistration === null) {
@@ -56,7 +56,7 @@ class DirectDebitRegistrationReader implements DirectDebitRegistrationReaderInte
         $directDebitRegistration = $this->repository
             ->findHeidelpayDirectDebitRegistrationByIdAndTransactionId(
                 $directDebitRegistrationTransfer->getIdDirectDebitRegistration(),
-                $directDebitRegistrationTransfer->getTransactionId()
+                $directDebitRegistrationTransfer->getTransactionId(),
             );
 
         if ($directDebitRegistration === null) {

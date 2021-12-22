@@ -20,14 +20,17 @@ class ExternalEasyCreditResponseTransactionHandler implements ExternalEasyCredit
      * @var string
      */
     protected const CRITERION_EASYCREDIT_AMORTISATIONTEXT = 'CRITERION_EASYCREDIT_AMORTISATIONTEXT';
+
     /**
      * @var string
      */
     protected const CRITERION_EASYCREDIT_ACCRUINGINTEREST = 'CRITERION_EASYCREDIT_ACCRUINGINTEREST';
+
     /**
      * @var string
      */
     protected const CRITERION_EASYCREDIT_TOTALAMOUNT = 'CRITERION_EASYCREDIT_TOTALAMOUNT';
+
     /**
      * @var string
      */
@@ -106,7 +109,7 @@ class ExternalEasyCreditResponseTransactionHandler implements ExternalEasyCredit
     {
         $responseTransfer = $this->transaction->executeTransaction(
             $externalResponseTransfer,
-            $this->paymentMethodAdapterCollection[static::HEIDELPAY_EASY_CREDIT_PAYMENT_METHOD]
+            $this->paymentMethodAdapterCollection[static::HEIDELPAY_EASY_CREDIT_PAYMENT_METHOD],
         );
 
         return $responseTransfer;

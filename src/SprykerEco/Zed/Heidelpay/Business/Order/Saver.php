@@ -167,7 +167,7 @@ class Saver implements SaverInterface
     protected function addEasyCreditFee(QuoteTransfer $quoteTransfer, SpyPaymentHeidelpay $paymentEntity): SpyPaymentHeidelpay
     {
         $paymentEntity->setEasyCreditFee(
-            (int)$quoteTransfer->getPayment()->getHeidelpayEasyCredit()->getAccruingInterest()
+            (int)$quoteTransfer->getPayment()->getHeidelpayEasyCredit()->getAccruingInterest(),
         );
 
         return $paymentEntity;
@@ -187,7 +187,7 @@ class Saver implements SaverInterface
 
         $paymentEntity
             ->setDateOfBirth(
-                $quoteTransfer->getPayment()->getHeidelpayInvoiceSecuredB2c()->getDateOfBirth()
+                $quoteTransfer->getPayment()->getHeidelpayInvoiceSecuredB2c()->getDateOfBirth(),
             )
             ->setSalutation($this->getSalutation($quoteTransfer));
 

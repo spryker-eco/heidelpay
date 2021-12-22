@@ -27,10 +27,10 @@ class ApiResponseToRegistrationRequestTransfer implements ApiResponseToRegistrat
 
         $registrationRequestTransfer
             ->setRegistrationHash(
-                $apiResponseObject->getIdentification()->getUniqueId()
+                $apiResponseObject->getIdentification()->getUniqueId(),
             )
             ->setQuoteHash(
-                $apiResponseObject->getIdentification()->getTransactionId()
+                $apiResponseObject->getIdentification()->getTransactionId(),
             );
     }
 

@@ -48,13 +48,13 @@ class PaymentBuilder
         $orderEntity = $this->createOrderEntityWithItems(
             $customerJohnDoe,
             $billingAddressJohnDoe,
-            $shippingAddressJohnDoe
+            $shippingAddressJohnDoe,
         );
 
         $this->createHeidelpayPaymentEntity(
             $orderEntity,
             HeidelpayTestConfig::HEIDELPAY_REFERENCE,
-            $paymentMethod
+            $paymentMethod,
         );
 
         return $orderEntity;

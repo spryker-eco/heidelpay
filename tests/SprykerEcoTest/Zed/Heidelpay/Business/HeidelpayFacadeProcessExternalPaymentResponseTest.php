@@ -54,7 +54,7 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends HeidelpayPayment
         $this->assertTrue($response->getIsError());
         $this->assertEquals(
             'The response object seems to be empty or it is not a valid heidelpay response!',
-            $response->getError()->getInternalMessage()
+            $response->getError()->getInternalMessage(),
         );
     }
 

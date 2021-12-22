@@ -90,7 +90,7 @@ class AuthorizeTransactionHandler implements AuthorizeTransactionHandlerInterfac
 
         if (!isset($this->paymentMethodAdapterCollection[$paymentMethodCode])) {
             throw new AuthorizeNotSupportedException(
-                sprintf(static::ERROR_MESSAGE_AUTHORIZE_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode)
+                sprintf(static::ERROR_MESSAGE_AUTHORIZE_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode),
             );
         }
 

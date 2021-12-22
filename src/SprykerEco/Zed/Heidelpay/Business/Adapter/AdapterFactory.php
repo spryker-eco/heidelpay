@@ -167,7 +167,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
         return new Basket(
             $this->createBasketRequestToHeidelpayMapper(),
             $this->createBasketResponseFromHeidelpayMapper(),
-            $this->getHeidelpayConfig()
+            $this->getHeidelpayConfig(),
         );
     }
 
@@ -179,7 +179,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
         return new SofortPayment(
             $this->createRequestToHeidelpayMapper(),
             $this->createResponseFromHeidelpayMapper(),
-            $this->getHeidelpayConfig()
+            $this->getHeidelpayConfig(),
         );
     }
 
@@ -191,7 +191,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
         return new IdealPayment(
             $this->createRequestToHeidelpayMapper(),
             $this->createResponseFromHeidelpayMapper(),
-            $this->getHeidelpayConfig()
+            $this->getHeidelpayConfig(),
         );
     }
 
@@ -203,7 +203,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
         return new EasyCreditPayment(
             $this->createRequestToHeidelpayMapper(),
             $this->createResponseFromHeidelpayMapper(),
-            $this->getHeidelpayConfig()
+            $this->getHeidelpayConfig(),
         );
     }
 
@@ -215,7 +215,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
         return new PaypalPayment(
             $this->createRequestToHeidelpayMapper(),
             $this->createResponseFromHeidelpayMapper(),
-            $this->getHeidelpayConfig()
+            $this->getHeidelpayConfig(),
         );
     }
 
@@ -227,7 +227,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
         return new CreditCardPayment(
             $this->createRequestToHeidelpayMapper(),
             $this->createResponseFromHeidelpayMapper(),
-            $this->getHeidelpayConfig()
+            $this->getHeidelpayConfig(),
         );
     }
 
@@ -239,7 +239,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
         return new InvoiceSecuredB2cPayment(
             $this->createRequestToHeidelpayMapper(),
             $this->createResponseFromHeidelpayMapper(),
-            $this->getHeidelpayConfig()
+            $this->getHeidelpayConfig(),
         );
     }
 
@@ -251,7 +251,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
         return new DirectDebitPayment(
             $this->createRequestToHeidelpayMapper(),
             $this->createResponseFromHeidelpayMapper(),
-            $this->getHeidelpayConfig()
+            $this->getHeidelpayConfig(),
         );
     }
 
@@ -262,7 +262,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     {
         return new TransactionParser(
             $this->createResponseFromHeidelpayMapper(),
-            $this->createResponsePayloadToApiResponseMapper()
+            $this->createResponsePayloadToApiResponseMapper(),
         );
     }
 
@@ -272,7 +272,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     protected function createResponsePayloadToApiResponseMapper(): ResponsePayloadToApiResponseInterface
     {
         return new ResponsePayloadToApiResponse(
-            $this->getUtilEncodingService()
+            $this->getUtilEncodingService(),
         );
     }
 
@@ -290,7 +290,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     protected function createBasketRequestToHeidelpayMapper(): BasketRequestToHeidelpayInterface
     {
         return new BasketRequestToHeidelpay(
-            $this->getHeidelpayConfig()
+            $this->getHeidelpayConfig(),
         );
     }
 
@@ -300,7 +300,7 @@ class AdapterFactory extends AbstractBusinessFactory implements AdapterFactoryIn
     protected function createResponseFromHeidelpayMapper(): ResponseFromHeidelpayInterface
     {
         return new ResponseFromHeidelpay(
-            $this->getUtilEncodingService()
+            $this->getUtilEncodingService(),
         );
     }
 

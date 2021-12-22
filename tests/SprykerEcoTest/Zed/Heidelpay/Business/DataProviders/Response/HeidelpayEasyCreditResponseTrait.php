@@ -49,16 +49,16 @@ trait HeidelpayEasyCreditResponseTrait
             'IDENTIFICATION_UNIQUEID' => $responseParam[static::IDENTIFICATION_UNIQUEID],
             'lang' => 'DE',
             'NAME_COMPANY' => 'somecompany',
-            'NAME_FAMILY' => $responseParam[self::CUSTOMER_FULL_NAME], //"Muster"
+            'NAME_FAMILY' => $responseParam[static::CUSTOMER_FULL_NAME], //"Muster"
             'NAME_GIVEN' => $responseParam[static::CUSTOMER_NAME],
             'PAYMENT_CODE' => $responseParam[static::PAYMENT_CODE],
             'PRESENTATION_AMOUNT' => '272.62',
             'PRESENTATION_CURRENCY' => 'EUR',
             'PROCESSING_CODE' => sprintf(
                 '%s.%s.%s',
-                $responseParam[self::PAYMENT_CODE],
-                $responseParam[self::PROCESSING_STATUS_CODE],
-                $responseParam[self::PROCESSING_REASON_CODE]
+                $responseParam[static::PAYMENT_CODE],
+                $responseParam[static::PROCESSING_STATUS_CODE],
+                $responseParam[static::PROCESSING_REASON_CODE],
             ),
             'PROCESSING_REASON' => 'SUCCESSFULL',
             'PROCESSING_REASON_CODE' => $responseParam[static::PROCESSING_REASON_CODE],

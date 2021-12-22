@@ -52,7 +52,7 @@ class IsOrderPaidOmsCondition implements HeidelpayOmsConditionInterface
         $heidelpayNotificationCollection = $this->repository
             ->getPaymentHeidelpayNotificationCollectionByTransactionIdAndPaymentCode(
                 (string)$orderItem->getFkSalesOrder(),
-                static::PAID_RECEIPT_PAYMENT_CODE
+                static::PAID_RECEIPT_PAYMENT_CODE,
             );
 
         if ($heidelpayNotificationCollection->getNotifications()->count() === 0) {

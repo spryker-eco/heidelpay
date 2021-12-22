@@ -26,10 +26,12 @@ class CreditCardController extends BaseHeidelpayController
      * @var string
      */
     public const REQUEST_PARAM_REGISTRATION_ID = 'id_registration';
+
     /**
      * @var string
      */
     public const ERROR_CODE_REGISTRATION_NOT_FOUND = 'registration_not_found';
+
     /**
      * @var string
      */
@@ -45,7 +47,7 @@ class CreditCardController extends BaseHeidelpayController
         $apiResponseAsArray = $this->getUrldecodedRequestBody($request);
 
         $registrationRequestTransfer = $this->getValidatedRegistrationRequest(
-            $this->getClient()->filterResponseParameters($apiResponseAsArray)
+            $this->getClient()->filterResponseParameters($apiResponseAsArray),
         );
 
         if ($registrationRequestTransfer->getIsError()) {
@@ -169,7 +171,7 @@ class CreditCardController extends BaseHeidelpayController
     {
         $paymentFailedUrl = sprintf(
             $this->getConfig()->getYvesCheckoutPaymentFailedUrl(),
-            $errorCode
+            $errorCode,
         );
 
         return new RedirectResponse($paymentFailedUrl);
@@ -185,7 +187,7 @@ class CreditCardController extends BaseHeidelpayController
     ): Response {
         $redirectUrl = sprintf(
             $this->getConfig()->getYvesCheckoutPaymentFailedUrl(),
-            $registrationRequestTransfer->getError()->getCode()
+            $registrationRequestTransfer->getError()->getCode(),
         );
 
         return $this->streamRedirectResponse($redirectUrl);
@@ -201,7 +203,7 @@ class CreditCardController extends BaseHeidelpayController
     ): Response {
         $redirectUrl = sprintf(
             $this->getConfig()->getYvesRegistrationSuccessUrl(),
-            $saveResponseTransfer->getIdRegistration()
+            $saveResponseTransfer->getIdRegistration(),
         );
 
         return $this->streamRedirectResponse($redirectUrl);

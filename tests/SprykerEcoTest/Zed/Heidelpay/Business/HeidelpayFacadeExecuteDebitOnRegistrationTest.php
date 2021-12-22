@@ -40,7 +40,7 @@ class HeidelpayFacadeExecuteDebitOnRegistrationTest extends HeidelpayPaymentTest
         $transaction = $this->createRepository()
             ->findHeidelpayTransactionLogByIdSalesOrderAndTransactionType(
                 $orderTransfer->getIdSalesOrder(),
-                HeidelpayConfig::TRANSACTION_TYPE_DEBIT_ON_REGISTRATION
+                HeidelpayConfig::TRANSACTION_TYPE_DEBIT_ON_REGISTRATION,
             );
 
         //Assert

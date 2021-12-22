@@ -37,7 +37,7 @@ class IsDebitOnRegistrationCompletedOmsCondition implements HeidelpayOmsConditio
         $externalTransactionLog = $this->repository
             ->findHeidelpayTransactionLogByIdSalesOrderAndTransactionType(
                 $orderItem->getFkSalesOrder(),
-                HeidelpayConfig::TRANSACTION_TYPE_EXTERNAL_RESPONSE
+                HeidelpayConfig::TRANSACTION_TYPE_EXTERNAL_RESPONSE,
             );
 
         if ($externalTransactionLog === null) {

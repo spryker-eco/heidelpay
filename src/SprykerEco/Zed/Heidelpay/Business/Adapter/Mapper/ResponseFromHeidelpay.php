@@ -24,58 +24,72 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      * @var string
      */
     public const RESPONSE_PARAMETER_GROUP_PROCESSING = 'processing';
+
     /**
      * @var string
      */
     public const RESPONSE_PARAMETER_GROUP_ACCOUNT = 'account';
+
     /**
      * @var string
      */
     public const RESPONSE_PARAMETER_GROUP_ADDRESS = 'address';
+
     /**
      * @var string
      */
     public const RESPONSE_PARAMETER_GROUP_CONFIG = 'config';
+
     /**
      * @var string
      */
     public const RESPONSE_PARAMETER_GROUP_CONTACT = 'contact';
+
     /**
      * @var string
      */
     public const RESPONSE_PARAMETER_GROUP_CRITERION = 'criterion';
+
     /**
      * @var string
      */
     public const RESPONSE_PARAMETER_GROUP_FRONTEND = 'frontend';
+
     /**
      * @var string
      */
     public const RESPONSE_PARAMETER_GROUP_IDENTIFICATION = 'identification';
+
     /**
      * @var string
      */
     public const RESPONSE_PARAMETER_GROUP_NAME = 'name';
+
     /**
      * @var string
      */
     public const RESPONSE_PARAMETER_GROUP_PAYMENT = 'payment';
+
     /**
      * @var string
      */
     public const RESPONSE_PARAMETER_GROUP_PRESENTATION = 'presentation';
+
     /**
      * @var string
      */
     public const RESPONSE_PARAMETER_GROUP_REQUEST = 'request';
+
     /**
      * @var string
      */
     public const RESPONSE_PARAMETER_GROUP_SECURITY = 'security';
+
     /**
      * @var string
      */
     public const RESPONSE_PARAMETER_GROUP_TRANSACTION = 'transaction';
+
     /**
      * @var string
      */
@@ -218,7 +232,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
     protected function addResponseFullPayload(Response $apiResponse, HeidelpayResponseTransfer $responseTransfer): void
     {
         $responseTransfer->setPayload(
-            $this->getJsonEncodedPayloadFromApiResponse($apiResponse)
+            $this->getJsonEncodedPayloadFromApiResponse($apiResponse),
         );
     }
 

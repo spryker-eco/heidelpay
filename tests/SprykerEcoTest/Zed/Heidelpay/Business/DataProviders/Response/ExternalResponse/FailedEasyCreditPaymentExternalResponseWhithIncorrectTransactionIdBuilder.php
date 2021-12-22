@@ -39,16 +39,17 @@ class FailedEasyCreditPaymentExternalResponseWhithIncorrectTransactionIdBuilder 
         $orderEntity = $this->createOrderEntityWithItems(
             $customerJohnDoe,
             $billingAddressJohnDoe,
-            $shippingAddressJohnDoe
+            $shippingAddressJohnDoe,
         );
 
         $this->createHeidelpayPaymentEntity(
             $orderEntity,
             '',
-            $paymentMethod
+            $paymentMethod,
         );
 
         $config = $this->factory->getConfig();
+        $responseParam = [];
         $responseParam[static::EMAIL] = $customerJohnDoe->getEmail();
         $responseParam[static::RESPONSE_URL] = $config->getZedResponseUrl();
         $responseParam[static::CUSTOMER_NAME] = $customerJohnDoe->getFirstName();
@@ -73,7 +74,7 @@ class FailedEasyCreditPaymentExternalResponseWhithIncorrectTransactionIdBuilder 
         $responseParam[static::PROCESSING_RETURN] = $this->getProcessingReturn();
 
         $responseParam[static::PROCESSING_RESULT] = HeidelpayTestConfig::HEIDELPAY_UNSUCCESS_RESPONSE;
-        $responseParam[static::PAYMENT_CODE] = self::PAYMENT_CODE_HP_INI;
+        $responseParam[static::PAYMENT_CODE] = static::PAYMENT_CODE_HP_INI;
         $responseParam[static::PROCESSING_STATUS_CODE] = '90';
         $responseParam[static::PROCESSING_REASON_CODE] = '00';
 

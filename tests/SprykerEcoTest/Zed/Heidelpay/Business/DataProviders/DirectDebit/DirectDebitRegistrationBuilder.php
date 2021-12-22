@@ -50,7 +50,7 @@ class DirectDebitRegistrationBuilder
             [
                 $quoteTransfer->getCustomer()->getFirstName(),
                 $quoteTransfer->getCustomer()->getLastName(),
-            ]
+            ],
         );
     }
 }

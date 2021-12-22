@@ -23,6 +23,7 @@ class UnsuccessfulDirectDebitPaymentMock extends DirectDebitPayment
      */
     public function register(HeidelpayRequestTransfer $captureRequestTransfer): HeidelpayResponseTransfer
     {
+        $response = [];
         $response['payload'] = '{
                         "processing": {"result": "NOK"}, 
                         "payment": {"code": null}                         
@@ -46,6 +47,7 @@ class UnsuccessfulDirectDebitPaymentMock extends DirectDebitPayment
      */
     public function debitOnRegistration(HeidelpayRequestTransfer $debitRequestTransfer): HeidelpayResponseTransfer
     {
+        $response = [];
         $response['payload'] = '{
                         "processing": {"result": "NOK"}, 
                         "payment": {"code": "DD.DE"}                         
@@ -68,6 +70,7 @@ class UnsuccessfulDirectDebitPaymentMock extends DirectDebitPayment
      */
     public function refund(HeidelpayRequestTransfer $reservationRequestTransfer): HeidelpayResponseTransfer
     {
+        $response = [];
         $response['payload'] = '{
                         "processing": {"result": "ACK"}, 
                         "payment": {"code": "DD.RF"}                         

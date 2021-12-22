@@ -57,7 +57,7 @@ class ReservationTransaction implements ReservationTransactionInterface
         $this->transactionLogger->logTransaction(
             HeidelpayConfig::TRANSACTION_TYPE_RESERVATION,
             $reservationRequestTransfer,
-            $reservationResponseTransfer
+            $reservationResponseTransfer,
         );
     }
 }

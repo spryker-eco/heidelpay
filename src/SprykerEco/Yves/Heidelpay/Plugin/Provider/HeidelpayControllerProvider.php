@@ -19,38 +19,47 @@ class HeidelpayControllerProvider extends AbstractYvesControllerProvider
      * @var string
      */
     public const HEIDELPAY_PAYMENT = 'heidelpay-payment';
+
     /**
      * @var string
      */
     public const HEIDELPAY_EASY_CREDIT_PAYMENT = 'heidelpay-easy-credit-payment';
+
     /**
      * @var string
      */
     public const HEIDELPAY_EASY_CREDIT_INITIALIZE_PAYMENT = 'heidelpay-easy-credit-initialize-payment';
+
     /**
      * @var string
      */
     public const HEIDELPAY_PAYMENT_FAILED = 'heidelpay-payment-failed';
+
     /**
      * @var string
      */
     public const HEIDELPAY_IDEAL_AUTHORIZE = 'heidelpay-ideal-authorize';
+
     /**
      * @var string
      */
     public const HEIDELPAY_CREDIT_CARD_REGISTER = 'heidelpay-cc-register';
+
     /**
      * @var string
      */
     public const HEIDELPAY_CREDIT_CARD_REGISTER_SUCCESS = 'heidelpay-cc-register-success';
+
     /**
      * @var string
      */
     public const HEIDELPAY_NOTIFICATION = 'heidelpay-notification';
+
     /**
      * @var string
      */
     public const HEIDELPAY_DIRECT_DEBIT_REGISTER = 'heidelpay-dd-register';
+
     /**
      * @var string
      */
@@ -68,7 +77,7 @@ class HeidelpayControllerProvider extends AbstractYvesControllerProvider
             static::HEIDELPAY_PAYMENT_FAILED,
             'Heidelpay',
             'Heidelpay',
-            'paymentFailed'
+            'paymentFailed',
         );
 
         $this->createController(
@@ -76,7 +85,7 @@ class HeidelpayControllerProvider extends AbstractYvesControllerProvider
             static::HEIDELPAY_PAYMENT,
             'Heidelpay',
             'Heidelpay',
-            'payment'
+            'payment',
         );
 
         $this->createController(
@@ -84,7 +93,7 @@ class HeidelpayControllerProvider extends AbstractYvesControllerProvider
             static::HEIDELPAY_EASY_CREDIT_PAYMENT,
             'Heidelpay',
             'EasyCredit',
-            'easyCreditPayment'
+            'easyCreditPayment',
         );
 
         $this->createController(
@@ -92,7 +101,7 @@ class HeidelpayControllerProvider extends AbstractYvesControllerProvider
             static::HEIDELPAY_EASY_CREDIT_INITIALIZE_PAYMENT,
             'Heidelpay',
             'EasyCredit',
-            'easyCreditInitializePayment'
+            'easyCreditInitializePayment',
         );
 
         $this->createController(
@@ -100,7 +109,7 @@ class HeidelpayControllerProvider extends AbstractYvesControllerProvider
             static::HEIDELPAY_IDEAL_AUTHORIZE,
             'Heidelpay',
             'Ideal',
-            'authorize'
+            'authorize',
         );
 
         $this->createController(
@@ -108,7 +117,7 @@ class HeidelpayControllerProvider extends AbstractYvesControllerProvider
             static::HEIDELPAY_CREDIT_CARD_REGISTER,
             'Heidelpay',
             'CreditCard',
-            'registrationRequest'
+            'registrationRequest',
         );
 
         $this->createController(
@@ -116,7 +125,7 @@ class HeidelpayControllerProvider extends AbstractYvesControllerProvider
             static::HEIDELPAY_CREDIT_CARD_REGISTER_SUCCESS,
             'Heidelpay',
             'CreditCard',
-            'registrationSuccess'
+            'registrationSuccess',
         );
 
         $this->createPostController(
@@ -124,7 +133,7 @@ class HeidelpayControllerProvider extends AbstractYvesControllerProvider
             static::HEIDELPAY_NOTIFICATION,
             'Heidelpay',
             'Notification',
-            'index'
+            'index',
         );
 
         $this->createPostController(
@@ -132,7 +141,7 @@ class HeidelpayControllerProvider extends AbstractYvesControllerProvider
             static::HEIDELPAY_DIRECT_DEBIT_REGISTER,
             'Heidelpay',
             'DirectDebit',
-            'registrationRequest'
+            'registrationRequest',
         );
 
         $this->createController(
@@ -140,7 +149,7 @@ class HeidelpayControllerProvider extends AbstractYvesControllerProvider
             static::HEIDELPAY_DIRECT_DEBIT_REGISTER_SUCCESS,
             'Heidelpay',
             'DirectDebit',
-            'registrationSuccess'
+            'registrationSuccess',
         );
     }
 }

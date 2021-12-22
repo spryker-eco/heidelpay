@@ -48,7 +48,7 @@ trait PaymentResponseTestTrait
         $this->assertTrue($transaction->getHeidelpayResponse()->getIsSuccess());
         $this->assertEquals(
             HeidelpayTestConfig::HEIDELPAY_SUCCESS_RESPONSE,
-            $transaction->getHeidelpayResponse()->getResultCode()
+            $transaction->getHeidelpayResponse()->getResultCode(),
         );
     }
 

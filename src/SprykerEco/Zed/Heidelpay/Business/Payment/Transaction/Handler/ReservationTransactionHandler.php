@@ -72,7 +72,7 @@ class ReservationTransactionHandler implements ReservationTransactionHandlerInte
 
         $reservationResponseTransfer = $this->transaction->executeTransaction(
             $reservationRequestTransfer,
-            $paymentAdapter
+            $paymentAdapter,
         );
 
         if ($reservationResponseTransfer->getIdTransactionUnique() === null) {
@@ -81,7 +81,7 @@ class ReservationTransactionHandler implements ReservationTransactionHandlerInte
 
         $this->paymentWriter->updateHeidelpayPaymentWithResponse($reservationResponseTransfer);
         $orderTransfer->getHeidelpayPayment()->setIdPaymentReference(
-            $reservationResponseTransfer->getIdTransactionUnique()
+            $reservationResponseTransfer->getIdTransactionUnique(),
         );
     }
 
@@ -110,7 +110,7 @@ class ReservationTransactionHandler implements ReservationTransactionHandlerInte
 
         if (!isset($this->paymentMethodAdapterCollection[$paymentMethodCode])) {
             throw new ReservationNotSupportedException(
-                sprintf(static::ERROR_MESSAGE_RESERVATION_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode)
+                sprintf(static::ERROR_MESSAGE_RESERVATION_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode),
             );
         }
 

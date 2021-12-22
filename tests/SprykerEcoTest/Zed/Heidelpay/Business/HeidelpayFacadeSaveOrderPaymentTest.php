@@ -223,7 +223,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
         $heidelpayCreditCardPayment = new HeidelpayCreditCardPaymentTransfer();
         $heidelpayCreditCardPayment->setSelectedRegistration(
             (new HeidelpayCreditCardRegistrationTransfer())
-                ->setRegistrationNumber(static::REGISTRATION_NUMBER)
+                ->setRegistrationNumber(static::REGISTRATION_NUMBER),
         );
 
         $payment = (new PaymentTransfer())
@@ -234,7 +234,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
             (new TotalsTransfer())
                 ->setNetTotal(10000)
                 ->setTaxTotal((new TaxTotalTransfer())->setAmount(10))
-                ->setDiscountTotal(0)
+                ->setDiscountTotal(0),
         );
 
         $quote->setCurrency((new CurrencyTransfer())->setCode('EUR'));

@@ -57,7 +57,7 @@ class AuthorizeTransaction implements AuthorizeTransactionInterface
         $this->transactionLogger->logTransaction(
             HeidelpayConfig::TRANSACTION_TYPE_AUTHORIZE,
             $authorizeRequestTransfer,
-            $authorizeResponseTransfer
+            $authorizeResponseTransfer,
         );
     }
 }

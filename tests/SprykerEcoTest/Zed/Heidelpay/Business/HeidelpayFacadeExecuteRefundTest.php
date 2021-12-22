@@ -39,7 +39,7 @@ class HeidelpayFacadeExecuteRefundTest extends HeidelpayPaymentTest
         $transaction = $this->createRepository()
             ->findHeidelpayTransactionLogByIdSalesOrderAndTransactionType(
                 $orderTransfer->getIdSalesOrder(),
-                HeidelpayConfig::TRANSACTION_TYPE_REFUND
+                HeidelpayConfig::TRANSACTION_TYPE_REFUND,
             );
 
         //Assert

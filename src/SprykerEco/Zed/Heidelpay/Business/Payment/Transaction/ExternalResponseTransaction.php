@@ -55,7 +55,7 @@ class ExternalResponseTransaction implements ExternalResponseTransactionInterfac
         $this->transactionLogger->logTransaction(
             HeidelpayConfig::TRANSACTION_TYPE_EXTERNAL_RESPONSE,
             new HeidelpayRequestTransfer(),
-            $externalResponseTransfer
+            $externalResponseTransfer,
         );
     }
 }

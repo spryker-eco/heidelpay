@@ -15,6 +15,7 @@ class AesEncrypter implements EncrypterInterface
      * @var string
      */
     public const CYPHER_METHOD = 'aes-256-cbc';
+
     /**
      * @var string
      */
@@ -49,7 +50,7 @@ class AesEncrypter implements EncrypterInterface
             static::CYPHER_METHOD,
             $encryptionKey,
             OPENSSL_RAW_DATA,
-            $initVector
+            $initVector,
         );
 
         return implode(static::INIT_VECTOR_SEPARATOR, [$encryptedData, base64_encode($initVector)]);
@@ -77,7 +78,7 @@ class AesEncrypter implements EncrypterInterface
             static::CYPHER_METHOD,
             $encryptionKey,
             OPENSSL_RAW_DATA,
-            base64_decode($initVector)
+            base64_decode($initVector),
         );
     }
 

@@ -37,7 +37,7 @@ class IsRefundedOmsCondition implements HeidelpayOmsConditionInterface
         $externalTransactionLog = $this->repository
             ->findHeidelpayTransactionLogByIdSalesOrderAndTransactionType(
                 $orderItem->getFkSalesOrder(),
-                HeidelpayConfig::TRANSACTION_TYPE_REFUND
+                HeidelpayConfig::TRANSACTION_TYPE_REFUND,
             );
 
         if ($externalTransactionLog === null) {

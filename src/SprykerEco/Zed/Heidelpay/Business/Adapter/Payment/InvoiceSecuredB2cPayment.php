@@ -61,7 +61,7 @@ class InvoiceSecuredB2cPayment extends BasePayment implements InvoiceSecuredB2cP
         $invoiceSecuredB2cMethod->getRequest()->b2cSecured(
             $authorizeRequestTransfer->getInvoiceSecuredB2c()->getSalutation(),
             $this->getFormattedDateOfBirth($authorizeRequestTransfer),
-            $authorizeRequestTransfer->getIdBasket()
+            $authorizeRequestTransfer->getIdBasket(),
         );
 
         return $invoiceSecuredB2cMethod;

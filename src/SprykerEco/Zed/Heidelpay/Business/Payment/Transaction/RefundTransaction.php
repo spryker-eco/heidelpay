@@ -42,7 +42,7 @@ class RefundTransaction implements RefundTransactionInterface
         $this->transactionLogger->logTransaction(
             HeidelpayConfig::TRANSACTION_TYPE_REFUND,
             $refundRequestTransfer,
-            $refundResponseTransfer
+            $refundResponseTransfer,
         );
 
         return $refundResponseTransfer;

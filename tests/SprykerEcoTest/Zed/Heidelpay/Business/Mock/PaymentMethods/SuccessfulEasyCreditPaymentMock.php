@@ -27,6 +27,7 @@ class SuccessfulEasyCreditPaymentMock extends EasyCreditPayment
      */
     public function authorizeOnRegistration(HeidelpayRequestTransfer $authorizeRequestTransfer)
     {
+        $response = [];
         $response['payload'] = '{
                         "processing": {"result": "ACK"}, 
                         "payment": {"code": "HP.PA"}                         
@@ -49,6 +50,7 @@ class SuccessfulEasyCreditPaymentMock extends EasyCreditPayment
      */
     public function initialize(HeidelpayRequestTransfer $initializeRequestTransfer): HeidelpayResponseTransfer
     {
+        $response = [];
         $response['payload'] = '{
                         "processing": {"result": "ACK"}, 
                         "payment": {"code": "HP.IN"}                         
@@ -71,6 +73,7 @@ class SuccessfulEasyCreditPaymentMock extends EasyCreditPayment
      */
     public function finalize(HeidelpayRequestTransfer $finalizeResponseTransfer): HeidelpayResponseTransfer
     {
+        $response = [];
         $response['payload'] = '{
                         "processing": {"result": "ACK"}, 
                         "payment": {"code": "HP.FI"}                         
@@ -93,6 +96,7 @@ class SuccessfulEasyCreditPaymentMock extends EasyCreditPayment
      */
     public function reserve(HeidelpayRequestTransfer $reservationRequestTransfer): HeidelpayResponseTransfer
     {
+        $response = [];
         $response['payload'] = '{
                         "processing": {"result": "ACK"}, 
                         "payment": {"code": "HP.PI"}                         

@@ -13,10 +13,12 @@ interface HeidelpayTestConfig
      * @var string
      */
     public const CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL = 'http://url-to-redirect-customer.com';
+
     /**
      * @var string
      */
     public const HEIDELPAY_SUCCESS_RESPONSE = 'ACK';
+
     /**
      * @var string
      */
@@ -31,14 +33,17 @@ interface HeidelpayTestConfig
      * @var string
      */
     public const REGISTRATION_NUMBER = '31HA07BC814CA0300B1387AB8F16C0EC';
+
     /**
      * @var string
      */
     public const CARD_ACCOUNT_NUMBER = '471110******0000';
+
     /**
      * @var string
      */
     public const CARD_BRAND = 'MASTER';
+
     /**
      * @var string
      */
@@ -48,22 +53,27 @@ interface HeidelpayTestConfig
      * @var string
      */
     public const ACCOUNT_BANK_NAME = 'COMMERZBANK KÖLN';
+
     /**
      * @var string
      */
     public const ACCOUNT_BIC = 'COBADEFFXXX';
+
     /**
      * @var string
      */
     public const ACCOUNT_COUNTRY = 'DE';
+
     /**
      * @var string
      */
     public const ACCOUNT_IBAN = 'DE89370400440532013000';
+
     /**
      * @var int
      */
     public const ACCOUNT_NUMBER = 532013000;
+
     /**
      * @var string
      */

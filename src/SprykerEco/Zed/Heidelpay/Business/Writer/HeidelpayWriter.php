@@ -38,7 +38,7 @@ class HeidelpayWriter implements HeidelpayWriterInterface
         $this->getTransactionHandler()->handleTransaction(
             function () use ($notificationTransfer) {
                 $this->entityManager->savePaymentHeidelpayNotificationEntity($notificationTransfer);
-            }
+            },
         );
     }
 }

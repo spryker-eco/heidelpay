@@ -25,12 +25,12 @@ trait PaymentHeidelpayTransferBuilderTrait
     {
         $this->tester->setDependency(
             SalesDependencyProvider::PLUGINS_ORDER_ITEM_EXPANDER,
-            []
+            [],
         );
 
         $this->tester->setDependency(
             SalesDependencyProvider::HYDRATE_ORDER_PLUGINS,
-            []
+            [],
         );
 
         $paymentTransfer = $heidelpayFacade->getPaymentByIdSalesOrder($salesOrder->getIdSalesOrder());

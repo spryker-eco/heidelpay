@@ -49,7 +49,7 @@ class DirectDebitDataProvider implements StepEngineFormDataProviderInterface
     public function getOptions(AbstractTransfer $quoteTransfer): array
     {
         $directDebitPayment = $this->selectPaymentOption(
-            $quoteTransfer->getPayment()->getHeidelpayDirectDebit()
+            $quoteTransfer->getPayment()->getHeidelpayDirectDebit(),
         );
 
         $quoteTransfer->getPayment()->setHeidelpayDirectDebit($directDebitPayment);

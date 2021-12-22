@@ -23,6 +23,7 @@ class UnsuccessfulCreditCardCapturePaymentMock extends CreditCardPayment
      */
     public function register(HeidelpayRequestTransfer $captureRequestTransfer): HeidelpayResponseTransfer
     {
+        $response = [];
         $response['payload'] = '{
                         "processing": {"result": "NOK"}, 
                         "payment": {"code": null}                         
@@ -46,6 +47,7 @@ class UnsuccessfulCreditCardCapturePaymentMock extends CreditCardPayment
          */
     public function capture(HeidelpayRequestTransfer $debitRequestTransfer): HeidelpayResponseTransfer
     {
+        $response = [];
         $response['payload'] = '{
                         "processing": {"result": "NOK"}, 
                         "payment": {"code": "CC.RC"}                         

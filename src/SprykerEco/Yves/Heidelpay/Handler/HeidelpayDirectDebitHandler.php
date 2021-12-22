@@ -66,7 +66,7 @@ class HeidelpayDirectDebitHandler extends HeidelpayHandler
         }
 
         $directDebitPayment->setSelectedRegistration(
-            $directDebitPayment->getPaymentOptions()->getLastSuccessfulRegistration()
+            $directDebitPayment->getPaymentOptions()->getLastSuccessfulRegistration(),
         );
 
         $quoteTransfer->getPayment()->setHeidelpayDirectDebit($directDebitPayment);

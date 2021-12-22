@@ -52,7 +52,7 @@ class OrderWithSuccessfulEasyCreditInitializeTransaction
         $orderEntity = $this->createOrderEntityWithItems(
             $customerJohnDoe,
             $billingAddressJohnDoe,
-            $shippingAddressJohnDoe
+            $shippingAddressJohnDoe,
         );
 
         $this->createTransaction($orderEntity);

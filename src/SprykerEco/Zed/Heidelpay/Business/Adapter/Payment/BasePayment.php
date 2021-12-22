@@ -86,7 +86,7 @@ class BasePayment implements PaymentWithExternalResponseInterface
         try {
             $apiResponseObject->verifySecurityHash(
                 $this->getApplicationSecret(),
-                $apiResponseObject->getIdentification()->getTransactionId()
+                $apiResponseObject->getIdentification()->getTransactionId(),
             );
         } catch (HashVerificationException $exception) {
             $errorTransfer = $this->extractErrorTransferFromException($exception);

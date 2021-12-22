@@ -22,13 +22,13 @@ class HeidelpayResponseToIdealAuthorizeForm implements HeidelpayResponseToIdealA
     {
         $idealAuthoriseFormTransfer
             ->setActionUrl(
-                $responseTransfer->getPaymentFormUrl()
+                $responseTransfer->getPaymentFormUrl(),
             )
             ->setCountries(
-                $responseTransfer->getConfig()->getBankCountries()
+                $responseTransfer->getConfig()->getBankCountries(),
             )
             ->setBanks(
-                $responseTransfer->getConfig()->getBankBrands()
+                $responseTransfer->getConfig()->getBankBrands(),
             );
     }
 }

@@ -133,7 +133,7 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
 
         if (!isset($this->paymentMethodAdapterCollection[$paymentMethodCode])) {
             throw new ExternalResponseNotSupportedException(
-                sprintf(static::ERROR_MESSAGE_EXTERNAL_RESPONSE_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode)
+                sprintf(static::ERROR_MESSAGE_EXTERNAL_RESPONSE_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode),
             );
         }
 
@@ -150,7 +150,7 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
         return (new HeidelpayPaymentProcessingResponseTransfer())
             ->fromArray(
                 $transactionResultTransfer->toArray(),
-                true
+                true,
             );
     }
 }

@@ -57,7 +57,7 @@ class DebitTransaction implements DebitTransactionInterface
         $this->transactionLogger->logTransaction(
             HeidelpayConfig::TRANSACTION_TYPE_DEBIT,
             $debitRequestTransfer,
-            $debitResponseTransfer
+            $debitResponseTransfer,
         );
     }
 }

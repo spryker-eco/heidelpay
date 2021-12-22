@@ -43,7 +43,7 @@ class ExternalPaymentResponseBuilder implements ExternalPaymentResponseBuilderIn
             ->setBody($postRequestParams)
             ->setIdSalesOrder($idSalesOrder)
             ->setPaymentMethod(
-                $this->getPaymentMethodForOrder($idSalesOrder)
+                $this->getPaymentMethodForOrder($idSalesOrder),
             );
 
         return $externalResponseTransfer;

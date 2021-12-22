@@ -90,7 +90,7 @@ class CaptureTransactionHandler implements CaptureTransactionHandlerInterface
 
         if (!isset($this->paymentMethodAdapterCollection[$paymentMethodCode])) {
             throw new CaptureNotSupportedException(
-                sprintf(static::ERROR_MESSAGE_CAPTURE_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode)
+                sprintf(static::ERROR_MESSAGE_CAPTURE_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode),
             );
         }
 

@@ -43,7 +43,7 @@ class HeidelpayRepository extends AbstractRepository implements HeidelpayReposit
         return $this->getMapper()
             ->mapEntityToHeidelpayPaymentTransfer(
                 $paymentHeidelpayEntity,
-                new HeidelpayPaymentTransfer()
+                new HeidelpayPaymentTransfer(),
             );
     }
 
@@ -65,7 +65,7 @@ class HeidelpayRepository extends AbstractRepository implements HeidelpayReposit
         return $this->getMapper()
             ->mapEntityToHeidelpayNotificationTransfer(
                 $paymentHeidelpayNotification,
-                new HeidelpayNotificationTransfer()
+                new HeidelpayNotificationTransfer(),
             );
     }
 
@@ -87,7 +87,7 @@ class HeidelpayRepository extends AbstractRepository implements HeidelpayReposit
         return $this->getMapper()
             ->mapNotificationEntitiesToHeidelpayNotificationCollection(
                 $paymentHeidelpayNotification,
-                new HeidelpayNotificationCollectionTransfer()
+                new HeidelpayNotificationCollectionTransfer(),
             );
     }
 
@@ -110,7 +110,7 @@ class HeidelpayRepository extends AbstractRepository implements HeidelpayReposit
         return $this->getMapper()
             ->mapEntityToHeidelpayDirectDebitRegistrationTransfer(
                 $paymentHeidelpayDirectDebitRegistrationEntity,
-                new HeidelpayDirectDebitRegistrationTransfer()
+                new HeidelpayDirectDebitRegistrationTransfer(),
             );
     }
 
@@ -134,7 +134,7 @@ class HeidelpayRepository extends AbstractRepository implements HeidelpayReposit
         return $this->getMapper()
             ->mapEntityToHeidelpayDirectDebitRegistrationTransfer(
                 $paymentHeidelpayDirectDebitRegistrationEntity,
-                new HeidelpayDirectDebitRegistrationTransfer()
+                new HeidelpayDirectDebitRegistrationTransfer(),
             );
     }
 
@@ -160,7 +160,7 @@ class HeidelpayRepository extends AbstractRepository implements HeidelpayReposit
         return $this->getMapper()
             ->mapEntityToHeidelpayDirectDebitRegistrationTransfer(
                 $paymentHeidelpayDirectDebitRegistrationEntity,
-                new HeidelpayDirectDebitRegistrationTransfer()
+                new HeidelpayDirectDebitRegistrationTransfer(),
             );
     }
 
@@ -186,7 +186,7 @@ class HeidelpayRepository extends AbstractRepository implements HeidelpayReposit
         return $this->getMapper()
             ->mapEntityToHeidelpayTransactionLogTransfer(
                 $paymentHeidelpayTransactionLogEntity,
-                new HeidelpayTransactionLogTransfer()
+                new HeidelpayTransactionLogTransfer(),
             );
     }
 

@@ -79,7 +79,7 @@ class HeidelpayFactory extends AbstractFactory
     {
         return new CreditCardRegistrationResponseParser(
             $this->createApiResponseToRegistrationResponseTransferMapper(),
-            $this->getConfig()
+            $this->getConfig(),
         );
     }
 
@@ -90,7 +90,7 @@ class HeidelpayFactory extends AbstractFactory
     {
         return new DirectDebitRegistrationResponseParser(
             $this->createDirectDebitRegistrationResponseMapper(),
-            $this->getConfig()
+            $this->getConfig(),
         );
     }
 

@@ -26,10 +26,12 @@ class EasyCreditSubForm extends AbstractSubFormType implements SubFormInterface,
      * @var string
      */
     public const VARS_KEY_LEGAL_TEXT = 'legalText';
+
     /**
      * @var string
      */
     public const VARS_KEY_LOGO_URL = 'logo_url';
+
     /**
      * @var string
      */
@@ -39,6 +41,7 @@ class EasyCreditSubForm extends AbstractSubFormType implements SubFormInterface,
      * @var string
      */
     protected const FIELD_EASY_CREDIT_POLICY_AGREEMENT = 'isPolicyAgreementChecked';
+
     /**
      * @var string
      */
@@ -130,7 +133,7 @@ class EasyCreditSubForm extends AbstractSubFormType implements SubFormInterface,
                 'constraints' => [
                     $this->createNotBlankConstraint(),
                 ],
-            ]
+            ],
         );
 
         return $this;

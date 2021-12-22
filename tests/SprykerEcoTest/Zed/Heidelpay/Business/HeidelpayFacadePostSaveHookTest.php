@@ -67,13 +67,13 @@ class HeidelpayFacadePostSaveHookTest extends HeidelpayPaymentTest
     ): void {
         $this->heidelpayFacade->postSaveHook(
             $quoteTransfer,
-            $checkoutResponseTransfer
+            $checkoutResponseTransfer,
         );
 
         $this->assertTrue($checkoutResponseTransfer->getIsExternalRedirect());
         $this->assertEquals(
             HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL,
-            $checkoutResponseTransfer->getRedirectUrl()
+            $checkoutResponseTransfer->getRedirectUrl(),
         );
     }
 
@@ -115,7 +115,7 @@ class HeidelpayFacadePostSaveHookTest extends HeidelpayPaymentTest
 
         $this->heidelpayFacade->postSaveHook(
             $quoteTransfer,
-            $checkoutResponseTransfer
+            $checkoutResponseTransfer,
         );
 
         $idealAuthorizeStepUrl = (new HeidelpayConfig())
@@ -124,7 +124,7 @@ class HeidelpayFacadePostSaveHookTest extends HeidelpayPaymentTest
         $this->assertTrue($checkoutResponseTransfer->getIsExternalRedirect());
         $this->assertEquals(
             $idealAuthorizeStepUrl,
-            $checkoutResponseTransfer->getRedirectUrl()
+            $checkoutResponseTransfer->getRedirectUrl(),
         );
     }
 

@@ -18,7 +18,7 @@ interface HeidelpayNotificationExpanderPluginInterface
      * @api
      *
      * @param \Generated\Shared\Transfer\HeidelpayNotificationTransfer $notificationTransfer
-     * @param array<string[]> $notificationData
+     * @param array<array<string>> $notificationData
      *
      * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer
      */

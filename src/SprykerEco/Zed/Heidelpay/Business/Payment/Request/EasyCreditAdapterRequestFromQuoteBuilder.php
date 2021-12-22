@@ -83,7 +83,7 @@ class EasyCreditAdapterRequestFromQuoteBuilder extends AdapterRequestFromQuoteBu
 
         $orderListTransfer = $this->salesFacade->getCustomerOrders(
             new OrderListTransfer(),
-            $heidelpayRequestTransfer->getRiskInformation()->getCustomerId()
+            $heidelpayRequestTransfer->getRiskInformation()->getCustomerId(),
         );
 
         $heidelpayRequestTransfer->getRiskInformation()->setCustomerOrdersCount($orderListTransfer->getOrders()->count());

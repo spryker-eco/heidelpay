@@ -95,7 +95,7 @@ class HeidelpayEasycreditInitializeStep extends AbstractBaseStep
         $quoteTransferMock = clone($quoteTransfer);
         $quoteTransferMock->setPayment(
             (new PaymentTransfer())
-                ->setPaymentMethod(HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT)
+                ->setPaymentMethod(HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT),
         );
 
         return $this->heidelpayClient->sendHeidelpayEasycreditInitializeRequest($quoteTransferMock);

@@ -71,7 +71,7 @@ class HeidelpayFacadeInitializePaymentTest extends HeidelpayPaymentTest
         $quoteTransfer = $this->createQuote();
         $paymentTransfer = (new PaymentTransfer())
             ->setHeidelpayEasyCredit(
-                (new HeidelpayEasyCreditPaymentTransfer())
+                (new HeidelpayEasyCreditPaymentTransfer()),
             )
             ->setPaymentMethod(HeidelpayConfig::PAYMENT_METHOD_EASY_CREDIT);
 
@@ -80,8 +80,8 @@ class HeidelpayFacadeInitializePaymentTest extends HeidelpayPaymentTest
                 ->setGrandTotal(10000)
                 ->setTaxTotal(
                     (new TaxTotalTransfer())
-                        ->setAmount(1000)
-                )
+                        ->setAmount(1000),
+                ),
         );
 
         $quoteTransfer->setPayment($paymentTransfer);
