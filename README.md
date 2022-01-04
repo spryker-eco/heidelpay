@@ -12,6 +12,8 @@
 composer require spryker-eco/heidelpay
 ```
 
+**WARNING**: This module is PHP 7 only, PHP8+ is not supported by the direct dependency [heidelpay/php-message-code-mapper](https://github.com/heidelpay/php-message-code-mapper) - which is also discontinued. As such, you can only install and use this code with PHP 7. Please consider this module deprecated as of now.
+
 ## Documentation
 
 [Documentation](https://documentation.spryker.com/industry_partners/payment/heidelpay/heidelpay.htm)
