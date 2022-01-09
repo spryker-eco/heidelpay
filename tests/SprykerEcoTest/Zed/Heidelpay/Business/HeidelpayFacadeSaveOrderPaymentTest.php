@@ -33,6 +33,9 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
 {
     use NewOrderWithOneItemTrait;
 
+    /**
+     * @var string
+     */
     protected const REGISTRATION_NUMBER = '31HA07BC814CA0300B135019D1515E08';
 
     /**

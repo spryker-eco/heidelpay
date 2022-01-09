@@ -184,7 +184,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
         /** @var array<string> $banks */
         $banks = $config->getBrands();
 
-        if (empty($banks)) {
+        if (!$banks) {
             return;
         }
 
@@ -209,7 +209,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
         /** @var array<string> $bankCountries */
         $bankCountries = $config->getBankCountry();
 
-        if (empty($bankCountries)) {
+        if (!$bankCountries) {
             return;
         }
 
@@ -290,7 +290,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      */
     protected function getConnectorInfo(Response $apiResponse): ?string
     {
-        if (empty($apiResponse->getConnector()->getAccountIBan())) {
+        if (!$apiResponse->getConnector()->getAccountIBan()) {
             return null;
         }
 

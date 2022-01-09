@@ -36,7 +36,7 @@ class SalesOrderChecker implements SalesOrderCheckerInterface
             ->findHeidelpayTransactionLogByIdSalesOrderAndTransactionTypeAndResponseCode(
                 $idSalesOrder,
                 HeidelpayConfig::TRANSACTION_TYPE_CAPTURE,
-                HeidelpayConfig::CAPTURE_TRANSACTION_STATUS_OK
+                HeidelpayConfig::CAPTURE_TRANSACTION_STATUS_OK,
             );
 
         if (!$heidelpayTransactionLogTransfer) {
@@ -57,7 +57,7 @@ class SalesOrderChecker implements SalesOrderCheckerInterface
             ->findHeidelpayTransactionLogByIdSalesOrderAndTransactionTypeAndResponseCode(
                 $idSalesOrder,
                 HeidelpayConfig::TRANSACTION_TYPE_REFUND,
-                HeidelpayConfig::REFUND_TRANSACTION_STATUS_OK
+                HeidelpayConfig::REFUND_TRANSACTION_STATUS_OK,
             );
 
         if (!$heidelpayTransactionLogTransfer) {
@@ -78,7 +78,7 @@ class SalesOrderChecker implements SalesOrderCheckerInterface
             ->findHeidelpayTransactionLogByIdSalesOrderAndTransactionTypeAndResponseCode(
                 $idSalesOrder,
                 HeidelpayConfig::TRANSACTION_TYPE_EXTERNAL_RESPONSE,
-                HeidelpayConfig::EXTERNAL_RESPONSE_TRANSACTION_STATUS_OK
+                HeidelpayConfig::EXTERNAL_RESPONSE_TRANSACTION_STATUS_OK,
             );
 
         if (!$heidelpayTransactionLogTransfer) {

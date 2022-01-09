@@ -37,6 +37,9 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
     use CustomerAddressTrait;
     use CustomerTrait;
 
+    /**
+     * @var int
+     */
     public const CUSTOMER_ADDRESS_ID = 100000000;
 
     /**

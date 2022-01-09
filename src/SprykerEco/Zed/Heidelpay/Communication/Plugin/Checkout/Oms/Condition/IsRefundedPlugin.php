@@ -32,7 +32,7 @@ class IsRefundedPlugin extends AbstractPlugin implements ConditionInterface
     public function check(SpySalesOrderItem $orderItem): bool
     {
         return $this->getFacade()->isSalesOrderRefunded(
-            $orderItem->getFkSalesOrder()
+            $orderItem->getFkSalesOrder(),
         );
     }
 }

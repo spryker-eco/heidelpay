@@ -32,7 +32,7 @@ class IsDebitOnRegistrationCompletedPlugin extends AbstractPlugin implements Con
     public function check(SpySalesOrderItem $orderItem): bool
     {
         return $this->getFacade()->isSalesOrderDebitOnRegistrationCompleted(
-            $orderItem->getFkSalesOrder()
+            $orderItem->getFkSalesOrder(),
         );
     }
 }

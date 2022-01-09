@@ -15,7 +15,7 @@ use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
 class HeidelpayHelper extends Module
 {
     /**
-     * @param mixed[] $seedData
+     * @param array<mixed> $seedData
      *
      * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer
      */
@@ -25,14 +25,14 @@ class HeidelpayHelper extends Module
 
         $paymentHeidelpayTransactionLogEntity = new SpyPaymentHeidelpayTransactionLog();
         $paymentHeidelpayTransactionLogEntity->fromArray(
-            $heidelpayTransactionLogTransfer->toArray()
+            $heidelpayTransactionLogTransfer->toArray(),
         );
         $paymentHeidelpayTransactionLogEntity->setFkSalesOrder($heidelpayTransactionLogTransfer->getIdSalesOrder());
         $paymentHeidelpayTransactionLogEntity->save();
 
         $heidelpayTransactionLogTransfer->fromArray(
             $paymentHeidelpayTransactionLogEntity->toArray(),
-            true
+            true,
         )->setIdSalesOrder($paymentHeidelpayTransactionLogEntity->getFkSalesOrder());
 
         return $heidelpayTransactionLogTransfer;

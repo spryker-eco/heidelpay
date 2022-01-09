@@ -32,7 +32,7 @@ class IsCaptureApprovedPlugin extends AbstractPlugin implements ConditionInterfa
     public function check(SpySalesOrderItem $orderItem): bool
     {
         return $this->getFacade()->isSalesOrderCaptureApproved(
-            $orderItem->getFkSalesOrder()
+            $orderItem->getFkSalesOrder(),
         );
     }
 }
