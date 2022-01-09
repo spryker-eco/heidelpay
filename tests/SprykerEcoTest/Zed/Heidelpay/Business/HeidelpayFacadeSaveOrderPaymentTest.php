@@ -36,6 +36,11 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
     protected const REGISTRATION_NUMBER = '31HA07BC814CA0300B135019D1515E08';
 
     /**
+     * @var string
+     */
+    protected const REGISTRATION_NUMBER = '31HA07BC814CA0300B135019D1515E08';
+
+    /**
      * @dataProvider functionListForSuccessfulSaveOrderPaymentTest
      *
      * @param string $dataProviderFunctionName
@@ -220,7 +225,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
         $heidelpayCreditCardPayment = new HeidelpayCreditCardPaymentTransfer();
         $heidelpayCreditCardPayment->setSelectedRegistration(
             (new HeidelpayCreditCardRegistrationTransfer())
-                ->setRegistrationNumber(static::REGISTRATION_NUMBER)
+                ->setRegistrationNumber(static::REGISTRATION_NUMBER),
         );
 
         $payment = (new PaymentTransfer())
@@ -231,7 +236,7 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
             (new TotalsTransfer())
                 ->setNetTotal(10000)
                 ->setTaxTotal((new TaxTotalTransfer())->setAmount(10))
-                ->setDiscountTotal(0)
+                ->setDiscountTotal(0),
         );
 
         $quote->setCurrency((new CurrencyTransfer())->setCode('EUR'));

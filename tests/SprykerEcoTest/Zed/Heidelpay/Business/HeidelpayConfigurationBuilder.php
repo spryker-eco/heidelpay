@@ -21,13 +21,14 @@ class HeidelpayConfigurationBuilder
      */
     public function getHeidelpayConfigurationOptions(): array
     {
+        $config = [];
         $config[HeidelpayConstants::CONFIG_ENCRYPTION_KEY] = 'encryption_key';
         $config[ApplicationConstants::HOST_YVES] = 'www.de.spryker.test';
         $YVES_HOST_PROTOCOL = 'http';
         $config[ApplicationConstants::BASE_URL_YVES] = sprintf(
             '%s://%s',
             $YVES_HOST_PROTOCOL,
-            $config[ApplicationConstants::HOST_YVES]
+            $config[ApplicationConstants::HOST_YVES],
         );
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_PAYMENT_RESPONSE_URL] = $YVES_HOST_PROTOCOL . '://' . $config[ApplicationConstants::HOST_YVES] . '/heidelpay/payment';
         $config[HeidelpayConstants::CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_REJECTED_DELIVERY_ADDRESS] = 'Packstation';
@@ -72,7 +73,7 @@ class HeidelpayConfigurationBuilder
         $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_PAYMENT_FRAME_CUSTOM_CSS_URL] = '';
         $config[HeidelpayConstants::CONFIG_YVES_CHECKOUT_PAYMENT_FRAME_PREVENT_ASYNC_REDIRECT] = 'FALSE';
 
-        $config[KernelConstants::CORE_NAMESPACES] = [ 'Spryker', 'SprykerEco'];
+        $config[KernelConstants::CORE_NAMESPACES] = ['Spryker', 'SprykerEco'];
         $config[PropelConstants::SCHEMA_FILE_PATH_PATTERN] = APPLICATION_VENDOR_DIR . '/*/*/src/*/Zed/*/Persistence/Propel/Schema/';
 
         $config[SalesConstants::PAYMENT_METHOD_STATEMACHINE_MAPPING] = [

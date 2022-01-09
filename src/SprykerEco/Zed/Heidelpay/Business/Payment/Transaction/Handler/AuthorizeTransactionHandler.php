@@ -16,6 +16,9 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface
 
 class AuthorizeTransactionHandler implements AuthorizeTransactionHandlerInterface
 {
+    /**
+     * @var string
+     */
     public const ERROR_MESSAGE_AUTHORIZE_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call authorize transaction on payment method \'%s\' ' .
         'that does not support it';
@@ -26,7 +29,7 @@ class AuthorizeTransactionHandler implements AuthorizeTransactionHandlerInterfac
     protected $transaction;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface[]
+     * @var array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface>
      */
     protected $paymentMethodAdapterCollection;
 
@@ -37,7 +40,7 @@ class AuthorizeTransactionHandler implements AuthorizeTransactionHandlerInterfac
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\AuthorizeTransactionInterface $transaction
-     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface[] $paymentMethodAdapterCollection
+     * @param array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeInterface> $paymentMethodAdapterCollection
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder
      */
     public function __construct(
@@ -87,7 +90,7 @@ class AuthorizeTransactionHandler implements AuthorizeTransactionHandlerInterfac
 
         if (!isset($this->paymentMethodAdapterCollection[$paymentMethodCode])) {
             throw new AuthorizeNotSupportedException(
-                sprintf(static::ERROR_MESSAGE_AUTHORIZE_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode)
+                sprintf(static::ERROR_MESSAGE_AUTHORIZE_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode),
             );
         }
 

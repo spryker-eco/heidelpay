@@ -90,7 +90,7 @@ class HeidelpayDirectDebitRegistrationStep extends AbstractBaseStep implements S
     {
         return (new HeidelpayDirectDebitPaymentTransfer())
             ->setPaymentOptions(
-                $this->getDirectDebitPaymentOptions($quoteTransfer)
+                $this->getDirectDebitPaymentOptions($quoteTransfer),
             );
     }
 

@@ -9,7 +9,7 @@ namespace SprykerEco\Client\Heidelpay;
 
 use Spryker\Client\Kernel\AbstractFactory;
 use Spryker\Client\Session\SessionClientFactoryTrait;
-use Spryker\Client\ZedRequest\ZedRequestClientFactoryTrait;
+use Spryker\Client\ZedRequest\ZedRequestClientInterface;
 use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToLocaleClientInterface;
 use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteClientInterface;
 use SprykerEco\Client\Heidelpay\Mapper\ApiResponseToRegistrationRequestTransfer;
@@ -31,7 +31,14 @@ use SprykerEco\Client\Heidelpay\Zed\HeidelpayStubInterface;
 class HeidelpayFactory extends AbstractFactory
 {
     use SessionClientFactoryTrait;
-    use ZedRequestClientFactoryTrait;
+
+    /**
+     * @return \Spryker\Client\ZedRequest\ZedRequestClientInterface
+     */
+    public function getZedRequestClient(): ZedRequestClientInterface
+    {
+        return $this->getProvidedDependency(HeidelpayDependencyProvider::CLIENT_ZED_REQUEST);
+    }
 
     /**
      * @return \SprykerEco\Client\Heidelpay\Sdk\HeidelpayApiAdapterInterface
@@ -72,7 +79,7 @@ class HeidelpayFactory extends AbstractFactory
     {
         return new CreditCardRegistrationResponseParser(
             $this->createApiResponseToRegistrationResponseTransferMapper(),
-            $this->getConfig()
+            $this->getConfig(),
         );
     }
 
@@ -83,7 +90,7 @@ class HeidelpayFactory extends AbstractFactory
     {
         return new DirectDebitRegistrationResponseParser(
             $this->createDirectDebitRegistrationResponseMapper(),
-            $this->getConfig()
+            $this->getConfig(),
         );
     }
 

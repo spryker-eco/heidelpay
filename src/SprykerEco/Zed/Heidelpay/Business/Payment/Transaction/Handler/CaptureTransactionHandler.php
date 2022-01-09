@@ -16,6 +16,9 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface;
 
 class CaptureTransactionHandler implements CaptureTransactionHandlerInterface
 {
+    /**
+     * @var string
+     */
     public const ERROR_MESSAGE_CAPTURE_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call capture transaction on payment method \'%s\' ' .
         'that does not support it';
@@ -26,7 +29,7 @@ class CaptureTransactionHandler implements CaptureTransactionHandlerInterface
     protected $transaction;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface[]
+     * @var array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface>
      */
     protected $paymentMethodAdapterCollection;
 
@@ -37,7 +40,7 @@ class CaptureTransactionHandler implements CaptureTransactionHandlerInterface
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\CaptureTransactionInterface $transaction
-     * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface[] $paymentMethodAdapterCollection
+     * @param array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithCaptureInterface> $paymentMethodAdapterCollection
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface $heidelpayRequestBuilder
      */
     public function __construct(
@@ -87,7 +90,7 @@ class CaptureTransactionHandler implements CaptureTransactionHandlerInterface
 
         if (!isset($this->paymentMethodAdapterCollection[$paymentMethodCode])) {
             throw new CaptureNotSupportedException(
-                sprintf(static::ERROR_MESSAGE_CAPTURE_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode)
+                sprintf(static::ERROR_MESSAGE_CAPTURE_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode),
             );
         }
 

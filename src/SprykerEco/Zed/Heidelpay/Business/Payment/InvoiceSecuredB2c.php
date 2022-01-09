@@ -22,7 +22,7 @@ class InvoiceSecuredB2c extends BaseHeidelpayPaymentMethod implements PaymentWit
     public function postSaveOrder(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer): void
     {
         $redirectUrl = $this->getCheckoutRedirectUrlFromAuthorizeTransactionLog(
-            $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder()
+            $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder(),
         );
 
         $this->setExternalRedirect($redirectUrl, $checkoutResponseTransfer);

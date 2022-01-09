@@ -14,6 +14,9 @@ use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepositoryInterface;
 
 class IsFinalizingFinishedOmsCondition implements HeidelpayOmsConditionInterface
 {
+    /**
+     * @var string
+     */
     protected const FINALIZE_PAYMENT_CODE = 'IV.FI';
 
     /**
@@ -39,7 +42,7 @@ class IsFinalizingFinishedOmsCondition implements HeidelpayOmsConditionInterface
         $heidelpayNotificationCollection = $this->repository
             ->getPaymentHeidelpayNotificationCollectionByTransactionIdAndPaymentCode(
                 (string)$orderItem->getFkSalesOrder(),
-                static::FINALIZE_PAYMENT_CODE
+                static::FINALIZE_PAYMENT_CODE,
             );
 
         if ($heidelpayNotificationCollection->getNotifications()->count() === 0) {
@@ -47,7 +50,7 @@ class IsFinalizingFinishedOmsCondition implements HeidelpayOmsConditionInterface
         }
 
         return $this->isFinalizingSuccessful(
-            $heidelpayNotificationCollection->getNotifications()->offsetGet(0)
+            $heidelpayNotificationCollection->getNotifications()->offsetGet(0),
         );
     }
 

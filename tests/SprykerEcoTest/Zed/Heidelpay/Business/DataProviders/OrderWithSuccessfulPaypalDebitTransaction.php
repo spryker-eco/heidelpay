@@ -52,7 +52,7 @@ class OrderWithSuccessfulPaypalDebitTransaction
         $orderEntity = $this->createOrderEntityWithItems(
             $customerJohnDoe,
             $billingAddressJohnDoe,
-            $shippingAddressJohnDoe
+            $shippingAddressJohnDoe,
         );
 
         $this->createSuccessfulDebitTransactionForOrder($orderEntity);

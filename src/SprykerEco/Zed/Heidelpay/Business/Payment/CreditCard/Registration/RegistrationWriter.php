@@ -38,7 +38,7 @@ class RegistrationWriter implements RegistrationWriterInterface
         if ($registrationEntity !== null) {
             $registrationEntity
                 ->setFkCustomerAddress(
-                    $quoteTransfer->getShippingAddress()->getIdCustomerAddress()
+                    $quoteTransfer->getShippingAddress()->getIdCustomerAddress(),
                 )
                 ->save();
         }
@@ -59,7 +59,7 @@ class RegistrationWriter implements RegistrationWriterInterface
 
         $registrationEntity = $this->heidelpayQueryContainer
             ->queryCreditCardRegistrationByRegistrationNumber(
-                $registrationHash
+                $registrationHash,
             )
             ->findOne();
 

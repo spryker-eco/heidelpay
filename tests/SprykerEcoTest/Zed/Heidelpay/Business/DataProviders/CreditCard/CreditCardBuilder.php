@@ -47,7 +47,7 @@ class CreditCardBuilder
             [
                 $qouteTransfer->getCustomer()->getFirstName(),
                 $qouteTransfer->getCustomer()->getLastName(),
-            ]
+            ],
         );
     }
 }

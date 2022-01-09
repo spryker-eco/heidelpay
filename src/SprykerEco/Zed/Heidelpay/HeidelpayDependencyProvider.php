@@ -16,17 +16,44 @@ use SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesFacadeBridge;
 use SprykerEco\Zed\Heidelpay\Dependency\QueryContainer\HeidelpayToSalesQueryContainerBridge;
 use SprykerEco\Zed\Heidelpay\Dependency\Service\HeidelpayToUtilEncodingServiceBridge;
 
+/**
+ * @method \SprykerEco\Zed\Heidelpay\HeidelpayConfig getConfig()
+ */
 class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
 {
+    /**
+     * @var string
+     */
     public const FACADE_CURRENCY = 'currency facade';
+
+    /**
+     * @var string
+     */
     public const FACADE_MONEY = 'money facade';
+
+    /**
+     * @var string
+     */
     public const FACADE_SALES = 'sales facade';
 
+    /**
+     * @var string
+     */
     public const QUERY_CONTAINER_SALES = 'sales query container';
 
+    /**
+     * @var string
+     */
     public const SERVICE_UTIL_ENCODING = 'util encoding service';
 
+    /**
+     * @var string
+     */
     public const PLUGINS_HEIDELPAY_NOTIFICATION_EXPANDER = 'PLUGINS_HEIDELPAY_NOTIFICATION_EXPANDER';
+
+    /**
+     * @var string
+     */
     public const PLUGIN_MONEY = 'PLUGIN_MONEY';
 
     /**
@@ -160,7 +187,7 @@ class HeidelpayDependencyProvider extends AbstractBundleDependencyProvider
     }
 
     /**
-     * @return \SprykerEco\Zed\Heidelpay\Dependency\Plugin\HeidelpayNotificationExpanderPluginInterface[]
+     * @return array<\SprykerEco\Zed\Heidelpay\Dependency\Plugin\HeidelpayNotificationExpanderPluginInterface>
      */
     protected function getHeidelpayNotificationExpanderPlugins(): array
     {

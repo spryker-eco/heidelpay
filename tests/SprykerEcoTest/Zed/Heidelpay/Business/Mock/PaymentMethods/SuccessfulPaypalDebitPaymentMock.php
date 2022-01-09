@@ -27,6 +27,7 @@ class SuccessfulPaypalDebitPaymentMock extends PaypalPayment
      */
     public function debit(HeidelpayRequestTransfer $debitRequestTransfer): HeidelpayResponseTransfer
     {
+        $response = [];
         $response['payload'] = '{
                         "processing": {"result": "ACK"}, 
                         "payment": {"code": "VA.RC"}                         

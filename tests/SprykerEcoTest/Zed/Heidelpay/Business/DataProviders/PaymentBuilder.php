@@ -22,6 +22,19 @@ class PaymentBuilder
     use PaymentHeidelpayTrait;
 
     /**
+     * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
+     */
+    protected $factory;
+
+    /**
+     * @param \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory $factory
+     */
+    public function __construct(HeidelpayBusinessFactory $factory)
+    {
+        $this->factory = $factory;
+    }
+
+    /**
      * @param string $paymentMethod
      *
      * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
@@ -34,13 +47,13 @@ class PaymentBuilder
         $orderEntity = $this->createOrderEntityWithItems(
             $customerJohnDoe,
             $billingAddressJohnDoe,
-            $shippingAddressJohnDoe
+            $shippingAddressJohnDoe,
         );
 
         $this->createHeidelpayPaymentEntity(
             $orderEntity,
             HeidelpayTestConfig::HEIDELPAY_REFERENCE,
-            $paymentMethod
+            $paymentMethod,
         );
 
         return $orderEntity;

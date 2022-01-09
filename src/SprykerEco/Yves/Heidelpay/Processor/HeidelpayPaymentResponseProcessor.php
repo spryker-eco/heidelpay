@@ -14,6 +14,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 class HeidelpayPaymentResponseProcessor implements HeidelpayPaymentResponseProcessorInterface
 {
+    /**
+     * @var string
+     */
     protected const RESPONSE_PARAMETERS_FILTER_PATTERN = '/^paymentForm+|^lang+/';
 
     /**
@@ -48,7 +51,7 @@ class HeidelpayPaymentResponseProcessor implements HeidelpayPaymentResponseProce
         $requestAsArray = $this->getUrlDecodedRequestBody($request);
         $processingResultTransfer = $this->heidelpayClient
             ->processExternalPaymentResponse(
-                $this->filterResponseParameters($requestAsArray)
+                $this->filterResponseParameters($requestAsArray),
             );
 
         if ($processingResultTransfer->getConnectorInvoiceAccountInfo() === null) {
@@ -75,7 +78,7 @@ class HeidelpayPaymentResponseProcessor implements HeidelpayPaymentResponseProce
 
         $quoteTransfer->getHeidelpayPayment()
             ->setConnectorInvoiceAccountInfo(
-                $processingResultTransfer->getConnectorInvoiceAccountInfo()
+                $processingResultTransfer->getConnectorInvoiceAccountInfo(),
             );
 
         $this->quoteClient->setQuote($quoteTransfer);
@@ -100,9 +103,9 @@ class HeidelpayPaymentResponseProcessor implements HeidelpayPaymentResponseProce
     }
 
     /**
-     * @param string[] $responseArray
+     * @param array<string> $responseArray
      *
-     * @return string[]
+     * @return array<string>
      */
     public function filterResponseParameters(array $responseArray): array
     {

@@ -46,7 +46,7 @@ class HeidelpayNotificationProcessor implements HeidelpayNotificationProcessorIn
         $notificationTransfer = $this->mapper
             ->mapRequestToNotificationTransfer(
                 $request,
-                new HeidelpayNotificationTransfer()
+                new HeidelpayNotificationTransfer(),
             );
 
         return $this->client->processNotification($notificationTransfer);

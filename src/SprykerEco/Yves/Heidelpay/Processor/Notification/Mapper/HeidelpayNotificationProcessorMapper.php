@@ -12,7 +12,14 @@ use Symfony\Component\HttpFoundation\Request;
 
 class HeidelpayNotificationProcessorMapper implements HeidelpayNotificationProcessorMapperInterface
 {
+    /**
+     * @var string
+     */
     protected const HEADER_X_PUSH_TIMESTAMP = 'X-Push-Timestamp';
+
+    /**
+     * @var string
+     */
     protected const HEADER_X_PUSH_RETRIES = 'X-Push-Retries';
 
     /**

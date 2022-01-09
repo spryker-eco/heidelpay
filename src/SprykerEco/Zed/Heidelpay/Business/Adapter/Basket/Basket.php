@@ -79,7 +79,7 @@ class Basket implements BasketInterface
         return new Authentication(
             $this->config->getMerchantUserLogin(),
             $this->config->getMerchantUserPassword(),
-            $this->config->getMerchantSecuritySender()
+            $this->config->getMerchantSecuritySender(),
         );
     }
 }

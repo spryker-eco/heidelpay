@@ -57,7 +57,7 @@ class CaptureTransaction implements CaptureTransactionInterface
         $this->transactionLogger->logTransaction(
             HeidelpayConfig::TRANSACTION_TYPE_CAPTURE,
             $captureRequestTransfer,
-            $captureResponseTransfer
+            $captureResponseTransfer,
         );
     }
 }

@@ -17,7 +17,7 @@
 
         <column name="payment_method" required="true" type="VARCHAR" size="255"/>
 
-        <column name="easy_credit_fee" required="false" type="INTEGER" />
+        <column name="easy_credit_fee" required="false" type="INTEGER"/>
 
         <column name="date_of_birth" required="false" type="DATE"/>
         <column name="salutation" required="false" type="VARCHAR" size="255"/>
@@ -123,9 +123,9 @@
         <column name="transaction_type" required="false" type="VARCHAR" size="255"/>
         <column name="processing_code" required="false" type="VARCHAR" size="255"/>
         <column name="response_code" required="false" type="VARCHAR" size="255"/>
-        <column name="redirect_url" type="VARCHAR" size="5000"/>
-        <column name="request_payload" required="false" type="VARCHAR" size="5000"/>
-        <column name="response_payload" required="true" type="VARCHAR" size="5000"/>
+        <column name="redirect_url" type="VARCHAR" size="255"/>
+        <column name="request_payload" required="false" type="LONGVARCHAR"/>
+        <column name="response_payload" required="true" type="LONGVARCHAR"/>
 
         <foreign-key name="spy_heidelpay_transaction_log-fk_sales_order" foreignTable="spy_sales_order">
             <reference foreign="id_sales_order" local="fk_sales_order"/>
@@ -158,12 +158,12 @@
         <column name="result_return" required="false" type="VARCHAR" size="255"/>
 
         <column name="payment_code" required="false" type="VARCHAR" size="255"/>
-        <column name="amount" required="false" type="INTEGER" />
+        <column name="amount" required="false" type="INTEGER" size="255"/>
         <column name="currency" required="false" type="VARCHAR" size="255"/>
-        <column name="payment_descriptor" required="false" type="VARCHAR" size="500"/>
+        <column name="payment_descriptor" required="false" type="VARCHAR" size="255"/>
 
-        <column name="account" required="false" type="VARCHAR" size="1000"/>
-        <column name="customer" required="false" type="VARCHAR" size="1000"/>
+        <column name="account" required="false" type="VARCHAR" size="255"/>
+        <column name="customer" required="false" type="VARCHAR" size="255"/>
 
         <behavior name="timestampable"/>
 

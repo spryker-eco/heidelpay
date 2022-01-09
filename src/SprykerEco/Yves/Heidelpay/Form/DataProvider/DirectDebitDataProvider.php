@@ -16,6 +16,9 @@ use SprykerEco\Yves\Heidelpay\Form\DirectDebitSubForm;
 
 class DirectDebitDataProvider implements StepEngineFormDataProviderInterface
 {
+    /**
+     * @var string
+     */
     protected const PAYMENT_OPTION_NAME_TRANSLATION_PATTERN = 'heidelpay.payment.direct_debit.%s';
 
     /**
@@ -46,7 +49,7 @@ class DirectDebitDataProvider implements StepEngineFormDataProviderInterface
     public function getOptions(AbstractTransfer $quoteTransfer): array
     {
         $directDebitPayment = $this->selectPaymentOption(
-            $quoteTransfer->getPayment()->getHeidelpayDirectDebit()
+            $quoteTransfer->getPayment()->getHeidelpayDirectDebit(),
         );
 
         $quoteTransfer->getPayment()->setHeidelpayDirectDebit($directDebitPayment);
@@ -113,7 +116,7 @@ class DirectDebitDataProvider implements StepEngineFormDataProviderInterface
     /**
      * @param \Generated\Shared\Transfer\HeidelpayDirectDebitPaymentTransfer $directDebitPaymentTransfer
      *
-     * @return string[]
+     * @return array<string>
      */
     protected function fetchPaymentOptions(HeidelpayDirectDebitPaymentTransfer $directDebitPaymentTransfer): array
     {

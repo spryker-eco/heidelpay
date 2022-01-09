@@ -40,6 +40,11 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
     public const CUSTOMER_ADDRESS_ID = 100000000;
 
     /**
+     * @var int
+     */
+    public const CUSTOMER_ADDRESS_ID = 100000000;
+
+    /**
      * @return void
      */
     public function testSuccessfulGetCreditCardPaymentOptionsForNotRegisteredCard(): void
@@ -56,7 +61,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
         $this->assertInstanceOf(HeidelpayCreditCardPaymentOptionsTransfer::class, $heidelpayCreditCardPaymentOptionsTransfer);
         $this->assertEquals(
             HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL,
-            $heidelpayCreditCardPaymentOptionsTransfer->getPaymentFrameUrl()
+            $heidelpayCreditCardPaymentOptionsTransfer->getPaymentFrameUrl(),
         );
         $this->assertNull($heidelpayCreditCardPaymentOptionsTransfer->getLastSuccessfulRegistration());
         $optionsList = $heidelpayCreditCardPaymentOptionsTransfer->getOptionsList();
@@ -125,7 +130,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
         $this->assertInstanceOf(HeidelpayCreditCardPaymentOptionsTransfer::class, $heidelpayCreditCardPaymentOptionsTransfer);
         $this->assertEquals(
             HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL,
-            $heidelpayCreditCardPaymentOptionsTransfer->getPaymentFrameUrl()
+            $heidelpayCreditCardPaymentOptionsTransfer->getPaymentFrameUrl(),
         );
         $this->assertNull($heidelpayCreditCardPaymentOptionsTransfer->getLastSuccessfulRegistration());
         $optionsList = $heidelpayCreditCardPaymentOptionsTransfer->getOptionsList();
@@ -168,14 +173,14 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
         $quoteTransfer = $this->createQuoteWithPaymentTransfer();
         $quoteTransfer->setTotals(
             (new TotalsTransfer())
-                ->setGrandTotal(10000)
+                ->setGrandTotal(10000),
         );
 
         $customer = $this->createOrGetCustomerByQuote($quoteTransfer);
         $address = $this->createCustomerAddressByCustomer($customer);
 
         $quoteTransfer->getShippingAddress()->setIdCustomerAddress(
-            $address->getIdCustomerAddress()
+            $address->getIdCustomerAddress(),
         );
 
         return $quoteTransfer;
@@ -191,8 +196,8 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
             ->setHeidelpayCreditCardSecure(
                 (new HeidelpayCreditCardPaymentTransfer())
                     ->setPaymentOptions(
-                        new HeidelpayCreditCardPaymentOptionsTransfer()
-                    )
+                        new HeidelpayCreditCardPaymentOptionsTransfer(),
+                    ),
             );
         $quoteTransfer->setPayment($paymentTransfer);
 
@@ -209,10 +214,10 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
     {
         $lastSuccessfulRegistration = new HeidelpayCreditCardRegistrationTransfer();
         $lastSuccessfulRegistration->setIdCustomerAddress(
-            $quoteTransfer->getShippingAddress()->getIdCustomerAddress()
+            $quoteTransfer->getShippingAddress()->getIdCustomerAddress(),
         );
         $lastSuccessfulRegistration->setRegistrationNumber(
-            $cardEntity->getRegistrationNumber()
+            $cardEntity->getRegistrationNumber(),
         );
         $lastSuccessfulRegistration->setCreditCardInfo(new HeidelpayCreditCardInfoTransfer());
         $lastSuccessfulRegistration->setIdCreditCardRegistration($cardEntity->getIdCreditCardRegistration());
@@ -221,7 +226,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
             ->getHeidelpayCreditCardSecure()
             ->getPaymentOptions()
             ->setLastSuccessfulRegistration(
-                $lastSuccessfulRegistration
+                $lastSuccessfulRegistration,
             );
 
         return $quoteTransfer;
@@ -266,7 +271,7 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
     ): void {
         $this->assertEquals(
             HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL,
-            $heidelpayCreditCardPaymentOptionsTransfer->getPaymentFrameUrl()
+            $heidelpayCreditCardPaymentOptionsTransfer->getPaymentFrameUrl(),
         );
 
         $this->assertNotNull($heidelpayCreditCardPaymentOptionsTransfer->getLastSuccessfulRegistration());
@@ -274,22 +279,22 @@ class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTes
         $lastSuccessfulRegistration = $heidelpayCreditCardPaymentOptionsTransfer->getLastSuccessfulRegistration();
         $this->assertInstanceOf(
             HeidelpayCreditCardRegistrationTransfer::class,
-            $lastSuccessfulRegistration
+            $lastSuccessfulRegistration,
         );
 
         $this->assertEquals(
             HeidelpayTestConfig::REGISTRATION_NUMBER,
-            $lastSuccessfulRegistration->getRegistrationNumber()
+            $lastSuccessfulRegistration->getRegistrationNumber(),
         );
 
         $this->assertEquals(
             $cardEntity->getIdCreditCardRegistration(),
-            $lastSuccessfulRegistration->getIdCreditCardRegistration()
+            $lastSuccessfulRegistration->getIdCreditCardRegistration(),
         );
 
         $this->assertEquals(
             $quoteTransfer->getShippingAddress()->getIdCustomerAddress(),
-            $lastSuccessfulRegistration->getIdCustomerAddress()
+            $lastSuccessfulRegistration->getIdCustomerAddress(),
         );
 
         $optionsList = $heidelpayCreditCardPaymentOptionsTransfer->getOptionsList();

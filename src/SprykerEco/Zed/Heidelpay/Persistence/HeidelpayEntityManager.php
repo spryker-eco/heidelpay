@@ -33,14 +33,14 @@ class HeidelpayEntityManager extends AbstractEntityManager implements HeidelpayE
             ->findOneOrCreate();
 
         $paymentHeidelpayEntity->fromArray(
-            $heidelpayPaymentTransfer->modifiedToArray()
+            $heidelpayPaymentTransfer->modifiedToArray(),
         );
         $paymentHeidelpayEntity->save();
 
         return $this->getMapper()
             ->mapEntityToHeidelpayPaymentTransfer(
                 $paymentHeidelpayEntity,
-                $heidelpayPaymentTransfer
+                $heidelpayPaymentTransfer,
             );
     }
 
@@ -57,14 +57,14 @@ class HeidelpayEntityManager extends AbstractEntityManager implements HeidelpayE
             ->findOneOrCreate();
 
         $paymentHeidelpayNotificationEntity->fromArray(
-            $heidelpayNotificationTransfer->modifiedToArray()
+            $heidelpayNotificationTransfer->modifiedToArray(),
         );
         $paymentHeidelpayNotificationEntity->save();
 
         return $this->getMapper()
             ->mapEntityToHeidelpayNotificationTransfer(
                 $paymentHeidelpayNotificationEntity,
-                $heidelpayNotificationTransfer
+                $heidelpayNotificationTransfer,
             );
     }
 
@@ -81,7 +81,7 @@ class HeidelpayEntityManager extends AbstractEntityManager implements HeidelpayE
             ->findOneOrCreate();
 
         $paymentHeidelpayDirectDebitRegistrationEntity->fromArray(
-            $directDebitRegistrationTransfer->getAccountInfo()->modifiedToArray()
+            $directDebitRegistrationTransfer->getAccountInfo()->modifiedToArray(),
         );
         $paymentHeidelpayDirectDebitRegistrationEntity
             ->setFkCustomerAddress($directDebitRegistrationTransfer->getIdCustomerAddress())
@@ -93,7 +93,7 @@ class HeidelpayEntityManager extends AbstractEntityManager implements HeidelpayE
         return $this->getMapper()
             ->mapEntityToHeidelpayDirectDebitRegistrationTransfer(
                 $paymentHeidelpayDirectDebitRegistrationEntity,
-                $directDebitRegistrationTransfer
+                $directDebitRegistrationTransfer,
             );
     }
 

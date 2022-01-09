@@ -42,7 +42,7 @@ class DebitOnRegistrationTransaction implements DebitOnRegistrationTransactionIn
         $this->transactionLogger->logTransaction(
             HeidelpayConfig::TRANSACTION_TYPE_DEBIT_ON_REGISTRATION,
             $debitOnRegistrationRequestTransfer,
-            $debitOnRegistrationResponseTransfer
+            $debitOnRegistrationResponseTransfer,
         );
 
         return $debitOnRegistrationResponseTransfer;

@@ -29,7 +29,7 @@ trait OrderAddressTrait
     {
         return $this->createAddress(
             $quoteTransfer->getCustomer()->getFirstName(),
-            $quoteTransfer->getCustomer()->getLastName()
+            $quoteTransfer->getCustomer()->getLastName(),
         );
     }
 

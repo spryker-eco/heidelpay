@@ -52,7 +52,7 @@ class OrderWithSuccessfulIdealAuthorizeTransaction
         $orderEntity = $this->createOrderEntityWithItems(
             $customerJohnDoe,
             $billingAddressJohnDoe,
-            $shippingAddressJohnDoe
+            $shippingAddressJohnDoe,
         );
 
         $this->createTransaction($orderEntity);

@@ -66,7 +66,7 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
                 ->setLastName($quoteTransfer->getBillingAddress()->getLastName())
                 ->setState($quoteTransfer->getBillingAddress()->getState())
                 ->setStreet($this->getFullStreetName($quoteTransfer->getBillingAddress()))
-                ->setZip($quoteTransfer->getBillingAddress()->getZipCode())
+                ->setZip($quoteTransfer->getBillingAddress()->getZipCode()),
         );
 
         return $heidelpayRequestTransfer;
@@ -83,7 +83,7 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
         $heidelpayRequestTransfer->setCustomerPurchase(
             (new HeidelpayCustomerPurchaseTransfer())
                 ->setAmount($this->getDecimalQuoteAmount($quoteTransfer))
-                ->setIdOrder($this->generateQuoteId($quoteTransfer))
+                ->setIdOrder($this->generateQuoteId($quoteTransfer)),
         );
 
         return $heidelpayRequestTransfer;
@@ -103,7 +103,7 @@ class QuoteToHeidelpayRequest implements QuoteToHeidelpayRequestInterface
             (new HeidelpayRiskInformationTransfer())
                 ->setIsCustomerGuest((bool)$quoteTransfer->getCustomer()->getIsGuest())
                 ->setCustomerSince($customerRegistrationDate)
-                ->setCustomerId($quoteTransfer->getCustomer()->getIdCustomer())
+                ->setCustomerId($quoteTransfer->getCustomer()->getIdCustomer()),
         );
 
         return $heidelpayRequestTransfer;

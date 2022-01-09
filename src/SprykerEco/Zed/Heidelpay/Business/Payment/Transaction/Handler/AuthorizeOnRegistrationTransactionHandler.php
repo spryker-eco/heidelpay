@@ -15,6 +15,9 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\Exception\AuthorizeOnR
 
 class AuthorizeOnRegistrationTransactionHandler implements AuthorizeOnRegistrationTransactionHandlerInterface
 {
+    /**
+     * @var string
+     */
     public const ERROR_MESSAGE_AUTHORIZE_ON_REGISTRATION_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call authorize on registration transaction on payment method \'%s\' ' .
         'that does not support it';
@@ -25,7 +28,7 @@ class AuthorizeOnRegistrationTransactionHandler implements AuthorizeOnRegistrati
     protected $transaction;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeOnRegistrationInterface[]
+     * @var array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithAuthorizeOnRegistrationInterface>
      */
     protected $paymentMethodAdapterCollection;
 
@@ -87,7 +90,7 @@ class AuthorizeOnRegistrationTransactionHandler implements AuthorizeOnRegistrati
 
         if (!isset($this->paymentMethodAdapterCollection[$paymentMethodCode])) {
             throw new AuthorizeOnRegistrationNotSupportedException(
-                sprintf(static::ERROR_MESSAGE_AUTHORIZE_ON_REGISTRATION_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode)
+                sprintf(static::ERROR_MESSAGE_AUTHORIZE_ON_REGISTRATION_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode),
             );
         }
 

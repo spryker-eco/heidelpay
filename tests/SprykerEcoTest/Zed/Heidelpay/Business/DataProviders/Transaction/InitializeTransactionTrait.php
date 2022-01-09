@@ -36,7 +36,7 @@ trait InitializeTransactionTrait
                         "processing": {"result": "ACK"}, 
                         "payment": {"code": "CC.PA"}, 
                         "frontend": {"payment_frame_url": "' . HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"} 
-                    }'
+                    }',
             ));
 
         $debitTransaction->save();

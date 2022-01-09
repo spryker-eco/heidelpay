@@ -12,6 +12,9 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\PaymentReaderInterface;
 
 class ExternalPaymentResponseBuilder implements ExternalPaymentResponseBuilderInterface
 {
+    /**
+     * @var string
+     */
     public const REQUEST_PARAM_ORDER_ID = 'IDENTIFICATION_TRANSACTIONID';
 
     /**
@@ -40,7 +43,7 @@ class ExternalPaymentResponseBuilder implements ExternalPaymentResponseBuilderIn
             ->setBody($postRequestParams)
             ->setIdSalesOrder($idSalesOrder)
             ->setPaymentMethod(
-                $this->getPaymentMethodForOrder($idSalesOrder)
+                $this->getPaymentMethodForOrder($idSalesOrder),
             );
 
         return $externalResponseTransfer;

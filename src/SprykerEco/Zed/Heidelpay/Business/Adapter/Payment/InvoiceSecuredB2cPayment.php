@@ -14,6 +14,9 @@ use Heidelpay\PhpPaymentApi\PaymentMethods\InvoiceB2CSecuredPaymentMethod;
 
 class InvoiceSecuredB2cPayment extends BasePayment implements InvoiceSecuredB2cPaymentInterface
 {
+    /**
+     * @var string
+     */
     protected const FORMAT_DATE_OF_BIRTH = 'Y-m-d';
 
     /**
@@ -58,7 +61,7 @@ class InvoiceSecuredB2cPayment extends BasePayment implements InvoiceSecuredB2cP
         $invoiceSecuredB2cMethod->getRequest()->b2cSecured(
             $authorizeRequestTransfer->getInvoiceSecuredB2c()->getSalutation(),
             $this->getFormattedDateOfBirth($authorizeRequestTransfer),
-            $authorizeRequestTransfer->getIdBasket()
+            $authorizeRequestTransfer->getIdBasket(),
         );
 
         return $invoiceSecuredB2cMethod;

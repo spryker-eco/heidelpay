@@ -19,10 +19,29 @@ use Symfony\Component\HttpFoundation\Request;
 
 class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitRegistrationProcessorInterface
 {
+    /**
+     * @var string
+     */
     protected const REQUEST_PARAM_REGISTRATION_ID = 'id_registration';
+
+    /**
+     * @var string
+     */
     protected const ERROR_CODE_REGISTRATION_NOT_FOUND = 'registration_not_found';
+
+    /**
+     * @var string
+     */
     protected const ERROR_CODE_REGISTRATION_NOT_SAVED = 'registration_not_saved';
+
+    /**
+     * @var string
+     */
     protected const ERROR_CODE_QUOTE_EXPIRED = 'quote_expired';
+
+    /**
+     * @var string
+     */
     protected const RESPONSE_PARAMETERS_FILTER_PATTERN = '/^paymentForm+|^lang+/';
 
     /**
@@ -76,7 +95,7 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
 
         return $this->addError(
             static::ERROR_CODE_REGISTRATION_NOT_SAVED,
-            $directDebitRegistrationTransfer
+            $directDebitRegistrationTransfer,
         );
     }
 
@@ -92,7 +111,7 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
         if ($this->isQuoteExpired($quoteTransfer)) {
             return $this->addError(
                 static::ERROR_CODE_QUOTE_EXPIRED,
-                $directDebitRegistrationTransfer
+                $directDebitRegistrationTransfer,
             );
         }
 
@@ -102,7 +121,7 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
         if ($directDebitRegistrationTransfer->getIdDirectDebitRegistration() === null) {
             return $this->addError(
                 static::ERROR_CODE_REGISTRATION_NOT_FOUND,
-                $directDebitRegistrationTransfer
+                $directDebitRegistrationTransfer,
             );
         }
 
@@ -158,7 +177,7 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
             ->setIsError(true)
             ->setError(
                 (new HeidelpayResponseErrorTransfer())
-                    ->setCode($code)
+                    ->setCode($code),
             );
 
         return $directDebitRegistrationTransfer;
@@ -216,7 +235,7 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return string[]
+     * @return array<string>
      */
     protected function getUrlDecodedRequestBody(Request $request): array
     {
@@ -232,9 +251,9 @@ class HeidelpayDirectDebitRegistrationProcessor implements HeidelpayDirectDebitR
     }
 
     /**
-     * @param string[] $responseArray
+     * @param array<string> $responseArray
      *
-     * @return string[]
+     * @return array<string>
      */
     public function filterResponseParameters(array $responseArray): array
     {

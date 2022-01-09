@@ -68,7 +68,7 @@ class HeidelpayCommunicationFactory extends AbstractCommunicationFactory
     {
         return new IsOrderPaidOmsCondition(
             $this->getRepository(),
-            $this->getSalesFacade()
+            $this->getSalesFacade(),
         );
     }
 
@@ -79,7 +79,7 @@ class HeidelpayCommunicationFactory extends AbstractCommunicationFactory
     {
         return new DebitOnRegistrationOmsCommand(
             $this->getFacade(),
-            $this->getSalesFacade()
+            $this->getSalesFacade(),
         );
     }
 
@@ -90,7 +90,7 @@ class HeidelpayCommunicationFactory extends AbstractCommunicationFactory
     {
         return new RefundOmsCommand(
             $this->getFacade(),
-            $this->getSalesFacade()
+            $this->getSalesFacade(),
         );
     }
 

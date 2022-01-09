@@ -23,8 +23,19 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class CreditCardController extends BaseHeidelpayController
 {
+    /**
+     * @var string
+     */
     public const REQUEST_PARAM_REGISTRATION_ID = 'id_registration';
+
+    /**
+     * @var string
+     */
     public const ERROR_CODE_REGISTRATION_NOT_FOUND = 'registration_not_found';
+
+    /**
+     * @var string
+     */
     public const ERROR_CODE_QUOTE_EXPIRED = 'quote_expired';
 
     /**
@@ -37,7 +48,7 @@ class CreditCardController extends BaseHeidelpayController
         $apiResponseAsArray = $this->getUrldecodedRequestBody($request);
 
         $registrationRequestTransfer = $this->getValidatedRegistrationRequest(
-            $this->getClient()->filterResponseParameters($apiResponseAsArray)
+            $this->getClient()->filterResponseParameters($apiResponseAsArray),
         );
 
         if ($registrationRequestTransfer->getIsError()) {
@@ -65,7 +76,7 @@ class CreditCardController extends BaseHeidelpayController
 
         $creditCardRegistration = $this->findRegistrationByIdAndQuote($idRegistration, $quoteTransfer);
 
-        if ($creditCardRegistration->getIdCreditCardRegistration() !== null) {
+        if ($creditCardRegistration !== null && $creditCardRegistration->getIdCreditCardRegistration() !== null) {
             $this->hydrateCreditCardRegistrationToQuote($creditCardRegistration, $quoteTransfer);
 
             return $this->redirectToSummaryStep();
@@ -161,7 +172,7 @@ class CreditCardController extends BaseHeidelpayController
     {
         $paymentFailedUrl = sprintf(
             $this->getFactory()->getConfig()->getYvesCheckoutPaymentFailedUrl(),
-            $errorCode
+            $errorCode,
         );
 
         return new RedirectResponse($paymentFailedUrl);
@@ -177,7 +188,7 @@ class CreditCardController extends BaseHeidelpayController
     ): Response {
         $redirectUrl = sprintf(
             $this->getFactory()->getConfig()->getYvesCheckoutPaymentFailedUrl(),
-            $registrationRequestTransfer->getError()->getCode()
+            $registrationRequestTransfer->getError()->getCode(),
         );
 
         return $this->streamRedirectResponse($redirectUrl);
@@ -193,7 +204,7 @@ class CreditCardController extends BaseHeidelpayController
     ): Response {
         $redirectUrl = sprintf(
             $this->getFactory()->getConfig()->getYvesRegistrationSuccessUrl(),
-            $saveResponseTransfer->getIdRegistration()
+            $saveResponseTransfer->getIdRegistration(),
         );
 
         return $this->streamRedirectResponse($redirectUrl);

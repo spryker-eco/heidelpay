@@ -22,7 +22,7 @@ class RequestToHeidelpay implements RequestToHeidelpayInterface
     {
         $heidelpayRequest->async(
             $requestTransfer->getAsync()->getLanguageCode(),
-            $requestTransfer->getAsync()->getResponseUrl()
+            $requestTransfer->getAsync()->getResponseUrl(),
         );
 
         $heidelpayRequest->authentification(
@@ -30,7 +30,7 @@ class RequestToHeidelpay implements RequestToHeidelpayInterface
             $requestTransfer->getAuth()->getUserLogin(),
             $requestTransfer->getAuth()->getUserPassword(),
             $requestTransfer->getAuth()->getTransactionChannel(),
-            $requestTransfer->getAuth()->getIsSandboxRequest()
+            $requestTransfer->getAuth()->getIsSandboxRequest(),
         );
 
         $heidelpayRequest->customerAddress(
@@ -43,14 +43,14 @@ class RequestToHeidelpay implements RequestToHeidelpayInterface
             $requestTransfer->getCustomerAddress()->getZip(),
             $requestTransfer->getCustomerAddress()->getCity(),
             $requestTransfer->getCustomerAddress()->getCountry(),
-            $requestTransfer->getCustomerAddress()->getEmail()
+            $requestTransfer->getCustomerAddress()->getEmail(),
         );
 
         $heidelpayRequest->basketData(
             $requestTransfer->getCustomerPurchase()->getIdOrder(),
             $requestTransfer->getCustomerPurchase()->getAmount(),
             $requestTransfer->getCustomerPurchase()->getCurrencyCode(),
-            $requestTransfer->getCustomerPurchase()->getSecret()
+            $requestTransfer->getCustomerPurchase()->getSecret(),
         );
 
         $riskInformationTransfer = $requestTransfer->getRiskInformation();

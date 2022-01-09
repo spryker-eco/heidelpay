@@ -9,14 +9,27 @@ namespace SprykerEco\Client\Heidelpay;
 
 use Spryker\Client\Kernel\AbstractDependencyProvider;
 use Spryker\Client\Kernel\Container;
-use Spryker\Client\ZedRequest\ServiceProvider\ZedRequestClientServiceProvider;
 use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToLocaleClientBridge;
 use SprykerEco\Client\Heidelpay\Dependency\Client\HeidelpayToQuoteClientBridge;
 
+/**
+ * @method \SprykerEco\Client\Heidelpay\HeidelpayConfig getConfig()
+ */
 class HeidelpayDependencyProvider extends AbstractDependencyProvider
 {
+    /**
+     * @var string
+     */
     public const CLIENT_LOCALE = 'client locale';
-    public const CLIENT_ZED_REQUEST = ZedRequestClientServiceProvider::CLIENT_ZED_REQUEST;
+
+    /**
+     * @var string
+     */
+    public const CLIENT_ZED_REQUEST = 'zed request client';
+
+    /**
+     * @var string
+     */
     public const CLIENT_QUOTE = 'client quote';
 
     /**

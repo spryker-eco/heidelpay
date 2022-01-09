@@ -35,16 +35,17 @@ class FailedSofortPaymentExternalResponseWhithIncorrectTransactionIdBuilder exte
         $orderEntity = $this->createOrderEntityWithItems(
             $customerJohnDoe,
             $billingAddressJohnDoe,
-            $shippingAddressJohnDoe
+            $shippingAddressJohnDoe,
         );
 
         $this->createHeidelpayPaymentEntity(
             $orderEntity,
             '',
-            $paymentMethod
+            $paymentMethod,
         );
 
         $config = $this->factory->getConfig();
+        $responseParam = [];
         $responseParam[static::EMAIL] = $customerJohnDoe->getEmail();
         $responseParam[static::RESPONSE_URL] = $config->getZedResponseUrl();
         $responseParam[static::CUSTOMER_NAME] = $customerJohnDoe->getFirstName();

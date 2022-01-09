@@ -16,6 +16,9 @@ use SprykerEco\Client\Heidelpay\Mapper\DirectDebitRegistrationResponseMapperInte
 
 class DirectDebitRegistrationResponseParser implements DirectDebitRegistrationResponseParserInterface
 {
+    /**
+     * @var string
+     */
     public const ERROR_CODE_INVALID_RESPONSE = 'invalid-response';
 
     /**
@@ -41,7 +44,7 @@ class DirectDebitRegistrationResponseParser implements DirectDebitRegistrationRe
     }
 
     /**
-     * @param string[] $responseArray
+     * @param array<string> $responseArray
      *
      * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
      */
@@ -57,7 +60,7 @@ class DirectDebitRegistrationResponseParser implements DirectDebitRegistrationRe
     }
 
     /**
-     * @param string[] $apiResponseArray
+     * @param array<string> $apiResponseArray
      *
      * @return \Heidelpay\PhpPaymentApi\Response
      */
@@ -67,7 +70,7 @@ class DirectDebitRegistrationResponseParser implements DirectDebitRegistrationRe
 
         $apiResponse->verifySecurityHash(
             $this->config->getApplicationSecret(),
-            $apiResponse->getIdentification()->getTransactionId()
+            $apiResponse->getIdentification()->getTransactionId(),
         );
 
         return $apiResponse;
@@ -84,7 +87,7 @@ class DirectDebitRegistrationResponseParser implements DirectDebitRegistrationRe
         return $this->registrationResponseMapper
             ->mapApiResponseToDirectDebitRegistrationResponseTransfer(
                 $apiResponseObject,
-                new HeidelpayDirectDebitRegistrationTransfer()
+                new HeidelpayDirectDebitRegistrationTransfer(),
             );
     }
 
@@ -97,7 +100,7 @@ class DirectDebitRegistrationResponseParser implements DirectDebitRegistrationRe
             ->setIsError(true)
             ->setError(
                 (new HeidelpayResponseErrorTransfer())
-                    ->setCode(static::ERROR_CODE_INVALID_RESPONSE)
+                    ->setCode(static::ERROR_CODE_INVALID_RESPONSE),
             );
     }
 }

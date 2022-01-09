@@ -13,11 +13,34 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 
 class EasyCreditResponseToQuoteHydrator implements EasyCreditResponseToQuoteHydratorInterface
 {
+    /**
+     * @var string
+     */
     protected const EASYCREDIT_IDENTIFICATION_UNIQUE_ID = 'IDENTIFICATION_UNIQUEID';
+
+    /**
+     * @var string
+     */
     protected const EASYCREDIT_AMORTISATION_TEXT = 'CRITERION_EASYCREDIT_AMORTISATIONTEXT';
+
+    /**
+     * @var string
+     */
     protected const EASYCREDIT_PRECONTRACT_INFORMATION_URL = 'CRITERION_EASYCREDIT_PRECONTRACTINFORMATIONURL';
+
+    /**
+     * @var string
+     */
     protected const EASYCREDIT_ACCRUING_INTEREST = 'CRITERION_EASYCREDIT_ACCRUINGINTEREST';
+
+    /**
+     * @var string
+     */
     protected const EASYCREDIT_TOTAL_AMOUNT = 'CRITERION_EASYCREDIT_TOTALAMOUNT';
+
+    /**
+     * @var string
+     */
     protected const EASYCREDIT_TOTAL_ORDER_AMOUNT = 'CRITERION_EASYCREDIT_TOTALORDERAMOUNT';
 
     /**
@@ -51,13 +74,13 @@ class EasyCreditResponseToQuoteHydrator implements EasyCreditResponseToQuoteHydr
             ->setAmortisationText($responseAsArray[static::EASYCREDIT_AMORTISATION_TEXT])
             ->setPreContractionInformationUrl($responseAsArray[static::EASYCREDIT_PRECONTRACT_INFORMATION_URL])
             ->setAccruingInterest(
-                $this->moneyPlugin->convertDecimalToInteger((float)$responseAsArray[static::EASYCREDIT_ACCRUING_INTEREST])
+                $this->moneyPlugin->convertDecimalToInteger((float)$responseAsArray[static::EASYCREDIT_ACCRUING_INTEREST]),
             )
             ->setTotalAmount(
-                $this->moneyPlugin->convertDecimalToInteger((float)$responseAsArray[static::EASYCREDIT_TOTAL_AMOUNT])
+                $this->moneyPlugin->convertDecimalToInteger((float)$responseAsArray[static::EASYCREDIT_TOTAL_AMOUNT]),
             )
             ->setTotalOrderAmount(
-                $this->moneyPlugin->convertDecimalToInteger((float)$responseAsArray[static::EASYCREDIT_TOTAL_ORDER_AMOUNT])
+                $this->moneyPlugin->convertDecimalToInteger((float)$responseAsArray[static::EASYCREDIT_TOTAL_ORDER_AMOUNT]),
             );
 
         $quoteTransfer->setPayment($paymentTransfer);

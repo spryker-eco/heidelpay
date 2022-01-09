@@ -135,7 +135,7 @@ class AdapterRequestFromQuoteBuilder extends BaseAdapterRequestBuilder implement
     protected function setYvesUrlForAsyncIframeResponse(HeidelpayRequestTransfer $requestTransfer): void
     {
         $requestTransfer->getAsync()->setResponseUrl(
-            $this->config->getYvesUrlForAsyncIframeResponse()
+            $this->config->getYvesUrlForAsyncIframeResponse(),
         );
     }
 
@@ -147,7 +147,7 @@ class AdapterRequestFromQuoteBuilder extends BaseAdapterRequestBuilder implement
     protected function setYvesUrlForAsyncDirectDebitResponse(HeidelpayRequestTransfer $requestTransfer): void
     {
         $requestTransfer->getAsync()->setResponseUrl(
-            $this->config->getYvesUrlForAsyncDirectDebitResponse()
+            $this->config->getYvesUrlForAsyncDirectDebitResponse(),
         );
     }
 }

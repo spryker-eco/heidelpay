@@ -15,6 +15,9 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\ReservationTransaction
 
 class ReservationTransactionHandler implements ReservationTransactionHandlerInterface
 {
+    /**
+     * @var string
+     */
     public const ERROR_MESSAGE_RESERVATION_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call reservation transaction on payment method \'%s\' ' .
         'that does not support it';
@@ -25,7 +28,7 @@ class ReservationTransactionHandler implements ReservationTransactionHandlerInte
     protected $transaction;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithReservationInterface[]
+     * @var array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithReservationInterface>
      */
     protected $paymentMethodAdapterCollection;
 
@@ -69,7 +72,7 @@ class ReservationTransactionHandler implements ReservationTransactionHandlerInte
 
         $reservationResponseTransfer = $this->transaction->executeTransaction(
             $reservationRequestTransfer,
-            $paymentAdapter
+            $paymentAdapter,
         );
 
         if ($reservationResponseTransfer->getIdTransactionUnique() === null) {
@@ -78,7 +81,7 @@ class ReservationTransactionHandler implements ReservationTransactionHandlerInte
 
         $this->paymentWriter->updateHeidelpayPaymentWithResponse($reservationResponseTransfer);
         $orderTransfer->getHeidelpayPayment()->setIdPaymentReference(
-            $reservationResponseTransfer->getIdTransactionUnique()
+            $reservationResponseTransfer->getIdTransactionUnique(),
         );
     }
 
@@ -107,7 +110,7 @@ class ReservationTransactionHandler implements ReservationTransactionHandlerInte
 
         if (!isset($this->paymentMethodAdapterCollection[$paymentMethodCode])) {
             throw new ReservationNotSupportedException(
-                sprintf(static::ERROR_MESSAGE_RESERVATION_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode)
+                sprintf(static::ERROR_MESSAGE_RESERVATION_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode),
             );
         }
 

@@ -12,7 +12,7 @@ use Generated\Shared\Transfer\QuoteTransfer;
 class HeidelpayToQuoteClientBridge implements HeidelpayToQuoteClientInterface
 {
     /**
-     * @var \Spryker\Client\Quote\QuoteClientInterface $quoteClient
+     * @var \Spryker\Client\Quote\QuoteClientInterface
      */
     protected $quoteClient;
 

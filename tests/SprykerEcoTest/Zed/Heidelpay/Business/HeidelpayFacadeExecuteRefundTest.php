@@ -40,7 +40,7 @@ class HeidelpayFacadeExecuteRefundTest extends HeidelpayPaymentTest
             ->findHeidelpayTransactionLogByIdSalesOrderAndTransactionTypeAndResponseCode(
                 $orderTransfer->getIdSalesOrder(),
                 HeidelpayConfig::TRANSACTION_TYPE_REFUND,
-                HeidelpayTestConfig::HEIDELPAY_SUCCESS_RESPONSE
+                HeidelpayTestConfig::HEIDELPAY_SUCCESS_RESPONSE,
             );
 
         //Assert

@@ -214,7 +214,7 @@ class TransactionLogReader implements TransactionLogReaderInterface
             ->queryContainer
             ->queryTransactionByIdSalesOrderAndType(
                 $idSalesOrder,
-                HeidelpayConfig::TRANSACTION_TYPE_AUTHORIZE
+                HeidelpayConfig::TRANSACTION_TYPE_AUTHORIZE,
             )
             ->findOne();
 
@@ -232,7 +232,7 @@ class TransactionLogReader implements TransactionLogReaderInterface
             ->queryContainer
             ->queryTransactionByIdSalesOrderAndType(
                 $idSalesOrder,
-                HeidelpayConfig::TRANSACTION_TYPE_AUTHORIZE_ON_REGISTRATION
+                HeidelpayConfig::TRANSACTION_TYPE_AUTHORIZE_ON_REGISTRATION,
             )
             ->findOne();
 
@@ -250,7 +250,7 @@ class TransactionLogReader implements TransactionLogReaderInterface
             ->queryContainer
             ->queryTransactionByIdSalesOrderAndType(
                 $idSalesOrder,
-                HeidelpayConfig::TRANSACTION_TYPE_INITIALIZE
+                HeidelpayConfig::TRANSACTION_TYPE_INITIALIZE,
             )
             ->findOne();
 
@@ -268,7 +268,7 @@ class TransactionLogReader implements TransactionLogReaderInterface
             ->queryContainer
             ->queryTransactionByIdSalesOrderAndType(
                 $idSalesOrder,
-                HeidelpayConfig::TRANSACTION_TYPE_RESERVATION
+                HeidelpayConfig::TRANSACTION_TYPE_RESERVATION,
             )
             ->findOne();
 
@@ -286,7 +286,7 @@ class TransactionLogReader implements TransactionLogReaderInterface
             ->queryContainer
             ->queryTransactionByIdSalesOrderAndType(
                 $idSalesOrder,
-                HeidelpayConfig::TRANSACTION_TYPE_FINALIZE
+                HeidelpayConfig::TRANSACTION_TYPE_FINALIZE,
             )
             ->findOne();
 
@@ -304,7 +304,7 @@ class TransactionLogReader implements TransactionLogReaderInterface
             ->queryContainer
             ->queryTransactionByIdSalesOrderAndType(
                 $idSalesOrder,
-                HeidelpayConfig::TRANSACTION_TYPE_DEBIT
+                HeidelpayConfig::TRANSACTION_TYPE_DEBIT,
             )
             ->findOne();
 
@@ -322,7 +322,7 @@ class TransactionLogReader implements TransactionLogReaderInterface
             ->queryContainer
             ->queryTransactionByIdSalesOrderAndType(
                 $idSalesOrder,
-                HeidelpayConfig::TRANSACTION_TYPE_DEBIT_ON_REGISTRATION
+                HeidelpayConfig::TRANSACTION_TYPE_DEBIT_ON_REGISTRATION,
             )
             ->findOne();
 
@@ -361,9 +361,9 @@ class TransactionLogReader implements TransactionLogReaderInterface
     /**
      * @param \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog $transactionLogEntry
      *
-     * @return string
+     * @return string|null
      */
-    protected function prepareResponsePayload(SpyPaymentHeidelpayTransactionLog $transactionLogEntry): string
+    protected function prepareResponsePayload(SpyPaymentHeidelpayTransactionLog $transactionLogEntry): ?string
     {
         $responsePayload = $transactionLogEntry->getResponsePayload();
         if ($responsePayload !== null) {

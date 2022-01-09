@@ -12,13 +12,20 @@ use SprykerEco\Zed\Heidelpay\Business\Exception\TransactionNodeMissingException;
 
 class NotificationXmlConverter implements NotificationXmlConverterInterface
 {
+    /**
+     * @var string
+     */
     protected const TRANSACTION_ELEMENT = 'Transaction';
+
+    /**
+     * @var string
+     */
     protected const EXCEPTION_MESSAGE_TRANSACTION_NODE_MISSING = 'Notification body has invalid body. Transaction node is missing.';
 
     /**
      * @param string $xml
      *
-     * @return string[][]
+     * @return array<array<string>>
      */
     public function convert(string $xml): array
     {
@@ -47,14 +54,14 @@ class NotificationXmlConverter implements NotificationXmlConverterInterface
     /**
      * @param \SimpleXMLElement $xmlElement
      *
-     * @return string[][]
+     * @return array<array<string>>
      */
     protected function simpleXmlToArray(SimpleXMLElement $xmlElement): array
     {
         $result = [];
 
         $attributes = $xmlElement->attributes();
-        if ($xmlElement->count() > 0 && $attributes->count() > 0) {
+        if ($attributes !== null && $xmlElement->count() > 0 && $attributes->count() > 0) {
             $result['@attributes'] = ((array)$attributes)['@attributes'];
         }
 

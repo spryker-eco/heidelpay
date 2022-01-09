@@ -66,7 +66,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
      *
      * @api
      *
-     * @deprecated Use `getQuote()` instead.
+     * @deprecated Use `\SprykerEco\Client\Heidelpay\HeidelpayClient::getQuote()` instead.
      *
      * @return \Generated\Shared\Transfer\QuoteTransfer
      */
@@ -112,7 +112,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
      *
      * @api
      *
-     * @param string[] $externalResponse
+     * @param array<string> $externalResponse
      *
      * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
      */

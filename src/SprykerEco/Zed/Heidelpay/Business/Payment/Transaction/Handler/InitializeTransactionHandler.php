@@ -16,6 +16,9 @@ use SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\InitializeTransactionI
 
 class InitializeTransactionHandler implements InitializeTransactionHandlerInterface
 {
+    /**
+     * @var string
+     */
     public const ERROR_MESSAGE_INITIALIZE_TRANSACTION_NOT_SUPPORTED =
         'Attempt to call initialize transaction on payment method \'%s\' ' .
         'that does not support it';
@@ -26,7 +29,7 @@ class InitializeTransactionHandler implements InitializeTransactionHandlerInterf
     protected $transaction;
 
     /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithInitializeInterface[]
+     * @var array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithInitializeInterface>
      */
     protected $paymentMethodAdapterCollection;
 
@@ -98,7 +101,7 @@ class InitializeTransactionHandler implements InitializeTransactionHandlerInterf
 
         if (!isset($this->paymentMethodAdapterCollection[$paymentMethodCode])) {
             throw new InitializeNotSupportedException(
-                sprintf(static::ERROR_MESSAGE_INITIALIZE_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode)
+                sprintf(static::ERROR_MESSAGE_INITIALIZE_TRANSACTION_NOT_SUPPORTED, $paymentMethodCode),
             );
         }
 

@@ -17,6 +17,8 @@ interface HeidelpayConstants
      * - Reject criteria for EasyCredit by delivery address.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_REJECTED_DELIVERY_ADDRESS = 'HEIDELPAY:CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_REJECTED_DELIVERY_ADDRESS';
 
@@ -25,6 +27,8 @@ interface HeidelpayConstants
      * - Reject criteria for EasyCredit by minimum total amount.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_GRAND_TOTAL_LESS_THAN = 'HEIDELPAY:CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_GRAND_TOTAL_LESS_THAN';
 
@@ -33,6 +37,8 @@ interface HeidelpayConstants
      * - Reject criteria for EasyCredit by maximum total amount.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_GRAND_TOTAL_MORE_THAN = 'HEIDELPAY:CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_GRAND_TOTAL_MORE_THAN';
 
@@ -41,6 +47,8 @@ interface HeidelpayConstants
      * - Reject criteria for EasyCredit by country ISO codes.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_COUNTRY_ISO_CODES = 'HEIDELPAY:CONFIG_HEIDELPAY_EASYCREDIT_CRITERIA_COUNTRY_ISO_CODES';
 
@@ -49,6 +57,8 @@ interface HeidelpayConstants
      * - Security sender configuration.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_HEIDELPAY_SECURITY_SENDER = 'HEIDELPAY:CONFIG_HEIDELPAY_SECURITY_SENDER';
 
@@ -57,6 +67,8 @@ interface HeidelpayConstants
      * - User login configuration.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_HEIDELPAY_USER_LOGIN = 'HEIDELPAY:CONFIG_HEIDELPAY_USER_LOGIN';
 
@@ -65,6 +77,8 @@ interface HeidelpayConstants
      * - User password configuration.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_HEIDELPAY_USER_PASSWORD = 'HEIDELPAY:CONFIG_HEIDELPAY_USER_PASSWORD';
 
@@ -73,6 +87,8 @@ interface HeidelpayConstants
      * - Transaction channel configuration.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_HEIDELPAY_TRANSACTION_CHANNEL = 'HEIDELPAY:CONFIG_HEIDELPAY_TRANSACTION_CHANNEL';
 
@@ -81,6 +97,8 @@ interface HeidelpayConstants
      * - Configuration represents if sandbox is enabled.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_HEIDELPAY_SANDBOX_REQUEST = 'HEIDELPAY:CONFIG_HEIDELPAY_SANDBOX_REQUEST';
 
@@ -89,6 +107,8 @@ interface HeidelpayConstants
      * - Application secret configuration.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_HEIDELPAY_APPLICATION_SECRET = 'HEIDELPAY:CONFIG_HEIDELPAY_APPLICATION_SECRET';
 
@@ -97,6 +117,8 @@ interface HeidelpayConstants
      * - Transaction channel value for CreditCard 3D Secure payment method.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_CC_3D_SECURE = 'HEIDELPAY:CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_CC_3D_SECURE';
 
@@ -105,6 +127,8 @@ interface HeidelpayConstants
      * - Transaction channel value for PayPal payment method.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_PAYPAL = 'HEIDELPAY:CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_PAYPAL';
 
@@ -113,6 +137,8 @@ interface HeidelpayConstants
      * - Transaction channel value for Ideal payment method.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_IDEAL = 'HEIDELPAY:CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_IDEAL';
 
@@ -121,6 +147,8 @@ interface HeidelpayConstants
      * - Transaction channel value for Sofort payment method.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_SOFORT = 'HEIDELPAY:CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_SOFORT';
 
@@ -129,6 +157,8 @@ interface HeidelpayConstants
      * - Transaction channel value for EasyCredit payment method.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_EASY_CREDIT = 'HEIDELPAY:CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_EASY_CREDIT';
 
@@ -137,6 +167,8 @@ interface HeidelpayConstants
      * - Transaction channel value for InvoiceSecuredB2c payment method.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_INVOICE_SECURED_B2C = 'HEIDELPAY:CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_INVOICE_SECURED_B2C';
 
@@ -145,6 +177,8 @@ interface HeidelpayConstants
      * - Transaction channel value for DirectDebit payment method.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_DIRECT_DEBIT = 'HEIDELPAY:CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_DIRECT_DEBIT';
 
@@ -153,6 +187,8 @@ interface HeidelpayConstants
      * - Language code, store specific.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_HEIDELPAY_LANGUAGE_CODE = 'HEIDELPAY:CONFIG_HEIDELPAY_LANGUAGE_CODE';
 
@@ -161,6 +197,8 @@ interface HeidelpayConstants
      * - Url for receiving responses from Heidelpay.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_HEIDELPAY_PAYMENT_RESPONSE_URL = 'HEIDELPAY:CONFIG_HEIDELPAY_PAYMENT_RESPONSE_URL';
 
@@ -169,6 +207,8 @@ interface HeidelpayConstants
      * - Url for receiving requests from Heidelpay for EasyCredit payment method.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_HEIDELPAY_EASYCREDIT_PAYMENT_URL = 'HEIDELPAY:CONFIG_HEIDELPAY_EASYCREDIT_PAYMENT_URL';
 
@@ -177,6 +217,8 @@ interface HeidelpayConstants
      * - Url for receiving response from Heidelpay for EasyCredit payment method.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_HEIDELPAY_EASYCREDIT_PAYMENT_RESPONSE_URL = 'HEIDELPAY:CONFIG_HEIDELPAY_EASYCREDIT_PAYMENT_RESPONSE_URL';
 
@@ -185,6 +227,8 @@ interface HeidelpayConstants
      * - Url for receiving responses asynchronously from Heidelpay for EasyCredit initialize api call.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_YVES_CHECKOUT_EASYCREDIT_INITIALIZE_PAYMENT_URL = 'HEIDELPAY:CONFIG_YVES_CHECKOUT_EASYCREDIT_INITIALIZE_PAYMENT_URL';
 
@@ -193,6 +237,8 @@ interface HeidelpayConstants
      * - Spryker Yves url.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_YVES_URL = 'HEIDELPAY:CONFIG_YVES_URL';
 
@@ -201,6 +247,8 @@ interface HeidelpayConstants
      * - Spryker checkout success url.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_YVES_CHECKOUT_SUCCESS_URL = 'HEIDELPAY:CONFIG_YVES_CHECKOUT_SUCCESS_URL';
 
@@ -209,6 +257,8 @@ interface HeidelpayConstants
      * - Spryker payment failed url.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_YVES_CHECKOUT_PAYMENT_FAILED_URL = 'HEIDELPAY:CONFIG_YVES_CHECKOUT_PAYMENT_FAILED_URL';
 
@@ -217,6 +267,8 @@ interface HeidelpayConstants
      * - Spryker checkout summary step url.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_YVES_CHECKOUT_SUMMARY_STEP_URL = 'HEIDELPAY:CONFIG_YVES_CHECKOUT_SUMMARY_STEP_URL';
 
@@ -225,6 +277,8 @@ interface HeidelpayConstants
      * - Spryker checkout payment step url.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_YVES_CHECKOUT_PAYMENT_STEP_URL = 'HEIDELPAY:CONFIG_YVES_CHECKOUT_PAYMENT_STEP_URL';
 
@@ -233,6 +287,8 @@ interface HeidelpayConstants
      * - Spryker checkout registration success url.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_YVES_CHECKOUT_REGISTRATION_SUCCESS_URL = 'HEIDELPAY:CONFIG_YVES_CHECKOUT_REGISTRATION_SUCCESS_URL';
 
@@ -241,6 +297,8 @@ interface HeidelpayConstants
      * - Spryker checkout payment step path.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_YVES_CHECKOUT_PAYMENT_STEP_PATH = 'HEIDELPAY:CONFIG_YVES_CHECKOUT_PAYMENT_STEP_PATH';
 
@@ -249,6 +307,8 @@ interface HeidelpayConstants
      * - Url for receiving responses asynchronously for CreditCard payment method.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_YVES_CHECKOUT_ASYNC_RESPONSE_URL = 'HEIDELPAY:CONFIG_YVES_CHECKOUT_ASYNC_RESPONSE_URL';
 
@@ -257,6 +317,8 @@ interface HeidelpayConstants
      * - Url for receiving registration responses asynchronously for DirectDebit payment method.
      *
      * @api
+     *
+     * @var string
      */
     public const DIRECT_DEBIT_REGISTRATION_ASYNC_RESPONSE_URL = 'HEIDELPAY:DIRECT_DEBIT_REGISTRATION_ASYNC_RESPONSE_URL';
 
@@ -265,6 +327,8 @@ interface HeidelpayConstants
      * - Ideal payment method authorize url.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_YVES_CHECKOUT_IDEAL_AUTHORIZE_URL = 'HEIDELPAY:CONFIG_YVES_CHECKOUT_IDEAL_AUTHORIZE_URL';
 
@@ -273,6 +337,8 @@ interface HeidelpayConstants
      * - Iframe custom styles url.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_YVES_CHECKOUT_PAYMENT_FRAME_CUSTOM_CSS_URL = 'HEIDELPAY:CONFIG_YVES_CHECKOUT_PAYMENT_FRAME_CUSTOM_CSS_URL';
 
@@ -281,6 +347,8 @@ interface HeidelpayConstants
      * - Represents setting for preventing async redirect for payment iframe.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_YVES_CHECKOUT_PAYMENT_FRAME_PREVENT_ASYNC_REDIRECT = 'HEIDELPAY:CONFIG_YVES_CHECKOUT_PAYMENT_FRAME_PREVENT_ASYNC_REDIRECT';
 
@@ -289,6 +357,8 @@ interface HeidelpayConstants
      * - Encryption key.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_ENCRYPTION_KEY = 'HEIDELPAY:CONFIG_ENCRYPTION_KEY';
 
@@ -297,6 +367,8 @@ interface HeidelpayConstants
      * - Enables split delivery.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_IS_SPLIT_PAYMENT_ENABLED_KEY = 'HEIDELPAY:CONFIG_IS_SPLIT_PAYMENT_ENABLED_KEY';
 
@@ -305,6 +377,8 @@ interface HeidelpayConstants
      * - EasyCredit logo url.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_EASY_CREDIT_LOGO_URL = 'HEIDELPAY:CONFIG_EASY_CREDIT_LOGO_URL';
 
@@ -313,6 +387,8 @@ interface HeidelpayConstants
      * - EasyCredit info link.
      *
      * @api
+     *
+     * @var string
      */
     public const CONFIG_EASY_CREDIT_INFO_LINK = 'HEIDELPAY:CONFIG_EASY_CREDIT_INFO_LINK';
 }

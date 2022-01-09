@@ -27,7 +27,7 @@ class CreditCardPayment extends BasePayment implements
         $creditCardMethod->registration(
             $this->config->getCreditCardPaymentFrameOrigin(),
             $this->config->getCreditCardPaymentFramePreventAsyncRedirect(),
-            $this->config->getCreditCardPaymentFrameCustomCssUrl()
+            $this->config->getCreditCardPaymentFrameCustomCssUrl(),
         );
 
         return $this->verifyAndParseResponse($creditCardMethod->getResponse());

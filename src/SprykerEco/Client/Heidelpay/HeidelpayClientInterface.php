@@ -175,7 +175,7 @@ interface HeidelpayClientInterface
      *
      * @api
      *
-     * @param string[] $externalResponse
+     * @param array<string> $externalResponse
      *
      * @return \Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer
      */

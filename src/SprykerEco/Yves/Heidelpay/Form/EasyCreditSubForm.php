@@ -22,11 +22,29 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class EasyCreditSubForm extends AbstractSubFormType implements SubFormInterface, SubFormProviderNameInterface
 {
+    /**
+     * @var string
+     */
     public const VARS_KEY_LEGAL_TEXT = 'legalText';
+
+    /**
+     * @var string
+     */
     public const VARS_KEY_LOGO_URL = 'logo_url';
+
+    /**
+     * @var string
+     */
     public const VARS_KEY_INFO_LINK = 'info_link';
 
+    /**
+     * @var string
+     */
     protected const FIELD_EASY_CREDIT_POLICY_AGREEMENT = 'isPolicyAgreementChecked';
+
+    /**
+     * @var string
+     */
     protected const PAYMENT_METHOD_TEMPLATE_PATH = 'easy-credit';
 
     /**
@@ -115,7 +133,7 @@ class EasyCreditSubForm extends AbstractSubFormType implements SubFormInterface,
                 'constraints' => [
                     $this->createNotBlankConstraint(),
                 ],
-            ]
+            ],
         );
 
         return $this;
