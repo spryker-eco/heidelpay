@@ -22,7 +22,7 @@
         <column name="date_of_birth" required="false" type="DATE"/>
         <column name="salutation" required="false" type="VARCHAR" size="255"/>
 
-        <column name="connector_invoice_account_info" required="false" type="LONGVARCHAR" size="1000"/>
+        <column name="connector_invoice_account_info" required="false" type="LONGVARCHAR"/>
 
         <foreign-key name="spy_payment_heidelpay-fk_sales_order" foreignTable="spy_sales_order" phpName="SpySalesOrder">
             <reference foreign="id_sales_order" local="fk_sales_order"/>
