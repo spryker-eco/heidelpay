@@ -54,9 +54,9 @@ class HeidelpayFacadeExecuteRefundTest extends HeidelpayPaymentTest
      */
     protected function createOrder(): SpySalesOrder
     {
-        $orderBuilder = new PaymentBuilder();
+        $paymentBuilder = new PaymentBuilder();
 
-        return $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_DIRECT_DEBIT);
+        return $paymentBuilder->createPayment(PaymentTransfer::HEIDELPAY_DIRECT_DEBIT);
     }
 
     /**

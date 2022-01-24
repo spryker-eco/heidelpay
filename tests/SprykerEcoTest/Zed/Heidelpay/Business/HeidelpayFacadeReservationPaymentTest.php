@@ -66,8 +66,8 @@ class HeidelpayFacadeReservationPaymentTest extends HeidelpayPaymentTest
      */
     protected function createOrder(): SpySalesOrder
     {
-        $orderBuilder = new PaymentBuilder();
+        $paymentBuilder = new PaymentBuilder();
 
-        return $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_EASY_CREDIT);
+        return $paymentBuilder->createPayment(PaymentTransfer::HEIDELPAY_EASY_CREDIT);
     }
 }

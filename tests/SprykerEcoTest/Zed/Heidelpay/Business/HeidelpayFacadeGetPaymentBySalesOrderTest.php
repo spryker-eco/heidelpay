@@ -64,8 +64,8 @@ class HeidelpayFacadeGetPaymentBySalesOrderTest extends HeidelpayPaymentTest
      */
     protected function createSofortOrder(): SpySalesOrder
     {
-        $orderBuilder = new PaymentBuilder();
+        $paymentBuilder = new PaymentBuilder();
 
-        return $orderBuilder->createPayment(PaymentTransfer::HEIDELPAY_SOFORT);
+        return $paymentBuilder->createPayment(PaymentTransfer::HEIDELPAY_SOFORT);
     }
 }

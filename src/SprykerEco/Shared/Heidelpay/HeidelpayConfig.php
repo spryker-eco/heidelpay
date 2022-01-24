@@ -101,6 +101,8 @@ class HeidelpayConfig extends AbstractBundleConfig
     public const EXTERNAL_RESPONSE_TRANSACTION_STATUS_OK = 'ACK';
 
     /**
+     * @api
+     *
      * @var string
      */
     public const CAPTURE_TRANSACTION_STATUS_OK = 'ACK';

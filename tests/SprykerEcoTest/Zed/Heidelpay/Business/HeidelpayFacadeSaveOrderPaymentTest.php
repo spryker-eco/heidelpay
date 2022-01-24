@@ -39,11 +39,6 @@ class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
     protected const REGISTRATION_NUMBER = '31HA07BC814CA0300B135019D1515E08';
 
     /**
-     * @var string
-     */
-    protected const REGISTRATION_NUMBER = '31HA07BC814CA0300B135019D1515E08';
-
-    /**
      * @dataProvider functionListForSuccessfulSaveOrderPaymentTest
      *
      * @param string $dataProviderFunctionName

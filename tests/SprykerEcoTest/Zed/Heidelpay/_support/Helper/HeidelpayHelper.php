@@ -11,6 +11,7 @@ use Codeception\Module;
 use Generated\Shared\DataBuilder\HeidelpayTransactionLogBuilder;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
+use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery;
 
 class HeidelpayHelper extends Module
 {
@@ -21,6 +22,8 @@ class HeidelpayHelper extends Module
      */
     public function haveHeidelpayTransactionLog(array $seedData = []): HeidelpayTransactionLogTransfer
     {
+        $this->cleanUpSpyPaymentHeidelpayTransactionLogTable();
+
         $heidelpayTransactionLogTransfer = (new HeidelpayTransactionLogBuilder($seedData))->build();
 
         $paymentHeidelpayTransactionLogEntity = new SpyPaymentHeidelpayTransactionLog();
@@ -36,5 +39,13 @@ class HeidelpayHelper extends Module
         )->setIdSalesOrder($paymentHeidelpayTransactionLogEntity->getFkSalesOrder());
 
         return $heidelpayTransactionLogTransfer;
+    }
+
+    /**
+     * @return void
+     */
+    protected function cleanUpSpyPaymentHeidelpayTransactionLogTable(): void
+    {
+        SpyPaymentHeidelpayTransactionLogQuery::create()->deleteAll();
     }
 }
