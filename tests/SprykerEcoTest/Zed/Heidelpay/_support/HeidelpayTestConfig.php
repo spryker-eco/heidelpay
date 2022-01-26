@@ -5,7 +5,7 @@
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
-namespace SprykerEcoTest\Shared\Heidelpay;
+namespace SprykerEcoTest\Zed\Heidelpay;
 
 interface HeidelpayTestConfig
 {

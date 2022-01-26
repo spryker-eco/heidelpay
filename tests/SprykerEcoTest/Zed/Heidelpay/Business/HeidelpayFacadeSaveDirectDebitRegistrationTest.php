@@ -11,7 +11,7 @@ use Generated\Shared\Transfer\HeidelpayDirectDebitAccountTransfer;
 use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepository;
 use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepositoryInterface;
-use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
+use SprykerEcoTest\Zed\Heidelpay\HeidelpayTestConfig;
 
 /**
  * @group Functional

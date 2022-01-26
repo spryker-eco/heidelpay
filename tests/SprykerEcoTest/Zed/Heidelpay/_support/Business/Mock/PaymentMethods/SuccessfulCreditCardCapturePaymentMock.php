@@ -9,11 +9,11 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods;
 
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
-use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\DirectDebitPayment;
-use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
+use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPayment;
+use SprykerEcoTest\Zed\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentResponseTransferBuilderTrait;
 
-class SuccessfulDirectDebitPaymentMock extends DirectDebitPayment
+class SuccessfulCreditCardCapturePaymentMock extends CreditCardPayment
 {
     use PaymentResponseTransferBuilderTrait;
 
@@ -26,8 +26,8 @@ class SuccessfulDirectDebitPaymentMock extends DirectDebitPayment
     {
         $response = [];
         $response['payload'] = '{
-                        "processing": {"result": "ACK"}, 
-                        "payment": {"code": null}                         
+                        "processing": {"result": "ACK"},
+                        "payment": {"code": null}
                     }';
 
         $response['processingCode'] = null;
@@ -42,47 +42,24 @@ class SuccessfulDirectDebitPaymentMock extends DirectDebitPayment
     }
 
     /**
-     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $debitRequestTransfer
+     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $captureRequestTransfer
      *
      * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
      */
-    public function debitOnRegistration(HeidelpayRequestTransfer $debitRequestTransfer): HeidelpayResponseTransfer
+    public function capture(HeidelpayRequestTransfer $captureRequestTransfer): HeidelpayResponseTransfer
     {
         $response = [];
         $response['payload'] = '{
-                        "processing": {"result": "ACK"}, 
-                        "payment": {"code": "DD.DE"}                         
+                        "processing": {"result": "ACK"},
+                        "payment": {"code": "VA.RC"}
                     }';
 
-        $response['processingCode'] = 'HP.DE.90.00';
+        $response['processingCode'] = 'CC.CP.90.00';
 
         $response['idTransactionUnique'] = 'some unique transaction';
-        $response['idSalesOrder'] = $debitRequestTransfer->getCustomerPurchase()->getIdOrder();
-
+        $response['idSalesOrder'] = $captureRequestTransfer->getCustomerPurchase()->getIdOrder();
         $responseTransfer = $this->getSuccessfulHeidelpayTransfer($response);
-
-        return $responseTransfer;
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\HeidelpayRequestTransfer $reservationRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\HeidelpayResponseTransfer
-     */
-    public function refund(HeidelpayRequestTransfer $reservationRequestTransfer): HeidelpayResponseTransfer
-    {
-        $response = [];
-        $response['payload'] = '{
-                        "processing": {"result": "ACK"}, 
-                        "payment": {"code": "DD.RF"}                         
-                    }';
-
-        $response['processingCode'] = 'HP.RF.90.00';
-
-        $response['idTransactionUnique'] = 'some unique transaction';
-        $response['idSalesOrder'] = $reservationRequestTransfer->getCustomerPurchase()->getIdOrder();
-
-        $responseTransfer = $this->getSuccessfulHeidelpayTransfer($response);
+        $responseTransfer->setPaymentFormUrl(null);
 
         return $responseTransfer;
     }

@@ -7,13 +7,24 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse;
 
-use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
+use Orm\Zed\Sales\Persistence\SpySalesOrder;
+use SprykerEcoTest\Zed\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponseBuilder;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\HeidelpayEasyCreditResponseTrait;
 
-class UnsuccessEasyCreditPaymentExternalResponseBuilder extends ExternalResponseBuilder
+class FailedEasyCreditPaymentExternalResponseWhithIncorrectTransactionIdBuilder extends ExternalResponseBuilder
 {
     use HeidelpayEasyCreditResponseTrait;
+
+    /**
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
+     *
+     * @return int
+     */
+    protected function getTransationId(SpySalesOrder $orderEntity): int
+    {
+        return 100000000000;
+    }
 
     /**
      * @param string $paymentMethod
@@ -38,7 +49,6 @@ class UnsuccessEasyCreditPaymentExternalResponseBuilder extends ExternalResponse
         );
 
         $config = $this->factory->getConfig();
-
         $responseParam = [];
         $responseParam[static::EMAIL] = $customerJohnDoe->getEmail();
         $responseParam[static::RESPONSE_URL] = $config->getZedResponseUrl();
@@ -71,13 +81,5 @@ class UnsuccessEasyCreditPaymentExternalResponseBuilder extends ExternalResponse
         $response = $this->getHeidelpayResponseTemplate($responseParam);
 
         return $response;
-    }
-
-    /**
-     * @return string
-     */
-    protected function getProcessingReturn(): string
-    {
-        return 'The response object seems to be empty or it is not a valid heidelpay response!';
     }
 }

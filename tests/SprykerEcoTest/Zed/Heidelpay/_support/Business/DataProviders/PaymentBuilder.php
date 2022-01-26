@@ -8,7 +8,7 @@
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders;
 
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
-use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
+use SprykerEcoTest\Zed\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\NewOrderWithOneItemTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
@@ -20,19 +20,6 @@ class PaymentBuilder
     use OrderAddressTrait;
     use NewOrderWithOneItemTrait;
     use PaymentHeidelpayTrait;
-
-    /**
-     * @var \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory
-     */
-    protected $factory;
-
-    /**
-     * @param \SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory $factory
-     */
-    public function __construct(HeidelpayBusinessFactory $factory)
-    {
-        $this->factory = $factory;
-    }
 
     /**
      * @param string $paymentMethod

@@ -10,7 +10,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Transaction;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
-use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
+use SprykerEcoTest\Zed\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Encoder\EncoderTrait;
 
 trait AuthorizeTransactionTrait
@@ -36,10 +36,10 @@ trait AuthorizeTransactionTrait
                 $this->encryptData(
                     $this->prepareJsonString(
                         '{
-                            "processing": {"result": "ACK"}, 
-                            "payment": {"code": "CC.PA"}, 
+                            "processing": {"result": "ACK"},
+                            "payment": {"code": "CC.PA"},
                             "identification": {"transactionid": "' . $orderEntity->getIdSalesOrder() . '"},
-                            "frontend": {"payment_frame_url": "' . HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"} 
+                            "frontend": {"payment_frame_url": "' . HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"}
                         }',
                     ),
                 ),
@@ -71,10 +71,10 @@ trait AuthorizeTransactionTrait
                                 "result": "NOK",
                                 "return": "Custom error",
                                 "status": "REJECTED_VALIDATION"
-                            }, 
-                            "payment": {"code": "CC.PA"}, 
+                            },
+                            "payment": {"code": "CC.PA"},
                             "identification": {"transactionid": "' . $orderEntity->getIdSalesOrder() . '"},
-                            "frontend": {"payment_frame_url": "' . HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"} 
+                            "frontend": {"payment_frame_url": "' . HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"}
                         }',
                     ),
                 ),

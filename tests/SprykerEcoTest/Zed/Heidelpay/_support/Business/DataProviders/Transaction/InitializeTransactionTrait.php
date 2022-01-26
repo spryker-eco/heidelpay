@@ -9,7 +9,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Transaction;
 
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
-use SprykerEcoTest\Shared\Heidelpay\HeidelpayTestConfig;
+use SprykerEcoTest\Zed\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Encoder\EncoderTrait;
 
 trait InitializeTransactionTrait
@@ -33,9 +33,9 @@ trait InitializeTransactionTrait
             ->setRequestPayload('{}')
             ->setResponsePayload($this->encryptData(
                 '{
-                        "processing": {"result": "ACK"}, 
-                        "payment": {"code": "CC.PA"}, 
-                        "frontend": {"payment_frame_url": "' . HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"} 
+                        "processing": {"result": "ACK"},
+                        "payment": {"code": "CC.PA"},
+                        "frontend": {"payment_frame_url": "' . HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL . '"}
                     }',
             ));
 
