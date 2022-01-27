@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Zed\Heidelpay\Business\Checker;
 
+use Generated\Shared\Transfer\PaymentHeidelpayTransactionLogCriteriaTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepositoryInterface;
 
@@ -32,18 +33,12 @@ class SalesOrderChecker implements SalesOrderCheckerInterface
      */
     public function isCaptureApproved(int $idSalesOrder): bool
     {
-        $heidelpayTransactionLogTransfer = $this->heidelpayRepository
-            ->findHeidelpayTransactionLogByIdSalesOrderAndTransactionTypeAndResponseCode(
-                $idSalesOrder,
-                HeidelpayConfig::TRANSACTION_TYPE_CAPTURE,
-                HeidelpayConfig::CAPTURE_TRANSACTION_STATUS_OK,
-            );
+        $paymentHeidelpayTransactionLogCriteriaTransfer = (new PaymentHeidelpayTransactionLogCriteriaTransfer())
+            ->setIdSalesOrder($idSalesOrder)
+            ->setTransactionType(HeidelpayConfig::TRANSACTION_TYPE_CAPTURE)
+            ->setResponseCode(HeidelpayConfig::CAPTURE_TRANSACTION_STATUS_OK);
 
-        if (!$heidelpayTransactionLogTransfer) {
-            return false;
-        }
-
-        return true;
+        return $this->heidelpayRepository->hasPaymentHeidelpayTransactionLog($paymentHeidelpayTransactionLogCriteriaTransfer);
     }
 
     /**
@@ -53,18 +48,12 @@ class SalesOrderChecker implements SalesOrderCheckerInterface
      */
     public function isRefunded(int $idSalesOrder): bool
     {
-        $heidelpayTransactionLogTransfer = $this->heidelpayRepository
-            ->findHeidelpayTransactionLogByIdSalesOrderAndTransactionTypeAndResponseCode(
-                $idSalesOrder,
-                HeidelpayConfig::TRANSACTION_TYPE_REFUND,
-                HeidelpayConfig::REFUND_TRANSACTION_STATUS_OK,
-            );
+        $paymentHeidelpayTransactionLogCriteriaTransfer = (new PaymentHeidelpayTransactionLogCriteriaTransfer())
+            ->setIdSalesOrder($idSalesOrder)
+            ->setTransactionType(HeidelpayConfig::TRANSACTION_TYPE_REFUND)
+            ->setResponseCode(HeidelpayConfig::REFUND_TRANSACTION_STATUS_OK);
 
-        if (!$heidelpayTransactionLogTransfer) {
-            return false;
-        }
-
-        return true;
+        return $this->heidelpayRepository->hasPaymentHeidelpayTransactionLog($paymentHeidelpayTransactionLogCriteriaTransfer);
     }
 
     /**
@@ -74,17 +63,11 @@ class SalesOrderChecker implements SalesOrderCheckerInterface
      */
     public function isDebitOnRegistrationCompleted(int $idSalesOrder): bool
     {
-        $heidelpayTransactionLogTransfer = $this->heidelpayRepository
-            ->findHeidelpayTransactionLogByIdSalesOrderAndTransactionTypeAndResponseCode(
-                $idSalesOrder,
-                HeidelpayConfig::TRANSACTION_TYPE_EXTERNAL_RESPONSE,
-                HeidelpayConfig::EXTERNAL_RESPONSE_TRANSACTION_STATUS_OK,
-            );
+        $paymentHeidelpayTransactionLogCriteriaTransfer = (new PaymentHeidelpayTransactionLogCriteriaTransfer())
+            ->setIdSalesOrder($idSalesOrder)
+            ->setTransactionType(HeidelpayConfig::TRANSACTION_TYPE_EXTERNAL_RESPONSE)
+            ->setResponseCode(HeidelpayConfig::EXTERNAL_RESPONSE_TRANSACTION_STATUS_OK);
 
-        if (!$heidelpayTransactionLogTransfer) {
-            return false;
-        }
-
-        return true;
+        return $this->heidelpayRepository->hasPaymentHeidelpayTransactionLog($paymentHeidelpayTransactionLogCriteriaTransfer);
     }
 }

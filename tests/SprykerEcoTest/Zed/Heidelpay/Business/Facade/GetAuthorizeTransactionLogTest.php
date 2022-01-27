@@ -12,7 +12,6 @@ use Generated\Shared\Transfer\HeidelpayResponseErrorTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
-use SprykerEcoTest\Zed\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulIdealAuthorizeTransaction;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithUnsuccessfulIdealAuthorizeTransaction;
 
@@ -22,9 +21,10 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithUnsuccessfulIde
  * @group Zed
  * @group Heidelpay
  * @group Business
- * @group HeidelpayFacadeGetAuthorizeTransactionLogTest
+ * @group Facade
+ * @group GetAuthorizeTransactionLogTest
  */
-class HeidelpayFacadeGetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
+class GetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
 {
     /**
      * @return void

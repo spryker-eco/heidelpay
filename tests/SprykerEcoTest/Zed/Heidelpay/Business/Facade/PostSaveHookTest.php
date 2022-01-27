@@ -11,7 +11,6 @@ use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Shared\Heidelpay\HeidelpayConstants;
 use SprykerEco\Zed\Heidelpay\HeidelpayConfig;
-use SprykerEcoTest\Zed\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulCreditCardSecureTransaction;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulIdealAuthorizeTransaction;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulPaypalAuthorizeTransaction;
@@ -25,9 +24,10 @@ use SprykerTest\Shared\Testify\Helper\ConfigHelper;
  * @group Zed
  * @group Heidelpay
  * @group Business
- * @group HeidelpayFacadePostSaveHookTest
+ * @group Facade
+ * @group PostSaveHookTest
  */
-class HeidelpayFacadePostSaveHookTest extends HeidelpayPaymentTest
+class PostSaveHookTest extends HeidelpayPaymentTest
 {
     /**
      * @dataProvider functionForPostSaveHookForSuccessfulSalesOrdersSetsExternalRedirectTest

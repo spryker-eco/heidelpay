@@ -10,7 +10,6 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business;
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
 use Generated\Shared\Transfer\PaymentTransfer;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
-use SprykerEcoTest\Zed\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
 
 /**
@@ -19,9 +18,10 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
  * @group Zed
  * @group Heidelpay
  * @group Business
- * @group HeidelpayFacadeGetPaymentBySalesOrderTest
+ * @group Facade
+ * @group GetPaymentBySalesOrderTest
  */
-class HeidelpayFacadeGetPaymentBySalesOrderTest extends HeidelpayPaymentTest
+class GetPaymentBySalesOrderTest extends HeidelpayPaymentTest
 {
     /**
      * @return void

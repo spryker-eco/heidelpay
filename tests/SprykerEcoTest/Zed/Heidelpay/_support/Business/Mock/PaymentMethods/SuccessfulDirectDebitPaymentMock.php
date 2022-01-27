@@ -10,8 +10,8 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\Mock\PaymentMethods;
 use Generated\Shared\Transfer\HeidelpayRequestTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseTransfer;
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\DirectDebitPayment;
-use SprykerEcoTest\Zed\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentResponseTransferBuilderTrait;
+use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConfig;
 
 class SuccessfulDirectDebitPaymentMock extends DirectDebitPayment
 {

@@ -23,9 +23,10 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Quote\QuoteMockTrait;
  * @group Zed
  * @group Heidelpay
  * @group Business
- * @group HeidelpayFacadeGetPaymentBySalesOrderTest
+ * @group Facade
+ * @group GetPaymentBySalesOrderTest
  */
-class HeidelpayFacadeInitializePaymentTest extends HeidelpayPaymentTest
+class InitializePaymentTest extends HeidelpayPaymentTest
 {
     use QuoteMockTrait;
     use CustomerAddressTrait;

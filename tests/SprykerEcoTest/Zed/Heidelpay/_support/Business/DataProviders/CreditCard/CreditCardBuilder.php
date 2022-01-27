@@ -9,7 +9,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\CreditCard;
 
 use Generated\Shared\Transfer\QuoteTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration;
-use SprykerEcoTest\Zed\Heidelpay\HeidelpayTestConfig;
+use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConfig;
 
 class CreditCardBuilder
 {

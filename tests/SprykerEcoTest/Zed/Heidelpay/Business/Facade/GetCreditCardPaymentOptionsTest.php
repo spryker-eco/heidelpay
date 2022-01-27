@@ -17,7 +17,6 @@ use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\TotalsTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
-use SprykerEcoTest\Zed\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\CreditCard\CreditCardBuilder;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerAddressTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerTrait;
@@ -29,9 +28,10 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Quote\QuoteMockTrait;
  * @group Zed
  * @group Heidelpay
  * @group Business
- * @group HeidelpayFacadeGetCreditCardPaymentOptionsTest
+ * @group Facade
+ * @group GetCreditCardPaymentOptionsTest
  */
-class HeidelpayFacadeGetCreditCardPaymentOptionsTest extends HeidelpayPaymentTest
+class GetCreditCardPaymentOptionsTest extends HeidelpayPaymentTest
 {
     use QuoteMockTrait;
     use CustomerAddressTrait;

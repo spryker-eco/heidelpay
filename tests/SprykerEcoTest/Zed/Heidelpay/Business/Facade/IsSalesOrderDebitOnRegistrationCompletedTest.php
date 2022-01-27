@@ -9,10 +9,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Generated\Shared\Transfer\PaymentTransfer;
-use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
-use SprykerEcoTest\Zed\Heidelpay\HeidelpayTestConfig;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
 
 /**
  * @group Functional
@@ -20,9 +17,10 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
  * @group Zed
  * @group Heidelpay
  * @group Business
- * @group HeidelpayFacadeExecuteDebitOnRegistrationTest
+ * @group Facade
+ * @group ExecuteDebitOnRegistrationTest
  */
-class HeidelpayFacadeIsSalesOrderDebitOnRegistrationCompletedTest extends HeidelpayPaymentTest
+class IsSalesOrderDebitOnRegistrationCompletedTest extends HeidelpayPaymentTest
 {
     /**
      * @return void
@@ -30,11 +28,11 @@ class HeidelpayFacadeIsSalesOrderDebitOnRegistrationCompletedTest extends Heidel
     public function testIsSalesOrderDebitOnRegistrationCompletedReturnsTrueWhenTransactionLogContainsAtLeastOneSuccessfulRecord(): void
     {
         // Arrange
-        $salesOrder = $this->createOrder();
+        $salesOrderEntity = $this->tester->createOrder(PaymentTransfer::HEIDELPAY_CREDIT_CARD_SECURE);
         $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
 
         $heidelpayTransactionLogFailSeedData = [
-            HeidelpayTransactionLogTransfer::ID_SALES_ORDER => $salesOrder->getIdSalesOrder(),
+            HeidelpayTransactionLogTransfer::ID_SALES_ORDER => $salesOrderEntity->getIdSalesOrder(),
             HeidelpayTransactionLogTransfer::TRANSACTION_TYPE => HeidelpayConfig::TRANSACTION_TYPE_EXTERNAL_RESPONSE,
             HeidelpayTransactionLogTransfer::RESPONSE_CODE => HeidelpayTestConfig::HEIDELPAY_UNSUCCESS_RESPONSE,
         ];
@@ -46,10 +44,10 @@ class HeidelpayFacadeIsSalesOrderDebitOnRegistrationCompletedTest extends Heidel
         $this->tester->haveHeidelpayTransactionLog($heidelpayTransactionLogSuccessSeedData);
 
         // Act
-        $result = $heidelpayFacade->isSalesOrderDebitOnRegistrationCompleted($salesOrder->getIdSalesOrder());
+        $isSalesOrderDebitOnRegistrationCompleted = $heidelpayFacade->isSalesOrderDebitOnRegistrationCompleted($salesOrderEntity->getIdSalesOrder());
 
         // Assert
-        $this->assertTrue($result);
+        $this->assertTrue($isSalesOrderDebitOnRegistrationCompleted);
     }
 
     /**
@@ -58,27 +56,19 @@ class HeidelpayFacadeIsSalesOrderDebitOnRegistrationCompletedTest extends Heidel
     public function testIsSalesOrderDebitOnRegistrationCompletedReturnsFalseWhenTransactionLogContainsNoSuccessfulRecords(): void
     {
         // Arrange
-        $salesOrder = $this->createOrder();
+        $salesOrderEntity = $this->tester->createOrder(PaymentTransfer::HEIDELPAY_CREDIT_CARD_SECURE);
         $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
 
         $this->tester->haveHeidelpayTransactionLog([
-            HeidelpayTransactionLogTransfer::ID_SALES_ORDER => $salesOrder->getIdSalesOrder(),
+            HeidelpayTransactionLogTransfer::ID_SALES_ORDER => $salesOrderEntity->getIdSalesOrder(),
             HeidelpayTransactionLogTransfer::TRANSACTION_TYPE => HeidelpayConfig::TRANSACTION_TYPE_EXTERNAL_RESPONSE,
             HeidelpayTransactionLogTransfer::RESPONSE_CODE => HeidelpayTestConfig::HEIDELPAY_UNSUCCESS_RESPONSE,
         ]);
 
         // Act
-        $result = $heidelpayFacade->isSalesOrderDebitOnRegistrationCompleted($salesOrder->getIdSalesOrder());
+        $isSalesOrderDebitOnRegistrationCompleted = $heidelpayFacade->isSalesOrderDebitOnRegistrationCompleted($salesOrderEntity->getIdSalesOrder());
 
         // Assert
-        $this->assertFalse($result);
-    }
-
-    /**
-     * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
-     */
-    protected function createOrder(): SpySalesOrder
-    {
-        return (new PaymentBuilder())->createPayment(PaymentTransfer::HEIDELPAY_CREDIT_CARD_SECURE);
+        $this->assertFalse($isSalesOrderDebitOnRegistrationCompleted);
     }
 }

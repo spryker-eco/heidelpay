@@ -955,6 +955,14 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Checker\SalesOrderCheckerInterface
+     */
+    public function createSalesOrderChecker(): SalesOrderCheckerInterface
+    {
+        return new SalesOrderChecker($this->getRepository());
+    }
+
+    /**
      * @return \SprykerEco\Zed\Heidelpay\Dependency\Facade\HeidelpayToSalesFacadeInterface
      */
     public function getSalesFacade(): HeidelpayToSalesFacadeInterface
@@ -1008,13 +1016,5 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     public function getHeidelpayNotificationExpanderPlugins(): array
     {
         return $this->getProvidedDependency(HeidelpayDependencyProvider::PLUGINS_HEIDELPAY_NOTIFICATION_EXPANDER);
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Heidelpay\Business\Checker\SalesOrderCheckerInterface
-     */
-    public function createSalesOrderChecker(): SalesOrderCheckerInterface
-    {
-        return new SalesOrderChecker($this->getRepository());
     }
 }

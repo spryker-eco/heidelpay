@@ -22,7 +22,6 @@ class HeidelpayPostSavePlugin extends AbstractPlugin implements CheckoutPostSave
 {
     /**
      * {@inheritDoc}
-     * Specification:
      * - This plugin is called after the order is placed.
      * - Set the success flag to false, if redirect should be headed to an error page afterwords
      *

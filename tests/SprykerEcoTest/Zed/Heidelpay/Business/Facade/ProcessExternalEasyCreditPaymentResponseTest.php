@@ -9,8 +9,8 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
 use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 use Generated\Shared\Transfer\PaymentTransfer;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\FailedSofortPaymentExternalResponseWhithFailedProcessingResultBuilder;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\SuccessSofortPaymentExternalResponseBuilder;
+use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\SuccessEasyCreditPaymentExternalResponseBuilder;
+use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse\UnsuccessEasyCreditPaymentExternalResponseBuilder;
 
 /**
  * @group Functional
@@ -18,17 +18,18 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalRespons
  * @group Zed
  * @group Heidelpay
  * @group Business
- * @group HeidelpayFacadeProcessExternalPaymentResponseTest
+ * @group Facade
+ * @group ProcessExternalEasyCreditPaymentResponseTest
  */
-class HeidelpayFacadeProcessExternalPaymentResponseTest extends HeidelpayPaymentTest
+class ProcessExternalEasyCreditPaymentResponseTest extends HeidelpayPaymentTest
 {
     /**
      * @return void
      */
-    public function testProcessExternalPaymentSuccessSofortPaymentResponse(): void
+    public function testProcessExternalPaymentSuccessEasyCreditPaymentResponse(): void
     {
         //Arrange
-        $heidelpayResponse = $this->createSuccessSofortPaymentExternalResponse();
+        $heidelpayResponse = $this->createSuccessEasyCreditPaymentExternalResponse();
 
         //Act
         $response = $this->heidelpayFacade->processExternalPaymentResponse($heidelpayResponse);
@@ -41,10 +42,10 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends HeidelpayPayment
     /**
      * @return void
      */
-    public function testProcessExternalPaymentFailedSofortResponseWhichUnsuccessful(): void
+    public function testProcessExternalPaymentFailedEasyCreditResponseWhichUnsuccessful(): void
     {
         //Arrange
-        $heidelpayResponse = $this->createFailedSofortPaymentExternalResponseThatIsUnsuccessful();
+        $heidelpayResponse = $this->createFailedEasyCreditPaymentExternalResponseThatIsUnsuccessful();
 
         //Act
         $response = $this->heidelpayFacade->processExternalPaymentResponse($heidelpayResponse);
@@ -61,20 +62,20 @@ class HeidelpayFacadeProcessExternalPaymentResponseTest extends HeidelpayPayment
     /**
      * @return array
      */
-    protected function createSuccessSofortPaymentExternalResponse(): array
+    protected function createSuccessEasyCreditPaymentExternalResponse(): array
     {
-        $orderBuilder = new SuccessSofortPaymentExternalResponseBuilder($this->createHeidelpayFactory());
+        $orderBuilder = new SuccessEasyCreditPaymentExternalResponseBuilder($this->createHeidelpayFactory());
 
-        return $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_SOFORT);
+        return $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_EASY_CREDIT);
     }
 
     /**
      * @return array
      */
-    protected function createFailedSofortPaymentExternalResponseThatIsUnsuccessful(): array
+    protected function createFailedEasyCreditPaymentExternalResponseThatIsUnsuccessful(): array
     {
-        $orderBuilder = new FailedSofortPaymentExternalResponseWhithFailedProcessingResultBuilder($this->createHeidelpayFactory());
+        $orderBuilder = new UnsuccessEasyCreditPaymentExternalResponseBuilder($this->createHeidelpayFactory());
 
-        return $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_SOFORT);
+        return $orderBuilder->createHeidelpayResponse(PaymentTransfer::HEIDELPAY_EASY_CREDIT);
     }
 }

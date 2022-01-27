@@ -27,9 +27,10 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\OrderWithSuccessfulSofor
  * @group Zed
  * @group Heidelpay
  * @group Business
- * @group HeidelpayFacadeSaveOrderPaymentTest
+ * @group Facade
+ * @group SaveOrderPaymentTest
  */
-class HeidelpayFacadeSaveOrderPaymentTest extends HeidelpayPaymentTest
+class SaveOrderPaymentTest extends HeidelpayPaymentTest
 {
     use NewOrderWithOneItemTrait;
 

@@ -18,9 +18,10 @@ use Orm\Zed\Heidelpay\Persistence\Base\SpyPaymentHeidelpayCreditCardRegistration
  * @group Zed
  * @group Heidelpay
  * @group Business
- * @group HeidelpayFacadeSaveCreditCardRegistrationTest
+ * @group Facade
+ * @group SaveCreditCardRegistrationTest
  */
-class HeidelpayFacadeSaveCreditCardRegistrationTest extends HeidelpayPaymentTest
+class SaveCreditCardRegistrationTest extends HeidelpayPaymentTest
 {
     /**
      * @var string

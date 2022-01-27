@@ -8,8 +8,6 @@
 namespace SprykerEcoTest\Zed\Heidelpay\Business;
 
 use Generated\Shared\Transfer\PaymentTransfer;
-use Orm\Zed\Sales\Persistence\SpySalesOrder;
-use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
 
 /**
  * @group Functional
@@ -17,9 +15,10 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
  * @group Zed
  * @group Heidelpay
  * @group Business
- * @group HeidelpayFacadeAuthorizePaymentTest
+ * @group Facade
+ * @group AuthorizePaymentTest
  */
-class HeidelpayFacadeAuthorizePaymentTest extends HeidelpayPaymentTest
+class AuthorizePaymentTest extends HeidelpayPaymentTest
 {
     /**
      * @return void
@@ -27,15 +26,15 @@ class HeidelpayFacadeAuthorizePaymentTest extends HeidelpayPaymentTest
     public function testProcessSuccessfulExternalPaymentResponseForSofort(): void
     {
         //Arrange
-        $salesOrder = $this->createOrder();
+        $salesOrderEntity = $this->tester->createOrder(PaymentTransfer::HEIDELPAY_SOFORT);
         $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
-        $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrder);
+        $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrderEntity);
 
         //Act
         $heidelpayFacade->authorizePayment($orderTransfer);
         $transaction = $this->createHeidelpayFactory()
             ->createTransactionLogReader()
-            ->findOrderAuthorizeTransactionLogByIdSalesOrder($salesOrder->getIdSalesOrder());
+            ->findOrderAuthorizeTransactionLogByIdSalesOrder($salesOrderEntity->getIdSalesOrder());
 
         //Assert
         $this->testSuccessfulHeidelpayPaymentResponse($transaction);
@@ -47,27 +46,17 @@ class HeidelpayFacadeAuthorizePaymentTest extends HeidelpayPaymentTest
     public function testProcessUnsuccessfulExternalPaymentResponseForSofort(): void
     {
         //Arrange
-        $salesOrder = $this->createOrder();
+        $salesOrderEntity = $this->tester->createOrder(PaymentTransfer::HEIDELPAY_SOFORT);
         $heidelpayFacade = $this->createFacadeWithUnsuccessfulFactory();
-        $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrder);
+        $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrderEntity);
 
         //Act
         $heidelpayFacade->authorizePayment($orderTransfer);
         $transaction = $this->createHeidelpayFactory()
             ->createTransactionLogReader()
-            ->findOrderAuthorizeTransactionLogByIdSalesOrder($salesOrder->getIdSalesOrder());
+            ->findOrderAuthorizeTransactionLogByIdSalesOrder($salesOrderEntity->getIdSalesOrder());
 
         //Assert
         $this->testUnsuccessfulHeidelpayPaymentResponse($transaction);
-    }
-
-    /**
-     * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
-     */
-    protected function createOrder(): SpySalesOrder
-    {
-        $paymentBuilder = new PaymentBuilder();
-
-        return $paymentBuilder->createPayment(PaymentTransfer::HEIDELPAY_SOFORT);
     }
 }

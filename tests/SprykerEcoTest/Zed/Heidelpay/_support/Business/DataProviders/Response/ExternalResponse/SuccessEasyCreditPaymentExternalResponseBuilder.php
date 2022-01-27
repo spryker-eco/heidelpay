@@ -7,9 +7,9 @@
 
 namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponse;
 
-use SprykerEcoTest\Zed\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\ExternalResponseBuilder;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Response\HeidelpayEasyCreditResponseTrait;
+use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConfig;
 
 class SuccessEasyCreditPaymentExternalResponseBuilder extends ExternalResponseBuilder
 {

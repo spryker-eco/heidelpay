@@ -19,7 +19,6 @@ use Orm\Zed\Heidelpay\Persistence\Base\SpyPaymentHeidelpayCreditCardRegistration
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayCreditCardRegistration;
 use Propel\Runtime\Propel;
 use SprykerEco\Shared\Heidelpay\QuoteUniqueIdGenerator;
-use SprykerEcoTest\Zed\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
 
 /**
@@ -28,9 +27,10 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
  * @group Zed
  * @group Heidelpay
  * @group Business
- * @group HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest
+ * @group Facade
+ * @group FindCreditCardRegistrationByIdAndQuoteTest
  */
-class HeidelpayFacadeFindCreditCardRegistrationByIdAndQuoteTest extends HeidelpayPaymentTest
+class FindCreditCardRegistrationByIdAndQuoteTest extends HeidelpayPaymentTest
 {
     use OrderAddressTrait;
 

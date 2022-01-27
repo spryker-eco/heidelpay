@@ -9,7 +9,7 @@ namespace SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\DirectDebit;
 
 use Generated\Shared\Transfer\QuoteTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayDirectDebitRegistration;
-use SprykerEcoTest\Zed\Heidelpay\HeidelpayTestConfig;
+use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConfig;
 
 class DirectDebitRegistrationBuilder
 {

@@ -424,4 +424,10 @@
         <property name="amount" type="int"/>
     </transfer>
 
+    <transfer name="PaymentHeidelpayTransactionLogCriteria">
+        <property name="idSalesOrder" type="int"/>
+        <property name="responseCode" type="string"/>
+        <property name="transactionType" type="string"/>
+    </transfer>
+
 </transfers>

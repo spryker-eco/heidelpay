@@ -11,7 +11,7 @@ use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayNotificationCollectionTransfer;
 use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
-use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
+use Generated\Shared\Transfer\PaymentHeidelpayTransactionLogCriteriaTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayDirectDebitRegistrationQuery;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayNotificationQuery;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayQuery;
@@ -164,32 +164,17 @@ class HeidelpayRepository extends AbstractRepository implements HeidelpayReposit
     }
 
     /**
-     * @param int $idSalesOrder
-     * @param string $transactionType
-     * @param string $responseCode
+     * @param \Generated\Shared\Transfer\PaymentHeidelpayTransactionLogCriteriaTransfer $paymentHeidelpayTransactionLogCriteriaTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     * @return bool
      */
-    public function findHeidelpayTransactionLogByIdSalesOrderAndTransactionTypeAndResponseCode(
-        int $idSalesOrder,
-        string $transactionType,
-        string $responseCode
-    ): ?HeidelpayTransactionLogTransfer {
-        $paymentHeidelpayTransactionLogEntity = $this->getFactory()->createPaymentHeidelpayTransactionLogQuery()
-            ->filterByFkSalesOrder($idSalesOrder)
-            ->filterByTransactionType($transactionType)
-            ->filterByResponseCode($responseCode)
-            ->findOne();
-
-        if ($paymentHeidelpayTransactionLogEntity === null) {
-            return null;
-        }
-
-        return $this->getMapper()
-            ->mapEntityToHeidelpayTransactionLogTransfer(
-                $paymentHeidelpayTransactionLogEntity,
-                new HeidelpayTransactionLogTransfer(),
-            );
+    public function hasPaymentHeidelpayTransactionLog(PaymentHeidelpayTransactionLogCriteriaTransfer $paymentHeidelpayTransactionLogCriteriaTransfer): bool
+    {
+        return $this->getFactory()->createPaymentHeidelpayTransactionLogQuery()
+            ->filterByFkSalesOrder($paymentHeidelpayTransactionLogCriteriaTransfer->getIdSalesOrder())
+            ->filterByTransactionType($paymentHeidelpayTransactionLogCriteriaTransfer->getTransactionType())
+            ->filterByResponseCode($paymentHeidelpayTransactionLogCriteriaTransfer->getResponseCode())
+            ->exists();
     }
 
     /**

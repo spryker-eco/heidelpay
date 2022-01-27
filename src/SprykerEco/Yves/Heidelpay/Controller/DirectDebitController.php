@@ -39,14 +39,14 @@ class DirectDebitController extends BaseHeidelpayController
      *
      * @var string
      */
-    protected const ROUTE_HEIDELPAY_PAYMENT_FAILED =  'heidelpay-payment-failed';
+    protected const ROUTE_HEIDELPAY_PAYMENT_FAILED = 'heidelpay-payment-failed';
 
     /**
      * @uses \SprykerEco\Yves\Heidelpay\Plugin\Router\HeidelpayRouteProviderPlugin::ROUTE_NAME_HEIDELPAY_DIRECT_DEBIT_REGISTER_SUCCESS
      *
      * @var string
      */
-    protected const ROUTE_HEIDELPAY_DIRECT_DEBIT_REGISTER_SUCCESS =  'heidelpay-dd-register-success';
+    protected const ROUTE_HEIDELPAY_DIRECT_DEBIT_REGISTER_SUCCESS = 'heidelpay-dd-register-success';
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request

@@ -11,7 +11,6 @@ use Generated\Shared\Transfer\HeidelpayDirectDebitAccountTransfer;
 use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepository;
 use SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepositoryInterface;
-use SprykerEcoTest\Zed\Heidelpay\HeidelpayTestConfig;
 
 /**
  * @group Functional
@@ -19,9 +18,10 @@ use SprykerEcoTest\Zed\Heidelpay\HeidelpayTestConfig;
  * @group Zed
  * @group Heidelpay
  * @group Business
- * @group HeidelpayFacadeSaveDirectDebitRegistrationTest
+ * @group Facade
+ * @group SaveDirectDebitRegistrationTest
  */
-class HeidelpayFacadeSaveDirectDebitRegistrationTest extends HeidelpayPaymentTest
+class SaveDirectDebitRegistrationTest extends HeidelpayPaymentTest
 {
     /**
      * @var string

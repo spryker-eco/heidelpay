@@ -11,11 +11,11 @@ use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use ReflectionObject;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use SprykerEco\Zed\Heidelpay\Business\HeidelpayBusinessFactory;
-use SprykerEcoTest\Zed\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Customer\CustomerTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\NewOrderWithOneItemTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Payment\PaymentHeidelpayTrait;
+use SprykerEcoTest\Zed\Heidelpay\Business\HeidelpayTestConfig;
 
 abstract class ExternalResponseBuilder
 {

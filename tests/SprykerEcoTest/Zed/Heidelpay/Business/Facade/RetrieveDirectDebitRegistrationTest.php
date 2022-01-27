@@ -11,7 +11,6 @@ use Generated\Shared\Transfer\HeidelpayDirectDebitAccountTransfer;
 use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayDirectDebitRegistration;
-use SprykerEcoTest\Zed\Heidelpay\HeidelpayTestConfig;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\DirectDebit\DirectDebitRegistrationBuilder;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Order\OrderAddressTrait;
 use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Quote\QuoteMockTrait;
@@ -22,9 +21,10 @@ use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\Quote\QuoteMockTrait;
  * @group Zed
  * @group Heidelpay
  * @group Business
- * @group HeidelpayFacadeRetrieveDirectDebitRegistrationTest
+ * @group Facade
+ * @group RetrieveDirectDebitRegistrationTest
  */
-class HeidelpayFacadeRetrieveDirectDebitRegistrationTest extends HeidelpayPaymentTest
+class RetrieveDirectDebitRegistrationTest extends HeidelpayPaymentTest
 {
     use OrderAddressTrait;
     use QuoteMockTrait;

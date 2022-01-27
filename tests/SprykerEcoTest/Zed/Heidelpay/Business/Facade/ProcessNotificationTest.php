@@ -17,9 +17,10 @@ use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayNotificationQuery;
  * @group Zed
  * @group Heidelpay
  * @group Business
- * @group HeidelpayFacadeProcessNotificationTest
+ * @group Facade
+ * @group ProcessNotificationTest
  */
-class HeidelpayFacadeProcessNotificationTest extends HeidelpayPaymentTest
+class ProcessNotificationTest extends HeidelpayPaymentTest
 {
     /**
      * @var string
@@ -40,8 +41,8 @@ class HeidelpayFacadeProcessNotificationTest extends HeidelpayPaymentTest
         $notificationTransfer = $this->createHeidelpayNotificationTransfer();
 
         //Act
-        $result = $this->heidelpayFacade->processNotification($notificationTransfer);
-        $entity = $this->findNotificationEntity($result);
+        $heidelpayNotificationTransfer = $this->heidelpayFacade->processNotification($notificationTransfer);
+        $entity = $this->findNotificationEntity($heidelpayNotificationTransfer);
 
         //Assert
         $this->assertNotNull($entity);
