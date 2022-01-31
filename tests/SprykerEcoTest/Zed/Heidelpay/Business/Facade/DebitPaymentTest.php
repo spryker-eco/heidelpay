@@ -25,18 +25,18 @@ class DebitPaymentTest extends HeidelpayPaymentTest
      */
     public function testProcessSuccessfulExternalPaymentResponseForPaypalDebit(): void
     {
-        //Arrange
+        // Arrange
         $salesOrderEntity = $this->tester->createOrder(PaymentTransfer::HEIDELPAY_PAYPAL_DEBIT);
         $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
         $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrderEntity);
 
-        //Act
+        // Act
         $heidelpayFacade->debitPayment($orderTransfer);
         $transaction = $this->createHeidelpayFactory()
             ->createTransactionLogReader()
             ->findOrderDebitTransactionLog($salesOrderEntity->getIdSalesOrder());
 
-        //Assert
+        // Assert
         $this->testSuccessfulHeidelpayPaymentResponse($transaction);
     }
 
@@ -45,18 +45,18 @@ class DebitPaymentTest extends HeidelpayPaymentTest
      */
     public function testProcessUnsuccessfulExternalPaymentResponseForPaypalDebit(): void
     {
-        //Arrange
+        // Arrange
         $salesOrderEntity = $this->tester->createOrder(PaymentTransfer::HEIDELPAY_PAYPAL_DEBIT);
         $heidelpayFacade = $this->createFacadeWithUnsuccessfulFactory();
         $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrderEntity);
 
-        //Act
+        // Act
         $heidelpayFacade->debitPayment($orderTransfer);
         $transaction = $this->createHeidelpayFactory()
             ->createTransactionLogReader()
             ->findOrderDebitTransactionLog($salesOrderEntity->getIdSalesOrder());
 
-        //Assert
+        // Assert
         $this->testUnsuccessfulHeidelpayPaymentResponse($transaction);
     }
 }

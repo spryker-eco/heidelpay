@@ -28,18 +28,18 @@ class CapturePaymentTest extends HeidelpayPaymentTest
      */
     public function testProcessSuccessfulExternalPaymentResponseForCreditCardCapture(): void
     {
-        //Arrange
+        // Arrange
         $salesOrderEntity = $this->tester->createOrder(PaymentTransfer::HEIDELPAY_CREDIT_CARD_SECURE);
         $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
         $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrderEntity);
 
-        //Act
+        // Act
         $heidelpayFacade->capturePayment($orderTransfer);
         $transaction = $this->createQueryContainer()
             ->queryCaptureTransactionLog($salesOrderEntity->getIdSalesOrder())
             ->findOne();
 
-        //Assert
+        // Assert
         $this->assertNotNull($transaction);
         $this->assertNotEmpty($transaction->getResponseCode());
         $this->assertEquals(HeidelpayConfig::CAPTURE_TRANSACTION_STATUS_OK, $transaction->getResponseCode());
@@ -50,18 +50,18 @@ class CapturePaymentTest extends HeidelpayPaymentTest
      */
     public function testProcessUnsuccessfulExternalPaymentResponseForCreditCardCapture(): void
     {
-        //Arrange
+        // Arrange
         $salesOrderEntity = $this->tester->createOrder(PaymentTransfer::HEIDELPAY_CREDIT_CARD_SECURE);
         $heidelpayFacade = $this->createFacadeWithUnsuccessfulFactory();
         $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrderEntity);
 
-        //Act
+        // Act
         $heidelpayFacade->capturePayment($orderTransfer);
         $transaction = $this->createQueryContainer()
             ->queryCaptureTransactionLog($salesOrderEntity->getIdSalesOrder())
             ->findOne();
 
-        //Assert
+        // Assert
         $this->assertNotNull($transaction);
         $this->assertNotEmpty($transaction->getResponseCode());
         $this->assertNotEquals(HeidelpayConfig::CAPTURE_TRANSACTION_STATUS_OK, $transaction->getResponseCode());

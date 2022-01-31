@@ -31,15 +31,15 @@ class GetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
      */
     public function testSuccessfulGetAuthorizeTransactionLog(): void
     {
-        //Arrange
+        // Arrange
         $quoteTransfer = $this->createOrderWithSuccessfulIdealAuthorizeTransaction();
         $authorizeTransactionLogRequestTransfer = new HeidelpayAuthorizeTransactionLogRequestTransfer();
         $authorizeTransactionLogRequestTransfer->setOrderReference($quoteTransfer->getOrderReference());
 
-        //Act
+        // Act
         $transactionLogTransfer = $this->heidelpayFacade->getAuthorizeTransactionLog($authorizeTransactionLogRequestTransfer);
 
-        //Assert
+        // Assert
         $this->assertInstanceOf(HeidelpayTransactionLogTransfer::class, $transactionLogTransfer);
         $heidelpayResponse = $transactionLogTransfer->getHeidelpayResponse();
 
@@ -60,15 +60,15 @@ class GetAuthorizeTransactionLogTest extends HeidelpayPaymentTest
      */
     public function testUnsuccessfulGetAuthorizeTransactionLog(): void
     {
-        //Arrange
+        // Arrange
         $quoteTransfer = $this->createOrderWithUnsuccessfulIdealAuthorizeTransaction();
         $authorizeTransactionLogRequestTransfer = new HeidelpayAuthorizeTransactionLogRequestTransfer();
         $authorizeTransactionLogRequestTransfer->setOrderReference($quoteTransfer->getOrderReference());
 
-        //Act
+        // Act
         $transactionLogTransfer = $this->heidelpayFacade->getAuthorizeTransactionLog($authorizeTransactionLogRequestTransfer);
 
-        //Assert
+        // Assert
         $this->assertInstanceOf(HeidelpayTransactionLogTransfer::class, $transactionLogTransfer);
 
         $heidelpayResponse = $transactionLogTransfer->getHeidelpayResponse();

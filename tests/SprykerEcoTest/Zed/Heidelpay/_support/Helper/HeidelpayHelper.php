@@ -11,10 +11,12 @@ use Codeception\Module;
 use Generated\Shared\DataBuilder\HeidelpayTransactionLogBuilder;
 use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
-use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery;
+use SprykerTest\Shared\Testify\Helper\DataCleanupHelperTrait;
 
 class HeidelpayHelper extends Module
 {
+    use DataCleanupHelperTrait;
+
     /**
      * @param array<mixed> $seedData
      *
@@ -22,8 +24,6 @@ class HeidelpayHelper extends Module
      */
     public function haveHeidelpayTransactionLog(array $seedData = []): HeidelpayTransactionLogTransfer
     {
-        $this->cleanUpSpyPaymentHeidelpayTransactionLogTable();
-
         $heidelpayTransactionLogTransfer = (new HeidelpayTransactionLogBuilder($seedData))->build();
 
         $paymentHeidelpayTransactionLogEntity = new SpyPaymentHeidelpayTransactionLog();
@@ -33,19 +33,15 @@ class HeidelpayHelper extends Module
         $paymentHeidelpayTransactionLogEntity->setFkSalesOrder($heidelpayTransactionLogTransfer->getIdSalesOrder());
         $paymentHeidelpayTransactionLogEntity->save();
 
+        $this->getDataCleanupHelper()->_addCleanup(function () use ($paymentHeidelpayTransactionLogEntity): void {
+            $paymentHeidelpayTransactionLogEntity->delete();
+        });
+
         $heidelpayTransactionLogTransfer->fromArray(
             $paymentHeidelpayTransactionLogEntity->toArray(),
             true,
         )->setIdSalesOrder($paymentHeidelpayTransactionLogEntity->getFkSalesOrder());
 
         return $heidelpayTransactionLogTransfer;
-    }
-
-    /**
-     * @return void
-     */
-    protected function cleanUpSpyPaymentHeidelpayTransactionLogTable(): void
-    {
-        SpyPaymentHeidelpayTransactionLogQuery::create()->deleteAll();
     }
 }

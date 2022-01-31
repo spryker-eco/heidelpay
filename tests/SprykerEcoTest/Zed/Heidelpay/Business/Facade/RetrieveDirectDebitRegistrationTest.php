@@ -34,7 +34,7 @@ class RetrieveDirectDebitRegistrationTest extends HeidelpayPaymentTest
      */
     public function testSuccessfulRetrieveDirectDebitRegistration(): void
     {
-        //Arrange
+        // Arrange
         $quoteTransfer = $this->createQuote();
         $directDebitRegistrationTransfer = $this->createHeidelpayDirectDebitRegistrationTransfer();
         $directDebitRegistrationEntity = $this->createDirectDebitRegistration($quoteTransfer);
@@ -43,10 +43,10 @@ class RetrieveDirectDebitRegistrationTest extends HeidelpayPaymentTest
                 $directDebitRegistrationEntity->getIdDirectDebitRegistration(),
             );
 
-        //Act
+        // Act
         $directDebitRegistrationTransfer = $this->heidelpayFacade->retrieveDirectDebitRegistration($directDebitRegistrationTransfer);
 
-        //Assert
+        // Assert
         $this->assertInstanceOf(HeidelpayDirectDebitRegistrationTransfer::class, $directDebitRegistrationTransfer);
         $this->assertNotNull($directDebitRegistrationTransfer->getIdDirectDebitRegistration());
         $this->assertNotNull($directDebitRegistrationTransfer->getRegistrationUniqueId());

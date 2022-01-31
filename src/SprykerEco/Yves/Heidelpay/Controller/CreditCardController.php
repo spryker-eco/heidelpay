@@ -158,7 +158,7 @@ class CreditCardController extends BaseHeidelpayController
      */
     protected function redirectToSummaryStep(): RedirectResponse
     {
-        $summaryStepUrl = $this->getFactory()->getConfig()->getYvesCheckoutSummaryStepUrl();
+        $summaryStepUrl = $this->getConfig()->getYvesCheckoutSummaryStepUrl();
 
         return new RedirectResponse($summaryStepUrl);
     }
@@ -171,7 +171,7 @@ class CreditCardController extends BaseHeidelpayController
     protected function redirectToPaymentStepWithError(string $errorCode): RedirectResponse
     {
         $paymentFailedUrl = sprintf(
-            $this->getFactory()->getConfig()->getYvesCheckoutPaymentFailedUrl(),
+            $this->getConfig()->getYvesCheckoutPaymentFailedUrl(),
             $errorCode,
         );
 

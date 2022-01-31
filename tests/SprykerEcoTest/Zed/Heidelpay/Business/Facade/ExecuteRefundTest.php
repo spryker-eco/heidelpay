@@ -27,21 +27,21 @@ class ExecuteRefundTest extends HeidelpayPaymentTest
      */
     public function testExecuteRefund(): void
     {
-        //Arrange
+        // Arrange
         $salesOrderEntity = $this->tester->createOrder(PaymentTransfer::HEIDELPAY_DIRECT_DEBIT);
         $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
         $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrderEntity);
 
-        //Act
+        // Act
         $heidelpayFacade->executeRefund($orderTransfer);
 
-        //Assert
         $heidelpayTransactionLogCriteriaTransfer = (new PaymentHeidelpayTransactionLogCriteriaTransfer())
             ->setIdSalesOrder($orderTransfer->getIdSalesOrder())
             ->setTransactionType(HeidelpayConfig::TRANSACTION_TYPE_REFUND)
             ->setResponseCode(HeidelpayTestConfig::HEIDELPAY_SUCCESS_RESPONSE);
         $paymentHeidelpayTransactionLogEntity = $this->tester->findPaymentHeidelpayTransactionLog($heidelpayTransactionLogCriteriaTransfer);
 
+        // Assert
         $this->assertNotNull($paymentHeidelpayTransactionLogEntity);
         $this->assertNotEmpty($paymentHeidelpayTransactionLogEntity->getIdTransactionUnique());
         $this->assertNotEmpty($paymentHeidelpayTransactionLogEntity->getResponsePayload());

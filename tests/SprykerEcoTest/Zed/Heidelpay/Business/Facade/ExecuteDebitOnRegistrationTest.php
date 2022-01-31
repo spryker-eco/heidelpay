@@ -27,22 +27,22 @@ class ExecuteDebitOnRegistrationTest extends HeidelpayPaymentTest
      */
     public function testSuccessfulExecuteDebitOnRegistration(): void
     {
-        //Arrange
+        // Arrange
         $salesOrderEntity = $this->tester->createOrder(PaymentTransfer::HEIDELPAY_DIRECT_DEBIT);
         $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
         $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrderEntity);
 
-        //Act
+        // Act
         $heidelpayFacade->executeDebitOnRegistration($orderTransfer);
 
-        //Assert
         $heidelpayTransactionLogCriteriaTransfer = (new PaymentHeidelpayTransactionLogCriteriaTransfer())
             ->setIdSalesOrder($orderTransfer->getIdSalesOrder())
             ->setTransactionType(HeidelpayConfig::TRANSACTION_TYPE_DEBIT_ON_REGISTRATION)
             ->setResponseCode(HeidelpayTestConfig::HEIDELPAY_SUCCESS_RESPONSE);
         $paymentHeidelpayTransactionLogEntity = $this->tester->findPaymentHeidelpayTransactionLog($heidelpayTransactionLogCriteriaTransfer);
 
-        $this->assertNotNull($heidelpayTransactionLogCriteriaTransfer);
+        // Assert
+        $this->assertNotNull($paymentHeidelpayTransactionLogEntity);
         $this->assertNotEmpty($paymentHeidelpayTransactionLogEntity->getIdTransactionUnique());
         $this->assertNotEmpty($paymentHeidelpayTransactionLogEntity->getResponsePayload());
         $this->assertNotEmpty($paymentHeidelpayTransactionLogEntity->getRequestPayload());

@@ -25,18 +25,18 @@ class ReservationPaymentTest extends HeidelpayPaymentTest
      */
     public function testProcessSuccessReservationPayment(): void
     {
-        //Arrange
+        // Arrange
         $salesOrderEntity = $this->tester->createOrder(PaymentTransfer::HEIDELPAY_EASY_CREDIT);
         $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
         $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrderEntity);
 
-        //Act
+        // Act
         $heidelpayFacade->executePaymentReservation($orderTransfer);
         $transaction = $this->createHeidelpayFactory()
             ->createTransactionLogReader()
             ->findQuoteReservationTransactionLogByIdSalesOrder($salesOrderEntity->getIdSalesOrder());
 
-        //Assert
+        // Assert
         $this->testSuccessfulHeidelpayPaymentResponse($transaction);
     }
 
@@ -45,18 +45,18 @@ class ReservationPaymentTest extends HeidelpayPaymentTest
      */
     public function testProcessUnsuccessfulReservationPayment(): void
     {
-        //Arrange
+        // Arrange
         $salesOrderEntity = $this->tester->createOrder(PaymentTransfer::HEIDELPAY_EASY_CREDIT);
         $heidelpayFacade = $this->createFacadeWithUnsuccessfulFactory();
         $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrderEntity);
 
-        //Act
+        // Act
         $heidelpayFacade->executePaymentReservation($orderTransfer);
         $transaction = $this->createHeidelpayFactory()
             ->createTransactionLogReader()
             ->findQuoteReservationTransactionLogByIdSalesOrder($salesOrderEntity->getIdSalesOrder());
 
-        //Assert
+        // Assert
         $this->testUnsuccessfulHeidelpayPaymentResponse($transaction);
     }
 }

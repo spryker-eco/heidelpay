@@ -39,17 +39,17 @@ class FindCreditCardRegistrationByIdAndQuoteTest extends HeidelpayPaymentTest
      */
     public function testSuccessfulFindCreditCardRegistrationByIdAndQuote(): void
     {
-        //Arrange
+        // Arrange
         $quoteTransfer = $this->createQuote();
         $heidelpayRegistrationByIdAndQuoteRequestTransfer = new HeidelpayRegistrationByIdAndQuoteRequestTransfer();
         $heidelpayRegistrationByIdAndQuoteRequestTransfer->setQuote($quoteTransfer);
         $creditCardRegistrationEntity = $this->createCardRegistrationTransfer($quoteTransfer);
         $heidelpayRegistrationByIdAndQuoteRequestTransfer->setIdRegistration($creditCardRegistrationEntity->getIdCreditCardRegistration());
 
-        //Act
+        // Act
         $response = $this->heidelpayFacade->findCreditCardRegistrationByIdAndQuote($heidelpayRegistrationByIdAndQuoteRequestTransfer);
 
-        //Assert
+        // Assert
         $this->assertInstanceOf(HeidelpayCreditCardRegistrationTransfer::class, $response);
         $this->assertNotNull($response->getIdCreditCardRegistration());
         $this->assertNotNull($response->getCreditCardInfo());
@@ -63,7 +63,7 @@ class FindCreditCardRegistrationByIdAndQuoteTest extends HeidelpayPaymentTest
      */
     public function testUnsuccessfulFindCreditCardRegistrationByIdAndQuote(): void
     {
-        //Arrange
+        // Arrange
         $quoteTransfer = $this->createQuote();
         $heidelpayRegistrationByIdAndQuoteRequestTransfer = new HeidelpayRegistrationByIdAndQuoteRequestTransfer();
         $heidelpayRegistrationByIdAndQuoteRequestTransfer->setQuote($quoteTransfer);
@@ -72,10 +72,10 @@ class FindCreditCardRegistrationByIdAndQuoteTest extends HeidelpayPaymentTest
         $creditCardRegistrationEntity->save();
         $heidelpayRegistrationByIdAndQuoteRequestTransfer->setIdRegistration($creditCardRegistrationEntity->getIdCreditCardRegistration());
 
-        //Act
+        // Act
         $response = $this->heidelpayFacade->findCreditCardRegistrationByIdAndQuote($heidelpayRegistrationByIdAndQuoteRequestTransfer);
 
-        //Assert
+        // Assert
         $this->assertInstanceOf(HeidelpayCreditCardRegistrationTransfer::class, $response);
         $this->assertNull($response->getIdCreditCardRegistration());
         $this->assertNull($response->getCreditCardInfo());

@@ -25,18 +25,18 @@ class AuthorizePaymentTest extends HeidelpayPaymentTest
      */
     public function testProcessSuccessfulExternalPaymentResponseForSofort(): void
     {
-        //Arrange
+        // Arrange
         $salesOrderEntity = $this->tester->createOrder(PaymentTransfer::HEIDELPAY_SOFORT);
         $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
         $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrderEntity);
 
-        //Act
+        // Act
         $heidelpayFacade->authorizePayment($orderTransfer);
         $transaction = $this->createHeidelpayFactory()
             ->createTransactionLogReader()
             ->findOrderAuthorizeTransactionLogByIdSalesOrder($salesOrderEntity->getIdSalesOrder());
 
-        //Assert
+        // Assert
         $this->testSuccessfulHeidelpayPaymentResponse($transaction);
     }
 
@@ -45,18 +45,18 @@ class AuthorizePaymentTest extends HeidelpayPaymentTest
      */
     public function testProcessUnsuccessfulExternalPaymentResponseForSofort(): void
     {
-        //Arrange
+        // Arrange
         $salesOrderEntity = $this->tester->createOrder(PaymentTransfer::HEIDELPAY_SOFORT);
         $heidelpayFacade = $this->createFacadeWithUnsuccessfulFactory();
         $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrderEntity);
 
-        //Act
+        // Act
         $heidelpayFacade->authorizePayment($orderTransfer);
         $transaction = $this->createHeidelpayFactory()
             ->createTransactionLogReader()
             ->findOrderAuthorizeTransactionLogByIdSalesOrder($salesOrderEntity->getIdSalesOrder());
 
-        //Assert
+        // Assert
         $this->testUnsuccessfulHeidelpayPaymentResponse($transaction);
     }
 }

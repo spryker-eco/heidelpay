@@ -42,14 +42,14 @@ class GetDirectDebitPaymentOptionsTest extends HeidelpayPaymentTest
      */
     public function testSuccessfulGetDirectDebitPaymentOptionsForNotRegisteredAccount(): void
     {
-        //Arrange
+        // Arrange
         $quoteTransfer = $this->createQuoteForNotRegisteredAccount();
         $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
 
-        //Act
+        // Act
         $heidelpayDirectDebitPaymentOptionsTransfer = $heidelpayFacade->getDirectDebitPaymentOptions($quoteTransfer);
 
-        //Assert
+        // Assert
         $this->assertNotNull($heidelpayDirectDebitPaymentOptionsTransfer);
         $this->assertInstanceOf(HeidelpayDirectDebitPaymentOptionsTransfer::class, $heidelpayDirectDebitPaymentOptionsTransfer);
         $this->assertEquals(
@@ -69,14 +69,14 @@ class GetDirectDebitPaymentOptionsTest extends HeidelpayPaymentTest
      */
     public function testUnsuccessfulGetDirectDebitPaymentOptionsForNotRegisteredAccount(): void
     {
-        //Arrange
+        // Arrange
         $quoteTransfer = $this->createQuoteForNotRegisteredAccount();
         $heidelpayFacade = $this->createFacadeWithUnsuccessfulFactory();
 
-        //Act
+        // Act
         $heidelpayDirectDebitPaymentOptionsTransfer = $heidelpayFacade->getDirectDebitPaymentOptions($quoteTransfer);
 
-        //Assert
+        // Assert
         $this->assertNull($heidelpayDirectDebitPaymentOptionsTransfer->getPaymentFormActionUrl());
         $this->assertNull($heidelpayDirectDebitPaymentOptionsTransfer->getLastSuccessfulRegistration());
         $optionsList = $heidelpayDirectDebitPaymentOptionsTransfer->getOptionsList();
@@ -88,15 +88,15 @@ class GetDirectDebitPaymentOptionsTest extends HeidelpayPaymentTest
      */
     public function testSuccessfulGetDirectDebitPaymentOptionsForRegisteredAccountWithSameAddress(): void
     {
-        //Arrange
+        // Arrange
         $quoteTransfer = $this->createQuoteForNotRegisteredAccount();
         $directDebitAccountEntity = $this->createDirectDebitRegistration($quoteTransfer);
         $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
 
-        //Act
+        // Act
         $heidelpayDirectDebitPaymentOptionsTransfer = $heidelpayFacade->getDirectDebitPaymentOptions($quoteTransfer);
 
-        //Assert
+        // Assert
         $this->assertEquals(
             HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL,
             $heidelpayDirectDebitPaymentOptionsTransfer->getPaymentFormActionUrl(),
@@ -138,7 +138,7 @@ class GetDirectDebitPaymentOptionsTest extends HeidelpayPaymentTest
      */
     public function testUnsuccessfulGetDirectDebitPaymentOptionsForRegisteredAccountWithSameAddressButWithoutSuccessfulTransaction(): void
     {
-        //Arrange
+        // Arrange
         $quoteTransfer = $this->createQuoteForNotRegisteredAccount();
         $directDebitAccountEntity = $this->createDirectDebitRegistration($quoteTransfer);
         $quoteTransfer = $this->addLastSuccessfulRegistration($quoteTransfer, $directDebitAccountEntity);
@@ -147,10 +147,10 @@ class GetDirectDebitPaymentOptionsTest extends HeidelpayPaymentTest
         $quoteTransfer->getShippingAddress()->setIdCustomerAddress($address->getIdCustomerAddress());
         $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
 
-        //Act
+        // Act
         $heidelpayDirectDebitPaymentOptionsTransfer = $heidelpayFacade->getDirectDebitPaymentOptions($quoteTransfer);
 
-        //Assert
+        // Assert
         $this->assertInstanceOf(
             HeidelpayDirectDebitPaymentOptionsTransfer::class,
             $heidelpayDirectDebitPaymentOptionsTransfer,
@@ -173,16 +173,16 @@ class GetDirectDebitPaymentOptionsTest extends HeidelpayPaymentTest
      */
     public function testSuccessfulGetDirectDebitPaymentOptionsForRegisteredAccountWithSameAddressButWithoutLastSuccessfulRegistration(): void
     {
-        //Arrange
+        // Arrange
         $quoteTransfer = $this->createQuoteForNotRegisteredAccount();
         $directDebitAccountEntity = $this->createDirectDebitRegistration($quoteTransfer);
         $quoteTransfer = $this->addLastSuccessfulRegistration($quoteTransfer, $directDebitAccountEntity);
         $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
 
-        //Act
+        // Act
         $heidelpayDirectDebitPaymentOptionsTransfer = $heidelpayFacade->getDirectDebitPaymentOptions($quoteTransfer);
 
-        //Assert
+        // Assert
         $this->assertEquals(
             HeidelpayTestConfig::CHECKOUT_EXTERNAL_SUCCESS_REDIRECT_URL,
             $heidelpayDirectDebitPaymentOptionsTransfer->getPaymentFormActionUrl(),

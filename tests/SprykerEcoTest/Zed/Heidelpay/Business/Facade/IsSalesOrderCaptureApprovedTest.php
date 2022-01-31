@@ -52,7 +52,7 @@ class IsSalesOrderCaptureApprovedTest extends HeidelpayPaymentTest
     /**
      * @return void
      */
-    public function testFalseWhenTransactionLogContainsNoSuccessfulRecords(): void
+    public function testReturnsFalseWhenTransactionLogContainsNoSuccessfulRecords(): void
     {
         // Arrange
         $salesOrderEntity = $this->tester->createOrder(PaymentTransfer::HEIDELPAY_CREDIT_CARD_SECURE);

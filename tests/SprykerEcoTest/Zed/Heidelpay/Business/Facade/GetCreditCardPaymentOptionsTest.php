@@ -42,14 +42,14 @@ class GetCreditCardPaymentOptionsTest extends HeidelpayPaymentTest
      */
     public function testSuccessfulGetCreditCardPaymentOptionsForNotRegisteredCard(): void
     {
-        //Arrange
+        // Arrange
         $quoteTransfer = $this->createQuoteForNotRegisteredCard();
         $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
 
-        //Act
+        // Act
         $heidelpayCreditCardPaymentOptionsTransfer = $heidelpayFacade->getCreditCardPaymentOptions($quoteTransfer);
 
-        //Assert
+        // Assert
         $this->assertNotNull($heidelpayCreditCardPaymentOptionsTransfer);
         $this->assertInstanceOf(HeidelpayCreditCardPaymentOptionsTransfer::class, $heidelpayCreditCardPaymentOptionsTransfer);
         $this->assertEquals(
@@ -70,14 +70,14 @@ class GetCreditCardPaymentOptionsTest extends HeidelpayPaymentTest
      */
     public function testUnsuccessfulGetCreditCardPaymentOptionsForNotRegisteredCard(): void
     {
-        //Arrange
+        // Arrange
         $quoteTransfer = $this->createQuoteForNotRegisteredCard();
         $heidelpayFacade = $this->createFacadeWithUnsuccessfulFactory();
 
-        //Act
+        // Act
         $heidelpayCreditCardPaymentOptionsTransfer = $heidelpayFacade->getCreditCardPaymentOptions($quoteTransfer);
 
-        //Assert
+        // Assert
         $this->checkUnsuccessfulGetOptionResponse($heidelpayCreditCardPaymentOptionsTransfer);
     }
 
@@ -86,15 +86,15 @@ class GetCreditCardPaymentOptionsTest extends HeidelpayPaymentTest
      */
     public function testSuccessfulGetCreditCardPaymentOptionsForRegisteredCardWithSameAddress(): void
     {
-        //Arrange
+        // Arrange
         $quoteTransfer = $this->createQuoteForNotRegisteredCard();
         $cardEntity = $this->registerCard($quoteTransfer);
         $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
 
-        //Act
+        // Act
         $heidelpayCreditCardPaymentOptionsTransfer = $heidelpayFacade->getCreditCardPaymentOptions($quoteTransfer);
 
-        //Assert
+        // Assert
         $this->checkSuccessfulResponseForRegisteredCard($heidelpayCreditCardPaymentOptionsTransfer, $cardEntity, $quoteTransfer);
     }
 
@@ -103,7 +103,7 @@ class GetCreditCardPaymentOptionsTest extends HeidelpayPaymentTest
      */
     public function testUnsuccessfulGetCreditCardPaymentOptionsForRegisteredCardWithSameAddressButWithoutSuccessfulTransaction(): void
     {
-        //Arrange
+        // Arrange
         $quoteTransfer = $this->createQuoteForNotRegisteredCard();
         $cardEntity = $this->registerCard($quoteTransfer);
         $quoteTransfer = $this->addLastSuccessfulRegistration($quoteTransfer, $cardEntity);
@@ -115,10 +115,10 @@ class GetCreditCardPaymentOptionsTest extends HeidelpayPaymentTest
 
         $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
 
-        //Act
+        // Act
         $heidelpayCreditCardPaymentOptionsTransfer = $heidelpayFacade->getCreditCardPaymentOptions($quoteTransfer);
 
-        //Assert
+        // Assert
         $this->assertNotNull($heidelpayCreditCardPaymentOptionsTransfer);
         $this->assertInstanceOf(HeidelpayCreditCardPaymentOptionsTransfer::class, $heidelpayCreditCardPaymentOptionsTransfer);
         $this->assertEquals(
@@ -139,7 +139,7 @@ class GetCreditCardPaymentOptionsTest extends HeidelpayPaymentTest
      */
     public function testSuccessfulGetCreditCardPaymentOptionsForRegisteredCardWithSameAddressButWithoutSuccessfulLastTransaction(): void
     {
-        //Arrange
+        // Arrange
         $quoteTransfer = $this->createQuoteForNotRegisteredCard();
         $customer = $this->createOrGetCustomerByQuote($quoteTransfer);
         $address = $this->createCustomerAddressByCustomer($customer);
@@ -151,10 +151,10 @@ class GetCreditCardPaymentOptionsTest extends HeidelpayPaymentTest
         $quoteTransfer = $this->addLastSuccessfulRegistration($quoteTransfer, $cardEntity);
         $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
 
-        //Act
+        // Act
         $heidelpayCreditCardPaymentOptionsTransfer = $heidelpayFacade->getCreditCardPaymentOptions($quoteTransfer);
 
-        //Assert
+        // Assert
         $this->checkSuccessfulResponseForRegisteredCard($heidelpayCreditCardPaymentOptionsTransfer, $cardEntity, $quoteTransfer);
     }
 

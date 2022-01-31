@@ -25,18 +25,18 @@ class AuthorizeOnRegistrationPaymentTest extends HeidelpayPaymentTest
      */
     public function testProcessSuccessAuthorizeOnRegistrationPayment(): void
     {
-        //Arrange
+        // Arrange
         $salesOrderEntity = $this->tester->createOrder(PaymentTransfer::HEIDELPAY_EASY_CREDIT);
         $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
         $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrderEntity);
 
-        //Act
+        // Act
         $heidelpayFacade->authorizeOnRegistrationPayment($orderTransfer);
         $transaction = $this->createHeidelpayFactory()
             ->createTransactionLogReader()
             ->findOrderAuthorizeOnRegistrationTransactionLogByIdSalesOrder($salesOrderEntity->getIdSalesOrder());
 
-        //Assert
+        // Assert
         $this->testSuccessfulHeidelpayPaymentResponse($transaction);
     }
 
@@ -45,18 +45,18 @@ class AuthorizeOnRegistrationPaymentTest extends HeidelpayPaymentTest
      */
     public function testProcessUnsuccessfulAuthorizeOnRegistrationPayment(): void
     {
-        //Arrange
+        // Arrange
         $salesOrderEntity = $this->tester->createOrder(PaymentTransfer::HEIDELPAY_EASY_CREDIT);
         $heidelpayFacade = $this->createFacadeWithUnsuccessfulFactory();
         $orderTransfer = $this->getOrderTransfer($heidelpayFacade, $salesOrderEntity);
 
-        //Act
+        // Act
         $heidelpayFacade->authorizeOnRegistrationPayment($orderTransfer);
         $transaction = $this->createHeidelpayFactory()
             ->createTransactionLogReader()
             ->findOrderAuthorizeOnRegistrationTransactionLogByIdSalesOrder($salesOrderEntity->getIdSalesOrder());
 
-        //Assert
+        // Assert
         $this->testUnsuccessfulHeidelpayPaymentResponse($transaction);
     }
 }

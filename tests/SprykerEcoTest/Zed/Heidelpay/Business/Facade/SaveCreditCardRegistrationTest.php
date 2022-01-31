@@ -67,10 +67,10 @@ class SaveCreditCardRegistrationTest extends HeidelpayPaymentTest
      */
     public function testSuccessfulSaveCreditCardRegistration(HeidelpayRegistrationRequestTransfer $cardRegistrationTransfer): void
     {
-        //Act
+        // Act
         $response = $this->heidelpayFacade->saveCreditCardRegistration($cardRegistrationTransfer);
 
-        //Assert
+        // Assert
         $this->assertNotNull($response);
         $this->assertInstanceOf(HeidelpayRegistrationSaveResponseTransfer::class, $response);
         $this->assertNull($response->getIsError());

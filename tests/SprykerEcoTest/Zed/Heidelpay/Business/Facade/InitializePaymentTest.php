@@ -37,14 +37,14 @@ class InitializePaymentTest extends HeidelpayPaymentTest
      */
     public function testProcessSuccessfulInitializeRequest(): void
     {
-        //Arrange
+        // Arrange
         $quoteTransfer = $this->createQuoteWithPaymentTransfer();
         $heidelpayFacade = $this->createFacadeWithSuccessfulFactory();
 
-        //Act
+        // Act
         $responseTransfer = $heidelpayFacade->initializePayment($quoteTransfer);
 
-        //Assert
+        // Assert
         $this->testSuccessfulIntializeHeidelpayPaymentResponse($responseTransfer);
     }
 
@@ -53,14 +53,14 @@ class InitializePaymentTest extends HeidelpayPaymentTest
      */
     public function testProcessUnsuccessfulInitializeRequest(): void
     {
-        //Arrange
+        // Arrange
         $quoteTransfer = $this->createQuoteWithPaymentTransfer();
         $heidelpayFacade = $this->createFacadeWithUnsuccessfulFactory();
 
-        //Act
+        // Act
         $responseTransfer = $heidelpayFacade->initializePayment($quoteTransfer);
 
-        //Assert
+        // Assert
         $this->testUnsuccessfulIntializeHeidelpayPaymentResponse($responseTransfer);
     }
 

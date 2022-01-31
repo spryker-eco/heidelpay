@@ -28,13 +28,13 @@ class GetPaymentBySalesOrderTest extends HeidelpayPaymentTest
      */
     public function testProcessExternalPaymentResponseForSofort(): void
     {
-        //Arrange
+        // Arrange
         $salesOrder = $this->createSofortOrder();
 
-        //Act
+        // Act
         $paymentTransfer = $this->heidelpayFacade->getPaymentByIdSalesOrder($salesOrder->getIdSalesOrder());
 
-        //Assert
+        // Assert
         $this->assertInstanceOf(HeidelpayPaymentTransfer::class, $paymentTransfer);
         $this->assertNotNull($paymentTransfer);
         $this->assertEquals(HeidelpayTestConfig::HEIDELPAY_REFERENCE, $paymentTransfer->getIdPaymentReference());
@@ -47,10 +47,10 @@ class GetPaymentBySalesOrderTest extends HeidelpayPaymentTest
      */
     public function testProcessExternalPaymentResponseForSofortForFailedPayment(): void
     {
-        //Act
+        // Act
         $paymentTransfer = $this->heidelpayFacade->getPaymentByIdSalesOrder(1000000000);
 
-        //Assert
+        // Assert
         $this->assertInstanceOf(HeidelpayPaymentTransfer::class, $paymentTransfer);
         $this->assertNotNull($paymentTransfer);
         $paymentTransferArray = $paymentTransfer->toArray();

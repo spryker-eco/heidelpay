@@ -43,15 +43,15 @@ class SaveDirectDebitRegistrationTest extends HeidelpayPaymentTest
      */
     public function testSuccessfulSaveDirectDebitRegistration(): void
     {
-        //Arrange
+        // Arrange
         $directDebitRegistration = $this->createRegistrationTransfer();
 
-        //Act
+        // Act
         $this->heidelpayFacade->saveDirectDebitRegistration($directDebitRegistration);
         $directDebitRegistration = $this->getRepository()
             ->findHeidelpayDirectDebitRegistrationByRegistrationUniqueId(static::REGISTRATION_UNIQUE_ID);
 
-        //Assert
+        // Assert
         $this->assertInstanceOf(HeidelpayDirectDebitRegistrationTransfer::class, $directDebitRegistration);
         $this->assertNull($directDebitRegistration->getIsError());
         $this->assertNull($directDebitRegistration->getError());

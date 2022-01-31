@@ -28,13 +28,13 @@ class ProcessExternalEasyCreditPaymentResponseTest extends HeidelpayPaymentTest
      */
     public function testProcessExternalPaymentSuccessEasyCreditPaymentResponse(): void
     {
-        //Arrange
+        // Arrange
         $heidelpayResponse = $this->createSuccessEasyCreditPaymentExternalResponse();
 
-        //Act
+        // Act
         $response = $this->heidelpayFacade->processExternalPaymentResponse($heidelpayResponse);
 
-        //Assert
+        // Assert
         $this->assertInstanceOf(HeidelpayPaymentProcessingResponseTransfer::class, $response);
         $this->assertFalse($response->getIsError());
     }
@@ -44,13 +44,13 @@ class ProcessExternalEasyCreditPaymentResponseTest extends HeidelpayPaymentTest
      */
     public function testProcessExternalPaymentFailedEasyCreditResponseWhichUnsuccessful(): void
     {
-        //Arrange
+        // Arrange
         $heidelpayResponse = $this->createFailedEasyCreditPaymentExternalResponseThatIsUnsuccessful();
 
-        //Act
+        // Act
         $response = $this->heidelpayFacade->processExternalPaymentResponse($heidelpayResponse);
 
-        //Assert
+        // Assert
         $this->assertInstanceOf(HeidelpayPaymentProcessingResponseTransfer::class, $response);
         $this->assertTrue($response->getIsError());
         $this->assertEquals(

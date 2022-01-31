@@ -37,14 +37,14 @@ class ProcessNotificationTest extends HeidelpayPaymentTest
      */
     public function testProcessNotification(): void
     {
-        //Arrange
+        // Arrange
         $notificationTransfer = $this->createHeidelpayNotificationTransfer();
 
-        //Act
+        // Act
         $heidelpayNotificationTransfer = $this->heidelpayFacade->processNotification($notificationTransfer);
         $entity = $this->findNotificationEntity($heidelpayNotificationTransfer);
 
-        //Assert
+        // Assert
         $this->assertNotNull($entity);
         $this->assertNotEmpty($entity->getTransactionId());
         $this->assertNotEmpty($entity->getUniqueId());
