@@ -187,7 +187,7 @@ class CreditCardController extends BaseHeidelpayController
         HeidelpayRegistrationRequestTransfer $registrationRequestTransfer
     ): Response {
         $redirectUrl = sprintf(
-            $this->getFactory()->getConfig()->getYvesCheckoutPaymentFailedUrl(),
+            $this->getConfig()->getYvesCheckoutPaymentFailedUrl(),
             $registrationRequestTransfer->getError()->getCode(),
         );
 
@@ -203,7 +203,7 @@ class CreditCardController extends BaseHeidelpayController
         HeidelpayRegistrationSaveResponseTransfer $saveResponseTransfer
     ): Response {
         $redirectUrl = sprintf(
-            $this->getFactory()->getConfig()->getYvesRegistrationSuccessUrl(),
+            $this->getConfig()->getYvesRegistrationSuccessUrl(),
             $saveResponseTransfer->getIdRegistration(),
         );
 

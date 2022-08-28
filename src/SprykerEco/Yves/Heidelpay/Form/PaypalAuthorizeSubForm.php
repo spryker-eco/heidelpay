@@ -14,6 +14,9 @@ use Spryker\Yves\StepEngine\Dependency\Form\SubFormProviderNameInterface;
 use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @method \SprykerEco\Yves\Heidelpay\HeidelpayConfigInterface getConfig()
+ */
 class PaypalAuthorizeSubForm extends AbstractSubFormType implements SubFormInterface, SubFormProviderNameInterface
 {
     /**

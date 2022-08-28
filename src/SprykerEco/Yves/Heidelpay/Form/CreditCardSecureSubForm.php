@@ -18,6 +18,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
+/**
+ * @method \SprykerEco\Yves\Heidelpay\HeidelpayConfigInterface getConfig()
+ */
 class CreditCardSecureSubForm extends AbstractSubFormType implements SubFormInterface, SubFormProviderNameInterface
 {
     /**

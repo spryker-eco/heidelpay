@@ -86,7 +86,7 @@ class HeidelpayController extends BaseHeidelpayController
     {
         return $processingResultTransfer->getIsError()
             ? $this->getFailureRedirectUrl($processingResultTransfer)
-            : $this->getFactory()->getConfig()->getYvesCheckoutSuccessUrl();
+            : $this->getConfig()->getYvesCheckoutSuccessUrl();
     }
 
     /**
@@ -97,7 +97,7 @@ class HeidelpayController extends BaseHeidelpayController
     protected function getFailureRedirectUrl(HeidelpayPaymentProcessingResponseTransfer $processingResultTransfer): string
     {
         return sprintf(
-            $this->getFactory()->getConfig()->getYvesCheckoutPaymentFailedUrl(),
+            $this->getConfig()->getYvesCheckoutPaymentFailedUrl(),
             $processingResultTransfer->getError()->getCode(),
         );
     }

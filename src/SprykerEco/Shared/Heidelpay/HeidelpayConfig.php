@@ -16,13 +16,44 @@ class HeidelpayConfig extends AbstractBundleConfig
      */
     public const PROVIDER_NAME = 'heidelpay';
 
+    /**
+     * @var string
+     */
     public const PAYMENT_METHOD_SOFORT = self::PROVIDER_NAME . 'Sofort';
+
+    /**
+     * @var string
+     */
     public const PAYMENT_METHOD_CREDIT_CARD_SECURE = self::PROVIDER_NAME . 'CreditCardSecure';
+
+    /**
+     * @var string
+     */
     public const PAYMENT_METHOD_PAYPAL_AUTHORIZE = self::PROVIDER_NAME . 'PaypalAuthorize';
+
+    /**
+     * @var string
+     */
     public const PAYMENT_METHOD_PAYPAL_DEBIT = self::PROVIDER_NAME . 'PaypalDebit';
+
+    /**
+     * @var string
+     */
     public const PAYMENT_METHOD_IDEAL = self::PROVIDER_NAME . 'Ideal';
+
+    /**
+     * @var string
+     */
     public const PAYMENT_METHOD_EASY_CREDIT = self::PROVIDER_NAME . 'EasyCredit';
+
+    /**
+     * @var string
+     */
     public const PAYMENT_METHOD_INVOICE_SECURED_B2C = self::PROVIDER_NAME . 'InvoiceSecuredB2c';
+
+    /**
+     * @var string
+     */
     public const PAYMENT_METHOD_DIRECT_DEBIT = self::PROVIDER_NAME . 'DirectDebit';
 
     /**
