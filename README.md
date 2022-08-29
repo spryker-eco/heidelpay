@@ -16,4 +16,4 @@ composer require spryker-eco/heidelpay
 
 ## Documentation
 
-[Documentation](https://docs.spryker.com/industry_partners/payment/heidelpay/heidelpay.htm)
+[Documentation](https://docs.spryker.com/docs/scos/user/technology-partners/202204.0/payment-partners/heidelpay.html)
