@@ -137,6 +137,9 @@ class HeidelpayConfig extends AbstractBundleConfig
     public const CAPTURE_TRANSACTION_STATUS_OK = 'ACK';
 
     /**
+     * Specification:
+     * - The response of transaction failed status.
+     *
      * @api
      *
      * @var string
