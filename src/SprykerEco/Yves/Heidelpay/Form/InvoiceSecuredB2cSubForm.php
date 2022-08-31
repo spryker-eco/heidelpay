@@ -22,7 +22,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
- * @method \SprykerEco\Yves\Heidelpay\HeidelpayConfigInterface getConfig()
+ * @method \SprykerEco\Yves\Heidelpay\HeidelpayConfig getConfig()
  */
 class InvoiceSecuredB2cSubForm extends AbstractSubFormType implements SubFormInterface, SubFormProviderNameInterface
 {

@@ -15,7 +15,7 @@ use SprykerEco\Shared\Heidelpay\HeidelpayConfig;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @method \SprykerEco\Yves\Heidelpay\HeidelpayConfigInterface getConfig()
+ * @method \SprykerEco\Yves\Heidelpay\HeidelpayConfig getConfig()
  */
 class IdealSubForm extends AbstractSubFormType implements SubFormInterface, SubFormProviderNameInterface
 {

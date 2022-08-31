@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
- * @method \SprykerEco\Yves\Heidelpay\HeidelpayConfigInterface getConfig()
+ * @method \SprykerEco\Yves\Heidelpay\HeidelpayConfig getConfig()
  */
 class CreditCardSecureSubForm extends AbstractSubFormType implements SubFormInterface, SubFormProviderNameInterface
 {
