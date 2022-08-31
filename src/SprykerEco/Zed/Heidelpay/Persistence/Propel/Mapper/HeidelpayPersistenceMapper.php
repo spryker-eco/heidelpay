@@ -40,7 +40,7 @@ class HeidelpayPersistenceMapper
     }
 
     /**
-     * @param \Propel\Runtime\Collection\ObjectCollection|\Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayNotification $paymentHeidelpayNotificationEntities
+     * @param \Propel\Runtime\Collection\ObjectCollection|array<\Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayNotification> $paymentHeidelpayNotificationEntities
      * @param \Generated\Shared\Transfer\HeidelpayNotificationCollectionTransfer $heidelpayNotificationCollection
      *
      * @return \Generated\Shared\Transfer\HeidelpayNotificationCollectionTransfer
