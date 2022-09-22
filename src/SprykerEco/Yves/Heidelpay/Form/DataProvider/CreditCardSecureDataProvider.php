@@ -137,7 +137,7 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
     protected function setDefaultPaymentOption(HeidelpayCreditCardPaymentTransfer $creditCardPaymentTransfer): void
     {
         $availableOptions = array_keys($this->fetchPaymentOptions($creditCardPaymentTransfer));
-        $creditCardPaymentTransfer->setSelectedPaymentOption(array_shift($availableOptions));
+        $creditCardPaymentTransfer->setSelectedPaymentOption((string)array_shift($availableOptions));
     }
 
     /**
