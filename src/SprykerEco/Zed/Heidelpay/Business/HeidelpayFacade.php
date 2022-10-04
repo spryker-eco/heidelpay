@@ -56,7 +56,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @api
      *
-     * @param array $externalResponse
+     * @param array<string> $externalResponse
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
@@ -72,7 +72,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @api
      *
-     * @param array $externalResponse
+     * @param array<string> $externalResponse
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */

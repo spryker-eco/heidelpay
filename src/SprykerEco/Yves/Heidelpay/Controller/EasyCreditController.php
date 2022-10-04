@@ -70,9 +70,9 @@ class EasyCreditController extends BaseHeidelpayController
     }
 
     /**
-     * @param array $requestParameters
+     * @param array<string> $requestParameters
      *
-     * @return array
+     * @return array<string>
      */
     protected function getPaymentParametersFromEasyCreditResponseParameters(array $requestParameters): array
     {
@@ -85,7 +85,7 @@ class EasyCreditController extends BaseHeidelpayController
     }
 
     /**
-     * @param array $requestAsArray
+     * @param array<string> $requestAsArray
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return void
@@ -98,7 +98,7 @@ class EasyCreditController extends BaseHeidelpayController
     }
 
     /**
-     * @param array $requestArray
+     * @param array<string> $requestArray
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
@@ -123,7 +123,7 @@ class EasyCreditController extends BaseHeidelpayController
     }
 
     /**
-     * @param array $responseArray
+     * @param array<string> $responseArray
      *
      * @return string
      */

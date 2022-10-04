@@ -16,7 +16,7 @@ class SalesOrderChecker implements SalesOrderCheckerInterface
     /**
      * @var \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepositoryInterface
      */
-    protected $heidelpayRepository;
+    protected HeidelpayRepositoryInterface $heidelpayRepository;
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Persistence\HeidelpayRepositoryInterface $heidelpayRepository

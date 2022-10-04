@@ -19,7 +19,7 @@ class BaseHeidelpayController extends AbstractController
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return array
+     * @return array<string>
      */
     protected function getUrldecodedRequestBody(Request $request): array
     {
@@ -37,7 +37,7 @@ class BaseHeidelpayController extends AbstractController
     /**
      * @param callable|null $callback
      * @param int $status
-     * @param array $headers
+     * @param array<string|array<string>|null> $headers
      *
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */

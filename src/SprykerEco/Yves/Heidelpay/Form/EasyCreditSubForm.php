@@ -97,7 +97,7 @@ class EasyCreditSubForm extends AbstractSubFormType implements SubFormInterface,
     /**
      * @param \Symfony\Component\Form\FormView $view
      * @param \Symfony\Component\Form\FormInterface $form
-     * @param array $options
+     * @param array<mixed> $options
      *
      * @return void
      */
@@ -111,7 +111,7 @@ class EasyCreditSubForm extends AbstractSubFormType implements SubFormInterface,
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param array<mixed> $options
      *
      * @return void
      */
@@ -122,7 +122,7 @@ class EasyCreditSubForm extends AbstractSubFormType implements SubFormInterface,
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param array<mixed> $options
      *
      * @return $this
      */

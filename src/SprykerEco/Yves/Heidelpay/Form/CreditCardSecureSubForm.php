@@ -84,7 +84,7 @@ class CreditCardSecureSubForm extends AbstractSubFormType implements SubFormInte
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param array<mixed> $options
      *
      * @return void
      */
@@ -95,7 +95,7 @@ class CreditCardSecureSubForm extends AbstractSubFormType implements SubFormInte
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param array<mixed> $options
      *
      * @return $this
      */

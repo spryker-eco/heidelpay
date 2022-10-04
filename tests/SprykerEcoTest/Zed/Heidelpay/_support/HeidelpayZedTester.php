@@ -53,9 +53,7 @@ class HeidelpayZedTester extends Actor
      */
     public function createOrder(string $paymentMethod): SpySalesOrder
     {
-        $paymentBuilder = new PaymentBuilder();
-
-        return $paymentBuilder->createPayment($paymentMethod);
+        return (new PaymentBuilder())->createPayment($paymentMethod);
     }
 
     /**

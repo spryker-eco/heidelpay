@@ -49,7 +49,7 @@ interface HeidelpayFacadeInterface
      *
      * @api
      *
-     * @param array $externalResponse
+     * @param array<string> $externalResponse
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
@@ -116,7 +116,7 @@ interface HeidelpayFacadeInterface
      *
      * @api
      *
-     * @param array $externalResponse
+     * @param array<string> $externalResponse
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */

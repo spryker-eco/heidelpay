@@ -5,7 +5,6 @@ parameters:
     bootstrapFiles:
         - tests/bootstrap.php
     checkGenericClassInNonGenericObjectType: false
-    checkMissingIterableValueType: false
     excludePaths:
         - src/SprykerEco/Zed/Heidelpay/Persistence/Propel/Abstract*.php
     ignoreErrors:

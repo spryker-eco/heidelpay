@@ -31,7 +31,7 @@ class ReservationPlugin extends AbstractPlugin implements CommandByOrderInterfac
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
      * @param \Spryker\Zed\Oms\Business\Util\ReadOnlyArrayObject $data
      *
-     * @return array
+     * @return array<null>
      */
     public function run(array $orderItems, SpySalesOrder $orderEntity, ReadOnlyArrayObject $data)
     {

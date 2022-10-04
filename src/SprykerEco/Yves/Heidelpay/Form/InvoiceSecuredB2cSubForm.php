@@ -117,7 +117,7 @@ class InvoiceSecuredB2cSubForm extends AbstractSubFormType implements SubFormInt
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param array<mixed> $options
      *
      * @return void
      */

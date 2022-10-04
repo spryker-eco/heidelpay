@@ -86,7 +86,7 @@ class CreditCardController extends BaseHeidelpayController
     }
 
     /**
-     * @param array $requestAsArray
+     * @param array<string> $requestAsArray
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer
      */
