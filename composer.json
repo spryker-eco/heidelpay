@@ -7,7 +7,7 @@
         "heidelpay/php-basket-api": "^1.0.2",
         "heidelpay/php-message-code-mapper": "^1.0.1",
         "heidelpay/php-payment-api": "^1.6.1",
-        "php": ">=8.0",
+        "php": ">=7.4",
         "spryker-shop/checkout-page": "^2.0.0 || ^3.0.0",
         "spryker/calculation": "^4.0.0",
         "spryker/checkout-extension": "^1.0.0",
