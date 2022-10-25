@@ -63,21 +63,19 @@ class RequestToHeidelpay implements RequestToHeidelpayInterface
 
         $riskInformationTransfer = $requestTransfer->getRiskInformation();
 
-        if ($heidelpayRequest->getRiskInformation()) {
-            if ($riskInformationTransfer->getCustomerSince()) {
-                $heidelpayRequest->getRiskInformation()->setCustomerSince($riskInformationTransfer->getCustomerSince());
-            }
-
-            if ($riskInformationTransfer->getIsCustomerGuest()) {
-                $heidelpayRequest->getRiskInformation()->setCustomerGuestCheckout((string)$riskInformationTransfer->getIsCustomerGuest());
-            }
-
-            if ($riskInformationTransfer->getCustomerOrdersCount()) {
-                $heidelpayRequest->getRiskInformation()->setCustomerOrderCount($riskInformationTransfer->getCustomerOrdersCount());
-            }
+        if ($riskInformationTransfer->getCustomerSince()) {
+            $heidelpayRequest->getRiskInformation()->setCustomerSince($riskInformationTransfer->getCustomerSince());
         }
 
-        if ($heidelpayRequest->getBasket() && $requestTransfer->getIdBasket()) {
+        if ($riskInformationTransfer->getIsCustomerGuest()) {
+            $heidelpayRequest->getRiskInformation()->setCustomerGuestCheckout((string)$riskInformationTransfer->getIsCustomerGuest());
+        }
+
+        if ($riskInformationTransfer->getCustomerOrdersCount()) {
+            $heidelpayRequest->getRiskInformation()->setCustomerOrderCount($riskInformationTransfer->getCustomerOrdersCount());
+        }
+
+        if ($requestTransfer->getIdBasket()) {
             $heidelpayRequest->getBasket()->setId($requestTransfer->getIdBasket());
         }
     }
