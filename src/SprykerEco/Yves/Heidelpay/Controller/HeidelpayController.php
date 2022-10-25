@@ -16,6 +16,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * @method \SprykerEco\Yves\Heidelpay\HeidelpayFactory getFactory()
  * @method \SprykerEco\Client\Heidelpay\HeidelpayClientInterface getClient()
+ * @method \SprykerEco\Yves\Heidelpay\HeidelpayConfig getConfig()
  */
 class HeidelpayController extends BaseHeidelpayController
 {
@@ -85,15 +86,7 @@ class HeidelpayController extends BaseHeidelpayController
     {
         return $processingResultTransfer->getIsError()
             ? $this->getFailureRedirectUrl($processingResultTransfer)
-            : $this->getSuccessRedirectUrl();
-    }
-
-    /**
-     * @return string
-     */
-    protected function getSuccessRedirectUrl(): string
-    {
-        return $this->getConfig()->getYvesCheckoutSuccessUrl();
+            : $this->getConfig()->getYvesCheckoutSuccessUrl();
     }
 
     /**

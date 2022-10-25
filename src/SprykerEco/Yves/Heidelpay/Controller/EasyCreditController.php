@@ -19,6 +19,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * @method \SprykerEco\Yves\Heidelpay\HeidelpayFactory getFactory()
  * @method \SprykerEco\Client\Heidelpay\HeidelpayClientInterface getClient()
+ * @method \SprykerEco\Yves\Heidelpay\HeidelpayConfig getConfig()
  */
 class EasyCreditController extends BaseHeidelpayController
 {
@@ -64,14 +65,14 @@ class EasyCreditController extends BaseHeidelpayController
             ->hydrateQuoteTransferWithEasyCreditResponse($paymentParameters, $quoteTransfer);
 
         return $this->redirectResponseExternal(
-            $this->getSummaryPageUrl(),
+            $this->getConfig()->getYvesCheckoutSummaryStepUrl(),
         );
     }
 
     /**
-     * @param array $requestParameters
+     * @param array<string> $requestParameters
      *
-     * @return array
+     * @return array<string>
      */
     protected function getPaymentParametersFromEasyCreditResponseParameters(array $requestParameters): array
     {
@@ -84,7 +85,7 @@ class EasyCreditController extends BaseHeidelpayController
     }
 
     /**
-     * @param array $requestAsArray
+     * @param array<string> $requestAsArray
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return void
@@ -97,7 +98,7 @@ class EasyCreditController extends BaseHeidelpayController
     }
 
     /**
-     * @param array $requestArray
+     * @param array<string> $requestArray
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
@@ -106,22 +107,6 @@ class EasyCreditController extends BaseHeidelpayController
         return $this
             ->getClient()
             ->processExternalEasyCreditPaymentResponse($requestArray);
-    }
-
-    /**
-     * @return string
-     */
-    protected function getSummaryPageUrl(): string
-    {
-        return $this->getConfig()->getYvesCheckoutSummaryStepUrl();
-    }
-
-    /**
-     * @return string
-     */
-    protected function getInitializePaymentUrl(): string
-    {
-        return $this->getConfig()->getYvesInitializePaymentUrl();
     }
 
     /**
@@ -138,14 +123,14 @@ class EasyCreditController extends BaseHeidelpayController
     }
 
     /**
-     * @param array $responseArray
+     * @param array<string> $responseArray
      *
      * @return string
      */
     protected function generateEasyCreditRedirectUrl(array $responseArray): string
     {
         return Url::generate(
-            $this->getInitializePaymentUrl(),
+            $this->getConfig()->getYvesInitializePaymentUrl(),
             $this->getPaymentParametersFromEasyCreditResponseParameters($responseArray),
         )->build();
     }

@@ -16,6 +16,8 @@ use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\CreditCardPaymentInterface
 use SprykerEco\Zed\Heidelpay\Business\Adapter\Payment\DirectDebitPaymentInterface;
 use SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreator;
 use SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreatorInterface;
+use SprykerEco\Zed\Heidelpay\Business\Checker\SalesOrderChecker;
+use SprykerEco\Zed\Heidelpay\Business\Checker\SalesOrderCheckerInterface;
 use SprykerEco\Zed\Heidelpay\Business\Encrypter\AesEncrypter;
 use SprykerEco\Zed\Heidelpay\Business\Encrypter\EncrypterInterface;
 use SprykerEco\Zed\Heidelpay\Business\Hook\PostSaveHook;
@@ -740,7 +742,7 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface>
+     * @return array<string, \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface|\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface>
      */
     public function getPaymentMethodWithPreSavePaymentCollection(): array
     {
@@ -950,6 +952,14 @@ class HeidelpayBusinessFactory extends AbstractBusinessFactory
     public function createHeidelpayWriter(): HeidelpayWriterInterface
     {
         return new HeidelpayWriter($this->getEntityManager());
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Heidelpay\Business\Checker\SalesOrderCheckerInterface
+     */
+    public function createSalesOrderChecker(): SalesOrderCheckerInterface
+    {
+        return new SalesOrderChecker($this->getRepository());
     }
 
     /**

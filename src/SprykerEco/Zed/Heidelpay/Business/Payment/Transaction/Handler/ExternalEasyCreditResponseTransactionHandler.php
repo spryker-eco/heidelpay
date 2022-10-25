@@ -75,7 +75,7 @@ class ExternalEasyCreditResponseTransactionHandler implements ExternalEasyCredit
     }
 
     /**
-     * @param array $externalResponseArray
+     * @param array<string> $externalResponseArray
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
@@ -88,7 +88,7 @@ class ExternalEasyCreditResponseTransactionHandler implements ExternalEasyCredit
     }
 
     /**
-     * @param array $externalResponseArray
+     * @param array<string> $externalResponseArray
      *
      * @return \Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer
      */

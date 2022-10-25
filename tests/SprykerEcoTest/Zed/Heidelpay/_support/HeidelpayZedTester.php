@@ -8,6 +8,11 @@
 namespace SprykerEcoTest\Zed\Heidelpay;
 
 use Codeception\Actor;
+use Generated\Shared\Transfer\PaymentHeidelpayTransactionLogCriteriaTransfer;
+use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog;
+use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery;
+use Orm\Zed\Sales\Persistence\SpySalesOrder;
+use SprykerEcoTest\Zed\Heidelpay\Business\DataProviders\PaymentBuilder;
 
 /**
  * Inherited Methods
@@ -39,5 +44,30 @@ class HeidelpayZedTester extends Actor
         $xml = simplexml_load_file(static::NOTIFICATION_FILE_PATH);
 
         return $xml->asXML();
+    }
+
+    /**
+     * @param string $paymentMethod
+     *
+     * @return \Orm\Zed\Sales\Persistence\SpySalesOrder
+     */
+    public function createOrder(string $paymentMethod): SpySalesOrder
+    {
+        return (new PaymentBuilder())->createPayment($paymentMethod);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\PaymentHeidelpayTransactionLogCriteriaTransfer $paymentHeidelpayTransactionLogCriteriaTransfer
+     *
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLog|null
+     */
+    public function findPaymentHeidelpayTransactionLog(
+        PaymentHeidelpayTransactionLogCriteriaTransfer $paymentHeidelpayTransactionLogCriteriaTransfer
+    ): ?SpyPaymentHeidelpayTransactionLog {
+        return SpyPaymentHeidelpayTransactionLogQuery::create()
+            ->filterByFkSalesOrder($paymentHeidelpayTransactionLogCriteriaTransfer->getIdSalesOrder())
+            ->filterByTransactionType($paymentHeidelpayTransactionLogCriteriaTransfer->getTransactionType())
+            ->filterByResponseCode($paymentHeidelpayTransactionLogCriteriaTransfer->getResponseCode())
+            ->findOne();
     }
 }

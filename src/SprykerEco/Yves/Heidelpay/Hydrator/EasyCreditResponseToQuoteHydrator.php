@@ -57,7 +57,7 @@ class EasyCreditResponseToQuoteHydrator implements EasyCreditResponseToQuoteHydr
     }
 
     /**
-     * @param array $responseAsArray
+     * @param array<string> $responseAsArray
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return void

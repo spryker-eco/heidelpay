@@ -11,7 +11,7 @@ use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayNotificationCollectionTransfer;
 use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
-use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
+use Generated\Shared\Transfer\PaymentHeidelpayTransactionLogCriteriaTransfer;
 
 interface HeidelpayRepositoryInterface
 {
@@ -70,13 +70,9 @@ interface HeidelpayRepositoryInterface
     ): ?HeidelpayDirectDebitRegistrationTransfer;
 
     /**
-     * @param int $idSalesOrder
-     * @param string $transactionType
+     * @param \Generated\Shared\Transfer\PaymentHeidelpayTransactionLogCriteriaTransfer $paymemtHeidelpayTransactionLogCriteriaTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     * @return bool
      */
-    public function findHeidelpayTransactionLogByIdSalesOrderAndTransactionType(
-        int $idSalesOrder,
-        string $transactionType
-    ): ?HeidelpayTransactionLogTransfer;
+    public function hasPaymentHeidelpayTransactionLog(PaymentHeidelpayTransactionLogCriteriaTransfer $paymemtHeidelpayTransactionLogCriteriaTransfer): bool;
 }

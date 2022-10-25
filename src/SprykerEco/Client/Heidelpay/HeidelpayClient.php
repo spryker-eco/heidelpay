@@ -96,7 +96,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
      *
      * @api
      *
-     * @param array $externalResponse
+     * @param array<string> $externalResponse
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer
      */
@@ -144,7 +144,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
      *
      * @api
      *
-     * @param array $externalResponse
+     * @param array<string> $externalResponse
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
@@ -162,7 +162,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
      *
      * @api
      *
-     * @param array $externalResponse
+     * @param array<string> $externalResponse
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
@@ -301,9 +301,9 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
      *
      * @api
      *
-     * @param array $responseArray
+     * @param array<string> $responseArray
      *
-     * @return array
+     * @return array<string>
      */
     public function filterResponseParameters(array $responseArray): array
     {
@@ -323,7 +323,7 @@ class HeidelpayClient extends AbstractClient implements HeidelpayClientInterface
     }
 
     /**
-     * @param array $externalResponse
+     * @param array<string> $externalResponse
      *
      * @return \Generated\Shared\Transfer\HeidelpayExternalPaymentRequestTransfer
      */

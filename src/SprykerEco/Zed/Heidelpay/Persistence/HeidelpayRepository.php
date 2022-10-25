@@ -11,7 +11,7 @@ use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayNotificationCollectionTransfer;
 use Generated\Shared\Transfer\HeidelpayNotificationTransfer;
 use Generated\Shared\Transfer\HeidelpayPaymentTransfer;
-use Generated\Shared\Transfer\HeidelpayTransactionLogTransfer;
+use Generated\Shared\Transfer\PaymentHeidelpayTransactionLogCriteriaTransfer;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayDirectDebitRegistrationQuery;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayNotificationQuery;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayQuery;
@@ -165,29 +165,17 @@ class HeidelpayRepository extends AbstractRepository implements HeidelpayReposit
     }
 
     /**
-     * @param int $idSalesOrder
-     * @param string $transactionType
+     * @param \Generated\Shared\Transfer\PaymentHeidelpayTransactionLogCriteriaTransfer $paymentHeidelpayTransactionLogCriteriaTransfer
      *
-     * @return \Generated\Shared\Transfer\HeidelpayTransactionLogTransfer|null
+     * @return bool
      */
-    public function findHeidelpayTransactionLogByIdSalesOrderAndTransactionType(
-        int $idSalesOrder,
-        string $transactionType
-    ): ?HeidelpayTransactionLogTransfer {
-        $paymentHeidelpayTransactionLogEntity = $this->getPaymentHeidelpayTransactionLogQuery()
-            ->filterByFkSalesOrder($idSalesOrder)
-            ->filterByTransactionType($transactionType)
-            ->findOne();
-
-        if ($paymentHeidelpayTransactionLogEntity === null) {
-            return null;
-        }
-
-        return $this->getMapper()
-            ->mapEntityToHeidelpayTransactionLogTransfer(
-                $paymentHeidelpayTransactionLogEntity,
-                new HeidelpayTransactionLogTransfer(),
-            );
+    public function hasPaymentHeidelpayTransactionLog(PaymentHeidelpayTransactionLogCriteriaTransfer $paymentHeidelpayTransactionLogCriteriaTransfer): bool
+    {
+        return $this->setPaymentHeidelpayTransactionLogFilters(
+            $this->getPaymentHeidelpayTransactionLogQuery(),
+            $paymentHeidelpayTransactionLogCriteriaTransfer,
+        )
+            ->exists();
     }
 
     /**
@@ -228,5 +216,30 @@ class HeidelpayRepository extends AbstractRepository implements HeidelpayReposit
     protected function getPaymentHeidelpayTransactionLogQuery(): SpyPaymentHeidelpayTransactionLogQuery
     {
         return $this->getFactory()->createPaymentHeidelpayTransactionLogQuery();
+    }
+
+    /**
+     * @param \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery $paymentHeidelpayTransactionLogQuery
+     * @param \Generated\Shared\Transfer\PaymentHeidelpayTransactionLogCriteriaTransfer $paymentHeidelpayTransactionLogCriteriaTransfer
+     *
+     * @return \Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayTransactionLogQuery
+     */
+    protected function setPaymentHeidelpayTransactionLogFilters(
+        SpyPaymentHeidelpayTransactionLogQuery $paymentHeidelpayTransactionLogQuery,
+        PaymentHeidelpayTransactionLogCriteriaTransfer $paymentHeidelpayTransactionLogCriteriaTransfer
+    ): SpyPaymentHeidelpayTransactionLogQuery {
+        if ($paymentHeidelpayTransactionLogCriteriaTransfer->getIdSalesOrder()) {
+            $paymentHeidelpayTransactionLogQuery->filterByFkSalesOrder($paymentHeidelpayTransactionLogCriteriaTransfer->getIdSalesOrder());
+        }
+
+        if ($paymentHeidelpayTransactionLogCriteriaTransfer->getTransactionType()) {
+            $paymentHeidelpayTransactionLogQuery->filterByTransactionType($paymentHeidelpayTransactionLogCriteriaTransfer->getTransactionType());
+        }
+
+        if ($paymentHeidelpayTransactionLogCriteriaTransfer->getResponseCode()) {
+            $paymentHeidelpayTransactionLogQuery->filterByResponseCode($paymentHeidelpayTransactionLogCriteriaTransfer->getResponseCode());
+        }
+
+        return $paymentHeidelpayTransactionLogQuery;
     }
 }

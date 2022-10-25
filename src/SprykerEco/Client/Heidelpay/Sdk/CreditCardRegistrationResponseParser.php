@@ -44,7 +44,7 @@ class CreditCardRegistrationResponseParser implements CreditCardRegistrationResp
     }
 
     /**
-     * @param array $responseArray
+     * @param array<string> $responseArray
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer
      */
@@ -63,7 +63,7 @@ class CreditCardRegistrationResponseParser implements CreditCardRegistrationResp
     }
 
     /**
-     * @param array $apiResponseArray
+     * @param array<string> $apiResponseArray
      *
      * @return \Heidelpay\PhpPaymentApi\Response
      */

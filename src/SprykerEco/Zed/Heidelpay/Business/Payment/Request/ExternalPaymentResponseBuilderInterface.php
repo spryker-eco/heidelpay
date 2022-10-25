@@ -12,7 +12,7 @@ use Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer;
 interface ExternalPaymentResponseBuilderInterface
 {
     /**
-     * @param array $postRequestParams
+     * @param array<mixed> $postRequestParams
      *
      * @return \Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer
      */

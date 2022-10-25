@@ -12,7 +12,7 @@ use ArrayObject;
 interface EasyCreditResponseToGetParametersMapperInterface
 {
     /**
-     * @param array $responseAsArray
+     * @param array<string> $responseAsArray
      * @param \ArrayObject $getParameters
      *
      * @return void
