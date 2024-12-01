@@ -116,6 +116,9 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      */
     public function map(Response $apiResponse, HeidelpayResponseTransfer $responseTransfer): void
     {
+        $optionText = $apiResponse->getConfig()->getOptinText();
+        $optionText = is_array($optionText) ? null : $optionText;
+
         $responseTransfer
             ->setIsPending($apiResponse->isPending())
             ->setIsSuccess($apiResponse->isSuccess())
@@ -124,7 +127,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
             ->setProcessingCode($apiResponse->getProcessing()->code)
             ->setIdTransactionUnique($apiResponse->getIdentification()->getUniqueId())
             ->setResultCode($apiResponse->getProcessing()->getResult())
-            ->setLegalText($apiResponse->getConfig()->getOptinText())
+            ->setLegalText($optionText)
             ->setConnectorInvoiceAccountInfo($this->getConnectorInfo($apiResponse));
 
         $this->mapPaymentFormUrl($apiResponse, $responseTransfer);
@@ -184,7 +187,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
         /** @var array<string> $banks */
         $banks = $config->getBrands();
 
-        if (empty($banks)) {
+        if (!$banks) {
             return;
         }
 
@@ -209,7 +212,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
         /** @var array<string> $bankCountries */
         $bankCountries = $config->getBankCountry();
 
-        if (empty($bankCountries)) {
+        if (!$bankCountries) {
             return;
         }
 
@@ -290,7 +293,7 @@ class ResponseFromHeidelpay implements ResponseFromHeidelpayInterface
      */
     protected function getConnectorInfo(Response $apiResponse): ?string
     {
-        if (empty($apiResponse->getConnector()->getAccountIBan())) {
+        if (!$apiResponse->getConnector()->getAccountIBan()) {
             return null;
         }
 

@@ -45,7 +45,7 @@ class InitializeTransactionHandler implements InitializeTransactionHandlerInterf
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\InitializeTransactionInterface $transaction
-     * @param array $paymentMethodAdapterCollection
+     * @param array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithInitializeInterface> $paymentMethodAdapterCollection
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromQuoteBuilderInterface $heidelpayRequestBuilder
      * @param \SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreatorInterface $basketCreator
      */

@@ -18,7 +18,7 @@ use Spryker\Yves\Kernel\Controller\AbstractController;
 class IdealController extends AbstractController
 {
     /**
-     * @return array
+     * @return array<string, mixed>
      */
     public function authorizeAction(): array
     {

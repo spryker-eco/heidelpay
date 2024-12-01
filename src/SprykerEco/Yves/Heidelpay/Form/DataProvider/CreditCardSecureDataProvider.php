@@ -50,7 +50,7 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return array
+     * @return array<string, array<null|string>>
      */
     public function getOptions(AbstractTransfer $quoteTransfer): array
     {
@@ -137,13 +137,13 @@ class CreditCardSecureDataProvider implements StepEngineFormDataProviderInterfac
     protected function setDefaultPaymentOption(HeidelpayCreditCardPaymentTransfer $creditCardPaymentTransfer): void
     {
         $availableOptions = array_keys($this->fetchPaymentOptions($creditCardPaymentTransfer));
-        $creditCardPaymentTransfer->setSelectedPaymentOption(array_shift($availableOptions));
+        $creditCardPaymentTransfer->setSelectedPaymentOption((string)array_shift($availableOptions));
     }
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayCreditCardPaymentTransfer $creditCardPaymentTransfer
      *
-     * @return array
+     * @return array<null|string>
      */
     protected function fetchPaymentOptions(HeidelpayCreditCardPaymentTransfer $creditCardPaymentTransfer): array
     {

@@ -87,7 +87,7 @@ class HeidelpayPaymentResponseProcessor implements HeidelpayPaymentResponseProce
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return array
+     * @return array<string>
      */
     protected function getUrlDecodedRequestBody(Request $request): array
     {

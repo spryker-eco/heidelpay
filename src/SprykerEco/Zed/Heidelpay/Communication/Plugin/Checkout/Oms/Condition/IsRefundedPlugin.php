@@ -31,8 +31,8 @@ class IsRefundedPlugin extends AbstractPlugin implements ConditionInterface
      */
     public function check(SpySalesOrderItem $orderItem): bool
     {
-        return $this->getFactory()
-            ->createIsRefundedOmsCondition()
-            ->check($orderItem);
+        return $this->getFacade()->isSalesOrderRefunded(
+            $orderItem->getFkSalesOrder(),
+        );
     }
 }

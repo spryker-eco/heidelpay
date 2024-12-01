@@ -31,7 +31,7 @@ class ExternalPaymentResponseBuilder implements ExternalPaymentResponseBuilderIn
     }
 
     /**
-     * @param array $postRequestParams
+     * @param array<mixed> $postRequestParams
      *
      * @return \Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer
      */

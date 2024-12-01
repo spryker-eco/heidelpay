@@ -20,45 +20,63 @@ class RequestToHeidelpay implements RequestToHeidelpayInterface
      */
     public function map(HeidelpayRequestTransfer $requestTransfer, Request $heidelpayRequest): void
     {
-        $heidelpayRequest->async(
-            $requestTransfer->getAsync()->getLanguageCode(),
-            $requestTransfer->getAsync()->getResponseUrl(),
-        );
+        if ($requestTransfer->getAsync()) {
+            $heidelpayRequest->async(
+                $requestTransfer->getAsync()->getLanguageCode(),
+                $requestTransfer->getAsync()->getResponseUrl(),
+            );
+        }
 
-        $heidelpayRequest->authentification(
-            $requestTransfer->getAuth()->getSecuritySender(),
-            $requestTransfer->getAuth()->getUserLogin(),
-            $requestTransfer->getAuth()->getUserPassword(),
-            $requestTransfer->getAuth()->getTransactionChannel(),
-            $requestTransfer->getAuth()->getIsSandboxRequest(),
-        );
+        if ($requestTransfer->getAuth()) {
+            $heidelpayRequest->authentification(
+                $requestTransfer->getAuth()->getSecuritySender(),
+                $requestTransfer->getAuth()->getUserLogin(),
+                $requestTransfer->getAuth()->getUserPassword(),
+                $requestTransfer->getAuth()->getTransactionChannel(),
+                $requestTransfer->getAuth()->getIsSandboxRequest(),
+            );
+        }
 
-        $heidelpayRequest->customerAddress(
-            $requestTransfer->getCustomerAddress()->getFirstName(),
-            $requestTransfer->getCustomerAddress()->getLastName(),
-            $requestTransfer->getCustomerAddress()->getCompany(),
-            $requestTransfer->getCustomerAddress()->getIdShopper(),
-            $requestTransfer->getCustomerAddress()->getStreet(),
-            $requestTransfer->getCustomerAddress()->getState(),
-            $requestTransfer->getCustomerAddress()->getZip(),
-            $requestTransfer->getCustomerAddress()->getCity(),
-            $requestTransfer->getCustomerAddress()->getCountry(),
-            $requestTransfer->getCustomerAddress()->getEmail(),
-        );
+        if ($requestTransfer->getCustomerAddress()) {
+            $heidelpayRequest->customerAddress(
+                $requestTransfer->getCustomerAddress()->getFirstName(),
+                $requestTransfer->getCustomerAddress()->getLastName(),
+                $requestTransfer->getCustomerAddress()->getCompany(),
+                $requestTransfer->getCustomerAddress()->getIdShopper(),
+                $requestTransfer->getCustomerAddress()->getStreet(),
+                $requestTransfer->getCustomerAddress()->getState(),
+                $requestTransfer->getCustomerAddress()->getZip(),
+                $requestTransfer->getCustomerAddress()->getCity(),
+                $requestTransfer->getCustomerAddress()->getCountry(),
+                $requestTransfer->getCustomerAddress()->getEmail(),
+            );
+        }
 
-        $heidelpayRequest->basketData(
-            $requestTransfer->getCustomerPurchase()->getIdOrder(),
-            $requestTransfer->getCustomerPurchase()->getAmount(),
-            $requestTransfer->getCustomerPurchase()->getCurrencyCode(),
-            $requestTransfer->getCustomerPurchase()->getSecret(),
-        );
+        if ($requestTransfer->getCustomerPurchase()) {
+            $heidelpayRequest->basketData(
+                $requestTransfer->getCustomerPurchase()->getIdOrder(),
+                (string)$requestTransfer->getCustomerPurchase()->getAmount(),
+                $requestTransfer->getCustomerPurchase()->getCurrencyCode(),
+                $requestTransfer->getCustomerPurchase()->getSecret(),
+            );
+        }
 
         $riskInformationTransfer = $requestTransfer->getRiskInformation();
 
-        $heidelpayRequest->getRiskInformation()->setCustomerSince($riskInformationTransfer->getCustomerSince());
-        $heidelpayRequest->getRiskInformation()->setCustomerGuestCheckout($riskInformationTransfer->getIsCustomerGuest());
-        $heidelpayRequest->getRiskInformation()->setCustomerOrderCount($riskInformationTransfer->getCustomerOrdersCount());
+        if ($riskInformationTransfer->getCustomerSince()) {
+            $heidelpayRequest->getRiskInformation()->setCustomerSince($riskInformationTransfer->getCustomerSince());
+        }
 
-        $heidelpayRequest->getBasket()->setId($requestTransfer->getIdBasket());
+        if ($riskInformationTransfer->getIsCustomerGuest()) {
+            $heidelpayRequest->getRiskInformation()->setCustomerGuestCheckout((string)$riskInformationTransfer->getIsCustomerGuest());
+        }
+
+        if ($riskInformationTransfer->getCustomerOrdersCount()) {
+            $heidelpayRequest->getRiskInformation()->setCustomerOrderCount($riskInformationTransfer->getCustomerOrdersCount());
+        }
+
+        if ($requestTransfer->getIdBasket()) {
+            $heidelpayRequest->getBasket()->setId($requestTransfer->getIdBasket());
+        }
     }
 }

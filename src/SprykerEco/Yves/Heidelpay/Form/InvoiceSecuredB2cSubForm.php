@@ -21,6 +21,9 @@ use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
+/**
+ * @method \SprykerEco\Yves\Heidelpay\HeidelpayConfig getConfig()
+ */
 class InvoiceSecuredB2cSubForm extends AbstractSubFormType implements SubFormInterface, SubFormProviderNameInterface
 {
     /**
@@ -114,7 +117,7 @@ class InvoiceSecuredB2cSubForm extends AbstractSubFormType implements SubFormInt
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param array<mixed> $options
      *
      * @return void
      */

@@ -56,7 +56,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @api
      *
-     * @param array $externalResponse
+     * @param array<string> $externalResponse
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
@@ -72,7 +72,7 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
      *
      * @api
      *
-     * @param array $externalResponse
+     * @param array<string> $externalResponse
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
@@ -410,5 +410,53 @@ class HeidelpayFacade extends AbstractFacade implements HeidelpayFacadeInterface
         return $this->getFactory()
             ->createHeidelpayNotificationProcessor()
             ->processNotification($notificationTransfer);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param int $idSalesOrder
+     *
+     * @return bool
+     */
+    public function isSalesOrderCaptureApproved(int $idSalesOrder): bool
+    {
+        return $this->getFactory()
+            ->createSalesOrderChecker()
+            ->isCaptureApproved($idSalesOrder);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param int $idSalesOrder
+     *
+     * @return bool
+     */
+    public function isSalesOrderRefunded(int $idSalesOrder): bool
+    {
+        return $this->getFactory()
+            ->createSalesOrderChecker()
+            ->isRefunded($idSalesOrder);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param int $idSalesOrder
+     *
+     * @return bool
+     */
+    public function isSalesOrderDebitOnRegistrationCompleted(int $idSalesOrder): bool
+    {
+        return $this->getFactory()
+            ->createSalesOrderChecker()
+            ->isDebitOnRegistrationCompleted($idSalesOrder);
     }
 }

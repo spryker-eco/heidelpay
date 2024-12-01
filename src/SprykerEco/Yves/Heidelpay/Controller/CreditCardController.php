@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * @method \SprykerEco\Yves\Heidelpay\HeidelpayFactory getFactory()
  * @method \SprykerEco\Client\Heidelpay\HeidelpayClientInterface getClient()
+ * @method \SprykerEco\Yves\Heidelpay\HeidelpayConfig getConfig()
  */
 class CreditCardController extends BaseHeidelpayController
 {
@@ -85,7 +86,7 @@ class CreditCardController extends BaseHeidelpayController
     }
 
     /**
-     * @param array $requestAsArray
+     * @param array<string> $requestAsArray
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer
      */

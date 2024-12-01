@@ -12,7 +12,7 @@ use Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer;
 interface ExternalResponseTransactionHandlerInterface
 {
     /**
-     * @param array $responseArray
+     * @param array<string> $responseArray
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */

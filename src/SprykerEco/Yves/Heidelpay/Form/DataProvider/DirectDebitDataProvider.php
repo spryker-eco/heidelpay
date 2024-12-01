@@ -44,7 +44,7 @@ class DirectDebitDataProvider implements StepEngineFormDataProviderInterface
     /**
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
-     * @return array
+     * @return array<string, array<string>>
      */
     public function getOptions(AbstractTransfer $quoteTransfer): array
     {

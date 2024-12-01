@@ -15,6 +15,7 @@ use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpay;
 use Orm\Zed\Heidelpay\Persistence\SpyPaymentHeidelpayOrderItem;
 use Spryker\Zed\Kernel\Persistence\EntityManager\TransactionTrait;
 use SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreatorInterface;
+use SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface;
 
 class Saver implements SaverInterface
 {
@@ -26,13 +27,13 @@ class Saver implements SaverInterface
     protected $basketCreator;
 
     /**
-     * @var array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface>
+     * @var array<string, \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface|\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface>
      */
     protected $paymentCollection;
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Basket\BasketCreatorInterface $basketCreator
-     * @param array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface> $paymentCollection
+     * @param array<string, \SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPostSaveOrderInterface|\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithPreSavePaymentInterface> $paymentCollection
      */
     public function __construct(BasketCreatorInterface $basketCreator, array $paymentCollection)
     {
@@ -131,7 +132,10 @@ class Saver implements SaverInterface
         }
 
         $paymentMethod = $this->paymentCollection[$paymentMethodCode];
-        $paymentMethod->addDataToPayment($paymentEntity, $quoteTransfer);
+
+        if ($paymentMethod instanceof PaymentWithPreSavePaymentInterface) {
+            $paymentMethod->addDataToPayment($paymentEntity, $quoteTransfer);
+        }
     }
 
     /**

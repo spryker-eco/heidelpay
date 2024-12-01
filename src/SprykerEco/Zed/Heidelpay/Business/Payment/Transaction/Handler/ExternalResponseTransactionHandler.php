@@ -64,7 +64,7 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
     }
 
     /**
-     * @param array $externalResponseArray
+     * @param array<string> $externalResponseArray
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
@@ -95,7 +95,7 @@ class ExternalResponseTransactionHandler implements ExternalResponseTransactionH
     }
 
     /**
-     * @param array $externalResponseArray
+     * @param array<string> $externalResponseArray
      *
      * @return \Generated\Shared\Transfer\HeidelpayExternalPaymentResponseTransfer
      */

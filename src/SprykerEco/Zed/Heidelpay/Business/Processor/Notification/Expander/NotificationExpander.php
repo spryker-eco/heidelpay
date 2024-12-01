@@ -200,7 +200,7 @@ class NotificationExpander implements NotificationExpanderInterface
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayNotificationTransfer $notificationTransfer
-     * @param array $notificationData
+     * @param array<array<mixed>> $notificationData
      *
      * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer
      */
@@ -224,7 +224,7 @@ class NotificationExpander implements NotificationExpanderInterface
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayNotificationTransfer $notificationTransfer
-     * @param array $notificationData
+     * @param array<array<mixed>> $notificationData
      *
      * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer
      */
@@ -248,7 +248,7 @@ class NotificationExpander implements NotificationExpanderInterface
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayNotificationTransfer $notificationTransfer
-     * @param array $notificationData
+     * @param array<array<mixed>> $notificationData
      *
      * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer
      */
@@ -274,7 +274,7 @@ class NotificationExpander implements NotificationExpanderInterface
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayNotificationTransfer $notificationTransfer
-     * @param array $notificationData
+     * @param array<array<mixed>> $notificationData
      *
      * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer
      */
@@ -300,7 +300,7 @@ class NotificationExpander implements NotificationExpanderInterface
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayNotificationTransfer $notificationTransfer
-     * @param array $notificationData
+     * @param array<array<mixed>> $notificationData
      *
      * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer
      */
@@ -324,7 +324,7 @@ class NotificationExpander implements NotificationExpanderInterface
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayNotificationTransfer $notificationTransfer
-     * @param array $notificationData
+     * @param array<array<mixed>> $notificationData
      *
      * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer
      */
@@ -345,7 +345,7 @@ class NotificationExpander implements NotificationExpanderInterface
 
     /**
      * @param \Generated\Shared\Transfer\HeidelpayNotificationTransfer $notificationTransfer
-     * @param array<array<string>> $notificationData
+     * @param array<array<mixed>> $notificationData
      *
      * @return \Generated\Shared\Transfer\HeidelpayNotificationTransfer
      */

@@ -20,6 +20,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
+/**
+ * @method \SprykerEco\Yves\Heidelpay\HeidelpayConfig getConfig()
+ */
 class EasyCreditSubForm extends AbstractSubFormType implements SubFormInterface, SubFormProviderNameInterface
 {
     /**
@@ -94,7 +97,7 @@ class EasyCreditSubForm extends AbstractSubFormType implements SubFormInterface,
     /**
      * @param \Symfony\Component\Form\FormView $view
      * @param \Symfony\Component\Form\FormInterface $form
-     * @param array $options
+     * @param array<mixed> $options
      *
      * @return void
      */
@@ -108,7 +111,7 @@ class EasyCreditSubForm extends AbstractSubFormType implements SubFormInterface,
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param array<mixed> $options
      *
      * @return void
      */
@@ -119,7 +122,7 @@ class EasyCreditSubForm extends AbstractSubFormType implements SubFormInterface,
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param array<mixed> $options
      *
      * @return $this
      */

@@ -19,7 +19,7 @@ class HeidelpayConfig extends AbstractBundleConfig implements HeidelpayConfigInt
     public const MERCHANT_TRANSACTION_CONFIG_NOT_FOUND = '';
 
     /**
-     * @var array
+     * @var array<string, string>
      */
     protected const MERCHANT_TRANSACTION_CHANNEL_PAYMENT_TYPE_MAPPING = [
         SharedHeidelpayConfig::PAYMENT_METHOD_SOFORT => HeidelpayConstants::CONFIG_HEIDELPAY_TRANSACTION_CHANNEL_SOFORT,

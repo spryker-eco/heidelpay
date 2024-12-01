@@ -43,7 +43,7 @@ class FinalizeTransactionHandler implements FinalizeTransactionHandlerInterface
 
     /**
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\Transaction\FinalizeTransactionInterface $transaction
-     * @param array $paymentMethodAdapterCollection
+     * @param array<\SprykerEco\Zed\Heidelpay\Business\Payment\Type\PaymentWithFinalizeInterface> $paymentMethodAdapterCollection
      * @param array<\SprykerEco\Zed\Heidelpay\Business\Payment\Request\AdapterRequestFromOrderBuilderInterface> $requestBuilderCollection
      * @param \SprykerEco\Zed\Heidelpay\Business\Payment\PaymentWriterInterface $paymentWriter
      */

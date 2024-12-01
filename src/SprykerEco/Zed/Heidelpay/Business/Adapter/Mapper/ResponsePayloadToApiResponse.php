@@ -42,7 +42,7 @@ class ResponsePayloadToApiResponse implements ResponsePayloadToApiResponseInterf
 
     /**
      * @param string $parameterGroup
-     * @param array $values
+     * @param array<mixed> $values
      * @param \Heidelpay\PhpPaymentApi\Response $heidelpayResponse
      *
      * @return void
@@ -94,7 +94,7 @@ class ResponsePayloadToApiResponse implements ResponsePayloadToApiResponseInterf
     /**
      * @param string $transactionPayload
      *
-     * @return array
+     * @return array<mixed>
      */
     protected function getTransactionPayloadArray($transactionPayload): array
     {

@@ -12,7 +12,7 @@ use Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer;
 interface CreditCardRegistrationResponseParserInterface
 {
     /**
-     * @param array $responseArray
+     * @param array<string> $responseArray
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer
      */

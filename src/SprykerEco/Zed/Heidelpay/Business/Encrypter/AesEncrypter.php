@@ -73,13 +73,15 @@ class AesEncrypter implements EncrypterInterface
 
         [$encryptedData, $initVector] = $dataChunks;
 
-        return openssl_decrypt(
+        $data = openssl_decrypt(
             $encryptedData,
             static::CYPHER_METHOD,
             $encryptionKey,
             OPENSSL_RAW_DATA,
             base64_decode($initVector),
         );
+
+        return $data ?: null;
     }
 
     /**
@@ -87,8 +89,8 @@ class AesEncrypter implements EncrypterInterface
      */
     protected function getRandomPseudoBytes(): string
     {
-        $cipherIvLength = openssl_cipher_iv_length(static::CYPHER_METHOD);
+        $cipherIvLength = (int)openssl_cipher_iv_length(static::CYPHER_METHOD);
 
-        return openssl_random_pseudo_bytes($cipherIvLength);
+        return (string)openssl_random_pseudo_bytes($cipherIvLength);
     }
 }

@@ -12,7 +12,7 @@ use Generated\Shared\Transfer\QuoteTransfer;
 interface EasyCreditResponseToQuoteHydratorInterface
 {
     /**
-     * @param array $responseAsArray
+     * @param array<string> $responseAsArray
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return void

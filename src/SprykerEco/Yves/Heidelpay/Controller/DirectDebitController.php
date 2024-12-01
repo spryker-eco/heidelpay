@@ -9,7 +9,6 @@ namespace SprykerEco\Yves\Heidelpay\Controller;
 
 use Generated\Shared\Transfer\HeidelpayDirectDebitRegistrationTransfer;
 use Generated\Shared\Transfer\HeidelpayResponseErrorTransfer;
-use SprykerEco\Yves\Heidelpay\Plugin\Provider\HeidelpayControllerProvider;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,6 +33,20 @@ class DirectDebitController extends BaseHeidelpayController
      * @var string
      */
     protected const PATH_CHECKOUT_SUMMARY = 'checkout-summary';
+
+    /**
+     * @uses \SprykerEco\Yves\Heidelpay\Plugin\Router\HeidelpayRouteProviderPlugin::ROUTE_NAME_HEIDELPAY_PAYMENT_FAILED
+     *
+     * @var string
+     */
+    protected const ROUTE_HEIDELPAY_PAYMENT_FAILED = 'heidelpay-payment-failed';
+
+    /**
+     * @uses \SprykerEco\Yves\Heidelpay\Plugin\Router\HeidelpayRouteProviderPlugin::ROUTE_NAME_HEIDELPAY_DIRECT_DEBIT_REGISTER_SUCCESS
+     *
+     * @var string
+     */
+    protected const ROUTE_HEIDELPAY_DIRECT_DEBIT_REGISTER_SUCCESS = 'heidelpay-dd-register-success';
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
@@ -87,7 +100,7 @@ class DirectDebitController extends BaseHeidelpayController
     protected function redirectToHeidelpayPaymentFailedUrl(HeidelpayResponseErrorTransfer $responseErrorTransfer): RedirectResponse
     {
         return $this->redirectResponseInternal(
-            HeidelpayControllerProvider::HEIDELPAY_PAYMENT_FAILED,
+            static::ROUTE_HEIDELPAY_PAYMENT_FAILED,
             [static::URL_PARAM_ERROR_CODE => $responseErrorTransfer->getCode()],
         );
     }
@@ -99,15 +112,12 @@ class DirectDebitController extends BaseHeidelpayController
      */
     protected function redirectToRegistrationFailureUrl(HeidelpayResponseErrorTransfer $responseErrorTransfer): Response
     {
-        /**
-         * @var \Spryker\Yves\Kernel\Application $application
-         */
+        /** @var \Spryker\Yves\Kernel\Application $application */
         $application = $this->getApplication();
-        $redirectUrl = $application
-            ->url(
-                HeidelpayControllerProvider::HEIDELPAY_PAYMENT_FAILED,
-                [static::URL_PARAM_ERROR_CODE => $responseErrorTransfer->getCode()],
-            );
+        $redirectUrl = $application->url(
+            static::ROUTE_HEIDELPAY_PAYMENT_FAILED,
+            [static::URL_PARAM_ERROR_CODE => $responseErrorTransfer->getCode()],
+        );
 
         return $this->streamRedirectResponse($redirectUrl);
     }
@@ -119,15 +129,12 @@ class DirectDebitController extends BaseHeidelpayController
      */
     protected function redirectToRegistrationSuccessUrl(HeidelpayDirectDebitRegistrationTransfer $directDebitRegistrationTransfer): Response
     {
-        /**
-         * @var \Spryker\Yves\Kernel\Application $application
-         */
+        /** @var \Spryker\Yves\Kernel\Application $application */
         $application = $this->getApplication();
-        $redirectUrl = $application
-            ->url(
-                HeidelpayControllerProvider::HEIDELPAY_DIRECT_DEBIT_REGISTER_SUCCESS,
-                [static::REQUEST_PARAM_REGISTRATION_ID => $directDebitRegistrationTransfer->getIdDirectDebitRegistration()],
-            );
+        $redirectUrl = $application->url(
+            static::ROUTE_HEIDELPAY_DIRECT_DEBIT_REGISTER_SUCCESS,
+            [static::REQUEST_PARAM_REGISTRATION_ID => $directDebitRegistrationTransfer->getIdDirectDebitRegistration()],
+        );
 
         return $this->streamRedirectResponse($redirectUrl);
     }

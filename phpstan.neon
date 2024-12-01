@@ -1,6 +1,12 @@
 parameters:
-    checkMissingIterableValueType: false
+    level: 8
+    paths:
+        - src/
+    bootstrapFiles:
+        - tests/bootstrap.php
     checkGenericClassInNonGenericObjectType: false
+    excludePaths:
+        - src/SprykerEco/Zed/Heidelpay/Persistence/Propel/Abstract*.php
     ignoreErrors:
         - '#Parameter .+ of method .+ has invalid typehint type .+Transfer#'
         - '#Call to method .+ on an unknown class .+Transfer#'
@@ -21,11 +27,4 @@ parameters:
         - '#Call to static method create\(\) on an unknown class Orm\\.+#'
         - '#Method .+ should return Generated\\.+ but returns .+Transfer#'
         - '#Parameter .+ of method .+ expects .+Transfer, .+AbstractTransfer given#'
-        - '#Method .+ should return array<.+ but returns array<string,.+#'
         - '#SprykerEco\\Zed\\Heidelpay\\Business\\Mapper\\QuoteToHeidelpayRequest::findCustomerRegistrationDate\(\) should return string\|null but returns array\|float\|int\|string\|false\|null#'
-        - '#Method SprykerEco\\Zed\\Heidelpay\\Business\\Encrypter\\AesEncrypter::decryptData\(\) should return string\|null but returns string\|false#'
-        - '#Method SprykerEco\\Zed\\Heidelpay\\Business\\Encrypter\\AesEncrypter::getRandomPseudoBytes\(\) should return string but returns string\|false#'
-        - '#Parameter \#1 \$length of function openssl_random_pseudo_bytes expects int, int\|false given#'
-    excludePaths:
-        - src/SprykerEco/Zed/Heidelpay/Persistence/Propel/Abstract*.php
-

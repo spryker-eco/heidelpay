@@ -77,7 +77,7 @@ interface HeidelpayClientInterface
      *
      * @api
      *
-     * @param array $externalResponse
+     * @param array<string> $externalResponse
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
@@ -89,7 +89,7 @@ interface HeidelpayClientInterface
      *
      * @api
      *
-     * @param array $externalResponse
+     * @param array<string> $externalResponse
      *
      * @return \Generated\Shared\Transfer\HeidelpayPaymentProcessingResponseTransfer
      */
@@ -162,7 +162,7 @@ interface HeidelpayClientInterface
      *
      * @api
      *
-     * @param array $externalResponse
+     * @param array<string> $externalResponse
      *
      * @return \Generated\Shared\Transfer\HeidelpayRegistrationRequestTransfer
      */
@@ -209,9 +209,9 @@ interface HeidelpayClientInterface
      *
      * @api
      *
-     * @param array $responseArray
+     * @param array<string> $responseArray
      *
-     * @return array
+     * @return array<string>
      */
     public function filterResponseParameters(array $responseArray): array;
 
